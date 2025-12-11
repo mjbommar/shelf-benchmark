@@ -1,0 +1,459 @@
+"""
+Stratified Train/Dev/Test Splitting for SHELF
+
+This module implements multi-dimensional stratified splitting to ensure
+balanced label distributions across train, dev, and test sets.
+
+Stratification Strategy:
+1. Primary: LCC code (21 classes) - ensures subject balance
+2. Secondary: LCGFT category (14 classes) - ensures genre balance
+3. Tertiary: Register (8 classes) - ensures style balance
+
+The splitting uses scikit-learn's StratifiedShuffleSplit with a composite
+stratification key combining LCC code and LCGFT category.
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import random
+from collections import Counter
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+from sklearn.model_selection import StratifiedShuffleSplit
+
+
+@dataclass
+class SplitConfig:
+    """Configuration for dataset splitting.
+
+    Attributes:
+        train_ratio: Proportion of data for training (default: 0.6)
+        dev_ratio: Proportion of data for development/validation (default: 0.2)
+        test_ratio: Proportion of data for testing (default: 0.2)
+        random_seed: Random seed for reproducibility (default: 42)
+        min_per_class: Minimum samples per stratification class per split (default: 3)
+        stratify_by: List of fields to use for stratification (default: ["lcc_code", "lcgft_category"])
+    """
+    train_ratio: float = 0.6
+    dev_ratio: float = 0.2
+    test_ratio: float = 0.2
+    random_seed: int = 42
+    min_per_class: int = 3
+    stratify_by: list[str] = field(default_factory=lambda: ["lcc_code", "lcgft_category"])
+
+    def __post_init__(self) -> None:
+        """Validate split ratios sum to 1.0."""
+        total = self.train_ratio + self.dev_ratio + self.test_ratio
+        if not np.isclose(total, 1.0, atol=1e-6):
+            raise ValueError(
+                f"Split ratios must sum to 1.0, got {total:.4f} "
+                f"(train={self.train_ratio}, dev={self.dev_ratio}, test={self.test_ratio})"
+            )
+        if any(r <= 0 for r in [self.train_ratio, self.dev_ratio, self.test_ratio]):
+            raise ValueError("All split ratios must be positive")
+
+    @classmethod
+    def from_ratios(
+        cls,
+        train: float = 0.6,
+        dev: float = 0.2,
+        test: float = 0.2,
+        **kwargs: Any,
+    ) -> SplitConfig:
+        """Create config from explicit ratios."""
+        return cls(train_ratio=train, dev_ratio=dev, test_ratio=test, **kwargs)
+
+    @classmethod
+    def standard(cls) -> SplitConfig:
+        """Standard 60/20/20 split."""
+        return cls()
+
+    @classmethod
+    def large_train(cls) -> SplitConfig:
+        """80/10/10 split for more training data."""
+        return cls(train_ratio=0.8, dev_ratio=0.1, test_ratio=0.1)
+
+    @classmethod
+    def balanced(cls) -> SplitConfig:
+        """Balanced 70/15/15 split."""
+        return cls(train_ratio=0.7, dev_ratio=0.15, test_ratio=0.15)
+
+
+@dataclass
+class SplitResult:
+    """Result of a stratified split operation.
+
+    Attributes:
+        train: List of documents in training set
+        dev: List of documents in development set
+        test: List of documents in test set
+        config: Configuration used for splitting
+        statistics: Dictionary of split statistics
+        checksum: SHA256 checksum of the split for reproducibility verification
+    """
+    train: list[dict[str, Any]]
+    dev: list[dict[str, Any]]
+    test: list[dict[str, Any]]
+    config: SplitConfig
+    statistics: dict[str, Any]
+    checksum: str
+
+    @property
+    def total_documents(self) -> int:
+        return len(self.train) + len(self.dev) + len(self.test)
+
+    def get_split(self, name: str) -> list[dict[str, Any]]:
+        """Get split by name."""
+        splits = {"train": self.train, "dev": self.dev, "test": self.test}
+        if name not in splits:
+            raise ValueError(f"Unknown split: {name}. Must be one of {list(splits.keys())}")
+        return splits[name]
+
+
+class StratifiedSplitter:
+    """Performs stratified splitting of SHELF documents.
+
+    This splitter ensures that the distribution of labels (LCC codes, LCGFT categories,
+    registers, etc.) is preserved across all splits, which is critical for fair
+    evaluation of classification models.
+
+    Example:
+        >>> config = SplitConfig(train_ratio=0.6, dev_ratio=0.2, test_ratio=0.2)
+        >>> splitter = StratifiedSplitter(config)
+        >>> result = splitter.split(documents)
+        >>> print(f"Train: {len(result.train)}, Dev: {len(result.dev)}, Test: {len(result.test)}")
+    """
+
+    def __init__(self, config: SplitConfig | None = None) -> None:
+        """Initialize splitter with configuration.
+
+        Args:
+            config: Split configuration. Defaults to standard 60/20/20 split.
+        """
+        self.config = config or SplitConfig.standard()
+
+    def _create_stratification_key(self, doc: dict[str, Any]) -> str:
+        """Create composite stratification key from document fields.
+
+        Combines multiple fields into a single string key for stratification.
+        """
+        parts = []
+        for field in self.config.stratify_by:
+            value = doc.get(field, "unknown")
+            if value is None:
+                value = "none"
+            parts.append(f"{field}={value}")
+        return "|".join(parts)
+
+    def _validate_stratification(
+        self,
+        documents: list[dict[str, Any]],
+        stratification_keys: list[str],
+    ) -> None:
+        """Validate that stratification is feasible.
+
+        Checks that each stratification class has enough samples to appear
+        in all splits with the minimum required count.
+        """
+        key_counts = Counter(stratification_keys)
+        n_splits = 3  # train, dev, test
+        min_required = self.config.min_per_class * n_splits
+
+        small_classes = {k: v for k, v in key_counts.items() if v < min_required}
+        if small_classes:
+            # Log warning but don't fail - we'll handle this by combining small classes
+            print(f"Warning: {len(small_classes)} stratification classes have fewer than "
+                  f"{min_required} samples and may not appear in all splits")
+
+    def _combine_small_classes(
+        self,
+        stratification_keys: list[str],
+        min_size: int = 10,
+    ) -> list[str]:
+        """Combine small classes into an 'other' category for more stable stratification.
+
+        Args:
+            stratification_keys: Original stratification keys
+            min_size: Minimum class size to keep separate
+
+        Returns:
+            Modified stratification keys with small classes combined
+        """
+        key_counts = Counter(stratification_keys)
+
+        # Identify small classes
+        small_classes = {k for k, v in key_counts.items() if v < min_size}
+
+        if not small_classes:
+            return stratification_keys
+
+        # Replace small class keys with combined key based on first stratification field only
+        modified_keys = []
+        for key in stratification_keys:
+            if key in small_classes:
+                # Extract first field (usually lcc_code) to maintain some stratification
+                first_field = key.split("|")[0]
+                modified_keys.append(f"{first_field}|_combined")
+            else:
+                modified_keys.append(key)
+
+        return modified_keys
+
+    def _compute_checksum(self, result: dict[str, list[str]]) -> str:
+        """Compute SHA256 checksum of split document IDs for reproducibility."""
+        checksums = {}
+        for split_name, doc_ids in result.items():
+            id_string = ",".join(sorted(doc_ids))
+            checksums[split_name] = hashlib.sha256(id_string.encode()).hexdigest()[:16]
+
+        combined = "|".join(f"{k}:{v}" for k, v in sorted(checksums.items()))
+        return hashlib.sha256(combined.encode()).hexdigest()[:32]
+
+    def _compute_statistics(
+        self,
+        train: list[dict[str, Any]],
+        dev: list[dict[str, Any]],
+        test: list[dict[str, Any]],
+    ) -> dict[str, Any]:
+        """Compute statistics about the split for validation and documentation."""
+        stats = {
+            "counts": {
+                "train": len(train),
+                "dev": len(dev),
+                "test": len(test),
+                "total": len(train) + len(dev) + len(test),
+            },
+            "ratios": {
+                "train": len(train) / (len(train) + len(dev) + len(test)),
+                "dev": len(dev) / (len(train) + len(dev) + len(test)),
+                "test": len(test) / (len(train) + len(dev) + len(test)),
+            },
+            "distributions": {},
+        }
+
+        # Compute distribution stats for key fields
+        for field in ["lcc_code", "lcgft_category", "register", "target_length"]:
+            stats["distributions"][field] = {}
+            for split_name, split_docs in [("train", train), ("dev", dev), ("test", test)]:
+                field_values = [doc.get(field, "unknown") for doc in split_docs]
+                stats["distributions"][field][split_name] = dict(Counter(field_values))
+
+        return stats
+
+    def split(self, documents: list[dict[str, Any]]) -> SplitResult:
+        """Perform stratified split on documents.
+
+        Args:
+            documents: List of document dictionaries to split
+
+        Returns:
+            SplitResult containing train, dev, test sets with statistics
+        """
+        if len(documents) < 100:
+            raise ValueError(f"Need at least 100 documents for splitting, got {len(documents)}")
+
+        # Set random seeds for reproducibility
+        random.seed(self.config.random_seed)
+        np.random.seed(self.config.random_seed)
+
+        # Create stratification keys
+        stratification_keys = [self._create_stratification_key(doc) for doc in documents]
+
+        # Validate and potentially combine small classes
+        self._validate_stratification(documents, stratification_keys)
+        stratification_keys = self._combine_small_classes(stratification_keys)
+
+        # Convert to numpy arrays for sklearn
+        indices = np.arange(len(documents))
+        labels = np.array(stratification_keys)
+
+        # First split: separate test set
+        test_size = self.config.test_ratio
+        splitter1 = StratifiedShuffleSplit(
+            n_splits=1,
+            test_size=test_size,
+            random_state=self.config.random_seed,
+        )
+
+        train_dev_idx, test_idx = next(splitter1.split(indices, labels))
+
+        # Second split: separate train and dev from remaining
+        # Adjust dev ratio for remaining data
+        remaining_ratio = 1.0 - self.config.test_ratio
+        dev_ratio_adjusted = self.config.dev_ratio / remaining_ratio
+
+        train_dev_labels = labels[train_dev_idx]
+        splitter2 = StratifiedShuffleSplit(
+            n_splits=1,
+            test_size=dev_ratio_adjusted,
+            random_state=self.config.random_seed + 1,  # Different seed for second split
+        )
+
+        train_idx_rel, dev_idx_rel = next(splitter2.split(train_dev_idx, train_dev_labels))
+
+        # Map relative indices back to original
+        train_idx = train_dev_idx[train_idx_rel]
+        dev_idx = train_dev_idx[dev_idx_rel]
+
+        # Create split document lists
+        train = [documents[i] for i in train_idx]
+        dev = [documents[i] for i in dev_idx]
+        test = [documents[i] for i in test_idx]
+
+        # Compute statistics and checksum
+        statistics = self._compute_statistics(train, dev, test)
+        checksum = self._compute_checksum({
+            "train": [doc["id"] for doc in train],
+            "dev": [doc["id"] for doc in dev],
+            "test": [doc["id"] for doc in test],
+        })
+
+        return SplitResult(
+            train=train,
+            dev=dev,
+            test=test,
+            config=self.config,
+            statistics=statistics,
+            checksum=checksum,
+        )
+
+    def verify_stratification(self, result: SplitResult) -> dict[str, Any]:
+        """Verify that stratification was successful.
+
+        Computes distribution divergence metrics to check that splits
+        are properly stratified.
+
+        Args:
+            result: Split result to verify
+
+        Returns:
+            Dictionary with verification metrics
+        """
+        verification = {"passed": True, "issues": [], "metrics": {}}
+
+        for field in self.config.stratify_by:
+            distributions = result.statistics["distributions"].get(field, {})
+            if not distributions:
+                continue
+
+            # Get all unique values across splits
+            all_values = set()
+            for split_dist in distributions.values():
+                all_values.update(split_dist.keys())
+
+            # Check coverage in each split
+            for split_name, split_dist in distributions.items():
+                missing = all_values - set(split_dist.keys())
+                if missing:
+                    verification["issues"].append(
+                        f"{field}: {len(missing)} values missing from {split_name} split"
+                    )
+
+            # Compute max ratio divergence
+            train_dist = distributions.get("train", {})
+            for split_name in ["dev", "test"]:
+                split_dist = distributions.get(split_name, {})
+                max_divergence = 0.0
+                for value in all_values:
+                    train_ratio = train_dist.get(value, 0) / max(sum(train_dist.values()), 1)
+                    split_ratio = split_dist.get(value, 0) / max(sum(split_dist.values()), 1)
+                    divergence = abs(train_ratio - split_ratio)
+                    max_divergence = max(max_divergence, divergence)
+
+                verification["metrics"][f"{field}_{split_name}_max_divergence"] = max_divergence
+
+                if max_divergence > 0.1:  # More than 10% divergence is concerning
+                    verification["issues"].append(
+                        f"{field}: High divergence ({max_divergence:.2%}) between train and {split_name}"
+                    )
+
+        verification["passed"] = len(verification["issues"]) == 0
+        return verification
+
+
+def create_splits(
+    artifacts_dir: str | Path,
+    config: SplitConfig | None = None,
+    output_dir: str | Path | None = None,
+) -> SplitResult:
+    """Convenience function to create splits from artifact files.
+
+    Args:
+        artifacts_dir: Directory containing JSON artifact files
+        config: Split configuration (defaults to standard 60/20/20)
+        output_dir: Optional directory to save split files
+
+    Returns:
+        SplitResult with train, dev, test splits
+
+    Example:
+        >>> result = create_splits("data/artifacts/", output_dir="data/splits/")
+        >>> print(f"Created splits with checksum: {result.checksum}")
+    """
+    artifacts_path = Path(artifacts_dir)
+    if not artifacts_path.exists():
+        raise FileNotFoundError(f"Artifacts directory not found: {artifacts_path}")
+
+    # Load all documents
+    documents = []
+    for json_file in sorted(artifacts_path.glob("*.json")):
+        with open(json_file, "r", encoding="utf-8") as f:
+            doc = json.load(f)
+            documents.append(doc)
+
+    if not documents:
+        raise ValueError(f"No JSON files found in {artifacts_path}")
+
+    print(f"Loaded {len(documents)} documents from {artifacts_path}")
+
+    # Create splits
+    splitter = StratifiedSplitter(config)
+    result = splitter.split(documents)
+
+    # Verify stratification
+    verification = splitter.verify_stratification(result)
+    if not verification["passed"]:
+        print(f"Warning: Stratification verification found issues:")
+        for issue in verification["issues"]:
+            print(f"  - {issue}")
+
+    # Save splits if output directory specified
+    if output_dir:
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+
+        for split_name in ["train", "dev", "test"]:
+            split_docs = result.get_split(split_name)
+            output_file = output_path / f"{split_name}.jsonl"
+
+            with open(output_file, "w", encoding="utf-8") as f:
+                for doc in split_docs:
+                    f.write(json.dumps(doc, ensure_ascii=False) + "\n")
+
+            print(f"Saved {len(split_docs)} documents to {output_file}")
+
+        # Save split metadata
+        metadata = {
+            "config": {
+                "train_ratio": result.config.train_ratio,
+                "dev_ratio": result.config.dev_ratio,
+                "test_ratio": result.config.test_ratio,
+                "random_seed": result.config.random_seed,
+                "stratify_by": result.config.stratify_by,
+            },
+            "statistics": result.statistics,
+            "checksum": result.checksum,
+        }
+
+        metadata_file = output_path / "split_metadata.json"
+        with open(metadata_file, "w", encoding="utf-8") as f:
+            json.dump(metadata, f, indent=2, ensure_ascii=False)
+
+        print(f"Saved split metadata to {metadata_file}")
+
+    return result

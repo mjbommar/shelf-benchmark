@@ -1,0 +1,2772 @@
+[
+  {
+    "id": "Maps",
+    "label": "Maps",
+    "frequency": 70971
+  },
+  {
+    "id": "Statistics",
+    "label": "Statistics",
+    "frequency": 59060
+  },
+  {
+    "id": "Legislative hearings",
+    "label": "Legislative hearings",
+    "frequency": 37526
+  },
+  {
+    "id": "Legislative materials",
+    "label": "Legislative materials",
+    "frequency": 36418
+  },
+  {
+    "id": "Handbooks and manuals",
+    "label": "Handbooks and manuals",
+    "frequency": 36162
+  },
+  {
+    "id": "Topographic maps",
+    "label": "Topographic maps",
+    "frequency": 36137
+  },
+  {
+    "id": "Bibliographies",
+    "label": "Bibliographies",
+    "frequency": 15384
+  },
+  {
+    "id": "Conference papers and proceedings",
+    "label": "Conference papers and proceedings",
+    "frequency": 10987
+  },
+  {
+    "id": "Periodicals",
+    "label": "Periodicals",
+    "frequency": 9614
+  },
+  {
+    "id": "Catalogs",
+    "label": "Catalogs",
+    "frequency": 7084
+  },
+  {
+    "id": "Statutes and codes",
+    "label": "Statutes and codes",
+    "frequency": 4257
+  },
+  {
+    "id": "Census data",
+    "label": "Census data",
+    "frequency": 2171
+  },
+  {
+    "id": "History",
+    "label": "History",
+    "frequency": 1978
+  },
+  {
+    "id": "Rules",
+    "label": "Rules",
+    "frequency": 1927
+  },
+  {
+    "id": "Bibliography",
+    "label": "Bibliography",
+    "frequency": 1169
+  },
+  {
+    "id": "Technical reports",
+    "label": "Technical reports",
+    "frequency": 1158
+  },
+  {
+    "id": "Biographies",
+    "label": "Biographies",
+    "frequency": 1133
+  },
+  {
+    "id": "Environmental impact statements",
+    "label": "Environmental impact statements",
+    "frequency": 1103
+  },
+  {
+    "id": "Posters",
+    "label": "Posters",
+    "frequency": 1006
+  },
+  {
+    "id": "Online resources",
+    "label": "Online resources",
+    "frequency": 936
+  },
+  {
+    "id": "Treaties",
+    "label": "Treaties",
+    "frequency": 904
+  },
+  {
+    "id": "Remote-sensing maps",
+    "label": "Remote-sensing maps",
+    "frequency": 903
+  },
+  {
+    "id": "Bathymetric maps",
+    "label": "Bathymetric maps",
+    "frequency": 783
+  },
+  {
+    "id": "Road maps",
+    "label": "Road maps",
+    "frequency": 702
+  },
+  {
+    "id": "Directories",
+    "label": "Directories",
+    "frequency": 620
+  },
+  {
+    "id": "Periodical",
+    "label": "Periodical",
+    "frequency": 564
+  },
+  {
+    "id": "Government publications",
+    "label": "Government publications",
+    "frequency": 453
+  },
+  {
+    "id": "Abstracts",
+    "label": "Abstracts",
+    "frequency": 436
+  },
+  {
+    "id": "Braille books",
+    "label": "Braille books",
+    "frequency": 432
+  },
+  {
+    "id": "Tourist maps",
+    "label": "Tourist maps",
+    "frequency": 429
+  },
+  {
+    "id": "Reference works",
+    "label": "Reference works",
+    "frequency": 393
+  },
+  {
+    "id": "Resolutions (Law)",
+    "label": "Resolutions (Law)",
+    "frequency": 392
+  },
+  {
+    "id": "Geological maps",
+    "label": "Geological maps",
+    "frequency": 342
+  },
+  {
+    "id": "Nautical charts",
+    "label": "Nautical charts",
+    "frequency": 339
+  },
+  {
+    "id": "Classification",
+    "label": "Classification",
+    "frequency": 339
+  },
+  {
+    "id": "Tables",
+    "label": "Tables",
+    "frequency": 319
+  },
+  {
+    "id": "Indexes",
+    "label": "Indexes",
+    "frequency": 314
+  },
+  {
+    "id": "Speeches",
+    "label": "Speeches",
+    "frequency": 303
+  },
+  {
+    "id": "Annual reports",
+    "label": "Annual reports",
+    "frequency": 286
+  },
+  {
+    "id": "Guidebooks",
+    "label": "Guidebooks",
+    "frequency": 283
+  },
+  {
+    "id": "Databases",
+    "label": "Databases",
+    "frequency": 281
+  },
+  {
+    "id": "Vital statistics",
+    "label": "Vital statistics",
+    "frequency": 279
+  },
+  {
+    "id": "Case studies",
+    "label": "Case studies",
+    "frequency": 277
+  },
+  {
+    "id": "Activity books",
+    "label": "Activity books",
+    "frequency": 266
+  },
+  {
+    "id": "Computer programs",
+    "label": "Computer programs",
+    "frequency": 256
+  },
+  {
+    "id": "Documentary films",
+    "label": "Documentary films",
+    "frequency": 252
+  },
+  {
+    "id": "Directory",
+    "label": "Directory",
+    "frequency": 223
+  },
+  {
+    "id": "Streaming videos",
+    "label": "Streaming videos",
+    "frequency": 223
+  },
+  {
+    "id": "Tables (Data)",
+    "label": "Tables (Data)",
+    "frequency": 217
+  },
+  {
+    "id": "Observations",
+    "label": "Observations",
+    "frequency": 216
+  },
+  {
+    "id": "Congress",
+    "label": "Congress",
+    "frequency": 213
+  },
+  {
+    "id": "Claims",
+    "label": "Claims",
+    "frequency": 205
+  },
+  {
+    "id": "Internet videos",
+    "label": "Internet videos",
+    "frequency": 204
+  },
+  {
+    "id": "Atlases",
+    "label": "Atlases",
+    "frequency": 191
+  },
+  {
+    "id": "Thematic maps",
+    "label": "Thematic maps",
+    "frequency": 189
+  },
+  {
+    "id": "Video recordings",
+    "label": "Video recordings",
+    "frequency": 188
+  },
+  {
+    "id": "Blank forms",
+    "label": "Blank forms",
+    "frequency": 167
+  },
+  {
+    "id": "Legislation",
+    "label": "Legislation",
+    "frequency": 164
+  },
+  {
+    "id": "Records and correspondence",
+    "label": "Records and correspondence",
+    "frequency": 154
+  },
+  {
+    "id": "Terminology",
+    "label": "Terminology",
+    "frequency": 148
+  },
+  {
+    "id": "Juvenile works",
+    "label": "Juvenile works",
+    "frequency": 145
+  },
+  {
+    "id": "Sources",
+    "label": "Sources",
+    "frequency": 131
+  },
+  {
+    "id": "Popular Work",
+    "label": "Popular Work",
+    "frequency": 124
+  },
+  {
+    "id": "Trials, litigation, etc",
+    "label": "Trials, litigation, etc",
+    "frequency": 124
+  },
+  {
+    "id": "Electronic books",
+    "label": "Electronic books",
+    "frequency": 124
+  },
+  {
+    "id": "Telephone directories",
+    "label": "Telephone directories",
+    "frequency": 117
+  },
+  {
+    "id": "Surveys",
+    "label": "Surveys",
+    "frequency": 117
+  },
+  {
+    "id": "Physical maps",
+    "label": "Physical maps",
+    "frequency": 115
+  },
+  {
+    "id": "Calendars",
+    "label": "Calendars",
+    "frequency": 110
+  },
+  {
+    "id": "Biography",
+    "label": "Biography",
+    "frequency": 108
+  },
+  {
+    "id": "Study guides",
+    "label": "Study guides",
+    "frequency": 108
+  },
+  {
+    "id": "Examinations",
+    "label": "Examinations",
+    "frequency": 107
+  },
+  {
+    "id": "Electronic government information",
+    "label": "Electronic government information",
+    "frequency": 103
+  },
+  {
+    "id": "Charts, diagrams, etc",
+    "label": "Charts, diagrams, etc",
+    "frequency": 102
+  },
+  {
+    "id": "Records and briefs",
+    "label": "Records and briefs",
+    "frequency": 98
+  },
+  {
+    "id": "Registers (Lists)",
+    "label": "Registers (Lists)",
+    "frequency": 96
+  },
+  {
+    "id": "Medical statistics",
+    "label": "Medical statistics",
+    "frequency": 94
+  },
+  {
+    "id": "Statistiques",
+    "label": "Statistiques",
+    "frequency": 93
+  },
+  {
+    "id": "Military history",
+    "label": "Military history",
+    "frequency": 92
+  },
+  {
+    "id": "Geographic information systems",
+    "label": "Geographic information systems",
+    "frequency": 81
+  },
+  {
+    "id": "Handbooks, manuals, etc",
+    "label": "Handbooks, manuals, etc",
+    "frequency": 78
+  },
+  {
+    "id": "Computer software",
+    "label": "Computer software",
+    "frequency": 78
+  },
+  {
+    "id": "Serial publications",
+    "label": "Serial publications",
+    "frequency": 77
+  },
+  {
+    "id": "Field guides",
+    "label": "Field guides",
+    "frequency": 75
+  },
+  {
+    "id": "Handbook",
+    "label": "Handbook",
+    "frequency": 73
+  },
+  {
+    "id": "World maps",
+    "label": "World maps",
+    "frequency": 73
+  },
+  {
+    "id": "Educational films",
+    "label": "Educational films",
+    "frequency": 72
+  },
+  {
+    "id": "Audiences législatives",
+    "label": "Audiences législatives",
+    "frequency": 69
+  },
+  {
+    "id": "Remote-sensing images",
+    "label": "Remote-sensing images",
+    "frequency": 67
+  },
+  {
+    "id": "Pictorial works",
+    "label": "Pictorial works",
+    "frequency": 61
+  },
+  {
+    "id": "Newsletters",
+    "label": "Newsletters",
+    "frequency": 61
+  },
+  {
+    "id": "Popular works",
+    "label": "Popular works",
+    "frequency": 60
+  },
+  {
+    "id": "Dictionaries",
+    "label": "Dictionaries",
+    "frequency": 59
+  },
+  {
+    "id": "Index",
+    "label": "Index",
+    "frequency": 58
+  },
+  {
+    "id": "Documents législatifs",
+    "label": "Documents législatifs",
+    "frequency": 58
+  },
+  {
+    "id": "Personal narratives",
+    "label": "Personal narratives",
+    "frequency": 56
+  },
+  {
+    "id": "Gazetteers",
+    "label": "Gazetteers",
+    "frequency": 55
+  },
+  {
+    "id": "Specifications",
+    "label": "Specifications",
+    "frequency": 55
+  },
+  {
+    "id": "Commercial treaties",
+    "label": "Commercial treaties",
+    "frequency": 54
+  },
+  {
+    "id": "Index maps",
+    "label": "Index maps",
+    "frequency": 53
+  },
+  {
+    "id": "Portraits",
+    "label": "Portraits",
+    "frequency": 53
+  },
+  {
+    "id": "Animated films",
+    "label": "Animated films",
+    "frequency": 47
+  },
+  {
+    "id": "Coloring books",
+    "label": "Coloring books",
+    "frequency": 45
+  },
+  {
+    "id": "Internet resource",
+    "label": "Internet resource",
+    "frequency": 44
+  },
+  {
+    "id": "Job descriptions",
+    "label": "Job descriptions",
+    "frequency": 44
+  },
+  {
+    "id": "Catalog",
+    "label": "Catalog",
+    "frequency": 44
+  },
+  {
+    "id": "Administrative decisions",
+    "label": "Administrative decisions",
+    "frequency": 44
+  },
+  {
+    "id": "Nonfiction films",
+    "label": "Nonfiction films",
+    "frequency": 43
+  },
+  {
+    "id": "Patents",
+    "label": "Patents",
+    "frequency": 41
+  },
+  {
+    "id": "CD-ROMs",
+    "label": "CD-ROMs",
+    "frequency": 41
+  },
+  {
+    "id": "Problems and exercises",
+    "label": "Problems and exercises",
+    "frequency": 40
+  },
+  {
+    "id": "Electronic journals",
+    "label": "Electronic journals",
+    "frequency": 39
+  },
+  {
+    "id": "Quadrangle maps",
+    "label": "Quadrangle maps",
+    "frequency": 37
+  },
+  {
+    "id": "Lists",
+    "label": "Lists",
+    "frequency": 36
+  },
+  {
+    "id": "Interviews",
+    "label": "Interviews",
+    "frequency": 35
+  },
+  {
+    "id": "Naval history",
+    "label": "Naval history",
+    "frequency": 34
+  },
+  {
+    "id": "Exhibition catalogs",
+    "label": "Exhibition catalogs",
+    "frequency": 33
+  },
+  {
+    "id": "Digests",
+    "label": "Digests",
+    "frequency": 32
+  },
+  {
+    "id": "Illustrated works",
+    "label": "Illustrated works",
+    "frequency": 32
+  },
+  {
+    "id": "Chronologies",
+    "label": "Chronologies",
+    "frequency": 31
+  },
+  {
+    "id": "Programmed instructional materials",
+    "label": "Programmed instructional materials",
+    "frequency": 30
+  },
+  {
+    "id": "Video recordings for the hearing impaired",
+    "label": "Video recordings for the hearing impaired",
+    "frequency": 30
+  },
+  {
+    "id": "Digital maps",
+    "label": "Digital maps",
+    "frequency": 30
+  },
+  {
+    "id": "Instructional and educational works",
+    "label": "Instructional and educational works",
+    "frequency": 29
+  },
+  {
+    "id": "Cookbooks",
+    "label": "Cookbooks",
+    "frequency": 28
+  },
+  {
+    "id": "Congresses",
+    "label": "Congresses",
+    "frequency": 28
+  },
+  {
+    "id": "Outline maps",
+    "label": "Outline maps",
+    "frequency": 27
+  },
+  {
+    "id": "Census, 1990",
+    "label": "Census, 1990",
+    "frequency": 27
+  },
+  {
+    "id": "Law for laypersons",
+    "label": "Law for laypersons",
+    "frequency": 27
+  },
+  {
+    "id": "Longitudinal studies",
+    "label": "Longitudinal studies",
+    "frequency": 25
+  },
+  {
+    "id": "United States",
+    "label": "United States",
+    "frequency": 24
+  },
+  {
+    "id": "Braille periodicals",
+    "label": "Braille periodicals",
+    "frequency": 24
+  },
+  {
+    "id": "Conference proceedings",
+    "label": "Conference proceedings",
+    "frequency": 23
+  },
+  {
+    "id": "Wildlife recovery plans",
+    "label": "Wildlife recovery plans",
+    "frequency": 23
+  },
+  {
+    "id": "Photographs from space",
+    "label": "Photographs from space",
+    "frequency": 22
+  },
+  {
+    "id": "Laboratory manuals",
+    "label": "Laboratory manuals",
+    "frequency": 22
+  },
+  {
+    "id": "Fotonovelas",
+    "label": "Fotonovelas",
+    "frequency": 22
+  },
+  {
+    "id": "Safety posters",
+    "label": "Safety posters",
+    "frequency": 20
+  },
+  {
+    "id": "Textbooks",
+    "label": "Textbooks",
+    "frequency": 19
+  },
+  {
+    "id": "Podcasts",
+    "label": "Podcasts",
+    "frequency": 19
+  },
+  {
+    "id": "Administrative regulations",
+    "label": "Administrative regulations",
+    "frequency": 19
+  },
+  {
+    "id": "Constitutions",
+    "label": "Constitutions",
+    "frequency": 19
+  },
+  {
+    "id": "Aerial photographs",
+    "label": "Aerial photographs",
+    "frequency": 18
+  },
+  {
+    "id": "Inventories",
+    "label": "Inventories",
+    "frequency": 18
+  },
+  {
+    "id": "Census",
+    "label": "Census",
+    "frequency": 17
+  },
+  {
+    "id": "Archives",
+    "label": "Archives",
+    "frequency": 17
+  },
+  {
+    "id": "Public service announcements (Motion pictures)",
+    "label": "Public service announcements (Motion pictures)",
+    "frequency": 17
+  },
+  {
+    "id": "Aeronautical charts",
+    "label": "Aeronautical charts",
+    "frequency": 16
+  },
+  {
+    "id": "Session laws",
+    "label": "Session laws",
+    "frequency": 16
+  },
+  {
+    "id": "Photographs",
+    "label": "Photographs",
+    "frequency": 16
+  },
+  {
+    "id": "Atlas",
+    "label": "Atlas",
+    "frequency": 15
+  },
+  {
+    "id": "Laboratory Manual",
+    "label": "Laboratory Manual",
+    "frequency": 15
+  },
+  {
+    "id": "Scientific atlases",
+    "label": "Scientific atlases",
+    "frequency": 15
+  },
+  {
+    "id": "Trivia and miscellanea",
+    "label": "Trivia and miscellanea",
+    "frequency": 15
+  },
+  {
+    "id": "Architectural drawings",
+    "label": "Architectural drawings",
+    "frequency": 15
+  },
+  {
+    "id": "Guideline",
+    "label": "Guideline",
+    "frequency": 15
+  },
+  {
+    "id": "Academic theses",
+    "label": "Academic theses",
+    "frequency": 15
+  },
+  {
+    "id": "Census, 1970",
+    "label": "Census, 1970",
+    "frequency": 15
+  },
+  {
+    "id": "Comics (Graphic works)",
+    "label": "Comics (Graphic works)",
+    "frequency": 15
+  },
+  {
+    "id": "Conference materials",
+    "label": "Conference materials",
+    "frequency": 15
+  },
+  {
+    "id": "Public service radio programs",
+    "label": "Public service radio programs",
+    "frequency": 14
+  },
+  {
+    "id": "Diaries",
+    "label": "Diaries",
+    "frequency": 14
+  },
+  {
+    "id": "Comic books, strips, etc",
+    "label": "Comic books, strips, etc",
+    "frequency": 14
+  },
+  {
+    "id": "Practice Guideline",
+    "label": "Practice Guideline",
+    "frequency": 14
+  },
+  {
+    "id": "Identification guides",
+    "label": "Identification guides",
+    "frequency": 14
+  },
+  {
+    "id": "Software",
+    "label": "Software",
+    "frequency": 14
+  },
+  {
+    "id": "Educational games",
+    "label": "Educational games",
+    "frequency": 13
+  },
+  {
+    "id": "Military maps",
+    "label": "Military maps",
+    "frequency": 13
+  },
+  {
+    "id": "Course catalogs",
+    "label": "Course catalogs",
+    "frequency": 13
+  },
+  {
+    "id": "Technical Report",
+    "label": "Technical Report",
+    "frequency": 13
+  },
+  {
+    "id": "Wall maps",
+    "label": "Wall maps",
+    "frequency": 13
+  },
+  {
+    "id": "Recipes",
+    "label": "Recipes",
+    "frequency": 13
+  },
+  {
+    "id": "Aerial views",
+    "label": "Aerial views",
+    "frequency": 13
+  },
+  {
+    "id": "Oral histories",
+    "label": "Oral histories",
+    "frequency": 12
+  },
+  {
+    "id": "Life skills guides",
+    "label": "Life skills guides",
+    "frequency": 12
+  },
+  {
+    "id": "Outlines and syllabi",
+    "label": "Outlines and syllabi",
+    "frequency": 12
+  },
+  {
+    "id": "Blogs",
+    "label": "Blogs",
+    "frequency": 12
+  },
+  {
+    "id": "Catalogs and collections",
+    "label": "Catalogs and collections",
+    "frequency": 11
+  },
+  {
+    "id": "Newspapers",
+    "label": "Newspapers",
+    "frequency": 11
+  },
+  {
+    "id": "Conversion tables",
+    "label": "Conversion tables",
+    "frequency": 11
+  },
+  {
+    "id": "Forms",
+    "label": "Forms",
+    "frequency": 11
+  },
+  {
+    "id": "Cartographic materials",
+    "label": "Cartographic materials",
+    "frequency": 11
+  },
+  {
+    "id": "Database",
+    "label": "Database",
+    "frequency": 11
+  },
+  {
+    "id": "Menus",
+    "label": "Menus",
+    "frequency": 10
+  },
+  {
+    "id": "Picture books",
+    "label": "Picture books",
+    "frequency": 10
+  },
+  {
+    "id": "Statistical maps",
+    "label": "Statistical maps",
+    "frequency": 10
+  },
+  {
+    "id": "Sound recordings",
+    "label": "Sound recordings",
+    "frequency": 10
+  },
+  {
+    "id": "Prospectuses",
+    "label": "Prospectuses",
+    "frequency": 10
+  },
+  {
+    "id": "Fiction",
+    "label": "Fiction",
+    "frequency": 10
+  },
+  {
+    "id": "Ebook",
+    "label": "Ebook",
+    "frequency": 10
+  },
+  {
+    "id": "Poster",
+    "label": "Poster",
+    "frequency": 10
+  },
+  {
+    "id": "Thesauri (Dictionaries)",
+    "label": "Thesauri (Dictionaries)",
+    "frequency": 9
+  },
+  {
+    "id": "Style manuals",
+    "label": "Style manuals",
+    "frequency": 9
+  },
+  {
+    "id": "Court decisions and opinions",
+    "label": "Court decisions and opinions",
+    "frequency": 9
+  },
+  {
+    "id": "Examination Questions",
+    "label": "Examination Questions",
+    "frequency": 9
+  },
+  {
+    "id": "Plotting charts",
+    "label": "Plotting charts",
+    "frequency": 9
+  },
+  {
+    "id": "Standards (Reference works)",
+    "label": "Standards (Reference works)",
+    "frequency": 9
+  },
+  {
+    "id": "Personal correspondence",
+    "label": "Personal correspondence",
+    "frequency": 9
+  },
+  {
+    "id": "Educational radio programs",
+    "label": "Educational radio programs",
+    "frequency": 9
+  },
+  {
+    "id": "Lectures",
+    "label": "Lectures",
+    "frequency": 9
+  },
+  {
+    "id": "Sculptures",
+    "label": "Sculptures",
+    "frequency": 9
+  },
+  {
+    "id": "Geological cross-sections",
+    "label": "Geological cross-sections",
+    "frequency": 9
+  },
+  {
+    "id": "Questionnaires",
+    "label": "Questionnaires",
+    "frequency": 8
+  },
+  {
+    "id": "Guides et manuels",
+    "label": "Guides et manuels",
+    "frequency": 8
+  },
+  {
+    "id": "Anecdotes",
+    "label": "Anecdotes",
+    "frequency": 8
+  },
+  {
+    "id": "Law digests",
+    "label": "Law digests",
+    "frequency": 8
+  },
+  {
+    "id": "Collected Work",
+    "label": "Collected Work",
+    "frequency": 8
+  },
+  {
+    "id": "Film catalogs",
+    "label": "Film catalogs",
+    "frequency": 8
+  },
+  {
+    "id": "Interactive multimedia",
+    "label": "Interactive multimedia",
+    "frequency": 8
+  },
+  {
+    "id": "Case Reports",
+    "label": "Case Reports",
+    "frequency": 8
+  },
+  {
+    "id": "Cross-cultural studies",
+    "label": "Cross-cultural studies",
+    "frequency": 8
+  },
+  {
+    "id": "Meta-Analysis",
+    "label": "Meta-Analysis",
+    "frequency": 8
+  },
+  {
+    "id": "Charters and articles of incorporation",
+    "label": "Charters and articles of incorporation",
+    "frequency": 8
+  },
+  {
+    "id": "Designs and plans",
+    "label": "Designs and plans",
+    "frequency": 8
+  },
+  {
+    "id": "Conversation and phrase books",
+    "label": "Conversation and phrase books",
+    "frequency": 8
+  },
+  {
+    "id": "Art",
+    "label": "Art",
+    "frequency": 8
+  },
+  {
+    "id": "Patient Education Handout",
+    "label": "Patient Education Handout",
+    "frequency": 8
+  },
+  {
+    "id": "Teachers' guides",
+    "label": "Teachers' guides",
+    "frequency": 8
+  },
+  {
+    "id": "Press releases",
+    "label": "Press releases",
+    "frequency": 8
+  },
+  {
+    "id": "War fiction",
+    "label": "War fiction",
+    "frequency": 8
+  },
+  {
+    "id": "Executive orders",
+    "label": "Executive orders",
+    "frequency": 7
+  },
+  {
+    "id": "Rapports techniques",
+    "label": "Rapports techniques",
+    "frequency": 7
+  },
+  {
+    "id": "Electronic records",
+    "label": "Electronic records",
+    "frequency": 7
+  },
+  {
+    "id": "Music",
+    "label": "Music",
+    "frequency": 7
+  },
+  {
+    "id": "Census, 1980",
+    "label": "Census, 1980",
+    "frequency": 7
+  },
+  {
+    "id": "Court rules",
+    "label": "Court rules",
+    "frequency": 7
+  },
+  {
+    "id": "Privileges and immunities",
+    "label": "Privileges and immunities",
+    "frequency": 7
+  },
+  {
+    "id": "Puzzles and games",
+    "label": "Puzzles and games",
+    "frequency": 7
+  },
+  {
+    "id": "Local history",
+    "label": "Local history",
+    "frequency": 7
+  },
+  {
+    "id": "Rules and practice",
+    "label": "Rules and practice",
+    "frequency": 7
+  },
+  {
+    "id": "Drawings",
+    "label": "Drawings",
+    "frequency": 7
+  },
+  {
+    "id": "Short films",
+    "label": "Short films",
+    "frequency": 7
+  },
+  {
+    "id": "Geospatial data",
+    "label": "Geospatial data",
+    "frequency": 7
+  },
+  {
+    "id": "Constitution",
+    "label": "Constitution",
+    "frequency": 7
+  },
+  {
+    "id": "Legislative histories",
+    "label": "Legislative histories",
+    "frequency": 7
+  },
+  {
+    "id": "Fliers (Ephemera)",
+    "label": "Fliers (Ephemera)",
+    "frequency": 7
+  },
+  {
+    "id": "Graphic novels",
+    "label": "Graphic novels",
+    "frequency": 7
+  },
+  {
+    "id": "Resolutions",
+    "label": "Resolutions",
+    "frequency": 7
+  },
+  {
+    "id": "Literature",
+    "label": "Literature",
+    "frequency": 7
+  },
+  {
+    "id": "Autobiographies",
+    "label": "Autobiographies",
+    "frequency": 7
+  },
+  {
+    "id": "Jazz",
+    "label": "Jazz",
+    "frequency": 6
+  },
+  {
+    "id": "Games",
+    "label": "Games",
+    "frequency": 6
+  },
+  {
+    "id": "Tours",
+    "label": "Tours",
+    "frequency": 6
+  },
+  {
+    "id": "Mine maps",
+    "label": "Mine maps",
+    "frequency": 6
+  },
+  {
+    "id": "Ephemerides",
+    "label": "Ephemerides",
+    "frequency": 6
+  },
+  {
+    "id": "Children's stories",
+    "label": "Children's stories",
+    "frequency": 6
+  },
+  {
+    "id": "Dictionary",
+    "label": "Dictionary",
+    "frequency": 6
+  },
+  {
+    "id": "Geodatabases",
+    "label": "Geodatabases",
+    "frequency": 6
+  },
+  {
+    "id": "Internet resources",
+    "label": "Internet resources",
+    "frequency": 6
+  },
+  {
+    "id": "Resource Guide",
+    "label": "Resource Guide",
+    "frequency": 6
+  },
+  {
+    "id": "Address",
+    "label": "Address",
+    "frequency": 6
+  },
+  {
+    "id": "E-map",
+    "label": "E-map",
+    "frequency": 6
+  },
+  {
+    "id": "Data sets",
+    "label": "Data sets",
+    "frequency": 6
+  },
+  {
+    "id": "Union catalogs",
+    "label": "Union catalogs",
+    "frequency": 5
+  },
+  {
+    "id": "Radiosonde observations",
+    "label": "Radiosonde observations",
+    "frequency": 5
+  },
+  {
+    "id": "Proclamations",
+    "label": "Proclamations",
+    "frequency": 5
+  },
+  {
+    "id": "Review",
+    "label": "Review",
+    "frequency": 5
+  },
+  {
+    "id": "Children's television programs",
+    "label": "Children's television programs",
+    "frequency": 5
+  },
+  {
+    "id": "Périodiques",
+    "label": "Périodiques",
+    "frequency": 5
+  },
+  {
+    "id": "Trial and arbitral proceedings",
+    "label": "Trial and arbitral proceedings",
+    "frequency": 5
+  },
+  {
+    "id": "Instructional films",
+    "label": "Instructional films",
+    "frequency": 5
+  },
+  {
+    "id": "Children's films",
+    "label": "Children's films",
+    "frequency": 5
+  },
+  {
+    "id": "Caricatures and cartoons",
+    "label": "Caricatures and cartoons",
+    "frequency": 5
+  },
+  {
+    "id": "Livres en braille",
+    "label": "Livres en braille",
+    "frequency": 5
+  },
+  {
+    "id": "Reviews",
+    "label": "Reviews",
+    "frequency": 5
+  },
+  {
+    "id": "Legislative bills",
+    "label": "Legislative bills",
+    "frequency": 5
+  },
+  {
+    "id": "FAQs",
+    "label": "FAQs",
+    "frequency": 5
+  },
+  {
+    "id": "Annotated bibliographies",
+    "label": "Annotated bibliographies",
+    "frequency": 5
+  },
+  {
+    "id": "Mathematical formulae",
+    "label": "Mathematical formulae",
+    "frequency": 5
+  },
+  {
+    "id": "Lois et codes",
+    "label": "Lois et codes",
+    "frequency": 5
+  },
+  {
+    "id": "Translations",
+    "label": "Translations",
+    "frequency": 5
+  },
+  {
+    "id": "Registers",
+    "label": "Registers",
+    "frequency": 4
+  },
+  {
+    "id": "Chart",
+    "label": "Chart",
+    "frequency": 4
+  },
+  {
+    "id": "Cartes géographiques",
+    "label": "Cartes géographiques",
+    "frequency": 4
+  },
+  {
+    "id": "Miscellanea",
+    "label": "Miscellanea",
+    "frequency": 4
+  },
+  {
+    "id": "Bibliography of bibliographies",
+    "label": "Bibliography of bibliographies",
+    "frequency": 4
+  },
+  {
+    "id": "Films for the hearing impaired",
+    "label": "Films for the hearing impaired",
+    "frequency": 4
+  },
+  {
+    "id": "census records",
+    "label": "census records",
+    "frequency": 4
+  },
+  {
+    "id": "CD-ROM",
+    "label": "CD-ROM",
+    "frequency": 4
+  },
+  {
+    "id": "Almanacs",
+    "label": "Almanacs",
+    "frequency": 4
+  },
+  {
+    "id": "Forecasts",
+    "label": "Forecasts",
+    "frequency": 4
+  },
+  {
+    "id": "Rocket observations",
+    "label": "Rocket observations",
+    "frequency": 4
+  },
+  {
+    "id": "Minutes (Records)",
+    "label": "Minutes (Records)",
+    "frequency": 4
+  },
+  {
+    "id": "Art music",
+    "label": "Art music",
+    "frequency": 4
+  },
+  {
+    "id": "Suites",
+    "label": "Suites",
+    "frequency": 4
+  },
+  {
+    "id": "Arrangements (Music)",
+    "label": "Arrangements (Music)",
+    "frequency": 4
+  },
+  {
+    "id": "Cahiers d'activités",
+    "label": "Cahiers d'activités",
+    "frequency": 4
+  },
+  {
+    "id": "Finding aids",
+    "label": "Finding aids",
+    "frequency": 4
+  },
+  {
+    "id": "Military regulations",
+    "label": "Military regulations",
+    "frequency": 4
+  },
+  {
+    "id": "Folklore",
+    "label": "Folklore",
+    "frequency": 4
+  },
+  {
+    "id": "Collection catalogs",
+    "label": "Collection catalogs",
+    "frequency": 4
+  },
+  {
+    "id": "Affiches",
+    "label": "Affiches",
+    "frequency": 4
+  },
+  {
+    "id": "Environmental Protection",
+    "label": "Environmental Protection",
+    "frequency": 4
+  },
+  {
+    "id": "Data dictionaries",
+    "label": "Data dictionaries",
+    "frequency": 4
+  },
+  {
+    "id": "Public health posters",
+    "label": "Public health posters",
+    "frequency": 4
+  },
+  {
+    "id": "Public service television programs",
+    "label": "Public service television programs",
+    "frequency": 3
+  },
+  {
+    "id": "Children's literature",
+    "label": "Children's literature",
+    "frequency": 3
+  },
+  {
+    "id": "Poetry",
+    "label": "Poetry",
+    "frequency": 3
+  },
+  {
+    "id": "Motion pictures",
+    "label": "Motion pictures",
+    "frequency": 3
+  },
+  {
+    "id": "Creative activities and seat work",
+    "label": "Creative activities and seat work",
+    "frequency": 3
+  },
+  {
+    "id": "Constitutional amendments",
+    "label": "Constitutional amendments",
+    "frequency": 3
+  },
+  {
+    "id": "Pictorial maps",
+    "label": "Pictorial maps",
+    "frequency": 3
+  },
+  {
+    "id": "Form",
+    "label": "Form",
+    "frequency": 3
+  },
+  {
+    "id": "Radio scripts",
+    "label": "Radio scripts",
+    "frequency": 3
+  },
+  {
+    "id": "Legal Case",
+    "label": "Legal Case",
+    "frequency": 3
+  },
+  {
+    "id": "Microform catalogs",
+    "label": "Microform catalogs",
+    "frequency": 3
+  },
+  {
+    "id": "Chronology",
+    "label": "Chronology",
+    "frequency": 3
+  },
+  {
+    "id": "Pictorial Work",
+    "label": "Pictorial Work",
+    "frequency": 3
+  },
+  {
+    "id": "Science films",
+    "label": "Science films",
+    "frequency": 3
+  },
+  {
+    "id": "Records (Documents)",
+    "label": "Records (Documents)",
+    "frequency": 3
+  },
+  {
+    "id": "Electronic government publications",
+    "label": "Electronic government publications",
+    "frequency": 3
+  },
+  {
+    "id": "Internet-resource",
+    "label": "Internet-resource",
+    "frequency": 3
+  },
+  {
+    "id": "Computer war games",
+    "label": "Computer war games",
+    "frequency": 3
+  },
+  {
+    "id": "Computer network resources",
+    "label": "Computer network resources",
+    "frequency": 3
+  },
+  {
+    "id": "Electronic reference sources",
+    "label": "Electronic reference sources",
+    "frequency": 3
+  },
+  {
+    "id": "Raster data",
+    "label": "Raster data",
+    "frequency": 3
+  },
+  {
+    "id": "Nomograms",
+    "label": "Nomograms",
+    "frequency": 3
+  },
+  {
+    "id": "Facsimiles",
+    "label": "Facsimiles",
+    "frequency": 3
+  },
+  {
+    "id": "Public opinion polls",
+    "label": "Public opinion polls",
+    "frequency": 3
+  },
+  {
+    "id": "Prescriptions, formulae, receipts, etc",
+    "label": "Prescriptions, formulae, receipts, etc",
+    "frequency": 3
+  },
+  {
+    "id": "Live sound recordings",
+    "label": "Live sound recordings",
+    "frequency": 3
+  },
+  {
+    "id": "Relief models",
+    "label": "Relief models",
+    "frequency": 3
+  },
+  {
+    "id": "Specimens",
+    "label": "Specimens",
+    "frequency": 3
+  },
+  {
+    "id": "Graphs",
+    "label": "Graphs",
+    "frequency": 3
+  },
+  {
+    "id": "Promotional materials",
+    "label": "Promotional materials",
+    "frequency": 3
+  },
+  {
+    "id": "Criticism, interpretation, etc",
+    "label": "Criticism, interpretation, etc",
+    "frequency": 3
+  },
+  {
+    "id": "Legal petitions",
+    "label": "Legal petitions",
+    "frequency": 3
+  },
+  {
+    "id": "Zoological surveys",
+    "label": "Zoological surveys",
+    "frequency": 3
+  },
+  {
+    "id": "Drama",
+    "label": "Drama",
+    "frequency": 3
+  },
+  {
+    "id": "Festschriften",
+    "label": "Festschriften",
+    "frequency": 3
+  },
+  {
+    "id": "Historical fiction",
+    "label": "Historical fiction",
+    "frequency": 3
+  },
+  {
+    "id": "Military fiction",
+    "label": "Military fiction",
+    "frequency": 3
+  },
+  {
+    "id": "Employees' magazines, newsletters, etc",
+    "label": "Employees' magazines, newsletters, etc",
+    "frequency": 2
+  },
+  {
+    "id": "Video tapes",
+    "label": "Video tapes",
+    "frequency": 2
+  },
+  {
+    "id": "Pamphlets",
+    "label": "Pamphlets",
+    "frequency": 2
+  },
+  {
+    "id": "Ouvrages de référence",
+    "label": "Ouvrages de référence",
+    "frequency": 2
+  },
+  {
+    "id": "periodicals",
+    "label": "periodicals",
+    "frequency": 2
+  },
+  {
+    "id": "Television scripts",
+    "label": "Television scripts",
+    "frequency": 2
+  },
+  {
+    "id": "Use studies",
+    "label": "Use studies",
+    "frequency": 2
+  },
+  {
+    "id": "Controlled vocabularies",
+    "label": "Controlled vocabularies",
+    "frequency": 2
+  },
+  {
+    "id": "Interactive videos",
+    "label": "Interactive videos",
+    "frequency": 2
+  },
+  {
+    "id": "Zeitschrift",
+    "label": "Zeitschrift",
+    "frequency": 2
+  },
+  {
+    "id": "Union List",
+    "label": "Union List",
+    "frequency": 2
+  },
+  {
+    "id": "Personal narratives, American",
+    "label": "Personal narratives, American",
+    "frequency": 2
+  },
+  {
+    "id": "catalogs (documents)",
+    "label": "catalogs (documents)",
+    "frequency": 2
+  },
+  {
+    "id": "Diaries (Blank-books)",
+    "label": "Diaries (Blank-books)",
+    "frequency": 2
+  },
+  {
+    "id": "Memorial service",
+    "label": "Memorial service",
+    "frequency": 2
+  },
+  {
+    "id": "Quotations",
+    "label": "Quotations",
+    "frequency": 2
+  },
+  {
+    "id": "videocassettes",
+    "label": "videocassettes",
+    "frequency": 2
+  },
+  {
+    "id": "Map",
+    "label": "Map",
+    "frequency": 2
+  },
+  {
+    "id": "Annual Reports",
+    "label": "Annual Reports",
+    "frequency": 2
+  },
+  {
+    "id": "Exhibition",
+    "label": "Exhibition",
+    "frequency": 2
+  },
+  {
+    "id": "Videocassettes",
+    "label": "Videocassettes",
+    "frequency": 2
+  },
+  {
+    "id": "Meteorological charts",
+    "label": "Meteorological charts",
+    "frequency": 2
+  },
+  {
+    "id": "Web sites",
+    "label": "Web sites",
+    "frequency": 2
+  },
+  {
+    "id": "Crossword puzzles",
+    "label": "Crossword puzzles",
+    "frequency": 2
+  },
+  {
+    "id": "Prayers and devotions",
+    "label": "Prayers and devotions",
+    "frequency": 2
+  },
+  {
+    "id": "Digital images",
+    "label": "Digital images",
+    "frequency": 2
+  },
+  {
+    "id": "Television public service announcements",
+    "label": "Television public service announcements",
+    "frequency": 2
+  },
+  {
+    "id": "Rawinsonde observations",
+    "label": "Rawinsonde observations",
+    "frequency": 2
+  },
+  {
+    "id": "Reference sources",
+    "label": "Reference sources",
+    "frequency": 2
+  },
+  {
+    "id": "Nomenclatures",
+    "label": "Nomenclatures",
+    "frequency": 2
+  },
+  {
+    "id": "Actes de congrès",
+    "label": "Actes de congrès",
+    "frequency": 2
+  },
+  {
+    "id": "Feature films",
+    "label": "Feature films",
+    "frequency": 2
+  },
+  {
+    "id": "E-journal",
+    "label": "E-journal",
+    "frequency": 2
+  },
+  {
+    "id": "Audiobooks",
+    "label": "Audiobooks",
+    "frequency": 2
+  },
+  {
+    "id": "Problems and Exercises",
+    "label": "Problems and Exercises",
+    "frequency": 2
+  },
+  {
+    "id": "Problems, exercises, etc",
+    "label": "Problems, exercises, etc",
+    "frequency": 2
+  },
+  {
+    "id": "statistics and numerical data",
+    "label": "statistics and numerical data",
+    "frequency": 2
+  },
+  {
+    "id": "Technical Memorandum",
+    "label": "Technical Memorandum",
+    "frequency": 2
+  },
+  {
+    "id": "Literary collections",
+    "label": "Literary collections",
+    "frequency": 2
+  },
+  {
+    "id": "Interviews (Sound recordings)",
+    "label": "Interviews (Sound recordings)",
+    "frequency": 2
+  },
+  {
+    "id": "Health surveys",
+    "label": "Health surveys",
+    "frequency": 2
+  },
+  {
+    "id": "Demographic surveys",
+    "label": "Demographic surveys",
+    "frequency": 2
+  },
+  {
+    "id": "Fugues",
+    "label": "Fugues",
+    "frequency": 2
+  },
+  {
+    "id": "Concertos",
+    "label": "Concertos",
+    "frequency": 2
+  },
+  {
+    "id": "Symphonies",
+    "label": "Symphonies",
+    "frequency": 2
+  },
+  {
+    "id": "Informational works",
+    "label": "Informational works",
+    "frequency": 2
+  },
+  {
+    "id": "Methods (Music)",
+    "label": "Methods (Music)",
+    "frequency": 2
+  },
+  {
+    "id": "Field recordings",
+    "label": "Field recordings",
+    "frequency": 2
+  },
+  {
+    "id": "Texts",
+    "label": "Texts",
+    "frequency": 2
+  },
+  {
+    "id": "Discographies",
+    "label": "Discographies",
+    "frequency": 2
+  },
+  {
+    "id": "Glossaries, vocabularies, etc",
+    "label": "Glossaries, vocabularies, etc",
+    "frequency": 2
+  },
+  {
+    "id": "Law materials",
+    "label": "Law materials",
+    "frequency": 2
+  },
+  {
+    "id": "Census, 1940",
+    "label": "Census, 1940",
+    "frequency": 2
+  },
+  {
+    "id": "Family histories",
+    "label": "Family histories",
+    "frequency": 2
+  },
+  {
+    "id": "Photomaps",
+    "label": "Photomaps",
+    "frequency": 2
+  },
+  {
+    "id": "Globes",
+    "label": "Globes",
+    "frequency": 2
+  },
+  {
+    "id": "Digital art",
+    "label": "Digital art",
+    "frequency": 2
+  },
+  {
+    "id": "Encyclopedias",
+    "label": "Encyclopedias",
+    "frequency": 2
+  },
+  {
+    "id": "Lists of vessels",
+    "label": "Lists of vessels",
+    "frequency": 2
+  },
+  {
+    "id": "Census, 1974",
+    "label": "Census, 1974",
+    "frequency": 2
+  },
+  {
+    "id": "Songs",
+    "label": "Songs",
+    "frequency": 2
+  },
+  {
+    "id": "Official gazettes",
+    "label": "Official gazettes",
+    "frequency": 2
+  },
+  {
+    "id": "Systematic Review",
+    "label": "Systematic Review",
+    "frequency": 2
+  },
+  {
+    "id": "Health",
+    "label": "Health",
+    "frequency": 2
+  },
+  {
+    "id": "Native Americans",
+    "label": "Native Americans",
+    "frequency": 2
+  },
+  {
+    "id": "travel guidebooks",
+    "label": "travel guidebooks",
+    "frequency": 1
+  },
+  {
+    "id": "Collective labor agreements",
+    "label": "Collective labor agreements",
+    "frequency": 1
+  },
+  {
+    "id": "Paperbacks",
+    "label": "Paperbacks",
+    "frequency": 1
+  },
+  {
+    "id": "Media programs (Education)",
+    "label": "Media programs (Education)",
+    "frequency": 1
+  },
+  {
+    "id": "Maps. ₀",
+    "label": "Maps. ₀",
+    "frequency": 1
+  },
+  {
+    "id": "Television programs",
+    "label": "Television programs",
+    "frequency": 1
+  },
+  {
+    "id": "tourist maps",
+    "label": "tourist maps",
+    "frequency": 1
+  },
+  {
+    "id": "Schedules",
+    "label": "Schedules",
+    "frequency": 1
+  },
+  {
+    "id": "Horror fiction",
+    "label": "Horror fiction",
+    "frequency": 1
+  },
+  {
+    "id": "Paranormal fiction",
+    "label": "Paranormal fiction",
+    "frequency": 1
+  },
+  {
+    "id": "Early maps",
+    "label": "Early maps",
+    "frequency": 1
+  },
+  {
+    "id": "Essay",
+    "label": "Essay",
+    "frequency": 1
+  },
+  {
+    "id": "Catalogues",
+    "label": "Catalogues",
+    "frequency": 1
+  },
+  {
+    "id": "Census, 20th, 1980",
+    "label": "Census, 20th, 1980",
+    "frequency": 1
+  },
+  {
+    "id": "Sea songs",
+    "label": "Sea songs",
+    "frequency": 1
+  },
+  {
+    "id": "Reading games",
+    "label": "Reading games",
+    "frequency": 1
+  },
+  {
+    "id": "Video games",
+    "label": "Video games",
+    "frequency": 1
+  },
+  {
+    "id": "Anthologies",
+    "label": "Anthologies",
+    "frequency": 1
+  },
+  {
+    "id": "Judicial statistics",
+    "label": "Judicial statistics",
+    "frequency": 1
+  },
+  {
+    "id": "Folk music",
+    "label": "Folk music",
+    "frequency": 1
+  },
+  {
+    "id": "Folk literature",
+    "label": "Folk literature",
+    "frequency": 1
+  },
+  {
+    "id": "Terms and phrases",
+    "label": "Terms and phrases",
+    "frequency": 1
+  },
+  {
+    "id": "Benefit performances",
+    "label": "Benefit performances",
+    "frequency": 1
+  },
+  {
+    "id": "Wills",
+    "label": "Wills",
+    "frequency": 1
+  },
+  {
+    "id": "Psalms (Music)",
+    "label": "Psalms (Music)",
+    "frequency": 1
+  },
+  {
+    "id": "Outline",
+    "label": "Outline",
+    "frequency": 1
+  },
+  {
+    "id": "Tables (Données)",
+    "label": "Tables (Données)",
+    "frequency": 1
+  },
+  {
+    "id": "Loran charts",
+    "label": "Loran charts",
+    "frequency": 1
+  },
+  {
+    "id": "Large print books",
+    "label": "Large print books",
+    "frequency": 1
+  },
+  {
+    "id": "Statisitcs",
+    "label": "Statisitcs",
+    "frequency": 1
+  },
+  {
+    "id": "Patent",
+    "label": "Patent",
+    "frequency": 1
+  },
+  {
+    "id": "DELETED",
+    "label": "DELETED",
+    "frequency": 1
+  },
+  {
+    "id": "Rap (Music)",
+    "label": "Rap (Music)",
+    "frequency": 1
+  },
+  {
+    "id": "Comparative maps",
+    "label": "Comparative maps",
+    "frequency": 1
+  },
+  {
+    "id": "Student publications",
+    "label": "Student publications",
+    "frequency": 1
+  },
+  {
+    "id": "bibliographies",
+    "label": "bibliographies",
+    "frequency": 1
+  },
+  {
+    "id": "Yearbooks",
+    "label": "Yearbooks",
+    "frequency": 1
+  },
+  {
+    "id": "Data tape catalogs",
+    "label": "Data tape catalogs",
+    "frequency": 1
+  },
+  {
+    "id": "audiovisual aids",
+    "label": "audiovisual aids",
+    "frequency": 1
+  },
+  {
+    "id": "Essays",
+    "label": "Essays",
+    "frequency": 1
+  },
+  {
+    "id": "Riddles",
+    "label": "Riddles",
+    "frequency": 1
+  },
+  {
+    "id": "Youths' writings",
+    "label": "Youths' writings",
+    "frequency": 1
+  },
+  {
+    "id": "Nomenclature",
+    "label": "Nomenclature",
+    "frequency": 1
+  },
+  {
+    "id": "Braille",
+    "label": "Braille",
+    "frequency": 1
+  },
+  {
+    "id": "Electronic Journals",
+    "label": "Electronic Journals",
+    "frequency": 1
+  },
+  {
+    "id": "Periodials",
+    "label": "Periodials",
+    "frequency": 1
+  },
+  {
+    "id": "Application software",
+    "label": "Application software",
+    "frequency": 1
+  },
+  {
+    "id": "Electronic filing systems",
+    "label": "Electronic filing systems",
+    "frequency": 1
+  },
+  {
+    "id": "Case Report",
+    "label": "Case Report",
+    "frequency": 1
+  },
+  {
+    "id": "Electronic publications",
+    "label": "Electronic publications",
+    "frequency": 1
+  },
+  {
+    "id": "Gospel music",
+    "label": "Gospel music",
+    "frequency": 1
+  },
+  {
+    "id": "Talking books",
+    "label": "Talking books",
+    "frequency": 1
+  },
+  {
+    "id": "Children's plays",
+    "label": "Children's plays",
+    "frequency": 1
+  },
+  {
+    "id": "Cases",
+    "label": "Cases",
+    "frequency": 1
+  },
+  {
+    "id": "Yearbook",
+    "label": "Yearbook",
+    "frequency": 1
+  },
+  {
+    "id": "Government Publications, Federal",
+    "label": "Government Publications, Federal",
+    "frequency": 1
+  },
+  {
+    "id": "Upside-down books",
+    "label": "Upside-down books",
+    "frequency": 1
+  },
+  {
+    "id": "Consensus Development Conference, NIH",
+    "label": "Consensus Development Conference, NIH",
+    "frequency": 1
+  },
+  {
+    "id": "Sayings",
+    "label": "Sayings",
+    "frequency": 1
+  },
+  {
+    "id": "Floppy disks",
+    "label": "Floppy disks",
+    "frequency": 1
+  },
+  {
+    "id": "Comparative Study",
+    "label": "Comparative Study",
+    "frequency": 1
+  },
+  {
+    "id": "Online databases",
+    "label": "Online databases",
+    "frequency": 1
+  },
+  {
+    "id": "Fulltext",
+    "label": "Fulltext",
+    "frequency": 1
+  },
+  {
+    "id": "Govt Pub, Federal",
+    "label": "Govt Pub, Federal",
+    "frequency": 1
+  },
+  {
+    "id": "Hotlines",
+    "label": "Hotlines",
+    "frequency": 1
+  },
+  {
+    "id": "Internet Resource",
+    "label": "Internet Resource",
+    "frequency": 1
+  },
+  {
+    "id": "Reference Material",
+    "label": "Reference Material",
+    "frequency": 1
+  },
+  {
+    "id": "Genealogy",
+    "label": "Genealogy",
+    "frequency": 1
+  },
+  {
+    "id": "Children's art",
+    "label": "Children's art",
+    "frequency": 1
+  },
+  {
+    "id": "Board games",
+    "label": "Board games",
+    "frequency": 1
+  },
+  {
+    "id": "Radio public service announcements",
+    "label": "Radio public service announcements",
+    "frequency": 1
+  },
+  {
+    "id": "Political platforms",
+    "label": "Political platforms",
+    "frequency": 1
+  },
+  {
+    "id": "Patterns",
+    "label": "Patterns",
+    "frequency": 1
+  },
+  {
+    "id": "War posters, American",
+    "label": "War posters, American",
+    "frequency": 1
+  },
+  {
+    "id": "Pedigrees",
+    "label": "Pedigrees",
+    "frequency": 1
+  },
+  {
+    "id": "Video catalogs",
+    "label": "Video catalogs",
+    "frequency": 1
+  },
+  {
+    "id": "lcgft",
+    "label": "lcgft",
+    "frequency": 1
+  },
+  {
+    "id": "Discours",
+    "label": "Discours",
+    "frequency": 1
+  },
+  {
+    "id": "Feasibility studies",
+    "label": "Feasibility studies",
+    "frequency": 1
+  },
+  {
+    "id": "State Government",
+    "label": "State Government",
+    "frequency": 1
+  },
+  {
+    "id": "atlases",
+    "label": "atlases",
+    "frequency": 1
+  },
+  {
+    "id": "Church history",
+    "label": "Church history",
+    "frequency": 1
+  },
+  {
+    "id": "Songs and music",
+    "label": "Songs and music",
+    "frequency": 1
+  },
+  {
+    "id": "illustrated books",
+    "label": "illustrated books",
+    "frequency": 1
+  },
+  {
+    "id": "Documentary radio programs",
+    "label": "Documentary radio programs",
+    "frequency": 1
+  },
+  {
+    "id": "Blues (Music)",
+    "label": "Blues (Music)",
+    "frequency": 1
+  },
+  {
+    "id": "Ragtime music",
+    "label": "Ragtime music",
+    "frequency": 1
+  },
+  {
+    "id": "Country music",
+    "label": "Country music",
+    "frequency": 1
+  },
+  {
+    "id": "Wisconsin",
+    "label": "Wisconsin",
+    "frequency": 1
+  },
+  {
+    "id": "Interpersonal Relations",
+    "label": "Interpersonal Relations",
+    "frequency": 1
+  },
+  {
+    "id": "Autobiography",
+    "label": "Autobiography",
+    "frequency": 1
+  },
+  {
+    "id": "Technical report",
+    "label": "Technical report",
+    "frequency": 1
+  },
+  {
+    "id": "Spanish language materials",
+    "label": "Spanish language materials",
+    "frequency": 1
+  },
+  {
+    "id": "Electronic information resources",
+    "label": "Electronic information resources",
+    "frequency": 1
+  },
+  {
+    "id": "Alphabet books",
+    "label": "Alphabet books",
+    "frequency": 1
+  },
+  {
+    "id": "Ambient sounds",
+    "label": "Ambient sounds",
+    "frequency": 1
+  },
+  {
+    "id": "Personal Narrative",
+    "label": "Personal Narrative",
+    "frequency": 1
+  },
+  {
+    "id": "Sponsored films",
+    "label": "Sponsored films",
+    "frequency": 1
+  },
+  {
+    "id": "DVD-ROMs",
+    "label": "DVD-ROMs",
+    "frequency": 1
+  },
+  {
+    "id": "CATPART; Florida; bca29 20140324",
+    "label": "CATPART; Florida; bca29 20140324",
+    "frequency": 1
+  },
+  {
+    "id": "Census, 2000",
+    "label": "Census, 2000",
+    "frequency": 1
+  },
+  {
+    "id": "book",
+    "label": "book",
+    "frequency": 1
+  },
+  {
+    "id": "French language materials",
+    "label": "French language materials",
+    "frequency": 1
+  },
+  {
+    "id": "Comparative studies",
+    "label": "Comparative studies",
+    "frequency": 1
+  },
+  {
+    "id": "Handbooks",
+    "label": "Handbooks",
+    "frequency": 1
+  },
+  {
+    "id": "Electronic databases",
+    "label": "Electronic databases",
+    "frequency": 1
+  },
+  {
+    "id": "Self-instruction",
+    "label": "Self-instruction",
+    "frequency": 1
+  },
+  {
+    "id": "Readers",
+    "label": "Readers",
+    "frequency": 1
+  },
+  {
+    "id": "Electronic newsletters",
+    "label": "Electronic newsletters",
+    "frequency": 1
+  },
+  {
+    "id": "Trademark lists",
+    "label": "Trademark lists",
+    "frequency": 1
+  },
+  {
+    "id": "Electronic resources",
+    "label": "Electronic resources",
+    "frequency": 1
+  },
+  {
+    "id": "CATPART; UCB; bca68 20170414",
+    "label": "CATPART; UCB; bca68 20170414",
+    "frequency": 1
+  },
+  {
+    "id": "Textual",
+    "label": "Textual",
+    "frequency": 1
+  },
+  {
+    "id": "Geological posters",
+    "label": "Geological posters",
+    "frequency": 1
+  },
+  {
+    "id": "Popular music",
+    "label": "Popular music",
+    "frequency": 1
+  },
+  {
+    "id": "Local author",
+    "label": "Local author",
+    "frequency": 1
+  },
+  {
+    "id": "Detective and mystery fiction",
+    "label": "Detective and mystery fiction",
+    "frequency": 1
+  },
+  {
+    "id": "Death registers",
+    "label": "Death registers",
+    "frequency": 1
+  },
+  {
+    "id": "Multilingual dictionaries",
+    "label": "Multilingual dictionaries",
+    "frequency": 1
+  },
+  {
+    "id": "Bibliographie",
+    "label": "Bibliographie",
+    "frequency": 1
+  },
+  {
+    "id": "Bio-bibliography",
+    "label": "Bio-bibliography",
+    "frequency": 1
+  },
+  {
+    "id": "Historic structure reports",
+    "label": "Historic structure reports",
+    "frequency": 1
+  },
+  {
+    "id": "Periodical Index",
+    "label": "Periodical Index",
+    "frequency": 1
+  },
+  {
+    "id": "Express highways",
+    "label": "Express highways",
+    "frequency": 1
+  },
+  {
+    "id": "Wall charts",
+    "label": "Wall charts",
+    "frequency": 1
+  },
+  {
+    "id": "Legislative hearinfgs",
+    "label": "Legislative hearinfgs",
+    "frequency": 1
+  },
+  {
+    "id": "Geology",
+    "label": "Geology",
+    "frequency": 1
+  },
+  {
+    "id": "Textbook",
+    "label": "Textbook",
+    "frequency": 1
+  },
+  {
+    "id": "Recovery plans",
+    "label": "Recovery plans",
+    "frequency": 1
+  },
+  {
+    "id": "Legal memorandums",
+    "label": "Legal memorandums",
+    "frequency": 1
+  },
+  {
+    "id": "Scholia",
+    "label": "Scholia",
+    "frequency": 1
+  },
+  {
+    "id": "Handbooks, manusl, etc",
+    "label": "Handbooks, manusl, etc",
+    "frequency": 1
+  },
+  {
+    "id": "Online book",
+    "label": "Online book",
+    "frequency": 1
+  },
+  {
+    "id": "Saudi Arabia",
+    "label": "Saudi Arabia",
+    "frequency": 1
+  },
+  {
+    "id": "ERIC Digests in Full Text",
+    "label": "ERIC Digests in Full Text",
+    "frequency": 1
+  },
+  {
+    "id": "ERIC Publications",
+    "label": "ERIC Publications",
+    "frequency": 1
+  },
+  {
+    "id": "Lesson plans",
+    "label": "Lesson plans",
+    "frequency": 1
+  },
+  {
+    "id": "Marches (Music)",
+    "label": "Marches (Music)",
+    "frequency": 1
+  },
+  {
+    "id": "Studio recordings",
+    "label": "Studio recordings",
+    "frequency": 1
+  },
+  {
+    "id": "Scores",
+    "label": "Scores",
+    "frequency": 1
+  },
+  {
+    "id": "Parts (Music)",
+    "label": "Parts (Music)",
+    "frequency": 1
+  },
+  {
+    "id": "Dockets",
+    "label": "Dockets",
+    "frequency": 1
+  },
+  {
+    "id": "Postcards",
+    "label": "Postcards",
+    "frequency": 1
+  },
+  {
+    "id": "Census, 19th, 1970",
+    "label": "Census, 19th, 1970",
+    "frequency": 1
+  },
+  {
+    "id": "Manuscripts",
+    "label": "Manuscripts",
+    "frequency": 1
+  },
+  {
+    "id": "Webcast",
+    "label": "Webcast",
+    "frequency": 1
+  },
+  {
+    "id": "Vidéos sur Internet",
+    "label": "Vidéos sur Internet",
+    "frequency": 1
+  },
+  {
+    "id": "Biographical films",
+    "label": "Biographical films",
+    "frequency": 1
+  },
+  {
+    "id": "Statistiques de l'état civil",
+    "label": "Statistiques de l'état civil",
+    "frequency": 1
+  },
+  {
+    "id": "Census, 1975",
+    "label": "Census, 1975",
+    "frequency": 1
+  },
+  {
+    "id": "Répertoires",
+    "label": "Répertoires",
+    "frequency": 1
+  },
+  {
+    "id": "Radio commentaries",
+    "label": "Radio commentaries",
+    "frequency": 1
+  },
+  {
+    "id": "Cartes topographiques",
+    "label": "Cartes topographiques",
+    "frequency": 1
+  },
+  {
+    "id": "Nonfiction television programs",
+    "label": "Nonfiction television programs",
+    "frequency": 1
+  },
+  {
+    "id": "Ouvrages illustrés",
+    "label": "Ouvrages illustrés",
+    "frequency": 1
+  },
+  {
+    "id": "Bases de données",
+    "label": "Bases de données",
+    "frequency": 1
+  },
+  {
+    "id": "Models (Representations)",
+    "label": "Models (Representations)",
+    "frequency": 1
+  }
+]

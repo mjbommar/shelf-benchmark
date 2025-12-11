@@ -1,0 +1,114 @@
+[
+  {
+    "taxonomy": "lcc_subclass",
+    "description": "Top 50 subclasses",
+    "labels": 50,
+    "coverage": "94.2%",
+    "file": "lcc_subclass_top50.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcc_main",
+    "description": "All 21 main classes",
+    "labels": 25,
+    "coverage": "100.0%",
+    "file": "lcc_main.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcc_subclass",
+    "description": "Top 100 subclasses",
+    "labels": 100,
+    "coverage": "98.7%",
+    "file": "lcc_subclass_top100.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcgft",
+    "description": "Top 100 genre/form",
+    "labels": 100,
+    "coverage": "99.1%",
+    "file": "lcgft_top100.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcgft",
+    "description": "All genre/form",
+    "labels": 554,
+    "coverage": "100.0%",
+    "file": "lcgft.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcgft",
+    "description": "Top 50 genre/form",
+    "labels": 50,
+    "coverage": "97.7%",
+    "file": "lcgft_top50.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcsh_geo",
+    "description": "Top 100 geographic",
+    "labels": 100,
+    "coverage": "70.1%",
+    "file": "lcsh_geo_top100.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "sudoc_agency",
+    "description": "Top 50 SuDoc agencies",
+    "labels": 50,
+    "coverage": "97.2%",
+    "file": "sudoc_agency_top50.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "corp_names",
+    "description": "Top 100 corporate names",
+    "labels": 100,
+    "coverage": "80.1%",
+    "file": "corp_names_top100.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcsh_geo",
+    "description": "Top 500 geographic",
+    "labels": 500,
+    "coverage": "83.0%",
+    "file": "lcsh_geo_top500.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcsh_topical",
+    "description": "Top 100 topical subjects",
+    "labels": 100,
+    "coverage": "21.1%",
+    "file": "lcsh_topical_top100.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcsh_topical",
+    "description": "Top 500 topical subjects",
+    "labels": 500,
+    "coverage": "42.7%",
+    "file": "lcsh_topical_top500.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcsh_topical",
+    "description": "Top 1000 topical subjects",
+    "labels": 1000,
+    "coverage": "54.1%",
+    "file": "lcsh_topical_top1000.json",
+    "status": "success"
+  },
+  {
+    "taxonomy": "lcsh_topical",
+    "description": "Top 2000 topical subjects",
+    "labels": 2000,
+    "coverage": "66.1%",
+    "file": "lcsh_topical_top2000.json",
+    "status": "success"
+  }
+]

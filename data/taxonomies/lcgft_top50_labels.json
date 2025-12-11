@@ -1,0 +1,252 @@
+[
+  {
+    "id": "Maps",
+    "label": "Maps",
+    "frequency": 70971
+  },
+  {
+    "id": "Statistics",
+    "label": "Statistics",
+    "frequency": 59060
+  },
+  {
+    "id": "Legislative hearings",
+    "label": "Legislative hearings",
+    "frequency": 37526
+  },
+  {
+    "id": "Legislative materials",
+    "label": "Legislative materials",
+    "frequency": 36418
+  },
+  {
+    "id": "Handbooks and manuals",
+    "label": "Handbooks and manuals",
+    "frequency": 36162
+  },
+  {
+    "id": "Topographic maps",
+    "label": "Topographic maps",
+    "frequency": 36137
+  },
+  {
+    "id": "Bibliographies",
+    "label": "Bibliographies",
+    "frequency": 15384
+  },
+  {
+    "id": "Conference papers and proceedings",
+    "label": "Conference papers and proceedings",
+    "frequency": 10987
+  },
+  {
+    "id": "Periodicals",
+    "label": "Periodicals",
+    "frequency": 9614
+  },
+  {
+    "id": "Catalogs",
+    "label": "Catalogs",
+    "frequency": 7084
+  },
+  {
+    "id": "Statutes and codes",
+    "label": "Statutes and codes",
+    "frequency": 4257
+  },
+  {
+    "id": "Census data",
+    "label": "Census data",
+    "frequency": 2171
+  },
+  {
+    "id": "History",
+    "label": "History",
+    "frequency": 1978
+  },
+  {
+    "id": "Rules",
+    "label": "Rules",
+    "frequency": 1927
+  },
+  {
+    "id": "Bibliography",
+    "label": "Bibliography",
+    "frequency": 1169
+  },
+  {
+    "id": "Technical reports",
+    "label": "Technical reports",
+    "frequency": 1158
+  },
+  {
+    "id": "Biographies",
+    "label": "Biographies",
+    "frequency": 1133
+  },
+  {
+    "id": "Environmental impact statements",
+    "label": "Environmental impact statements",
+    "frequency": 1103
+  },
+  {
+    "id": "Posters",
+    "label": "Posters",
+    "frequency": 1006
+  },
+  {
+    "id": "Online resources",
+    "label": "Online resources",
+    "frequency": 936
+  },
+  {
+    "id": "Treaties",
+    "label": "Treaties",
+    "frequency": 904
+  },
+  {
+    "id": "Remote-sensing maps",
+    "label": "Remote-sensing maps",
+    "frequency": 903
+  },
+  {
+    "id": "Bathymetric maps",
+    "label": "Bathymetric maps",
+    "frequency": 783
+  },
+  {
+    "id": "Road maps",
+    "label": "Road maps",
+    "frequency": 702
+  },
+  {
+    "id": "Directories",
+    "label": "Directories",
+    "frequency": 620
+  },
+  {
+    "id": "Periodical",
+    "label": "Periodical",
+    "frequency": 564
+  },
+  {
+    "id": "Government publications",
+    "label": "Government publications",
+    "frequency": 453
+  },
+  {
+    "id": "Abstracts",
+    "label": "Abstracts",
+    "frequency": 436
+  },
+  {
+    "id": "Braille books",
+    "label": "Braille books",
+    "frequency": 432
+  },
+  {
+    "id": "Tourist maps",
+    "label": "Tourist maps",
+    "frequency": 429
+  },
+  {
+    "id": "Reference works",
+    "label": "Reference works",
+    "frequency": 393
+  },
+  {
+    "id": "Resolutions (Law)",
+    "label": "Resolutions (Law)",
+    "frequency": 392
+  },
+  {
+    "id": "Geological maps",
+    "label": "Geological maps",
+    "frequency": 342
+  },
+  {
+    "id": "Nautical charts",
+    "label": "Nautical charts",
+    "frequency": 339
+  },
+  {
+    "id": "Classification",
+    "label": "Classification",
+    "frequency": 339
+  },
+  {
+    "id": "Tables",
+    "label": "Tables",
+    "frequency": 319
+  },
+  {
+    "id": "Indexes",
+    "label": "Indexes",
+    "frequency": 314
+  },
+  {
+    "id": "Speeches",
+    "label": "Speeches",
+    "frequency": 303
+  },
+  {
+    "id": "Annual reports",
+    "label": "Annual reports",
+    "frequency": 286
+  },
+  {
+    "id": "Guidebooks",
+    "label": "Guidebooks",
+    "frequency": 283
+  },
+  {
+    "id": "Databases",
+    "label": "Databases",
+    "frequency": 281
+  },
+  {
+    "id": "Vital statistics",
+    "label": "Vital statistics",
+    "frequency": 279
+  },
+  {
+    "id": "Case studies",
+    "label": "Case studies",
+    "frequency": 277
+  },
+  {
+    "id": "Activity books",
+    "label": "Activity books",
+    "frequency": 266
+  },
+  {
+    "id": "Computer programs",
+    "label": "Computer programs",
+    "frequency": 256
+  },
+  {
+    "id": "Documentary films",
+    "label": "Documentary films",
+    "frequency": 252
+  },
+  {
+    "id": "Directory",
+    "label": "Directory",
+    "frequency": 223
+  },
+  {
+    "id": "Streaming videos",
+    "label": "Streaming videos",
+    "frequency": 223
+  },
+  {
+    "id": "Tables (Data)",
+    "label": "Tables (Data)",
+    "frequency": 217
+  },
+  {
+    "id": "Observations",
+    "label": "Observations",
+    "frequency": 216
+  }
+]

@@ -1,0 +1,502 @@
+[
+  {
+    "id": "United States",
+    "label": "United States",
+    "frequency": 191772
+  },
+  {
+    "id": "United States Postal Service",
+    "label": "United States Postal Service",
+    "frequency": 1918
+  },
+  {
+    "id": "U.S. Nuclear Regulatory Commission",
+    "label": "U.S. Nuclear Regulatory Commission",
+    "frequency": 1518
+  },
+  {
+    "id": "Library of Congress",
+    "label": "Library of Congress",
+    "frequency": 1440
+  },
+  {
+    "id": "United Nations",
+    "label": "United Nations",
+    "frequency": 1379
+  },
+  {
+    "id": "North Atlantic Treaty Organization",
+    "label": "North Atlantic Treaty Organization",
+    "frequency": 1264
+  },
+  {
+    "id": "Geological Survey (U.S.)",
+    "label": "Geological Survey (U.S.)",
+    "frequency": 1106
+  },
+  {
+    "id": "Board of Governors of the Federal Reserve System (U.S.)",
+    "label": "Board of Governors of the Federal Reserve System (U.S.)",
+    "frequency": 1001
+  },
+  {
+    "id": "Peace Corps (U.S.)",
+    "label": "Peace Corps (U.S.)",
+    "frequency": 819
+  },
+  {
+    "id": "U.S. Customs and Border Protection",
+    "label": "U.S. Customs and Border Protection",
+    "frequency": 807
+  },
+  {
+    "id": "National Institutes of Health (U.S.)",
+    "label": "National Institutes of Health (U.S.)",
+    "frequency": 804
+  },
+  {
+    "id": "Tennessee Valley Authority",
+    "label": "Tennessee Valley Authority",
+    "frequency": 689
+  },
+  {
+    "id": "National Science Foundation (U.S.)",
+    "label": "National Science Foundation (U.S.)",
+    "frequency": 675
+  },
+  {
+    "id": "Defense Logistics Services Center (U.S.)",
+    "label": "Defense Logistics Services Center (U.S.)",
+    "frequency": 661
+  },
+  {
+    "id": "Centers for Medicare & Medicaid Services (U.S.)",
+    "label": "Centers for Medicare & Medicaid Services (U.S.)",
+    "frequency": 611
+  },
+  {
+    "id": "IS (Organization)",
+    "label": "IS (Organization)",
+    "frequency": 587
+  },
+  {
+    "id": "Smithsonian Institution",
+    "label": "Smithsonian Institution",
+    "frequency": 576
+  },
+  {
+    "id": "U.S. Customs Service",
+    "label": "U.S. Customs Service",
+    "frequency": 574
+  },
+  {
+    "id": "Amtrak",
+    "label": "Amtrak",
+    "frequency": 550
+  },
+  {
+    "id": "U.S. Fish and Wildlife Service",
+    "label": "U.S. Fish and Wildlife Service",
+    "frequency": 494
+  },
+  {
+    "id": "Qaida (Organization)",
+    "label": "Qaida (Organization)",
+    "frequency": 489
+  },
+  {
+    "id": "Export-Import Bank of the United States",
+    "label": "Export-Import Bank of the United States",
+    "frequency": 487
+  },
+  {
+    "id": "National Assessment of Educational Progress (Project)",
+    "label": "National Assessment of Educational Progress (Project)",
+    "frequency": 464
+  },
+  {
+    "id": "District of Columbia",
+    "label": "District of Columbia",
+    "frequency": 440
+  },
+  {
+    "id": "National Flood Insurance Program (U.S.)",
+    "label": "National Flood Insurance Program (U.S.)",
+    "frequency": 432
+  },
+  {
+    "id": "Federal Deposit Insurance Corporation",
+    "label": "Federal Deposit Insurance Corporation",
+    "frequency": 411
+  },
+  {
+    "id": "U.S. Immigration and Customs Enforcement",
+    "label": "U.S. Immigration and Customs Enforcement",
+    "frequency": 382
+  },
+  {
+    "id": "Federal Employees Health Benefits Program (U.S.)",
+    "label": "Federal Employees Health Benefits Program (U.S.)",
+    "frequency": 376
+  },
+  {
+    "id": "National Institute of Standards and Technology (U.S.)",
+    "label": "National Institute of Standards and Technology (U.S.)",
+    "frequency": 366
+  },
+  {
+    "id": "National Cancer Institute (U.S.)",
+    "label": "National Cancer Institute (U.S.)",
+    "frequency": 356
+  },
+  {
+    "id": "Commodity Credit Corporation",
+    "label": "Commodity Credit Corporation",
+    "frequency": 347
+  },
+  {
+    "id": "United States Capitol (Washington, D.C.)",
+    "label": "United States Capitol (Washington, D.C.)",
+    "frequency": 343
+  },
+  {
+    "id": "Troubled Asset Relief Program (U.S.)",
+    "label": "Troubled Asset Relief Program (U.S.)",
+    "frequency": 318
+  },
+  {
+    "id": "U.S. Consumer Product Safety Commission",
+    "label": "U.S. Consumer Product Safety Commission",
+    "frequency": 306
+  },
+  {
+    "id": "Pension Benefit Guaranty Corporation",
+    "label": "Pension Benefit Guaranty Corporation",
+    "frequency": 292
+  },
+  {
+    "id": "U.S. Census Bureau",
+    "label": "U.S. Census Bureau",
+    "frequency": 286
+  },
+  {
+    "id": "International Monetary Fund",
+    "label": "International Monetary Fund",
+    "frequency": 281
+  },
+  {
+    "id": "U.S. Atomic Energy Commission",
+    "label": "U.S. Atomic Energy Commission",
+    "frequency": 270
+  },
+  {
+    "id": "Federal National Mortgage Association",
+    "label": "Federal National Mortgage Association",
+    "frequency": 267
+  },
+  {
+    "id": "National Health and Nutrition Examination Survey (U.S.)",
+    "label": "National Health and Nutrition Examination Survey (U.S.)",
+    "frequency": 258
+  },
+  {
+    "id": "Resolution Trust Corporation (U.S.)",
+    "label": "Resolution Trust Corporation (U.S.)",
+    "frequency": 255
+  },
+  {
+    "id": "National Health Interview Survey (U.S.)",
+    "label": "National Health Interview Survey (U.S.)",
+    "frequency": 251
+  },
+  {
+    "id": "World Trade Organization",
+    "label": "World Trade Organization",
+    "frequency": 241
+  },
+  {
+    "id": "Taliban",
+    "label": "Taliban",
+    "frequency": 236
+  },
+  {
+    "id": "China",
+    "label": "China",
+    "frequency": 235
+  },
+  {
+    "id": "Overseas Private Investment Corporation",
+    "label": "Overseas Private Investment Corporation",
+    "frequency": 232
+  },
+  {
+    "id": "Job Corps (U.S.)",
+    "label": "Job Corps (U.S.)",
+    "frequency": 223
+  },
+  {
+    "id": "National Endowment for the Humanities",
+    "label": "National Endowment for the Humanities",
+    "frequency": 222
+  },
+  {
+    "id": "Supplemental Nutrition Assistance Program (U.S.)",
+    "label": "Supplemental Nutrition Assistance Program (U.S.)",
+    "frequency": 212
+  },
+  {
+    "id": "SmartWay Transport Partnership Program (U.S.)",
+    "label": "SmartWay Transport Partnership Program (U.S.)",
+    "frequency": 212
+  },
+  {
+    "id": "U.S. Citizenship and Immigration Services",
+    "label": "U.S. Citizenship and Immigration Services",
+    "frequency": 207
+  },
+  {
+    "id": "United States International Trade Commission",
+    "label": "United States International Trade Commission",
+    "frequency": 201
+  },
+  {
+    "id": "Federal Crop Insurance Corporation",
+    "label": "Federal Crop Insurance Corporation",
+    "frequency": 195
+  },
+  {
+    "id": "United States Information Agency",
+    "label": "United States Information Agency",
+    "frequency": 191
+  },
+  {
+    "id": "Temporary Assistance for Needy Families (Program)",
+    "label": "Temporary Assistance for Needy Families (Program)",
+    "frequency": 191
+  },
+  {
+    "id": "Project Apollo (U.S.)",
+    "label": "Project Apollo (U.S.)",
+    "frequency": 190
+  },
+  {
+    "id": "Central Valley Project (Calif.)",
+    "label": "Central Valley Project (Calif.)",
+    "frequency": 188
+  },
+  {
+    "id": "Afghanistan",
+    "label": "Afghanistan",
+    "frequency": 187
+  },
+  {
+    "id": "International Space Station",
+    "label": "International Space Station",
+    "frequency": 186
+  },
+  {
+    "id": "United States Air Force Academy",
+    "label": "United States Air Force Academy",
+    "frequency": 185
+  },
+  {
+    "id": "John F. Kennedy Center for the Performing Arts (U.S.)",
+    "label": "John F. Kennedy Center for the Performing Arts (U.S.)",
+    "frequency": 185
+  },
+  {
+    "id": "United States Commission on Civil Rights",
+    "label": "United States Commission on Civil Rights",
+    "frequency": 175
+  },
+  {
+    "id": "National Water-Quality Assessment Program (U.S.)",
+    "label": "National Water-Quality Assessment Program (U.S.)",
+    "frequency": 175
+  },
+  {
+    "id": "Federal Employees' Retirement System (U.S.)",
+    "label": "Federal Employees' Retirement System (U.S.)",
+    "frequency": 174
+  },
+  {
+    "id": "Corporation for National and Community Service (U.S.)",
+    "label": "Corporation for National and Community Service (U.S.)",
+    "frequency": 166
+  },
+  {
+    "id": "Three Mile Island Nuclear Power Plant (Pa.)",
+    "label": "Three Mile Island Nuclear Power Plant (Pa.)",
+    "frequency": 165
+  },
+  {
+    "id": "Freddie Mac (Firm)",
+    "label": "Freddie Mac (Firm)",
+    "frequency": 164
+  },
+  {
+    "id": "AmeriCorps (Program : U.S.)",
+    "label": "AmeriCorps (Program : U.S.)",
+    "frequency": 163
+  },
+  {
+    "id": "United States Naval Academy",
+    "label": "United States Naval Academy",
+    "frequency": 159
+  },
+  {
+    "id": "United States Civil Service Commission",
+    "label": "United States Civil Service Commission",
+    "frequency": 158
+  },
+  {
+    "id": "Millennium Challenge Corporation (U.S.)",
+    "label": "Millennium Challenge Corporation (U.S.)",
+    "frequency": 153
+  },
+  {
+    "id": "National Endowment for the Arts",
+    "label": "National Endowment for the Arts",
+    "frequency": 152
+  },
+  {
+    "id": "World Bank",
+    "label": "World Bank",
+    "frequency": 152
+  },
+  {
+    "id": "Small Business Technology Transfer Program (U.S.)",
+    "label": "Small Business Technology Transfer Program (U.S.)",
+    "frequency": 151
+  },
+  {
+    "id": "U.S. Border Patrol",
+    "label": "U.S. Border Patrol",
+    "frequency": 150
+  },
+  {
+    "id": "SBIC Program (U.S.)",
+    "label": "SBIC Program (U.S.)",
+    "frequency": 150
+  },
+  {
+    "id": "Federal Depository Library Program",
+    "label": "Federal Depository Library Program",
+    "frequency": 148
+  },
+  {
+    "id": "U.S. Special Operations Command",
+    "label": "U.S. Special Operations Command",
+    "frequency": 145
+  },
+  {
+    "id": "Washington Metropolitan Area Transit Authority",
+    "label": "Washington Metropolitan Area Transit Authority",
+    "frequency": 143
+  },
+  {
+    "id": "Airport Improvement Program (U.S.)",
+    "label": "Airport Improvement Program (U.S.)",
+    "frequency": 143
+  },
+  {
+    "id": "White House (Washington, D.C.)",
+    "label": "White House (Washington, D.C.)",
+    "frequency": 138
+  },
+  {
+    "id": "Centers for Disease Control and Prevention (U.S.)",
+    "label": "Centers for Disease Control and Prevention (U.S.)",
+    "frequency": 137
+  },
+  {
+    "id": "United States Military Academy",
+    "label": "United States Military Academy",
+    "frequency": 136
+  },
+  {
+    "id": "Corporation for Public Broadcasting",
+    "label": "Corporation for Public Broadcasting",
+    "frequency": 136
+  },
+  {
+    "id": "Reconstruction Finance Corporation",
+    "label": "Reconstruction Finance Corporation",
+    "frequency": 136
+  },
+  {
+    "id": "Arlington National Cemetery (Arlington, Va.)",
+    "label": "Arlington National Cemetery (Arlington, Va.)",
+    "frequency": 132
+  },
+  {
+    "id": "National Institute of Justice (U.S.)",
+    "label": "National Institute of Justice (U.S.)",
+    "frequency": 130
+  },
+  {
+    "id": "Tongass National Forest (Agency : U.S.)",
+    "label": "Tongass National Forest (Agency : U.S.)",
+    "frequency": 129
+  },
+  {
+    "id": "Hizballah (Lebanon)",
+    "label": "Hizballah (Lebanon)",
+    "frequency": 128
+  },
+  {
+    "id": "National Library of Medicine (U.S.)",
+    "label": "National Library of Medicine (U.S.)",
+    "frequency": 125
+  },
+  {
+    "id": "National Gallery of Art (U.S.)",
+    "label": "National Gallery of Art (U.S.)",
+    "frequency": 125
+  },
+  {
+    "id": "Legal Services Corporation",
+    "label": "Legal Services Corporation",
+    "frequency": 124
+  },
+  {
+    "id": "Unesco",
+    "label": "Unesco",
+    "frequency": 122
+  },
+  {
+    "id": "Head Start Program (U.S.)",
+    "label": "Head Start Program (U.S.)",
+    "frequency": 118
+  },
+  {
+    "id": "International Criminal Court",
+    "label": "International Criminal Court",
+    "frequency": 117
+  },
+  {
+    "id": "Missouri River Basin Project (U.S.)",
+    "label": "Missouri River Basin Project (U.S.)",
+    "frequency": 113
+  },
+  {
+    "id": "Long-Term Pavement Performance Program (U.S.)",
+    "label": "Long-Term Pavement Performance Program (U.S.)",
+    "frequency": 113
+  },
+  {
+    "id": "National Wildlife Refuge System (U.S.)",
+    "label": "National Wildlife Refuge System (U.S.)",
+    "frequency": 112
+  },
+  {
+    "id": "Airport and Airway Trust Fund (U.S.)",
+    "label": "Airport and Airway Trust Fund (U.S.)",
+    "frequency": 112
+  },
+  {
+    "id": "Pick-Sloan Missouri Basin Program (U.S.)",
+    "label": "Pick-Sloan Missouri Basin Program (U.S.)",
+    "frequency": 111
+  }
+]

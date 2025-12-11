@@ -1,0 +1,502 @@
+[
+  {
+    "id": "United States",
+    "label": "United States",
+    "frequency": 143648
+  },
+  {
+    "id": "California",
+    "label": "California",
+    "frequency": 6172
+  },
+  {
+    "id": "China",
+    "label": "China",
+    "frequency": 3964
+  },
+  {
+    "id": "Alaska",
+    "label": "Alaska",
+    "frequency": 3928
+  },
+  {
+    "id": "Texas",
+    "label": "Texas",
+    "frequency": 3540
+  },
+  {
+    "id": "Montana",
+    "label": "Montana",
+    "frequency": 3406
+  },
+  {
+    "id": "Oregon",
+    "label": "Oregon",
+    "frequency": 3056
+  },
+  {
+    "id": "Colorado",
+    "label": "Colorado",
+    "frequency": 3004
+  },
+  {
+    "id": "Washington (State)",
+    "label": "Washington (State)",
+    "frequency": 2992
+  },
+  {
+    "id": "New Mexico",
+    "label": "New Mexico",
+    "frequency": 2767
+  },
+  {
+    "id": "Arizona",
+    "label": "Arizona",
+    "frequency": 2745
+  },
+  {
+    "id": "Utah",
+    "label": "Utah",
+    "frequency": 2622
+  },
+  {
+    "id": "Nevada",
+    "label": "Nevada",
+    "frequency": 2471
+  },
+  {
+    "id": "Idaho",
+    "label": "Idaho",
+    "frequency": 2449
+  },
+  {
+    "id": "Washington (D.C.)",
+    "label": "Washington (D.C.)",
+    "frequency": 2431
+  },
+  {
+    "id": "Wyoming",
+    "label": "Wyoming",
+    "frequency": 2409
+  },
+  {
+    "id": "Florida",
+    "label": "Florida",
+    "frequency": 2319
+  },
+  {
+    "id": "Pennsylvania",
+    "label": "Pennsylvania",
+    "frequency": 2220
+  },
+  {
+    "id": "New York (State)",
+    "label": "New York (State)",
+    "frequency": 2178
+  },
+  {
+    "id": "Wisconsin",
+    "label": "Wisconsin",
+    "frequency": 2067
+  },
+  {
+    "id": "Virginia",
+    "label": "Virginia",
+    "frequency": 1719
+  },
+  {
+    "id": "Louisiana",
+    "label": "Louisiana",
+    "frequency": 1706
+  },
+  {
+    "id": "North Carolina",
+    "label": "North Carolina",
+    "frequency": 1678
+  },
+  {
+    "id": "Illinois",
+    "label": "Illinois",
+    "frequency": 1641
+  },
+  {
+    "id": "Soviet Union",
+    "label": "Soviet Union",
+    "frequency": 1634
+  },
+  {
+    "id": "Russia (Federation)",
+    "label": "Russia (Federation)",
+    "frequency": 1590
+  },
+  {
+    "id": "Ohio",
+    "label": "Ohio",
+    "frequency": 1494
+  },
+  {
+    "id": "Missouri",
+    "label": "Missouri",
+    "frequency": 1434
+  },
+  {
+    "id": "Europe",
+    "label": "Europe",
+    "frequency": 1433
+  },
+  {
+    "id": "Minnesota",
+    "label": "Minnesota",
+    "frequency": 1411
+  },
+  {
+    "id": "Outer space",
+    "label": "Outer space",
+    "frequency": 1379
+  },
+  {
+    "id": "Iran",
+    "label": "Iran",
+    "frequency": 1367
+  },
+  {
+    "id": "Iraq",
+    "label": "Iraq",
+    "frequency": 1296
+  },
+  {
+    "id": "Michigan",
+    "label": "Michigan",
+    "frequency": 1287
+  },
+  {
+    "id": "Nebraska",
+    "label": "Nebraska",
+    "frequency": 1272
+  },
+  {
+    "id": "Mexico",
+    "label": "Mexico",
+    "frequency": 1248
+  },
+  {
+    "id": "Georgia",
+    "label": "Georgia",
+    "frequency": 1236
+  },
+  {
+    "id": "Afghanistan",
+    "label": "Afghanistan",
+    "frequency": 1232
+  },
+  {
+    "id": "Indiana",
+    "label": "Indiana",
+    "frequency": 1188
+  },
+  {
+    "id": "Kansas",
+    "label": "Kansas",
+    "frequency": 1175
+  },
+  {
+    "id": "Middle East",
+    "label": "Middle East",
+    "frequency": 1169
+  },
+  {
+    "id": "Tennessee",
+    "label": "Tennessee",
+    "frequency": 1108
+  },
+  {
+    "id": "Alabama",
+    "label": "Alabama",
+    "frequency": 1101
+  },
+  {
+    "id": "Kentucky",
+    "label": "Kentucky",
+    "frequency": 1078
+  },
+  {
+    "id": "Arkansas",
+    "label": "Arkansas",
+    "frequency": 1023
+  },
+  {
+    "id": "Maine",
+    "label": "Maine",
+    "frequency": 1013
+  },
+  {
+    "id": "New Jersey",
+    "label": "New Jersey",
+    "frequency": 1007
+  },
+  {
+    "id": "Japan",
+    "label": "Japan",
+    "frequency": 1004
+  },
+  {
+    "id": "Hawaii",
+    "label": "Hawaii",
+    "frequency": 992
+  },
+  {
+    "id": "Maryland",
+    "label": "Maryland",
+    "frequency": 985
+  },
+  {
+    "id": "South Dakota",
+    "label": "South Dakota",
+    "frequency": 974
+  },
+  {
+    "id": "Oklahoma",
+    "label": "Oklahoma",
+    "frequency": 970
+  },
+  {
+    "id": "North America",
+    "label": "North America",
+    "frequency": 968
+  },
+  {
+    "id": "Latin America",
+    "label": "Latin America",
+    "frequency": 954
+  },
+  {
+    "id": "Puerto Rico",
+    "label": "Puerto Rico",
+    "frequency": 910
+  },
+  {
+    "id": "Syria",
+    "label": "Syria",
+    "frequency": 906
+  },
+  {
+    "id": "South Carolina",
+    "label": "South Carolina",
+    "frequency": 868
+  },
+  {
+    "id": "North Pacific Ocean",
+    "label": "North Pacific Ocean",
+    "frequency": 863
+  },
+  {
+    "id": "Mississippi",
+    "label": "Mississippi",
+    "frequency": 858
+  },
+  {
+    "id": "North Dakota",
+    "label": "North Dakota",
+    "frequency": 812
+  },
+  {
+    "id": "Massachusetts",
+    "label": "Massachusetts",
+    "frequency": 811
+  },
+  {
+    "id": "West Virginia",
+    "label": "West Virginia",
+    "frequency": 802
+  },
+  {
+    "id": "Iowa",
+    "label": "Iowa",
+    "frequency": 792
+  },
+  {
+    "id": "Cuba",
+    "label": "Cuba",
+    "frequency": 789
+  },
+  {
+    "id": "Africa",
+    "label": "Africa",
+    "frequency": 766
+  },
+  {
+    "id": "Mars (Planet)",
+    "label": "Mars (Planet)",
+    "frequency": 764
+  },
+  {
+    "id": "Korea (North)",
+    "label": "Korea (North)",
+    "frequency": 722
+  },
+  {
+    "id": "Canada",
+    "label": "Canada",
+    "frequency": 711
+  },
+  {
+    "id": "Mexico, Gulf of",
+    "label": "Mexico, Gulf of",
+    "frequency": 710
+  },
+  {
+    "id": "New Hampshire",
+    "label": "New Hampshire",
+    "frequency": 643
+  },
+  {
+    "id": "Pakistan",
+    "label": "Pakistan",
+    "frequency": 584
+  },
+  {
+    "id": "Pacific Ocean",
+    "label": "Pacific Ocean",
+    "frequency": 557
+  },
+  {
+    "id": "Vermont",
+    "label": "Vermont",
+    "frequency": 501
+  },
+  {
+    "id": "Connecticut",
+    "label": "Connecticut",
+    "frequency": 499
+  },
+  {
+    "id": "Vietnam",
+    "label": "Vietnam",
+    "frequency": 494
+  },
+  {
+    "id": "Ukraine",
+    "label": "Ukraine",
+    "frequency": 479
+  },
+  {
+    "id": "Philippines",
+    "label": "Philippines",
+    "frequency": 458
+  },
+  {
+    "id": "Panama",
+    "label": "Panama",
+    "frequency": 453
+  },
+  {
+    "id": "North Atlantic Ocean",
+    "label": "North Atlantic Ocean",
+    "frequency": 452
+  },
+  {
+    "id": "Libya",
+    "label": "Libya",
+    "frequency": 446
+  },
+  {
+    "id": "India",
+    "label": "India",
+    "frequency": 444
+  },
+  {
+    "id": "Burma",
+    "label": "Burma",
+    "frequency": 438
+  },
+  {
+    "id": "Sudan",
+    "label": "Sudan",
+    "frequency": 435
+  },
+  {
+    "id": "Pacific Area",
+    "label": "Pacific Area",
+    "frequency": 435
+  },
+  {
+    "id": "Germany",
+    "label": "Germany",
+    "frequency": 434
+  },
+  {
+    "id": "Asia",
+    "label": "Asia",
+    "frequency": 429
+  },
+  {
+    "id": "Caribbean Sea",
+    "label": "Caribbean Sea",
+    "frequency": 426
+  },
+  {
+    "id": "Europe, Eastern",
+    "label": "Europe, Eastern",
+    "frequency": 423
+  },
+  {
+    "id": "Israel",
+    "label": "Israel",
+    "frequency": 423
+  },
+  {
+    "id": "Developing countries",
+    "label": "Developing countries",
+    "frequency": 421
+  },
+  {
+    "id": "Great Britain",
+    "label": "Great Britain",
+    "frequency": 417
+  },
+  {
+    "id": "Colombia",
+    "label": "Colombia",
+    "frequency": 411
+  },
+  {
+    "id": "Caribbean Area",
+    "label": "Caribbean Area",
+    "frequency": 402
+  },
+  {
+    "id": "Delaware",
+    "label": "Delaware",
+    "frequency": 394
+  },
+  {
+    "id": "Turkey",
+    "label": "Turkey",
+    "frequency": 388
+  },
+  {
+    "id": "European Union countries",
+    "label": "European Union countries",
+    "frequency": 377
+  },
+  {
+    "id": "Southern States",
+    "label": "Southern States",
+    "frequency": 376
+  },
+  {
+    "id": "Korea (South)",
+    "label": "Korea (South)",
+    "frequency": 373
+  },
+  {
+    "id": "Mississippi River",
+    "label": "Mississippi River",
+    "frequency": 364
+  },
+  {
+    "id": "Taiwan",
+    "label": "Taiwan",
+    "frequency": 364
+  }
+]

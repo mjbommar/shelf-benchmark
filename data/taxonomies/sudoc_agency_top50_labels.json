@@ -1,0 +1,252 @@
+[
+  {
+    "id": "Y",
+    "label": "Y",
+    "frequency": 255948
+  },
+  {
+    "id": "I",
+    "label": "I",
+    "frequency": 142674
+  },
+  {
+    "id": "A",
+    "label": "A",
+    "frequency": 78281
+  },
+  {
+    "id": "D",
+    "label": "D",
+    "frequency": 71578
+  },
+  {
+    "id": "C",
+    "label": "C",
+    "frequency": 68403
+  },
+  {
+    "id": "NAS",
+    "label": "NAS",
+    "frequency": 57265
+  },
+  {
+    "id": "HE",
+    "label": "HE",
+    "frequency": 47917
+  },
+  {
+    "id": "GA",
+    "label": "GA",
+    "frequency": 35044
+  },
+  {
+    "id": "ED",
+    "label": "ED",
+    "frequency": 27070
+  },
+  {
+    "id": "TD",
+    "label": "TD",
+    "frequency": 26280
+  },
+  {
+    "id": "E",
+    "label": "E",
+    "frequency": 25421
+  },
+  {
+    "id": "EP",
+    "label": "EP",
+    "frequency": 24738
+  },
+  {
+    "id": "L",
+    "label": "L",
+    "frequency": 19365
+  },
+  {
+    "id": "LC",
+    "label": "LC",
+    "frequency": 18397
+  },
+  {
+    "id": "S",
+    "label": "S",
+    "frequency": 16081
+  },
+  {
+    "id": "FEM",
+    "label": "FEM",
+    "frequency": 13416
+  },
+  {
+    "id": "AE",
+    "label": "AE",
+    "frequency": 12016
+  },
+  {
+    "id": "T",
+    "label": "T",
+    "frequency": 11753
+  },
+  {
+    "id": "J",
+    "label": "J",
+    "frequency": 11530
+  },
+  {
+    "id": "HH",
+    "label": "HH",
+    "frequency": 7191
+  },
+  {
+    "id": "GP",
+    "label": "GP",
+    "frequency": 6402
+  },
+  {
+    "id": "FR",
+    "label": "FR",
+    "frequency": 5327
+  },
+  {
+    "id": "PREX",
+    "label": "PREX",
+    "frequency": 4683
+  },
+  {
+    "id": "HS",
+    "label": "HS",
+    "frequency": 4391
+  },
+  {
+    "id": "GS",
+    "label": "GS",
+    "frequency": 4158
+  },
+  {
+    "id": "SI",
+    "label": "SI",
+    "frequency": 3698
+  },
+  {
+    "id": "VA",
+    "label": "VA",
+    "frequency": 3538
+  },
+  {
+    "id": "P",
+    "label": "P",
+    "frequency": 3202
+  },
+  {
+    "id": "PM",
+    "label": "PM",
+    "frequency": 3018
+  },
+  {
+    "id": "FS",
+    "label": "FS",
+    "frequency": 2679
+  },
+  {
+    "id": "FT",
+    "label": "FT",
+    "frequency": 2634
+  },
+  {
+    "id": "SBA",
+    "label": "SBA",
+    "frequency": 2570
+  },
+  {
+    "id": "X",
+    "label": "X",
+    "frequency": 2163
+  },
+  {
+    "id": "ITC",
+    "label": "ITC",
+    "frequency": 2058
+  },
+  {
+    "id": "69-1:H",
+    "label": "69-1:H",
+    "frequency": 2001
+  },
+  {
+    "id": "PrEx",
+    "label": "PrEx",
+    "frequency": 1991
+  },
+  {
+    "id": "IC",
+    "label": "IC",
+    "frequency": 1962
+  },
+  {
+    "id": "NS",
+    "label": "NS",
+    "frequency": 1634
+  },
+  {
+    "id": "W",
+    "label": "W",
+    "frequency": 1628
+  },
+  {
+    "id": "SSA",
+    "label": "SSA",
+    "frequency": 1522
+  },
+  {
+    "id": "ER",
+    "label": "ER",
+    "frequency": 1478
+  },
+  {
+    "id": "TC",
+    "label": "TC",
+    "frequency": 1462
+  },
+  {
+    "id": "69-1:S",
+    "label": "69-1:S",
+    "frequency": 1266
+  },
+  {
+    "id": "94-2:H",
+    "label": "94-2:H",
+    "frequency": 1207
+  },
+  {
+    "id": "JU",
+    "label": "JU",
+    "frequency": 1111
+  },
+  {
+    "id": "95-2:H",
+    "label": "95-2:H",
+    "frequency": 1048
+  },
+  {
+    "id": "95-1:H",
+    "label": "95-1:H",
+    "frequency": 1006
+  },
+  {
+    "id": "ID",
+    "label": "ID",
+    "frequency": 999
+  },
+  {
+    "id": "93-2:H",
+    "label": "93-2:H",
+    "frequency": 988
+  },
+  {
+    "id": "PR",
+    "label": "PR",
+    "frequency": 969
+  }
+]

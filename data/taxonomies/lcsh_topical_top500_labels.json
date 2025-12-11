@@ -1,0 +1,2502 @@
+[
+  {
+    "id": "Flood insurance",
+    "label": "Flood insurance",
+    "frequency": 16802
+  },
+  {
+    "id": "Geology",
+    "label": "Geology",
+    "frequency": 14323
+  },
+  {
+    "id": "Groundwater",
+    "label": "Groundwater",
+    "frequency": 13994
+  },
+  {
+    "id": "Housing",
+    "label": "Housing",
+    "frequency": 12496
+  },
+  {
+    "id": "Veterans",
+    "label": "Veterans",
+    "frequency": 11585
+  },
+  {
+    "id": "Water quality",
+    "label": "Water quality",
+    "frequency": 11099
+  },
+  {
+    "id": "Indians of North America",
+    "label": "Indians of North America",
+    "frequency": 10705
+  },
+  {
+    "id": "Agriculture",
+    "label": "Agriculture",
+    "frequency": 9529
+  },
+  {
+    "id": "Nuclear power plants",
+    "label": "Nuclear power plants",
+    "frequency": 9141
+  },
+  {
+    "id": "Small business",
+    "label": "Small business",
+    "frequency": 9035
+  },
+  {
+    "id": "Water",
+    "label": "Water",
+    "frequency": 8714
+  },
+  {
+    "id": "National security",
+    "label": "National security",
+    "frequency": 8317
+  },
+  {
+    "id": "Older people",
+    "label": "Older people",
+    "frequency": 7841
+  },
+  {
+    "id": "Mines and mineral resources",
+    "label": "Mines and mineral resources",
+    "frequency": 7734
+  },
+  {
+    "id": "Water-supply",
+    "label": "Water-supply",
+    "frequency": 7693
+  },
+  {
+    "id": "Airplanes",
+    "label": "Airplanes",
+    "frequency": 7655
+  },
+  {
+    "id": "Armed Forces",
+    "label": "Armed Forces",
+    "frequency": 7514
+  },
+  {
+    "id": "Wages",
+    "label": "Wages",
+    "frequency": 7188
+  },
+  {
+    "id": "National parks and reserves",
+    "label": "National parks and reserves",
+    "frequency": 6712
+  },
+  {
+    "id": "Terrorism",
+    "label": "Terrorism",
+    "frequency": 6480
+  },
+  {
+    "id": "Water resources development",
+    "label": "Water resources development",
+    "frequency": 5980
+  },
+  {
+    "id": "Budget",
+    "label": "Budget",
+    "frequency": 5737
+  },
+  {
+    "id": "Automobiles",
+    "label": "Automobiles",
+    "frequency": 5735
+  },
+  {
+    "id": "Public lands",
+    "label": "Public lands",
+    "frequency": 5695
+  },
+  {
+    "id": "Air",
+    "label": "Air",
+    "frequency": 5352
+  },
+  {
+    "id": "Government publications",
+    "label": "Government publications",
+    "frequency": 5343
+  },
+  {
+    "id": "Social security",
+    "label": "Social security",
+    "frequency": 5340
+  },
+  {
+    "id": "Claims",
+    "label": "Claims",
+    "frequency": 5245
+  },
+  {
+    "id": "Forests and forestry",
+    "label": "Forests and forestry",
+    "frequency": 5228
+  },
+  {
+    "id": "Administrative agencies",
+    "label": "Administrative agencies",
+    "frequency": 5225
+  },
+  {
+    "id": "Geology, Stratigraphic",
+    "label": "Geology, Stratigraphic",
+    "frequency": 5173
+  },
+  {
+    "id": "Harbors",
+    "label": "Harbors",
+    "frequency": 5118
+  },
+  {
+    "id": "Soils",
+    "label": "Soils",
+    "frequency": 5095
+  },
+  {
+    "id": "Forest management",
+    "label": "Forest management",
+    "frequency": 5052
+  },
+  {
+    "id": "Income tax",
+    "label": "Income tax",
+    "frequency": 5039
+  },
+  {
+    "id": "Railroads",
+    "label": "Railroads",
+    "frequency": 5035
+  },
+  {
+    "id": "Transportation",
+    "label": "Transportation",
+    "frequency": 5023
+  },
+  {
+    "id": "Aeronautics",
+    "label": "Aeronautics",
+    "frequency": 4883
+  },
+  {
+    "id": "Medicare",
+    "label": "Medicare",
+    "frequency": 4752
+  },
+  {
+    "id": "Economic assistance, American",
+    "label": "Economic assistance, American",
+    "frequency": 4658
+  },
+  {
+    "id": "Postal service",
+    "label": "Postal service",
+    "frequency": 4643
+  },
+  {
+    "id": "Mortgage loans",
+    "label": "Mortgage loans",
+    "frequency": 4591
+  },
+  {
+    "id": "Emergency management",
+    "label": "Emergency management",
+    "frequency": 4568
+  },
+  {
+    "id": "Roads",
+    "label": "Roads",
+    "frequency": 4414
+  },
+  {
+    "id": "Mortgage banks",
+    "label": "Mortgage banks",
+    "frequency": 4413
+  },
+  {
+    "id": "Land use",
+    "label": "Land use",
+    "frequency": 4255
+  },
+  {
+    "id": "Forest reserves",
+    "label": "Forest reserves",
+    "frequency": 4215
+  },
+  {
+    "id": "Expenditures, Public",
+    "label": "Expenditures, Public",
+    "frequency": 4201
+  },
+  {
+    "id": "Floods",
+    "label": "Floods",
+    "frequency": 4197
+  },
+  {
+    "id": "People with disabilities",
+    "label": "People with disabilities",
+    "frequency": 4172
+  },
+  {
+    "id": "Education",
+    "label": "Education",
+    "frequency": 4144
+  },
+  {
+    "id": "Stream measurements",
+    "label": "Stream measurements",
+    "frequency": 3944
+  },
+  {
+    "id": "Land titles",
+    "label": "Land titles",
+    "frequency": 3916
+  },
+  {
+    "id": "Land use, Rural",
+    "label": "Land use, Rural",
+    "frequency": 3891
+  },
+  {
+    "id": "Public contracts",
+    "label": "Public contracts",
+    "frequency": 3750
+  },
+  {
+    "id": "Health insurance",
+    "label": "Health insurance",
+    "frequency": 3734
+  },
+  {
+    "id": "Taxation",
+    "label": "Taxation",
+    "frequency": 3634
+  },
+  {
+    "id": "Civil service",
+    "label": "Civil service",
+    "frequency": 3626
+  },
+  {
+    "id": "Aeronautics, Commercial",
+    "label": "Aeronautics, Commercial",
+    "frequency": 3597
+  },
+  {
+    "id": "Energy policy",
+    "label": "Energy policy",
+    "frequency": 3559
+  },
+  {
+    "id": "Groundwater flow",
+    "label": "Groundwater flow",
+    "frequency": 3506
+  },
+  {
+    "id": "World War, 1939-1945",
+    "label": "World War, 1939-1945",
+    "frequency": 3493
+  },
+  {
+    "id": "Aquifers",
+    "label": "Aquifers",
+    "frequency": 3455
+  },
+  {
+    "id": "Bills, Private",
+    "label": "Bills, Private",
+    "frequency": 3439
+  },
+  {
+    "id": "Coal",
+    "label": "Coal",
+    "frequency": 3403
+  },
+  {
+    "id": "Women",
+    "label": "Women",
+    "frequency": 3396
+  },
+  {
+    "id": "Children",
+    "label": "Children",
+    "frequency": 3369
+  },
+  {
+    "id": "Drug control",
+    "label": "Drug control",
+    "frequency": 3323
+  },
+  {
+    "id": "Airports",
+    "label": "Airports",
+    "frequency": 3298
+  },
+  {
+    "id": "Drug abuse",
+    "label": "Drug abuse",
+    "frequency": 3297
+  },
+  {
+    "id": "Nuclear reactors",
+    "label": "Nuclear reactors",
+    "frequency": 3256
+  },
+  {
+    "id": "Military pensions",
+    "label": "Military pensions",
+    "frequency": 3231
+  },
+  {
+    "id": "Disaster relief",
+    "label": "Disaster relief",
+    "frequency": 3218
+  },
+  {
+    "id": "Climatic changes",
+    "label": "Climatic changes",
+    "frequency": 3215
+  },
+  {
+    "id": "Bills, Legislative",
+    "label": "Bills, Legislative",
+    "frequency": 3163
+  },
+  {
+    "id": "Consumer protection",
+    "label": "Consumer protection",
+    "frequency": 3159
+  },
+  {
+    "id": "Drugs",
+    "label": "Drugs",
+    "frequency": 3148
+  },
+  {
+    "id": "Motor vehicles",
+    "label": "Motor vehicles",
+    "frequency": 3047
+  },
+  {
+    "id": "Hydrology",
+    "label": "Hydrology",
+    "frequency": 3018
+  },
+  {
+    "id": "Cancer",
+    "label": "Cancer",
+    "frequency": 2995
+  },
+  {
+    "id": "Mineral industries",
+    "label": "Mineral industries",
+    "frequency": 2942
+  },
+  {
+    "id": "Petroleum",
+    "label": "Petroleum",
+    "frequency": 2891
+  },
+  {
+    "id": "Hydrogeology",
+    "label": "Hydrogeology",
+    "frequency": 2857
+  },
+  {
+    "id": "Historic sites",
+    "label": "Historic sites",
+    "frequency": 2846
+  },
+  {
+    "id": "Medical care",
+    "label": "Medical care",
+    "frequency": 2836
+  },
+  {
+    "id": "Coal mines and mining",
+    "label": "Coal mines and mining",
+    "frequency": 2813
+  },
+  {
+    "id": "Soil surveys",
+    "label": "Soil surveys",
+    "frequency": 2781
+  },
+  {
+    "id": "Aeronautical charts",
+    "label": "Aeronautical charts",
+    "frequency": 2748
+  },
+  {
+    "id": "Military assistance, American",
+    "label": "Military assistance, American",
+    "frequency": 2746
+  },
+  {
+    "id": "Nuclear facilities",
+    "label": "Nuclear facilities",
+    "frequency": 2746
+  },
+  {
+    "id": "Power resources",
+    "label": "Power resources",
+    "frequency": 2707
+  },
+  {
+    "id": "Water quality management",
+    "label": "Water quality management",
+    "frequency": 2700
+  },
+  {
+    "id": "Wildlife conservation",
+    "label": "Wildlife conservation",
+    "frequency": 2694
+  },
+  {
+    "id": "Government purchasing",
+    "label": "Government purchasing",
+    "frequency": 2685
+  },
+  {
+    "id": "Fishes",
+    "label": "Fishes",
+    "frequency": 2661
+  },
+  {
+    "id": "Employees",
+    "label": "Employees",
+    "frequency": 2630
+  },
+  {
+    "id": "Outdoor recreation",
+    "label": "Outdoor recreation",
+    "frequency": 2613
+  },
+  {
+    "id": "Science",
+    "label": "Science",
+    "frequency": 2593
+  },
+  {
+    "id": "Human rights",
+    "label": "Human rights",
+    "frequency": 2579
+  },
+  {
+    "id": "Banks and banking",
+    "label": "Banks and banking",
+    "frequency": 2565
+  },
+  {
+    "id": "Youth",
+    "label": "Youth",
+    "frequency": 2539
+  },
+  {
+    "id": "Grants-in-aid",
+    "label": "Grants-in-aid",
+    "frequency": 2466
+  },
+  {
+    "id": "Conservation of natural resources",
+    "label": "Conservation of natural resources",
+    "frequency": 2449
+  },
+  {
+    "id": "Disabled veterans",
+    "label": "Disabled veterans",
+    "frequency": 2435
+  },
+  {
+    "id": "Public buildings",
+    "label": "Public buildings",
+    "frequency": 2412
+  },
+  {
+    "id": "Soldiers",
+    "label": "Soldiers",
+    "frequency": 2402
+  },
+  {
+    "id": "Finance, Public",
+    "label": "Finance, Public",
+    "frequency": 2401
+  },
+  {
+    "id": "Tariff",
+    "label": "Tariff",
+    "frequency": 2375
+  },
+  {
+    "id": "Wilderness areas",
+    "label": "Wilderness areas",
+    "frequency": 2343
+  },
+  {
+    "id": "Federal aid to education",
+    "label": "Federal aid to education",
+    "frequency": 2316
+  },
+  {
+    "id": "Copyright",
+    "label": "Copyright",
+    "frequency": 2300
+  },
+  {
+    "id": "Hazardous substances",
+    "label": "Hazardous substances",
+    "frequency": 2278
+  },
+  {
+    "id": "Streamflow",
+    "label": "Streamflow",
+    "frequency": 2278
+  },
+  {
+    "id": "Bridges",
+    "label": "Bridges",
+    "frequency": 2269
+  },
+  {
+    "id": "Energy conservation",
+    "label": "Energy conservation",
+    "frequency": 2268
+  },
+  {
+    "id": "Economic sanctions, American",
+    "label": "Economic sanctions, American",
+    "frequency": 2257
+  },
+  {
+    "id": "Paleontology",
+    "label": "Paleontology",
+    "frequency": 2247
+  },
+  {
+    "id": "Legislative amendments",
+    "label": "Legislative amendments",
+    "frequency": 2238
+  },
+  {
+    "id": "Computer security",
+    "label": "Computer security",
+    "frequency": 2206
+  },
+  {
+    "id": "Nuclear energy",
+    "label": "Nuclear energy",
+    "frequency": 2200
+  },
+  {
+    "id": "Federal aid to transportation",
+    "label": "Federal aid to transportation",
+    "frequency": 2169
+  },
+  {
+    "id": "Flood control",
+    "label": "Flood control",
+    "frequency": 2129
+  },
+  {
+    "id": "Defense contracts",
+    "label": "Defense contracts",
+    "frequency": 2124
+  },
+  {
+    "id": "Emigration and immigration law",
+    "label": "Emigration and immigration law",
+    "frequency": 2107
+  },
+  {
+    "id": "Environmental policy",
+    "label": "Environmental policy",
+    "frequency": 2103
+  },
+  {
+    "id": "Petroleum industry and trade",
+    "label": "Petroleum industry and trade",
+    "frequency": 2092
+  },
+  {
+    "id": "Diplomatic relations",
+    "label": "Diplomatic relations",
+    "frequency": 2089
+  },
+  {
+    "id": "Natural gas",
+    "label": "Natural gas",
+    "frequency": 2078
+  },
+  {
+    "id": "Manufactures",
+    "label": "Manufactures",
+    "frequency": 2074
+  },
+  {
+    "id": "Tax administration and procedure",
+    "label": "Tax administration and procedure",
+    "frequency": 2063
+  },
+  {
+    "id": "Buildings",
+    "label": "Buildings",
+    "frequency": 2049
+  },
+  {
+    "id": "Environmental protection",
+    "label": "Environmental protection",
+    "frequency": 2049
+  },
+  {
+    "id": "Information storage and retrieval systems",
+    "label": "Information storage and retrieval systems",
+    "frequency": 2036
+  },
+  {
+    "id": "Industrial safety",
+    "label": "Industrial safety",
+    "frequency": 1995
+  },
+  {
+    "id": "Population",
+    "label": "Population",
+    "frequency": 1988
+  },
+  {
+    "id": "Public health",
+    "label": "Public health",
+    "frequency": 1977
+  },
+  {
+    "id": "Pesticides",
+    "label": "Pesticides",
+    "frequency": 1973
+  },
+  {
+    "id": "Renewable energy sources",
+    "label": "Renewable energy sources",
+    "frequency": 1954
+  },
+  {
+    "id": "Meteorology",
+    "label": "Meteorology",
+    "frequency": 1948
+  },
+  {
+    "id": "Research",
+    "label": "Research",
+    "frequency": 1948
+  },
+  {
+    "id": "Nuclear weapons",
+    "label": "Nuclear weapons",
+    "frequency": 1945
+  },
+  {
+    "id": "Space vehicles",
+    "label": "Space vehicles",
+    "frequency": 1942
+  },
+  {
+    "id": "Criminal justice, Administration of",
+    "label": "Criminal justice, Administration of",
+    "frequency": 1941
+  },
+  {
+    "id": "Natural resources",
+    "label": "Natural resources",
+    "frequency": 1934
+  },
+  {
+    "id": "Debts, Public",
+    "label": "Debts, Public",
+    "frequency": 1919
+  },
+  {
+    "id": "Construction industry",
+    "label": "Construction industry",
+    "frequency": 1909
+  },
+  {
+    "id": "Nautical charts",
+    "label": "Nautical charts",
+    "frequency": 1908
+  },
+  {
+    "id": "COVID-19 (Disease)",
+    "label": "COVID-19 (Disease)",
+    "frequency": 1898
+  },
+  {
+    "id": "Infrastructure (Economics)",
+    "label": "Infrastructure (Economics)",
+    "frequency": 1894
+  },
+  {
+    "id": "Wildlife refuges",
+    "label": "Wildlife refuges",
+    "frequency": 1887
+  },
+  {
+    "id": "Labor supply",
+    "label": "Labor supply",
+    "frequency": 1884
+  },
+  {
+    "id": "Teachers",
+    "label": "Teachers",
+    "frequency": 1871
+  },
+  {
+    "id": "Medicine",
+    "label": "Medicine",
+    "frequency": 1858
+  },
+  {
+    "id": "Illegal immigration",
+    "label": "Illegal immigration",
+    "frequency": 1833
+  },
+  {
+    "id": "Drinking water",
+    "label": "Drinking water",
+    "frequency": 1830
+  },
+  {
+    "id": "Nuclear nonproliferation",
+    "label": "Nuclear nonproliferation",
+    "frequency": 1830
+  },
+  {
+    "id": "Noncitizens",
+    "label": "Noncitizens",
+    "frequency": 1826
+  },
+  {
+    "id": "Economic assistance, Domestic",
+    "label": "Economic assistance, Domestic",
+    "frequency": 1819
+  },
+  {
+    "id": "Runways (Aeronautics)",
+    "label": "Runways (Aeronautics)",
+    "frequency": 1819
+  },
+  {
+    "id": "Waste in government spending",
+    "label": "Waste in government spending",
+    "frequency": 1808
+  },
+  {
+    "id": "Medicaid",
+    "label": "Medicaid",
+    "frequency": 1786
+  },
+  {
+    "id": "Dwellings",
+    "label": "Dwellings",
+    "frequency": 1781
+  },
+  {
+    "id": "Radioactive waste disposal",
+    "label": "Radioactive waste disposal",
+    "frequency": 1767
+  },
+  {
+    "id": "Timber",
+    "label": "Timber",
+    "frequency": 1743
+  },
+  {
+    "id": "Air traffic control",
+    "label": "Air traffic control",
+    "frequency": 1728
+  },
+  {
+    "id": "Executive departments",
+    "label": "Executive departments",
+    "frequency": 1725
+  },
+  {
+    "id": "Pressurized water reactors",
+    "label": "Pressurized water reactors",
+    "frequency": 1720
+  },
+  {
+    "id": "Intelligence service",
+    "label": "Intelligence service",
+    "frequency": 1714
+  },
+  {
+    "id": "Earthquakes",
+    "label": "Earthquakes",
+    "frequency": 1713
+  },
+  {
+    "id": "Solar energy",
+    "label": "Solar energy",
+    "frequency": 1708
+  },
+  {
+    "id": "Presidents",
+    "label": "Presidents",
+    "frequency": 1708
+  },
+  {
+    "id": "Energy development",
+    "label": "Energy development",
+    "frequency": 1700
+  },
+  {
+    "id": "Traffic safety",
+    "label": "Traffic safety",
+    "frequency": 1696
+  },
+  {
+    "id": "Government contractors",
+    "label": "Government contractors",
+    "frequency": 1687
+  },
+  {
+    "id": "Environmental monitoring",
+    "label": "Environmental monitoring",
+    "frequency": 1684
+  },
+  {
+    "id": "Post office buildings",
+    "label": "Post office buildings",
+    "frequency": 1682
+  },
+  {
+    "id": "Telecommunication",
+    "label": "Telecommunication",
+    "frequency": 1677
+  },
+  {
+    "id": "Electric utilities",
+    "label": "Electric utilities",
+    "frequency": 1654
+  },
+  {
+    "id": "Student aid",
+    "label": "Student aid",
+    "frequency": 1648
+  },
+  {
+    "id": "Foreign trade promotion",
+    "label": "Foreign trade promotion",
+    "frequency": 1648
+  },
+  {
+    "id": "Hydroelectric power plants",
+    "label": "Hydroelectric power plants",
+    "frequency": 1646
+  },
+  {
+    "id": "Recreation areas",
+    "label": "Recreation areas",
+    "frequency": 1638
+  },
+  {
+    "id": "Vocational education",
+    "label": "Vocational education",
+    "frequency": 1638
+  },
+  {
+    "id": "Food",
+    "label": "Food",
+    "frequency": 1635
+  },
+  {
+    "id": "Trails",
+    "label": "Trails",
+    "frequency": 1617
+  },
+  {
+    "id": "Speeches, addresses, etc",
+    "label": "Speeches, addresses, etc",
+    "frequency": 1609
+  },
+  {
+    "id": "Rural development",
+    "label": "Rural development",
+    "frequency": 1601
+  },
+  {
+    "id": "Ships",
+    "label": "Ships",
+    "frequency": 1598
+  },
+  {
+    "id": "Occupational training",
+    "label": "Occupational training",
+    "frequency": 1596
+  },
+  {
+    "id": "Wood",
+    "label": "Wood",
+    "frequency": 1595
+  },
+  {
+    "id": "Public welfare",
+    "label": "Public welfare",
+    "frequency": 1594
+  },
+  {
+    "id": "Fraud",
+    "label": "Fraud",
+    "frequency": 1590
+  },
+  {
+    "id": "Privacy, Right of",
+    "label": "Privacy, Right of",
+    "frequency": 1568
+  },
+  {
+    "id": "Foreign trade regulation",
+    "label": "Foreign trade regulation",
+    "frequency": 1566
+  },
+  {
+    "id": "Medical care, Cost of",
+    "label": "Medical care, Cost of",
+    "frequency": 1561
+  },
+  {
+    "id": "Hospitals",
+    "label": "Hospitals",
+    "frequency": 1555
+  },
+  {
+    "id": "Hazardous wastes",
+    "label": "Hazardous wastes",
+    "frequency": 1552
+  },
+  {
+    "id": "Fisheries",
+    "label": "Fisheries",
+    "frequency": 1544
+  },
+  {
+    "id": "Mathematics",
+    "label": "Mathematics",
+    "frequency": 1538
+  },
+  {
+    "id": "Labor laws and legislation",
+    "label": "Labor laws and legislation",
+    "frequency": 1535
+  },
+  {
+    "id": "Fishery law and legislation",
+    "label": "Fishery law and legislation",
+    "frequency": 1532
+  },
+  {
+    "id": "Trucks",
+    "label": "Trucks",
+    "frequency": 1517
+  },
+  {
+    "id": "Minorities",
+    "label": "Minorities",
+    "frequency": 1517
+  },
+  {
+    "id": "Law enforcement",
+    "label": "Law enforcement",
+    "frequency": 1512
+  },
+  {
+    "id": "Military education",
+    "label": "Military education",
+    "frequency": 1510
+  },
+  {
+    "id": "Children with disabilities",
+    "label": "Children with disabilities",
+    "frequency": 1510
+  },
+  {
+    "id": "Remote sensing",
+    "label": "Remote sensing",
+    "frequency": 1507
+  },
+  {
+    "id": "Securities",
+    "label": "Securities",
+    "frequency": 1507
+  },
+  {
+    "id": "Endangered species",
+    "label": "Endangered species",
+    "frequency": 1506
+  },
+  {
+    "id": "Computer networks",
+    "label": "Computer networks",
+    "frequency": 1501
+  },
+  {
+    "id": "Elections",
+    "label": "Elections",
+    "frequency": 1500
+  },
+  {
+    "id": "Discrimination in employment",
+    "label": "Discrimination in employment",
+    "frequency": 1499
+  },
+  {
+    "id": "Oceanography",
+    "label": "Oceanography",
+    "frequency": 1483
+  },
+  {
+    "id": "Trees",
+    "label": "Trees",
+    "frequency": 1479
+  },
+  {
+    "id": "Dams",
+    "label": "Dams",
+    "frequency": 1478
+  },
+  {
+    "id": "Health surveys",
+    "label": "Health surveys",
+    "frequency": 1477
+  },
+  {
+    "id": "Economic development",
+    "label": "Economic development",
+    "frequency": 1475
+  },
+  {
+    "id": "Navigation",
+    "label": "Navigation",
+    "frequency": 1468
+  },
+  {
+    "id": "Radio",
+    "label": "Radio",
+    "frequency": 1452
+  },
+  {
+    "id": "Aircraft accidents",
+    "label": "Aircraft accidents",
+    "frequency": 1437
+  },
+  {
+    "id": "AIDS (Disease)",
+    "label": "AIDS (Disease)",
+    "frequency": 1435
+  },
+  {
+    "id": "Employee fringe benefits",
+    "label": "Employee fringe benefits",
+    "frequency": 1433
+  },
+  {
+    "id": "Air quality management",
+    "label": "Air quality management",
+    "frequency": 1431
+  },
+  {
+    "id": "Produce trade",
+    "label": "Produce trade",
+    "frequency": 1430
+  },
+  {
+    "id": "Agricultural credit",
+    "label": "Agricultural credit",
+    "frequency": 1430
+  },
+  {
+    "id": "Federal aid to higher education",
+    "label": "Federal aid to higher education",
+    "frequency": 1426
+  },
+  {
+    "id": "Civil rights",
+    "label": "Civil rights",
+    "frequency": 1424
+  },
+  {
+    "id": "Airlines",
+    "label": "Airlines",
+    "frequency": 1422
+  },
+  {
+    "id": "Security, International",
+    "label": "Security, International",
+    "frequency": 1420
+  },
+  {
+    "id": "Forest fires",
+    "label": "Forest fires",
+    "frequency": 1420
+  },
+  {
+    "id": "Local transit",
+    "label": "Local transit",
+    "frequency": 1420
+  },
+  {
+    "id": "Agriculture and state",
+    "label": "Agriculture and state",
+    "frequency": 1418
+  },
+  {
+    "id": "Veterans' hospitals",
+    "label": "Veterans' hospitals",
+    "frequency": 1415
+  },
+  {
+    "id": "English language",
+    "label": "English language",
+    "frequency": 1414
+  },
+  {
+    "id": "Radiation",
+    "label": "Radiation",
+    "frequency": 1408
+  },
+  {
+    "id": "Diplomatic and consular service, American",
+    "label": "Diplomatic and consular service, American",
+    "frequency": 1397
+  },
+  {
+    "id": "Oil and gas leases",
+    "label": "Oil and gas leases",
+    "frequency": 1387
+  },
+  {
+    "id": "Birds",
+    "label": "Birds",
+    "frequency": 1385
+  },
+  {
+    "id": "Wildfires",
+    "label": "Wildfires",
+    "frequency": 1372
+  },
+  {
+    "id": "Politics and government",
+    "label": "Politics and government",
+    "frequency": 1371
+  },
+  {
+    "id": "Aerodynamics",
+    "label": "Aerodynamics",
+    "frequency": 1370
+  },
+  {
+    "id": "Survivors' benefits",
+    "label": "Survivors' benefits",
+    "frequency": 1370
+  },
+  {
+    "id": "Mine safety",
+    "label": "Mine safety",
+    "frequency": 1366
+  },
+  {
+    "id": "Retail trade",
+    "label": "Retail trade",
+    "frequency": 1364
+  },
+  {
+    "id": "Soil conservation",
+    "label": "Soil conservation",
+    "frequency": 1361
+  },
+  {
+    "id": "Farm produce",
+    "label": "Farm produce",
+    "frequency": 1360
+  },
+  {
+    "id": "Shipping",
+    "label": "Shipping",
+    "frequency": 1339
+  },
+  {
+    "id": "Helicopters",
+    "label": "Helicopters",
+    "frequency": 1325
+  },
+  {
+    "id": "Financial statements",
+    "label": "Financial statements",
+    "frequency": 1325
+  },
+  {
+    "id": "Oil spills",
+    "label": "Oil spills",
+    "frequency": 1321
+  },
+  {
+    "id": "Customs administration",
+    "label": "Customs administration",
+    "frequency": 1317
+  },
+  {
+    "id": "Drug traffic",
+    "label": "Drug traffic",
+    "frequency": 1310
+  },
+  {
+    "id": "Hazardous waste site remediation",
+    "label": "Hazardous waste site remediation",
+    "frequency": 1300
+  },
+  {
+    "id": "Nutrition",
+    "label": "Nutrition",
+    "frequency": 1298
+  },
+  {
+    "id": "Free trade",
+    "label": "Free trade",
+    "frequency": 1292
+  },
+  {
+    "id": "Universities and colleges",
+    "label": "Universities and colleges",
+    "frequency": 1288
+  },
+  {
+    "id": "Households",
+    "label": "Households",
+    "frequency": 1288
+  },
+  {
+    "id": "Agriculture, Cooperative",
+    "label": "Agriculture, Cooperative",
+    "frequency": 1284
+  },
+  {
+    "id": "Industrial hygiene",
+    "label": "Industrial hygiene",
+    "frequency": 1283
+  },
+  {
+    "id": "Governmental investigations",
+    "label": "Governmental investigations",
+    "frequency": 1277
+  },
+  {
+    "id": "Mathematical models",
+    "label": "Mathematical models",
+    "frequency": 1277
+  },
+  {
+    "id": "Computer programs",
+    "label": "Computer programs",
+    "frequency": 1273
+  },
+  {
+    "id": "Astronautics",
+    "label": "Astronautics",
+    "frequency": 1270
+  },
+  {
+    "id": "Loans",
+    "label": "Loans",
+    "frequency": 1268
+  },
+  {
+    "id": "Wetlands",
+    "label": "Wetlands",
+    "frequency": 1268
+  },
+  {
+    "id": "Prisoners",
+    "label": "Prisoners",
+    "frequency": 1268
+  },
+  {
+    "id": "Cyberterrorism",
+    "label": "Cyberterrorism",
+    "frequency": 1264
+  },
+  {
+    "id": "Irrigation",
+    "label": "Irrigation",
+    "frequency": 1263
+  },
+  {
+    "id": "Financial institutions",
+    "label": "Financial institutions",
+    "frequency": 1256
+  },
+  {
+    "id": "Information technology",
+    "label": "Information technology",
+    "frequency": 1255
+  },
+  {
+    "id": "Refugees",
+    "label": "Refugees",
+    "frequency": 1239
+  },
+  {
+    "id": "Financial services industry",
+    "label": "Financial services industry",
+    "frequency": 1239
+  },
+  {
+    "id": "Competition",
+    "label": "Competition",
+    "frequency": 1234
+  },
+  {
+    "id": "Judges",
+    "label": "Judges",
+    "frequency": 1231
+  },
+  {
+    "id": "Space shuttles",
+    "label": "Space shuttles",
+    "frequency": 1231
+  },
+  {
+    "id": "Air quality",
+    "label": "Air quality",
+    "frequency": 1224
+  },
+  {
+    "id": "Border security",
+    "label": "Border security",
+    "frequency": 1222
+  },
+  {
+    "id": "Poor",
+    "label": "Poor",
+    "frequency": 1220
+  },
+  {
+    "id": "Mortgage life insurance",
+    "label": "Mortgage life insurance",
+    "frequency": 1219
+  },
+  {
+    "id": "Public works",
+    "label": "Public works",
+    "frequency": 1217
+  },
+  {
+    "id": "Geochemistry",
+    "label": "Geochemistry",
+    "frequency": 1211
+  },
+  {
+    "id": "Merchant marine",
+    "label": "Merchant marine",
+    "frequency": 1207
+  },
+  {
+    "id": "Corporations",
+    "label": "Corporations",
+    "frequency": 1207
+  },
+  {
+    "id": "Technology transfer",
+    "label": "Technology transfer",
+    "frequency": 1206
+  },
+  {
+    "id": "Petroleum reserves",
+    "label": "Petroleum reserves",
+    "frequency": 1204
+  },
+  {
+    "id": "Democracy",
+    "label": "Democracy",
+    "frequency": 1202
+  },
+  {
+    "id": "Double taxation",
+    "label": "Double taxation",
+    "frequency": 1199
+  },
+  {
+    "id": "Computational fluid dynamics",
+    "label": "Computational fluid dynamics",
+    "frequency": 1194
+  },
+  {
+    "id": "Executive impoundment of appropriated funds",
+    "label": "Executive impoundment of appropriated funds",
+    "frequency": 1192
+  },
+  {
+    "id": "Job creation",
+    "label": "Job creation",
+    "frequency": 1189
+  },
+  {
+    "id": "Pensions",
+    "label": "Pensions",
+    "frequency": 1187
+  },
+  {
+    "id": "Disclosure of information",
+    "label": "Disclosure of information",
+    "frequency": 1186
+  },
+  {
+    "id": "Management",
+    "label": "Management",
+    "frequency": 1179
+  },
+  {
+    "id": "Space stations",
+    "label": "Space stations",
+    "frequency": 1173
+  },
+  {
+    "id": "Heat",
+    "label": "Heat",
+    "frequency": 1170
+  },
+  {
+    "id": "Rivers",
+    "label": "Rivers",
+    "frequency": 1167
+  },
+  {
+    "id": "Fishery management",
+    "label": "Fishery management",
+    "frequency": 1165
+  },
+  {
+    "id": "Maritime law",
+    "label": "Maritime law",
+    "frequency": 1161
+  },
+  {
+    "id": "Watershed management",
+    "label": "Watershed management",
+    "frequency": 1156
+  },
+  {
+    "id": "Airplanes, Military",
+    "label": "Airplanes, Military",
+    "frequency": 1152
+  },
+  {
+    "id": "Factory and trade waste",
+    "label": "Factory and trade waste",
+    "frequency": 1152
+  },
+  {
+    "id": "Antitrust law",
+    "label": "Antitrust law",
+    "frequency": 1149
+  },
+  {
+    "id": "Monetary policy",
+    "label": "Monetary policy",
+    "frequency": 1146
+  },
+  {
+    "id": "Radioactive waste disposal in the ground",
+    "label": "Radioactive waste disposal in the ground",
+    "frequency": 1143
+  },
+  {
+    "id": "Data protection",
+    "label": "Data protection",
+    "frequency": 1141
+  },
+  {
+    "id": "Interagency coordination",
+    "label": "Interagency coordination",
+    "frequency": 1141
+  },
+  {
+    "id": "Railroad accidents",
+    "label": "Railroad accidents",
+    "frequency": 1134
+  },
+  {
+    "id": "Alcoholism",
+    "label": "Alcoholism",
+    "frequency": 1132
+  },
+  {
+    "id": "Water table",
+    "label": "Water table",
+    "frequency": 1132
+  },
+  {
+    "id": "Environmental impact analysis",
+    "label": "Environmental impact analysis",
+    "frequency": 1129
+  },
+  {
+    "id": "Traffic accidents",
+    "label": "Traffic accidents",
+    "frequency": 1127
+  },
+  {
+    "id": "Export controls",
+    "label": "Export controls",
+    "frequency": 1126
+  },
+  {
+    "id": "Income",
+    "label": "Income",
+    "frequency": 1126
+  },
+  {
+    "id": "Revenue",
+    "label": "Revenue",
+    "frequency": 1123
+  },
+  {
+    "id": "Historic buildings",
+    "label": "Historic buildings",
+    "frequency": 1123
+  },
+  {
+    "id": "Industries",
+    "label": "Industries",
+    "frequency": 1122
+  },
+  {
+    "id": "Radioactive substances",
+    "label": "Radioactive substances",
+    "frequency": 1121
+  },
+  {
+    "id": "Unemployment insurance",
+    "label": "Unemployment insurance",
+    "frequency": 1121
+  },
+  {
+    "id": "Education, Higher",
+    "label": "Education, Higher",
+    "frequency": 1118
+  },
+  {
+    "id": "Technology",
+    "label": "Technology",
+    "frequency": 1116
+  },
+  {
+    "id": "Juvenile delinquency",
+    "label": "Juvenile delinquency",
+    "frequency": 1114
+  },
+  {
+    "id": "Military bases",
+    "label": "Military bases",
+    "frequency": 1108
+  },
+  {
+    "id": "Watersheds",
+    "label": "Watersheds",
+    "frequency": 1104
+  },
+  {
+    "id": "African Americans",
+    "label": "African Americans",
+    "frequency": 1104
+  },
+  {
+    "id": "Metals",
+    "label": "Metals",
+    "frequency": 1101
+  },
+  {
+    "id": "Community development",
+    "label": "Community development",
+    "frequency": 1100
+  },
+  {
+    "id": "Police",
+    "label": "Police",
+    "frequency": 1100
+  },
+  {
+    "id": "Nuclear industry",
+    "label": "Nuclear industry",
+    "frequency": 1091
+  },
+  {
+    "id": "Hazardous waste sites",
+    "label": "Hazardous waste sites",
+    "frequency": 1085
+  },
+  {
+    "id": "Substance abuse",
+    "label": "Substance abuse",
+    "frequency": 1072
+  },
+  {
+    "id": "Reclamation of land",
+    "label": "Reclamation of land",
+    "frequency": 1071
+  },
+  {
+    "id": "Geology, Structural",
+    "label": "Geology, Structural",
+    "frequency": 1070
+  },
+  {
+    "id": "Federal aid to research",
+    "label": "Federal aid to research",
+    "frequency": 1070
+  },
+  {
+    "id": "Administrative procedure",
+    "label": "Administrative procedure",
+    "frequency": 1068
+  },
+  {
+    "id": "Civil defense",
+    "label": "Civil defense",
+    "frequency": 1068
+  },
+  {
+    "id": "Sediment transport",
+    "label": "Sediment transport",
+    "frequency": 1062
+  },
+  {
+    "id": "Geomagnetism",
+    "label": "Geomagnetism",
+    "frequency": 1057
+  },
+  {
+    "id": "Courts",
+    "label": "Courts",
+    "frequency": 1057
+  },
+  {
+    "id": "Greenhouse gas mitigation",
+    "label": "Greenhouse gas mitigation",
+    "frequency": 1057
+  },
+  {
+    "id": "Exports",
+    "label": "Exports",
+    "frequency": 1055
+  },
+  {
+    "id": "Postwar reconstruction",
+    "label": "Postwar reconstruction",
+    "frequency": 1044
+  },
+  {
+    "id": "Runoff",
+    "label": "Runoff",
+    "frequency": 1043
+  },
+  {
+    "id": "Sewage",
+    "label": "Sewage",
+    "frequency": 1043
+  },
+  {
+    "id": "Letting of contracts",
+    "label": "Letting of contracts",
+    "frequency": 1042
+  },
+  {
+    "id": "Government spending policy",
+    "label": "Government spending policy",
+    "frequency": 1037
+  },
+  {
+    "id": "Health care reform",
+    "label": "Health care reform",
+    "frequency": 1037
+  },
+  {
+    "id": "Citizenship",
+    "label": "Citizenship",
+    "frequency": 1035
+  },
+  {
+    "id": "Government property",
+    "label": "Government property",
+    "frequency": 1034
+  },
+  {
+    "id": "Logging",
+    "label": "Logging",
+    "frequency": 1029
+  },
+  {
+    "id": "Pavements",
+    "label": "Pavements",
+    "frequency": 1026
+  },
+  {
+    "id": "Legislators",
+    "label": "Legislators",
+    "frequency": 1025
+  },
+  {
+    "id": "Composite materials",
+    "label": "Composite materials",
+    "frequency": 1021
+  },
+  {
+    "id": "International relations",
+    "label": "International relations",
+    "frequency": 1019
+  },
+  {
+    "id": "Technological innovations",
+    "label": "Technological innovations",
+    "frequency": 1018
+  },
+  {
+    "id": "Transparency in government",
+    "label": "Transparency in government",
+    "frequency": 1017
+  },
+  {
+    "id": "Government lending",
+    "label": "Government lending",
+    "frequency": 1016
+  },
+  {
+    "id": "Academic achievement",
+    "label": "Academic achievement",
+    "frequency": 1016
+  },
+  {
+    "id": "Student loans",
+    "label": "Student loans",
+    "frequency": 1015
+  },
+  {
+    "id": "Forest roads",
+    "label": "Forest roads",
+    "frequency": 1013
+  },
+  {
+    "id": "Contracting out",
+    "label": "Contracting out",
+    "frequency": 1013
+  },
+  {
+    "id": "Food relief",
+    "label": "Food relief",
+    "frequency": 1012
+  },
+  {
+    "id": "Sedimentation and deposition",
+    "label": "Sedimentation and deposition",
+    "frequency": 1010
+  },
+  {
+    "id": "Supplemental security income program",
+    "label": "Supplemental security income program",
+    "frequency": 1009
+  },
+  {
+    "id": "Lumber trade",
+    "label": "Lumber trade",
+    "frequency": 1004
+  },
+  {
+    "id": "International economic relations",
+    "label": "International economic relations",
+    "frequency": 1002
+  },
+  {
+    "id": "Tourism",
+    "label": "Tourism",
+    "frequency": 1001
+  },
+  {
+    "id": "Labor unions",
+    "label": "Labor unions",
+    "frequency": 1001
+  },
+  {
+    "id": "Unemployed",
+    "label": "Unemployed",
+    "frequency": 994
+  },
+  {
+    "id": "Vietnam War, 1961-1975",
+    "label": "Vietnam War, 1961-1975",
+    "frequency": 991
+  },
+  {
+    "id": "Investments, Foreign",
+    "label": "Investments, Foreign",
+    "frequency": 990
+  },
+  {
+    "id": "Poultry",
+    "label": "Poultry",
+    "frequency": 988
+  },
+  {
+    "id": "Energy consumption",
+    "label": "Energy consumption",
+    "frequency": 987
+  },
+  {
+    "id": "Seismology",
+    "label": "Seismology",
+    "frequency": 983
+  },
+  {
+    "id": "Ecosystem management",
+    "label": "Ecosystem management",
+    "frequency": 983
+  },
+  {
+    "id": "Internet",
+    "label": "Internet",
+    "frequency": 981
+  },
+  {
+    "id": "Finite element method",
+    "label": "Finite element method",
+    "frequency": 980
+  },
+  {
+    "id": "Broadband communication systems",
+    "label": "Broadband communication systems",
+    "frequency": 976
+  },
+  {
+    "id": "Imports",
+    "label": "Imports",
+    "frequency": 975
+  },
+  {
+    "id": "Law",
+    "label": "Law",
+    "frequency": 971
+  },
+  {
+    "id": "World War, 1914-1918",
+    "label": "World War, 1914-1918",
+    "frequency": 969
+  },
+  {
+    "id": "Military planning",
+    "label": "Military planning",
+    "frequency": 965
+  },
+  {
+    "id": "Nursing homes",
+    "label": "Nursing homes",
+    "frequency": 963
+  },
+  {
+    "id": "Firearms",
+    "label": "Firearms",
+    "frequency": 962
+  },
+  {
+    "id": "Environmental law",
+    "label": "Environmental law",
+    "frequency": 959
+  },
+  {
+    "id": "Child welfare",
+    "label": "Child welfare",
+    "frequency": 954
+  },
+  {
+    "id": "Ore deposits",
+    "label": "Ore deposits",
+    "frequency": 953
+  },
+  {
+    "id": "Plants",
+    "label": "Plants",
+    "frequency": 952
+  },
+  {
+    "id": "Humanitarian assistance, American",
+    "label": "Humanitarian assistance, American",
+    "frequency": 951
+  },
+  {
+    "id": "Wildlife management",
+    "label": "Wildlife management",
+    "frequency": 947
+  },
+  {
+    "id": "Personnel management",
+    "label": "Personnel management",
+    "frequency": 946
+  },
+  {
+    "id": "Wild and scenic rivers",
+    "label": "Wild and scenic rivers",
+    "frequency": 945
+  },
+  {
+    "id": "Pollution",
+    "label": "Pollution",
+    "frequency": 943
+  },
+  {
+    "id": "Hours of labor",
+    "label": "Hours of labor",
+    "frequency": 937
+  },
+  {
+    "id": "Fiscal policy",
+    "label": "Fiscal policy",
+    "frequency": 937
+  },
+  {
+    "id": "Manpower policy",
+    "label": "Manpower policy",
+    "frequency": 936
+  },
+  {
+    "id": "Manufacturing industries",
+    "label": "Manufacturing industries",
+    "frequency": 933
+  },
+  {
+    "id": "Economic history",
+    "label": "Economic history",
+    "frequency": 932
+  },
+  {
+    "id": "Geochemical prospecting",
+    "label": "Geochemical prospecting",
+    "frequency": 932
+  },
+  {
+    "id": "Federal aid to small business",
+    "label": "Federal aid to small business",
+    "frequency": 931
+  },
+  {
+    "id": "Bankruptcy",
+    "label": "Bankruptcy",
+    "frequency": 929
+  },
+  {
+    "id": "Reservoirs",
+    "label": "Reservoirs",
+    "frequency": 928
+  },
+  {
+    "id": "Military art and science",
+    "label": "Military art and science",
+    "frequency": 924
+  },
+  {
+    "id": "Banking law",
+    "label": "Banking law",
+    "frequency": 923
+  },
+  {
+    "id": "Land tenure",
+    "label": "Land tenure",
+    "frequency": 923
+  },
+  {
+    "id": "Coastal zone management",
+    "label": "Coastal zone management",
+    "frequency": 917
+  },
+  {
+    "id": "Algorithms",
+    "label": "Algorithms",
+    "frequency": 913
+  },
+  {
+    "id": "Diabetes",
+    "label": "Diabetes",
+    "frequency": 913
+  },
+  {
+    "id": "Refuse and refuse disposal",
+    "label": "Refuse and refuse disposal",
+    "frequency": 909
+  },
+  {
+    "id": "Steel industry and trade",
+    "label": "Steel industry and trade",
+    "frequency": 909
+  },
+  {
+    "id": "Natural gas pipelines",
+    "label": "Natural gas pipelines",
+    "frequency": 907
+  },
+  {
+    "id": "Geothermal resources",
+    "label": "Geothermal resources",
+    "frequency": 906
+  },
+  {
+    "id": "School children",
+    "label": "School children",
+    "frequency": 905
+  },
+  {
+    "id": "Biomass energy",
+    "label": "Biomass energy",
+    "frequency": 899
+  },
+  {
+    "id": "Patents",
+    "label": "Patents",
+    "frequency": 896
+  },
+  {
+    "id": "Election law",
+    "label": "Election law",
+    "frequency": 893
+  },
+  {
+    "id": "Tax returns",
+    "label": "Tax returns",
+    "frequency": 892
+  },
+  {
+    "id": "Science and state",
+    "label": "Science and state",
+    "frequency": 891
+  },
+  {
+    "id": "Materials",
+    "label": "Materials",
+    "frequency": 890
+  },
+  {
+    "id": "Public-private sector cooperation",
+    "label": "Public-private sector cooperation",
+    "frequency": 888
+  },
+  {
+    "id": "Global warming",
+    "label": "Global warming",
+    "frequency": 885
+  },
+  {
+    "id": "Public housing",
+    "label": "Public housing",
+    "frequency": 882
+  },
+  {
+    "id": "Education and state",
+    "label": "Education and state",
+    "frequency": 882
+  },
+  {
+    "id": "Electric power systems",
+    "label": "Electric power systems",
+    "frequency": 882
+  },
+  {
+    "id": "Fire prevention",
+    "label": "Fire prevention",
+    "frequency": 880
+  },
+  {
+    "id": "Aeronautics, Military",
+    "label": "Aeronautics, Military",
+    "frequency": 875
+  },
+  {
+    "id": "Judicial assistance",
+    "label": "Judicial assistance",
+    "frequency": 875
+  },
+  {
+    "id": "Wind power",
+    "label": "Wind power",
+    "frequency": 873
+  },
+  {
+    "id": "Service industries",
+    "label": "Service industries",
+    "frequency": 873
+  },
+  {
+    "id": "Pension trusts",
+    "label": "Pension trusts",
+    "frequency": 871
+  },
+  {
+    "id": "Continental shelf",
+    "label": "Continental shelf",
+    "frequency": 871
+  },
+  {
+    "id": "Cultural property",
+    "label": "Cultural property",
+    "frequency": 870
+  },
+  {
+    "id": "Forest surveys",
+    "label": "Forest surveys",
+    "frequency": 865
+  },
+  {
+    "id": "Food supply",
+    "label": "Food supply",
+    "frequency": 864
+  },
+  {
+    "id": "Iraq War, 2003-2011",
+    "label": "Iraq War, 2003-2011",
+    "frequency": 864
+  },
+  {
+    "id": "Electric power-plants",
+    "label": "Electric power-plants",
+    "frequency": 862
+  },
+  {
+    "id": "Climatology",
+    "label": "Climatology",
+    "frequency": 861
+  },
+  {
+    "id": "Victims of crimes",
+    "label": "Victims of crimes",
+    "frequency": 860
+  },
+  {
+    "id": "Water levels",
+    "label": "Water levels",
+    "frequency": 857
+  },
+  {
+    "id": "Unemployment",
+    "label": "Unemployment",
+    "frequency": 850
+  },
+  {
+    "id": "Uranium ores",
+    "label": "Uranium ores",
+    "frequency": 849
+  },
+  {
+    "id": "Military research",
+    "label": "Military research",
+    "frequency": 848
+  },
+  {
+    "id": "Health services accessibility",
+    "label": "Health services accessibility",
+    "frequency": 846
+  },
+  {
+    "id": "Textile industry",
+    "label": "Textile industry",
+    "frequency": 845
+  },
+  {
+    "id": "Medical records",
+    "label": "Medical records",
+    "frequency": 845
+  },
+  {
+    "id": "Technical assistance, American",
+    "label": "Technical assistance, American",
+    "frequency": 842
+  },
+  {
+    "id": "Breast",
+    "label": "Breast",
+    "frequency": 842
+  },
+  {
+    "id": "Transportation and state",
+    "label": "Transportation and state",
+    "frequency": 840
+  },
+  {
+    "id": "COVID-19 Pandemic, 2020-",
+    "label": "COVID-19 Pandemic, 2020-",
+    "frequency": 837
+  },
+  {
+    "id": "Flood forecasting",
+    "label": "Flood forecasting",
+    "frequency": 835
+  },
+  {
+    "id": "Immigrants",
+    "label": "Immigrants",
+    "frequency": 835
+  },
+  {
+    "id": "Coal gasification",
+    "label": "Coal gasification",
+    "frequency": 834
+  },
+  {
+    "id": "Intergovernmental fiscal relations",
+    "label": "Intergovernmental fiscal relations",
+    "frequency": 832
+  },
+  {
+    "id": "Tax credits",
+    "label": "Tax credits",
+    "frequency": 828
+  },
+  {
+    "id": "Internal security",
+    "label": "Internal security",
+    "frequency": 826
+  },
+  {
+    "id": "Medical personnel",
+    "label": "Medical personnel",
+    "frequency": 822
+  },
+  {
+    "id": "Cost and standard of living",
+    "label": "Cost and standard of living",
+    "frequency": 819
+  },
+  {
+    "id": "Pipelines",
+    "label": "Pipelines",
+    "frequency": 818
+  },
+  {
+    "id": "Petrology",
+    "label": "Petrology",
+    "frequency": 815
+  },
+  {
+    "id": "Ecology",
+    "label": "Ecology",
+    "frequency": 813
+  },
+  {
+    "id": "National monuments",
+    "label": "National monuments",
+    "frequency": 812
+  },
+  {
+    "id": "Disability insurance",
+    "label": "Disability insurance",
+    "frequency": 811
+  },
+  {
+    "id": "Housing policy",
+    "label": "Housing policy",
+    "frequency": 811
+  },
+  {
+    "id": "Medical instruments and apparatus",
+    "label": "Medical instruments and apparatus",
+    "frequency": 806
+  },
+  {
+    "id": "Hurricanes",
+    "label": "Hurricanes",
+    "frequency": 805
+  },
+  {
+    "id": "Disability evaluation",
+    "label": "Disability evaluation",
+    "frequency": 805
+  },
+  {
+    "id": "Campaign funds",
+    "label": "Campaign funds",
+    "frequency": 804
+  },
+  {
+    "id": "Occupations",
+    "label": "Occupations",
+    "frequency": 801
+  },
+  {
+    "id": "Radioactive wastes",
+    "label": "Radioactive wastes",
+    "frequency": 799
+  },
+  {
+    "id": "Air pilots",
+    "label": "Air pilots",
+    "frequency": 795
+  },
+  {
+    "id": "Wholesale trade",
+    "label": "Wholesale trade",
+    "frequency": 792
+  },
+  {
+    "id": "Hydraulic models",
+    "label": "Hydraulic models",
+    "frequency": 788
+  },
+  {
+    "id": "Sediments (Geology)",
+    "label": "Sediments (Geology)",
+    "frequency": 786
+  },
+  {
+    "id": "Hardwoods",
+    "label": "Hardwoods",
+    "frequency": 786
+  },
+  {
+    "id": "Gasoline",
+    "label": "Gasoline",
+    "frequency": 785
+  },
+  {
+    "id": "Federal aid to community development",
+    "label": "Federal aid to community development",
+    "frequency": 785
+  },
+  {
+    "id": "Electronic data processing",
+    "label": "Electronic data processing",
+    "frequency": 784
+  },
+  {
+    "id": "Tobacco",
+    "label": "Tobacco",
+    "frequency": 780
+  },
+  {
+    "id": "Telephone",
+    "label": "Telephone",
+    "frequency": 779
+  },
+  {
+    "id": "Educational change",
+    "label": "Educational change",
+    "frequency": 779
+  },
+  {
+    "id": "Grain",
+    "label": "Grain",
+    "frequency": 777
+  },
+  {
+    "id": "Weather forecasting",
+    "label": "Weather forecasting",
+    "frequency": 777
+  },
+  {
+    "id": "Communism",
+    "label": "Communism",
+    "frequency": 776
+  },
+  {
+    "id": "Chemicals",
+    "label": "Chemicals",
+    "frequency": 776
+  },
+  {
+    "id": "Fishing",
+    "label": "Fishing",
+    "frequency": 775
+  },
+  {
+    "id": "Educational surveys",
+    "label": "Educational surveys",
+    "frequency": 773
+  },
+  {
+    "id": "Peace-building",
+    "label": "Peace-building",
+    "frequency": 770
+  },
+  {
+    "id": "Range management",
+    "label": "Range management",
+    "frequency": 769
+  },
+  {
+    "id": "Nuclear arms control",
+    "label": "Nuclear arms control",
+    "frequency": 769
+  },
+  {
+    "id": "Crime prevention",
+    "label": "Crime prevention",
+    "frequency": 768
+  },
+  {
+    "id": "Intergovernmental cooperation",
+    "label": "Intergovernmental cooperation",
+    "frequency": 768
+  },
+  {
+    "id": "Freight and freightage",
+    "label": "Freight and freightage",
+    "frequency": 767
+  },
+  {
+    "id": "Opioid abuse",
+    "label": "Opioid abuse",
+    "frequency": 767
+  },
+  {
+    "id": "Lumber",
+    "label": "Lumber",
+    "frequency": 761
+  },
+  {
+    "id": "Government information",
+    "label": "Government information",
+    "frequency": 760
+  },
+  {
+    "id": "Engineering",
+    "label": "Engineering",
+    "frequency": 759
+  },
+  {
+    "id": "Meat industry and trade",
+    "label": "Meat industry and trade",
+    "frequency": 759
+  },
+  {
+    "id": "Terrorists",
+    "label": "Terrorists",
+    "frequency": 759
+  },
+  {
+    "id": "Savings bonds",
+    "label": "Savings bonds",
+    "frequency": 758
+  },
+  {
+    "id": "Cotton",
+    "label": "Cotton",
+    "frequency": 757
+  },
+  {
+    "id": "Agricultural laws and legislation",
+    "label": "Agricultural laws and legislation",
+    "frequency": 756
+  }
+]

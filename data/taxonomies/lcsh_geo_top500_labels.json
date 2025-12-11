@@ -1,0 +1,2502 @@
+[
+  {
+    "id": "United States",
+    "label": "United States",
+    "frequency": 143648
+  },
+  {
+    "id": "California",
+    "label": "California",
+    "frequency": 6172
+  },
+  {
+    "id": "China",
+    "label": "China",
+    "frequency": 3964
+  },
+  {
+    "id": "Alaska",
+    "label": "Alaska",
+    "frequency": 3928
+  },
+  {
+    "id": "Texas",
+    "label": "Texas",
+    "frequency": 3540
+  },
+  {
+    "id": "Montana",
+    "label": "Montana",
+    "frequency": 3406
+  },
+  {
+    "id": "Oregon",
+    "label": "Oregon",
+    "frequency": 3056
+  },
+  {
+    "id": "Colorado",
+    "label": "Colorado",
+    "frequency": 3004
+  },
+  {
+    "id": "Washington (State)",
+    "label": "Washington (State)",
+    "frequency": 2992
+  },
+  {
+    "id": "New Mexico",
+    "label": "New Mexico",
+    "frequency": 2767
+  },
+  {
+    "id": "Arizona",
+    "label": "Arizona",
+    "frequency": 2745
+  },
+  {
+    "id": "Utah",
+    "label": "Utah",
+    "frequency": 2622
+  },
+  {
+    "id": "Nevada",
+    "label": "Nevada",
+    "frequency": 2471
+  },
+  {
+    "id": "Idaho",
+    "label": "Idaho",
+    "frequency": 2449
+  },
+  {
+    "id": "Washington (D.C.)",
+    "label": "Washington (D.C.)",
+    "frequency": 2431
+  },
+  {
+    "id": "Wyoming",
+    "label": "Wyoming",
+    "frequency": 2409
+  },
+  {
+    "id": "Florida",
+    "label": "Florida",
+    "frequency": 2319
+  },
+  {
+    "id": "Pennsylvania",
+    "label": "Pennsylvania",
+    "frequency": 2220
+  },
+  {
+    "id": "New York (State)",
+    "label": "New York (State)",
+    "frequency": 2178
+  },
+  {
+    "id": "Wisconsin",
+    "label": "Wisconsin",
+    "frequency": 2067
+  },
+  {
+    "id": "Virginia",
+    "label": "Virginia",
+    "frequency": 1719
+  },
+  {
+    "id": "Louisiana",
+    "label": "Louisiana",
+    "frequency": 1706
+  },
+  {
+    "id": "North Carolina",
+    "label": "North Carolina",
+    "frequency": 1678
+  },
+  {
+    "id": "Illinois",
+    "label": "Illinois",
+    "frequency": 1641
+  },
+  {
+    "id": "Soviet Union",
+    "label": "Soviet Union",
+    "frequency": 1634
+  },
+  {
+    "id": "Russia (Federation)",
+    "label": "Russia (Federation)",
+    "frequency": 1590
+  },
+  {
+    "id": "Ohio",
+    "label": "Ohio",
+    "frequency": 1494
+  },
+  {
+    "id": "Missouri",
+    "label": "Missouri",
+    "frequency": 1434
+  },
+  {
+    "id": "Europe",
+    "label": "Europe",
+    "frequency": 1433
+  },
+  {
+    "id": "Minnesota",
+    "label": "Minnesota",
+    "frequency": 1411
+  },
+  {
+    "id": "Outer space",
+    "label": "Outer space",
+    "frequency": 1379
+  },
+  {
+    "id": "Iran",
+    "label": "Iran",
+    "frequency": 1367
+  },
+  {
+    "id": "Iraq",
+    "label": "Iraq",
+    "frequency": 1296
+  },
+  {
+    "id": "Michigan",
+    "label": "Michigan",
+    "frequency": 1287
+  },
+  {
+    "id": "Nebraska",
+    "label": "Nebraska",
+    "frequency": 1272
+  },
+  {
+    "id": "Mexico",
+    "label": "Mexico",
+    "frequency": 1248
+  },
+  {
+    "id": "Georgia",
+    "label": "Georgia",
+    "frequency": 1236
+  },
+  {
+    "id": "Afghanistan",
+    "label": "Afghanistan",
+    "frequency": 1232
+  },
+  {
+    "id": "Indiana",
+    "label": "Indiana",
+    "frequency": 1188
+  },
+  {
+    "id": "Kansas",
+    "label": "Kansas",
+    "frequency": 1175
+  },
+  {
+    "id": "Middle East",
+    "label": "Middle East",
+    "frequency": 1169
+  },
+  {
+    "id": "Tennessee",
+    "label": "Tennessee",
+    "frequency": 1108
+  },
+  {
+    "id": "Alabama",
+    "label": "Alabama",
+    "frequency": 1101
+  },
+  {
+    "id": "Kentucky",
+    "label": "Kentucky",
+    "frequency": 1078
+  },
+  {
+    "id": "Arkansas",
+    "label": "Arkansas",
+    "frequency": 1023
+  },
+  {
+    "id": "Maine",
+    "label": "Maine",
+    "frequency": 1013
+  },
+  {
+    "id": "New Jersey",
+    "label": "New Jersey",
+    "frequency": 1007
+  },
+  {
+    "id": "Japan",
+    "label": "Japan",
+    "frequency": 1004
+  },
+  {
+    "id": "Hawaii",
+    "label": "Hawaii",
+    "frequency": 992
+  },
+  {
+    "id": "Maryland",
+    "label": "Maryland",
+    "frequency": 985
+  },
+  {
+    "id": "South Dakota",
+    "label": "South Dakota",
+    "frequency": 974
+  },
+  {
+    "id": "Oklahoma",
+    "label": "Oklahoma",
+    "frequency": 970
+  },
+  {
+    "id": "North America",
+    "label": "North America",
+    "frequency": 968
+  },
+  {
+    "id": "Latin America",
+    "label": "Latin America",
+    "frequency": 954
+  },
+  {
+    "id": "Puerto Rico",
+    "label": "Puerto Rico",
+    "frequency": 910
+  },
+  {
+    "id": "Syria",
+    "label": "Syria",
+    "frequency": 906
+  },
+  {
+    "id": "South Carolina",
+    "label": "South Carolina",
+    "frequency": 868
+  },
+  {
+    "id": "North Pacific Ocean",
+    "label": "North Pacific Ocean",
+    "frequency": 863
+  },
+  {
+    "id": "Mississippi",
+    "label": "Mississippi",
+    "frequency": 858
+  },
+  {
+    "id": "North Dakota",
+    "label": "North Dakota",
+    "frequency": 812
+  },
+  {
+    "id": "Massachusetts",
+    "label": "Massachusetts",
+    "frequency": 811
+  },
+  {
+    "id": "West Virginia",
+    "label": "West Virginia",
+    "frequency": 802
+  },
+  {
+    "id": "Iowa",
+    "label": "Iowa",
+    "frequency": 792
+  },
+  {
+    "id": "Cuba",
+    "label": "Cuba",
+    "frequency": 789
+  },
+  {
+    "id": "Africa",
+    "label": "Africa",
+    "frequency": 766
+  },
+  {
+    "id": "Mars (Planet)",
+    "label": "Mars (Planet)",
+    "frequency": 764
+  },
+  {
+    "id": "Korea (North)",
+    "label": "Korea (North)",
+    "frequency": 722
+  },
+  {
+    "id": "Canada",
+    "label": "Canada",
+    "frequency": 711
+  },
+  {
+    "id": "Mexico, Gulf of",
+    "label": "Mexico, Gulf of",
+    "frequency": 710
+  },
+  {
+    "id": "New Hampshire",
+    "label": "New Hampshire",
+    "frequency": 643
+  },
+  {
+    "id": "Pakistan",
+    "label": "Pakistan",
+    "frequency": 584
+  },
+  {
+    "id": "Pacific Ocean",
+    "label": "Pacific Ocean",
+    "frequency": 557
+  },
+  {
+    "id": "Vermont",
+    "label": "Vermont",
+    "frequency": 501
+  },
+  {
+    "id": "Connecticut",
+    "label": "Connecticut",
+    "frequency": 499
+  },
+  {
+    "id": "Vietnam",
+    "label": "Vietnam",
+    "frequency": 494
+  },
+  {
+    "id": "Ukraine",
+    "label": "Ukraine",
+    "frequency": 479
+  },
+  {
+    "id": "Philippines",
+    "label": "Philippines",
+    "frequency": 458
+  },
+  {
+    "id": "Panama",
+    "label": "Panama",
+    "frequency": 453
+  },
+  {
+    "id": "North Atlantic Ocean",
+    "label": "North Atlantic Ocean",
+    "frequency": 452
+  },
+  {
+    "id": "Libya",
+    "label": "Libya",
+    "frequency": 446
+  },
+  {
+    "id": "India",
+    "label": "India",
+    "frequency": 444
+  },
+  {
+    "id": "Burma",
+    "label": "Burma",
+    "frequency": 438
+  },
+  {
+    "id": "Sudan",
+    "label": "Sudan",
+    "frequency": 435
+  },
+  {
+    "id": "Pacific Area",
+    "label": "Pacific Area",
+    "frequency": 435
+  },
+  {
+    "id": "Germany",
+    "label": "Germany",
+    "frequency": 434
+  },
+  {
+    "id": "Asia",
+    "label": "Asia",
+    "frequency": 429
+  },
+  {
+    "id": "Caribbean Sea",
+    "label": "Caribbean Sea",
+    "frequency": 426
+  },
+  {
+    "id": "Europe, Eastern",
+    "label": "Europe, Eastern",
+    "frequency": 423
+  },
+  {
+    "id": "Israel",
+    "label": "Israel",
+    "frequency": 423
+  },
+  {
+    "id": "Developing countries",
+    "label": "Developing countries",
+    "frequency": 421
+  },
+  {
+    "id": "Great Britain",
+    "label": "Great Britain",
+    "frequency": 417
+  },
+  {
+    "id": "Colombia",
+    "label": "Colombia",
+    "frequency": 411
+  },
+  {
+    "id": "Caribbean Area",
+    "label": "Caribbean Area",
+    "frequency": 402
+  },
+  {
+    "id": "Delaware",
+    "label": "Delaware",
+    "frequency": 394
+  },
+  {
+    "id": "Turkey",
+    "label": "Turkey",
+    "frequency": 388
+  },
+  {
+    "id": "European Union countries",
+    "label": "European Union countries",
+    "frequency": 377
+  },
+  {
+    "id": "Southern States",
+    "label": "Southern States",
+    "frequency": 376
+  },
+  {
+    "id": "Korea (South)",
+    "label": "Korea (South)",
+    "frequency": 373
+  },
+  {
+    "id": "Mississippi River",
+    "label": "Mississippi River",
+    "frequency": 364
+  },
+  {
+    "id": "Taiwan",
+    "label": "Taiwan",
+    "frequency": 364
+  },
+  {
+    "id": "Lebanon",
+    "label": "Lebanon",
+    "frequency": 360
+  },
+  {
+    "id": "Gulf of Mexico",
+    "label": "Gulf of Mexico",
+    "frequency": 352
+  },
+  {
+    "id": "Africa, Sub-Saharan",
+    "label": "Africa, Sub-Saharan",
+    "frequency": 352
+  },
+  {
+    "id": "United States, West",
+    "label": "United States, West",
+    "frequency": 350
+  },
+  {
+    "id": "Rhode Island",
+    "label": "Rhode Island",
+    "frequency": 347
+  },
+  {
+    "id": "Tongass National Forest (Alaska)",
+    "label": "Tongass National Forest (Alaska)",
+    "frequency": 343
+  },
+  {
+    "id": "Congo (Democratic Republic)",
+    "label": "Congo (Democratic Republic)",
+    "frequency": 339
+  },
+  {
+    "id": "Zimbabwe",
+    "label": "Zimbabwe",
+    "frequency": 337
+  },
+  {
+    "id": "Southeast Asia",
+    "label": "Southeast Asia",
+    "frequency": 330
+  },
+  {
+    "id": "Antarctica",
+    "label": "Antarctica",
+    "frequency": 329
+  },
+  {
+    "id": "Egypt",
+    "label": "Egypt",
+    "frequency": 327
+  },
+  {
+    "id": "Panama Canal (Panama)",
+    "label": "Panama Canal (Panama)",
+    "frequency": 325
+  },
+  {
+    "id": "Central America",
+    "label": "Central America",
+    "frequency": 324
+  },
+  {
+    "id": "Venezuela",
+    "label": "Venezuela",
+    "frequency": 321
+  },
+  {
+    "id": "Yellowstone National Park",
+    "label": "Yellowstone National Park",
+    "frequency": 315
+  },
+  {
+    "id": "France",
+    "label": "France",
+    "frequency": 310
+  },
+  {
+    "id": "United States Virgin Islands",
+    "label": "United States Virgin Islands",
+    "frequency": 304
+  },
+  {
+    "id": "Haiti",
+    "label": "Haiti",
+    "frequency": 304
+  },
+  {
+    "id": "East Asia",
+    "label": "East Asia",
+    "frequency": 301
+  },
+  {
+    "id": "South Africa",
+    "label": "South Africa",
+    "frequency": 299
+  },
+  {
+    "id": "Nicaragua",
+    "label": "Nicaragua",
+    "frequency": 295
+  },
+  {
+    "id": "Earth (Planet)",
+    "label": "Earth (Planet)",
+    "frequency": 286
+  },
+  {
+    "id": "Atlantic Ocean",
+    "label": "Atlantic Ocean",
+    "frequency": 285
+  },
+  {
+    "id": "Mediterranean Sea",
+    "label": "Mediterranean Sea",
+    "frequency": 283
+  },
+  {
+    "id": "Mark Twain National Forest (Mo.)",
+    "label": "Mark Twain National Forest (Mo.)",
+    "frequency": 275
+  },
+  {
+    "id": "Arctic regions",
+    "label": "Arctic regions",
+    "frequency": 270
+  },
+  {
+    "id": "Guam",
+    "label": "Guam",
+    "frequency": 270
+  },
+  {
+    "id": "Chesapeake Bay (Md. and Va.)",
+    "label": "Chesapeake Bay (Md. and Va.)",
+    "frequency": 267
+  },
+  {
+    "id": "Russia",
+    "label": "Russia",
+    "frequency": 265
+  },
+  {
+    "id": "Moon",
+    "label": "Moon",
+    "frequency": 262
+  },
+  {
+    "id": "Yemen (Republic)",
+    "label": "Yemen (Republic)",
+    "frequency": 259
+  },
+  {
+    "id": "Spain",
+    "label": "Spain",
+    "frequency": 258
+  },
+  {
+    "id": "Nigeria",
+    "label": "Nigeria",
+    "frequency": 256
+  },
+  {
+    "id": "Northeastern States",
+    "label": "Northeastern States",
+    "frequency": 254
+  },
+  {
+    "id": "Brazil",
+    "label": "Brazil",
+    "frequency": 251
+  },
+  {
+    "id": "Pacific Coast (Calif.)",
+    "label": "Pacific Coast (Calif.)",
+    "frequency": 247
+  },
+  {
+    "id": "South China Sea",
+    "label": "South China Sea",
+    "frequency": 242
+  },
+  {
+    "id": "Middle West",
+    "label": "Middle West",
+    "frequency": 238
+  },
+  {
+    "id": "Indian Ocean",
+    "label": "Indian Ocean",
+    "frequency": 237
+  },
+  {
+    "id": "Asia, Central",
+    "label": "Asia, Central",
+    "frequency": 237
+  },
+  {
+    "id": "Saudi Arabia",
+    "label": "Saudi Arabia",
+    "frequency": 236
+  },
+  {
+    "id": "Liberia",
+    "label": "Liberia",
+    "frequency": 234
+  },
+  {
+    "id": "Balkan Peninsula",
+    "label": "Balkan Peninsula",
+    "frequency": 232
+  },
+  {
+    "id": "South Pacific Ocean",
+    "label": "South Pacific Ocean",
+    "frequency": 228
+  },
+  {
+    "id": "Belarus",
+    "label": "Belarus",
+    "frequency": 226
+  },
+  {
+    "id": "South Sudan",
+    "label": "South Sudan",
+    "frequency": 224
+  },
+  {
+    "id": "Cambodia",
+    "label": "Cambodia",
+    "frequency": 219
+  },
+  {
+    "id": "Sun",
+    "label": "Sun",
+    "frequency": 218
+  },
+  {
+    "id": "Canal Zone",
+    "label": "Canal Zone",
+    "frequency": 215
+  },
+  {
+    "id": "Bering Sea",
+    "label": "Bering Sea",
+    "frequency": 212
+  },
+  {
+    "id": "South Asia",
+    "label": "South Asia",
+    "frequency": 208
+  },
+  {
+    "id": "Clearwater National Forest (Idaho)",
+    "label": "Clearwater National Forest (Idaho)",
+    "frequency": 208
+  },
+  {
+    "id": "Somalia",
+    "label": "Somalia",
+    "frequency": 204
+  },
+  {
+    "id": "Poland",
+    "label": "Poland",
+    "frequency": 203
+  },
+  {
+    "id": "El Salvador",
+    "label": "El Salvador",
+    "frequency": 201
+  },
+  {
+    "id": "Marshall Islands",
+    "label": "Marshall Islands",
+    "frequency": 190
+  },
+  {
+    "id": "Great Lakes (North America)",
+    "label": "Great Lakes (North America)",
+    "frequency": 189
+  },
+  {
+    "id": "Mexican-American Border Region",
+    "label": "Mexican-American Border Region",
+    "frequency": 188
+  },
+  {
+    "id": "Cyprus",
+    "label": "Cyprus",
+    "frequency": 186
+  },
+  {
+    "id": "Northern Mariana Islands",
+    "label": "Northern Mariana Islands",
+    "frequency": 186
+  },
+  {
+    "id": "Bosnia and Herzegovina",
+    "label": "Bosnia and Herzegovina",
+    "frequency": 186
+  },
+  {
+    "id": "Teton National Forest (Wyo.)",
+    "label": "Teton National Forest (Wyo.)",
+    "frequency": 183
+  },
+  {
+    "id": "Indonesia",
+    "label": "Indonesia",
+    "frequency": 180
+  },
+  {
+    "id": "Romania",
+    "label": "Romania",
+    "frequency": 180
+  },
+  {
+    "id": "Jupiter (Planet)",
+    "label": "Jupiter (Planet)",
+    "frequency": 176
+  },
+  {
+    "id": "Cibola National Forest (N.M.)",
+    "label": "Cibola National Forest (N.M.)",
+    "frequency": 175
+  },
+  {
+    "id": "Shoshone National Forest (Wyo.)",
+    "label": "Shoshone National Forest (Wyo.)",
+    "frequency": 175
+  },
+  {
+    "id": "Hungary",
+    "label": "Hungary",
+    "frequency": 173
+  },
+  {
+    "id": "Italy",
+    "label": "Italy",
+    "frequency": 173
+  },
+  {
+    "id": "Former Soviet republics",
+    "label": "Former Soviet republics",
+    "frequency": 171
+  },
+  {
+    "id": "Pacific Northwest",
+    "label": "Pacific Northwest",
+    "frequency": 170
+  },
+  {
+    "id": "Sonora (Mexico : State)",
+    "label": "Sonora (Mexico : State)",
+    "frequency": 170
+  },
+  {
+    "id": "Hong Kong (China)",
+    "label": "Hong Kong (China)",
+    "frequency": 169
+  },
+  {
+    "id": "Nezperce National Forest (Idaho)",
+    "label": "Nezperce National Forest (Idaho)",
+    "frequency": 166
+  },
+  {
+    "id": "Siskiyou National Forest (Or. and Calif.)",
+    "label": "Siskiyou National Forest (Or. and Calif.)",
+    "frequency": 164
+  },
+  {
+    "id": "American Samoa",
+    "label": "American Samoa",
+    "frequency": 164
+  },
+  {
+    "id": "Venus (Planet)",
+    "label": "Venus (Planet)",
+    "frequency": 163
+  },
+  {
+    "id": "Thailand",
+    "label": "Thailand",
+    "frequency": 163
+  },
+  {
+    "id": "Persian Gulf",
+    "label": "Persian Gulf",
+    "frequency": 163
+  },
+  {
+    "id": "Africa, North",
+    "label": "Africa, North",
+    "frequency": 162
+  },
+  {
+    "id": "Chile",
+    "label": "Chile",
+    "frequency": 162
+  },
+  {
+    "id": "Peru",
+    "label": "Peru",
+    "frequency": 160
+  },
+  {
+    "id": "Kosovo (Republic)",
+    "label": "Kosovo (Republic)",
+    "frequency": 160
+  },
+  {
+    "id": "Micronesia",
+    "label": "Micronesia",
+    "frequency": 158
+  },
+  {
+    "id": "Greece",
+    "label": "Greece",
+    "frequency": 158
+  },
+  {
+    "id": "Yugoslavia",
+    "label": "Yugoslavia",
+    "frequency": 158
+  },
+  {
+    "id": "Australia",
+    "label": "Australia",
+    "frequency": 157
+  },
+  {
+    "id": "Grand Teton National Park (Wyo.)",
+    "label": "Grand Teton National Park (Wyo.)",
+    "frequency": 157
+  },
+  {
+    "id": "Santa Fe National Forest (N.M.)",
+    "label": "Santa Fe National Forest (N.M.)",
+    "frequency": 157
+  },
+  {
+    "id": "Grand Canyon National Park (Ariz.)",
+    "label": "Grand Canyon National Park (Ariz.)",
+    "frequency": 155
+  },
+  {
+    "id": "Gulf Intracoastal Waterway",
+    "label": "Gulf Intracoastal Waterway",
+    "frequency": 155
+  },
+  {
+    "id": "Arctic Ocean",
+    "label": "Arctic Ocean",
+    "frequency": 153
+  },
+  {
+    "id": "Umatilla National Forest (Or. and Wash.)",
+    "label": "Umatilla National Forest (Or. and Wash.)",
+    "frequency": 152
+  },
+  {
+    "id": "New England",
+    "label": "New England",
+    "frequency": 151
+  },
+  {
+    "id": "Gila National Forest (N.M.)",
+    "label": "Gila National Forest (N.M.)",
+    "frequency": 149
+  },
+  {
+    "id": "South Atlantic Ocean",
+    "label": "South Atlantic Ocean",
+    "frequency": 148
+  },
+  {
+    "id": "Côte d'Ivoire",
+    "label": "Côte d'Ivoire",
+    "frequency": 148
+  },
+  {
+    "id": "Inyo National Forest (Calif. and Nev.)",
+    "label": "Inyo National Forest (Calif. and Nev.)",
+    "frequency": 147
+  },
+  {
+    "id": "Monongahela National Forest (W. Va.)",
+    "label": "Monongahela National Forest (W. Va.)",
+    "frequency": 146
+  },
+  {
+    "id": "Ethiopia",
+    "label": "Ethiopia",
+    "frequency": 146
+  },
+  {
+    "id": "Dixie National Forest (Utah)",
+    "label": "Dixie National Forest (Utah)",
+    "frequency": 146
+  },
+  {
+    "id": "Lolo National Forest (Mont.)",
+    "label": "Lolo National Forest (Mont.)",
+    "frequency": 144
+  },
+  {
+    "id": "Mississippi River Watershed",
+    "label": "Mississippi River Watershed",
+    "frequency": 143
+  },
+  {
+    "id": "Honduras",
+    "label": "Honduras",
+    "frequency": 142
+  },
+  {
+    "id": "Saint Helens, Mount (Wash.)",
+    "label": "Saint Helens, Mount (Wash.)",
+    "frequency": 142
+  },
+  {
+    "id": "Colorado River (Colo.-Mexico)",
+    "label": "Colorado River (Colo.-Mexico)",
+    "frequency": 141
+  },
+  {
+    "id": "Wallowa National Forest (Or.)",
+    "label": "Wallowa National Forest (Or.)",
+    "frequency": 141
+  },
+  {
+    "id": "Appalachian Region",
+    "label": "Appalachian Region",
+    "frequency": 141
+  },
+  {
+    "id": "North Sea",
+    "label": "North Sea",
+    "frequency": 141
+  },
+  {
+    "id": "Klamath National Forest (Calif. and Or.)",
+    "label": "Klamath National Forest (Calif. and Or.)",
+    "frequency": 139
+  },
+  {
+    "id": "Flathead National Forest (Mont.)",
+    "label": "Flathead National Forest (Mont.)",
+    "frequency": 139
+  },
+  {
+    "id": "Guatemala",
+    "label": "Guatemala",
+    "frequency": 138
+  },
+  {
+    "id": "Arab countries",
+    "label": "Arab countries",
+    "frequency": 138
+  },
+  {
+    "id": "Communist countries",
+    "label": "Communist countries",
+    "frequency": 136
+  },
+  {
+    "id": "Superior National Forest (Minn.)",
+    "label": "Superior National Forest (Minn.)",
+    "frequency": 135
+  },
+  {
+    "id": "Bulgaria",
+    "label": "Bulgaria",
+    "frequency": 135
+  },
+  {
+    "id": "Carson National Forest (N.M.)",
+    "label": "Carson National Forest (N.M.)",
+    "frequency": 135
+  },
+  {
+    "id": "Michigan, Lake",
+    "label": "Michigan, Lake",
+    "frequency": 134
+  },
+  {
+    "id": "Glacier National Park (Mont.)",
+    "label": "Glacier National Park (Mont.)",
+    "frequency": 134
+  },
+  {
+    "id": "Korea",
+    "label": "Korea",
+    "frequency": 133
+  },
+  {
+    "id": "Hoosier National Forest (Ind.)",
+    "label": "Hoosier National Forest (Ind.)",
+    "frequency": 133
+  },
+  {
+    "id": "Jordan",
+    "label": "Jordan",
+    "frequency": 131
+  },
+  {
+    "id": "Germany (West)",
+    "label": "Germany (West)",
+    "frequency": 131
+  },
+  {
+    "id": "Sleeping Bear Dunes National Lakeshore (Mich.)",
+    "label": "Sleeping Bear Dunes National Lakeshore (Mich.)",
+    "frequency": 130
+  },
+  {
+    "id": "Chihuahua (Mexico : State)",
+    "label": "Chihuahua (Mexico : State)",
+    "frequency": 130
+  },
+  {
+    "id": "Alaska, Gulf of (Alaska)",
+    "label": "Alaska, Gulf of (Alaska)",
+    "frequency": 129
+  },
+  {
+    "id": "Okanogan National Forest (Wash.)",
+    "label": "Okanogan National Forest (Wash.)",
+    "frequency": 128
+  },
+  {
+    "id": "Ottawa National Forest (Mich.)",
+    "label": "Ottawa National Forest (Mich.)",
+    "frequency": 128
+  },
+  {
+    "id": "Rocky Mountain National Park (Colo.)",
+    "label": "Rocky Mountain National Park (Colo.)",
+    "frequency": 127
+  },
+  {
+    "id": "Pacific Islands (Trust Territory)",
+    "label": "Pacific Islands (Trust Territory)",
+    "frequency": 127
+  },
+  {
+    "id": "Persian Gulf Region",
+    "label": "Persian Gulf Region",
+    "frequency": 127
+  },
+  {
+    "id": "Palau",
+    "label": "Palau",
+    "frequency": 126
+  },
+  {
+    "id": "Dominican Republic",
+    "label": "Dominican Republic",
+    "frequency": 125
+  },
+  {
+    "id": "Mount Hood National Forest (Or.)",
+    "label": "Mount Hood National Forest (Or.)",
+    "frequency": 124
+  },
+  {
+    "id": "Sri Lanka",
+    "label": "Sri Lanka",
+    "frequency": 124
+  },
+  {
+    "id": "Gifford Pinchot National Forest (Wash.)",
+    "label": "Gifford Pinchot National Forest (Wash.)",
+    "frequency": 123
+  },
+  {
+    "id": "Czechoslovakia",
+    "label": "Czechoslovakia",
+    "frequency": 123
+  },
+  {
+    "id": "Cherokee National Forest (Tenn.)",
+    "label": "Cherokee National Forest (Tenn.)",
+    "frequency": 123
+  },
+  {
+    "id": "Bangladesh",
+    "label": "Bangladesh",
+    "frequency": 122
+  },
+  {
+    "id": "Yosemite National Park (Calif.)",
+    "label": "Yosemite National Park (Calif.)",
+    "frequency": 122
+  },
+  {
+    "id": "Wenatchee National Forest (Wash.)",
+    "label": "Wenatchee National Forest (Wash.)",
+    "frequency": 121
+  },
+  {
+    "id": "Shenandoah National Park (Va.)",
+    "label": "Shenandoah National Park (Va.)",
+    "frequency": 121
+  },
+  {
+    "id": "Malheur National Forest (Or.)",
+    "label": "Malheur National Forest (Or.)",
+    "frequency": 121
+  },
+  {
+    "id": "Olympic National Park (Wash.)",
+    "label": "Olympic National Park (Wash.)",
+    "frequency": 121
+  },
+  {
+    "id": "Gulf Coast (Fla.)",
+    "label": "Gulf Coast (Fla.)",
+    "frequency": 121
+  },
+  {
+    "id": "Angola",
+    "label": "Angola",
+    "frequency": 120
+  },
+  {
+    "id": "Pisgah National Forest (N.C.)",
+    "label": "Pisgah National Forest (N.C.)",
+    "frequency": 120
+  },
+  {
+    "id": "Beaverhead National Forest (Mont.)",
+    "label": "Beaverhead National Forest (Mont.)",
+    "frequency": 119
+  },
+  {
+    "id": "Rwanda",
+    "label": "Rwanda",
+    "frequency": 118
+  },
+  {
+    "id": "Long Island Sound (N.Y. and Conn.)",
+    "label": "Long Island Sound (N.Y. and Conn.)",
+    "frequency": 118
+  },
+  {
+    "id": "Custer National Forest (Mont. and S.D.)",
+    "label": "Custer National Forest (Mont. and S.D.)",
+    "frequency": 118
+  },
+  {
+    "id": "Denali National Park and Preserve (Alaska)",
+    "label": "Denali National Park and Preserve (Alaska)",
+    "frequency": 116
+  },
+  {
+    "id": "Argentina",
+    "label": "Argentina",
+    "frequency": 116
+  },
+  {
+    "id": "Missouri River",
+    "label": "Missouri River",
+    "frequency": 116
+  },
+  {
+    "id": "Great Lakes",
+    "label": "Great Lakes",
+    "frequency": 116
+  },
+  {
+    "id": "Morocco",
+    "label": "Morocco",
+    "frequency": 116
+  },
+  {
+    "id": "Portugal",
+    "label": "Portugal",
+    "frequency": 115
+  },
+  {
+    "id": "Kenya",
+    "label": "Kenya",
+    "frequency": 115
+  },
+  {
+    "id": "Los Padres National Forest (Calif.)",
+    "label": "Los Padres National Forest (Calif.)",
+    "frequency": 115
+  },
+  {
+    "id": "Nepal",
+    "label": "Nepal",
+    "frequency": 114
+  },
+  {
+    "id": "Tunisia",
+    "label": "Tunisia",
+    "frequency": 114
+  },
+  {
+    "id": "West United States",
+    "label": "West United States",
+    "frequency": 113
+  },
+  {
+    "id": "West (U.S.)",
+    "label": "West (U.S.)",
+    "frequency": 113
+  },
+  {
+    "id": "Central African Republic",
+    "label": "Central African Republic",
+    "frequency": 113
+  },
+  {
+    "id": "Payette National Forest (Idaho)",
+    "label": "Payette National Forest (Idaho)",
+    "frequency": 113
+  },
+  {
+    "id": "Lincoln National Forest (N.M.)",
+    "label": "Lincoln National Forest (N.M.)",
+    "frequency": 112
+  },
+  {
+    "id": "Colville National Forest (Wash.)",
+    "label": "Colville National Forest (Wash.)",
+    "frequency": 111
+  },
+  {
+    "id": "Ashley National Forest (Utah and Wyo.)",
+    "label": "Ashley National Forest (Utah and Wyo.)",
+    "frequency": 110
+  },
+  {
+    "id": "Sequoia National Park (Calif.)",
+    "label": "Sequoia National Park (Calif.)",
+    "frequency": 110
+  },
+  {
+    "id": "High Plains Aquifer",
+    "label": "High Plains Aquifer",
+    "frequency": 110
+  },
+  {
+    "id": "Kaniksu National Forest",
+    "label": "Kaniksu National Forest",
+    "frequency": 109
+  },
+  {
+    "id": "Lassen National Forest (Calif.)",
+    "label": "Lassen National Forest (Calif.)",
+    "frequency": 109
+  },
+  {
+    "id": "Columbia River",
+    "label": "Columbia River",
+    "frequency": 108
+  },
+  {
+    "id": "Missouri River Watershed",
+    "label": "Missouri River Watershed",
+    "frequency": 107
+  },
+  {
+    "id": "Floridan Aquifer",
+    "label": "Floridan Aquifer",
+    "frequency": 107
+  },
+  {
+    "id": "America",
+    "label": "America",
+    "frequency": 105
+  },
+  {
+    "id": "Ohio River",
+    "label": "Ohio River",
+    "frequency": 104
+  },
+  {
+    "id": "Albania",
+    "label": "Albania",
+    "frequency": 104
+  },
+  {
+    "id": "Kilauea Volcano (Hawaii)",
+    "label": "Kilauea Volcano (Hawaii)",
+    "frequency": 103
+  },
+  {
+    "id": "Saint Lawrence River",
+    "label": "Saint Lawrence River",
+    "frequency": 103
+  },
+  {
+    "id": "Lewis and Clark National Forest (Mont.)",
+    "label": "Lewis and Clark National Forest (Mont.)",
+    "frequency": 103
+  },
+  {
+    "id": "Georgia (Republic)",
+    "label": "Georgia (Republic)",
+    "frequency": 103
+  },
+  {
+    "id": "Mount Baker National Forest (Wash.)",
+    "label": "Mount Baker National Forest (Wash.)",
+    "frequency": 102
+  },
+  {
+    "id": "Uranus (Planet)",
+    "label": "Uranus (Planet)",
+    "frequency": 102
+  },
+  {
+    "id": "Pacific Coast (Hawaii)",
+    "label": "Pacific Coast (Hawaii)",
+    "frequency": 102
+  },
+  {
+    "id": "Little Missouri National Grassland (N.D.)",
+    "label": "Little Missouri National Grassland (N.D.)",
+    "frequency": 102
+  },
+  {
+    "id": "Plumas National Forest (Calif.)",
+    "label": "Plumas National Forest (Calif.)",
+    "frequency": 101
+  },
+  {
+    "id": "Mali",
+    "label": "Mali",
+    "frequency": 101
+  },
+  {
+    "id": "Mississippi River Valley",
+    "label": "Mississippi River Valley",
+    "frequency": 101
+  },
+  {
+    "id": "East China Sea",
+    "label": "East China Sea",
+    "frequency": 101
+  },
+  {
+    "id": "Wayne National Forest (Ohio)",
+    "label": "Wayne National Forest (Ohio)",
+    "frequency": 100
+  },
+  {
+    "id": "California Desert National Conservation Area (Calif.)",
+    "label": "California Desert National Conservation Area (Calif.)",
+    "frequency": 100
+  },
+  {
+    "id": "Baltic Sea",
+    "label": "Baltic Sea",
+    "frequency": 100
+  },
+  {
+    "id": "Ontario",
+    "label": "Ontario",
+    "frequency": 100
+  },
+  {
+    "id": "Gulf Coast (La.)",
+    "label": "Gulf Coast (La.)",
+    "frequency": 100
+  },
+  {
+    "id": "South America",
+    "label": "South America",
+    "frequency": 99
+  },
+  {
+    "id": "Ecuador",
+    "label": "Ecuador",
+    "frequency": 99
+  },
+  {
+    "id": "Moldova",
+    "label": "Moldova",
+    "frequency": 99
+  },
+  {
+    "id": "Kings Canyon National Park (Calif.)",
+    "label": "Kings Canyon National Park (Calif.)",
+    "frequency": 98
+  },
+  {
+    "id": "White River National Forest (Colo.)",
+    "label": "White River National Forest (Colo.)",
+    "frequency": 97
+  },
+  {
+    "id": "Pima County (Ariz.)",
+    "label": "Pima County (Ariz.)",
+    "frequency": 97
+  },
+  {
+    "id": "Pacific Coast (Or.)",
+    "label": "Pacific Coast (Or.)",
+    "frequency": 97
+  },
+  {
+    "id": "Great Plains",
+    "label": "Great Plains",
+    "frequency": 96
+  },
+  {
+    "id": "Apache National Forest (Ariz. and N.M.)",
+    "label": "Apache National Forest (Ariz. and N.M.)",
+    "frequency": 96
+  },
+  {
+    "id": "Medicine Bow National Forest (Wyo.)",
+    "label": "Medicine Bow National Forest (Wyo.)",
+    "frequency": 96
+  },
+  {
+    "id": "Ochoco National Forest (Or.)",
+    "label": "Ochoco National Forest (Or.)",
+    "frequency": 96
+  },
+  {
+    "id": "Serbia",
+    "label": "Serbia",
+    "frequency": 96
+  },
+  {
+    "id": "Netherlands",
+    "label": "Netherlands",
+    "frequency": 95
+  },
+  {
+    "id": "Bolivia",
+    "label": "Bolivia",
+    "frequency": 95
+  },
+  {
+    "id": "Modoc National Forest (Calif.)",
+    "label": "Modoc National Forest (Calif.)",
+    "frequency": 95
+  },
+  {
+    "id": "Tamaulipas (Mexico : State)",
+    "label": "Tamaulipas (Mexico : State)",
+    "frequency": 95
+  },
+  {
+    "id": "European Economic Community countries",
+    "label": "European Economic Community countries",
+    "frequency": 94
+  },
+  {
+    "id": "Laos",
+    "label": "Laos",
+    "frequency": 94
+  },
+  {
+    "id": "Burundi",
+    "label": "Burundi",
+    "frequency": 94
+  },
+  {
+    "id": "Golden Gate National Recreation Area (Calif.)",
+    "label": "Golden Gate National Recreation Area (Calif.)",
+    "frequency": 94
+  },
+  {
+    "id": "Cochise County (Ariz.)",
+    "label": "Cochise County (Ariz.)",
+    "frequency": 94
+  },
+  {
+    "id": "New Zealand",
+    "label": "New Zealand",
+    "frequency": 93
+  },
+  {
+    "id": "Middle Atlantic States",
+    "label": "Middle Atlantic States",
+    "frequency": 93
+  },
+  {
+    "id": "Saint Lawrence Seaway",
+    "label": "Saint Lawrence Seaway",
+    "frequency": 93
+  },
+  {
+    "id": "Rogue River National Forest (Or. and Calif.)",
+    "label": "Rogue River National Forest (Or. and Calif.)",
+    "frequency": 93
+  },
+  {
+    "id": "Saturn (Planet)",
+    "label": "Saturn (Planet)",
+    "frequency": 93
+  },
+  {
+    "id": "Acadia National Park (Me.)",
+    "label": "Acadia National Park (Me.)",
+    "frequency": 93
+  },
+  {
+    "id": "Snoqualmie National Forest (Wash.)",
+    "label": "Snoqualmie National Forest (Wash.)",
+    "frequency": 92
+  },
+  {
+    "id": "Umpqua National Forest (Or.)",
+    "label": "Umpqua National Forest (Or.)",
+    "frequency": 92
+  },
+  {
+    "id": "Flathead Indian Reservation (Mont.)",
+    "label": "Flathead Indian Reservation (Mont.)",
+    "frequency": 92
+  },
+  {
+    "id": "Erie, Lake",
+    "label": "Erie, Lake",
+    "frequency": 91
+  },
+  {
+    "id": "New York (N.Y.)",
+    "label": "New York (N.Y.)",
+    "frequency": 91
+  },
+  {
+    "id": "Edwards Aquifer (Tex.)",
+    "label": "Edwards Aquifer (Tex.)",
+    "frequency": 91
+  },
+  {
+    "id": "Gulf Coast (Tex.)",
+    "label": "Gulf Coast (Tex.)",
+    "frequency": 91
+  },
+  {
+    "id": "Coconino National Forest (Ariz.)",
+    "label": "Coconino National Forest (Ariz.)",
+    "frequency": 90
+  },
+  {
+    "id": "Green Mountain National Forest (Vt.)",
+    "label": "Green Mountain National Forest (Vt.)",
+    "frequency": 89
+  },
+  {
+    "id": "Gulf Coast (U.S.)",
+    "label": "Gulf Coast (U.S.)",
+    "frequency": 89
+  },
+  {
+    "id": "Wasatch National Forest (Utah and Wyo.)",
+    "label": "Wasatch National Forest (Utah and Wyo.)",
+    "frequency": 89
+  },
+  {
+    "id": "Aleutian Islands (Alaska)",
+    "label": "Aleutian Islands (Alaska)",
+    "frequency": 89
+  },
+  {
+    "id": "Blue Ridge Parkway (N.C. and Va.)",
+    "label": "Blue Ridge Parkway (N.C. and Va.)",
+    "frequency": 88
+  },
+  {
+    "id": "Tonto National Forest (Ariz.)",
+    "label": "Tonto National Forest (Ariz.)",
+    "frequency": 88
+  },
+  {
+    "id": "Shasta National Forest (Calif.)",
+    "label": "Shasta National Forest (Calif.)",
+    "frequency": 87
+  },
+  {
+    "id": "Chequamegon National Forest (Wis.)",
+    "label": "Chequamegon National Forest (Wis.)",
+    "frequency": 87
+  },
+  {
+    "id": "Atlantic Coast (Brazil)",
+    "label": "Atlantic Coast (Brazil)",
+    "frequency": 87
+  },
+  {
+    "id": "Atlantic Coast (Fla.)",
+    "label": "Atlantic Coast (Fla.)",
+    "frequency": 87
+  },
+  {
+    "id": "Mount Rainier National Park (Wash.)",
+    "label": "Mount Rainier National Park (Wash.)",
+    "frequency": 87
+  },
+  {
+    "id": "Toiyabe National Forest (Nev. and Calif.)",
+    "label": "Toiyabe National Forest (Nev. and Calif.)",
+    "frequency": 86
+  },
+  {
+    "id": "Tahoe National Forest (Calif.)",
+    "label": "Tahoe National Forest (Calif.)",
+    "frequency": 86
+  },
+  {
+    "id": "Gallatin National Forest (Mont.)",
+    "label": "Gallatin National Forest (Mont.)",
+    "frequency": 86
+  },
+  {
+    "id": "Japan, Sea of",
+    "label": "Japan, Sea of",
+    "frequency": 86
+  },
+  {
+    "id": "Nevada National Security Site (Nev.)",
+    "label": "Nevada National Security Site (Nev.)",
+    "frequency": 86
+  },
+  {
+    "id": "Baltic States",
+    "label": "Baltic States",
+    "frequency": 85
+  },
+  {
+    "id": "Fishlake National Forest (Utah)",
+    "label": "Fishlake National Forest (Utah)",
+    "frequency": 85
+  },
+  {
+    "id": "Atlantic Coast (N.C.)",
+    "label": "Atlantic Coast (N.C.)",
+    "frequency": 85
+  },
+  {
+    "id": "Indiana Dunes National Park (Ind.)",
+    "label": "Indiana Dunes National Park (Ind.)",
+    "frequency": 84
+  },
+  {
+    "id": "Olympic National Forest (Wash.)",
+    "label": "Olympic National Forest (Wash.)",
+    "frequency": 84
+  },
+  {
+    "id": "Malaysia",
+    "label": "Malaysia",
+    "frequency": 84
+  },
+  {
+    "id": "Rio Grande National Forest (Colo.)",
+    "label": "Rio Grande National Forest (Colo.)",
+    "frequency": 84
+  },
+  {
+    "id": "Arapaho National Forest (Colo.)",
+    "label": "Arapaho National Forest (Colo.)",
+    "frequency": 83
+  },
+  {
+    "id": "White Mountain National Forest (N.H. and Me.)",
+    "label": "White Mountain National Forest (N.H. and Me.)",
+    "frequency": 83
+  },
+  {
+    "id": "Trinity National Forest (Calif.)",
+    "label": "Trinity National Forest (Calif.)",
+    "frequency": 83
+  },
+  {
+    "id": "Oceania",
+    "label": "Oceania",
+    "frequency": 83
+  },
+  {
+    "id": "Shawnee National Forest (Ill.)",
+    "label": "Shawnee National Forest (Ill.)",
+    "frequency": 83
+  },
+  {
+    "id": "Deschutes National Forest (Or.)",
+    "label": "Deschutes National Forest (Or.)",
+    "frequency": 83
+  },
+  {
+    "id": "Singapore",
+    "label": "Singapore",
+    "frequency": 82
+  },
+  {
+    "id": "Bighorn National Forest (Wyo.)",
+    "label": "Bighorn National Forest (Wyo.)",
+    "frequency": 82
+  },
+  {
+    "id": "Gettysburg National Military Park (Pa.)",
+    "label": "Gettysburg National Military Park (Pa.)",
+    "frequency": 82
+  },
+  {
+    "id": "Norway",
+    "label": "Norway",
+    "frequency": 81
+  },
+  {
+    "id": "Costa Rica",
+    "label": "Costa Rica",
+    "frequency": 81
+  },
+  {
+    "id": "Salmon National Forest (Idaho)",
+    "label": "Salmon National Forest (Idaho)",
+    "frequency": 81
+  },
+  {
+    "id": "Cache National Forest (Utah and Idaho)",
+    "label": "Cache National Forest (Utah and Idaho)",
+    "frequency": 81
+  },
+  {
+    "id": "Sierra National Forest (Calif.)",
+    "label": "Sierra National Forest (Calif.)",
+    "frequency": 80
+  },
+  {
+    "id": "Finland",
+    "label": "Finland",
+    "frequency": 80
+  },
+  {
+    "id": "Puget Sound (Wash.)",
+    "label": "Puget Sound (Wash.)",
+    "frequency": 80
+  },
+  {
+    "id": "Manti-La Sal National Forest (Utah and Colo.)",
+    "label": "Manti-La Sal National Forest (Utah and Colo.)",
+    "frequency": 80
+  },
+  {
+    "id": "Black Hills National Forest (S.D. and Wyo.)",
+    "label": "Black Hills National Forest (S.D. and Wyo.)",
+    "frequency": 79
+  },
+  {
+    "id": "Maine, Gulf of",
+    "label": "Maine, Gulf of",
+    "frequency": 79
+  },
+  {
+    "id": "Routt National Forest (Colo.)",
+    "label": "Routt National Forest (Colo.)",
+    "frequency": 79
+  },
+  {
+    "id": "Arctic Regions",
+    "label": "Arctic Regions",
+    "frequency": 79
+  },
+  {
+    "id": "National Petroleum Reserve (Alaska)",
+    "label": "National Petroleum Reserve (Alaska)",
+    "frequency": 79
+  },
+  {
+    "id": "Bridger National Forest (Wyo.)",
+    "label": "Bridger National Forest (Wyo.)",
+    "frequency": 78
+  },
+  {
+    "id": "Algeria",
+    "label": "Algeria",
+    "frequency": 78
+  },
+  {
+    "id": "Mongolia",
+    "label": "Mongolia",
+    "frequency": 78
+  },
+  {
+    "id": "Kootenai National Forest (Mont. and Idaho)",
+    "label": "Kootenai National Forest (Mont. and Idaho)",
+    "frequency": 78
+  },
+  {
+    "id": "Pike National Forest (Colo.)",
+    "label": "Pike National Forest (Colo.)",
+    "frequency": 78
+  },
+  {
+    "id": "Cuyahoga Valley National Park (Ohio)",
+    "label": "Cuyahoga Valley National Park (Ohio)",
+    "frequency": 78
+  },
+  {
+    "id": "Kuwait",
+    "label": "Kuwait",
+    "frequency": 77
+  },
+  {
+    "id": "Uganda",
+    "label": "Uganda",
+    "frequency": 77
+  },
+  {
+    "id": "Cook Inlet (Alaska)",
+    "label": "Cook Inlet (Alaska)",
+    "frequency": 77
+  },
+  {
+    "id": "Columbia River Watershed",
+    "label": "Columbia River Watershed",
+    "frequency": 77
+  },
+  {
+    "id": "Atlantic Coast (Mass.)",
+    "label": "Atlantic Coast (Mass.)",
+    "frequency": 77
+  },
+  {
+    "id": "Sweden",
+    "label": "Sweden",
+    "frequency": 76
+  },
+  {
+    "id": "Eurasia",
+    "label": "Eurasia",
+    "frequency": 76
+  },
+  {
+    "id": "Coronado National Forest (Ariz. and N.M.)",
+    "label": "Coronado National Forest (Ariz. and N.M.)",
+    "frequency": 76
+  },
+  {
+    "id": "Colorado River Watershed (Colo.-Mexico)",
+    "label": "Colorado River Watershed (Colo.-Mexico)",
+    "frequency": 76
+  },
+  {
+    "id": "Nantahala National Forest (N.C.)",
+    "label": "Nantahala National Forest (N.C.)",
+    "frequency": 76
+  },
+  {
+    "id": "Western Hemisphere",
+    "label": "Western Hemisphere",
+    "frequency": 76
+  },
+  {
+    "id": "Gunnison National Forest (Colo.)",
+    "label": "Gunnison National Forest (Colo.)",
+    "frequency": 75
+  },
+  {
+    "id": "Hoover Dam (Ariz. and Nev.)",
+    "label": "Hoover Dam (Ariz. and Nev.)",
+    "frequency": 75
+  },
+  {
+    "id": "Tanzania",
+    "label": "Tanzania",
+    "frequency": 75
+  },
+  {
+    "id": "Beaufort Sea",
+    "label": "Beaufort Sea",
+    "frequency": 75
+  },
+  {
+    "id": "Chukchi Sea",
+    "label": "Chukchi Sea",
+    "frequency": 74
+  },
+  {
+    "id": "Paraguay",
+    "label": "Paraguay",
+    "frequency": 74
+  },
+  {
+    "id": "Targhee National Forest (Idaho and Wyo.)",
+    "label": "Targhee National Forest (Idaho and Wyo.)",
+    "frequency": 74
+  },
+  {
+    "id": "Whitman National Forest (Or.)",
+    "label": "Whitman National Forest (Or.)",
+    "frequency": 74
+  },
+  {
+    "id": "Ghana",
+    "label": "Ghana",
+    "frequency": 73
+  },
+  {
+    "id": "Atlantic Intracoastal Waterway",
+    "label": "Atlantic Intracoastal Waterway",
+    "frequency": 73
+  },
+  {
+    "id": "Senegal",
+    "label": "Senegal",
+    "frequency": 73
+  },
+  {
+    "id": "Colonial National Historical Park (Va.)",
+    "label": "Colonial National Historical Park (Va.)",
+    "frequency": 73
+  },
+  {
+    "id": "Red Sea",
+    "label": "Red Sea",
+    "frequency": 73
+  },
+  {
+    "id": "Azerbaijan",
+    "label": "Azerbaijan",
+    "frequency": 73
+  },
+  {
+    "id": "Siuslaw National Forest (Or.)",
+    "label": "Siuslaw National Forest (Or.)",
+    "frequency": 72
+  },
+  {
+    "id": "Belgium",
+    "label": "Belgium",
+    "frequency": 72
+  },
+  {
+    "id": "Fremont National Forest (Or.)",
+    "label": "Fremont National Forest (Or.)",
+    "frequency": 72
+  },
+  {
+    "id": "Jefferson National Forest",
+    "label": "Jefferson National Forest",
+    "frequency": 72
+  },
+  {
+    "id": "Kazakhstan",
+    "label": "Kazakhstan",
+    "frequency": 72
+  },
+  {
+    "id": "Crater Lake National Park (Or.)",
+    "label": "Crater Lake National Park (Or.)",
+    "frequency": 71
+  },
+  {
+    "id": "Uruguay",
+    "label": "Uruguay",
+    "frequency": 71
+  },
+  {
+    "id": "Grand Coulee Dam (Wash.)",
+    "label": "Grand Coulee Dam (Wash.)",
+    "frequency": 71
+  },
+  {
+    "id": "Glen Canyon Dam (Ariz.)",
+    "label": "Glen Canyon Dam (Ariz.)",
+    "frequency": 71
+  },
+  {
+    "id": "Ohio River Watershed",
+    "label": "Ohio River Watershed",
+    "frequency": 71
+  },
+  {
+    "id": "Boise National Forest (Idaho)",
+    "label": "Boise National Forest (Idaho)",
+    "frequency": 71
+  },
+  {
+    "id": "Atlantic Coast (U.S.)",
+    "label": "Atlantic Coast (U.S.)",
+    "frequency": 71
+  },
+  {
+    "id": "Statue of Liberty National Monument (N.Y. and N.J.)",
+    "label": "Statue of Liberty National Monument (N.Y. and N.J.)",
+    "frequency": 70
+  },
+  {
+    "id": "Joshua Tree National Park (Calif.)",
+    "label": "Joshua Tree National Park (Calif.)",
+    "frequency": 70
+  },
+  {
+    "id": "Solar system",
+    "label": "Solar system",
+    "frequency": 70
+  },
+  {
+    "id": "Polar regions",
+    "label": "Polar regions",
+    "frequency": 70
+  },
+  {
+    "id": "Arctic National Wildlife Refuge (Alaska)",
+    "label": "Arctic National Wildlife Refuge (Alaska)",
+    "frequency": 70
+  },
+  {
+    "id": "Africa, Southern",
+    "label": "Africa, Southern",
+    "frequency": 69
+  },
+  {
+    "id": "Namibia",
+    "label": "Namibia",
+    "frequency": 69
+  },
+  {
+    "id": "Death Valley National Park (Calif. and Nev.)",
+    "label": "Death Valley National Park (Calif. and Nev.)",
+    "frequency": 69
+  },
+  {
+    "id": "Bitterroot National Forest (Mont. and Idaho)",
+    "label": "Bitterroot National Forest (Mont. and Idaho)",
+    "frequency": 69
+  },
+  {
+    "id": "Helena National Forest (Mont.)",
+    "label": "Helena National Forest (Mont.)",
+    "frequency": 69
+  },
+  {
+    "id": "San Juan National Forest (Colo.)",
+    "label": "San Juan National Forest (Colo.)",
+    "frequency": 68
+  },
+  {
+    "id": "California, Southern",
+    "label": "California, Southern",
+    "frequency": 68
+  },
+  {
+    "id": "Deerlodge National Forest (Mont.)",
+    "label": "Deerlodge National Forest (Mont.)",
+    "frequency": 68
+  },
+  {
+    "id": "Florida, Straits of",
+    "label": "Florida, Straits of",
+    "frequency": 68
+  },
+  {
+    "id": "Inland Sea (Japan)",
+    "label": "Inland Sea (Japan)",
+    "frequency": 68
+  },
+  {
+    "id": "Atlantic Coast (S.C.)",
+    "label": "Atlantic Coast (S.C.)",
+    "frequency": 68
+  },
+  {
+    "id": "Mesa Verde National Park (Colo.)",
+    "label": "Mesa Verde National Park (Colo.)",
+    "frequency": 68
+  },
+  {
+    "id": "Ontario, Lake (N.Y. and Ont.)",
+    "label": "Ontario, Lake (N.Y. and Ont.)",
+    "frequency": 67
+  },
+  {
+    "id": "Everglades National Park (Fla.)",
+    "label": "Everglades National Park (Fla.)",
+    "frequency": 67
+  },
+  {
+    "id": "Germany (East)",
+    "label": "Germany (East)",
+    "frequency": 67
+  },
+  {
+    "id": "Sitgreaves National Forest (Ariz.)",
+    "label": "Sitgreaves National Forest (Ariz.)",
+    "frequency": 67
+  },
+  {
+    "id": "Stanislaus National Forest (Calif.)",
+    "label": "Stanislaus National Forest (Calif.)",
+    "frequency": 67
+  },
+  {
+    "id": "Manistee National Forest (Mich.)",
+    "label": "Manistee National Forest (Mich.)",
+    "frequency": 67
+  },
+  {
+    "id": "Philippine Sea",
+    "label": "Philippine Sea",
+    "frequency": 67
+  },
+  {
+    "id": "Atlantic Coast (N.J.)",
+    "label": "Atlantic Coast (N.J.)",
+    "frequency": 67
+  },
+  {
+    "id": "Turkmenistan",
+    "label": "Turkmenistan",
+    "frequency": 67
+  },
+  {
+    "id": "Palestinian National Authority",
+    "label": "Palestinian National Authority",
+    "frequency": 67
+  },
+  {
+    "id": "Jamaica",
+    "label": "Jamaica",
+    "frequency": 66
+  },
+  {
+    "id": "Uinta National Forest (Utah)",
+    "label": "Uinta National Forest (Utah)",
+    "frequency": 66
+  },
+  {
+    "id": "Washington (D.C.) Metropolitan Area",
+    "label": "Washington (D.C.) Metropolitan Area",
+    "frequency": 66
+  },
+  {
+    "id": "Africa, West",
+    "label": "Africa, West",
+    "frequency": 65
+  },
+  {
+    "id": "Superior, Lake",
+    "label": "Superior, Lake",
+    "frequency": 65
+  },
+  {
+    "id": "Mozambique",
+    "label": "Mozambique",
+    "frequency": 65
+  },
+  {
+    "id": "Powder River Basin (Wyo. and Mont.)",
+    "label": "Powder River Basin (Wyo. and Mont.)",
+    "frequency": 65
+  },
+  {
+    "id": "Sierra Leone",
+    "label": "Sierra Leone",
+    "frequency": 65
+  },
+  {
+    "id": "Mauritania",
+    "label": "Mauritania",
+    "frequency": 65
+  },
+  {
+    "id": "Nicolet National Forest (Wis.)",
+    "label": "Nicolet National Forest (Wis.)",
+    "frequency": 65
+  },
+  {
+    "id": "Chad",
+    "label": "Chad",
+    "frequency": 65
+  },
+  {
+    "id": "Islands of the Pacific",
+    "label": "Islands of the Pacific",
+    "frequency": 65
+  },
+  {
+    "id": "Southwest, New",
+    "label": "Southwest, New",
+    "frequency": 65
+  },
+  {
+    "id": "Coahuila (Mexico : State)",
+    "label": "Coahuila (Mexico : State)",
+    "frequency": 65
+  },
+  {
+    "id": "Montenegro",
+    "label": "Montenegro",
+    "frequency": 65
+  },
+  {
+    "id": "San Bernardino National Forest (Calif.)",
+    "label": "San Bernardino National Forest (Calif.)",
+    "frequency": 65
+  },
+  {
+    "id": "Switzerland",
+    "label": "Switzerland",
+    "frequency": 64
+  },
+  {
+    "id": "Austria",
+    "label": "Austria",
+    "frequency": 64
+  },
+  {
+    "id": "Gateway National Recreation Area (N.J. and N.Y.)",
+    "label": "Gateway National Recreation Area (N.J. and N.Y.)",
+    "frequency": 64
+  },
+  {
+    "id": "Ouachita National Forest (Ark. and Okla.)",
+    "label": "Ouachita National Forest (Ark. and Okla.)",
+    "frequency": 64
+  },
+  {
+    "id": "Hells Canyon National Recreation Area (Or. and Idaho)",
+    "label": "Hells Canyon National Recreation Area (Or. and Idaho)",
+    "frequency": 64
+  },
+  {
+    "id": "Northern Ireland",
+    "label": "Northern Ireland",
+    "frequency": 63
+  },
+  {
+    "id": "Voyageurs National Park (Minn.)",
+    "label": "Voyageurs National Park (Minn.)",
+    "frequency": 63
+  },
+  {
+    "id": "Six Rivers National Forest (Calif.)",
+    "label": "Six Rivers National Forest (Calif.)",
+    "frequency": 63
+  },
+  {
+    "id": "Pacific Coast (Wash.)",
+    "label": "Pacific Coast (Wash.)",
+    "frequency": 63
+  },
+  {
+    "id": "Croatia",
+    "label": "Croatia",
+    "frequency": 63
+  },
+  {
+    "id": "Uzbekistan",
+    "label": "Uzbekistan",
+    "frequency": 63
+  },
+  {
+    "id": "Hawaii Volcanoes National Park (Hawaii)",
+    "label": "Hawaii Volcanoes National Park (Hawaii)",
+    "frequency": 62
+  },
+  {
+    "id": "Guyana",
+    "label": "Guyana",
+    "frequency": 62
+  },
+  {
+    "id": "Mendocino National Forest (Calif.)",
+    "label": "Mendocino National Forest (Calif.)",
+    "frequency": 62
+  },
+  {
+    "id": "Cameroon",
+    "label": "Cameroon",
+    "frequency": 62
+  },
+  {
+    "id": "Hidalgo County (Tex.)",
+    "label": "Hidalgo County (Tex.)",
+    "frequency": 62
+  },
+  {
+    "id": "Rocky Mountains",
+    "label": "Rocky Mountains",
+    "frequency": 61
+  },
+  {
+    "id": "Chesapeake and Ohio Canal National Historical Park",
+    "label": "Chesapeake and Ohio Canal National Historical Park",
+    "frequency": 61
+  },
+  {
+    "id": "Cape Hatteras National Seashore (N.C.)",
+    "label": "Cape Hatteras National Seashore (N.C.)",
+    "frequency": 61
+  },
+  {
+    "id": "Ireland",
+    "label": "Ireland",
+    "frequency": 61
+  },
+  {
+    "id": "Zion National Park (Utah)",
+    "label": "Zion National Park (Utah)",
+    "frequency": 61
+  },
+  {
+    "id": "George Washington National Forest (Va. and W. Va.)",
+    "label": "George Washington National Forest (Va. and W. Va.)",
+    "frequency": 61
+  },
+  {
+    "id": "Saint Joe National Forest (Idaho)",
+    "label": "Saint Joe National Forest (Idaho)",
+    "frequency": 61
+  },
+  {
+    "id": "Galveston Bay (Tex.)",
+    "label": "Galveston Bay (Tex.)",
+    "frequency": 61
+  },
+  {
+    "id": "Chesapeake Bay Watershed",
+    "label": "Chesapeake Bay Watershed",
+    "frequency": 61
+  },
+  {
+    "id": "Indo-Pacific Region",
+    "label": "Indo-Pacific Region",
+    "frequency": 61
+  },
+  {
+    "id": "Cape Cod National Seashore (Mass.)",
+    "label": "Cape Cod National Seashore (Mass.)",
+    "frequency": 60
+  },
+  {
+    "id": "Cleveland National Forest (Calif.)",
+    "label": "Cleveland National Forest (Calif.)",
+    "frequency": 60
+  },
+  {
+    "id": "Oman",
+    "label": "Oman",
+    "frequency": 60
+  },
+  {
+    "id": "Hot Springs National Park (Hot Springs, Ark.)",
+    "label": "Hot Springs National Park (Hot Springs, Ark.)",
+    "frequency": 60
+  },
+  {
+    "id": "Pacific Coast (Chile)",
+    "label": "Pacific Coast (Chile)",
+    "frequency": 60
+  },
+  {
+    "id": "Tibet Autonomous Region (China)",
+    "label": "Tibet Autonomous Region (China)",
+    "frequency": 60
+  },
+  {
+    "id": "Denmark",
+    "label": "Denmark",
+    "frequency": 59
+  },
+  {
+    "id": "Rio Grande (Colo.-Mexico and Tex.)",
+    "label": "Rio Grande (Colo.-Mexico and Tex.)",
+    "frequency": 59
+  },
+  {
+    "id": "Delaware River (N.Y.-Del. and N.J.)",
+    "label": "Delaware River (N.Y.-Del. and N.J.)",
+    "frequency": 59
+  },
+  {
+    "id": "Kyrgyzstan",
+    "label": "Kyrgyzstan",
+    "frequency": 59
+  },
+  {
+    "id": "White Sands National Park (N.M.)",
+    "label": "White Sands National Park (N.M.)",
+    "frequency": 59
+  },
+  {
+    "id": "Huron, Lake (Mich. and Ont.)",
+    "label": "Huron, Lake (Mich. and Ont.)",
+    "frequency": 58
+  },
+  {
+    "id": "Big Bend National Park (Tex.)",
+    "label": "Big Bend National Park (Tex.)",
+    "frequency": 58
+  }
+]

@@ -1,0 +1,252 @@
+[
+  {
+    "id": "KF",
+    "label": "KF",
+    "frequency": 122484
+  },
+  {
+    "id": "HD",
+    "label": "HD",
+    "frequency": 10483
+  },
+  {
+    "id": "G",
+    "label": "G",
+    "frequency": 5633
+  },
+  {
+    "id": "QE",
+    "label": "QE",
+    "frequency": 5031
+  },
+  {
+    "id": "TN",
+    "label": "TN",
+    "frequency": 4526
+  },
+  {
+    "id": "GB",
+    "label": "GB",
+    "frequency": 4407
+  },
+  {
+    "id": "QC",
+    "label": "QC",
+    "frequency": 4225
+  },
+  {
+    "id": "TD",
+    "label": "TD",
+    "frequency": 3490
+  },
+  {
+    "id": "HV",
+    "label": "HV",
+    "frequency": 3416
+  },
+  {
+    "id": "Z",
+    "label": "Z",
+    "frequency": 3346
+  },
+  {
+    "id": "RA",
+    "label": "RA",
+    "frequency": 2912
+  },
+  {
+    "id": "QL",
+    "label": "QL",
+    "frequency": 2827
+  },
+  {
+    "id": "SD",
+    "label": "SD",
+    "frequency": 2507
+  },
+  {
+    "id": "HE",
+    "label": "HE",
+    "frequency": 1988
+  },
+  {
+    "id": "TL",
+    "label": "TL",
+    "frequency": 1835
+  },
+  {
+    "id": "S",
+    "label": "S",
+    "frequency": 1683
+  },
+  {
+    "id": "HC",
+    "label": "HC",
+    "frequency": 1683
+  },
+  {
+    "id": "E",
+    "label": "E",
+    "frequency": 1635
+  },
+  {
+    "id": "HA",
+    "label": "HA",
+    "frequency": 1628
+  },
+  {
+    "id": "UA",
+    "label": "UA",
+    "frequency": 1537
+  },
+  {
+    "id": "JK",
+    "label": "JK",
+    "frequency": 1518
+  },
+  {
+    "id": "QH",
+    "label": "QH",
+    "frequency": 1419
+  },
+  {
+    "id": "HF",
+    "label": "HF",
+    "frequency": 1368
+  },
+  {
+    "id": "F",
+    "label": "F",
+    "frequency": 1355
+  },
+  {
+    "id": "LB",
+    "label": "LB",
+    "frequency": 1262
+  },
+  {
+    "id": "HG",
+    "label": "HG",
+    "frequency": 1239
+  },
+  {
+    "id": "DS",
+    "label": "DS",
+    "frequency": 1168
+  },
+  {
+    "id": "RC",
+    "label": "RC",
+    "frequency": 1146
+  },
+  {
+    "id": "TK",
+    "label": "TK",
+    "frequency": 1093
+  },
+  {
+    "id": "HJ",
+    "label": "HJ",
+    "frequency": 1091
+  },
+  {
+    "id": "UG",
+    "label": "UG",
+    "frequency": 1034
+  },
+  {
+    "id": "U",
+    "label": "U",
+    "frequency": 1003
+  },
+  {
+    "id": "TA",
+    "label": "TA",
+    "frequency": 935
+  },
+  {
+    "id": "SB",
+    "label": "SB",
+    "frequency": 893
+  },
+  {
+    "id": "D",
+    "label": "D",
+    "frequency": 790
+  },
+  {
+    "id": "UB",
+    "label": "UB",
+    "frequency": 780
+  },
+  {
+    "id": "TC",
+    "label": "TC",
+    "frequency": 761
+  },
+  {
+    "id": "LC",
+    "label": "LC",
+    "frequency": 711
+  },
+  {
+    "id": "QK",
+    "label": "QK",
+    "frequency": 695
+  },
+  {
+    "id": "SH",
+    "label": "SH",
+    "frequency": 675
+  },
+  {
+    "id": "TH",
+    "label": "TH",
+    "frequency": 597
+  },
+  {
+    "id": "Q",
+    "label": "Q",
+    "frequency": 546
+  },
+  {
+    "id": "QA",
+    "label": "QA",
+    "frequency": 517
+  },
+  {
+    "id": "UC",
+    "label": "UC",
+    "frequency": 515
+  },
+  {
+    "id": "QB",
+    "label": "QB",
+    "frequency": 511
+  },
+  {
+    "id": "T",
+    "label": "T",
+    "frequency": 492
+  },
+  {
+    "id": "GC",
+    "label": "GC",
+    "frequency": 472
+  },
+  {
+    "id": "JX",
+    "label": "JX",
+    "frequency": 467
+  },
+  {
+    "id": "TJ",
+    "label": "TJ",
+    "frequency": 462
+  },
+  {
+    "id": "HB",
+    "label": "HB",
+    "frequency": 447
+  }
+]

@@ -1,0 +1,127 @@
+[
+  {
+    "id": "K",
+    "label": "Law",
+    "frequency": 123717
+  },
+  {
+    "id": "H",
+    "label": "Social Sciences",
+    "frequency": 24289
+  },
+  {
+    "id": "Q",
+    "label": "Science",
+    "frequency": 16208
+  },
+  {
+    "id": "T",
+    "label": "Technology",
+    "frequency": 15631
+  },
+  {
+    "id": "G",
+    "label": "Geography, Anthropology, Recreation",
+    "frequency": 11073
+  },
+  {
+    "id": "S",
+    "label": "Agriculture",
+    "frequency": 6326
+  },
+  {
+    "id": "U",
+    "label": "Military Science",
+    "frequency": 5272
+  },
+  {
+    "id": "R",
+    "label": "Medicine",
+    "frequency": 5181
+  },
+  {
+    "id": "Z",
+    "label": "Bibliography, Library Science",
+    "frequency": 3358
+  },
+  {
+    "id": "J",
+    "label": "Political Science",
+    "frequency": 2988
+  },
+  {
+    "id": "D",
+    "label": "World History (except America)",
+    "frequency": 2800
+  },
+  {
+    "id": "L",
+    "label": "Education",
+    "frequency": 2398
+  },
+  {
+    "id": "V",
+    "label": "Naval Science",
+    "frequency": 1851
+  },
+  {
+    "id": "E",
+    "label": "History of the Americas (United States)",
+    "frequency": 1637
+  },
+  {
+    "id": "F",
+    "label": "History of the Americas (Canada, Latin America)",
+    "frequency": 1355
+  },
+  {
+    "id": "N",
+    "label": "Fine Arts",
+    "frequency": 611
+  },
+  {
+    "id": "P",
+    "label": "Language and Literature",
+    "frequency": 522
+  },
+  {
+    "id": "I",
+    "label": "I",
+    "frequency": 406
+  },
+  {
+    "id": "C",
+    "label": "Auxiliary Sciences of History",
+    "frequency": 375
+  },
+  {
+    "id": "A",
+    "label": "General Works",
+    "frequency": 176
+  },
+  {
+    "id": "B",
+    "label": "Philosophy, Psychology, Religion",
+    "frequency": 156
+  },
+  {
+    "id": "M",
+    "label": "Music",
+    "frequency": 103
+  },
+  {
+    "id": "O",
+    "label": "O",
+    "frequency": 3
+  },
+  {
+    "id": "Y",
+    "label": "Y",
+    "frequency": 3
+  },
+  {
+    "id": "X",
+    "label": "X",
+    "frequency": 1
+  }
+]

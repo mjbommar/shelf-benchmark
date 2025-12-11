@@ -1,0 +1,453 @@
+"""
+Pure LC-Based Taxonomy for Benchmarking
+
+Uses ONLY Library of Congress data:
+- LCGFT (Genre/Form Terms) for document types
+- LCC (Classification) for subject domains
+- LCSH (Subject Headings) for topics
+- LCDGT (Demographic Group Terms) for audiences
+
+No custom categories - everything derived from LC vocabularies.
+"""
+
+from enum import Enum
+from pydantic import BaseModel, Field
+
+
+# =============================================================================
+# LCC - Library of Congress Classification (21 main classes)
+# =============================================================================
+
+class LCCClass(str, Enum):
+    """LCC Main Classes - 21 subject domains."""
+
+    A = "A"   # General Works
+    B = "B"   # Philosophy, Psychology, Religion
+    C = "C"   # Auxiliary Sciences of History
+    D = "D"   # World History (except Americas)
+    E = "E"   # History of the Americas (general, US)
+    F = "F"   # History of the Americas (local)
+    G = "G"   # Geography, Anthropology, Recreation
+    H = "H"   # Social Sciences
+    J = "J"   # Political Science
+    K = "K"   # Law
+    L = "L"   # Education
+    M = "M"   # Music
+    N = "N"   # Fine Arts
+    P = "P"   # Language and Literature
+    Q = "Q"   # Science
+    R = "R"   # Medicine
+    S = "S"   # Agriculture
+    T = "T"   # Technology
+    U = "U"   # Military Science
+    V = "V"   # Naval Science
+    Z = "Z"   # Bibliography, Library Science
+
+
+LCC_NAMES = {
+    LCCClass.A: "General Works",
+    LCCClass.B: "Philosophy, Psychology, Religion",
+    LCCClass.C: "Auxiliary Sciences of History",
+    LCCClass.D: "World History (except Americas)",
+    LCCClass.E: "History of the Americas (general, US)",
+    LCCClass.F: "History of the Americas (local)",
+    LCCClass.G: "Geography, Anthropology, Recreation",
+    LCCClass.H: "Social Sciences",
+    LCCClass.J: "Political Science",
+    LCCClass.K: "Law",
+    LCCClass.L: "Education",
+    LCCClass.M: "Music",
+    LCCClass.N: "Fine Arts",
+    LCCClass.P: "Language and Literature",
+    LCCClass.Q: "Science",
+    LCCClass.R: "Medicine",
+    LCCClass.S: "Agriculture",
+    LCCClass.T: "Technology",
+    LCCClass.U: "Military Science",
+    LCCClass.V: "Naval Science",
+    LCCClass.Z: "Bibliography, Library Science",
+}
+
+
+# =============================================================================
+# LCGFT - Top-level Genre/Form Categories (from id.loc.gov)
+# =============================================================================
+
+class LCGFTCategory(str, Enum):
+    """LCGFT Top-Level Categories - 23 document type categories."""
+
+    INFORMATIONAL_WORKS = "Informational works"
+    LAW_MATERIALS = "Law materials"
+    INSTRUCTIONAL_EDUCATIONAL = "Instructional and educational works"
+    SOUND_RECORDINGS = "Sound recordings"
+    DISCURSIVE_WORKS = "Discursive works"
+    EPHEMERA = "Ephemera"
+    LITERATURE = "Literature"
+    RELIGIOUS_MATERIALS = "Religious materials"
+    MUSIC = "Music"
+    VISUAL_WORKS = "Visual works"
+    DERIVATIVE_WORKS = "Derivative works"
+    COMMEMORATIVE_WORKS = "Commemorative works"
+    CARTOGRAPHIC_MATERIALS = "Cartographic materials"
+    CREATIVE_NONFICTION = "Creative nonfiction"
+    DANCE = "Dance"
+    TACTILE_WORKS = "Tactile works"
+    RECREATIONAL_WORKS = "Recreational works"
+    RADIO_INTERVIEWS = "Radio interviews"
+    ELEGIES = "Elegies"
+    LARGE_PRINT_BOOKS = "Large print books"
+    MANUSCRIPTS = "Manuscripts"
+    INCUNABULA = "Incunabula"
+
+
+# LCGFT children for each top-level category (from id.loc.gov hierarchy)
+LCGFT_CHILDREN: dict[str, list[str]] = {
+    "Informational works": [
+        "Abstracts", "Academic theses", "Administrative decisions", "Administrative regulations",
+        "Aerial photographs", "Annals and chronicles", "Apologetic writings", "Archaeological surveys",
+        "Attorneys general's opinions", "Audio guides", "Biographies", "Blank forms", "Blogs",
+        "Botanical surveys", "Broadsides", "Cartographic materials for people with visual disabilities",
+        "Case studies", "Claims", "Classifications", "Codes (Jewish law)", "Codices (Law)",
+        "Community affairs radio programs", "Conference materials", "Conference papers and proceedings",
+        "Constitutions", "Counterfactual histories", "Court decisions and opinions", "Court rules",
+        "Credit titles", "Cross-cultural studies", "Customary laws", "Data sets", "Databases",
+        "Demographic surveys", "Dockets", "Documentary photographs", "Ephemerides", "Essays",
+        "Ethnographies", "Executive orders", "Family histories", "Fingering charts", "Fishing surveys",
+        "Flip charts", "Floor plans", "Geographic information systems", "Geological cross-sections",
+        "Geological posters", "Graphs", "Health surveys", "Horoscopes", "Hunting surveys",
+        "Infographics", "Introductory works", "Job descriptions", "Law digests", "Legislative histories",
+        "Legislative materials", "Local histories", "Longitudinal studies", "Magazine format radio programs",
+        "Magazine format television programs", "Manifestos", "Maps", "Menus", "Military regulations",
+        "Models (Representations)", "Music criticism and reviews", "Newsreels", "Official gazettes",
+        "Online discussion forums", "Online news", "Orders in council", "Personal narratives",
+        "Phonetic transcriptions", "Plot summaries", "Policy briefs", "Posters", "Prefatory works",
+        "Press releases", "Primary sources", "Proclamations", "Programs (Publications)",
+        "Promotional materials", "Prophecies", "Prospectuses", "Public affairs radio programs",
+        "Public affairs television programs", "Public health posters", "Public health surveillance reports",
+        "Public opinion polls", "Public service radio programs", "Public service television programs",
+        "Questionnaires", "Radio announcements", "Radio docudramas", "Radio news bulletins",
+        "Radio news programs", "Radio station identifications", "Radio underwriting announcements",
+        "Radiosonde observations", "Rawinsonde observations", "Records (Documents)", "Records and briefs",
+        "Reference works", "Regimental histories", "Registers (Lists)", "Remote-sensing images",
+        "Resolutions (Law)", "Responsa (Jewish law)", "Reviews", "Scorecards", "Serial publications",
+        "Social problem films", "Social problem television programs", "Software", "Soil surveys",
+        "Special events radio coverage", "Special events television coverage", "Statutes and codes",
+        "Technical reports", "Television news programs", "Theater announcements (Motion pictures)",
+        "Traffic surveys", "Travaux préparatoires (Treaties)", "Travelogues (Motion pictures)",
+        "Travelogues (Radio programs)", "Travelogues (Television programs)", "Uniform laws", "Views",
+        "Visitor surveys", "Wall charts", "Web archives", "Wheel charts", "Wildlife posters",
+        "Wildlife recovery plans", "Year books (English law reports)", "Zoological surveys",
+    ],
+    "Law materials": [
+        "Administrative decisions", "Administrative regulations", "Attorneys general's opinions",
+        "Bar journals", "Casebooks (Law)", "Citators", "Claims", "Codes (Jewish law)", "Codices (Law)",
+        "Concordats", "Consilia", "Constitutional convention materials", "Constitutions",
+        "Court decisions and opinions", "Court rules", "Courtroom art", "Customary laws", "Dockets",
+        "Executive orders", "Fatwas", "Hornbooks (Law)", "Indulgences (Canon law)",
+        "Intergovernmental agreements", "Judicial statistics", "Jury instructions", "Law commentaries",
+        "Law digests", "Law for laypersons", "Law reviews", "Legal forms", "Legal instruments",
+        "Legal maxims", "Legislative histories", "Legislative materials", "Loose-leaf services",
+        "Military regulations", "Model acts", "Official gazettes", "Orders in council",
+        "Privileges and immunities", "Proclamations", "Records and briefs", "Repertories (Law)",
+        "Resolutions (Law)", "Responsa (Jewish law)", "Restatements of the law", "Statutes and codes",
+        "Travaux préparatoires (Treaties)", "Treaties", "Trial and arbitral proceedings", "Uniform laws",
+        "Year books (English law reports)",
+    ],
+    "Instructional and educational works": [
+        "Allegories", "Catechisms", "Cookbooks", "Course materials", "Devotional literature",
+        "Didactic drama", "Didactic fiction", "Didactic poetry", "Educational comics",
+        "Educational films", "Educational games", "Educational radio programs",
+        "Educational television programs", "Examinations", "Exempla", "FAQs", "Handbooks and manuals",
+        "Hornbooks (Law)", "Installation guides (Exhibition documentation)", "Instructional comics",
+        "Instructional films", "Instructional radio programs", "Instructional television programs",
+        "Introductory works", "Jury instructions", "Lectures", "Lesson plans",
+        "Manipulatives (Education)", "Model acts", "Outlines and syllabi", "Pattern books",
+        "Patterns (Instructional works)", "Phonetic transcriptions", "Phrase books",
+        "Problems and exercises", "Recipes", "Safety posters", "Self-help publications",
+        "Self-instructional works", "Study guides", "Teaching pieces (Music)", "Textbooks",
+        "Tracts (Ephemera)", "Writing prompts",
+    ],
+    "Sound recordings": [
+        "Aircraft sounds", "Alternate takes (Sound recordings)", "Ambient sounds",
+        "Audio equipment test recordings", "Audio guides", "Audio interactive games", "Audiobooks",
+        "Award presentations (Sound recordings)", "Bootlegs (Sound recordings)",
+        "Children's sound recordings", "City sounds", "Cover versions", "Demo recordings",
+        "Field recordings", "Film soundtracks", "Household sounds", "Human sounds", "Image albums",
+        "Live sound recordings", "Machinery sounds", "Medical sounds", "Mixtapes", "Motor vehicle sounds",
+        "Nature sounds", "Office sounds", "Original cast recordings", "Personal recordings",
+        "Picture discs (Sound recordings)", "Podcasts", "Poetry readings (Sound recordings)",
+        "Radio programs", "Railroad sounds", "Recorded accompaniments", "Remixes (Music)",
+        "Sampler albums (Sound recordings)", "Sound effects recordings", "Studio recordings",
+        "Television soundtracks", "Test pressings (Sound recordings)", "Visual albums", "Workshop sounds",
+    ],
+    "Discursive works": [
+        "Art criticism", "Business correspondence", "Commentaries", "Consilia", "Debates", "Editorials",
+        "Film criticism", "Hearings", "Interviews", "Law commentaries", "Lectures",
+        "Letters to the editor", "Literary criticism", "Literary readings", "Marginalia",
+        "Messages (Official communications)", "Notated movement", "Online discussion forums",
+        "Panel discussions", "Personal correspondence", "Press conferences", "Radio commentaries",
+        "Radio scripts", "Radio talk shows", "Scholia", "Sermons", "Special events radio coverage",
+        "Special events television coverage", "Speeches", "Spirit writings", "Séances",
+        "Television commentaries", "Television criticism and reviews", "Television talk shows",
+    ],
+    "Ephemera": [
+        "Appointment books", "Artist files", "Blank forms", "Broadsides", "Bumper stickers",
+        "Calendars", "Cartonera books", "Chapbooks", "Clippings", "Conference materials",
+        "Course materials", "Examinations", "Fliers (Ephemera)", "Greeting cards", "Job descriptions",
+        "Little magazines", "Menus", "Newsletters", "Oracle cards", "Playing cards", "Postcards",
+        "Press releases", "Programs (Publications)", "Recipes", "Sample books", "Scorecards",
+        "Stationery", "Tracts (Ephemera)", "Trade catalogs", "Trading cards", "Zines",
+    ],
+    "Literature": [
+        "Avadana stories", "Bestiaries", "Bible stories", "Black humor", "Book of Mormon stories",
+        "Cartonera books", "Comics (Graphic works)", "Comics scripts", "Computer-generated literature",
+        "Cut-ups (Literature)", "Dialogues (Literature)", "Doctrine and Covenants stories", "Drama",
+        "Exempla", "Fiction", "Folk literature", "Gift books", "Hadith stories",
+        "Invectives (Literature)", "Jataka stories", "Juvenilia", "Memorates", "Musical texts",
+        "Parodies (Literature)", "Pastiches (Literature)", "Poetry", "Prologues and epilogues",
+        "Qur'an stories", "Romances", "Sagas", "Satirical literature",
+    ],
+    "Religious materials": [
+        "Apocryphal works", "Apologetic writings", "Call documents", "Catechisms",
+        "Chirographa (Personal correspondence)", "Church covenants", "Church orders", "Creeds",
+        "Devotional literature", "Fatwas", "Hagiographies", "Ijāzah", "Incantations", "Koans",
+        "Liturgical books", "Mandalas", "Martyrologies", "Mashyakhah", "Monastic constitutions",
+        "Monastic rules", "Myths", "Papal documents", "Parashiyot ha-shavu'a",
+        "Pastoral letters and charges", "Pilgrimage guides", "Prayers", "Religious inventories",
+        "Sacred works", "Sermons", "Service books (Music)", "Thumb Bibles",
+    ],
+    "Music": [
+        "Accompaniments (Music)", "Arrangements (Music)", "Art music", "Chants", "Dramatic music",
+        "Experimental music", "Filk music", "Folk music", "Functional music", "Glitch music",
+        "Humorous music", "Hymn tunes", "Image albums", "Improvisations (Music)",
+        "Instrumental settings", "Juvenilia", "Medleys (Music)", "Mixtapes", "Musical settings",
+        "Muğams", "Noise music", "Notated music", "Popular music", "Sacred music",
+        "Sampler albums (Sound recordings)", "Samples (Music)", "Songs", "Sound art",
+        "Teaching pieces (Music)",
+    ],
+    "Visual works": [
+        "Altered books", "Art", "Drawings", "Flags", "Illustrated works",
+        "Installation views (Exhibition documentation)", "Jigsaw puzzles", "Mandalas", "Maps",
+        "Models (Representations)", "Motion pictures", "Photographs", "Picture puzzles", "Pictures",
+        "Portraits", "Pottery", "Prints", "Remote-sensing images", "Television programs",
+        "Video recordings", "Views", "Visual poetry",
+    ],
+    "Derivative works": [
+        "Abridgments", "Abstracts", "Adaptations", "Arrangements (Music)", "Emulations", "Excerpts",
+        "Facsimiles", "Film remakes", "Instrumental settings", "Law digests", "Outlines and syllabi",
+        "Paraphrases", "Plot summaries", "Restatements of the law", "Television remakes",
+    ],
+    "Commemorative works": [
+        "Albums (Books)", "Cremation volumes", "Cruise books", "Elegies (Poetry)", "Epitaphs",
+        "Epithalamia", "Eulogies", "Festschriften", "Memorial books", "Memorial music",
+        "Memorial service programs", "Obituaries", "Toasts (Speeches)", "Yearbooks",
+    ],
+    "Cartographic materials": [
+        "Aerial photographs", "Astronomical models",
+        "Cartographic materials for people with visual disabilities", "Ephemerides", "Gazetteers",
+        "Geographic information systems", "Geological cross-sections", "Globes", "Maps",
+        "Relief models", "Remote-sensing images", "Views",
+    ],
+    "Creative nonfiction": [
+        "Biographies", "Counterfactual histories", "Cronicas", "Diaries", "Essays",
+        "Nonfiction novels", "Personal narratives", "Sports writing", "Travel writing",
+        "True adventure stories", "True crime stories",
+    ],
+    "Dance": [
+        "Ballroom dances", "Ceremonial dances", "Concert dances", "Court dances", "Dance scores",
+        "Dances without music", "Experimental dances", "Folk dances", "Improvisations (Dance)",
+        "Sacred dances", "Tangos (Dance)",
+    ],
+    "Tactile works": [
+        "Braille books", "Braille periodicals",
+        "Cartographic materials for people with visual disabilities", "Textured books",
+    ],
+    "Recreational works": [
+        "Activity books", "Humor", "Puzzles and games",
+    ],
+    "Radio interviews": [
+        "Vox pop radio programs",
+    ],
+    "Elegies": [
+        "Marsiyas", "Pastoral elegies",  # Note: two separate "Elegies" categories merged
+    ],
+    "Large print books": [],
+    "Manuscripts": [],
+    "Incunabula": [],
+}
+
+
+# =============================================================================
+# Common LCSH Topics (from CGP frequency analysis + general high-frequency terms)
+# =============================================================================
+
+# Top LCSH topics organized by likely LCC class affinity
+LCSH_TOPICS_BY_LCC: dict[str, list[str]] = {
+    "A": [  # General Works
+        "Encyclopedias and dictionaries", "Periodicals", "Bibliography",
+        "Indexes", "Almanacs", "Yearbooks",
+    ],
+    "B": [  # Philosophy, Psychology, Religion
+        "Philosophy", "Ethics", "Psychology", "Religion", "Christianity", "Islam",
+        "Buddhism", "Hinduism", "Theology", "Metaphysics", "Logic", "Epistemology",
+    ],
+    "C": [  # Auxiliary Sciences of History
+        "Archaeology", "Genealogy", "Numismatics", "Heraldry", "Biography",
+        "Archives", "Historiography", "Chronology",
+    ],
+    "D": [  # World History
+        "World history", "Europe--History", "Asia--History", "Africa--History",
+        "World War, 1914-1918", "World War, 1939-1945", "Middle Ages",
+        "Renaissance", "Civilization", "International relations",
+    ],
+    "E": [  # US History
+        "United States--History", "Presidents--United States", "Civil War, 1861-1865",
+        "American Revolution", "Slavery--United States", "African Americans--History",
+        "Native Americans", "Immigration--United States",
+    ],
+    "F": [  # Americas (local)
+        "Latin America--History", "Canada--History", "Mexico--History",
+        "Caribbean Area--History", "South America--History", "Local history",
+    ],
+    "G": [  # Geography, Anthropology, Recreation
+        "Geography", "Maps", "Anthropology", "Ethnology", "Folklore",
+        "Recreation", "Sports", "Tourism", "Travel", "Oceanography",
+    ],
+    "H": [  # Social Sciences
+        "Economics", "Statistics", "Sociology", "Commerce", "Finance",
+        "Population", "Labor", "Social conditions", "Industries",
+        "Transportation", "Communications", "Public welfare",
+    ],
+    "J": [  # Political Science
+        "Political science", "International relations", "Legislation",
+        "Public administration", "Elections", "Political parties",
+        "Local government", "Colonization", "Migration",
+    ],
+    "K": [  # Law
+        "Law", "Constitutional law", "Criminal law", "International law",
+        "Legislation", "Courts", "Contracts", "Property", "Torts",
+        "Administrative law", "Environmental law", "Human rights",
+    ],
+    "L": [  # Education
+        "Education", "Schools", "Teaching", "Curriculum", "Higher education",
+        "Elementary education", "Secondary education", "Special education",
+        "Educational tests", "Teachers", "Students",
+    ],
+    "M": [  # Music
+        "Music", "Musical instruments", "Vocal music", "Orchestral music",
+        "Chamber music", "Opera", "Songs", "Composition (Music)",
+        "Music theory", "Musicians", "Concerts",
+    ],
+    "N": [  # Fine Arts
+        "Art", "Architecture", "Painting", "Sculpture", "Drawing",
+        "Graphic arts", "Photography", "Decorative arts", "Design",
+        "Art museums", "Artists", "Art history",
+    ],
+    "P": [  # Language and Literature
+        "Literature", "English literature", "American literature", "Fiction",
+        "Poetry", "Drama", "Linguistics", "Language and languages",
+        "Authors", "Criticism", "Journalism", "Mass media",
+    ],
+    "Q": [  # Science
+        "Science", "Mathematics", "Physics", "Chemistry", "Biology",
+        "Geology", "Astronomy", "Computer science", "Natural history",
+        "Botany", "Zoology", "Ecology", "Genetics",
+    ],
+    "R": [  # Medicine
+        "Medicine", "Public health", "Surgery", "Therapeutics", "Pharmacy",
+        "Nursing", "Diseases", "Anatomy", "Physiology", "Psychiatry",
+        "Hospitals", "Medical care", "Health",
+    ],
+    "S": [  # Agriculture
+        "Agriculture", "Crops", "Livestock", "Forestry", "Horticulture",
+        "Farm management", "Soil science", "Animal husbandry", "Veterinary medicine",
+        "Fisheries", "Hunting", "Wildlife management",
+    ],
+    "T": [  # Technology
+        "Technology", "Engineering", "Manufacturing", "Construction",
+        "Mechanical engineering", "Electrical engineering", "Chemical engineering",
+        "Mining", "Environmental engineering", "Transportation engineering",
+        "Computer engineering", "Biotechnology",
+    ],
+    "U": [  # Military Science
+        "Military science", "Armed Forces", "Armies", "Military history",
+        "Strategy", "Tactics", "Weapons", "Military operations",
+        "National security", "Defense", "Veterans",
+    ],
+    "V": [  # Naval Science
+        "Naval science", "Navies", "Naval history", "Navigation",
+        "Shipbuilding", "Merchant marine", "Marine engineering",
+        "Submarines", "Aircraft carriers",
+    ],
+    "Z": [  # Bibliography, Library Science
+        "Bibliography", "Library science", "Information science", "Cataloging",
+        "Classification", "Archives", "Manuscripts", "Publishing",
+        "Books", "Printing", "Digital libraries",
+    ],
+}
+
+
+# =============================================================================
+# LCDGT - Common Demographic Groups (from id.loc.gov)
+# =============================================================================
+
+LCDGT_GROUPS: list[str] = [
+    # Age groups
+    "Children", "Adolescents", "Young adults", "Adults", "Middle-aged persons", "Older people",
+    # Educational levels
+    "Elementary school students", "High school students", "College students",
+    "Graduate students", "Professionals",
+    # Occupational groups
+    "Scientists", "Engineers", "Teachers", "Physicians", "Nurses", "Lawyers",
+    "Business people", "Artists", "Musicians", "Writers", "Journalists",
+    # Social groups
+    "Families", "Parents", "Women", "Men", "Immigrants", "Refugees",
+    # Disability/accessibility
+    "People with disabilities", "People with visual disabilities", "Deaf people",
+    # General
+    "General public", "Specialists", "Researchers", "Practitioners",
+]
+
+
+# =============================================================================
+# Benchmark Document Profile
+# =============================================================================
+
+class BenchmarkProfile(BaseModel):
+    """A document profile for benchmark generation using pure LC taxonomies."""
+
+    # Required dimensions
+    lcc_class: LCCClass = Field(description="LCC main class (subject domain)")
+    lcgft_category: str = Field(description="LCGFT top-level category")
+    lcgft_form: str = Field(description="Specific LCGFT genre/form term")
+
+    # Topic dimension
+    topics: list[str] = Field(default_factory=list, description="LCSH topic terms")
+
+    # Optional dimensions
+    lcdgt_audience: str | None = Field(default=None, description="LCDGT demographic group")
+    geographic: list[str] = Field(default_factory=list, description="Geographic subjects")
+
+    @property
+    def lcc_name(self) -> str:
+        """Get the full name of the LCC class."""
+        return LCC_NAMES[self.lcc_class]
+
+
+# =============================================================================
+# Statistics
+# =============================================================================
+
+def get_taxonomy_stats() -> dict:
+    """Get statistics about the LC taxonomies."""
+    total_lcgft_terms = sum(len(children) for children in LCGFT_CHILDREN.values())
+    total_lcsh_topics = sum(len(topics) for topics in LCSH_TOPICS_BY_LCC.values())
+
+    return {
+        "lcc_classes": len(LCCClass),
+        "lcgft_categories": len(LCGFT_CHILDREN),
+        "lcgft_total_terms": total_lcgft_terms,
+        "lcsh_topics_per_class": {k: len(v) for k, v in LCSH_TOPICS_BY_LCC.items()},
+        "lcsh_total_topics": total_lcsh_topics,
+        "lcdgt_groups": len(LCDGT_GROUPS),
+    }
