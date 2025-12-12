@@ -11,6 +11,7 @@ dependencies = [
     "ipython>=9.8.0",
     "joblib>=1.5.2",
     "lxml>=6.0.2",
+    "matplotlib>=3.10.8",
     "numpy>=1.26.0",
     "nupunkt>=0.6.0",
     "orjson>=3.10.0",
@@ -18,11 +19,18 @@ dependencies = [
     "pydantic>=2.12.5",
     "pydantic-ai>=1.29.0",
     "pymarc>=5.2.0",
+    "pytest>=9.0.2",
+    "pytest-benchmark>=5.2.3",
+    "pytest-cov>=7.0.0",
     "rank-bm25>=0.2.2",
     "rdflib>=7.0.0",
     "rich>=13.0.0",
     "scikit-learn>=1.5.0",
+    "scikit-posthocs>=0.11.4",
+    "scipy>=1.16.3",
+    "seaborn>=0.13.2",
     "sentence-transformers>=3.0.0",
+    "statsmodels>=0.14.6",
     "tokenizers>=0.22.1",
     "tqdm>=4.66.0",
     "transformers>=4.57.3",
@@ -38,3 +46,129 @@ where = ["src"]
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = [
+    "-v",
+    "-ra",
+    "--strict-markers",
+    "--cov=src/shelf",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-report=html:htmlcov",
+    "--cov-report=xml:coverage.xml",
+    "--cov-report=json:coverage.json",
+    "--cov-branch",
+    "--cov-fail-under=15",
+    "--cov-context=test",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "benchmark: marks tests as benchmarks (run with pytest-benchmark)",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests (fast, isolated)",
+    "metrics: tests for metrics computation modules",
+    "evaluator: tests for evaluator classes",
+    "schema: tests for prediction schema validation",
+    "io: tests for file I/O operations",
+    "statistical: statistical tests (may involve randomness)",
+    "network: tests requiring network access (HuggingFace Hub, etc.)",
+]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:transformers.*",
+    "ignore::DeprecationWarning:huggingface_hub.*",
+    "ignore::FutureWarning:transformers.*",
+    "ignore::pytest_cov.CentralCovContextWarning",
+    "ignore:divide by zero:RuntimeWarning",
+    "ignore:invalid value encountered:RuntimeWarning",
+    "ignore:Precision loss occurred in moment calculation:RuntimeWarning",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src/shelf"]
+parallel = true
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/*_test.py",
+    "*/conftest.py",
+    "*/__init__.py",
+    "*/__main__.py",
+    "*/cli.py",
+    "*.pyi",
+]
+
+[tool.coverage.paths]
+source = [
+    "src/shelf",
+    "*/shelf",
+    "*site-packages/shelf",
+]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+skip_empty = true
+fail_under = 15.0
+sort = "Cover"
+exclude_also = [
+    # Type checking
+    "if TYPE_CHECKING:",
+    "if t\\.TYPE_CHECKING:",
+
+    # Protocols and abstract classes
+    "class .*\\bProtocol\\):",
+    "class .*\\bProtocol\\[.*\\]\\):",
+    "@(abc\\.)?abstractmethod",
+
+    # String representations
+    "def __repr__",
+    "def __str__",
+
+    # Not implemented and assertions
+    "raise NotImplementedError",
+    "raise AssertionError",
+
+    # Main blocks
+    "if __name__ == .__main__.:",
+
+    # Defensive imports
+    "except ImportError:",
+    "except ModuleNotFoundError:",
+
+    # Debug code
+    "if settings\\.DEBUG",
+    "if DEBUG:",
+
+    # Type annotations
+    "@typing\\.overload",
+    "@(t\\.)?overload",
+
+    # Platform-specific
+    "if sys\\.platform",
+    "if platform\\.system",
+
+    # Ellipsis and pass
+    "\\.\\.\\.",
+
+    # Logging debug
+    "logger\\.debug",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
+show_contexts = true
+title = "SHELF Benchmark Coverage Report"
+skip_empty = true
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[tool.coverage.json]
+output = "coverage.json"
+show_contexts = true
+pretty_print = true
