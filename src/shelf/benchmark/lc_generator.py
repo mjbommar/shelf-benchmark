@@ -17,7 +17,6 @@ from .lc_taxonomy import (
     LCGFT_CHILDREN,
     LCSH_TOPICS_BY_LCC,
     LCDGT_GROUPS,
-    BenchmarkProfile,
 )
 
 
@@ -39,7 +38,9 @@ class LCDocument(BaseModel):
 
     # Optional dimensions
     lcdgt_audience: str | None = Field(default=None, description="Target audience")
-    geographic: list[str] = Field(default_factory=list, description="Geographic subjects")
+    geographic: list[str] = Field(
+        default_factory=list, description="Geographic subjects"
+    )
 
     # Generated content (placeholders for LLM generation)
     title: str = Field(default="", description="Document title")
@@ -51,31 +52,60 @@ class LCGeneratorConfig(BaseModel):
 
     # Sampling parameters
     seed: int = Field(default=42, description="Random seed")
-    total_documents: int = Field(default=1000, description="Total documents to generate")
+    total_documents: int = Field(
+        default=1000, description="Total documents to generate"
+    )
 
     # Dimension coverage
     min_topics: int = Field(default=1, description="Minimum LCSH topics per doc")
     max_topics: int = Field(default=4, description="Maximum LCSH topics per doc")
     include_audience: bool = Field(default=True, description="Include LCDGT audience")
-    include_geographic: bool = Field(default=True, description="Include geographic subjects")
+    include_geographic: bool = Field(
+        default=True, description="Include geographic subjects"
+    )
 
     # Category filtering (None = use all)
-    lcc_classes: list[str] | None = Field(default=None, description="LCC classes to include")
-    lcgft_categories: list[str] | None = Field(default=None, description="LCGFT categories to include")
+    lcc_classes: list[str] | None = Field(
+        default=None, description="LCC classes to include"
+    )
+    lcgft_categories: list[str] | None = Field(
+        default=None, description="LCGFT categories to include"
+    )
 
     # Weighting
-    uniform_lcc: bool = Field(default=True, description="Uniform sampling across LCC classes")
-    uniform_lcgft: bool = Field(default=True, description="Uniform sampling across LCGFT categories")
+    uniform_lcc: bool = Field(
+        default=True, description="Uniform sampling across LCC classes"
+    )
+    uniform_lcgft: bool = Field(
+        default=True, description="Uniform sampling across LCGFT categories"
+    )
 
 
 # Define natural affinities between LCGFT categories and LCC classes
 # This helps generate more realistic document combinations
 LCGFT_LCC_AFFINITIES: dict[str, list[str]] = {
-    "Informational works": ["H", "Q", "T", "J", "R", "S"],  # Social sci, science, tech, political sci
+    "Informational works": [
+        "H",
+        "Q",
+        "T",
+        "J",
+        "R",
+        "S",
+    ],  # Social sci, science, tech, political sci
     "Law materials": ["K"],  # Law
-    "Instructional and educational works": ["L", "Q", "T", "R"],  # Education, science, tech, medicine
+    "Instructional and educational works": [
+        "L",
+        "Q",
+        "T",
+        "R",
+    ],  # Education, science, tech, medicine
     "Sound recordings": ["M", "P"],  # Music, language/lit
-    "Discursive works": ["B", "P", "H", "J"],  # Philosophy, lit, social sci, political sci
+    "Discursive works": [
+        "B",
+        "P",
+        "H",
+        "J",
+    ],  # Philosophy, lit, social sci, political sci
     "Ephemera": ["A", "H", "N"],  # General, social sci, fine arts
     "Literature": ["P"],  # Language and literature
     "Religious materials": ["B"],  # Philosophy/religion
@@ -97,10 +127,27 @@ LCGFT_LCC_AFFINITIES: dict[str, list[str]] = {
 
 # Common geographic subjects
 GEOGRAPHIC_SUBJECTS = [
-    "United States", "Europe", "Asia", "Africa", "North America", "South America",
-    "California", "New York (State)", "Texas", "Florida", "Illinois",
-    "Great Britain", "France", "Germany", "China", "Japan", "India",
-    "Canada", "Mexico", "Brazil", "Australia",
+    "United States",
+    "Europe",
+    "Asia",
+    "Africa",
+    "North America",
+    "South America",
+    "California",
+    "New York (State)",
+    "Texas",
+    "Florida",
+    "Illinois",
+    "Great Britain",
+    "France",
+    "Germany",
+    "China",
+    "Japan",
+    "India",
+    "Canada",
+    "Mexico",
+    "Brazil",
+    "Australia",
 ]
 
 
@@ -118,12 +165,18 @@ class LCBenchmarkGenerator:
     def _get_lcc_classes(self) -> list[LCCClass]:
         """Get available LCC classes based on config."""
         if self.config.lcc_classes:
-            return [LCCClass(c) for c in self.config.lcc_classes if c in LCCClass.__members__]
+            return [
+                LCCClass(c)
+                for c in self.config.lcc_classes
+                if c in LCCClass.__members__
+            ]
         return list(LCCClass)
 
     def _get_lcgft_categories(self) -> list[str]:
         """Get available LCGFT categories based on config."""
-        all_cats = [cat for cat in LCGFT_CHILDREN.keys() if LCGFT_CHILDREN[cat]]  # Only non-empty
+        all_cats = [
+            cat for cat in LCGFT_CHILDREN.keys() if LCGFT_CHILDREN[cat]
+        ]  # Only non-empty
         if self.config.lcgft_categories:
             return [c for c in self.config.lcgft_categories if c in all_cats]
         return all_cats
@@ -137,7 +190,8 @@ class LCBenchmarkGenerator:
         if lcc_class and not self.config.uniform_lcgft:
             # Find categories with affinity to this LCC class
             affine_cats = [
-                cat for cat, lcc_list in LCGFT_LCC_AFFINITIES.items()
+                cat
+                for cat, lcc_list in LCGFT_LCC_AFFINITIES.items()
                 if lcc_class.value in lcc_list and cat in self._lcgft_categories
             ]
             if affine_cats and self._rng.random() < 0.7:  # 70% chance to use affinity
@@ -226,7 +280,8 @@ class LCBenchmarkGenerator:
         for lcc_class in self._lcc_classes:
             # Get LCGFT categories with affinity to this LCC class
             affine_cats = [
-                cat for cat, lcc_list in LCGFT_LCC_AFFINITIES.items()
+                cat
+                for cat, lcc_list in LCGFT_LCC_AFFINITIES.items()
                 if lcc_class.value in lcc_list and cat in self._lcgft_categories
             ]
 
@@ -267,7 +322,9 @@ class LCBenchmarkGenerator:
         lcgft_cat_dist = Counter(doc.lcgft_category for doc in documents)
         lcgft_form_dist = Counter(doc.lcgft_form for doc in documents)
         topic_dist = Counter(t for doc in documents for t in doc.topics)
-        audience_dist = Counter(doc.lcdgt_audience for doc in documents if doc.lcdgt_audience)
+        audience_dist = Counter(
+            doc.lcdgt_audience for doc in documents if doc.lcdgt_audience
+        )
         geo_dist = Counter(g for doc in documents for g in doc.geographic)
 
         return {

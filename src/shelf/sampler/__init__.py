@@ -112,6 +112,10 @@ __all__ = [
     "GENERATION_INSTRUCTIONS",
     "DEFAULT_MODEL",
     "DEFAULT_SERVICE_TIER",
+    "TEMPERATURE_RANGE",
+    "TOP_P_RANGE",
+    "SamplingParams",
+    "SamplingParamsSampler",
     "build_generation_prompt",
     # Artifacts
     "BenchmarkArtifact",

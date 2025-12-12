@@ -1,71 +1,71 @@
 # SHELF Corpus Distribution Report
 
-> **Generated**: 2025-12-11
-> **Corpus Version**: 1.0
-> **Total Documents**: 10,000
+> **Generated**: 2025-12-12
+> **Corpus Version**: 2.0
+> **Total Documents**: 20,000
 
 ## Executive Summary
 
-The SHELF corpus contains 10,000 synthetic documents generated via GPT-5.1, covering all 21 Library of Congress Classification (LCC) codes, 14 LCGFT categories, 133 LCGFT forms, 25 audience types, 8 registers, and 8 target length categories. The corpus has been quality-filtered to remove empty documents and non-English content.
+The SHELF corpus contains 20,000 synthetic documents generated via GPT-5.1 (10,000) and GPT-5.2 (10,000), covering all 21 Library of Congress Classification (LCC) codes, 14 LCGFT categories, 133 LCGFT forms, 25 audience types, 8 registers, and 8 target length categories. The corpus has been quality-filtered to remove empty documents and non-English content.
 
 ---
 
 ## 1. Library of Congress Classification (LCC)
 
 **Classes**: 21
-**Distribution**: Well-balanced (4.4% - 5.2% per class)
+**Distribution**: Well-balanced (4.6% - 5.0% per class)
 
 | Code | Name | Count | Percentage |
 |------|------|-------|------------|
-| A | General Works | 479 | 4.8% |
-| B | Philosophy, Psychology, Religion | 517 | 5.2% |
-| C | Auxiliary Sciences of History | 509 | 5.1% |
-| D | World History | 475 | 4.8% |
-| E | History of the Americas | 470 | 4.7% |
-| F | History of the Americas (Local) | 501 | 5.0% |
-| G | Geography, Anthropology, Recreation | 477 | 4.8% |
-| H | Social Sciences | 453 | 4.5% |
-| J | Political Science | 486 | 4.9% |
-| K | Law | 473 | 4.7% |
-| L | Education | 459 | 4.6% |
-| M | Music | 454 | 4.5% |
-| N | Fine Arts | 476 | 4.8% |
-| P | Language and Literature | 479 | 4.8% |
-| Q | Science | 469 | 4.7% |
-| R | Medicine | 442 | 4.4% |
-| S | Agriculture | 493 | 4.9% |
-| T | Technology | 449 | 4.5% |
-| U | Military Science | 514 | 5.1% |
-| V | Naval Science | 483 | 4.8% |
-| Z | Bibliography, Library Science | 442 | 4.4% |
+| A | General Works | 983 | 4.9% |
+| B | Philosophy, Psychology, Religion | 1,010 | 5.0% |
+| C | Auxiliary Sciences of History | 989 | 4.9% |
+| D | World History | 952 | 4.8% |
+| E | History of the Americas | 958 | 4.8% |
+| F | History of the Americas (Local) | 934 | 4.7% |
+| G | Geography, Anthropology, Recreation | 937 | 4.7% |
+| H | Social Sciences | 956 | 4.8% |
+| J | Political Science | 953 | 4.8% |
+| K | Law | 949 | 4.7% |
+| L | Education | 911 | 4.6% |
+| M | Music | 944 | 4.7% |
+| N | Fine Arts | 958 | 4.8% |
+| P | Language and Literature | 962 | 4.8% |
+| Q | Science | 939 | 4.7% |
+| R | Medicine | 964 | 4.8% |
+| S | Agriculture | 925 | 4.6% |
+| T | Technology | 932 | 4.7% |
+| U | Military Science | 998 | 5.0% |
+| V | Naval Science | 973 | 4.9% |
+| Z | Bibliography, Library Science | 873 | 4.4% |
 
-**Assessment**: Excellent balance. All classes within 0.8% of target (4.76%).
+**Assessment**: Excellent balance. All classes within 0.6% of target (4.76%).
 
 ---
 
 ## 2. LCGFT Categories
 
 **Categories**: 14
-**Distribution**: Well-balanced (6.6% - 7.5% per category)
+**Distribution**: Well-balanced (6.9% - 7.4% per category)
 
 | Category | Count | Percentage |
 |----------|-------|------------|
-| Law materials | 752 | 7.5% |
-| Informational works | 748 | 7.5% |
-| Sound recordings | 747 | 7.5% |
-| Visual works | 743 | 7.4% |
-| Commemorative works | 741 | 7.4% |
-| Cartographic materials | 728 | 7.3% |
-| Discursive works | 727 | 7.3% |
-| Literature | 721 | 7.2% |
-| Religious materials | 703 | 7.0% |
-| Music | 691 | 6.9% |
-| Creative nonfiction | 683 | 6.8% |
-| Instructional and educational works | 680 | 6.8% |
-| Recreational works | 677 | 6.8% |
-| Ephemera | 659 | 6.6% |
+| Law materials | 1,485 | 7.4% |
+| Informational works | 1,472 | 7.4% |
+| Visual works | 1,468 | 7.3% |
+| Commemorative works | 1,463 | 7.3% |
+| Literature | 1,448 | 7.2% |
+| Sound recordings | 1,442 | 7.2% |
+| Music | 1,438 | 7.2% |
+| Cartographic materials | 1,432 | 7.2% |
+| Discursive works | 1,407 | 7.0% |
+| Instructional and educational works | 1,407 | 7.0% |
+| Creative nonfiction | 1,398 | 7.0% |
+| Recreational works | 1,394 | 7.0% |
+| Religious materials | 1,373 | 6.9% |
+| Ephemera | 1,373 | 6.9% |
 
-**Assessment**: Excellent balance. All categories within 0.9% of target (7.14%).
+**Assessment**: Excellent balance. All categories within 0.5% of target (7.14%).
 
 ---
 
@@ -78,28 +78,28 @@ The SHELF corpus contains 10,000 synthetic documents generated via GPT-5.1, cove
 
 | Form | Count | Percentage |
 |------|-------|------------|
-| Lectures | 193 | 1.9% |
-| Commentaries | 169 | 1.7% |
-| Interviews | 161 | 1.6% |
-| Jokes | 129 | 1.3% |
-| Tributes | 126 | 1.3% |
-| Yearbooks | 121 | 1.2% |
-| Maps | 120 | 1.2% |
-| Activity books | 118 | 1.2% |
-| Puzzles | 116 | 1.2% |
-| Biographies | 111 | 1.1% |
-| Prayers | 111 | 1.1% |
-| Liturgical texts | 110 | 1.1% |
-| Riddles | 109 | 1.1% |
-| Infographics | 108 | 1.1% |
-| Audiobooks | 107 | 1.1% |
-| Theological works | 106 | 1.1% |
-| Memorial books | 106 | 1.1% |
-| Anniversary publications | 106 | 1.1% |
-| Games | 105 | 1.1% |
-| Satellite imagery | 102 | 1.0% |
+| Lectures | 413 | 2.1% |
+| Commentaries | 314 | 1.6% |
+| Interviews | 300 | 1.5% |
+| Jokes | 255 | 1.3% |
+| Maps | 243 | 1.2% |
+| Activity books | 239 | 1.2% |
+| Tributes | 236 | 1.2% |
+| Puzzles | 233 | 1.2% |
+| Riddles | 232 | 1.2% |
+| Memorial books | 230 | 1.1% |
+| Biographies | 222 | 1.1% |
+| Games | 220 | 1.1% |
+| Yearbooks | 219 | 1.1% |
+| Liturgical texts | 217 | 1.1% |
+| Humor | 215 | 1.1% |
+| Infographics | 215 | 1.1% |
+| Anniversary publications | 212 | 1.1% |
+| Essays | 211 | 1.1% |
+| Personal narratives | 206 | 1.0% |
+| Theological works | 205 | 1.0% |
 
-**Assessment**: Good coverage across all 133 forms. Target of ~75 per form (0.75%) achieved for most.
+**Assessment**: Good coverage across all 133 forms. Target of ~150 per form (0.75%) achieved for most.
 
 ---
 
@@ -110,33 +110,33 @@ The SHELF corpus contains 10,000 synthetic documents generated via GPT-5.1, cove
 
 | Audience | Count | Percentage |
 |----------|-------|------------|
-| None | 2,985 | 29.8% |
-| Researchers | 323 | 3.2% |
-| Lawyers | 319 | 3.2% |
-| Scholars | 318 | 3.2% |
-| Educators | 315 | 3.1% |
-| Children | 308 | 3.1% |
-| Young adults | 303 | 3.0% |
-| Engineers | 301 | 3.0% |
-| Lay readers | 301 | 3.0% |
-| Physicians | 300 | 3.0% |
-| General public | 299 | 3.0% |
-| Graduate students | 299 | 3.0% |
-| Policy makers | 294 | 2.9% |
-| Professionals | 291 | 2.9% |
-| Scientists | 287 | 2.9% |
-| Specialists | 287 | 2.9% |
-| Non-specialists | 286 | 2.9% |
-| Beginners | 283 | 2.8% |
-| Business professionals | 283 | 2.8% |
-| Adults | 277 | 2.8% |
-| Experts | 276 | 2.8% |
-| Adolescents | 275 | 2.8% |
-| Students | 267 | 2.7% |
-| Older adults | 266 | 2.7% |
-| Practitioners | 257 | 2.6% |
+| None | 5,964 | 29.8% |
+| Lawyers | 616 | 3.1% |
+| Children | 613 | 3.1% |
+| Physicians | 609 | 3.0% |
+| Business professionals | 604 | 3.0% |
+| General public | 598 | 3.0% |
+| Engineers | 596 | 3.0% |
+| Adults | 596 | 3.0% |
+| Scholars | 594 | 3.0% |
+| Non-specialists | 591 | 3.0% |
+| Experts | 591 | 3.0% |
+| Specialists | 589 | 2.9% |
+| Researchers | 588 | 2.9% |
+| Beginners | 588 | 2.9% |
+| Graduate students | 586 | 2.9% |
+| Scientists | 584 | 2.9% |
+| Professionals | 580 | 2.9% |
+| Educators | 578 | 2.9% |
+| Young adults | 578 | 2.9% |
+| Lay readers | 572 | 2.9% |
+| Adolescents | 570 | 2.9% |
+| Practitioners | 565 | 2.8% |
+| Students | 563 | 2.8% |
+| Policy makers | 560 | 2.8% |
+| Older adults | 535 | 2.7% |
 
-**Assessment**: Well-balanced among specific audiences (2.6% - 3.2%). The 30% "None" category is expected for generic content.
+**Assessment**: Well-balanced among specific audiences (2.7% - 3.1%). The 30% "None" category is expected for generic content.
 
 ---
 
@@ -147,14 +147,14 @@ The SHELF corpus contains 10,000 synthetic documents generated via GPT-5.1, cove
 
 | Register | Count | Percentage |
 |----------|-------|------------|
-| professional | 2,552 | 25.5% |
-| formal | 1,496 | 15.0% |
-| conversational | 1,487 | 14.9% |
-| academic | 1,473 | 14.7% |
-| casual | 1,024 | 10.2% |
-| technical | 976 | 9.8% |
-| journalistic | 521 | 5.2% |
-| creative | 471 | 4.7% |
+| professional | 4,939 | 24.7% |
+| conversational | 3,092 | 15.5% |
+| formal | 3,028 | 15.1% |
+| academic | 2,965 | 14.8% |
+| technical | 2,012 | 10.1% |
+| casual | 1,982 | 9.9% |
+| journalistic | 1,029 | 5.1% |
+| creative | 953 | 4.8% |
 
 **Assessment**: Distribution reflects realistic document frequencies. Professional/formal dominant as expected.
 
@@ -167,14 +167,14 @@ The SHELF corpus contains 10,000 synthetic documents generated via GPT-5.1, cove
 
 | Length | Word Range | Count | Percentage |
 |--------|------------|-------|------------|
-| micro | 10-25 | 439 | 4.4% |
-| tiny | 25-75 | 867 | 8.7% |
-| brief | 75-150 | 1,213 | 12.1% |
-| short | 150-300 | 1,936 | 19.4% |
-| medium | 300-500 | 2,538 | 25.4% |
-| long | 500-1000 | 1,498 | 15.0% |
-| very_long | 1000-2500 | 994 | 9.9% |
-| extended | 2500-5000 | 515 | 5.1% |
+| micro | 10-25 | 931 | 4.7% |
+| tiny | 25-75 | 1,655 | 8.3% |
+| brief | 75-150 | 2,396 | 12.0% |
+| short | 150-300 | 3,922 | 19.6% |
+| medium | 300-500 | 5,050 | 25.2% |
+| long | 500-1000 | 3,043 | 15.2% |
+| very_long | 1000-2500 | 1,985 | 9.9% |
+| extended | 2500-5000 | 1,018 | 5.1% |
 
 **Assessment**: Good coverage across all length categories. Medium-length documents most common.
 
@@ -184,11 +184,12 @@ The SHELF corpus contains 10,000 synthetic documents generated via GPT-5.1, cove
 
 | Statistic | Value |
 |-----------|-------|
-| **Minimum** | 12 words |
+| **Minimum** | 0 words |
 | **Maximum** | 6,203 words |
-| **Mean** | 738.3 words |
+| **Mean** | 668 words |
 | **Median** | 326 words |
-| **Total Words** | ~7.38 million |
+| **Std Dev** | 867 words |
+| **Total Words** | ~13.36 million |
 
 **Distribution Shape**: Right-skewed (median < mean), which is typical for document corpora.
 
@@ -203,21 +204,21 @@ The SHELF corpus contains 10,000 synthetic documents generated via GPT-5.1, cove
 
 | Location | Count |
 |----------|-------|
-| United States | 265 |
-| Canada | 262 |
-| Mumbai | 262 |
-| Central America | 261 |
-| London | 256 |
-| Florida | 256 |
-| Texas | 252 |
-| Beijing | 243 |
-| Germany | 241 |
-| Pennsylvania | 241 |
-| Los Angeles | 240 |
-| Asia | 238 |
-| Australia | 238 |
-| Southeast Asia | 238 |
-| Ohio | 235 |
+| United States | 511 |
+| Canada | 506 |
+| Florida | 503 |
+| Beijing | 490 |
+| Central America | 485 |
+| Berlin | 481 |
+| Mumbai | 479 |
+| Ohio | 479 |
+| Pennsylvania | 473 |
+| London | 472 |
+| New York City | 471 |
+| Middle East | 468 |
+| Europe | 467 |
+| Russia | 467 |
+| New York | 464 |
 
 **Assessment**: Good global coverage with US/international balance.
 
@@ -232,21 +233,21 @@ The SHELF corpus contains 10,000 synthetic documents generated via GPT-5.1, cove
 
 | Topic | Count |
 |-------|-------|
-| Art | 872 |
-| Religion | 866 |
-| Culture | 838 |
-| Music | 836 |
-| Languages | 822 |
-| Ethics | 806 |
-| History | 806 |
-| Philosophy | 800 |
-| Aesthetics | 798 |
-| Literature | 792 |
-| Defense | 398 |
-| Democracy | 391 |
-| Government | 389 |
-| Political parties | 385 |
-| Globalization | 382 |
+| Art | 1,679 |
+| Religion | 1,652 |
+| Music | 1,632 |
+| Ethics | 1,610 |
+| Aesthetics | 1,608 |
+| Culture | 1,600 |
+| History | 1,594 |
+| Literature | 1,588 |
+| Philosophy | 1,554 |
+| Languages | 1,550 |
+| Defense | 760 |
+| International relations | 760 |
+| Political parties | 747 |
+| Diplomacy | 746 |
+| Authoritarianism | 746 |
 
 **Assessment**: Strong coverage of humanities topics. Political/social science topics also well-represented.
 
@@ -291,14 +292,14 @@ Based on this distribution analysis:
    - Register (8 classes, non-uniform but important)
 
 2. **Split Ratios**: 60% train / 20% dev / 20% test
-   - Train: 6,000 documents
-   - Dev: 2,000 documents
-   - Test: 2,000 documents
+   - Train: 12,000 documents
+   - Dev: 4,000 documents
+   - Test: 4,000 documents
 
 3. **Minimum per class per split**:
-   - LCC: ~95 per code per split (for test: 95 × 21 = ~2000)
-   - LCGFT Category: ~143 per category per split
-   - Rare LCGFT forms: minimum 3 per form per split
+   - LCC: ~190 per code per split (for test: 190 × 21 = ~4000)
+   - LCGFT Category: ~286 per category per split
+   - Rare LCGFT forms: minimum 6 per form per split
 
 4. **Multi-label handling**:
    - Topics: Use iterative stratification (skmultilearn)
@@ -310,13 +311,13 @@ Based on this distribution analysis:
 
 | Attribute | Value |
 |-----------|-------|
-| Generation model | GPT-5.1 |
-| Generation date | 2025-12-11 |
+| Generation models | GPT-5.1 (10,000), GPT-5.2 (10,000) |
+| Generation dates | 2025-12-11 (GPT-5.1), 2025-12-12 (GPT-5.2) |
 | Temperature range | 0.7 - 1.0 |
 | Top-p | 0.95 |
-| Corpus version | 1.0 |
+| Corpus version | 2.0 |
 | Storage format | JSON (one file per document) |
-| Total size | ~80 MB |
+| Total size | ~160 MB |
 
 ---
 

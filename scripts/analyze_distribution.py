@@ -64,7 +64,9 @@ def compute_cooccurrence(
         all_vals1 = sorted(set(t for d in docs for t in d.get("topics", [])))
     elif dim1 == "geographic":
         vals1 = [tuple(sorted(d.get("geographic", []))) for d in docs]
-        all_vals1 = sorted(set(g for d in docs for g in d.get("geographic", []))) or ["(none)"]
+        all_vals1 = sorted(set(g for d in docs for g in d.get("geographic", []))) or [
+            "(none)"
+        ]
     elif dim1 == "audience":
         vals1 = [d.get(dim1) or "(none)" for d in docs]
         all_vals1 = sorted(set(vals1))
@@ -77,7 +79,9 @@ def compute_cooccurrence(
         all_vals2 = sorted(set(t for d in docs for t in d.get("topics", [])))
     elif dim2 == "geographic":
         vals2 = [tuple(sorted(d.get("geographic", []))) for d in docs]
-        all_vals2 = sorted(set(g for d in docs for g in d.get("geographic", []))) or ["(none)"]
+        all_vals2 = sorted(set(g for d in docs for g in d.get("geographic", []))) or [
+            "(none)"
+        ]
     elif dim2 == "audience":
         vals2 = [d.get(dim2) or "(none)" for d in docs]
         all_vals2 = sorted(set(vals2))
@@ -167,7 +171,9 @@ def print_matrix(
         table.add_column(str(col)[:12], justify="right")
 
     for i, row in enumerate(rows):
-        values = [str(matrix[i, j]) if matrix[i, j] > 0 else "·" for j in range(len(cols))]
+        values = [
+            str(matrix[i, j]) if matrix[i, j] > 0 else "·" for j in range(len(cols))
+        ]
         table.add_row(str(row)[:25], *values)
 
     console.print(table)
@@ -234,8 +240,16 @@ def main():
     # Print 1D distributions
     console.print("[bold underline]Per-Dimension Distributions[/bold underline]\n")
 
-    for name in ["lcc_code", "lcgft_category", "lcgft_form", "target_length",
-                 "register", "audience", "topics", "geographic"]:
+    for name in [
+        "lcc_code",
+        "lcgft_category",
+        "lcgft_form",
+        "target_length",
+        "register",
+        "audience",
+        "topics",
+        "geographic",
+    ]:
         print_distribution(name, distributions[name])
 
     # Word count stats

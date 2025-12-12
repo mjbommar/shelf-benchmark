@@ -146,7 +146,9 @@ class DocumentSampler:
         self._include_audience = include
         return self
 
-    def with_geographic(self, include: bool = True, count: tuple[int, int] = (0, 2)) -> Self:
+    def with_geographic(
+        self, include: bool = True, count: tuple[int, int] = (0, 2)
+    ) -> Self:
         """Include or exclude geographic dimension."""
         self._include_geographic = include
         self._geographic_count = count
@@ -246,10 +248,7 @@ class DocumentSampler:
 
     def sample_batch(self, n: int, id_prefix: str = "doc") -> list[Document]:
         """Sample a batch of documents."""
-        return [
-            self.sample(doc_id=f"{id_prefix}_{i:05d}")
-            for i in range(n)
-        ]
+        return [self.sample(doc_id=f"{id_prefix}_{i:05d}") for i in range(n)]
 
     def stream(self, id_prefix: str = "doc") -> Iterator[Document]:
         """Infinite stream of sampled documents."""
@@ -279,14 +278,16 @@ class DocumentSampler:
                     if n_geo > 0:
                         geo = self.geographic.sample_n(n_geo)
 
-                docs.append(Document(
-                    id=f"strat_{lcc.code}_{j:03d}",
-                    lcc=lcc,
-                    lcgft=lcgft,
-                    topics=topics,
-                    audience=aud,
-                    geographic=geo,
-                ))
+                docs.append(
+                    Document(
+                        id=f"strat_{lcc.code}_{j:03d}",
+                        lcc=lcc,
+                        lcgft=lcgft,
+                        topics=topics,
+                        audience=aud,
+                        geographic=geo,
+                    )
+                )
 
         self._rng.shuffle(docs)
         return docs
@@ -309,14 +310,16 @@ class DocumentSampler:
                     if n_geo > 0:
                         geo = self.geographic.sample_n(n_geo)
 
-                docs.append(Document(
-                    id=f"strat_{cat[:10]}_{j:03d}",
-                    lcc=lcc,
-                    lcgft=lcgft,
-                    topics=topics,
-                    audience=aud,
-                    geographic=geo,
-                ))
+                docs.append(
+                    Document(
+                        id=f"strat_{cat[:10]}_{j:03d}",
+                        lcc=lcc,
+                        lcgft=lcgft,
+                        topics=topics,
+                        audience=aud,
+                        geographic=geo,
+                    )
+                )
 
         self._rng.shuffle(docs)
         return docs

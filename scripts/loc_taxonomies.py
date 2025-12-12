@@ -13,15 +13,14 @@ Data sources:
 """
 
 import gzip
-import io
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterator
 
 import httpx
-from rdflib import Graph, Namespace, URIRef
-from rdflib.namespace import RDF, SKOS, RDFS
+from rdflib import Graph, Namespace
+from rdflib.namespace import RDF, SKOS
 
 # Namespaces
 MADSRDF = Namespace("http://www.loc.gov/mads/rdf/v1#")
@@ -80,6 +79,7 @@ LCC_MAIN_CLASSES = {
 @dataclass
 class Concept:
     """A SKOS concept from LC vocabularies."""
+
     uri: str
     pref_label: str
     alt_labels: list[str] = field(default_factory=list)
@@ -138,7 +138,7 @@ def extract_concepts_from_graph(g: Graph) -> Iterator[Concept]:
         # Get preferred label
         pref_label = None
         for label in g.objects(subject, SKOS.prefLabel):
-            if hasattr(label, 'language') and label.language == 'en':
+            if hasattr(label, "language") and label.language == "en":
                 pref_label = str(label)
                 break
             elif pref_label is None:
@@ -243,16 +243,19 @@ def fetch_lcc_subclasses(main_class: str) -> dict:
 
 def concepts_to_dict(concepts: list[Concept]) -> dict[str, dict]:
     """Convert concepts to a dictionary keyed by URI."""
-    return {c.uri: {
-        "id": c.id,
-        "pref_label": c.pref_label,
-        "alt_labels": c.alt_labels,
-        "broader": c.broader,
-        "narrower": c.narrower,
-        "related": c.related,
-        "scope_note": c.scope_note,
-        "notation": c.notation,
-    } for c in concepts}
+    return {
+        c.uri: {
+            "id": c.id,
+            "pref_label": c.pref_label,
+            "alt_labels": c.alt_labels,
+            "broader": c.broader,
+            "narrower": c.narrower,
+            "related": c.related,
+            "scope_note": c.scope_note,
+            "notation": c.notation,
+        }
+        for c in concepts
+    }
 
 
 def save_concepts_json(concepts: list[Concept], path: Path):
@@ -268,7 +271,9 @@ def get_top_level_concepts(concepts: list[Concept]) -> list[Concept]:
     return [c for c in concepts if not c.broader]
 
 
-def filter_by_frequency(concepts: list[Concept], min_narrower: int = 0) -> list[Concept]:
+def filter_by_frequency(
+    concepts: list[Concept], min_narrower: int = 0
+) -> list[Concept]:
     """Filter to concepts that have at least min_narrower narrower terms."""
     return [c for c in concepts if len(c.narrower) >= min_narrower]
 
@@ -284,7 +289,7 @@ def print_summary(name: str, concepts: list[Concept]):
     print(f"With narrower terms: {len(with_narrower):,}")
 
     # Sample some top-level concepts
-    print(f"\nSample top-level concepts:")
+    print("\nSample top-level concepts:")
     for c in top_level[:10]:
         print(f"  - {c.pref_label}")
 
@@ -302,33 +307,33 @@ if __name__ == "__main__":
         vocab = "all"
 
     if vocab in ("lcgft", "all"):
-        print("\n" + "="*60)
+        print("\n" + "=" * 60)
         print("Loading LCGFT (Genre/Form Terms)...")
-        print("="*60)
+        print("=" * 60)
         lcgft = load_lcgft(cache_dir)
         print_summary("LCGFT", lcgft)
         save_concepts_json(lcgft, output_dir / "lcgft.json")
 
     if vocab in ("lcdgt", "all"):
-        print("\n" + "="*60)
+        print("\n" + "=" * 60)
         print("Loading LCDGT (Demographic Group Terms)...")
-        print("="*60)
+        print("=" * 60)
         lcdgt = load_lcdgt(cache_dir)
         print_summary("LCDGT", lcdgt)
         save_concepts_json(lcdgt, output_dir / "lcdgt.json")
 
     if vocab in ("lcsh", "all"):
-        print("\n" + "="*60)
+        print("\n" + "=" * 60)
         print("Loading LCSH (Subject Headings) - this may take a while...")
-        print("="*60)
+        print("=" * 60)
         lcsh = load_lcsh(cache_dir)
         print_summary("LCSH", lcsh)
         save_concepts_json(lcsh, output_dir / "lcsh.json")
 
     if vocab in ("lcc", "all"):
-        print("\n" + "="*60)
+        print("\n" + "=" * 60)
         print("LCC (Classification) - Main Classes Only")
-        print("="*60)
+        print("=" * 60)
         print("\nNote: Full LCC requires Classification Web subscription.")
         print("Main classes available:")
         for code, name in LCC_MAIN_CLASSES.items():

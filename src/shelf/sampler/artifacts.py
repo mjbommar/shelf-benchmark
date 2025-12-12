@@ -6,16 +6,79 @@ Each artifact includes:
 - Generated content (title, body)
 - The exact prompt used to generate it
 - Generation parameters (length, register, model)
+- Git commit info for reproducibility
 """
 
 import hashlib
+import subprocess
 import uuid
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from typing import Iterator
 
 import orjson
 from pydantic import BaseModel, Field
+
+from .generator import GeneratedDocument
+
+
+@lru_cache(maxsize=1)
+def get_git_version() -> dict[str, str | bool | None]:
+    """Get git commit info for versioning and reproducibility.
+
+    Returns:
+        Dict with:
+        - commit: Short commit hash (e.g., "ee52a05")
+        - dirty: True if working directory has uncommitted changes
+        - branch: Current branch name
+        - version_string: Commit + "*" if dirty (e.g., "ee52a05*")
+
+    If git is not available or fails, returns dict with error key.
+    """
+    try:
+        # Get short commit hash
+        commit = (
+            subprocess.check_output(
+                ["git", "rev-parse", "--short", "HEAD"],
+                stderr=subprocess.DEVNULL,
+            )
+            .decode()
+            .strip()
+        )
+
+        # Check if working directory is dirty
+        dirty = (
+            subprocess.call(
+                ["git", "diff", "--quiet", "HEAD"],
+                stderr=subprocess.DEVNULL,
+            )
+            != 0
+        )
+
+        # Get branch name
+        branch = (
+            subprocess.check_output(
+                ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+                stderr=subprocess.DEVNULL,
+            )
+            .decode()
+            .strip()
+        )
+
+        return {
+            "commit": commit,
+            "dirty": dirty,
+            "branch": branch,
+            "version_string": f"{commit}{'*' if dirty else ''}",
+        }
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError):
+        return {
+            "commit": None,
+            "dirty": None,
+            "branch": None,
+            "version_string": "unknown",
+        }
 
 
 def generate_artifact_id() -> str:
@@ -24,42 +87,79 @@ def generate_artifact_id() -> str:
     uid = uuid.uuid4().hex[:8]
     return f"{ts}_{uid}"
 
-from .document import Document
-from .generator import GeneratedDocument, DocumentLength, Register
-
 
 # =============================================================================
 # Pydantic Artifact Models
 # =============================================================================
 
+
 class LCCLabel(BaseModel):
     """Library of Congress Classification label."""
+
     code: str = Field(description="LCC main class letter (A-Z)")
     name: str = Field(description="Full class name")
 
 
 class LCGFTLabel(BaseModel):
     """Library of Congress Genre/Form Terms label."""
+
     category: str = Field(description="Top-level LCGFT category")
     form: str = Field(description="Specific genre/form term")
 
 
 class GenerationParams(BaseModel):
     """Parameters used to generate the document."""
+
     target_length: str | None = Field(description="Target length category")
-    target_word_range: tuple[int, int] | None = Field(description="Target word count range")
+    target_word_range: tuple[int, int] | None = Field(
+        description="Target word count range"
+    )
     writing_register: str | None = Field(description="Writing register/tone")
-    writing_register_description: str | None = Field(description="Full register description")
+    writing_register_description: str | None = Field(
+        description="Full register description"
+    )
     temperature: float | None = Field(default=None, description="LLM temperature")
-    top_p: float | None = Field(default=None, description="LLM top_p (nucleus sampling)")
+    top_p: float | None = Field(
+        default=None, description="LLM top_p (nucleus sampling)"
+    )
 
 
 class GenerationMetadata(BaseModel):
     """Metadata about how the document was generated."""
+
     generated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     model: str | None = Field(default=None, description="LLM model used")
     generation_id: str | None = Field(default=None, description="Batch generation ID")
     prompt: str | None = Field(default=None, description="Exact prompt sent to LLM")
+
+    # Git versioning for reproducibility
+    git_commit: str | None = Field(default=None, description="Git commit hash (short)")
+    git_dirty: bool | None = Field(
+        default=None, description="True if uncommitted changes existed"
+    )
+    git_branch: str | None = Field(default=None, description="Git branch name")
+    code_version: str | None = Field(
+        default=None,
+        description="Version string: commit + '*' if dirty (e.g., 'ee52a05*')",
+    )
+
+
+def _build_generation_metadata(
+    model: str | None = None,
+    generation_id: str | None = None,
+    prompt: str | None = None,
+) -> GenerationMetadata:
+    """Build GenerationMetadata with git version info."""
+    git_info = get_git_version()
+    return GenerationMetadata(
+        model=model,
+        generation_id=generation_id,
+        prompt=prompt,
+        git_commit=git_info.get("commit"),
+        git_dirty=git_info.get("dirty"),
+        git_branch=git_info.get("branch"),
+        code_version=git_info.get("version_string"),
+    )
 
 
 class BenchmarkArtifact(BaseModel):
@@ -89,10 +189,14 @@ class BenchmarkArtifact(BaseModel):
     topics: list[str] = Field(description="LCSH-style topic terms")
 
     # LCDGT Audience
-    audience: str | None = Field(default=None, description="Target audience (LCDGT-style)")
+    audience: str | None = Field(
+        default=None, description="Target audience (LCDGT-style)"
+    )
 
     # Geographic
-    geographic: list[str] = Field(default_factory=list, description="Geographic focus areas")
+    geographic: list[str] = Field(
+        default_factory=list, description="Geographic focus areas"
+    )
 
     # Generation parameters
     generation: GenerationParams = Field(description="Generation parameters")
@@ -137,14 +241,22 @@ class BenchmarkArtifact(BaseModel):
             audience=doc.audience,
             geographic=doc.geographic,
             generation=GenerationParams(
-                target_length=generated.target_length.value if generated.target_length else None,
+                target_length=generated.target_length.value
+                if generated.target_length
+                else None,
                 target_word_range=word_range,
-                writing_register=generated.register.value if generated.register else None,
+                writing_register=generated.register.value
+                if generated.register
+                else None,
                 writing_register_description=register_desc,
-                temperature=generated.sampling_params.temperature if generated.sampling_params else None,
-                top_p=generated.sampling_params.top_p if generated.sampling_params else None,
+                temperature=generated.sampling_params.temperature
+                if generated.sampling_params
+                else None,
+                top_p=generated.sampling_params.top_p
+                if generated.sampling_params
+                else None,
             ),
-            metadata=GenerationMetadata(
+            metadata=_build_generation_metadata(
                 model=model,
                 generation_id=generation_id,
                 prompt=generated.prompt,
@@ -173,6 +285,7 @@ class BenchmarkArtifact(BaseModel):
 
 class DatasetMetadata(BaseModel):
     """Metadata for a complete benchmark dataset."""
+
     generation_id: str
     model: str | None
     created_at: datetime
@@ -193,6 +306,7 @@ class DatasetMetadata(BaseModel):
 # =============================================================================
 # Artifact Storage
 # =============================================================================
+
 
 class ArtifactStore:
     """
@@ -218,7 +332,9 @@ class ArtifactStore:
         self.artifacts_dir = self.output_dir / "artifacts"
         self.index_path = self.output_dir / "index.jsonl"
 
-        self.generation_id = generation_id or datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+        self.generation_id = generation_id or datetime.now(timezone.utc).strftime(
+            "%Y%m%d_%H%M%S"
+        )
         self.model = model
 
         # Create directories
@@ -310,7 +426,9 @@ class ArtifactStore:
         lcc_dist = Counter(e["lcc"] for e in index)
         category_dist = Counter(e["lcgft_category"] for e in index)
         register_dist = Counter(e.get("register") for e in index if e.get("register"))
-        length_dist = Counter(e.get("target_length") for e in index if e.get("target_length"))
+        length_dist = Counter(
+            e.get("target_length") for e in index if e.get("target_length")
+        )
         word_counts = [e["word_count"] for e in index if e.get("word_count")]
 
         return DatasetMetadata(

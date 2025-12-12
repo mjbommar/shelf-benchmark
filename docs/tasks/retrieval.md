@@ -243,25 +243,73 @@ where $R$ is the set of relevant documents, $P(i)$ is precision at position $i$,
 
 ## Baselines
 
+### Measured Results (December 2025)
+
+The following results were measured using the SHELF evaluation framework on the LCC Retrieval task with 100 test queries and an 8,000-document corpus (train + validation splits).
+
+#### Neural Embedding Models
+
+| Model | NDCG@10 | MRR | P@10 | R@10 | Embedding Dim | Notes |
+|-------|---------|-----|------|------|---------------|-------|
+| **all-MiniLM-L6-v2** | **0.4551** | **0.6425** | 0.4420 | 0.0117 | 384 | Sentence-transformer (recommended) |
+| bert-base-uncased | 0.3271 | 0.5530 | 0.3130 | 0.0083 | 768 | Raw BERT + mean pooling |
+
+#### Traditional/Sparse Retrieval Methods
+
+| Model | NDCG@10 | MRR | P@10 | R@10 | Notes |
+|-------|---------|-----|------|------|-------|
+| **TF-IDF + SVD** | **0.4566** | 0.6630 | 0.4350 | 0.0114 | 256-dim SVD, 50k vocab, (1,2)-grams |
+| BM25 | 0.4468 | **0.6778** | 0.4210 | 0.0111 | k1=1.5, b=0.75 (standard) |
+
+**Detailed Metrics (all-MiniLM-L6-v2)**:
+
+| Metric | @1 | @5 | @10 | @50 | @100 |
+|--------|-----|-----|------|------|------|
+| NDCG | 0.4800 | 0.4762 | 0.4551 | 0.4073 | 0.3749 |
+| Precision | 0.4800 | 0.4720 | 0.4420 | 0.3918 | 0.3569 |
+| Recall | 0.0013 | 0.0062 | 0.0117 | 0.0517 | 0.0941 |
+| MAP | 0.0013 | 0.0051 | 0.0088 | 0.0321 | 0.0544 |
+
+**Key Observations**:
+- Sentence-transformer models (trained for semantic similarity) significantly outperform raw BERT (~39% improvement in NDCG@10)
+- MRR is relatively high (0.64), indicating models often rank at least one relevant document in top positions
+- Low recall reflects the challenging nature of the task: with 21 LCC classes and ~380 relevant documents per query on average, finding all relevant documents requires comprehensive coverage
+- Precision@10 above 0.44 indicates nearly half of top-10 results are relevant
+
+### Key Observations
+
+**Traditional vs. Neural Methods**:
+- TF-IDF with SVD dimensionality reduction matches sentence-transformer performance (NDCG@10: 0.4566 vs 0.4551)
+- BM25 achieves highest MRR (0.6778), indicating it frequently ranks relevant documents first
+- Neural embeddings from raw BERT significantly underperform (~39% lower NDCG@10 than sentence-transformers)
+- Traditional sparse methods remain competitive on this bibliographic retrieval task
+
+**Why Traditional Methods Perform Well**:
+- LCC retrieval relies on topical similarity, which often has lexical overlap
+- Synthetic documents may have consistent vocabulary within LCC classes
+- Traditional methods capture term frequency patterns effectively
+
+### Planned Baselines
+
 | Model | NDCG@10 (LCC) | NDCG@10 (Form) | NDCG@10 (Topic) | Notes |
 |-------|---------------|----------------|-----------------|-------|
-| Random | 0.05 | 0.03 | 0.02 | Lower bound (random ranking) |
-| BM25 | 0.42 | 0.38 | 0.55 | Lexical baseline (TF-IDF) |
-| TF-IDF + LSA | 0.48 | 0.41 | 0.58 | Classical IR baseline |
-| Sentence-BERT | 0.67 | 0.62 | 0.73 | General-domain embeddings |
-| E5-large | 0.71 | 0.66 | 0.76 | Instruction-tuned embeddings |
-| Domain-tuned BERT | TBD | TBD | TBD | Fine-tuned on SHELF train |
+| Random | ~0.05 | ~0.03 | ~0.02 | Lower bound (random ranking) |
+| all-mpnet-base-v2 | TBD | TBD | TBD | Larger sentence-transformer |
+| E5-large | TBD | TBD | TBD | Instruction-tuned embeddings |
+| bge-base-en-v1.5 | TBD | TBD | TBD | BAAI embedding model |
+| Domain-tuned | TBD | TBD | TBD | Fine-tuned on SHELF train |
 
-**Additional Metrics** (E5-large):
+### Evaluation Configuration
 
-| Metric | LCC | Form | Topic |
-|--------|-----|------|-------|
-| MRR | 0.78 | 0.72 | 0.82 |
-| Recall@10 | 0.83 | 0.76 | 0.88 |
-| Recall@50 | 0.94 | 0.89 | 0.96 |
-| MAP@10 | 0.69 | 0.64 | 0.74 |
-
-*Note: Baseline scores are estimates and will be updated with actual benchmark runs.*
+```
+Task: lcc_retrieval
+Queries: 100 (from test split)
+Corpus: 8,000 documents (train + validation splits)
+Similarity: Cosine similarity
+Ranking: Top-100 per query
+Random seed: 42
+Platform: Linux x86_64
+```
 
 ## Related Work
 
@@ -496,4 +544,4 @@ Leaderboard submissions should include:
 8. Evidentlyai. Normalized Discounted Cumulative Gain (NDCG) explained. [Documentation](https://www.evidentlyai.com/ranking-metrics/ndcg-metric)
 
 ---
-*Last updated: December 10, 2025*
+*Last updated: December 11, 2025*

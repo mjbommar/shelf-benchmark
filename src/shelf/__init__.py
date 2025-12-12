@@ -6,4 +6,4 @@ classification, retrieval, and clustering tasks using Library of Congress
 taxonomies (LCC, LCGFT, LCSH, LCDGT).
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

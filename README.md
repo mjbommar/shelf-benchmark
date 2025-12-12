@@ -57,15 +57,15 @@ shelf/
 1. **Classification**: LCC, LCGFT form, topic, audience, register classification
 2. **Retrieval**: Subject-based document retrieval
 3. **Clustering**: Document clustering by taxonomy
-4. **Pair Classification**: Same-LCC or same-form pair classification
+4. **Pair Classification**: Same-LCC, same-form, same-audience, and same-register pair classification
 
 ## HuggingFace Dataset
 
 The benchmark dataset is available on HuggingFace:
 
 - **Repository**: [mjbommar/SHELF](https://huggingface.co/datasets/mjbommar/SHELF)
-- **Configurations**: `default`, `same_lcc_pairs`, `same_form_pairs`
-- **Splits**: train (6,000), validation (2,000), test (2,000)
+- **Configurations**: `default`, `same_lcc_pairs`, `same_form_pairs`, `same_audience_pairs`, `same_register_pairs`
+- **Splits**: train (12,000-20,000), validation (4,000), test (4,000)
 
 ## License
 

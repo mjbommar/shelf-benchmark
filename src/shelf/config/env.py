@@ -29,8 +29,7 @@ def load_env(env_file: Path | str | None = None) -> dict[str, str]:
 
     if not env_file.exists():
         raise FileNotFoundError(
-            f"env.json not found at {env_file}. "
-            "Expected OPENAI_API_KEY and other keys."
+            f"env.json not found at {env_file}. Expected OPENAI_API_KEY and other keys."
         )
 
     with env_file.open("r", encoding="utf-8") as f:

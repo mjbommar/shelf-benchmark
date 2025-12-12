@@ -2,7 +2,7 @@
 
 > **Status**: Active Development
 > **Created**: 2025-12-11
-> **Last Updated**: 2025-12-11
+> **Last Updated**: 2025-12-12
 > **Version**: 0.2.0 (Data Complete)
 
 ## Executive Summary
@@ -10,15 +10,18 @@
 SHELF is a Library of Congress taxonomy benchmark for evaluating NLP models on bibliographic classification, retrieval, and clustering tasks. This document synthesizes research findings from comprehensive analysis of task documentation, data artifacts, evaluation metrics, baseline models, and benchmark design patterns (GLUE, MTEB, HELM, BigBench).
 
 **Current State**:
-- ✅ 10,000 synthetic documents generated via GPT-5.1
+- ✅ 20,000 synthetic documents generated via GPT-5.1 (10,000) and GPT-5.2 (10,000)
 - ✅ Quality filtering applied (non-English, empty docs removed)
 - ✅ Distribution report generated (`docs/CORPUS_DISTRIBUTION_REPORT.md`)
-- 8 task definitions documented (4 classification, 3 retrieval, 2 pair, 2 clustering)
+- ✅ Train/dev/test splits created (12,000/4,000/4,000) in `data/hf_dataset/`
+- ✅ Pair classification datasets created (`same_lcc_pairs`, `same_form_pairs`)
+- ✅ HuggingFace dataset card complete (`data/hf_dataset/README.md`)
+- 9 task definitions documented (4 classification, 3 retrieval, 2 pair, 3 clustering)
 - Core generation infrastructure functional
 - No evaluation harness, baselines, or leaderboard yet
 
 **Target State**:
-- 10,000+ documents with quality filtering
+- 20,000+ documents with quality filtering
 - Complete evaluation infrastructure
 - Published baselines with reproducible results
 - Public leaderboard and submission system
@@ -34,29 +37,32 @@ SHELF is a Library of Congress taxonomy benchmark for evaluating NLP models on b
 |-----------|--------|----------|
 | Document sampler framework | ✅ Complete | `src/shelf/sampler/` |
 | Fluent API for metadata | ✅ Complete | `sampler/document.py` |
-| GPT-5.1 generation pipeline | ✅ Complete | `sampler/generator.py` |
+| GPT-5.1/5.2 generation pipeline | ✅ Complete | `sampler/generator.py` |
 | Artifact storage | ✅ Complete | `data/artifacts/` |
 | Distribution analysis script | ✅ Complete | `scripts/analyze_distribution.py` |
 | Task documentation (8 tasks) | ✅ Complete | `docs/tasks/*.md` |
+| HuggingFace dataset prep | ✅ Complete | `scripts/prepare_hf_dataset.py` |
+| Train/dev/test splits | ✅ Complete | `data/hf_dataset/*.parquet` |
+| Pair classification datasets | ✅ Complete | `data/hf_dataset/pairs/` |
+| Dataset card | ✅ Complete | `data/hf_dataset/README.md` |
 
 ### Quality Assessment (from Data Analysis)
 
 **Corpus Statistics** (see `docs/CORPUS_DISTRIBUTION_REPORT.md`):
-- 10,000 documents, ~7.38 million words total
-- 21 LCC codes (4.4-5.2% each, well-balanced)
-- 14 LCGFT categories (6.6-7.5% each, well-balanced)
+- 20,000 documents, ~13.36 million words total
+- 21 LCC codes (4.6-5.0% each, well-balanced)
+- 14 LCGFT categories (6.9-7.4% each, well-balanced)
 - 133 LCGFT forms (long-tail distribution)
 - 25 audience types (30% None, remainder balanced)
 - 8 registers, 8 target lengths, 44 geographic locations, 112 topics
 
 **Quality Filtering Applied**:
-- ✅ Removed 20 empty-body documents (regenerated)
-- ✅ Removed 286 non-English documents (German, Italian, Spanish, Korean, Latin, French)
-- ✅ Final corpus: 10,000 high-quality English documents
+- ✅ Removed empty-body documents (regenerated)
+- ✅ Removed non-English documents (German, Italian, Spanish, Korean, Latin, French)
+- ✅ Final corpus: 20,000 high-quality English documents
 
 **Remaining Known Issues**:
 - 5-8% register-content mismatches (detectable but not filtered)
-- Single-model generation bias (GPT-5.1 only)
 - Fabricated citations not marked as synthetic
 
 ---
@@ -165,7 +171,7 @@ Add research findings to each task file:
 
 ## Phase 2: Data Generation & Quality
 
-> **Objective**: Scale to 10,000+ high-quality documents with proper train/dev/test splits.
+> **Objective**: Scale to 20,000+ high-quality documents with proper train/dev/test splits.
 > **Dependencies**: Phase 1 (quality criteria defined)
 > **Estimated Effort**: 2-3 weeks
 
@@ -205,38 +211,42 @@ Reduce single-model bias:
 - Model source tracked in metadata
 - No significant quality degradation
 
-### Task 2.3: Scale to 10,000 Documents ✅ COMPLETE
+### Task 2.3: Scale to 20,000 Documents ✅ COMPLETE
 **Deliverable**: Full corpus in `data/`
-**Status**: ✅ Complete (2025-12-11)
+**Status**: ✅ Complete (2025-12-12)
 
 Generate production dataset:
 - [x] Target distribution: balanced across all dimensions
-- [x] 10,000 documents minimum
-- [x] Apply quality filtering (306 rejected, regenerated)
+- [x] 20,000 documents minimum (10,000 GPT-5.1 + 10,000 GPT-5.2)
+- [x] Apply quality filtering
 - [x] Create distribution report (`docs/CORPUS_DISTRIBUTION_REPORT.md`)
 
 **Results**:
-- 10,000 documents in `data/artifacts/`
-- All 21 LCC codes represented (4.4-5.2% each)
+- 20,000 documents in `data/artifacts/`
+- All 21 LCC codes represented (4.6-5.0% each)
 - All 133 LCGFT forms represented
-- ~7.38 million words total
-- ~80 MB storage
+- ~13.36 million words total
+- ~160 MB storage
 
-### Task 2.4: Stratified Train/Dev/Test Splits
-**Deliverable**: `data/splits/` with train.jsonl, dev.jsonl, test.jsonl
+### Task 2.4: Stratified Train/Dev/Test Splits ✅ COMPLETE
+**Deliverable**: `data/hf_dataset/` with train.parquet, validation.parquet, test.parquet
+**Status**: ✅ Complete (2025-12-12)
 
 Create evaluation splits:
-- [ ] Stratified sampling preserving label distributions
-- [ ] Split ratios: 60% train, 20% dev, 20% test
-- [ ] Ensure all labels appear in all splits (minimum 3 per class per split)
-- [ ] No document overlap between splits
-- [ ] Generate split statistics report
-- [ ] Create checksums for reproducibility
+- [x] Stratified sampling preserving label distributions (by `lcc_code`, `lcgft_category`)
+- [x] Split ratios: 60% train, 20% dev, 20% test
+- [x] Ensure all labels appear in all splits
+- [x] No document overlap between splits
+- [x] Generate split statistics in `metadata.json`
+- [x] Create checksums for reproducibility
 
-**Acceptance Criteria**:
-- Balanced splits with documented statistics
-- All labels represented in each split
-- Checksums published
+**Results**:
+- Train: 12,000 documents (`train.parquet`)
+- Validation: 4,000 documents (`validation.parquet`)
+- Test: 4,000 documents (`test.parquet`)
+- Pair datasets: `pairs/same_lcc/` and `pairs/same_lcgft/` with all splits
+- HuggingFace dataset card: `data/hf_dataset/README.md`
+- Random seed: 42
 
 ### Task 2.5: Test Set Embargo & Security
 **Deliverable**: Secure test set distribution
@@ -325,6 +335,7 @@ Per task:
 Implement for each clustering task:
 - [ ] LCC Clustering (21 clusters)
 - [ ] LCGFT Category Clustering (14 clusters)
+- [ ] Geographic Region Clustering (8 clusters)
 
 Per task:
 - [ ] k-means clustering with configurable k
@@ -652,14 +663,14 @@ Maintain engagement:
 ## Priority Matrix
 
 ### P0: Critical Path (Blocks Everything)
-1. ~~Task 2.3: Scale to 10,000 Documents~~ ✅ COMPLETE
-2. **Task 2.4: Stratified Train/Dev/Test Splits** ← NEXT
-3. Task 3.1: Core Evaluation Harness
+1. ~~Task 2.3: Scale to 20,000 Documents~~ ✅ COMPLETE
+2. ~~Task 2.4: Stratified Train/Dev/Test Splits~~ ✅ COMPLETE
+3. **Task 3.1: Core Evaluation Harness** ← NEXT
 4. Task 3.6: Baseline Implementations
 
 ### P1: High Priority (Required for Launch)
-1. Task 1.1-1.4: Documentation & Guides
-2. Task 2.1: Quality Filtering Pipeline
+1. Task 1.1-1.3: Documentation & Guides (Task 1.4 complete)
+2. Task 2.1: Quality Filtering Pipeline (partial - ad-hoc done)
 3. Task 3.2-3.5: Task-Specific Evaluators
 4. Task 5.1-5.2: Leaderboard
 5. Task 5.5: PyPI Package
@@ -682,7 +693,7 @@ Maintain engagement:
 ## Success Metrics
 
 ### Launch Criteria (MVP)
-- [ ] 10,000+ documents with train/dev/test splits
+- [x] 20,000+ documents with train/dev/test splits
 - [ ] All 8 tasks evaluable via CLI
 - [ ] 3+ baselines published with reproducible results
 - [ ] Public leaderboard accepting submissions
@@ -721,10 +732,9 @@ Maintain engagement:
 ### API Costs (Generation)
 | Model | Documents | Estimated Cost |
 |-------|-----------|----------------|
-| GPT-5.1 | 7,000 | $35-70 |
-| Claude | 2,000 | $10-20 |
-| Gemini | 1,000 | $5-10 |
-| **Total** | **10,000** | **$50-100** |
+| GPT-5.1 | 10,000 | $50-100 |
+| GPT-5.2 | 10,000 | $48 |
+| **Total** | **20,000** | **$100-150** |
 
 ### Human Effort
 | Phase | Person-Weeks | Skills Needed |
@@ -841,6 +851,7 @@ Maintain engagement:
 | Same-Form Pair | 2 | F1 | 0.70-0.85 |
 | LCC Clustering | 21 | V-measure | 0.55-0.75 |
 | LCGFT Clustering | 14 | V-measure | 0.60-0.80 |
+| Geographic Clustering | 8 | V-measure | 0.65-0.85 |
 
 ---
 
@@ -854,7 +865,7 @@ Where:
   Classification = mean(LCC_F1, LCGFT_F1, Topic_F1, Audience_F1, Register_F1)
   Retrieval = mean(LCC_NDCG, Form_NDCG, Topic_NDCG)
   PairClassification = mean(SameLCC_F1, SameForm_F1)
-  Clustering = mean(LCC_Vmeasure, LCGFT_Vmeasure)
+  Clustering = mean(LCC_Vmeasure, LCGFT_Vmeasure, Geographic_Vmeasure)
 ```
 
 ---

@@ -3,8 +3,6 @@ Benchmark document generator using archetypes and conditional sampling.
 """
 
 import random
-from dataclasses import dataclass, field
-from pathlib import Path
 
 from pydantic import BaseModel, Field
 
@@ -28,7 +26,9 @@ class SyntheticDocument(BaseModel):
     lcc_class: str = Field(description="LCC main class")
     lcc_name: str = Field(description="LCC class name")
     topics: list[str] = Field(description="LCSH topical subjects")
-    geographic: list[str] = Field(default_factory=list, description="LCSH geographic subjects")
+    geographic: list[str] = Field(
+        default_factory=list, description="LCSH geographic subjects"
+    )
 
     # Metadata
     year: int | None = Field(default=None, description="Publication year")
@@ -37,11 +37,17 @@ class SyntheticDocument(BaseModel):
 class BenchmarkConfig(BaseModel):
     """Configuration for benchmark generation."""
 
-    total_documents: int = Field(default=1000, description="Total documents to generate")
+    total_documents: int = Field(
+        default=1000, description="Total documents to generate"
+    )
     min_topics: int = Field(default=1, description="Minimum topics per document")
     max_topics: int = Field(default=4, description="Maximum topics per document")
-    include_geographic: bool = Field(default=True, description="Include geographic labels")
-    year_range: tuple[int, int] = Field(default=(1990, 2023), description="Year range for documents")
+    include_geographic: bool = Field(
+        default=True, description="Include geographic labels"
+    )
+    year_range: tuple[int, int] = Field(
+        default=(1990, 2023), description="Year range for documents"
+    )
     seed: int = Field(default=42, description="Random seed for reproducibility")
 
 
@@ -84,7 +90,9 @@ class BenchmarkGenerator:
 
         return areas
 
-    def generate_title_placeholder(self, archetype: Archetype, topics: list[str], geo: list[str]) -> str:
+    def generate_title_placeholder(
+        self, archetype: Archetype, topics: list[str], geo: list[str]
+    ) -> str:
         """Generate a placeholder title (to be replaced by LLM)."""
         # Simple template-based title for now
         topic = topics[0] if topics else "General"
@@ -104,7 +112,9 @@ class BenchmarkGenerator:
             # Simple substitution
             title = pattern.replace("{topic}", topic)
             title = title.replace("{location}", location)
-            title = title.replace("{year}", str(self._rng.randint(*self.config.year_range)))
+            title = title.replace(
+                "{year}", str(self._rng.randint(*self.config.year_range))
+            )
             return title
 
         return self._rng.choice(templates)
@@ -138,7 +148,9 @@ class BenchmarkGenerator:
         n = n or self.config.total_documents
         return [self.generate_document(f"doc_{i:05d}") for i in range(n)]
 
-    def generate_stratified(self, docs_per_archetype: int = 50) -> list[SyntheticDocument]:
+    def generate_stratified(
+        self, docs_per_archetype: int = 50
+    ) -> list[SyntheticDocument]:
         """Generate documents with equal representation of each archetype."""
         documents = []
         for archetype in self.archetypes:

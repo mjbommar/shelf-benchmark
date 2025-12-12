@@ -34,7 +34,7 @@ Note that clustering is an unsupervised task - the ground truth labels G are use
 
 ## Tasks
 
-SHELF includes two distinct clustering tasks based on different taxonomic granularities:
+SHELF includes three distinct clustering tasks based on different taxonomic granularities:
 
 ### 1. LCC Clustering (21 clusters)
 
@@ -54,6 +54,36 @@ Cluster documents into 14 groups based on Library of Congress Genre/Form Terms (
 - Cluster 2 (Visual Works): Diagrams, Charts, Illustrations
 - Cluster 3 (Instructional Materials): Textbooks, Study guides
 
+### 3. Geographic Region Clustering (8 clusters)
+
+Cluster documents into 8 groups based on geographic region. Documents in the corpus have optional geographic tags indicating location focus (countries, regions, cities, or US states). For clustering purposes, all 44 unique geographic locations are mapped to 8 broad regions.
+
+**Regional Mapping:**
+
+The 44 geographic locations are grouped into 8 regions as follows:
+
+| Region | Locations |
+|--------|-----------|
+| **North America** | United States, Canada, California, New York, Texas, Florida, Illinois, Pennsylvania, Ohio, Georgia, North Carolina, Michigan, New York City, Los Angeles, Chicago |
+| **South America** | Brazil, São Paulo, South America |
+| **Europe** | United Kingdom, Germany, France, Italy, Spain, Russia, Europe, London, Paris, Berlin |
+| **East Asia** | China, Japan, South Korea, Tokyo, Beijing, Asia (when referring to East Asia context) |
+| **South/Southeast Asia** | India, Southeast Asia, Mumbai |
+| **Middle East & North Africa** | Middle East |
+| **Sub-Saharan Africa** | Africa (when not Middle East/North Africa) |
+| **Central America & Caribbean** | Mexico, Central America, Caribbean |
+
+**Important Notes:**
+- Not all documents have geographic tags (approximately 50% have at least one tag)
+- Documents with multiple geographic tags use the **first tag** for clustering
+- Documents without geographic tags are excluded from this clustering task
+- The "Asia" tag is context-dependent: mapped to East Asia by default, but documents are manually reviewed during mapping
+
+**Example clusters:**
+- Cluster 1 (North America): Documents focused on US policies, Canadian culture, California technology
+- Cluster 2 (Europe): Documents about European history, French literature, German engineering
+- Cluster 3 (East Asia): Documents on Chinese economics, Japanese art, Korean technology
+
 ## Dataset
 
 ### Source
@@ -69,18 +99,102 @@ The synthetic generation process ensures balanced representation across categori
 #### LCC Clustering (21 clusters)
 | Split | Documents | Clusters | Avg. Cluster Size |
 |-------|-----------|----------|-------------------|
-| Train | TBD | 21 | TBD |
-| Dev   | TBD | 21 | TBD |
-| Test  | TBD | 21 | TBD |
+| Train | 12,000 | 21 | ~571 |
+| Dev   | 4,000 | 21 | ~190 |
+| Test  | 4,000 | 21 | ~190 |
 
 #### LCGFT Category Clustering (14 clusters)
 | Split | Documents | Clusters | Avg. Cluster Size |
 |-------|-----------|----------|-------------------|
-| Train | TBD | 14 | TBD |
-| Dev   | TBD | 14 | TBD |
-| Test  | TBD | 14 | TBD |
+| Train | 12,000 | 14 | ~857 |
+| Dev   | 4,000 | 14 | ~286 |
+| Test  | 4,000 | 14 | ~286 |
+
+#### Geographic Region Clustering (8 clusters)
+| Split | Documents | Clusters | Avg. Cluster Size |
+|-------|-----------|----------|-------------------|
+| Train | ~6,000 | 8 | ~750 |
+| Dev   | ~2,000 | 8 | ~250 |
+| Test  | ~2,000 | 8 | ~250 |
+
+**Note**: Geographic clustering uses only documents with at least one geographic tag (~50% of corpus). Documents with multiple tags use the first tag for region assignment.
 
 ### Label Space
+
+#### Geographic Regions (8 clusters)
+- **North America**: United States, Canada, and major US cities/states
+- **South America**: Brazil and South American countries
+- **Europe**: Western and Eastern European countries and cities
+- **East Asia**: China, Japan, South Korea and major cities
+- **South/Southeast Asia**: India, Southeast Asian countries
+- **Middle East & North Africa**: Middle Eastern countries and North Africa
+- **Sub-Saharan Africa**: African countries south of the Sahara
+- **Central America & Caribbean**: Mexico, Central American and Caribbean nations
+
+**Full Location-to-Region Mapping:**
+
+```python
+GEOGRAPHIC_REGION_MAPPING = {
+    # North America
+    "United States": "North America",
+    "Canada": "North America",
+    "California": "North America",
+    "New York": "North America",
+    "Texas": "North America",
+    "Florida": "North America",
+    "Illinois": "North America",
+    "Pennsylvania": "North America",
+    "Ohio": "North America",
+    "Georgia": "North America",
+    "North Carolina": "North America",
+    "Michigan": "North America",
+    "New York City": "North America",
+    "Los Angeles": "North America",
+    "Chicago": "North America",
+    "North America": "North America",
+
+    # South America
+    "Brazil": "South America",
+    "São Paulo": "South America",
+    "South America": "South America",
+
+    # Europe
+    "United Kingdom": "Europe",
+    "Germany": "Europe",
+    "France": "Europe",
+    "Italy": "Europe",
+    "Spain": "Europe",
+    "Russia": "Europe",
+    "Europe": "Europe",
+    "London": "Europe",
+    "Paris": "Europe",
+    "Berlin": "Europe",
+
+    # East Asia
+    "China": "East Asia",
+    "Japan": "East Asia",
+    "South Korea": "East Asia",
+    "Tokyo": "East Asia",
+    "Beijing": "East Asia",
+    "Asia": "East Asia",  # Default mapping
+
+    # South/Southeast Asia
+    "India": "South/Southeast Asia",
+    "Southeast Asia": "South/Southeast Asia",
+    "Mumbai": "South/Southeast Asia",
+
+    # Middle East & North Africa
+    "Middle East": "Middle East & North Africa",
+
+    # Sub-Saharan Africa
+    "Africa": "Sub-Saharan Africa",
+
+    # Central America & Caribbean
+    "Mexico": "Central America & Caribbean",
+    "Central America": "Central America & Caribbean",
+    "Caribbean": "Central America & Caribbean",
+}
+```
 
 #### LCC Codes (21 clusters)
 - **A**: General Works
@@ -142,6 +256,7 @@ The synthetic generation process ensures balanced representation across categori
 For clustering tasks:
 - **LCC Clustering**: Use `lcc_code` as ground truth label
 - **LCGFT Category Clustering**: Use `lcgft_category` as ground truth label
+- **Geographic Region Clustering**: Use first element of `geographic` list, mapped to region via `GEOGRAPHIC_REGION_MAPPING`. Documents with empty `geographic` lists are excluded.
 
 ## Evaluation
 
@@ -255,7 +370,17 @@ Where RI is the Rand Index counting concordant pairs.
 | SBERT + k-means | TBD | TBD | TBD | Sentence transformer baseline |
 | OpenAI text-embedding-3-small | TBD | TBD | TBD | Commercial baseline |
 
-**Note**: Baseline results will be added after initial benchmark runs are completed.
+### Geographic Region Clustering (8 clusters)
+
+| Model | V-measure | NMI | ARI | Notes |
+|-------|-----------|-----|-----|-------|
+| Random | 0.000 | ~0.000 | 0.000 | Random cluster assignment |
+| TF-IDF + k-means | TBD | TBD | TBD | Bag-of-words baseline |
+| Doc2Vec + k-means | TBD | TBD | TBD | Classical embedding baseline |
+| SBERT + k-means | TBD | TBD | TBD | Sentence transformer baseline |
+| OpenAI text-embedding-3-small | TBD | TBD | TBD | Commercial baseline |
+
+**Note**: Baseline results will be added after initial benchmark runs are completed. Geographic clustering is expected to be easier than LCC/LCGFT clustering (fewer clusters, geographic signals often explicit in text).
 
 ## Related Work
 
@@ -297,6 +422,9 @@ shelf evaluate --task lcc_clustering --model <model_path>
 
 # Evaluate LCGFT category clustering (14 clusters)
 shelf evaluate --task lcgft_clustering --model <model_path>
+
+# Evaluate geographic region clustering (8 clusters)
+shelf evaluate --task geographic_clustering --model <model_path>
 
 # Run all clustering tasks
 shelf evaluate --task clustering --model <model_path>

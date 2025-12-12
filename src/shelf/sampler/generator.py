@@ -35,6 +35,7 @@ TOP_P_RANGE = (0.85, 1.0)  # Mostly full distribution
 @dataclass
 class SamplingParams:
     """LLM sampling parameters."""
+
     temperature: float
     top_p: float
 
@@ -64,14 +65,15 @@ class SamplingParamsSampler:
 
 class DocumentLength(str, Enum):
     """Document length categories."""
-    MICRO = "micro"           # 10-25 words (tweet, headline)
-    TINY = "tiny"             # 25-50 words (blurb, caption)
-    BRIEF = "brief"           # 50-100 words (abstract, summary)
-    SHORT = "short"           # 100-250 words (short article)
-    MEDIUM = "medium"         # 250-500 words (blog post)
-    LONG = "long"             # 500-1000 words (article)
-    VERY_LONG = "very_long"   # 1000-2000 words (essay)
-    EXTENDED = "extended"     # 2000-4000 words (long-form)
+
+    MICRO = "micro"  # 10-25 words (tweet, headline)
+    TINY = "tiny"  # 25-50 words (blurb, caption)
+    BRIEF = "brief"  # 50-100 words (abstract, summary)
+    SHORT = "short"  # 100-250 words (short article)
+    MEDIUM = "medium"  # 250-500 words (blog post)
+    LONG = "long"  # 500-1000 words (article)
+    VERY_LONG = "very_long"  # 1000-2000 words (essay)
+    EXTENDED = "extended"  # 2000-4000 words (long-form)
 
 
 LENGTH_WORD_RANGES = {
@@ -100,14 +102,15 @@ DEFAULT_LENGTH_WEIGHTS = {
 
 class Register(str, Enum):
     """Writing register/tone."""
-    CASUAL = "casual"           # Informal, conversational
+
+    CASUAL = "casual"  # Informal, conversational
     CONVERSATIONAL = "conversational"  # Friendly but clear
-    PROFESSIONAL = "professional"   # Standard business
-    FORMAL = "formal"           # Formal/official
-    ACADEMIC = "academic"       # Scholarly
-    TECHNICAL = "technical"     # Technical/specialized
+    PROFESSIONAL = "professional"  # Standard business
+    FORMAL = "formal"  # Formal/official
+    ACADEMIC = "academic"  # Scholarly
+    TECHNICAL = "technical"  # Technical/specialized
     JOURNALISTIC = "journalistic"  # News style
-    CREATIVE = "creative"       # Literary/artistic
+    CREATIVE = "creative"  # Literary/artistic
 
 
 REGISTER_DESCRIPTIONS = {
@@ -136,6 +139,7 @@ DEFAULT_REGISTER_WEIGHTS = {
 
 class GeneratedContent(BaseModel):
     """Pydantic model for LLM-generated content."""
+
     title: str = Field(description="Document title")
     body: str = Field(description="Document body text")
 
@@ -168,10 +172,10 @@ class GeneratedDocument:
         lines = [
             f"Title: {self.title}",
             f"Length: {self.word_count} words ({length_str}) | Register: {register_str}",
-            f"",
+            "",
             f"{self.body[:500]}{'...' if len(self.body) > 500 else ''}",
-            f"",
-            f"--- Labels ---",
+            "",
+            "--- Labels ---",
             str(self.document),
         ]
         return "\n".join(lines)
@@ -186,7 +190,9 @@ class GeneratedDocument:
             "target_length": self.target_length.value if self.target_length else None,
             "register": self.register.value if self.register else None,
             "prompt": self.prompt,
-            "sampling_params": self.sampling_params.to_dict() if self.sampling_params else None,
+            "sampling_params": self.sampling_params.to_dict()
+            if self.sampling_params
+            else None,
         }
 
     def to_benchmark_item(self) -> dict:
@@ -202,17 +208,25 @@ class GeneratedDocument:
 
 
 # System instructions for document generation
-GENERATION_INSTRUCTIONS = """Generate a realistic document matching Library of Congress taxonomy metadata.
+# Version 2.0: Added anti-leakage instructions and semantic descriptions
+GENERATION_INSTRUCTIONS = """Generate a realistic document matching the provided specifications.
 
-TYPE (LCGFT Genre/Form): Structure and format your output as this document type actually appears in the real world. Replicate authentic conventions, layout, voice, and structural elements characteristic of this form.
+STYLE: Structure and format your output as this document type actually appears in the real world. Replicate authentic conventions, layout, voice, and structural elements characteristic of this form.
 
-DOMAIN (LCC Classification): This is the subject field. Use vocabulary, concepts, methods, and framing native to this discipline. Demonstrate authentic domain expertise.
+SUBJECT AREA: This is the subject field. Use vocabulary, concepts, methods, and framing native to this discipline. Demonstrate authentic domain expertise through content, not labels.
 
-TOPICS (LCSH Subjects): These specific subjects must appear substantively in the content. Address each topic meaningfully, not just mentioned in passing.
+TOPICS: These specific subjects must appear substantively in the content. Address each topic meaningfully, not just mentioned in passing.
 
 AUDIENCE: Write for this reader. Calibrate vocabulary complexity, assumed prior knowledge, explanatory depth, and mode of address to match what this audience expects.
 
 GEOGRAPHIC: Ground the content in this location. Use relevant place names, local institutions, regional context, and location-appropriate references.
+
+SHOW, DON'T TELL - Avoid artificial self-labeling:
+- Don't open with field announcements like "In political science..." or "In the field of medicine..." - just write about the subject naturally
+- Don't use meta-commentary about the document type like "This satire explores..." or "This lecture covers..." - just BE that type
+- Don't add classification headers like "Document Type:" or "Subject Area:" or "Category:" or "LCGFT:" or "LCC:"
+- Using domain vocabulary naturally is fine and expected (e.g., "the court ruled" in a legal document, "the patient presented with" in a medical case)
+- The difference: "In political science, civil law refers to..." (bad - announces the field) vs. "Civil law systems trace their origins to Roman codes..." (good - demonstrates expertise naturally)
 
 Unusual combinations are intentional. If the form seems mismatched with the domain, interpret creatively while honoring both constraints authentically.
 
@@ -220,6 +234,91 @@ Output format: "Title: {title}\n\n{body}"
 Line 1: "Title: " followed by title text
 Line 2: blank (the split point is "\n\n")
 Line 3+: markdown body"""
+
+
+# Semantic descriptions for LCC classes (avoid using exact taxonomy names)
+LCC_SEMANTIC_DESCRIPTIONS = {
+    "A": "general reference, encyclopedias, journalism, museums",
+    "B": "philosophy, psychology, ethics, religion, spirituality",
+    "C": "historical sciences, archaeology, genealogy, biography",
+    "D": "world history, ancient civilizations, modern nations, wars",
+    "E": "American history, United States, colonial era, civil war",
+    "F": "Americas history, Canada, Latin America, local US history",
+    "G": "geography, maps, anthropology, folklore, sports, recreation",
+    "H": "social sciences, economics, sociology, statistics, commerce",
+    "J": "government, politics, policy, elections, political systems, international relations",
+    "K": "law, legal systems, courts, legislation, constitutional law",
+    "L": "education, schools, teaching, curriculum, higher education",
+    "M": "music, musical instruments, compositions, music theory",
+    "N": "visual arts, painting, sculpture, architecture, photography",
+    "P": "language, linguistics, literature, fiction, poetry, drama",
+    "Q": "science, mathematics, physics, chemistry, biology, astronomy",
+    "R": "medicine, healthcare, diseases, anatomy, nursing, public health",
+    "S": "agriculture, farming, crops, livestock, forestry, fishing",
+    "T": "technology, engineering, manufacturing, construction, crafts",
+    "U": "military science, armies, warfare, defense, veterans",
+    "V": "naval science, navies, ships, maritime, coast guard",
+    "Z": "bibliography, libraries, publishing, book history, information science",
+}
+
+# Semantic descriptions for LCGFT categories (avoid using exact taxonomy names)
+LCGFT_CATEGORY_DESCRIPTIONS = {
+    "Cartographic materials": "spatial representations, geographic visualizations",
+    "Commemorative works": "memorials, tributes, anniversary publications",
+    "Creative nonfiction": "narrative journalism, personal essays, memoirs",
+    "Discursive works": "essays, criticism, commentary, analysis, opinion",
+    "Ephemera": "flyers, tickets, menus, programs, temporary materials",
+    "Informational works": "reference materials, guides, handbooks, reports",
+    "Instructional and educational works": "tutorials, courses, how-to guides, lessons",
+    "Law materials": "legal documents, statutes, court records, contracts",
+    "Literature": "fiction, poetry, drama, creative writing, novels",
+    "Music": "compositions, songs, scores, musical works",
+    "Recreational works": "games, puzzles, humor, entertainment",
+    "Religious materials": "sacred texts, prayers, sermons, devotional works",
+    "Sound recordings": "audio content, spoken word, podcasts, interviews",
+    "Visual works": "images, video, film, photography, graphic content",
+}
+
+# Semantic descriptions for LCGFT forms (common ones - add more as needed)
+LCGFT_FORM_DESCRIPTIONS = {
+    # Literature
+    "Satire": "humorous critique using irony, exaggeration, and wit",
+    "Poetry": "verse, poems, lyrical compositions",
+    "Novels": "long-form fiction, narrative storytelling",
+    "Short stories": "brief fictional narratives",
+    "Drama": "plays, theatrical scripts, dialogues",
+    "Essays": "short prose on a single subject",
+    # Informational
+    "Lectures": "educational presentations, academic talks",
+    "Reports": "formal accounts, findings, documentation",
+    "Handbooks": "practical guides, reference manuals",
+    "Encyclopedias": "comprehensive reference works",
+    # Cartographic
+    "Maps": "geographic representations, spatial visualizations",
+    "Atlases": "collections of maps, geographic compendiums",
+    # Music
+    "Songs": "musical compositions with lyrics",
+    "Hymns": "religious songs, worship music",
+    # Religious
+    "Prayers": "devotional texts, supplications",
+    "Sermons": "religious addresses, homilies",
+    # Visual
+    "Photographs": "captured images, photographic documentation",
+    "Television programs": "broadcast video content, TV shows",
+    "Films": "motion pictures, movies, cinema",
+    # Instructional
+    "Textbooks": "educational materials, course books",
+    "Tutorials": "step-by-step instructional content",
+    # Other
+    "Interviews": "conversations, Q&A format discussions",
+    "Journalism": "news reporting, journalistic writing",
+    "Criticism": "analytical evaluation, reviews",
+    "Biographies": "life stories, biographical accounts",
+    "Diaries": "personal journals, day-by-day records",
+    "Letters": "correspondence, written communications",
+    "Speeches": "formal addresses, orations",
+    "Field recordings": "on-location audio captures",
+}
 
 
 def _parse_generated_text(text: str) -> tuple[str, str]:
@@ -249,18 +348,46 @@ def _parse_generated_text(text: str) -> tuple[str, str]:
     return title, body
 
 
+def _get_form_description(form: str, category: str) -> str:
+    """Get semantic description for a form, with category fallback."""
+    # Try form-specific description first
+    if form in LCGFT_FORM_DESCRIPTIONS:
+        return LCGFT_FORM_DESCRIPTIONS[form]
+    # Fall back to category description
+    if category in LCGFT_CATEGORY_DESCRIPTIONS:
+        return LCGFT_CATEGORY_DESCRIPTIONS[category]
+    # Last resort: use form name but lowercase
+    return form.lower()
+
+
+def _get_domain_description(lcc_code: str, lcc_name: str) -> str:
+    """Get semantic description for a domain."""
+    if lcc_code in LCC_SEMANTIC_DESCRIPTIONS:
+        return LCC_SEMANTIC_DESCRIPTIONS[lcc_code]
+    # Fall back to name but avoid exact match
+    return lcc_name.lower().replace(" and ", ", ")
+
+
 def build_generation_prompt(
     doc: Document,
     length: DocumentLength = DocumentLength.MEDIUM,
     register: Register = Register.PROFESSIONAL,
 ) -> str:
-    """Build the input text for document generation."""
+    """Build the input text for document generation.
+
+    Uses semantic descriptions instead of exact taxonomy names to reduce
+    label leakage in generated documents.
+    """
     word_min, word_max = LENGTH_WORD_RANGES[length]
     register_desc = REGISTER_DESCRIPTIONS[register]
 
+    # Use semantic descriptions instead of exact taxonomy names
+    form_desc = _get_form_description(doc.lcgft.form, doc.lcgft.category)
+    domain_desc = _get_domain_description(doc.lcc.code, doc.lcc.name)
+
     parts = [
-        f"type: {doc.lcgft.form} ({doc.lcgft.category})",
-        f"domain: {doc.lcc.name}",
+        f"style: {form_desc}",
+        f"subject area: {domain_desc}",
         f"topics: {', '.join(doc.topics)}",
         f"length: {word_min}-{word_max} words",
         f"tone: {register_desc}",
@@ -276,12 +403,22 @@ def build_generation_prompt(
 
 
 def build_title_prompt(doc: Document) -> str:
-    """Build a prompt just for title generation."""
+    """Build a prompt just for title generation.
+
+    Uses semantic descriptions to reduce label leakage in titles.
+    """
+    form_desc = _get_form_description(doc.lcgft.form, doc.lcgft.category)
+    domain_desc = _get_domain_description(doc.lcc.code, doc.lcc.name)
+
     return f"""Generate a creative, realistic title for a document that is:
-- Type: {doc.lcgft.form}
-- Subject: {doc.lcc.name}
-- Topics: {', '.join(doc.topics)}
-{f'- Audience: {doc.audience}' if doc.audience else ''}
+- Style: {form_desc}
+- Subject area: {domain_desc}
+- Topics: {", ".join(doc.topics)}
+{f"- Audience: {doc.audience}" if doc.audience else ""}
+
+Avoid self-labeling titles that announce the genre or field.
+Bad: "A Satire on Agriculture" or "Political Science Lecture" or "Medical Handbook"
+Good: Titles that hint at content naturally - the way real documents are titled.
 
 The combination may be unconventional - embrace it creatively.
 Respond with ONLY the title, no quotes or explanation."""
@@ -385,7 +522,6 @@ The findings presented here have implications for researchers, practitioners, an
 policymakers alike. By understanding {topic} in depth, stakeholders can make more
 informed decisions and contribute to advancing knowledge in this field.
 """,
-
     "Law materials": """
 INTRODUCTION
 
@@ -412,7 +548,6 @@ CONCLUSION
 Based on the foregoing analysis, the legal treatment of {topic} requires attention to
 both established precedent and emerging developments. {audience_note}
 """,
-
     "Literature": """
 The story begins, as all stories do, with a question about {topic}.
 
@@ -433,7 +568,6 @@ our world and our stories within it.
 The pages ahead will challenge assumptions and illuminate possibilities. In {domain},
 as in life, the most profound discoveries often come from the most unexpected places.
 """,
-
     "Instructional and educational works": """
 WELCOME TO {topic}
 
@@ -471,7 +605,6 @@ NEXT STEPS
 Once you've mastered the basics, you'll be ready to explore more advanced aspects
 of {topic} and its applications in {domain}.
 """,
-
     "default": """
 {topic} occupies a unique position within {domain}, offering perspectives and insights
 that merit careful consideration. This document explores the subject from multiple
@@ -498,7 +631,7 @@ for understanding these developments as they unfold.
 The insights gathered here represent a synthesis of current knowledge and emerging
 perspectives. They offer a starting point for further inquiry and deeper engagement
 with {topic} in all its complexity.
-"""
+""",
 }
 
 
@@ -522,7 +655,9 @@ class TemplateGenerator:
 
         # Build geographic note
         if doc.geographic:
-            geographic_note = f"This work focuses particularly on {', '.join(doc.geographic)}."
+            geographic_note = (
+                f"This work focuses particularly on {', '.join(doc.geographic)}."
+            )
         else:
             geographic_note = ""
 
@@ -633,7 +768,9 @@ class DocumentGenerator:
         self._template_gen = TemplateGenerator(seed)
         self._length_sampler = LengthSampler(length_weights, seed)
         self._register_sampler = RegisterSampler(register_weights, seed)
-        self._sampling_sampler = SamplingParamsSampler(temperature_range, top_p_range, seed)
+        self._sampling_sampler = SamplingParamsSampler(
+            temperature_range, top_p_range, seed
+        )
 
     def _get_client(self) -> openai.OpenAI:
         if self._client is None:
@@ -687,6 +824,9 @@ class DocumentGenerator:
         response = self._get_client().responses.create(**request_kwargs)
         raw_text = response.output_text or ""
 
+        if not raw_text.strip():
+            raise ValueError("Received empty output from LLM during generation")
+
         # Parse: first line is "Title: ...", then blank line, then body
         title, body = _parse_generated_text(raw_text)
 
@@ -733,6 +873,9 @@ class DocumentGenerator:
 
         response = await self._get_async_client().responses.create(**request_kwargs)
         raw_text = response.output_text or ""
+
+        if not raw_text.strip():
+            raise ValueError("Received empty output from LLM during generation")
 
         title, body = _parse_generated_text(raw_text)
 

@@ -39,12 +39,15 @@ class SplitConfig:
         min_per_class: Minimum samples per stratification class per split (default: 3)
         stratify_by: List of fields to use for stratification (default: ["lcc_code", "lcgft_category"])
     """
+
     train_ratio: float = 0.6
     dev_ratio: float = 0.2
     test_ratio: float = 0.2
     random_seed: int = 42
     min_per_class: int = 3
-    stratify_by: list[str] = field(default_factory=lambda: ["lcc_code", "lcgft_category"])
+    stratify_by: list[str] = field(
+        default_factory=lambda: ["lcc_code", "lcgft_category"]
+    )
 
     def __post_init__(self) -> None:
         """Validate split ratios sum to 1.0."""
@@ -96,6 +99,7 @@ class SplitResult:
         statistics: Dictionary of split statistics
         checksum: SHA256 checksum of the split for reproducibility verification
     """
+
     train: list[dict[str, Any]]
     dev: list[dict[str, Any]]
     test: list[dict[str, Any]]
@@ -111,7 +115,9 @@ class SplitResult:
         """Get split by name."""
         splits = {"train": self.train, "dev": self.dev, "test": self.test}
         if name not in splits:
-            raise ValueError(f"Unknown split: {name}. Must be one of {list(splits.keys())}")
+            raise ValueError(
+                f"Unknown split: {name}. Must be one of {list(splits.keys())}"
+            )
         return splits[name]
 
 
@@ -143,11 +149,11 @@ class StratifiedSplitter:
         Combines multiple fields into a single string key for stratification.
         """
         parts = []
-        for field in self.config.stratify_by:
-            value = doc.get(field, "unknown")
+        for field_name in self.config.stratify_by:
+            value = doc.get(field_name, "unknown")
             if value is None:
                 value = "none"
-            parts.append(f"{field}={value}")
+            parts.append(f"{field_name}={value}")
         return "|".join(parts)
 
     def _validate_stratification(
@@ -167,8 +173,10 @@ class StratifiedSplitter:
         small_classes = {k: v for k, v in key_counts.items() if v < min_required}
         if small_classes:
             # Log warning but don't fail - we'll handle this by combining small classes
-            print(f"Warning: {len(small_classes)} stratification classes have fewer than "
-                  f"{min_required} samples and may not appear in all splits")
+            print(
+                f"Warning: {len(small_classes)} stratification classes have fewer than "
+                f"{min_required} samples and may not appear in all splits"
+            )
 
     def _combine_small_classes(
         self,
@@ -237,11 +245,17 @@ class StratifiedSplitter:
         }
 
         # Compute distribution stats for key fields
-        for field in ["lcc_code", "lcgft_category", "register", "target_length"]:
-            stats["distributions"][field] = {}
-            for split_name, split_docs in [("train", train), ("dev", dev), ("test", test)]:
-                field_values = [doc.get(field, "unknown") for doc in split_docs]
-                stats["distributions"][field][split_name] = dict(Counter(field_values))
+        for field_name in ["lcc_code", "lcgft_category", "register", "target_length"]:
+            stats["distributions"][field_name] = {}
+            for split_name, split_docs in [
+                ("train", train),
+                ("dev", dev),
+                ("test", test),
+            ]:
+                field_values = [doc.get(field_name, "unknown") for doc in split_docs]
+                stats["distributions"][field_name][split_name] = dict(
+                    Counter(field_values)
+                )
 
         return stats
 
@@ -255,14 +269,18 @@ class StratifiedSplitter:
             SplitResult containing train, dev, test sets with statistics
         """
         if len(documents) < 100:
-            raise ValueError(f"Need at least 100 documents for splitting, got {len(documents)}")
+            raise ValueError(
+                f"Need at least 100 documents for splitting, got {len(documents)}"
+            )
 
         # Set random seeds for reproducibility
         random.seed(self.config.random_seed)
         np.random.seed(self.config.random_seed)
 
         # Create stratification keys
-        stratification_keys = [self._create_stratification_key(doc) for doc in documents]
+        stratification_keys = [
+            self._create_stratification_key(doc) for doc in documents
+        ]
 
         # Validate and potentially combine small classes
         self._validate_stratification(documents, stratification_keys)
@@ -294,7 +312,9 @@ class StratifiedSplitter:
             random_state=self.config.random_seed + 1,  # Different seed for second split
         )
 
-        train_idx_rel, dev_idx_rel = next(splitter2.split(train_dev_idx, train_dev_labels))
+        train_idx_rel, dev_idx_rel = next(
+            splitter2.split(train_dev_idx, train_dev_labels)
+        )
 
         # Map relative indices back to original
         train_idx = train_dev_idx[train_idx_rel]
@@ -307,11 +327,13 @@ class StratifiedSplitter:
 
         # Compute statistics and checksum
         statistics = self._compute_statistics(train, dev, test)
-        checksum = self._compute_checksum({
-            "train": [doc["id"] for doc in train],
-            "dev": [doc["id"] for doc in dev],
-            "test": [doc["id"] for doc in test],
-        })
+        checksum = self._compute_checksum(
+            {
+                "train": [doc["id"] for doc in train],
+                "dev": [doc["id"] for doc in dev],
+                "test": [doc["id"] for doc in test],
+            }
+        )
 
         return SplitResult(
             train=train,
@@ -336,8 +358,8 @@ class StratifiedSplitter:
         """
         verification = {"passed": True, "issues": [], "metrics": {}}
 
-        for field in self.config.stratify_by:
-            distributions = result.statistics["distributions"].get(field, {})
+        for field_name in self.config.stratify_by:
+            distributions = result.statistics["distributions"].get(field_name, {})
             if not distributions:
                 continue
 
@@ -360,12 +382,18 @@ class StratifiedSplitter:
                 split_dist = distributions.get(split_name, {})
                 max_divergence = 0.0
                 for value in all_values:
-                    train_ratio = train_dist.get(value, 0) / max(sum(train_dist.values()), 1)
-                    split_ratio = split_dist.get(value, 0) / max(sum(split_dist.values()), 1)
+                    train_ratio = train_dist.get(value, 0) / max(
+                        sum(train_dist.values()), 1
+                    )
+                    split_ratio = split_dist.get(value, 0) / max(
+                        sum(split_dist.values()), 1
+                    )
                     divergence = abs(train_ratio - split_ratio)
                     max_divergence = max(max_divergence, divergence)
 
-                verification["metrics"][f"{field}_{split_name}_max_divergence"] = max_divergence
+                verification["metrics"][f"{field}_{split_name}_max_divergence"] = (
+                    max_divergence
+                )
 
                 if max_divergence > 0.1:  # More than 10% divergence is concerning
                     verification["issues"].append(
@@ -380,6 +408,8 @@ def create_splits(
     artifacts_dir: str | Path,
     config: SplitConfig | None = None,
     output_dir: str | Path | None = None,
+    filter_commit: str | None = None,
+    filter_code_version: str | None = None,
 ) -> SplitResult:
     """Convenience function to create splits from artifact files.
 
@@ -387,24 +417,50 @@ def create_splits(
         artifacts_dir: Directory containing JSON artifact files
         config: Split configuration (defaults to standard 60/20/20)
         output_dir: Optional directory to save split files
+        filter_commit: Only include artifacts from this git commit (e.g., "ee52a05")
+        filter_code_version: Only include artifacts from this code version (e.g., "ee52a05*")
 
     Returns:
         SplitResult with train, dev, test splits
 
     Example:
+        >>> # Create splits from all artifacts
         >>> result = create_splits("data/artifacts/", output_dir="data/splits/")
         >>> print(f"Created splits with checksum: {result.checksum}")
+
+        >>> # Create splits from a specific code version only
+        >>> result = create_splits("data/artifacts/", filter_commit="ee52a05")
+        >>> print(f"Created splits from commit ee52a05: {len(result.train)} train docs")
     """
     artifacts_path = Path(artifacts_dir)
     if not artifacts_path.exists():
         raise FileNotFoundError(f"Artifacts directory not found: {artifacts_path}")
 
-    # Load all documents
+    # Load all documents (with optional filtering)
     documents = []
+    filtered_count = 0
     for json_file in sorted(artifacts_path.glob("*.json")):
         with open(json_file, "r", encoding="utf-8") as f:
             doc = json.load(f)
-            documents.append(doc)
+
+        # Apply commit filtering if requested
+        if filter_commit:
+            doc_commit = doc.get("git_commit", "")
+            if doc_commit != filter_commit:
+                filtered_count += 1
+                continue
+
+        # Apply code_version filtering if requested
+        if filter_code_version:
+            doc_version = doc.get("code_version", "")
+            if doc_version != filter_code_version:
+                filtered_count += 1
+                continue
+
+        documents.append(doc)
+
+    if filtered_count > 0:
+        print(f"Filtered out {filtered_count} documents (commit/version mismatch)")
 
     if not documents:
         raise ValueError(f"No JSON files found in {artifacts_path}")
@@ -418,7 +474,7 @@ def create_splits(
     # Verify stratification
     verification = splitter.verify_stratification(result)
     if not verification["passed"]:
-        print(f"Warning: Stratification verification found issues:")
+        print("Warning: Stratification verification found issues:")
         for issue in verification["issues"]:
             print(f"  - {issue}")
 

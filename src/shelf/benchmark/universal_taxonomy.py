@@ -16,16 +16,16 @@ from pydantic import BaseModel, Field
 class DocumentDomain(str, Enum):
     """High-level document domains (universal, not LC-specific)."""
 
-    BUSINESS = "business"           # Corporate, professional
-    LEGAL = "legal"                 # Law, contracts, regulations
-    ACADEMIC = "academic"           # Scholarly, research
-    JOURNALISM = "journalism"       # News, media
-    TECHNICAL = "technical"         # Engineering, software, science
-    CREATIVE = "creative"           # Literary, artistic
-    EDUCATIONAL = "educational"     # Teaching, learning
-    GOVERNMENT = "government"       # Policy, legislation
-    MEDICAL = "medical"             # Healthcare, clinical
-    FINANCIAL = "financial"         # Investments, accounting
+    BUSINESS = "business"  # Corporate, professional
+    LEGAL = "legal"  # Law, contracts, regulations
+    ACADEMIC = "academic"  # Scholarly, research
+    JOURNALISM = "journalism"  # News, media
+    TECHNICAL = "technical"  # Engineering, software, science
+    CREATIVE = "creative"  # Literary, artistic
+    EDUCATIONAL = "educational"  # Teaching, learning
+    GOVERNMENT = "government"  # Policy, legislation
+    MEDICAL = "medical"  # Healthcare, clinical
+    FINANCIAL = "financial"  # Investments, accounting
 
 
 class DocumentType(BaseModel):
@@ -35,7 +35,9 @@ class DocumentType(BaseModel):
     name: str = Field(description="Human-readable name")
     domain: DocumentDomain = Field(description="High-level domain")
     lcgft_term: str | None = Field(default=None, description="LCGFT term if exists")
-    lcc_classes: list[str] = Field(default_factory=list, description="Relevant LCC classes")
+    lcc_classes: list[str] = Field(
+        default_factory=list, description="Relevant LCC classes"
+    )
     description: str = Field(default="", description="What this document type is")
     examples: list[str] = Field(default_factory=list, description="Example documents")
 
@@ -90,7 +92,6 @@ DOCUMENT_TYPES: list[DocumentType] = [
         description="Slide decks, pitch presentations, keynotes",
         examples=["Sales pitch", "Quarterly review", "Product demo"],
     ),
-
     # =========================================================================
     # LEGAL & REGULATORY
     # =========================================================================
@@ -130,7 +131,6 @@ DOCUMENT_TYPES: list[DocumentType] = [
         description="Patent applications and grants",
         examples=["Utility patent", "Design patent", "Patent application"],
     ),
-
     # =========================================================================
     # ACADEMIC & SCHOLARLY
     # =========================================================================
@@ -170,7 +170,6 @@ DOCUMENT_TYPES: list[DocumentType] = [
         description="Systematic reviews and meta-analyses",
         examples=["Systematic review", "Meta-analysis", "Survey paper"],
     ),
-
     # =========================================================================
     # JOURNALISM & MEDIA
     # =========================================================================
@@ -210,7 +209,6 @@ DOCUMENT_TYPES: list[DocumentType] = [
         description="Interview transcripts and Q&A sessions",
         examples=["Celebrity interview", "Expert Q&A", "Podcast transcript"],
     ),
-
     # =========================================================================
     # TECHNICAL & SCIENTIFIC
     # =========================================================================
@@ -250,7 +248,6 @@ DOCUMENT_TYPES: list[DocumentType] = [
         description="Datasets, data reports, and statistical analyses",
         examples=["Dataset documentation", "Data dictionary", "Statistical report"],
     ),
-
     # =========================================================================
     # CREATIVE & LITERARY
     # =========================================================================
@@ -299,7 +296,6 @@ DOCUMENT_TYPES: list[DocumentType] = [
         description="Scripts for film, TV, and theater",
         examples=["Movie screenplay", "TV script", "Stage play"],
     ),
-
     # =========================================================================
     # EDUCATIONAL & INSTRUCTIONAL
     # =========================================================================
@@ -330,7 +326,6 @@ DOCUMENT_TYPES: list[DocumentType] = [
         description="Study materials and exam prep",
         examples=["Exam study guide", "Course notes", "Review sheet"],
     ),
-
     # =========================================================================
     # GOVERNMENT & POLICY
     # =========================================================================
@@ -361,7 +356,6 @@ DOCUMENT_TYPES: list[DocumentType] = [
         description="Congressional hearings and testimony",
         examples=["Senate hearing", "House testimony", "Regulatory hearing"],
     ),
-
     # =========================================================================
     # MEDICAL & HEALTHCARE
     # =========================================================================
@@ -392,7 +386,6 @@ DOCUMENT_TYPES: list[DocumentType] = [
         description="Patient-facing health information",
         examples=["Patient handout", "Medication guide", "Health FAQ"],
     ),
-
     # =========================================================================
     # FINANCIAL & ECONOMIC
     # =========================================================================
@@ -451,8 +444,7 @@ def get_types_without_lcgft() -> list[DocumentType]:
 
 # Summary statistics
 DOMAIN_COUNTS = {
-    domain: len(get_document_types_by_domain(domain))
-    for domain in DocumentDomain
+    domain: len(get_document_types_by_domain(domain)) for domain in DocumentDomain
 }
 
 TOTAL_DOCUMENT_TYPES = len(DOCUMENT_TYPES)

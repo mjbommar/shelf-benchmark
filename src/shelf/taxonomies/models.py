@@ -10,25 +10,25 @@ class TaxonomyType(str, Enum):
     """Supported taxonomy types."""
 
     # Library of Congress Classification
-    LCC_MAIN = "lcc_main"           # 21 main classes (A-Z)
-    LCC_SUBCLASS = "lcc_subclass"   # ~200-350 subclasses (e.g., KF, HD)
+    LCC_MAIN = "lcc_main"  # 21 main classes (A-Z)
+    LCC_SUBCLASS = "lcc_subclass"  # ~200-350 subclasses (e.g., KF, HD)
 
     # Subject Headings
-    LCSH_TOPICAL = "lcsh_topical"   # Topical subjects (MARC 650)
-    LCSH_GEOGRAPHIC = "lcsh_geo"    # Geographic subjects (MARC 651)
-    LCSH_FULL = "lcsh_full"         # Full headings with subdivisions
+    LCSH_TOPICAL = "lcsh_topical"  # Topical subjects (MARC 650)
+    LCSH_GEOGRAPHIC = "lcsh_geo"  # Geographic subjects (MARC 651)
+    LCSH_FULL = "lcsh_full"  # Full headings with subdivisions
 
     # Genre/Form Terms
-    LCGFT = "lcgft"                 # Genre/Form terms (MARC 655)
+    LCGFT = "lcgft"  # Genre/Form terms (MARC 655)
 
     # Demographic Group Terms
-    LCDGT = "lcdgt"                 # Demographic terms
+    LCDGT = "lcdgt"  # Demographic terms
 
     # Government Document Classification
-    SUDOC_AGENCY = "sudoc_agency"   # SuDoc agency codes
+    SUDOC_AGENCY = "sudoc_agency"  # SuDoc agency codes
 
     # Corporate Names
-    CORP_NAMES = "corp_names"       # Corporate name subjects (MARC 610)
+    CORP_NAMES = "corp_names"  # Corporate name subjects (MARC 610)
 
 
 class Label(BaseModel):
@@ -41,8 +41,12 @@ class Label(BaseModel):
     rank: int = Field(default=0, description="Rank by frequency (1 = most frequent)")
     broader: list[str] = Field(default_factory=list, description="Broader term IDs")
     narrower: list[str] = Field(default_factory=list, description="Narrower term IDs")
-    alt_labels: list[str] = Field(default_factory=list, description="Alternative labels")
-    description: str | None = Field(default=None, description="Scope note or description")
+    alt_labels: list[str] = Field(
+        default_factory=list, description="Alternative labels"
+    )
+    description: str | None = Field(
+        default=None, description="Scope note or description"
+    )
 
     def __hash__(self):
         return hash(self.id)
@@ -60,7 +64,9 @@ class Taxonomy(BaseModel):
     name: str = Field(description="Human-readable name")
     description: str = Field(default="", description="Description of the taxonomy")
     source: str = Field(default="", description="Data source (e.g., id.loc.gov, MARC)")
-    labels: list[Label] = Field(default_factory=list, description="Labels in this taxonomy")
+    labels: list[Label] = Field(
+        default_factory=list, description="Labels in this taxonomy"
+    )
     total_corpus_uses: int = Field(default=0, description="Total uses in source corpus")
     corpus_coverage: float = Field(default=0.0, description="Coverage of corpus (0-1)")
 
@@ -75,7 +81,9 @@ class Taxonomy(BaseModel):
 
         # Recalculate coverage
         top_n_uses = sum(label.frequency for label in sorted_labels)
-        coverage = top_n_uses / self.total_corpus_uses if self.total_corpus_uses > 0 else 0
+        coverage = (
+            top_n_uses / self.total_corpus_uses if self.total_corpus_uses > 0 else 0
+        )
 
         # Re-rank
         for i, label in enumerate(sorted_labels, 1):
@@ -95,7 +103,9 @@ class Taxonomy(BaseModel):
         """Return a new taxonomy with only labels meeting minimum frequency."""
         filtered = [label for label in self.labels if label.frequency >= min_freq]
         filtered_uses = sum(label.frequency for label in filtered)
-        coverage = filtered_uses / self.total_corpus_uses if self.total_corpus_uses > 0 else 0
+        coverage = (
+            filtered_uses / self.total_corpus_uses if self.total_corpus_uses > 0 else 0
+        )
 
         return Taxonomy(
             type=self.type,
@@ -126,8 +136,7 @@ class TaxonomySet(BaseModel):
     name: str = Field(description="Name of this taxonomy set")
     description: str = Field(default="", description="Description")
     taxonomies: dict[TaxonomyType, Taxonomy] = Field(
-        default_factory=dict,
-        description="Taxonomies indexed by type"
+        default_factory=dict, description="Taxonomies indexed by type"
     )
 
     def add_taxonomy(self, taxonomy: Taxonomy) -> None:

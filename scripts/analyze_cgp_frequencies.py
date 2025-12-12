@@ -18,19 +18,19 @@ from pathlib import Path
 def extract_authority_urls(jsonl_path: Path) -> dict[str, Counter]:
     """Extract and count authority URLs by type."""
     counters = {
-        "subjects": Counter(),      # LCSH
-        "genreForms": Counter(),    # LCGFT
+        "subjects": Counter(),  # LCSH
+        "genreForms": Counter(),  # LCGFT
         "demographicTerms": Counter(),  # LCDGT
-        "names": Counter(),         # LCNAF
+        "names": Counter(),  # LCNAF
         "classification": Counter(),  # LCC
         "other": Counter(),
     }
 
     total_records = 0
 
-    open_fn = gzip.open if str(jsonl_path).endswith('.gz') else open
+    open_fn = gzip.open if str(jsonl_path).endswith(".gz") else open
 
-    with open_fn(jsonl_path, 'rt', encoding='utf-8') as f:
+    with open_fn(jsonl_path, "rt", encoding="utf-8") as f:
         for line in f:
             total_records += 1
             if total_records % 100000 == 0:
@@ -51,7 +51,7 @@ def extract_authority_urls(jsonl_path: Path) -> dict[str, Counter]:
                 parts = path.split("/")
                 if len(parts) >= 2:
                     auth_type = parts[0]
-                    auth_id = parts[1]
+                    parts[1]
 
                     if auth_type in counters:
                         counters[auth_type][url] += 1
@@ -87,9 +87,9 @@ def main():
     jsonl_path = Path("/nas3/data/legal/us/cgp-purls/marc-records-urls.jsonl.gz")
     parsed_dir = Path("data/loc_parsed")
 
-    print("="*70)
+    print("=" * 70)
     print("Analyzing LC Authority Frequencies in CGP MARC Records")
-    print("="*70)
+    print("=" * 70)
 
     # Extract frequencies
     counters = extract_authority_urls(jsonl_path)
@@ -100,9 +100,9 @@ def main():
     lcdgt_labels = load_label_lookup(parsed_dir / "lcdgt.json")
 
     # Print summaries
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print("SUMMARY BY AUTHORITY TYPE")
-    print("="*70)
+    print("=" * 70)
 
     for auth_type, counter in counters.items():
         unique = len(counter)
@@ -110,33 +110,33 @@ def main():
         print(f"\n{auth_type.upper()}: {unique:,} unique, {total:,} total uses")
 
     # Top LCSH
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print("TOP 100 LCSH (Subject Headings)")
-    print("="*70)
+    print("=" * 70)
     print_top_n(counters["subjects"], 100, lcsh_labels)
 
     # Top LCGFT
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print("TOP 50 LCGFT (Genre/Form Terms)")
-    print("="*70)
+    print("=" * 70)
     print_top_n(counters["genreForms"], 50, lcgft_labels)
 
     # Top LCDGT
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print("TOP 50 LCDGT (Demographic Terms)")
-    print("="*70)
+    print("=" * 70)
     print_top_n(counters["demographicTerms"], 50, lcdgt_labels)
 
     # Top Names
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print("TOP 50 LCNAF (Name Authorities)")
-    print("="*70)
+    print("=" * 70)
     print_top_n(counters["names"], 50)
 
     # Distribution analysis
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print("DISTRIBUTION ANALYSIS")
-    print("="*70)
+    print("=" * 70)
 
     for auth_type in ["subjects", "genreForms", "demographicTerms"]:
         counter = counters[auth_type]
@@ -157,7 +157,9 @@ def main():
             pct = cumsum / total * 100
 
             if i in thresholds or (i == len(counts)):
-                print(f"  Top {i:>5,} terms cover {pct:>5.1f}% of uses ({cumsum:,}/{total:,})")
+                print(
+                    f"  Top {i:>5,} terms cover {pct:>5.1f}% of uses ({cumsum:,}/{total:,})"
+                )
 
     # Save frequency data
     output_dir = Path("data/frequencies")
@@ -176,7 +178,7 @@ def main():
                 {
                     "url": url,
                     "count": count,
-                    "label": label_lookup.get(url, url.split("/")[-1])
+                    "label": label_lookup.get(url, url.split("/")[-1]),
                 }
                 for url, count in counter.most_common()
             ]

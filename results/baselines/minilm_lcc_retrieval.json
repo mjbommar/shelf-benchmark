@@ -1,0 +1,49 @@
+{
+  "task": "lcc_retrieval",
+  "task_type": "retrieval",
+  "split": "test",
+  "primary_metric": "ndcg@10",
+  "primary_score": 0.4685179182363578,
+  "metrics": {
+    "mrr": 0.660024834005932,
+    "ndcg@1": 0.5205,
+    "recall@1": 0.0013706144910571108,
+    "precision@1": 0.5205,
+    "map@1": 0.0013706144910571108,
+    "ndcg@5": 0.48556654095888974,
+    "recall@5": 0.0062690923487282385,
+    "precision@5": 0.4761,
+    "map@5": 0.0051832103575412646,
+    "ndcg@10": 0.4685179182363578,
+    "recall@10": 0.012007845931483388,
+    "precision@10": 0.45615,
+    "map@10": 0.009123656660233242,
+    "ndcg@50": 0.41352058139472136,
+    "recall@50": 0.05214494809662273,
+    "precision@50": 0.39627999999999997,
+    "map@50": 0.03359167068883153,
+    "ndcg@100": 0.3828977715802328,
+    "recall@100": 0.09594201721821105,
+    "precision@100": 0.36476500000000006,
+    "map@100": 0.05751563379679702
+  },
+  "num_samples": 2000,
+  "context": {
+    "shelf_version": "0.1.0",
+    "python_version": "3.13.2",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "5131dc8272819dc5605c96252f3c29c5",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-36-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-12T14:44:05.342934+00:00",
+    "extra": {
+      "model_name": "all-MiniLM-L6-v2",
+      "num_samples": 2000,
+      "corpus_size": 8000,
+      "embedding_dim": 384
+    }
+  }
+}

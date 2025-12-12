@@ -58,6 +58,7 @@ LOC_DOWNLOAD_URLS = {
 # Download and Parse Functions
 # ============================================================================
 
+
 def download_file(url: str, cache_dir: Path | None = None) -> bytes:
     """Download a file, optionally caching it locally."""
     if cache_dir:
@@ -131,6 +132,7 @@ def extract_concepts_from_graph(g: Graph) -> Iterator[Label]:
 # Load from id.loc.gov
 # ============================================================================
 
+
 def load_taxonomy_from_loc(
     taxonomy_type: TaxonomyType,
     cache_dir: Path | None = None,
@@ -192,6 +194,7 @@ def load_taxonomy_from_loc(
 # ============================================================================
 # Load from pre-computed frequency files
 # ============================================================================
+
 
 def load_taxonomy_from_frequencies(
     taxonomy_type: TaxonomyType,
@@ -269,17 +272,19 @@ def load_taxonomy_from_frequencies(
                     description = loc_info.get("scope_note")
                     break
 
-        labels.append(Label(
-            id=label_id,
-            label=label_text,
-            uri=uri,
-            frequency=count,
-            rank=rank,
-            alt_labels=alt_labels,
-            broader=broader,
-            narrower=narrower,
-            description=description,
-        ))
+        labels.append(
+            Label(
+                id=label_id,
+                label=label_text,
+                uri=uri,
+                frequency=count,
+                rank=rank,
+                alt_labels=alt_labels,
+                broader=broader,
+                narrower=narrower,
+                description=description,
+            )
+        )
 
     name_map = {
         TaxonomyType.LCC_MAIN: "LCC Main Classes",
@@ -295,7 +300,7 @@ def load_taxonomy_from_frequencies(
     return Taxonomy(
         type=taxonomy_type,
         name=name_map.get(taxonomy_type, str(taxonomy_type)),
-        description=f"Loaded from MARC frequency analysis of CGP records",
+        description="Loaded from MARC frequency analysis of CGP records",
         source=str(freq_path),
         labels=labels,
         total_corpus_uses=total_uses,

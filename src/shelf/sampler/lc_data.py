@@ -27,6 +27,7 @@ LC_BASE_URIS = {
 @dataclass
 class LCTerm:
     """A Library of Congress authority term."""
+
     id: str
     label: str
     uri: str
@@ -56,6 +57,7 @@ class LCTerm:
 @dataclass
 class LCCClass:
     """Library of Congress Classification class."""
+
     code: str
     name: str
     uri: str
@@ -113,10 +115,7 @@ def _load_lcgft_data(data_dir: str) -> dict[str, LCTerm]:
     with open(path) as f:
         raw = json.load(f)
 
-    return {
-        uri: LCTerm.from_parsed(data, "lcgft")
-        for uri, data in raw.items()
-    }
+    return {uri: LCTerm.from_parsed(data, "lcgft") for uri, data in raw.items()}
 
 
 @lru_cache(maxsize=1)
@@ -129,10 +128,7 @@ def _load_lcsh_data(data_dir: str) -> dict[str, LCTerm]:
     with open(path) as f:
         raw = json.load(f)
 
-    return {
-        uri: LCTerm.from_parsed(data, "lcsh")
-        for uri, data in raw.items()
-    }
+    return {uri: LCTerm.from_parsed(data, "lcsh") for uri, data in raw.items()}
 
 
 @lru_cache(maxsize=1)
@@ -145,10 +141,7 @@ def _load_lcdgt_data(data_dir: str) -> dict[str, LCTerm]:
     with open(path) as f:
         raw = json.load(f)
 
-    return {
-        uri: LCTerm.from_parsed(data, "lcdgt")
-        for uri, data in raw.items()
-    }
+    return {uri: LCTerm.from_parsed(data, "lcdgt") for uri, data in raw.items()}
 
 
 def _load_frequency_data(data_dir: str, filename: str) -> list[tuple[str, int]]:
@@ -228,7 +221,9 @@ class LCDataLoader:
 
     def get_top_lcgft(self, n: int = 50) -> list[tuple[LCTerm, int]]:
         """Get top N LCGFT terms by frequency in CGP MARC records."""
-        freqs = _load_frequency_data(str(self.data_dir), "marc_lcgft_655_frequencies.json")
+        freqs = _load_frequency_data(
+            str(self.data_dir), "marc_lcgft_655_frequencies.json"
+        )
         if not freqs:
             return []
 
@@ -241,7 +236,9 @@ class LCDataLoader:
 
     def get_top_lcsh(self, n: int = 100) -> list[tuple[LCTerm, int]]:
         """Get top N LCSH topical terms by frequency."""
-        freqs = _load_frequency_data(str(self.data_dir), "marc_lcsh_650_frequencies.json")
+        freqs = _load_frequency_data(
+            str(self.data_dir), "marc_lcsh_650_frequencies.json"
+        )
         if not freqs:
             return []
 

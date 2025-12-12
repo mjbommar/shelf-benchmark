@@ -6,16 +6,17 @@
 
 ## Overview
 
-The Pair Classification tasks evaluate a model's ability to determine semantic relationships between pairs of documents based on their Library of Congress metadata. These tasks test whether models can understand document similarity at different levels of granularity: subject matter (LCC classes) and document form/genre (LCGFT forms).
+The Pair Classification tasks evaluate a model's ability to determine semantic relationships between pairs of documents based on their Library of Congress metadata. These tasks test whether models can understand document similarity at different levels of granularity: subject matter (LCC classes), document form/genre (LCGFT forms), and writing style (register).
 
 Unlike single-document classification, pair classification requires models to process two documents jointly and reason about their relationship. This mirrors real-world applications such as duplicate detection, document clustering preprocessing, and recommendation systems. The tasks are inspired by GLUE benchmark pair classification tasks like MRPC (Microsoft Research Paraphrase Corpus) and QQP (Quora Question Pairs), but adapted for the bibliographic domain with Library of Congress taxonomy.
 
 ## Task Definition
 
-SHELF includes two binary pair classification tasks:
+SHELF includes three binary pair classification tasks:
 
 1. **Same-LCC Prediction**: Predict whether two documents share the same Library of Congress Classification (LCC) code
 2. **Same-Form Prediction**: Predict whether two documents share the same Library of Congress Genre/Form Term (LCGFT)
+3. **Same-Register Prediction**: Predict whether two documents share the same writing register/style (see [register_pair_classification.md](register_pair_classification.md) for details)
 
 ### Input
 
@@ -44,6 +45,14 @@ For Same-Form Prediction:
 f: (doc_a, doc_b) -> {0, 1}
 where f(doc_a, doc_b) = 1 iff lcgft_form(doc_a) = lcgft_form(doc_b)
 ```
+
+For Same-Register Prediction:
+```
+f: (doc_a, doc_b) -> {0, 1}
+where f(doc_a, doc_b) = 1 iff register(doc_a) = register(doc_b)
+```
+
+Note: Same-Register is a harder task focused on stylistic similarity rather than content similarity. See [register_pair_classification.md](register_pair_classification.md) for a detailed task description.
 
 ## Dataset Construction
 

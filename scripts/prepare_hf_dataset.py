@@ -38,7 +38,6 @@ from shelf.hub import (
     SHELFDataset,
     DatasetConfig,
     CardConfig,
-    prepare_dataset,
     push_to_hub,
     save_locally,
     generate_dataset_card,
@@ -135,8 +134,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--version",
         type=str,
-        default="0.1.0",
-        help="Dataset version (default: 0.1.0)",
+        default="0.2.0",
+        help="Dataset version (default: 0.2.0)",
     )
     parser.add_argument(
         "--no-generation-metadata",
@@ -175,7 +174,9 @@ def main() -> int:
         print("=" * 60)
         print(f"Artifacts directory: {args.artifacts_dir}")
         print(f"Output directory: {args.output_dir}")
-        print(f"Split ratios: train={args.train_ratio}, dev={args.dev_ratio}, test={args.test_ratio}")
+        print(
+            f"Split ratios: train={args.train_ratio}, dev={args.dev_ratio}, test={args.test_ratio}"
+        )
         print(f"Random seed: {args.seed}")
         print(f"Stratify by: {args.stratify_by}")
         print(f"Output format: {args.format}")

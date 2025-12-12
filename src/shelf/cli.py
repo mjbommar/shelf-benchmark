@@ -12,7 +12,13 @@ from typing import Annotated, Optional
 import orjson
 import typer
 from rich.console import Console
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
+from rich.progress import (
+    Progress,
+    SpinnerColumn,
+    TextColumn,
+    BarColumn,
+    TaskProgressColumn,
+)
 from rich.table import Table
 
 from .taxonomies import TaxonomyType, Taxonomy
@@ -87,7 +93,9 @@ def cmd_list():
 
 @app.command("info")
 def cmd_info(
-    taxonomy: Annotated[str, typer.Argument(help="Taxonomy type (e.g., lcgft, lcsh_topical)")],
+    taxonomy: Annotated[
+        str, typer.Argument(help="Taxonomy type (e.g., lcgft, lcsh_topical)")
+    ],
 ):
     """Show information about a taxonomy."""
     frequencies_dir, loc_labels_dir, _ = get_default_paths()
@@ -154,9 +162,15 @@ def cmd_info(
 @app.command("extract")
 def cmd_extract(
     taxonomy: Annotated[str, typer.Argument(help="Taxonomy type")],
-    top_n: Annotated[Optional[int], typer.Option("--top-n", "-n", help="Extract top N labels")] = None,
-    min_freq: Annotated[Optional[int], typer.Option("--min-freq", help="Minimum frequency")] = None,
-    output_dir: Annotated[Optional[Path], typer.Option("--output-dir", "-o", help="Output directory")] = None,
+    top_n: Annotated[
+        Optional[int], typer.Option("--top-n", "-n", help="Extract top N labels")
+    ] = None,
+    min_freq: Annotated[
+        Optional[int], typer.Option("--min-freq", help="Minimum frequency")
+    ] = None,
+    output_dir: Annotated[
+        Optional[Path], typer.Option("--output-dir", "-o", help="Output directory")
+    ] = None,
 ):
     """Extract top N labels from a taxonomy."""
     frequencies_dir, loc_labels_dir, default_output = get_default_paths()
@@ -185,7 +199,9 @@ def cmd_extract(
 
     if min_freq:
         tax = tax.filter_by_min_frequency(min_freq)
-        console.print(f"  Filtered to [cyan]{tax.size}[/cyan] labels with freq >= {min_freq}")
+        console.print(
+            f"  Filtered to [cyan]{tax.size}[/cyan] labels with freq >= {min_freq}"
+        )
 
     # Output filenames
     suffix = f"_top{top_n}" if top_n else (f"_minfreq{min_freq}" if min_freq else "")
@@ -201,8 +217,12 @@ def cmd_extract(
 
 @app.command("extract-all")
 def cmd_extract_all(
-    output_dir: Annotated[Optional[Path], typer.Option("--output-dir", "-o", help="Output directory")] = None,
-    workers: Annotated[int, typer.Option("--workers", "-w", help="Number of parallel workers")] = 4,
+    output_dir: Annotated[
+        Optional[Path], typer.Option("--output-dir", "-o", help="Output directory")
+    ] = None,
+    workers: Annotated[
+        int, typer.Option("--workers", "-w", help="Number of parallel workers")
+    ] = 4,
 ):
     """Extract standard sets from all taxonomies (parallel)."""
     frequencies_dir, loc_labels_dir, default_output = get_default_paths()
@@ -239,10 +259,11 @@ def cmd_extract_all(
             )
         return taxonomy_cache[taxonomy_type]
 
-    def process_extraction(taxonomy_type: TaxonomyType, top_n: int | None, desc: str) -> dict:
+    def process_extraction(
+        taxonomy_type: TaxonomyType, top_n: int | None, desc: str
+    ) -> dict:
         try:
             tax = load_if_needed(taxonomy_type)
-            original_size = tax.size
 
             if top_n:
                 tax = tax.top_n(top_n)
@@ -283,7 +304,11 @@ def cmd_extract_all(
         # Process in parallel using ThreadPoolExecutor
         with ThreadPoolExecutor(max_workers=workers) as executor:
             futures = {
-                executor.submit(process_extraction, tax_type, top_n, desc): (tax_type, top_n, desc)
+                executor.submit(process_extraction, tax_type, top_n, desc): (
+                    tax_type,
+                    top_n,
+                    desc,
+                )
                 for tax_type, top_n, desc in extractions
             }
 
@@ -331,6 +356,7 @@ def cmd_extract_all(
 # Generation Commands (shelf gen ...)
 # =============================================================================
 
+
 @gen_app.command("stats")
 def cmd_gen_stats():
     """Show LC taxonomy statistics for generation."""
@@ -375,7 +401,9 @@ def cmd_gen_sample(
     for doc in docs:
         console.print(f"\n[bold cyan]{doc.id}[/bold cyan]")
         console.print(f"  LCC: [green]{doc.lcc_class}[/green] ({doc.lcc_name})")
-        console.print(f"  LCGFT: [yellow]{doc.lcgft_category}[/yellow] > {doc.lcgft_form}")
+        console.print(
+            f"  LCGFT: [yellow]{doc.lcgft_category}[/yellow] > {doc.lcgft_form}"
+        )
         console.print(f"  Topics: {', '.join(doc.topics)}")
         if doc.lcdgt_audience:
             console.print(f"  Audience: {doc.lcdgt_audience}")
@@ -387,8 +415,12 @@ def cmd_gen_sample(
 def cmd_gen_create(
     n: Annotated[int, typer.Option("--count", "-n", help="Number of documents")] = 1000,
     seed: Annotated[int, typer.Option("--seed", "-s", help="Random seed")] = 42,
-    stratified: Annotated[bool, typer.Option("--stratified", help="Use stratified sampling")] = False,
-    output: Annotated[Optional[Path], typer.Option("--output", "-o", help="Output JSONL file")] = None,
+    stratified: Annotated[
+        bool, typer.Option("--stratified", help="Use stratified sampling")
+    ] = False,
+    output: Annotated[
+        Optional[Path], typer.Option("--output", "-o", help="Output JSONL file")
+    ] = None,
 ):
     """Generate benchmark documents and save to file."""
     _, _, default_output = get_default_paths()
@@ -441,6 +473,7 @@ def cmd_gen_create(
 
     for lcc, count in sorted(dist["lcc_distribution"].items()):
         from .benchmark import LCCClass
+
         lcc_table.add_row(lcc, LCC_NAMES.get(LCCClass(lcc), ""), str(count))
 
     console.print(lcc_table)

@@ -18,11 +18,9 @@ References:
 
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
 
 from shelf.hub.dataset import SHELFDataset
 
@@ -41,18 +39,19 @@ class CardConfig:
         repository: Source code repository URL
         paper: Paper URL or arXiv ID (optional)
     """
+
     pretty_name: str = "SHELF: Synthetic Harness for Evaluating LLM Fitness"
     license: str = "cc-by-4.0"
     language: list[str] = field(default_factory=lambda: ["en"])
-    size_category: str = "1K<n<10K"
-    version: str = "0.1.0"
+    size_category: str = "10K<n<100K"
+    version: str = "0.2.0"
     homepage: str = "https://github.com/mjbommar/shelf"
     repository: str = "https://github.com/mjbommar/shelf"
     paper: str | None = None
 
 
 # YAML metadata template
-YAML_TEMPLATE = '''---
+YAML_TEMPLATE = """---
 pretty_name: "{pretty_name}"
 license: {license}
 language:
@@ -145,11 +144,43 @@ configs:
         path: pairs/same_lcgft/validation-*
       - split: test
         path: pairs/same_lcgft/test-*
+  - config_name: same_register_pairs
+    data_files:
+      - split: train
+        path: pairs/same_register/train-*
+      - split: validation
+        path: pairs/same_register/validation-*
+      - split: test
+        path: pairs/same_register/test-*
+  - config_name: same_audience_pairs
+    data_files:
+      - split: train
+        path: pairs/same_audience/train-*
+      - split: validation
+        path: pairs/same_audience/validation-*
+      - split: test
+        path: pairs/same_audience/test-*
+  - config_name: same_topic_pairs
+    data_files:
+      - split: train
+        path: pairs/same_topic/train-*
+      - split: validation
+        path: pairs/same_topic/validation-*
+      - split: test
+        path: pairs/same_topic/test-*
+  - config_name: topic_overlap_pairs
+    data_files:
+      - split: train
+        path: pairs/topic_overlap/train-*
+      - split: validation
+        path: pairs/topic_overlap/validation-*
+      - split: test
+        path: pairs/topic_overlap/test-*
 ---
-'''
+"""
 
 # README content template
-README_TEMPLATE = '''# {pretty_name}
+README_TEMPLATE = """# {pretty_name}
 
 SHELF is a synthetic benchmark for evaluating language model fitness on bibliographic classification, retrieval, and clustering tasks using Library of Congress taxonomies.
 
@@ -168,13 +199,14 @@ SHELF contains {total_documents:,} synthetic documents annotated with Library of
 - **LCC (Library of Congress Classification):** 21 subject classes (A-Z)
 - **LCGFT (Library of Congress Genre/Form Terms):** 14 categories, 133 specific forms
 - **Topics:** 112 subject headings (multi-label)
+- **Geographic:** 44 locations mapped to 8 regions (multi-label)
 - **Audience:** 25 target audience types
 - **Register:** 8 writing styles (academic, professional, casual, etc.)
 
 The dataset is designed for:
 1. **Document Classification** - Predicting LCC codes, LCGFT forms, topics, audiences
 2. **Document Retrieval** - Finding similar documents by subject, genre, or topic
-3. **Document Clustering** - Grouping documents by taxonomic categories
+3. **Document Clustering** - Grouping documents by subject, genre, or geographic region
 4. **Pair Classification** - Determining if document pairs share categories
 
 ### Supported Tasks
@@ -187,7 +219,7 @@ The dataset is designed for:
 | Audience Classification | Single-label | 25 | Macro-F1 |
 | Register Classification | Single-label | 8 | Macro-F1 |
 | Subject Retrieval | Retrieval | - | NDCG@10 |
-| Document Clustering | Clustering | 21/14 | V-measure |
+| Document Clustering | Clustering | 21/14/8 | V-measure |
 
 ### Languages
 
@@ -253,7 +285,7 @@ Splits are stratified by LCC code and LCGFT category to ensure balanced label di
 
 ### Source Data
 
-Documents were synthetically generated using GPT-5.1 with carefully designed prompts to create realistic examples across all taxonomy categories. The generation process ensures:
+Documents were synthetically generated using GPT-5.1 and GPT-5.2 with carefully designed prompts to create realistic examples across all taxonomy categories. The generation process ensures:
 
 - Balanced distribution across all LCC codes
 - Coverage of all 133 LCGFT forms
@@ -291,24 +323,41 @@ print(train[0])
 
 ### Dataset Configurations
 
-The dataset has three configurations:
+The dataset has multiple configurations:
 
-| Config | Description | Use Case |
-|--------|-------------|----------|
-| `default` | Individual documents with all metadata | Classification, retrieval, clustering |
-| `same_lcc_pairs` | Document pairs labeled by LCC match | Same-LCC pair classification |
-| `same_form_pairs` | Document pairs labeled by LCGFT form match | Same-form pair classification |
+| Config | Description | Train | Val | Test |
+|--------|-------------|-------|-----|------|
+| `default` | Individual documents with all metadata | 12,000 | 4,000 | 4,000 |
+| `same_lcc_pairs` | Document pairs labeled by LCC match | 20,000 | 4,000 | 4,000 |
+| `same_form_pairs` | Document pairs labeled by LCGFT form match | 20,000 | 4,000 | 4,000 |
+| `same_audience_pairs` | Document pairs labeled by audience match | 20,000 | 4,000 | 4,000 |
+| `same_register_pairs` | Document pairs labeled by register/style match | 20,000 | 4,000 | 4,000 |
+| `same_topic_pairs` | Binary: Do documents share ANY topic? | 20,000 | 4,000 | 4,000 |
+| `topic_overlap_pairs` | Graded: How many topics shared? (0/1/2/3+) | 20,000 | 4,000 | 4,000 |
 
 ```python
 # Load pair classification data
 lcc_pairs = load_dataset("{repo_id}", name="same_lcc_pairs")
 form_pairs = load_dataset("{repo_id}", name="same_form_pairs")
+audience_pairs = load_dataset("{repo_id}", name="same_audience_pairs")
+register_pairs = load_dataset("{repo_id}", name="same_register_pairs")
 
-# Pair format
+# Load topic overlap pairs
+topic_binary = load_dataset("{repo_id}", name="same_topic_pairs")
+topic_graded = load_dataset("{repo_id}", name="topic_overlap_pairs")
+
+# Pair format (categorical pairs)
 print(lcc_pairs["train"][0])
 # {{'id': 'pair_000001', 'doc_a_id': '...', 'doc_a_title': '...',
 #   'doc_a_body': '...', 'doc_b_id': '...', 'doc_b_title': '...',
 #   'doc_b_body': '...', 'label': 1, 'label_field': 'lcc_code'}}
+
+# Topic overlap format (multi-label pairs)
+print(topic_graded["train"][0])
+# {{'id': 'pair_000001', 'doc_a_id': '...', 'doc_a_title': '...',
+#   'doc_a_body': '...', 'doc_b_id': '...', 'doc_b_title': '...',
+#   'doc_b_body': '...', 'label': 2, 'overlap_count': 2,
+#   'shared_topics': ['Ethics', 'Philosophy']}}
 ```
 
 ### Classification Example
@@ -407,7 +456,7 @@ This dataset is intended for research and development of document classification
 
 - **Synthetic Data:** Documents are AI-generated and may not perfectly reflect real-world document distributions
 - **English Only:** Currently limited to English language documents
-- **Single Generation Model:** All documents generated by GPT-5.1, which may introduce model-specific biases
+- **Dual Generation Models:** Documents generated by GPT-5.1 and GPT-5.2, which may introduce model-specific biases
 - **Citation Artifacts:** Some documents may contain fabricated citations that should not be treated as real references
 
 ### Bias Considerations
@@ -448,7 +497,7 @@ This dataset is released under the Creative Commons Attribution 4.0 Internationa
 ### Contact
 
 For questions or issues, please open an issue on the [GitHub repository]({repository}).
-'''
+"""
 
 
 class DatasetCardGenerator:
@@ -494,7 +543,6 @@ class DatasetCardGenerator:
 
     def generate_yaml_header(self) -> str:
         """Generate the YAML metadata header."""
-        total = self.dataset.total_documents
         train_count = len(self.dataset.train)
         dev_count = len(self.dataset.dev)
         test_count = len(self.dataset.test)
@@ -523,7 +571,11 @@ class DatasetCardGenerator:
         dev_pct = (dev_count / total) * 100
         test_pct = (test_count / total) * 100
 
-        paper_link = self.config.paper if self.config.paper else "Forthcoming (cite repository for now)"
+        paper_link = (
+            self.config.paper
+            if self.config.paper
+            else "Forthcoming (cite repository for now)"
+        )
 
         return README_TEMPLATE.format(
             pretty_name=self.config.pretty_name,
@@ -540,7 +592,7 @@ class DatasetCardGenerator:
             validation_pct=dev_pct,
             test_pct=test_pct,
             repo_id=repo_id,
-            date=datetime.utcnow().strftime("%Y-%m-%d"),
+            date=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         )
 
     def generate(self, repo_id: str | None = None) -> str:

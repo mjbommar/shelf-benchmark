@@ -14,7 +14,6 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
-import random
 from pathlib import Path
 
 import openai
@@ -31,8 +30,6 @@ from rich.progress import (
 from shelf.config import load_env
 from shelf.sampler import (
     DocumentSampler,
-    DocumentLength,
-    Register,
     LengthSampler,
     RegisterSampler,
     SamplingParamsSampler,
@@ -42,7 +39,7 @@ from shelf.sampler import (
     build_generation_prompt,
 )
 from shelf.sampler.generator import _parse_generated_text
-from shelf.sampler.artifacts import generate_artifact_id
+from shelf.sampler.artifacts import generate_artifact_id, get_git_version
 
 console = Console()
 
@@ -57,6 +54,7 @@ async def generate_one(
     model: str,
     service_tier: str | None,
     semaphore: asyncio.Semaphore,
+    git_info: dict[str, str | bool | None] | None = None,
 ) -> dict | None:
     """Generate a single document."""
     async with semaphore:
@@ -95,7 +93,7 @@ async def generate_one(
             word_count = len(body.split())
             word_range = LENGTH_WORD_RANGES.get(length)
 
-            return {
+            result = {
                 "id": doc_id,
                 "title": title,
                 "body": body,
@@ -122,6 +120,15 @@ async def generate_one(
                 "input_tokens": response.usage.input_tokens,
                 "output_tokens": response.usage.output_tokens,
             }
+
+            # Add git version info for reproducibility
+            if git_info:
+                result["git_commit"] = git_info.get("commit")
+                result["git_dirty"] = git_info.get("dirty")
+                result["git_branch"] = git_info.get("branch")
+                result["code_version"] = git_info.get("version_string")
+
+            return result
         except Exception as e:
             console.print(f"[red]✗[/red] {doc_id}: {e}")
             return None
@@ -141,6 +148,10 @@ async def generate_documents(
     load_env()
     client = openai.AsyncOpenAI()
     semaphore = asyncio.Semaphore(concurrency)
+
+    # Capture git info once for all artifacts in this run
+    git_info = get_git_version()
+    console.print(f"  Code version: {git_info.get('version_string', 'unknown')}")
 
     # Create artifacts directory
     artifacts_dir.mkdir(parents=True, exist_ok=True)
@@ -177,6 +188,7 @@ async def generate_documents(
                 model=model,
                 service_tier=service_tier,
                 semaphore=semaphore,
+                git_info=git_info,
             )
         )
         for doc_id in to_generate
@@ -218,7 +230,8 @@ async def generate_documents(
 
                 # Remove token counts from output (internal tracking only)
                 out_record = {
-                    k: v for k, v in result.items()
+                    k: v
+                    for k, v in result.items()
                     if k not in ("input_tokens", "output_tokens")
                 }
 
@@ -252,41 +265,40 @@ def main():
         description="Generate benchmark documents with LC taxonomy labels"
     )
     parser.add_argument(
-        "--output", type=Path, default=Path("data/benchmark.jsonl"),
-        help="Output JSONL file path"
+        "--output",
+        type=Path,
+        default=Path("data/benchmark.jsonl"),
+        help="Output JSONL file path",
     )
     parser.add_argument(
-        "--artifacts-dir", type=Path, default=Path("data/artifacts"),
-        help="Directory for individual artifact JSON files"
+        "--artifacts-dir",
+        type=Path,
+        default=Path("data/artifacts"),
+        help="Directory for individual artifact JSON files",
     )
     parser.add_argument(
-        "--count", type=int, default=100,
-        help="Number of documents to generate"
+        "--count", type=int, default=100, help="Number of documents to generate"
     )
     parser.add_argument(
-        "--model", default="gpt-5.1",
-        help="Model to use (default: gpt-5.1)"
+        "--model", default="gpt-5.1", help="Model to use (default: gpt-5.1)"
     )
     parser.add_argument(
-        "--service-tier", default="flex",
-        help="Service tier (default: flex)"
+        "--service-tier", default="flex", help="Service tier (default: flex)"
     )
     parser.add_argument(
-        "--concurrency", type=int, default=20,
-        help="Max concurrent requests (default: 20)"
+        "--concurrency",
+        type=int,
+        default=20,
+        help="Max concurrent requests (default: 20)",
     )
+    parser.add_argument("--seed", type=int, help="Random seed for reproducibility")
     parser.add_argument(
-        "--seed", type=int,
-        help="Random seed for reproducibility"
-    )
-    parser.add_argument(
-        "--log-usage", action="store_true",
-        help="Print per-document token usage"
+        "--log-usage", action="store_true", help="Print per-document token usage"
     )
 
     args = parser.parse_args()
 
-    console.print(f"[bold]SHELF Document Generator[/bold]")
+    console.print("[bold]SHELF Document Generator[/bold]")
     console.print(f"  Model: {args.model}")
     console.print(f"  Service tier: {args.service_tier}")
     console.print(f"  Concurrency: {args.concurrency}")
