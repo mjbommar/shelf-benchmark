@@ -231,11 +231,11 @@ class DocumentSampler:
         # Sample optional dimensions
         aud = self.audience.sample() if self._include_audience else None
 
-        geo = []
+        geo: list[str] = []
         if self._include_geographic:
             n_geo = self._rng.randint(*self._geographic_count)
             if n_geo > 0:
-                geo = self.geographic.sample_n(n_geo)
+                geo = self.geographic.sample_n_non_null(n_geo)
 
         return Document(
             id=doc_id,
@@ -272,11 +272,11 @@ class DocumentSampler:
                 topics = topic_sampler.sample_n_unique(n_topics)
 
                 aud = self.audience.sample() if self._include_audience else None
-                geo = []
+                geo: list[str] = []
                 if self._include_geographic:
                     n_geo = self._rng.randint(*self._geographic_count)
                     if n_geo > 0:
-                        geo = self.geographic.sample_n(n_geo)
+                        geo = self.geographic.sample_n_non_null(n_geo)
 
                 docs.append(
                     Document(
@@ -304,11 +304,11 @@ class DocumentSampler:
                 topics = topic_sampler.sample_n_unique(n_topics)
 
                 aud = self.audience.sample() if self._include_audience else None
-                geo = []
+                geo: list[str] = []
                 if self._include_geographic:
                     n_geo = self._rng.randint(*self._geographic_count)
                     if n_geo > 0:
-                        geo = self.geographic.sample_n(n_geo)
+                        geo = self.geographic.sample_n_non_null(n_geo)
 
                 docs.append(
                     Document(

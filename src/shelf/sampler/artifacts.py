@@ -425,11 +425,18 @@ class ArtifactStore:
 
         lcc_dist = Counter(e["lcc"] for e in index)
         category_dist = Counter(e["lcgft_category"] for e in index)
-        register_dist = Counter(e.get("register") for e in index if e.get("register"))
+        register_dist = Counter(
+            str(e["register"]) for e in index if e.get("register") is not None
+        )
         length_dist = Counter(
-            e.get("target_length") for e in index if e.get("target_length")
+            str(e["target_length"]) for e in index if e.get("target_length") is not None
         )
         word_counts = [e["word_count"] for e in index if e.get("word_count")]
+
+        lcc_distribution: dict[str, int] = dict(lcc_dist.most_common())
+        lcgft_category_distribution: dict[str, int] = dict(category_dist.most_common())
+        register_distribution: dict[str, int] = dict(register_dist.most_common())
+        length_distribution: dict[str, int] = dict(length_dist.most_common())
 
         return DatasetMetadata(
             generation_id=self.generation_id,
@@ -439,10 +446,10 @@ class ArtifactStore:
             train_size=0,  # Set by export_dataset
             test_size=0,
             train_ratio=0.0,
-            lcc_distribution=dict(lcc_dist.most_common()),
-            lcgft_category_distribution=dict(category_dist.most_common()),
-            register_distribution=dict(register_dist.most_common()),
-            length_distribution=dict(length_dist.most_common()),
+            lcc_distribution=lcc_distribution,
+            lcgft_category_distribution=lcgft_category_distribution,
+            register_distribution=register_distribution,
+            length_distribution=length_distribution,
             word_count_stats={
                 "min": min(word_counts) if word_counts else 0,
                 "max": max(word_counts) if word_counts else 0,

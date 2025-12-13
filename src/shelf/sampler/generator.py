@@ -821,7 +821,7 @@ class DocumentGenerator:
         if self._service_tier:
             request_kwargs["service_tier"] = self._service_tier
 
-        response = self._get_client().responses.create(**request_kwargs)
+        response = self._get_client().responses.create(**request_kwargs)  # type: ignore[no-matching-overload]
         raw_text = response.output_text or ""
 
         if not raw_text.strip():
@@ -871,7 +871,7 @@ class DocumentGenerator:
         if self._service_tier:
             request_kwargs["service_tier"] = self._service_tier
 
-        response = await self._get_async_client().responses.create(**request_kwargs)
+        response = await self._get_async_client().responses.create(**request_kwargs)  # type: ignore[no-matching-overload]
         raw_text = response.output_text or ""
 
         if not raw_text.strip():

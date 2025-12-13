@@ -739,7 +739,11 @@ class GeographicSampler(Sampler[str | None]):
             return None
         return self._rng.choice(self._areas)
 
-    def sample_n(self, n: int) -> list[str]:
+    def sample_n(self, n: int) -> list[str | None]:
+        """Sample n geographic areas."""
+        return [self.sample() for _ in range(n)]
+
+    def sample_n_non_null(self, n: int) -> list[str]:
         """Sample n geographic areas (no None values)."""
         n = min(n, len(self._areas))
         return self._rng.sample(self._areas, n)
@@ -779,6 +783,8 @@ class RealLCGFTSampler(Sampler[LCTerm]):
     Can be filtered to top-N by frequency in government documents.
     """
 
+    _terms: list[LCTerm]
+
     def __init__(
         self,
         data_dir: str | None = None,
@@ -786,28 +792,31 @@ class RealLCGFTSampler(Sampler[LCTerm]):
         seed: int | None = None,
     ):
         super().__init__(seed)
-        from .lc_data import load_lc_data
+        from .lc_data import load_lc_data, LCTerm as LCDataTerm
 
         loader = load_lc_data(data_dir)
 
         if top_n:
             # Use frequency-ranked terms
-            self._terms = [term for term, _ in loader.get_top_lcgft(top_n)]
+            raw_terms = [term for term, _ in loader.get_top_lcgft(top_n)]
         else:
             # Use all terms
-            self._terms = list(loader.lcgft.values())
+            raw_terms = list(loader.lcgft.values())
 
-        # Convert to LCTerm dataclass
-        self._terms = [
-            LCTerm(
-                id=t.id,
-                label=t.label,
-                uri=t.uri,
-                alt_labels=t.alt_labels,
-                broader=t.broader,
-            )
-            for t in self._terms
-        ]
+        # Convert to LCTerm dataclass (use existing terms if already LCTerm)
+        converted_terms: list[LCTerm] = []
+        for t in raw_terms:
+            if isinstance(t, LCDataTerm):
+                converted_terms.append(
+                    LCTerm(
+                        id=t.id,
+                        label=t.label,
+                        uri=t.uri,
+                        alt_labels=t.alt_labels,
+                        broader=t.broader,
+                    )
+                )
+        self._terms = converted_terms
 
     def sample(self) -> LCTerm:
         return self._rng.choice(self._terms)
@@ -823,6 +832,8 @@ class RealLCSHSampler(Sampler[LCTerm]):
     Can be filtered to top-N by frequency in government documents.
     """
 
+    _terms: list[LCTerm]
+
     def __init__(
         self,
         data_dir: str | None = None,
@@ -830,26 +841,29 @@ class RealLCSHSampler(Sampler[LCTerm]):
         seed: int | None = None,
     ):
         super().__init__(seed)
-        from .lc_data import load_lc_data
+        from .lc_data import load_lc_data, LCTerm as LCDataTerm
 
         loader = load_lc_data(data_dir)
 
         if top_n:
-            self._terms = [term for term, _ in loader.get_top_lcsh(top_n)]
+            raw_terms = [term for term, _ in loader.get_top_lcsh(top_n)]
         else:
             # Warning: LCSH has 500k+ terms
-            self._terms = list(loader.lcsh.values())[:1000]
+            raw_terms = list(loader.lcsh.values())[:1000]
 
-        self._terms = [
-            LCTerm(
-                id=t.id,
-                label=t.label,
-                uri=t.uri,
-                alt_labels=t.alt_labels,
-                broader=t.broader,
-            )
-            for t in self._terms
-        ]
+        converted_terms: list[LCTerm] = []
+        for t in raw_terms:
+            if isinstance(t, LCDataTerm):
+                converted_terms.append(
+                    LCTerm(
+                        id=t.id,
+                        label=t.label,
+                        uri=t.uri,
+                        alt_labels=t.alt_labels,
+                        broader=t.broader,
+                    )
+                )
+        self._terms = converted_terms
 
     def sample(self) -> LCTerm:
         return self._rng.choice(self._terms)
@@ -869,25 +883,30 @@ class RealLCDGTSampler(Sampler[LCTerm]):
     Uses actual LC Demographic Group Terms from id.loc.gov.
     """
 
+    _terms: list[LCTerm]
+
     def __init__(
         self,
         data_dir: str | None = None,
         seed: int | None = None,
     ):
         super().__init__(seed)
-        from .lc_data import load_lc_data
+        from .lc_data import load_lc_data, LCTerm as LCDataTerm
 
         loader = load_lc_data(data_dir)
-        self._terms = [
-            LCTerm(
-                id=t.id,
-                label=t.label,
-                uri=t.uri,
-                alt_labels=t.alt_labels,
-                broader=t.broader,
-            )
-            for t in loader.lcdgt.values()
-        ]
+        converted_terms: list[LCTerm] = []
+        for t in loader.lcdgt.values():
+            if isinstance(t, LCDataTerm):
+                converted_terms.append(
+                    LCTerm(
+                        id=t.id,
+                        label=t.label,
+                        uri=t.uri,
+                        alt_labels=t.alt_labels,
+                        broader=t.broader,
+                    )
+                )
+        self._terms = converted_terms
 
     def sample(self) -> LCTerm:
         return self._rng.choice(self._terms)
