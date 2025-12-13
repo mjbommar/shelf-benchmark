@@ -71,3 +71,9 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# Coverage
+coverage.xml
+coverage.json
+htmlcov/
+.coverage
