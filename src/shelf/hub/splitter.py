@@ -229,7 +229,7 @@ class StratifiedSplitter:
         test: list[dict[str, Any]],
     ) -> dict[str, Any]:
         """Compute statistics about the split for validation and documentation."""
-        stats = {
+        stats: dict[str, Any] = {
             "counts": {
                 "train": len(train),
                 "dev": len(dev),
@@ -356,7 +356,7 @@ class StratifiedSplitter:
         Returns:
             Dictionary with verification metrics
         """
-        verification = {"passed": True, "issues": [], "metrics": {}}
+        verification: dict[str, Any] = {"passed": True, "issues": [], "metrics": {}}
 
         for field_name in self.config.stratify_by:
             distributions = result.statistics["distributions"].get(field_name, {})
@@ -373,7 +373,7 @@ class StratifiedSplitter:
                 missing = all_values - set(split_dist.keys())
                 if missing:
                     verification["issues"].append(
-                        f"{field}: {len(missing)} values missing from {split_name} split"
+                        f"{field_name}: {len(missing)} values missing from {split_name} split"
                     )
 
             # Compute max ratio divergence
@@ -391,13 +391,13 @@ class StratifiedSplitter:
                     divergence = abs(train_ratio - split_ratio)
                     max_divergence = max(max_divergence, divergence)
 
-                verification["metrics"][f"{field}_{split_name}_max_divergence"] = (
+                verification["metrics"][f"{field_name}_{split_name}_max_divergence"] = (
                     max_divergence
                 )
 
                 if max_divergence > 0.1:  # More than 10% divergence is concerning
                     verification["issues"].append(
-                        f"{field}: High divergence ({max_divergence:.2%}) between train and {split_name}"
+                        f"{field_name}: High divergence ({max_divergence:.2%}) between train and {split_name}"
                     )
 
         verification["passed"] = len(verification["issues"]) == 0
