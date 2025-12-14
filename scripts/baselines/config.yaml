@@ -1,5 +1,5 @@
 version: 1.0.0
-dataset_version: 0.3.0
+dataset_version: 0.3.1
 dataset_repo: mjbommar/SHELF
 reproducibility:
   random_seed: 42
