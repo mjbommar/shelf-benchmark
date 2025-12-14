@@ -383,6 +383,65 @@ def push_to_hub(
     return url
 
 
+def push_folder_to_hub(
+    folder_path: str | Path,
+    repo_id: str,
+    private: bool = False,
+    token: str | None = None,
+    commit_message: str = "Upload SHELF dataset",
+) -> str:
+    """Upload entire dataset folder to HuggingFace Hub including all configurations.
+
+    This uploads all files in the folder (parquet files, README, metadata, pairs)
+    to the HuggingFace Hub repository. This is the recommended way to upload
+    SHELF datasets as it preserves all configurations including pair datasets.
+
+    Args:
+        folder_path: Path to the dataset folder (e.g., "data/hf_dataset")
+        repo_id: HuggingFace repository ID (e.g., "username/SHELF")
+        private: Whether repository is private
+        token: HuggingFace token (or use HF_TOKEN env var)
+        commit_message: Commit message for the upload
+
+    Returns:
+        URL of the uploaded dataset
+
+    Example:
+        >>> url = push_folder_to_hub("data/hf_dataset", "myorg/SHELF")
+        >>> print(f"Dataset uploaded to: {url}")
+    """
+    from huggingface_hub import HfApi
+
+    folder_path = Path(folder_path)
+    if not folder_path.exists():
+        raise FileNotFoundError(f"Dataset folder not found: {folder_path}")
+
+    api = HfApi(token=token)
+
+    # Create the repository if it doesn't exist
+    api.create_repo(
+        repo_id=repo_id,
+        repo_type="dataset",
+        private=private,
+        exist_ok=True,
+    )
+
+    print(f"Uploading folder {folder_path} to {repo_id}...")
+
+    # Upload the entire folder
+    api.upload_folder(
+        folder_path=str(folder_path),
+        repo_id=repo_id,
+        repo_type="dataset",
+        commit_message=commit_message,
+    )
+
+    url = f"https://huggingface.co/datasets/{repo_id}"
+    print(f"Dataset folder uploaded successfully: {url}")
+
+    return url
+
+
 def generate_pairs(
     documents: list[dict[str, Any]],
     label_field: str,

@@ -1,6 +1,6 @@
 [project]
 name = "shelf"
-version = "0.2.0"
+version = "0.3.1"
 description = "SHELF: Synthetic Harness for Evaluating LLM Fitness - A benchmark using Library of Congress taxonomies"
 readme = "README.md"
 requires-python = ">=3.13"

@@ -19,6 +19,7 @@ from shelf.hub.dataset import (
     generate_pairs,
     prepare_dataset,
     prepare_pair_dataset,
+    push_folder_to_hub,
     push_to_hub,
     save_locally,
 )
@@ -40,6 +41,7 @@ __all__ = [
     "generate_pairs",
     "prepare_dataset",
     "prepare_pair_dataset",
+    "push_folder_to_hub",
     "push_to_hub",
     "save_locally",
     # Card

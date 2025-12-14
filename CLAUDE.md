@@ -26,7 +26,7 @@ SHELF is a synthetic benchmark for evaluating language models on bibliographic c
 
 Unlike narrow domain benchmarks (e.g., FinMTEB for finance, ChemTEB for chemistry), SHELF uses the Library of Congress Classification—the most comprehensive bibliographic taxonomy ever developed, designed to organize **all human knowledge**.
 
-**Coverage (v0.3.0, 42,616 documents):**
+**Coverage (v0.3.1, 42,532 documents):**
 - **21 LCC subject classes**: Near-uniform distribution (4.6-4.9% each) spanning Science, Fine Arts, Law, Medicine, Philosophy, History, Technology, Agriculture, etc.
 - **133 document forms**: Lectures, Maps, Prayers, Jokes, Biographies, Satellite imagery, Games, Legal briefs, etc.
 - **112 topics**: Art, Religion, Culture, Ethics, Defense, Democracy, Globalization, etc.
@@ -71,9 +71,9 @@ The benchmark evaluates LLM fitness across:
 ## HuggingFace Dataset
 
 - **Repo ID**: `mjbommar/SHELF`
-- **Version**: 0.3.0
+- **Version**: 0.3.1
 - **Configurations**: `default`, `same_lcc_pairs`, `same_form_pairs`, `same_register_pairs`, `same_audience_pairs`, `same_topic_pairs`, `topic_overlap_pairs`
-- **Splits**: train (25,569), validation (8,523), test (8,524)
+- **Splits**: train (25,518), validation (8,507), test (8,507)
 
 ## CLI Usage
 
