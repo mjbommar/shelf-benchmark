@@ -12,13 +12,32 @@ from typing import TYPE_CHECKING, Any
 import polars as pl
 
 from shelf.evaluate.evaluators.base import TaskEvaluator
-from shelf.evaluate.metrics.classification import compute_classification_metrics
-from shelf.evaluate.results import EvaluationResult
+from shelf.evaluate.metrics.classification import (
+    compute_classification_metrics,
+    compute_stratified_confusion_matrices,
+    extract_top_confusions,
+)
+from shelf.evaluate.results import (
+    EvaluationResult,
+    PerSampleResult,
+    PerSampleResults,
+)
 from shelf.evaluate.schemas import (
     ValidationError,
     validate_classification_predictions,
 )
 from shelf.evaluate.tasks import TaskSpec
+
+# Metadata fields to capture for stratification analysis
+STRATIFICATION_FIELDS = [
+    "form",
+    "form_category",
+    "register",
+    "audience",
+    "lcc",
+    "topic",
+    "region",
+]
 
 if TYPE_CHECKING:
     from shelf.evaluate.adapters.protocols import TextClassifier, TextEmbedder
@@ -71,6 +90,8 @@ class ClassificationEvaluator(TaskEvaluator):
         predictions: list[dict[str, Any]],
         ground_truth: pl.DataFrame,
         compute_ci: bool = False,
+        save_samples: bool = False,
+        model_key: str | None = None,
     ) -> EvaluationResult:
         """Evaluate classification predictions.
 
@@ -78,6 +99,8 @@ class ClassificationEvaluator(TaskEvaluator):
             predictions: List of {"id": str, "prediction": str}
             ground_truth: DataFrame with ground truth labels
             compute_ci: Whether to compute confidence intervals (not yet implemented)
+            save_samples: Whether to capture per-sample results for detailed analysis
+            model_key: Model identifier for per-sample results
 
         Returns:
             EvaluationResult with classification metrics
@@ -103,10 +126,20 @@ class ClassificationEvaluator(TaskEvaluator):
             predicted_label = pred["prediction"]
             pred_dict[doc_id] = predicted_label
 
-        # Get ground truth
+        # Get ground truth and build per-sample results
         y_true: list[str] = []
         y_pred: list[str] = []
         misclassified_ids: list[str] = []
+        per_sample_list: list[PerSampleResult] = []
+
+        # Get available columns for metadata extraction
+        available_cols = set(ground_truth.columns)
+        metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+        # Collect strata values for stratified confusion matrices
+        # Also add length_bucket as a stratification field
+        strata_fields = metadata_fields + ["length_bucket"]
+        strata: dict[str, list[str | None]] = {f: [] for f in strata_fields}
 
         for row in ground_truth.iter_rows(named=True):
             doc_id = row[id_field]
@@ -117,11 +150,53 @@ class ClassificationEvaluator(TaskEvaluator):
                 continue
 
             predicted_label = pred_dict[doc_id]
+            is_correct = true_label == predicted_label
+
             y_true.append(true_label)
             y_pred.append(predicted_label)
 
-            if true_label != predicted_label:
+            if not is_correct:
                 misclassified_ids.append(doc_id)
+
+            # Collect strata values for stratified confusion matrices
+            for field in metadata_fields:
+                value = row.get(field)
+                strata[field].append(str(value) if value is not None else None)
+
+            # Compute length bucket and add to strata
+            text_field = self.task_spec.text_field
+            length_bucket: str | None = None
+            if text_field in row and row[text_field]:
+                text_len = len(row[text_field])
+                if text_len < 500:
+                    length_bucket = "short"
+                elif text_len < 2000:
+                    length_bucket = "medium"
+                else:
+                    length_bucket = "long"
+            strata["length_bucket"].append(length_bucket)
+
+            # Capture per-sample result with metadata for stratification
+            if save_samples:
+                metadata: dict[str, Any] = {}
+                for field in metadata_fields:
+                    if field in row and row[field] is not None:
+                        metadata[field] = row[field]
+
+                # Add text length bucket for length analysis
+                if length_bucket:
+                    metadata["length_bucket"] = length_bucket
+                    metadata["text_length"] = len(row[text_field])
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=doc_id,
+                        y_true=true_label,
+                        y_pred=predicted_label,
+                        correct=is_correct,
+                        metadata=metadata,
+                    )
+                )
 
         if not y_true:
             raise ValueError("No valid predictions found matching ground truth IDs")
@@ -150,16 +225,49 @@ class ClassificationEvaluator(TaskEvaluator):
             k: v for k, v in metrics_result.items() if isinstance(v, (int, float))
         }
 
-        return self._create_result(
+        # Compute stratified confusion matrices
+        stratified_conf_matrices = compute_stratified_confusion_matrices(
+            y_true=y_true,
+            y_pred=y_pred,
+            strata=strata,
+            labels=labels_order,
+            min_samples=10,
+        )
+
+        # Extract top confusions from confusion matrix
+        top_confusions = None
+        if conf_matrix and labels_order:
+            top_confusions = extract_top_confusions(
+                confusion_matrix=conf_matrix,
+                labels=labels_order,
+                n=10,
+                min_count=1,
+            )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=ground_truth,
             split=self.task_spec.default_split,
             per_class_metrics=per_class,
             confusion_matrix=conf_matrix,
+            confusion_matrix_labels=labels_order,
+            top_confusions=top_confusions,
+            stratified_confusion_matrices=stratified_conf_matrices,
             num_correct=metrics.get("num_correct"),
             misclassified_ids=misclassified_ids[:100],  # Limit to first 100
-            labels=labels_order,
         )
+
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="classification",
+                model_key=model_key or "unknown",
+                split=self.task_spec.default_split,
+                samples=per_sample_list,
+            )
+
+        return result
 
     def evaluate_classifier(
         self,
@@ -239,16 +347,27 @@ class ClassificationEvaluator(TaskEvaluator):
             k: v for k, v in metrics_result.items() if isinstance(v, (int, float))
         }
 
+        # Extract top confusions from confusion matrix
+        top_confusions = None
+        if conf_matrix and labels_order:
+            top_confusions = extract_top_confusions(
+                confusion_matrix=conf_matrix,
+                labels=labels_order,
+                n=10,
+                min_count=1,
+            )
+
         return self._create_result(
             metrics=metrics,
             ground_truth=ground_truth,
             split=split,
             per_class_metrics=per_class,
             confusion_matrix=conf_matrix,
+            confusion_matrix_labels=labels_order,
+            top_confusions=top_confusions,
             num_correct=metrics.get("num_correct"),
             misclassified_ids=misclassified_ids[:100],
             model_name=getattr(classifier, "model_name", None),
-            labels=labels_order,
         )
 
     def evaluate_embedder_with_classifier(
@@ -258,6 +377,7 @@ class ClassificationEvaluator(TaskEvaluator):
         train_split: str = "train",
         batch_size: int = 32,
         show_progress: bool = True,
+        save_samples: bool = False,
     ) -> EvaluationResult:
         """Evaluate embedder by training a simple classifier on embeddings.
 
@@ -275,6 +395,7 @@ class ClassificationEvaluator(TaskEvaluator):
             train_split: Training split for classifier
             batch_size: Batch size for encoding
             show_progress: Whether to show progress bars
+            save_samples: Whether to capture per-sample results for detailed analysis
 
         Returns:
             EvaluationResult with classification metrics
@@ -349,12 +470,67 @@ class ClassificationEvaluator(TaskEvaluator):
                 f"Classifier produced {len(y_pred)} predictions for {len(test_ids)} test samples"
             )
 
-        # Build misclassified IDs
-        misclassified_ids = [
-            doc_id
-            for doc_id, true_label, pred_label in zip(test_ids, y_true, y_pred)
-            if true_label != pred_label
-        ]
+        # Build misclassified IDs and per-sample results
+        misclassified_ids: list[str] = []
+        per_sample_list: list[PerSampleResult] = []
+
+        # Get available columns for metadata extraction
+        available_cols = set(test_df.columns)
+        metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+        # Collect strata values for stratified confusion matrices
+        strata_fields = metadata_fields + ["length_bucket"]
+        strata: dict[str, list[str | None]] = {f: [] for f in strata_fields}
+
+        for i, (doc_id, true_label, pred_label) in enumerate(
+            zip(test_ids, y_true, y_pred)
+        ):
+            is_correct = true_label == pred_label
+
+            if not is_correct:
+                misclassified_ids.append(doc_id)
+
+            # Get row from test_df for metadata
+            row = test_df.row(i, named=True)
+
+            # Collect strata values
+            for field in metadata_fields:
+                value = row.get(field)
+                strata[field].append(str(value) if value is not None else None)
+
+            # Compute length bucket
+            length_bucket: str | None = None
+            if text_field in row and row[text_field]:
+                text_len = len(row[text_field])
+                if text_len < 500:
+                    length_bucket = "short"
+                elif text_len < 2000:
+                    length_bucket = "medium"
+                else:
+                    length_bucket = "long"
+            strata["length_bucket"].append(length_bucket)
+
+            if save_samples:
+                metadata: dict[str, Any] = {}
+
+                for field in metadata_fields:
+                    if field in row and row[field] is not None:
+                        metadata[field] = row[field]
+
+                # Add text length bucket
+                if length_bucket:
+                    metadata["length_bucket"] = length_bucket
+                    metadata["text_length"] = len(row[text_field])
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=doc_id,
+                        y_true=true_label,
+                        y_pred=pred_label,
+                        correct=is_correct,
+                        metadata=metadata,
+                    )
+                )
 
         # Get label space
         labels = None
@@ -380,17 +556,50 @@ class ClassificationEvaluator(TaskEvaluator):
             k: v for k, v in metrics_result.items() if isinstance(v, (int, float))
         }
 
-        return self._create_result(
+        # Compute stratified confusion matrices
+        stratified_conf_matrices = compute_stratified_confusion_matrices(
+            y_true=y_true,
+            y_pred=y_pred,
+            strata=strata,
+            labels=labels_order,
+            min_samples=10,
+        )
+
+        # Extract top confusions from confusion matrix
+        top_confusions = None
+        if conf_matrix and labels_order:
+            top_confusions = extract_top_confusions(
+                confusion_matrix=conf_matrix,
+                labels=labels_order,
+                n=10,
+                min_count=1,
+            )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=test_df,
             split=split,
             per_class_metrics=per_class,
             confusion_matrix=conf_matrix,
+            confusion_matrix_labels=labels_order,
+            top_confusions=top_confusions,
+            stratified_confusion_matrices=stratified_conf_matrices,
             num_correct=metrics.get("num_correct"),
             misclassified_ids=misclassified_ids[:100],
             model_name=embedder.model_name,
             embedding_dim=embedder.embedding_dim,
             classifier="LogisticRegression",
             train_size=len(train_texts),
-            labels=labels_order,
         )
+
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="classification",
+                model_key=embedder.model_name or "unknown",
+                split=split,
+                samples=per_sample_list,
+            )
+
+        return result

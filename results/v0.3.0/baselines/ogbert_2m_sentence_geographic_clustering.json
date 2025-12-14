@@ -1,0 +1,52 @@
+{
+  "model": "ogbert-2m-sentence",
+  "model_key": "ogbert_2m_sentence",
+  "model_type": "sentence_transformer",
+  "task": "geographic_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.018876389653947015,
+  "metrics": {
+    "v_measure": 0.018876389653947015,
+    "nmi": 0.01887638965394702,
+    "ari": 0.008616515604685182,
+    "homogeneity": 0.01975536151969606,
+    "completeness": 0.018072301868661975,
+    "num_samples": 5611,
+    "num_clusters_true": 8,
+    "num_clusters_pred": 8
+  },
+  "num_samples": 5611,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.7",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "eff3db715b2ab6613ef33899c54f8f20",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T10:49:34.478918+00:00",
+    "model_name": "ogbert-2m-sentence",
+    "data_commit": "7123a65",
+    "code_commit": "06303cb",
+    "extra": {
+      "embedding_dim": 128,
+      "n_clusters": 8,
+      "kmeans_inertia": 370.6861267089844
+    }
+  },
+  "efficiency": {
+    "num_params": 2123008,
+    "embedding_dim": 128,
+    "size_category": "<10M",
+    "flops_per_token": 4246016,
+    "relative_compute": 0.0935,
+    "shelf_eff": 59.6753,
+    "shelf_compute": 0.4785,
+    "pareto_optimal": true,
+    "size_rank": 1
+  },
+  "shelf_score": 0.377563
+}

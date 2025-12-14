@@ -231,6 +231,124 @@ TASK_REGISTRY: dict[str, TaskSpec] = {
         default_split="test",
     ),
     # -------------------------------------------------------------------------
+    # CLUSTERING TASKS - HDBSCAN DISCOVERY (no fixed k)
+    # -------------------------------------------------------------------------
+    "lcc_clustering_hdbscan": TaskSpec(
+        name="lcc_clustering_hdbscan",
+        task_type=TaskType.CLUSTERING,
+        description="Discover document clusters using HDBSCAN (no fixed k)",
+        text_field="text",
+        label_field="lcc_code",
+        id_field="id",
+        label_space=LCC_CODES,  # Used for evaluation, not clustering
+        primary_metric="v_measure",
+        secondary_metrics=("nmi", "ari", "noise_ratio", "cluster_k_error"),
+        dataset_name="mjbommar/SHELF",
+        dataset_config="default",
+        default_split="test",
+    ),
+    "lcgft_clustering_hdbscan": TaskSpec(
+        name="lcgft_clustering_hdbscan",
+        task_type=TaskType.CLUSTERING,
+        description="Discover genre clusters using HDBSCAN (no fixed k)",
+        text_field="text",
+        label_field="lcgft_category",
+        id_field="id",
+        label_space=LCGFT_CATEGORIES,
+        primary_metric="v_measure",
+        secondary_metrics=("nmi", "ari", "noise_ratio", "cluster_k_error"),
+        dataset_name="mjbommar/SHELF",
+        dataset_config="default",
+        default_split="test",
+    ),
+    "register_clustering_hdbscan": TaskSpec(
+        name="register_clustering_hdbscan",
+        task_type=TaskType.CLUSTERING,
+        description="Discover register clusters using HDBSCAN (no fixed k)",
+        text_field="text",
+        label_field="register",
+        id_field="id",
+        label_space=REGISTERS,
+        primary_metric="v_measure",
+        secondary_metrics=("nmi", "ari", "noise_ratio", "cluster_k_error"),
+        dataset_name="mjbommar/SHELF",
+        dataset_config="default",
+        default_split="test",
+    ),
+    "geographic_clustering_hdbscan": TaskSpec(
+        name="geographic_clustering_hdbscan",
+        task_type=TaskType.CLUSTERING,
+        description="Discover geographic clusters using HDBSCAN (no fixed k)",
+        text_field="text",
+        label_field="geographic_region",
+        id_field="id",
+        label_space=GEOGRAPHIC_REGIONS,
+        primary_metric="v_measure",
+        secondary_metrics=("nmi", "ari", "noise_ratio", "cluster_k_error"),
+        dataset_name="mjbommar/SHELF",
+        dataset_config="default",
+        default_split="test",
+    ),
+    # -------------------------------------------------------------------------
+    # CLUSTERING TASKS - AGGLOMERATIVE WITH COSINE DISTANCE
+    # -------------------------------------------------------------------------
+    "lcc_clustering_agglomerative": TaskSpec(
+        name="lcc_clustering_agglomerative",
+        task_type=TaskType.CLUSTERING,
+        description="Cluster documents using agglomerative clustering with cosine distance",
+        text_field="text",
+        label_field="lcc_code",
+        id_field="id",
+        label_space=LCC_CODES,
+        primary_metric="v_measure",
+        secondary_metrics=("nmi", "ari"),
+        dataset_name="mjbommar/SHELF",
+        dataset_config="default",
+        default_split="test",
+    ),
+    "lcgft_clustering_agglomerative": TaskSpec(
+        name="lcgft_clustering_agglomerative",
+        task_type=TaskType.CLUSTERING,
+        description="Cluster genres using agglomerative clustering with cosine distance",
+        text_field="text",
+        label_field="lcgft_category",
+        id_field="id",
+        label_space=LCGFT_CATEGORIES,
+        primary_metric="v_measure",
+        secondary_metrics=("nmi", "ari"),
+        dataset_name="mjbommar/SHELF",
+        dataset_config="default",
+        default_split="test",
+    ),
+    "register_clustering_agglomerative": TaskSpec(
+        name="register_clustering_agglomerative",
+        task_type=TaskType.CLUSTERING,
+        description="Cluster registers using agglomerative clustering with cosine distance",
+        text_field="text",
+        label_field="register",
+        id_field="id",
+        label_space=REGISTERS,
+        primary_metric="v_measure",
+        secondary_metrics=("nmi", "ari"),
+        dataset_name="mjbommar/SHELF",
+        dataset_config="default",
+        default_split="test",
+    ),
+    "geographic_clustering_agglomerative": TaskSpec(
+        name="geographic_clustering_agglomerative",
+        task_type=TaskType.CLUSTERING,
+        description="Cluster geography using agglomerative clustering with cosine distance",
+        text_field="text",
+        label_field="geographic_region",
+        id_field="id",
+        label_space=GEOGRAPHIC_REGIONS,
+        primary_metric="v_measure",
+        secondary_metrics=("nmi", "ari"),
+        dataset_name="mjbommar/SHELF",
+        dataset_config="default",
+        default_split="test",
+    ),
+    # -------------------------------------------------------------------------
     # PAIR CLASSIFICATION TASKS
     # -------------------------------------------------------------------------
     "same_lcc_pairs": TaskSpec(
@@ -375,3 +493,24 @@ def list_clustering_tasks() -> list[str]:
 def list_pair_tasks() -> list[str]:
     """List all pair classification task names."""
     return list_tasks(TaskType.PAIR_CLASSIFICATION)
+
+
+def list_clustering_kmeans_tasks() -> list[str]:
+    """List k-means clustering task names (default algorithm)."""
+    return [
+        name
+        for name in list_tasks(TaskType.CLUSTERING)
+        if "_hdbscan" not in name and "_agglomerative" not in name
+    ]
+
+
+def list_clustering_hdbscan_tasks() -> list[str]:
+    """List HDBSCAN clustering task names."""
+    return [name for name in list_tasks(TaskType.CLUSTERING) if "_hdbscan" in name]
+
+
+def list_clustering_agglomerative_tasks() -> list[str]:
+    """List agglomerative clustering task names."""
+    return [
+        name for name in list_tasks(TaskType.CLUSTERING) if "_agglomerative" in name
+    ]

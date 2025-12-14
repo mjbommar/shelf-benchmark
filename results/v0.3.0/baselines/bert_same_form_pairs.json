@@ -1,0 +1,52 @@
+{
+  "model": "BERT",
+  "model_key": "bert",
+  "model_type": "sentence_transformer",
+  "task": "same_form_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "f1",
+  "primary_score": 0.6666666666666666,
+  "metrics": {
+    "f1": 0.6666666666666666,
+    "accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "auc_roc": 0.6357805000000001,
+    "average_precision": 0.6463053028111874,
+    "threshold": 0.23789244890213013,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.7",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c326143008e256d971915b0bbbc62930",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T08:17:43.198590+00:00",
+    "model_name": "BERT",
+    "data_commit": null,
+    "code_commit": "06303cb",
+    "extra": {
+      "embedding_dim": 768
+    }
+  },
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": 58.5887,
+    "shelf_compute": 0.4025,
+    "pareto_optimal": false,
+    "size_rank": 6
+  },
+  "shelf_score": 0.471015
+}

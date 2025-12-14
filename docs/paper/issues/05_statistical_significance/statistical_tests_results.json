@@ -1,0 +1,266 @@
+{
+  "metadata": {
+    "n_bootstrap": 10000,
+    "alpha": 0.05,
+    "random_seed": 42
+  },
+  "shelf_scores": {
+    "bert": 0.4758483797859231,
+    "bge_base": 0.5070712608904675,
+    "bge_large": 0.5180236168692662,
+    "bge_small": 0.5056021838879693,
+    "bm25": 0.5469490203043231,
+    "distilbert_base_uncased": 0.4710755558358213,
+    "e5_base": 0.5038368171480496,
+    "e5_large": 0.5065358801136595,
+    "e5_small": 0.48533282222093904,
+    "gte_base": 0.5133250168865929,
+    "gte_small": 0.5079468079818619,
+    "gtr_t5_base": 0.47662183622233634,
+    "gtr_t5_large": 0.487792449630717,
+    "instructor_base": 0.4960715423276447,
+    "kl3m_pico": 0.4203939972645725,
+    "minilm": 0.48516871741914314,
+    "mpnet": 0.5000032090621933,
+    "ogbert_110m_base": 0.46219662023453345,
+    "ogbert_110m_sentence": 0.46207776709943815,
+    "ogbert_2m_sentence": 0.409038730107188,
+    "ogbert_v1_mlm": 0.44423891299437107,
+    "roberta": 0.4334739969191475,
+    "tf": 0.48814494413077625,
+    "tfidf": 0.5135366596934924
+  },
+  "comparisons": [
+    {
+      "description": "Sparse (TF) vs. Dense (BGE-large)",
+      "model1": "tf",
+      "model2": "bge_large",
+      "cohens_d": -0.41422152167159426,
+      "n_tasks": 13,
+      "mean_diff": -0.055669167566465116,
+      "std_diff": 0.12912222895098413,
+      "t_statistic": -1.4934969357876509,
+      "t_pvalue": 0.16112795575460137,
+      "wilcoxon_statistic": 13.0,
+      "wilcoxon_pvalue": 0.0830078125
+    },
+    {
+      "description": "Sparse (TF-IDF) vs. Dense (BGE-large)",
+      "model1": "tfidf",
+      "model2": "bge_large",
+      "cohens_d": -0.08386374253621316,
+      "n_tasks": 16,
+      "mean_diff": -0.0044869571757738536,
+      "std_diff": 0.05180400340890549,
+      "t_statistic": -0.33545497014485265,
+      "t_pvalue": 0.7419276499133025,
+      "wilcoxon_statistic": 44.0,
+      "wilcoxon_pvalue": 0.5936182407945829
+    },
+    {
+      "description": "BGE-large vs. GTE-base",
+      "model1": "bge_large",
+      "model2": "gte_base",
+      "cohens_d": 0.1834184480610801,
+      "n_tasks": 16,
+      "mean_diff": 0.004698599982673413,
+      "std_diff": 0.024803393109787505,
+      "t_statistic": 0.7336737922443204,
+      "t_pvalue": 0.4744596451709132,
+      "wilcoxon_statistic": 43.0,
+      "wilcoxon_pvalue": 0.550923682773407
+    },
+    {
+      "description": "BGE-large vs. E5-large",
+      "model1": "bge_large",
+      "model2": "e5_large",
+      "cohens_d": 0.2531126622804432,
+      "n_tasks": 16,
+      "mean_diff": 0.01148773675560677,
+      "std_diff": 0.04394467343042669,
+      "t_statistic": 1.0124506491217728,
+      "t_pvalue": 0.32737639908129124,
+      "wilcoxon_statistic": 49.0,
+      "wilcoxon_pvalue": 0.5321298884166212
+    },
+    {
+      "description": "BGE-large vs. MPNet",
+      "model1": "bge_large",
+      "model2": "mpnet",
+      "cohens_d": 0.31106062305596904,
+      "n_tasks": 16,
+      "mean_diff": 0.018020407807072814,
+      "std_diff": 0.05609255411613243,
+      "t_statistic": 1.2442424922238764,
+      "t_pvalue": 0.23250257231202967,
+      "wilcoxon_statistic": 43.0,
+      "wilcoxon_pvalue": 0.3342768550264176
+    },
+    {
+      "description": "BGE-large vs. BGE-base",
+      "model1": "bge_large",
+      "model2": "bge_base",
+      "cohens_d": 0.43952417975523866,
+      "n_tasks": 16,
+      "mean_diff": 0.010952355978798733,
+      "std_diff": 0.02412739404419373,
+      "t_statistic": 1.7580967190209547,
+      "t_pvalue": 0.09911194987715921,
+      "wilcoxon_statistic": 23.0,
+      "wilcoxon_pvalue": 0.06403929052055472
+    },
+    {
+      "description": "BGE-base vs. BGE-small",
+      "model1": "bge_base",
+      "model2": "bge_small",
+      "cohens_d": 0.07571881123892787,
+      "n_tasks": 16,
+      "mean_diff": 0.0014690770024982092,
+      "std_diff": 0.018785657988668034,
+      "t_statistic": 0.3028752449557115,
+      "t_pvalue": 0.7661447301447843,
+      "wilcoxon_statistic": 45.0,
+      "wilcoxon_pvalue": 0.6377666989276032
+    },
+    {
+      "description": "TF-IDF vs. BM25",
+      "model1": "tfidf",
+      "model2": "bm25",
+      "cohens_d": 0.8116549840366372,
+      "n_tasks": 9,
+      "mean_diff": 0.045811936926138386,
+      "std_diff": 0.053214616057111204,
+      "t_statistic": 2.4349649521099113,
+      "t_pvalue": 0.04088435677004773,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_pvalue": 0.015625
+    },
+    {
+      "description": "TF vs. TF-IDF",
+      "model1": "tf",
+      "model2": "tfidf",
+      "cohens_d": -0.6024480631993753,
+      "n_tasks": 13,
+      "mean_diff": -0.05464099827687485,
+      "std_diff": 0.08714008105207242,
+      "t_statistic": -2.1721573826693175,
+      "t_pvalue": 0.05059920420654272,
+      "wilcoxon_statistic": 5.0,
+      "wilcoxon_pvalue": 0.009765625
+    }
+  ],
+  "task_variances": {
+    "category_retrieval": {
+      "mean": 0.41668975369509276,
+      "std": 0.06666297832638855,
+      "min": 0.2843133902574539,
+      "max": 0.49643538293724976,
+      "n_models": 23
+    },
+    "form_retrieval": {
+      "mean": 0.10295628748544595,
+      "std": 0.02064875212400217,
+      "min": 0.06207755673749069,
+      "max": 0.13881858824291676,
+      "n_models": 23
+    },
+    "geographic_clustering": {
+      "mean": 0.011442167492772702,
+      "std": 0.007861084677541437,
+      "min": 0.0032236761188805564,
+      "max": 0.024778262393738384,
+      "n_models": 23
+    },
+    "lcc_classification": {
+      "mean": 0.7860378436739788,
+      "std": 0.09250413941815182,
+      "min": 0.5465447546584585,
+      "max": 0.8781146397070739,
+      "n_models": 23
+    },
+    "lcc_clustering": {
+      "mean": 0.3149232351814627,
+      "std": 0.2084345193744112,
+      "min": 0.012277812483373111,
+      "max": 0.5693844599171988,
+      "n_models": 23
+    },
+    "lcc_retrieval": {
+      "mean": 0.530357465963337,
+      "std": 0.1100704120396834,
+      "min": 0.2600401222814152,
+      "max": 0.6738000290816337,
+      "n_models": 23
+    },
+    "lcgft_category_classification": {
+      "mean": 0.6813868878681418,
+      "std": 0.07703745370468046,
+      "min": 0.4792508528349263,
+      "max": 0.7748775495303172,
+      "n_models": 23
+    },
+    "lcgft_clustering": {
+      "mean": 0.10346201531015214,
+      "std": 0.04035524790327072,
+      "min": 0.03115416560033351,
+      "max": 0.17533702307404442,
+      "n_models": 23
+    },
+    "register_classification": {
+      "mean": 0.5198907037721167,
+      "std": 0.05910454658435235,
+      "min": 0.39963232427696205,
+      "max": 0.6716212119236669,
+      "n_models": 23
+    },
+    "register_clustering": {
+      "mean": 0.04224118714351435,
+      "std": 0.03665634370900895,
+      "min": 0.002000962947716151,
+      "max": 0.09489479037723103,
+      "n_models": 23
+    },
+    "same_audience_pairs": {
+      "mean": 0.6667132736763609,
+      "std": 0.00022832678437576578,
+      "min": 0.6666666666666666,
+      "max": 0.6677852348993288,
+      "n_models": 24
+    },
+    "same_form_pairs": {
+      "mean": 0.6693788910832824,
+      "std": 0.004176482400217671,
+      "min": 0.6666666666666666,
+      "max": 0.6830827067669173,
+      "n_models": 24
+    },
+    "same_lcc_pairs": {
+      "mean": 0.6987957780603201,
+      "std": 0.03632653172985725,
+      "min": 0.6666666666666666,
+      "max": 0.7743362831858407,
+      "n_models": 24
+    },
+    "same_register_pairs": {
+      "mean": 0.6666947883285971,
+      "std": 0.0001162029882545795,
+      "min": 0.6666666666666666,
+      "max": 0.6672297297297297,
+      "n_models": 24
+    },
+    "same_topic_pairs": {
+      "mean": 0.6958233502302432,
+      "std": 0.031218572224041514,
+      "min": 0.6666666666666666,
+      "max": 0.7700892857142857,
+      "n_models": 24
+    },
+    "topic_overlap_pairs": {
+      "mean": 0.7657570999331091,
+      "std": 0.02759360647079314,
+      "min": 0.7389885807504079,
+      "max": 0.8256693235234007,
+      "n_models": 24
+    }
+  }
+}

@@ -439,9 +439,16 @@ def create_splits(
     # Load all documents (with optional filtering)
     documents = []
     filtered_count = 0
+    empty_body_count = 0
     for json_file in sorted(artifacts_path.glob("*.json")):
         with open(json_file, "r", encoding="utf-8") as f:
             doc = json.load(f)
+
+        # Filter out documents with empty body (failed generations)
+        body = doc.get("body", "")
+        if not body or not body.strip():
+            empty_body_count += 1
+            continue
 
         # Apply commit filtering if requested
         if filter_commit:
@@ -458,6 +465,11 @@ def create_splits(
                 continue
 
         documents.append(doc)
+
+    if empty_body_count > 0:
+        print(
+            f"Filtered out {empty_body_count} documents with empty body (failed generations)"
+        )
 
     if filtered_count > 0:
         print(f"Filtered out {filtered_count} documents (commit/version mismatch)")

@@ -1,0 +1,46 @@
+{
+  "total_documents": 42616,
+  "token_stats": {
+    "mean": 1001.9803594893937,
+    "median": 472.0,
+    "min": 0,
+    "max": 15807,
+    "std": 1288.0177237398323,
+    "percentiles": {
+      "25": 201.0,
+      "50": 472.0,
+      "75": 1490.25,
+      "90": 2932.5,
+      "95": 3899.25,
+      "99": 5593.8499999999985
+    }
+  },
+  "truncation_analysis": {
+    "exceeds_512": {
+      "count": 19643,
+      "percentage": 46.09301670733996
+    },
+    "exceeds_1024": {
+      "count": 12693,
+      "percentage": 29.784587948188474
+    },
+    "exceeds_2048": {
+      "count": 6554,
+      "percentage": 15.379200300356674
+    }
+  },
+  "stratification": {
+    "short_512": {
+      "count": 22973,
+      "percentage": 53.90698329266004
+    },
+    "medium_512_1024": {
+      "count": 6950,
+      "percentage": 16.308428759151493
+    },
+    "long_1024": {
+      "count": 12693,
+      "percentage": 29.784587948188474
+    }
+  }
+}

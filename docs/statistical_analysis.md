@@ -281,6 +281,61 @@ The following fields can be used with `filter_by` and `stratify_by`:
 | `model` | Generating model (gpt-5.1, etc.) |
 | `git_commit` | Data generation commit |
 
+## CLI: `shelf eval analyze`
+
+The `shelf eval analyze` command provides comprehensive statistical analysis directly from the command line:
+
+```bash
+# Basic analysis summary (recommended starting point)
+shelf eval analyze
+
+# Task correlation analysis
+shelf eval analyze --correlation
+
+# Pairwise significance matrix with effect sizes
+shelf eval analyze --pairwise
+
+# Compare two specific models
+shelf eval analyze --compare "bge-large-en-v1.5" --compare "bge-small-en-v1.5"
+
+# Equivalence groups (Friedman-Nemenyi)
+shelf eval analyze --equivalence
+
+# Task champion diversity analysis
+shelf eval analyze --champions
+
+# All analyses (verbose mode)
+shelf eval analyze --verbose
+
+# Export to JSON
+shelf eval analyze --verbose --export-json analysis_output.json
+```
+
+### Analysis Options
+
+| Option | Description |
+|--------|-------------|
+| `--correlation` | Task correlation matrix, effective sample size, task families |
+| `--pairwise` | Full pairwise significance matrix with effect sizes |
+| `--compare MODEL` | Detailed comparison of two specific models |
+| `--equivalence` | Friedman test + equivalence groups |
+| `--champions` | Task champion diversity, rank consistency |
+| `--alpha FLOAT` | Significance level (default: 0.05) |
+| `--correction METHOD` | Multiple comparison correction: `holm`, `bonferroni`, `fdr_bh` (default: holm) |
+| `--export-json PATH` | Export results to JSON file |
+| `--verbose` | Run all analyses |
+
+### Key Features for Peer Reviewers
+
+| Feature | What It Shows |
+|---------|---------------|
+| Task Independence | Mean correlation, effective N, negative correlations |
+| Effect Sizes | Cohen's d with interpretation (negligible/small/medium/large) |
+| Multiple Comparison Correction | Raw and corrected p-values with chosen method |
+| Equivalence Groups | Which models are NOT significantly different |
+| Task Champions | Number of unique winners, diversity ratio |
+| Rank Consistency | Mean rank, std, range for each model across tasks |
+
 ## Best Practices
 
 1. **Always report confidence intervals**: Point estimates alone can be misleading.
@@ -294,6 +349,10 @@ The following fields can be used with `filter_by` and `stratify_by`:
 5. **Consider effect sizes**: Statistical significance doesn't mean practical importance.
 
 6. **Track provenance**: Always save the full context for reproducibility.
+
+7. **Apply multiple comparison correction**: When comparing many models, use Holm or Bonferroni correction to control family-wise error rate.
+
+8. **Report task correlation**: Demonstrate that benchmark tasks measure independent capabilities (mean r < 0.3 indicates independence).
 
 ## References
 

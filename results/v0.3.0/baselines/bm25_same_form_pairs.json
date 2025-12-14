@@ -34,5 +34,17 @@
     "data_commit": null,
     "code_commit": "3104e9c",
     "extra": {}
-  }
+  },
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null
+  },
+  "shelf_score": 0.462999
 }

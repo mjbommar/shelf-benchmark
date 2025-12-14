@@ -1,0 +1,52 @@
+{
+  "model": "MiniLM-L6",
+  "model_key": "minilm",
+  "model_type": "sentence_transformer",
+  "task": "geographic_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.00548948746156045,
+  "metrics": {
+    "v_measure": 0.00548948746156045,
+    "nmi": 0.00548948746156045,
+    "ari": 0.0017854501651485355,
+    "homogeneity": 0.006082012786005395,
+    "completeness": 0.005002163801799655,
+    "num_samples": 5611,
+    "num_clusters_true": 8,
+    "num_clusters_pred": 8
+  },
+  "num_samples": 5611,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.7",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "eff3db715b2ab6613ef33899c54f8f20",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T02:23:47.558862+00:00",
+    "model_name": "all-MiniLM-L6-v2",
+    "data_commit": "7123a65",
+    "code_commit": "06303cb",
+    "extra": {
+      "embedding_dim": 384,
+      "n_clusters": 8,
+      "kmeans_inertia": 4090.943359375
+    }
+  },
+  "efficiency": {
+    "num_params": 22713216,
+    "embedding_dim": 384,
+    "size_category": "10M-50M",
+    "flops_per_token": 45426432,
+    "relative_compute": 1.0,
+    "shelf_eff": 63.174,
+    "shelf_compute": 0.4647,
+    "pareto_optimal": true,
+    "size_rank": 4
+  },
+  "shelf_score": 0.464725
+}

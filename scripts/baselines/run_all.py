@@ -32,18 +32,75 @@ import json
 import logging
 import platform
 import subprocess
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import yaml
+import numpy as np
+
+from shelf.evaluate.efficiency import (
+    compute_efficiency_metrics,
+    compute_aggregate_efficiency,
+    get_size_category,
+)
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
+
+
+def collect_all_evaluation_texts(
+    tasks_config: dict[str, list[str]],
+    dataset_repo: str = "mjbommar/SHELF",
+) -> list[str]:
+    """Collect all unique texts needed for evaluation tasks.
+
+    Collects texts in both formats used by evaluators:
+    1. Body-only (main tasks use 'text' field)
+    2. Title + body (pair tasks concatenate title and body)
+
+    Args:
+        tasks_config: Task configuration dict with task types and names
+        dataset_repo: HuggingFace dataset repository ID
+
+    Returns:
+        List of unique text strings
+    """
+    from datasets import load_dataset
+
+    texts = set()
+
+    # Main dataset texts (body only - 'text' field)
+    logger.info("Loading main dataset texts...")
+    ds = load_dataset(dataset_repo)
+    for split in ["train", "validation", "test"]:
+        split_texts = ds[split]["text"]
+        texts.update(split_texts)
+        logger.info(f"  {split}: {len(split_texts)} texts (body only)")
+
+    # Pair dataset texts (title + body format)
+    pair_tasks = tasks_config.get("pair_classification", [])
+    for task_name in pair_tasks:
+        logger.info(f"Loading pair texts from {task_name}...")
+        try:
+            pair_ds = load_dataset(dataset_repo, task_name, split="test")
+
+            # Pair datasets have doc_a_title, doc_a_body, doc_b_title, doc_b_body
+            for row in pair_ds:
+                text_a = f"{row['doc_a_title']}\n\n{row['doc_a_body']}"
+                text_b = f"{row['doc_b_title']}\n\n{row['doc_b_body']}"
+                texts.add(text_a)
+                texts.add(text_b)
+
+        except Exception as e:
+            logger.warning(f"Could not load {task_name}: {e}")
+
+    logger.info(f"Total unique texts collected: {len(texts)}")
+    return list(texts)
+
 
 # Path to this script's directory
 SCRIPT_DIR = Path(__file__).parent
@@ -99,7 +156,6 @@ def get_git_info() -> dict[str, str | bool]:
 
 def get_version_info() -> dict[str, str]:
     """Get version information for reproducibility."""
-    import numpy as np
     import scipy
     import sklearn
 
@@ -316,6 +372,48 @@ def compute_shelf_score(
     return shelf_scores
 
 
+def get_efficiency_dict(model_config: dict[str, Any]) -> dict[str, Any]:
+    """Get efficiency metrics dict for a model from its config.
+
+    For dense models, computes full efficiency metrics.
+    For sparse models, returns placeholder dict with nulls.
+
+    Args:
+        model_config: Model configuration from YAML
+
+    Returns:
+        Dict with efficiency metrics for inclusion in result JSON
+    """
+    num_params = model_config.get("num_params")
+
+    if num_params is None:
+        # Sparse model - no parameter-based efficiency metrics
+        return {
+            "num_params": None,
+            "embedding_dim": model_config.get("params", {}).get("embedding_dim", 256),
+            "size_category": "sparse",
+            "flops_per_token": None,
+            "relative_compute": None,
+            "shelf_eff": None,
+            "shelf_compute": None,
+            "pareto_optimal": None,
+            "size_rank": None,
+        }
+
+    # Dense model - compute efficiency metrics (without score-dependent metrics)
+    embedding_dim = model_config.get("embedding_dim", 0)
+    size_category = model_config.get("size_category") or get_size_category(num_params)
+
+    metrics = compute_efficiency_metrics(
+        num_params=num_params,
+        embedding_dim=embedding_dim,
+        size_category=size_category,
+        shelf_score=None,  # Computed later after all tasks complete
+    )
+
+    return metrics.to_dict()
+
+
 def print_summary_table(
     results: dict[str, dict[str, Any]],
     shelf_scores: dict[str, float],
@@ -336,7 +434,12 @@ def print_summary_table(
             by_task_type[task_type] = []
         by_task_type[task_type].append((key, result))
 
-    for task_type in ["retrieval", "classification", "clustering", "pair_classification"]:
+    for task_type in [
+        "retrieval",
+        "classification",
+        "clustering",
+        "pair_classification",
+    ]:
         if task_type not in by_task_type:
             continue
 
@@ -475,6 +578,11 @@ def main():
         action="store_true",
         help="Reduce logging output",
     )
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="Disable embedding cache (re-embed for each task)",
+    )
     args = parser.parse_args()
 
     if args.quiet:
@@ -488,7 +596,9 @@ def main():
     if args.output_dir:
         output_dir = Path(args.output_dir)
     else:
-        output_dir = Path(config["output"]["base_dir"]) / f"v{dataset_version}" / "baselines"
+        output_dir = (
+            Path(config["output"]["base_dir"]) / f"v{dataset_version}" / "baselines"
+        )
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -507,11 +617,15 @@ def main():
     # Filter by sparse/dense
     if args.sparse_only:
         models_to_run = [
-            m for m in models_to_run if models_config[m]["type"] in ("tf", "tfidf", "bm25")
+            m
+            for m in models_to_run
+            if models_config[m]["type"] in ("tf", "tfidf", "bm25")
         ]
     elif args.dense_only:
         models_to_run = [
-            m for m in models_to_run if models_config[m]["type"] == "sentence_transformer"
+            m
+            for m in models_to_run
+            if models_config[m]["type"] == "sentence_transformer"
         ]
 
     # Determine which tasks to run
@@ -566,6 +680,22 @@ def main():
         print(f"\nTotal: {count} evaluations")
         return
 
+    # Pre-collect all texts for caching (dense models only)
+    all_texts: list[str] | None = None
+    use_cache = not args.no_cache
+    has_dense_models = any(
+        models_config[m]["type"] == "sentence_transformer" for m in models_to_run
+    )
+
+    if use_cache and has_dense_models:
+        logger.info("=" * 60)
+        logger.info("Collecting all texts for embedding cache...")
+        logger.info("=" * 60)
+        all_texts = collect_all_evaluation_texts(
+            tasks_config=tasks_config,
+            dataset_repo=config.get("dataset_repo", "mjbommar/SHELF"),
+        )
+
     # Run evaluations
     start_time = datetime.now(timezone.utc)
     all_results: dict[str, dict[str, Any]] = {}
@@ -581,13 +711,8 @@ def main():
         logger.info(f"Model: {model_name} ({model_config['description']})")
         logger.info("=" * 60)
 
-        # Create model once per model
-        try:
-            model = create_model(model_config)
-        except Exception as e:
-            logger.error(f"Failed to load model {model_name}: {e}")
-            continue
-
+        # First pass: check which tasks need to run vs already exist
+        tasks_needing_run = []
         for task_name, task_type in tasks_to_run:
             # Check if model supports this task type
             if task_type not in supports:
@@ -604,9 +729,51 @@ def main():
                 all_results[f"{model_key}_{task_name}"] = existing
                 continue
 
+            tasks_needing_run.append((task_name, task_type))
+
+        # If no tasks need to run, skip model loading entirely
+        if not tasks_needing_run:
+            logger.info(f"  All tasks complete for {model_name}, skipping model load")
+            continue
+
+        logger.info(f"  {len(tasks_needing_run)} tasks to run")
+
+        # Create model once per model
+        try:
+            model = create_model(model_config)
+        except Exception as e:
+            logger.error(f"Failed to load model {model_name}: {e}")
+            continue
+
+        # For dense models with caching, embed all texts once and create CachedEmbedder
+        eval_model = model  # Default: use model directly
+        if use_cache and model_type == "sentence_transformer" and all_texts is not None:
+            from shelf.evaluate.adapters.cached import CachedEmbedder
+
+            logger.info(f"Embedding {len(all_texts)} texts for cache...")
+            embeddings = model.encode(
+                all_texts,
+                batch_size=args.batch_size,
+                show_progress=not args.quiet,
+            )
+            cache = {text: emb for text, emb in zip(all_texts, embeddings)}
+            logger.info(
+                f"Cache built: {len(cache)} entries, "
+                f"{embeddings.nbytes / 1024 / 1024:.1f} MB"
+            )
+
+            eval_model = CachedEmbedder(
+                cache=cache,
+                model_name=model_name,
+                embedding_dim=model.embedding_dim,
+            )
+
+        for task_name, task_type in tasks_needing_run:
+            result_path = output_dir / f"{model_key}_{task_name}.json"
+
             # Run evaluation
             result = evaluate_task(
-                model=model,
+                model=eval_model,
                 model_key=model_key,
                 model_config=model_config,
                 task_name=task_name,
@@ -617,6 +784,9 @@ def main():
             )
 
             if result:
+                # Add efficiency metrics (without SHELF score for now)
+                result["efficiency"] = get_efficiency_dict(model_config)
+
                 result_key = f"{model_key}_{task_name}"
                 all_results[result_key] = result
 
@@ -635,6 +805,15 @@ def main():
             if hasattr(model, "reset"):
                 model.reset()
 
+        # Log cache stats if using cached embedder
+        if (
+            use_cache
+            and model_type == "sentence_transformer"
+            and hasattr(eval_model, "get_stats")
+        ):
+            stats = eval_model.get_stats()
+            logger.info(f"Cache stats for {model_name}: {stats['hits']} hits")
+
     end_time = datetime.now(timezone.utc)
 
     # Compute SHELF scores
@@ -642,6 +821,33 @@ def main():
     weights = shelf_score_config.get("weights", {})
     metrics = shelf_score_config.get("metrics", {})
     shelf_scores = compute_shelf_score(all_results, weights, metrics)
+
+    # Compute complete efficiency metrics (with SHELF scores, Pareto, size ranks)
+    model_shelf_data = {
+        model_key: {"shelf_score": score} for model_key, score in shelf_scores.items()
+    }
+    efficiency_by_model = compute_aggregate_efficiency(model_shelf_data, models_config)
+
+    # Update all results with complete efficiency metrics and SHELF scores
+    logger.info("Updating results with complete efficiency metrics...")
+    for result_key, result in all_results.items():
+        if "error" in result:
+            continue
+
+        model_key = result["model_key"]
+
+        # Add SHELF score
+        if model_key in shelf_scores:
+            result["shelf_score"] = round(shelf_scores[model_key], 6)
+
+        # Update efficiency with SHELF-dependent metrics
+        if model_key in efficiency_by_model:
+            result["efficiency"] = efficiency_by_model[model_key]
+
+        # Re-save the updated result
+        result_path = output_dir / f"{result_key}.json"
+        with open(result_path, "w") as f:
+            json.dump(result, f, indent=2, default=str)
 
     # Print summary
     print_summary_table(all_results, shelf_scores, models_config)
@@ -654,6 +860,7 @@ def main():
         "versions": version_info,
         "git": git_info,
         "shelf_scores": shelf_scores,
+        "efficiency": efficiency_by_model,
         "results": all_results,
     }
 

@@ -1,0 +1,174 @@
+Loading SHELF dataset...
+Total documents: 42,616
+
+================================================================================
+GEOGRAPHIC DISTRIBUTION
+================================================================================
+
+Documents with geographic metadata: 28,387 (66.6%)
+Unique geographic regions: 44
+
+By Continent/Major Region:
+  North America       : 16,506 ( 38.7%)
+  Asia                :  9,698 ( 22.8%)
+  Europe              :  9,642 ( 22.6%)
+  South America       :  4,809 ( 11.3%)
+  Oceania             :  1,019 (  2.4%)
+  Africa              :    950 (  2.2%)
+
+Top 20 Specific Regions:
+  United States             [North America  ]: 1,029
+  Florida                   [North America  ]: 1,027
+  Australia                 [Oceania        ]: 1,019
+  Ohio                      [North America  ]: 1,014
+  Germany                   [Europe         ]: 1,013
+  Central America           [South America  ]: 1,012
+  Japan                     [Asia           ]: 1,009
+  Italy                     [Europe         ]: 1,002
+  North Carolina            [North America  ]:   999
+  New York City             [North America  ]:   998
+  Southeast Asia            [Asia           ]:   996
+  Tokyo                     [Asia           ]:   993
+  Canada                    [North America  ]:   990
+  Russia                    [Europe         ]:   984
+  Caribbean                 [South America  ]:   983
+  Pennsylvania              [North America  ]:   981
+  Beijing                   [Asia           ]:   981
+  Asia                      [Asia           ]:   981
+  Los Angeles               [North America  ]:   972
+  Middle East               [Asia           ]:   969
+
+================================================================================
+LCC CLASS BY GEOGRAPHY
+================================================================================
+
+LCC   | Africa          | Asia            | Europe          | North America   | Oceania         | South America  
+-------------------------------------------------------------------------------------------------------------------
+A     |              41 |             502 |             419 |             796 |              50 |             227 | 
+B     |              53 |             490 |             453 |             790 |              57 |             226 | 
+C     |              33 |             466 |             436 |             795 |              42 |             255 | 
+D     |              52 |             472 |             511 |             839 |              56 |             230 | 
+E     |              50 |             464 |             507 |             769 |              51 |             211 | 
+F     |              53 |             443 |             466 |             787 |              47 |             216 | 
+G     |              35 |             445 |             447 |             738 |              46 |             226 | 
+H     |              43 |             489 |             449 |             769 |              48 |             230 | 
+J     |              51 |             480 |             427 |             811 |              52 |             249 | 
+K     |              46 |             432 |             496 |             774 |              51 |             222 | 
+L     |              37 |             441 |             457 |             758 |              41 |             259 | 
+M     |              51 |             451 |             486 |             738 |              54 |             252 | 
+N     |              46 |             447 |             478 |             818 |              52 |             231 | 
+P     |              39 |             484 |             453 |             782 |              60 |             225 | 
+Q     |              46 |             464 |             455 |             780 |              49 |             236 | 
+R     |              47 |             414 |             436 |             795 |              46 |             215 | 
+S     |              51 |             467 |             466 |             804 |              40 |             216 | 
+T     |              49 |             509 |             450 |             830 |              55 |             247 | 
+U     |              46 |             457 |             453 |             777 |              41 |             218 | 
+V     |              39 |             439 |             456 |             779 |              38 |             217 | 
+Z     |              42 |             442 |             441 |             777 |              43 |             201 | 
+
+================================================================================
+TOPIC COVERAGE BY GEOGRAPHY
+================================================================================
+
+Unique topics: 112
+
+Topics with broadest geographic distribution (top 10):
+  Music                         : 6/7 continents, 3,506 total docs
+  Art                           : 6/7 continents, 3,494 total docs
+  History                       : 6/7 continents, 3,494 total docs
+  Religion                      : 6/7 continents, 3,486 total docs
+  Culture                       : 6/7 continents, 3,473 total docs
+  Aesthetics                    : 6/7 continents, 3,456 total docs
+  Literature                    : 6/7 continents, 3,445 total docs
+  Languages                     : 6/7 continents, 3,414 total docs
+  Ethics                        : 6/7 continents, 3,409 total docs
+  Philosophy                    : 6/7 continents, 3,403 total docs
+
+================================================================================
+NON-WESTERN TOPIC COVERAGE
+================================================================================
+
+Topics appearing in Asian contexts:
+  Music                         :   810 docs
+  Art                           :   802 docs
+  History                       :   802 docs
+  Religion                      :   801 docs
+  Literature                    :   788 docs
+  Languages                     :   786 docs
+  Ethics                        :   777 docs
+  Philosophy                    :   775 docs
+  Culture                       :   770 docs
+  Aesthetics                    :   747 docs
+  Public administration         :   370 docs
+  Democracy                     :   367 docs
+  Authoritarianism              :   359 docs
+  Government                    :   356 docs
+  Political parties             :   350 docs
+
+Topics appearing in African contexts:
+  Music                         :    94 docs
+  Languages                     :    87 docs
+  Philosophy                    :    87 docs
+  Art                           :    86 docs
+  Aesthetics                    :    86 docs
+  Culture                       :    86 docs
+  Religion                      :    78 docs
+  History                       :    78 docs
+  Ethics                        :    74 docs
+  Literature                    :    67 docs
+  Security                      :    47 docs
+  Elections                     :    37 docs
+  Diplomacy                     :    36 docs
+  Defense                       :    35 docs
+  Nationalism                   :    35 docs
+
+================================================================================
+CROSS-PRODUCT DIVERSITY EXAMPLES
+================================================================================
+
+Unexpected LCC + Geography combinations:
+
+Sample diversity examples (LCC Class + Form + Geography):
+  Political Science              + Jokes                + Pennsylvania         [North America]:   5 docs
+  Fine Arts                      + Infographics         + New York             [North America]:   5 docs
+  Medicine                       + Lectures             + Italy                [Europe]:   5 docs
+  Fine Arts                      + Lectures             + New York City        [North America]:   5 docs
+  Auxiliary Sciences of History  + Essays               + London               [Europe]:   5 docs
+  Political Science              + Games                + Georgia              [North America]:   5 docs
+  Bibliography, Library Science  + Architectural drawings + New York City        [North America]:   5 docs
+  Political Science              + Lectures             + Middle East          [Asia]:   5 docs
+  History of the Americas (local) + Panel discussions    + Florida              [North America]:   5 docs
+  Social Sciences                + Memorial books       + Texas                [North America]:   5 docs
+  Military Science               + Lectures             + Tokyo                [Asia]:   5 docs
+  Social Sciences                + Jokes                + Japan                [Asia]:   5 docs
+  Medicine                       + Tributes             + Russia               [Europe]:   5 docs
+  Auxiliary Sciences of History  + Aerial photographs   + South Korea          [Asia]:   5 docs
+  Fine Arts                      + Puzzles              + Europe               [Europe]:   5 docs
+  World History (except Americas) + Field recordings     + Ohio                 [North America]:   4 docs
+  Language and Literature        + Interviews           + Germany              [Europe]:   4 docs
+  Geography, Anthropology, Recreation + Nautical charts      + Southeast Asia       [Asia]:   4 docs
+  General Works                  + Interviews           + South Korea          [Asia]:   4 docs
+  Law                            + Lectures             + Illinois             [North America]:   4 docs
+
+================================================================================
+SUMMARY STATISTICS
+================================================================================
+
+Total documents:                 42,616
+Documents with geography:        28,387 (66.6%)
+Unique geographic regions:       44
+Continents/major regions:        6
+Unique LCC classes:              21
+Unique topics:                   112
+
+Geographic balance:
+  Average docs per region:       969
+  Min docs per region:           886
+  Max docs per region:           1029
+  Balance ratio (min/max):       0.86
+
+Continental balance:
+  Average docs per continent:    7104
+  Min docs per continent:        950
+  Max docs per continent:        16506
+

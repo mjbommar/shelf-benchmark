@@ -1,0 +1,52 @@
+{
+  "model": "BGE-large",
+  "model_key": "bge_large",
+  "model_type": "sentence_transformer",
+  "task": "same_lcc_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "f1",
+  "primary_score": 0.7315126050420168,
+  "metrics": {
+    "f1": 0.7315126050420168,
+    "accuracy": 0.6805,
+    "precision": 0.6307971014492754,
+    "recall": 0.8705,
+    "auc_roc": 0.7895358750000001,
+    "average_precision": 0.7934959549461462,
+    "threshold": 0.5198341971635818,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.7",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "e560d2335ab3982541f290d9e5816617",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T05:01:04.608573+00:00",
+    "model_name": "BGE-large",
+    "data_commit": null,
+    "code_commit": "06303cb",
+    "extra": {
+      "embedding_dim": 1024
+    }
+  },
+  "efficiency": {
+    "num_params": 335141888,
+    "embedding_dim": 1024,
+    "size_category": "300M-1B",
+    "flops_per_token": 670283776,
+    "relative_compute": 14.7554,
+    "shelf_eff": 60.1818,
+    "shelf_compute": 0.392,
+    "pareto_optimal": true,
+    "size_rank": 1
+  },
+  "shelf_score": 0.513064
+}

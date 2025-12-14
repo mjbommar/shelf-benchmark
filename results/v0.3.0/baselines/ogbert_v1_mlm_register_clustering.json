@@ -1,0 +1,52 @@
+{
+  "model": "ogbert-v1-mlm",
+  "model_key": "ogbert_v1_mlm",
+  "model_type": "sentence_transformer",
+  "task": "register_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.09050389052288253,
+  "metrics": {
+    "v_measure": 0.09050389052288253,
+    "nmi": 0.09050389052288253,
+    "ari": 0.051019185318696744,
+    "homogeneity": 0.08962934669526222,
+    "completeness": 0.09139566895374047,
+    "num_samples": 8524,
+    "num_clusters_true": 8,
+    "num_clusters_pred": 8
+  },
+  "num_samples": 8524,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.7",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c962d5456f368a0dde662869a89a1b00",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T12:38:20.080121+00:00",
+    "model_name": "ogbert-v1-mlm",
+    "data_commit": "ec08a1e",
+    "code_commit": "06303cb",
+    "extra": {
+      "embedding_dim": 384,
+      "n_clusters": 8,
+      "kmeans_inertia": 592.703857421875
+    }
+  },
+  "efficiency": {
+    "num_params": 36364929,
+    "embedding_dim": 384,
+    "size_category": "10M-50M",
+    "flops_per_token": 72729858,
+    "relative_compute": 1.601,
+    "shelf_eff": 56.4856,
+    "shelf_compute": 0.4074,
+    "pareto_optimal": true,
+    "size_rank": 1
+  },
+  "shelf_score": 0.42707
+}

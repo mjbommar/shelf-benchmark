@@ -1,0 +1,62 @@
+{
+  "model": "distilbert-base-uncased",
+  "model_key": "distilbert_base_uncased",
+  "model_type": "sentence_transformer",
+  "task": "register_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.09489479037723103,
+  "metrics": {
+    "v_measure": 0.09489479037723103,
+    "nmi": 0.09489479037723103,
+    "ari": 0.05676577716876652,
+    "homogeneity": 0.09160107556937205,
+    "completeness": 0.09843420513902269,
+    "num_samples": 8524,
+    "num_clusters_true": 8,
+    "num_clusters_pred": 8
+  },
+  "num_samples": 8524,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.7",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c962d5456f368a0dde662869a89a1b00",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T14:00:27.577586+00:00",
+    "model_name": "distilbert-base-uncased",
+    "data_commit": "ec08a1e",
+    "code_commit": "06303cb",
+    "extra": {
+      "embedding_dim": 768,
+      "n_clusters": 8,
+      "kmeans_inertia": 1058.1982421875,
+      "norm_stats": {
+        "norm_min": 0.9999998807907104,
+        "norm_max": 1.0000001192092896,
+        "norm_mean": 1.0,
+        "norm_std": 4.056457925116774e-08
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 66985530,
+    "embedding_dim": 768,
+    "size_category": "50M-100M",
+    "flops_per_token": 133971060,
+    "relative_compute": 2.9492,
+    "shelf_eff": 59.3139,
+    "shelf_compute": 0.4166,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": 66362880,
+    "hidden_size": 768,
+    "context_window": 512,
+    "throughput_bytes_sec": 573616.4335547481
+  },
+  "shelf_score": 0.46419
+}

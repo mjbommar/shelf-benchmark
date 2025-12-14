@@ -21,7 +21,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from shelf.evaluate.evaluators.base import TaskEvaluator
 from shelf.evaluate.metrics.pair import compute_pair_metrics
-from shelf.evaluate.results import EvaluationResult
+from shelf.evaluate.results import (
+    EvaluationResult,
+    PerSampleResult,
+    PerSampleResults,
+)
 from shelf.evaluate.tasks import TaskSpec
 from shelf.evaluate.schemas import (
     ValidationError,
@@ -34,6 +38,17 @@ if TYPE_CHECKING:
     from shelf.evaluate.adapters.tfidf import TfidfEmbedder
 
 logger = logging.getLogger(__name__)
+
+# Metadata fields to capture for stratification analysis
+STRATIFICATION_FIELDS = [
+    "form",
+    "form_category",
+    "register",
+    "audience",
+    "lcc",
+    "topic",
+    "region",
+]
 
 
 class PairClassificationEvaluator(TaskEvaluator):
@@ -141,6 +156,8 @@ class PairClassificationEvaluator(TaskEvaluator):
         predictions: list[dict[str, Any]],
         ground_truth: pl.DataFrame,
         compute_ci: bool = False,
+        save_samples: bool = False,
+        model_key: str | None = None,
     ) -> EvaluationResult:
         """Evaluate pair classification predictions.
 
@@ -148,6 +165,8 @@ class PairClassificationEvaluator(TaskEvaluator):
             predictions: List of {"pair_id": str, "score": float} or {"pair_id": str, "prediction": int}
             ground_truth: DataFrame with ground truth labels
             compute_ci: Whether to compute confidence intervals (not yet implemented)
+            save_samples: Whether to capture per-sample results for detailed analysis
+            model_key: Model identifier for per-sample results
 
         Returns:
             EvaluationResult with pair classification metrics
@@ -175,10 +194,16 @@ class PairClassificationEvaluator(TaskEvaluator):
                 score = float(pred["prediction"])
             pred_dict[str(pair_id)] = float(score) if score is not None else 0.0
 
-        # Get ground truth
+        # Get ground truth and build per-sample results
         y_true: list[int] = []
         y_scores: list[float] = []
+        pair_ids: list[str] = []
 
+        # Get available columns for metadata extraction
+        available_cols = set(ground_truth.columns)
+        metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+        # First pass: collect scores and labels
         for row in ground_truth.iter_rows(named=True):
             pair_id = row[id_field]
             true_label = int(row[label_field])
@@ -189,18 +214,74 @@ class PairClassificationEvaluator(TaskEvaluator):
 
             y_true.append(true_label)
             y_scores.append(pred_dict[pair_id])
+            pair_ids.append(pair_id)
 
         if not y_true:
             raise ValueError("No valid predictions found matching ground truth IDs")
 
-        # Compute metrics
+        # Compute metrics (this finds the optimal threshold)
         metrics = compute_pair_metrics(y_true, y_scores)
+        threshold = metrics["threshold"]
 
-        return self._create_result(
+        # Convert scores to predictions using threshold
+        y_pred = [1 if s >= threshold else 0 for s in y_scores]
+
+        # Second pass: capture per-sample results if requested
+        per_sample_list: list[PerSampleResult] = []
+        if save_samples:
+            # Build lookup for predictions by pair_id
+            pair_id_to_pred = {
+                pid: (score, pred)
+                for pid, score, pred in zip(pair_ids, y_scores, y_pred)
+            }
+
+            for row in ground_truth.iter_rows(named=True):
+                pair_id = row[id_field]
+                if pair_id not in pair_id_to_pred:
+                    continue
+
+                true_label = int(row[label_field])
+                score, pred_label = pair_id_to_pred[pair_id]
+                is_correct = true_label == pred_label
+
+                # Extract metadata
+                metadata: dict[str, Any] = {}
+                for field in metadata_fields:
+                    # For pair tasks, we might have doc_a and doc_b metadata
+                    # Check for both prefixed and unprefixed versions
+                    for prefix in ["doc_a_", "doc_b_", ""]:
+                        field_name = f"{prefix}{field}"
+                        if field_name in row and row[field_name] is not None:
+                            metadata[field_name] = row[field_name]
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=pair_id,
+                        y_true=true_label,
+                        y_pred=pred_label,
+                        correct=is_correct,
+                        score=score,
+                        metadata=metadata,
+                    )
+                )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=ground_truth,
             split=self.task_spec.default_split,
         )
+
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="pair_classification",
+                model_key=model_key or "unknown",
+                split=self.task_spec.default_split,
+                samples=per_sample_list,
+            )
+
+        return result
 
     def evaluate_embedder(
         self,
@@ -208,6 +289,7 @@ class PairClassificationEvaluator(TaskEvaluator):
         split: str | None = None,
         batch_size: int = 32,
         show_progress: bool = True,
+        save_samples: bool = False,
     ) -> EvaluationResult:
         """Evaluate an embedder by computing cosine similarity on pairs.
 
@@ -222,6 +304,7 @@ class PairClassificationEvaluator(TaskEvaluator):
             split: Dataset split (default: task default, usually "test")
             batch_size: Batch size for encoding
             show_progress: Whether to show progress bars
+            save_samples: Whether to capture per-sample results for detailed analysis
 
         Returns:
             EvaluationResult with pair classification metrics
@@ -284,10 +367,49 @@ class PairClassificationEvaluator(TaskEvaluator):
             sim = cosine_similarity(emb_a, emb_b)[0, 0]
             y_scores.append(float(sim))
 
-        # Compute metrics
+        # Compute metrics (this finds the optimal threshold)
         metrics = compute_pair_metrics(labels, y_scores)
+        threshold = metrics["threshold"]
 
-        return self._create_result(
+        # Convert scores to predictions using threshold
+        y_pred = [1 if s >= threshold else 0 for s in y_scores]
+
+        # Capture per-sample results if requested
+        per_sample_list: list[PerSampleResult] = []
+        if save_samples:
+            # Get available columns for metadata extraction
+            available_cols = set(ground_truth.columns)
+            metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+            for row_idx, row in enumerate(ground_truth.iter_rows(named=True)):
+                pair_id = row[self.task_spec.id_field]
+                true_label = int(row[label_field])
+                score = y_scores[row_idx]
+                pred_label = y_pred[row_idx]
+                is_correct = true_label == pred_label
+
+                # Extract metadata
+                metadata: dict[str, Any] = {}
+                for field in metadata_fields:
+                    # For pair tasks, we might have doc_a and doc_b metadata
+                    # Check for both prefixed and unprefixed versions
+                    for prefix in ["doc_a_", "doc_b_", ""]:
+                        field_name = f"{prefix}{field}"
+                        if field_name in row and row[field_name] is not None:
+                            metadata[field_name] = row[field_name]
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=pair_id,
+                        y_true=true_label,
+                        y_pred=pred_label,
+                        correct=is_correct,
+                        score=score,
+                        metadata=metadata,
+                    )
+                )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=ground_truth,
             split=split,
@@ -295,11 +417,24 @@ class PairClassificationEvaluator(TaskEvaluator):
             embedding_dim=embedder.embedding_dim,
         )
 
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="pair_classification",
+                model_key=embedder.model_name or "unknown",
+                split=split,
+                samples=per_sample_list,
+            )
+
+        return result
+
     def evaluate_bm25(
         self,
         retriever: "BM25Retriever",
         split: str | None = None,
         show_progress: bool = True,
+        save_samples: bool = False,
     ) -> EvaluationResult:
         """Evaluate a BM25 retriever by computing document similarity scores.
 
@@ -315,6 +450,7 @@ class PairClassificationEvaluator(TaskEvaluator):
             retriever: BM25Retriever instance
             split: Dataset split (default: task default, usually "test")
             show_progress: Whether to show progress bars
+            save_samples: Whether to capture per-sample results for detailed analysis
 
         Returns:
             EvaluationResult with pair classification metrics
@@ -395,21 +531,73 @@ class PairClassificationEvaluator(TaskEvaluator):
             if max_score > min_score:
                 y_scores = [(s - min_score) / (max_score - min_score) for s in y_scores]
 
-        # Compute metrics
+        # Compute metrics (this finds the optimal threshold)
         metrics = compute_pair_metrics(labels, y_scores)
+        threshold = metrics["threshold"]
 
-        return self._create_result(
+        # Convert scores to predictions using threshold
+        y_pred = [1 if s >= threshold else 0 for s in y_scores]
+
+        # Capture per-sample results if requested
+        per_sample_list: list[PerSampleResult] = []
+        if save_samples:
+            # Get available columns for metadata extraction
+            available_cols = set(ground_truth.columns)
+            metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+            for row_idx, row in enumerate(ground_truth.iter_rows(named=True)):
+                pair_id = row[self.task_spec.id_field]
+                true_label = int(row[label_field])
+                score = y_scores[row_idx]
+                pred_label = y_pred[row_idx]
+                is_correct = true_label == pred_label
+
+                # Extract metadata
+                metadata: dict[str, Any] = {}
+                for field in metadata_fields:
+                    # For pair tasks, we might have doc_a and doc_b metadata
+                    # Check for both prefixed and unprefixed versions
+                    for prefix in ["doc_a_", "doc_b_", ""]:
+                        field_name = f"{prefix}{field}"
+                        if field_name in row and row[field_name] is not None:
+                            metadata[field_name] = row[field_name]
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=pair_id,
+                        y_true=true_label,
+                        y_pred=pred_label,
+                        correct=is_correct,
+                        score=score,
+                        metadata=metadata,
+                    )
+                )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=ground_truth,
             split=split,
             model_name=retriever.model_name,
         )
 
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="pair_classification",
+                model_key=retriever.model_name or "unknown",
+                split=split,
+                samples=per_sample_list,
+            )
+
+        return result
+
     def evaluate_tfidf(
         self,
         embedder: "TfidfEmbedder",
         split: str | None = None,
         show_progress: bool = True,
+        save_samples: bool = False,
     ) -> EvaluationResult:
         """Evaluate a TF-IDF embedder by computing cosine similarity.
 
@@ -426,6 +614,7 @@ class PairClassificationEvaluator(TaskEvaluator):
             embedder: TfidfEmbedder instance
             split: Dataset split (default: task default, usually "test")
             show_progress: Whether to show progress bars
+            save_samples: Whether to capture per-sample results for detailed analysis
 
         Returns:
             EvaluationResult with pair classification metrics
@@ -480,16 +669,67 @@ class PairClassificationEvaluator(TaskEvaluator):
             sim = cosine_similarity(emb_a, emb_b)[0, 0]
             y_scores.append(float(sim))
 
-        # Compute metrics
+        # Compute metrics (this finds the optimal threshold)
         metrics = compute_pair_metrics(labels, y_scores)
+        threshold = metrics["threshold"]
 
-        return self._create_result(
+        # Convert scores to predictions using threshold
+        y_pred = [1 if s >= threshold else 0 for s in y_scores]
+
+        # Capture per-sample results if requested
+        per_sample_list: list[PerSampleResult] = []
+        if save_samples:
+            # Get available columns for metadata extraction
+            available_cols = set(ground_truth.columns)
+            metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+            for row_idx, row in enumerate(ground_truth.iter_rows(named=True)):
+                pair_id = row[self.task_spec.id_field]
+                true_label = int(row[label_field])
+                score = y_scores[row_idx]
+                pred_label = y_pred[row_idx]
+                is_correct = true_label == pred_label
+
+                # Extract metadata
+                metadata: dict[str, Any] = {}
+                for field in metadata_fields:
+                    # For pair tasks, we might have doc_a and doc_b metadata
+                    # Check for both prefixed and unprefixed versions
+                    for prefix in ["doc_a_", "doc_b_", ""]:
+                        field_name = f"{prefix}{field}"
+                        if field_name in row and row[field_name] is not None:
+                            metadata[field_name] = row[field_name]
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=pair_id,
+                        y_true=true_label,
+                        y_pred=pred_label,
+                        correct=is_correct,
+                        score=score,
+                        metadata=metadata,
+                    )
+                )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=ground_truth,
             split=split,
             model_name=embedder.model_name,
             embedding_dim=embedder.embedding_dim,
         )
+
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="pair_classification",
+                model_key=embedder.model_name or "unknown",
+                split=split,
+                samples=per_sample_list,
+            )
+
+        return result
 
     def evaluate_sparse_cosine(
         self,

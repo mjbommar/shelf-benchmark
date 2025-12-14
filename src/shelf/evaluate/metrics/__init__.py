@@ -6,7 +6,9 @@ All metrics are pure functions with no side effects.
 from shelf.evaluate.metrics.classification import (
     accuracy,
     compute_classification_metrics,
+    compute_stratified_confusion_matrices,
     confusion_matrix,
+    extract_top_confusions,
     macro_f1,
     micro_f1,
     per_class_f1,
@@ -17,6 +19,7 @@ from shelf.evaluate.metrics.clustering import (
     adjusted_rand_index,
     completeness,
     compute_clustering_metrics,
+    compute_discovery_metrics,
     homogeneity,
     normalized_mutual_info,
     v_measure,
@@ -50,6 +53,8 @@ __all__ = [
     "per_class_metrics",
     "confusion_matrix",
     "compute_classification_metrics",
+    "compute_stratified_confusion_matrices",
+    "extract_top_confusions",
     # Clustering
     "v_measure",
     "normalized_mutual_info",
@@ -57,6 +62,7 @@ __all__ = [
     "homogeneity",
     "completeness",
     "compute_clustering_metrics",
+    "compute_discovery_metrics",
     # Pair Classification
     "pair_f1",
     "pair_accuracy",

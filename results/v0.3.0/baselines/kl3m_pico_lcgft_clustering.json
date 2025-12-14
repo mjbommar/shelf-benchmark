@@ -1,0 +1,52 @@
+{
+  "model": "KL3M Pico",
+  "model_key": "kl3m_pico",
+  "model_type": "sentence_transformer",
+  "task": "lcgft_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.14860941985283033,
+  "metrics": {
+    "v_measure": 0.14860941985283033,
+    "nmi": 0.1486094198528303,
+    "ari": 0.07309606498729061,
+    "homogeneity": 0.14464994353611288,
+    "completeness": 0.15279176063240005,
+    "num_samples": 8524,
+    "num_clusters_true": 14,
+    "num_clusters_pred": 14
+  },
+  "num_samples": 8524,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.7",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c962d5456f368a0dde662869a89a1b00",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T10:08:59.714832+00:00",
+    "model_name": "KL3M Pico",
+    "data_commit": "ec08a1e",
+    "code_commit": "06303cb",
+    "extra": {
+      "embedding_dim": 256,
+      "n_clusters": 14,
+      "kmeans_inertia": 1042.11865234375
+    }
+  },
+  "efficiency": {
+    "num_params": 40201984,
+    "embedding_dim": 256,
+    "size_category": "10M-50M",
+    "flops_per_token": 80403968,
+    "relative_compute": 1.77,
+    "shelf_eff": 51.8549,
+    "shelf_compute": 0.3724,
+    "pareto_optimal": false,
+    "size_rank": 5
+  },
+  "shelf_score": 0.394318
+}

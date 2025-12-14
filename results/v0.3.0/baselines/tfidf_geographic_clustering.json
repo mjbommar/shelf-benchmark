@@ -36,5 +36,17 @@
       "n_clusters": 8,
       "kmeans_inertia": 4375.0791015625
     }
-  }
+  },
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null
+  },
+  "shelf_score": 0.510876
 }

@@ -5,15 +5,15 @@
   "task": "same_lcc_pairs",
   "task_type": "pair_classification",
   "primary_metric": "f1",
-  "primary_score": 0.6674496644295302,
+  "primary_score": 0.6666666666666666,
   "metrics": {
-    "f1": 0.6674496644295302,
-    "accuracy": 0.5045,
-    "precision": 0.5022727272727273,
-    "recall": 0.9945,
-    "auc_roc": 0.55346575,
-    "average_precision": 0.5424461931647606,
-    "threshold": 0.0011968751484528184,
+    "f1": 0.6666666666666666,
+    "accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "auc_roc": 0.55001875,
+    "average_precision": 0.5473681502044387,
+    "threshold": -0.02601650357246399,
     "num_samples": 4000,
     "num_positive": 2000,
     "num_negative": 2000
@@ -21,20 +21,32 @@
   "num_samples": 4000,
   "context": {
     "shelf_version": "0.2.0",
-    "python_version": "3.13.2",
+    "python_version": "3.13.7",
     "sklearn_version": "1.8.0",
     "numpy_version": "2.3.5",
     "polars_version": "1.36.1",
-    "dataset_checksum": "b1d92cc965c54fa739183ade6c0ea897",
+    "dataset_checksum": "e560d2335ab3982541f290d9e5816617",
     "prediction_file_checksum": null,
     "random_seed": 42,
-    "platform_info": "Linux-6.14.0-36-generic-x86_64-with-glibc2.39",
-    "timestamp": "2025-12-13T23:26:50.439505+00:00",
+    "platform_info": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T10:29:51.919484+00:00",
     "model_name": "tf-sklearn-1-2gram-dim256",
     "data_commit": null,
-    "code_commit": "3104e9c",
+    "code_commit": "06303cb",
     "extra": {
       "embedding_dim": 256
     }
-  }
+  },
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null
+  },
+  "shelf_score": 0.666667
 }

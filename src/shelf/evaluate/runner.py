@@ -12,6 +12,10 @@ from typing import TYPE_CHECKING, Any
 
 from shelf.evaluate.evaluators.classification import ClassificationEvaluator
 from shelf.evaluate.evaluators.clustering import ClusteringEvaluator
+from shelf.evaluate.evaluators.clustering_agglomerative import (
+    AgglomerativeClusteringEvaluator,
+)
+from shelf.evaluate.evaluators.clustering_hdbscan import HDBSCANClusteringEvaluator
 from shelf.evaluate.evaluators.pair import PairClassificationEvaluator
 from shelf.evaluate.evaluators.retrieval import RetrievalEvaluator
 from shelf.evaluate.registry import get_task
@@ -34,6 +38,8 @@ def evaluate(
     max_queries: int | None = None,
     batch_size: int = 32,
     show_progress: bool = True,
+    save_samples: bool = False,
+    model_key: str | None = None,
     **kwargs: Any,
 ) -> EvaluationResult:
     """Main evaluation entry point.
@@ -56,6 +62,8 @@ def evaluate(
         max_queries: Maximum queries to evaluate (for testing)
         batch_size: Batch size for model inference
         show_progress: Whether to show progress bars
+        save_samples: Whether to capture per-sample results for detailed analysis
+        model_key: Model identifier for per-sample results
         **kwargs: Additional arguments passed to evaluator
 
     Returns:
@@ -115,6 +123,7 @@ def evaluate(
                     split=split,
                     max_queries=max_queries,
                     show_progress=show_progress,
+                    save_samples=save_samples,
                 )
             else:
                 # Use embedder interface (e.g., SentenceTransformerEmbedder, TfidfEmbedder)
@@ -124,6 +133,7 @@ def evaluate(
                     max_queries=max_queries,
                     batch_size=batch_size,
                     show_progress=show_progress,
+                    save_samples=save_samples,
                 )
         elif task_spec.task_type == TaskType.CLASSIFICATION:
             if not isinstance(evaluator, ClassificationEvaluator):
@@ -145,10 +155,15 @@ def evaluate(
                     split=split,
                     batch_size=batch_size,
                     show_progress=show_progress,
+                    save_samples=save_samples,
                 )
         elif task_spec.task_type == TaskType.CLUSTERING:
-            if not isinstance(evaluator, ClusteringEvaluator):
-                raise ValueError(f"Expected ClusteringEvaluator for {task}")
+            # Check if evaluator has the evaluate_embedder method
+            # (All clustering evaluators should have this interface)
+            if not hasattr(evaluator, "evaluate_embedder"):
+                raise ValueError(
+                    f"Clustering evaluator for {task} must have evaluate_embedder method"
+                )
 
             # Clustering only supports embedder interface
             result = evaluator.evaluate_embedder(
@@ -156,6 +171,7 @@ def evaluate(
                 split=split,
                 batch_size=batch_size,
                 show_progress=show_progress,
+                save_samples=save_samples,
             )
         elif task_spec.task_type == TaskType.PAIR_CLASSIFICATION:
             if not isinstance(evaluator, PairClassificationEvaluator):
@@ -167,6 +183,7 @@ def evaluate(
                 split=split,
                 batch_size=batch_size,
                 show_progress=show_progress,
+                save_samples=save_samples,
             )
         else:
             raise NotImplementedError(
@@ -270,7 +287,14 @@ def _create_evaluator(task_spec: "TaskSpec", **kwargs: Any):
     elif task_spec.task_type == TaskType.CLASSIFICATION:
         return ClassificationEvaluator(task_spec, **kwargs)
     elif task_spec.task_type == TaskType.CLUSTERING:
-        return ClusteringEvaluator(task_spec, **kwargs)
+        # Dispatch to appropriate clustering evaluator based on task name
+        if "_hdbscan" in task_spec.name:
+            return HDBSCANClusteringEvaluator(task_spec, **kwargs)
+        elif "_agglomerative" in task_spec.name:
+            return AgglomerativeClusteringEvaluator(task_spec, **kwargs)
+        else:
+            # Default: k-means clustering
+            return ClusteringEvaluator(task_spec, **kwargs)
     elif task_spec.task_type == TaskType.MULTILABEL:
         # TODO: Implement MultiLabelEvaluator
         raise NotImplementedError("MultiLabelEvaluator not yet implemented")

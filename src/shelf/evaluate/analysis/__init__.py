@@ -57,6 +57,27 @@ from shelf.evaluate.analysis.plots import (
     plot_score_distribution,
     plot_comparison_summary,
 )
+from shelf.evaluate.analysis.task_correlation import (
+    TaskCorrelationResult,
+    analyze_task_correlations,
+    compute_effective_sample_size,
+    compute_rank_consistency,
+    compute_task_champion_diversity,
+    compute_task_correlation_matrix,
+    identify_task_families,
+)
+from shelf.evaluate.analysis.sample_analysis import (
+    SampleAnalysisResult,
+    SampleVarianceResult,
+    StratifiedErrorResult,
+    ReliabilityResult,
+    analyze_samples,
+    compute_sample_variance,
+    compute_stratified_errors,
+    compute_reliability,
+    load_and_analyze_samples,
+    compare_sample_reliability,
+)
 
 __all__ = [
     # Comparison functions
@@ -87,4 +108,23 @@ __all__ = [
     "plot_pairwise_significance_heatmap",
     "plot_score_distribution",
     "plot_comparison_summary",
+    # Task correlation
+    "TaskCorrelationResult",
+    "analyze_task_correlations",
+    "compute_effective_sample_size",
+    "compute_rank_consistency",
+    "compute_task_champion_diversity",
+    "compute_task_correlation_matrix",
+    "identify_task_families",
+    # Sample analysis
+    "SampleAnalysisResult",
+    "SampleVarianceResult",
+    "StratifiedErrorResult",
+    "ReliabilityResult",
+    "analyze_samples",
+    "compute_sample_variance",
+    "compute_stratified_errors",
+    "compute_reliability",
+    "load_and_analyze_samples",
+    "compare_sample_reliability",
 ]

@@ -16,6 +16,7 @@ Backend enums:
 """
 
 from shelf.evaluate.adapters.bm25 import BM25Backend, BM25Retriever
+from shelf.evaluate.adapters.cached import CachedEmbedder
 from shelf.evaluate.adapters.protocols import (
     PairClassifier,
     TextClassifier,
@@ -32,6 +33,7 @@ __all__ = [
     "PairClassifier",
     # Embedding Adapters
     "SentenceTransformerEmbedder",
+    "CachedEmbedder",
     "TfEmbedder",
     "TfBackend",
     "TfidfEmbedder",

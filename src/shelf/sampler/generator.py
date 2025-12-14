@@ -927,7 +927,9 @@ class DocumentGenerator:
         ):
             raw_text = gen_result.text
             if not raw_text.strip():
-                raise ValueError("Received empty output from LLM during batch generation")
+                raise ValueError(
+                    "Received empty output from LLM during batch generation"
+                )
             title, body = _parse_generated_text(raw_text)
             results.append(
                 GeneratedDocument(

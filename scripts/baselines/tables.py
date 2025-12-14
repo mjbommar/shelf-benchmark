@@ -130,7 +130,8 @@ def generate_retrieval_table(
             valid_scores = [
                 results[f"{model_key}_{t}"]["primary_score"]
                 for t in tasks
-                if f"{model_key}_{t}" in results and "error" not in results[f"{model_key}_{t}"]
+                if f"{model_key}_{t}" in results
+                and "error" not in results[f"{model_key}_{t}"]
             ]
             avg = sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
             avg_str = format_score(avg) if valid_scores else "--"
@@ -166,7 +167,8 @@ def generate_retrieval_table(
             valid_scores = [
                 results[f"{model_key}_{t}"]["primary_score"]
                 for t in tasks
-                if f"{model_key}_{t}" in results and "error" not in results[f"{model_key}_{t}"]
+                if f"{model_key}_{t}" in results
+                and "error" not in results[f"{model_key}_{t}"]
             ]
             avg = sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
             avg_str = f"{avg:.3f}" if valid_scores else "--"
@@ -184,7 +186,11 @@ def generate_classification_table(
     output_format: str = "latex",
 ) -> str:
     """Generate classification results table."""
-    tasks = ["lcc_classification", "lcgft_category_classification", "register_classification"]
+    tasks = [
+        "lcc_classification",
+        "lcgft_category_classification",
+        "register_classification",
+    ]
     task_labels = ["LCC", "LCGFT", "Register"]
     metric = "macro_f1"
 
@@ -217,7 +223,8 @@ def generate_classification_table(
             valid_scores = [
                 results[f"{model_key}_{t}"]["primary_score"]
                 for t in tasks
-                if f"{model_key}_{t}" in results and "error" not in results[f"{model_key}_{t}"]
+                if f"{model_key}_{t}" in results
+                and "error" not in results[f"{model_key}_{t}"]
             ]
             avg = sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
             avg_str = format_score(avg) if valid_scores else "--"
@@ -253,7 +260,8 @@ def generate_classification_table(
             valid_scores = [
                 results[f"{model_key}_{t}"]["primary_score"]
                 for t in tasks
-                if f"{model_key}_{t}" in results and "error" not in results[f"{model_key}_{t}"]
+                if f"{model_key}_{t}" in results
+                and "error" not in results[f"{model_key}_{t}"]
             ]
             avg = sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
             avg_str = f"{avg:.3f}" if valid_scores else "--"
@@ -271,7 +279,12 @@ def generate_clustering_table(
     output_format: str = "latex",
 ) -> str:
     """Generate clustering results table."""
-    tasks = ["lcc_clustering", "lcgft_clustering", "register_clustering", "geographic_clustering"]
+    tasks = [
+        "lcc_clustering",
+        "lcgft_clustering",
+        "register_clustering",
+        "geographic_clustering",
+    ]
     task_labels = ["LCC", "LCGFT", "Register", "Geographic"]
     metric = "v_measure"
 
@@ -304,7 +317,8 @@ def generate_clustering_table(
             valid_scores = [
                 results[f"{model_key}_{t}"]["primary_score"]
                 for t in tasks
-                if f"{model_key}_{t}" in results and "error" not in results[f"{model_key}_{t}"]
+                if f"{model_key}_{t}" in results
+                and "error" not in results[f"{model_key}_{t}"]
             ]
             avg = sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
             avg_str = format_score(avg) if valid_scores else "--"
@@ -340,7 +354,8 @@ def generate_clustering_table(
             valid_scores = [
                 results[f"{model_key}_{t}"]["primary_score"]
                 for t in tasks
-                if f"{model_key}_{t}" in results and "error" not in results[f"{model_key}_{t}"]
+                if f"{model_key}_{t}" in results
+                and "error" not in results[f"{model_key}_{t}"]
             ]
             avg = sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
             avg_str = f"{avg:.3f}" if valid_scores else "--"
@@ -397,7 +412,8 @@ def generate_pair_table(
             valid_scores = [
                 results[f"{model_key}_{t}"]["primary_score"]
                 for t in tasks
-                if f"{model_key}_{t}" in results and "error" not in results[f"{model_key}_{t}"]
+                if f"{model_key}_{t}" in results
+                and "error" not in results[f"{model_key}_{t}"]
             ]
             avg = sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
             avg_str = format_score(avg) if valid_scores else "--"
@@ -433,7 +449,8 @@ def generate_pair_table(
             valid_scores = [
                 results[f"{model_key}_{t}"]["primary_score"]
                 for t in tasks
-                if f"{model_key}_{t}" in results and "error" not in results[f"{model_key}_{t}"]
+                if f"{model_key}_{t}" in results
+                and "error" not in results[f"{model_key}_{t}"]
             ]
             avg = sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
             avg_str = f"{avg:.3f}" if valid_scores else "--"
@@ -457,8 +474,17 @@ def generate_leaderboard_table(
 
     task_types = {
         "retrieval": ["lcc_retrieval", "form_retrieval", "category_retrieval"],
-        "classification": ["lcc_classification", "lcgft_category_classification", "register_classification"],
-        "clustering": ["lcc_clustering", "lcgft_clustering", "register_clustering", "geographic_clustering"],
+        "classification": [
+            "lcc_classification",
+            "lcgft_category_classification",
+            "register_classification",
+        ],
+        "clustering": [
+            "lcc_clustering",
+            "lcgft_clustering",
+            "register_clustering",
+            "geographic_clustering",
+        ],
         "pair_classification": [
             "same_lcc_pairs",
             "same_form_pairs",
@@ -475,10 +501,13 @@ def generate_leaderboard_table(
             valid_scores = [
                 results[f"{model_key}_{t}"]["primary_score"]
                 for t in tasks
-                if f"{model_key}_{t}" in results and "error" not in results[f"{model_key}_{t}"]
+                if f"{model_key}_{t}" in results
+                and "error" not in results[f"{model_key}_{t}"]
             ]
             if valid_scores:
-                model_type_avgs[model_key][task_type] = sum(valid_scores) / len(valid_scores)
+                model_type_avgs[model_key][task_type] = sum(valid_scores) / len(
+                    valid_scores
+                )
 
     # Compute SHELF scores
     shelf_scores: dict[str, float] = {}
@@ -522,7 +551,11 @@ def generate_leaderboard_table(
             shelf_score = shelf_scores.get(model_key, 0.0)
             shelf_str = format_score(shelf_score, bold=(rank == 1))
 
-            row = f"{rank} & {model_name} & " + " & ".join(type_scores) + f" & {shelf_str} \\\\"
+            row = (
+                f"{rank} & {model_name} & "
+                + " & ".join(type_scores)
+                + f" & {shelf_str} \\\\"
+            )
             lines.append(row)
 
         lines.append(r"\bottomrule")
@@ -550,7 +583,11 @@ def generate_leaderboard_table(
             if rank == 1:
                 shelf_str = f"**{shelf_str}**"
 
-            row = f"| {rank} | {model_name} | " + " | ".join(type_scores) + f" | {shelf_str} |"
+            row = (
+                f"| {rank} | {model_name} | "
+                + " | ".join(type_scores)
+                + f" | {shelf_str} |"
+            )
             lines.append(row)
 
     return "\n".join(lines)
@@ -663,7 +700,9 @@ def main():
         logger.info(f"Saved: {output_path}")
 
         # Leaderboard table
-        table = generate_leaderboard_table(results, models_config, model_keys, weights, fmt)
+        table = generate_leaderboard_table(
+            results, models_config, model_keys, weights, fmt
+        )
         output_path = output_dir / f"leaderboard.{ext}"
         with open(output_path, "w") as f:
             f.write(table)

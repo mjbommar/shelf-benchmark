@@ -14,18 +14,34 @@ from sklearn.cluster import KMeans
 
 from shelf.evaluate.evaluators.base import TaskEvaluator
 from shelf.evaluate.metrics.clustering import compute_clustering_metrics
-from shelf.evaluate.results import EvaluationResult
+from shelf.evaluate.results import (
+    EvaluationResult,
+    PerSampleResult,
+    PerSampleResults,
+)
 from shelf.evaluate.schemas import (
     ValidationError,
     validate_clustering_predictions,
 )
 from shelf.evaluate.tasks import TaskSpec
+from shelf.evaluate.utils.normalization import ensure_normalized, get_norm_stats
 from shelf.taxonomies.geographic import get_region_from_list
 
 if TYPE_CHECKING:
     from shelf.evaluate.adapters.protocols import TextEmbedder
 
 logger = logging.getLogger(__name__)
+
+# Metadata fields to capture for stratification analysis
+STRATIFICATION_FIELDS = [
+    "form",
+    "form_category",
+    "register",
+    "audience",
+    "lcc",
+    "topic",
+    "region",
+]
 
 
 class ClusteringEvaluator(TaskEvaluator):
@@ -196,6 +212,7 @@ class ClusteringEvaluator(TaskEvaluator):
         max_iter: int = 300,
         batch_size: int = 32,
         show_progress: bool = True,
+        save_samples: bool = False,
     ) -> EvaluationResult:
         """Evaluate an embedder by running k-means on embeddings.
 
@@ -213,6 +230,7 @@ class ClusteringEvaluator(TaskEvaluator):
             max_iter: Maximum iterations for k-means
             batch_size: Batch size for encoding
             show_progress: Whether to show progress bars
+            save_samples: Whether to capture per-sample results for detailed analysis
 
         Returns:
             EvaluationResult with clustering metrics
@@ -229,10 +247,12 @@ class ClusteringEvaluator(TaskEvaluator):
         # Get field names
         text_field = self.task_spec.text_field
         label_field = self.task_spec.label_field
+        id_field = self.task_spec.id_field
 
         # Extract texts and labels
         texts = ground_truth[text_field].to_list()
         labels_true = ground_truth[label_field].to_list()
+        doc_ids = ground_truth[id_field].to_list()
 
         # Determine number of clusters
         k = n_clusters or self.n_clusters
@@ -247,6 +267,13 @@ class ClusteringEvaluator(TaskEvaluator):
             batch_size=batch_size,
             show_progress=show_progress,
         )
+
+        # Ensure embeddings are normalized for consistent clustering
+        # (Euclidean k-means on normalized vectors ≈ spherical k-means)
+        embeddings = ensure_normalized(embeddings)
+
+        # Capture normalization stats for debugging
+        norm_stats = get_norm_stats(embeddings)
 
         # Run k-means
         logger.info(f"Running k-means with k={k}...")
@@ -265,7 +292,46 @@ class ClusteringEvaluator(TaskEvaluator):
         inertia = kmeans.inertia_
         kmeans_inertia = float(inertia) if inertia is not None else 0.0
 
-        return self._create_result(
+        # Build per-sample results if requested
+        per_sample_list: list[PerSampleResult] = []
+        if save_samples:
+            # Get available columns for metadata extraction
+            available_cols = set(ground_truth.columns)
+            metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+            for i, (doc_id, true_label, pred_cluster) in enumerate(
+                zip(doc_ids, labels_true, labels_pred)
+            ):
+                # Get row from ground_truth for metadata
+                row = ground_truth.row(i, named=True)
+                metadata: dict[str, Any] = {}
+
+                for field in metadata_fields:
+                    if field in row and row[field] is not None:
+                        metadata[field] = row[field]
+
+                # Add text length bucket
+                if text_field in row and row[text_field]:
+                    text_len = len(row[text_field])
+                    if text_len < 500:
+                        metadata["length_bucket"] = "short"
+                    elif text_len < 2000:
+                        metadata["length_bucket"] = "medium"
+                    else:
+                        metadata["length_bucket"] = "long"
+                    metadata["text_length"] = text_len
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=doc_id,
+                        y_true=true_label,
+                        y_pred=pred_cluster,
+                        correct=None,  # clustering doesn't have correct/incorrect
+                        metadata=metadata,
+                    )
+                )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=ground_truth,
             split=split,
@@ -273,4 +339,17 @@ class ClusteringEvaluator(TaskEvaluator):
             embedding_dim=embedder.embedding_dim,
             n_clusters=k,
             kmeans_inertia=kmeans_inertia,
+            norm_stats=norm_stats,
         )
+
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="clustering",
+                model_key=embedder.model_name or "unknown",
+                split=split,
+                samples=per_sample_list,
+            )
+
+        return result

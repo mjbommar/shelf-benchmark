@@ -2,10 +2,16 @@
 
 This module provides structured types for storing evaluation results
 along with complete context for reproducibility.
+
+Includes per-sample result storage for practitioner-focused analysis:
+- Sample-level variance and reliability metrics
+- Error stratification by document attributes
+- Bootstrap CIs from per-sample data (tighter than task-level)
 """
 
 from __future__ import annotations
 
+import gzip
 import hashlib
 import json
 import platform
@@ -13,7 +19,7 @@ import sys
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 
 def _get_package_version(package: str) -> str:
@@ -24,6 +30,438 @@ def _get_package_version(package: str) -> str:
         return version(package)
     except Exception:
         return "not installed"
+
+
+# Type alias for task types
+TaskType = Literal["classification", "retrieval", "clustering", "pair_classification"]
+
+
+@dataclass
+class PerSampleResult:
+    """Per-sample evaluation result for detailed analysis.
+
+    Stores individual sample predictions for:
+    - Sample-level variance analysis
+    - Error stratification by document attributes
+    - Bootstrap CIs with more granular data
+    - Reliability/robustness assessment
+
+    Attributes:
+        id: Sample identifier (document ID, query ID, or pair ID)
+        y_true: Ground truth label/value
+        y_pred: Predicted label/value
+        correct: Whether prediction was correct (for classification/pairs)
+        score: Confidence score or similarity score (if available)
+        metadata: Document metadata for stratification (form, register, length, etc.)
+    """
+
+    id: str
+    y_true: Any
+    y_pred: Any
+    correct: bool | None = None
+    score: float | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        result: dict[str, Any] = {
+            "id": self.id,
+            "y_true": self.y_true,
+            "y_pred": self.y_pred,
+        }
+        if self.correct is not None:
+            result["correct"] = self.correct
+        if self.score is not None:
+            result["score"] = float(self.score)
+        if self.metadata:
+            result["metadata"] = self.metadata
+        return result
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> PerSampleResult:
+        """Create from dictionary."""
+        return cls(
+            id=data["id"],
+            y_true=data["y_true"],
+            y_pred=data["y_pred"],
+            correct=data.get("correct"),
+            score=data.get("score"),
+            metadata=data.get("metadata", {}),
+        )
+
+
+@dataclass
+class PerSampleResults:
+    """Collection of per-sample results with metadata.
+
+    Provides efficient storage and loading of per-sample data,
+    kept separate from main results to avoid bloating result files.
+
+    Attributes:
+        task: Task name
+        task_type: Type of task (classification, retrieval, etc.)
+        model_key: Model identifier
+        split: Dataset split
+        samples: List of per-sample results
+        sample_count: Number of samples
+        correct_count: Number correct (classification/pairs)
+        accuracy: Overall accuracy (if applicable)
+    """
+
+    task: str
+    task_type: TaskType
+    model_key: str
+    split: str
+    samples: list[PerSampleResult]
+    sample_count: int = 0
+    correct_count: int | None = None
+    accuracy: float | None = None
+
+    def __post_init__(self) -> None:
+        """Compute derived fields."""
+        self.sample_count = len(self.samples)
+        if self.samples and self.samples[0].correct is not None:
+            self.correct_count = sum(1 for s in self.samples if s.correct)
+            self.accuracy = (
+                self.correct_count / self.sample_count if self.sample_count > 0 else 0.0
+            )
+
+    def to_dict(self) -> dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "task": self.task,
+            "task_type": self.task_type,
+            "model_key": self.model_key,
+            "split": self.split,
+            "sample_count": self.sample_count,
+            "correct_count": self.correct_count,
+            "accuracy": self.accuracy,
+            "samples": [s.to_dict() for s in self.samples],
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> PerSampleResults:
+        """Create from dictionary."""
+        samples = [PerSampleResult.from_dict(s) for s in data.get("samples", [])]
+        return cls(
+            task=data["task"],
+            task_type=data["task_type"],
+            model_key=data["model_key"],
+            split=data["split"],
+            samples=samples,
+        )
+
+    def save(self, path: Path | str, compress: bool = True) -> Path:
+        """Save per-sample results to file.
+
+        Args:
+            path: Base path (will add .jsonl.gz or .jsonl extension)
+            compress: Whether to gzip compress (default: True, ~10x smaller)
+
+        Returns:
+            Actual path written to
+        """
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Add appropriate extension
+        if compress and not path.suffix.endswith(".gz"):
+            if not path.suffix == ".jsonl":
+                path = path.with_suffix(".jsonl.gz")
+            else:
+                path = Path(str(path) + ".gz")
+        elif not compress and path.suffix != ".jsonl":
+            path = path.with_suffix(".jsonl")
+
+        # Write header + samples as JSONL
+        header = {
+            "task": self.task,
+            "task_type": self.task_type,
+            "model_key": self.model_key,
+            "split": self.split,
+            "sample_count": self.sample_count,
+            "correct_count": self.correct_count,
+            "accuracy": self.accuracy,
+            "_type": "header",
+        }
+
+        if compress:
+            with gzip.open(path, "wt", encoding="utf-8") as f:
+                f.write(json.dumps(header) + "\n")
+                for sample in self.samples:
+                    f.write(json.dumps(sample.to_dict()) + "\n")
+        else:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(json.dumps(header) + "\n")
+                for sample in self.samples:
+                    f.write(json.dumps(sample.to_dict()) + "\n")
+
+        return path
+
+    @classmethod
+    def load(cls, path: Path | str) -> PerSampleResults:
+        """Load per-sample results from file.
+
+        Args:
+            path: Path to .jsonl or .jsonl.gz file
+
+        Returns:
+            PerSampleResults instance
+        """
+        path = Path(path)
+
+        # Determine if compressed
+        is_compressed = path.suffix == ".gz" or str(path).endswith(".jsonl.gz")
+
+        samples: list[PerSampleResult] = []
+        header: dict[str, Any] = {}
+
+        opener = gzip.open if is_compressed else open
+        with opener(path, "rt", encoding="utf-8") as f:  # type: ignore[arg-type]
+            for line in f:
+                data = json.loads(line.strip())
+                if data.get("_type") == "header":
+                    header = data
+                else:
+                    samples.append(PerSampleResult.from_dict(data))
+
+        return cls(
+            task=header.get("task", ""),
+            task_type=header.get("task_type", "classification"),
+            model_key=header.get("model_key", ""),
+            split=header.get("split", "test"),
+            samples=samples,
+        )
+
+    def get_correct_mask(self) -> list[bool]:
+        """Get boolean mask of correct predictions."""
+        return [s.correct is True for s in self.samples]
+
+    def get_incorrect_samples(self) -> list[PerSampleResult]:
+        """Get list of incorrectly classified samples."""
+        return [s for s in self.samples if s.correct is False]
+
+    def get_scores(self) -> list[float]:
+        """Get list of scores (confidence/similarity)."""
+        return [s.score for s in self.samples if s.score is not None]
+
+    def stratify_by(self, field: str) -> dict[str, list[PerSampleResult]]:
+        """Group samples by a metadata field.
+
+        Args:
+            field: Metadata field to stratify by (e.g., "form", "register", "length_bucket")
+
+        Returns:
+            Dict mapping field values to sample lists
+        """
+        groups: dict[str, list[PerSampleResult]] = {}
+        for sample in self.samples:
+            value = sample.metadata.get(field, "unknown")
+            if value not in groups:
+                groups[value] = []
+            groups[value].append(sample)
+        return groups
+
+    def compute_stratified_accuracy(self, field: str) -> dict[str, dict[str, float]]:
+        """Compute accuracy stratified by a metadata field.
+
+        Args:
+            field: Metadata field to stratify by
+
+        Returns:
+            Dict mapping field values to {accuracy, count, correct}
+        """
+        groups = self.stratify_by(field)
+        results: dict[str, dict[str, float]] = {}
+
+        for value, samples in groups.items():
+            n_total = len(samples)
+            n_correct = sum(1 for s in samples if s.correct is True)
+            results[value] = {
+                "accuracy": n_correct / n_total if n_total > 0 else 0.0,
+                "count": float(n_total),
+                "correct": float(n_correct),
+                "error_rate": 1.0 - (n_correct / n_total) if n_total > 0 else 1.0,
+            }
+
+        return results
+
+    # --- Error analysis query methods ---
+
+    def get_errors(
+        self,
+        true_label: str | None = None,
+        pred_label: str | None = None,
+        limit: int | None = None,
+    ) -> list[PerSampleResult]:
+        """Get misclassified samples with optional filtering.
+
+        Args:
+            true_label: Filter to errors with this true label
+            pred_label: Filter to errors predicted as this label
+            limit: Maximum number of results to return
+
+        Returns:
+            List of error samples matching criteria
+        """
+        errors = [s for s in self.samples if s.correct is False]
+
+        if true_label is not None:
+            errors = [s for s in errors if s.y_true == true_label]
+
+        if pred_label is not None:
+            errors = [s for s in errors if s.y_pred == pred_label]
+
+        if limit is not None:
+            errors = errors[:limit]
+
+        return errors
+
+    def get_errors_by_confusion(
+        self,
+        true_label: str,
+        pred_label: str,
+        limit: int | None = None,
+    ) -> list[PerSampleResult]:
+        """Get samples confused between two specific classes.
+
+        This is useful for investigating specific confusion patterns
+        identified in the confusion matrix or top_confusions list.
+
+        Args:
+            true_label: Ground truth class
+            pred_label: Predicted (wrong) class
+            limit: Maximum number of results to return
+
+        Returns:
+            List of samples with true_label predicted as pred_label
+
+        Example:
+            >>> # Get samples where Technology (T) was misclassified as Science (Q)
+            >>> errors = results.get_errors_by_confusion("T", "Q", limit=10)
+            >>> for e in errors:
+            ...     print(f"{e.id}: {e.metadata.get('form', 'unknown')}")
+        """
+        return self.get_errors(
+            true_label=true_label, pred_label=pred_label, limit=limit
+        )
+
+    def get_sample_by_id(self, sample_id: str) -> PerSampleResult | None:
+        """Get a specific sample by ID.
+
+        Args:
+            sample_id: The sample identifier
+
+        Returns:
+            The sample if found, None otherwise
+        """
+        for sample in self.samples:
+            if sample.id == sample_id:
+                return sample
+        return None
+
+    def filter_by_metadata(
+        self,
+        field: str,
+        value: Any,
+        errors_only: bool = False,
+    ) -> list[PerSampleResult]:
+        """Get samples with a specific metadata value.
+
+        Args:
+            field: Metadata field name (e.g., "form", "register", "length_bucket")
+            value: Value to filter for
+            errors_only: If True, only return misclassified samples
+
+        Returns:
+            List of samples matching the criteria
+        """
+        results = []
+        for sample in self.samples:
+            if sample.metadata.get(field) == value:
+                if errors_only and sample.correct is not False:
+                    continue
+                results.append(sample)
+        return results
+
+    def get_confusion_counts(self) -> dict[tuple[str, str], int]:
+        """Get counts of all (true_label, pred_label) pairs for errors.
+
+        Returns:
+            Dict mapping (true_label, pred_label) tuples to counts
+
+        Example:
+            >>> counts = results.get_confusion_counts()
+            >>> # Sort by count descending
+            >>> sorted_counts = sorted(counts.items(), key=lambda x: -x[1])
+            >>> for (true_l, pred_l), count in sorted_counts[:5]:
+            ...     print(f"{true_l} -> {pred_l}: {count}")
+        """
+        counts: dict[tuple[str, str], int] = {}
+        for sample in self.samples:
+            if sample.correct is False:
+                key = (str(sample.y_true), str(sample.y_pred))
+                counts[key] = counts.get(key, 0) + 1
+        return counts
+
+    def get_by_confidence(
+        self,
+        min_score: float | None = None,
+        max_score: float | None = None,
+        errors_only: bool = False,
+    ) -> list[PerSampleResult]:
+        """Get samples within a confidence score range.
+
+        Useful for analyzing model calibration and finding
+        high-confidence errors or low-confidence correct predictions.
+
+        Args:
+            min_score: Minimum score (inclusive)
+            max_score: Maximum score (inclusive)
+            errors_only: If True, only return misclassified samples
+
+        Returns:
+            List of samples in the score range
+        """
+        results = []
+        for sample in self.samples:
+            if sample.score is None:
+                continue
+
+            if min_score is not None and sample.score < min_score:
+                continue
+            if max_score is not None and sample.score > max_score:
+                continue
+            if errors_only and sample.correct is not False:
+                continue
+
+            results.append(sample)
+
+        return results
+
+    def get_high_confidence_errors(
+        self,
+        threshold: float = 0.9,
+        limit: int | None = None,
+    ) -> list[PerSampleResult]:
+        """Get misclassified samples with high confidence scores.
+
+        These are particularly interesting for error analysis as they
+        represent cases where the model was confidently wrong.
+
+        Args:
+            threshold: Minimum confidence score
+            limit: Maximum number of results
+
+        Returns:
+            List of high-confidence errors, sorted by score descending
+        """
+        errors = self.get_by_confidence(min_score=threshold, errors_only=True)
+        # Sort by score descending (most confident errors first)
+        errors.sort(key=lambda s: s.score or 0, reverse=True)
+        if limit is not None:
+            errors = errors[:limit]
+        return errors
 
 
 @dataclass
@@ -251,6 +689,14 @@ class EvaluationResult:
     # Detailed breakdowns (task-specific)
     per_class_metrics: dict[str, dict[str, float]] | None = None
     confusion_matrix: list[list[int]] | None = None
+    # Labels for confusion matrix indices (e.g., ["A", "B", "C", ...])
+    confusion_matrix_labels: list[str] | None = None
+    # Top confused class pairs, pre-computed for convenience
+    # Each entry: {"true_label": str, "pred_label": str, "count": int, ...}
+    top_confusions: list[dict[str, Any]] | None = None
+    # Stratified confusion matrices: {field: {stratum_value: matrix}}
+    # e.g., {"audience": {"Physicians": [[...]], "General public": [[...]]}}
+    stratified_confusion_matrices: dict[str, dict[str, list[list[int]]]] | None = None
     per_query_metrics: dict[str, dict[str, float]] | None = None
 
     # Counts
@@ -272,6 +718,11 @@ class EvaluationResult:
 
     # Full context
     context: EvaluationContext | None = None
+
+    # Per-sample results (for detailed analysis)
+    # Stored separately to keep main results lean
+    per_sample_results: PerSampleResults | None = None
+    per_sample_path: str | None = None  # Path to separate per-sample file
 
     def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary for serialization.
@@ -296,6 +747,15 @@ class EvaluationResult:
 
         if self.confusion_matrix is not None:
             result["confusion_matrix"] = self.confusion_matrix
+
+        if self.confusion_matrix_labels is not None:
+            result["confusion_matrix_labels"] = self.confusion_matrix_labels
+
+        if self.top_confusions is not None:
+            result["top_confusions"] = self.top_confusions
+
+        if self.stratified_confusion_matrices is not None:
+            result["stratified_confusion_matrices"] = self.stratified_confusion_matrices
 
         if self.per_query_metrics is not None:
             result["per_query_metrics"] = {
@@ -328,17 +788,36 @@ class EvaluationResult:
         if self.context is not None:
             result["context"] = self.context.to_dict()
 
+        # Only store path reference, not full per-sample data
+        if self.per_sample_path is not None:
+            result["per_sample_path"] = self.per_sample_path
+
         return result
 
-    def to_json(self, path: Path | str, indent: int = 2) -> None:
+    def to_json(
+        self,
+        path: Path | str,
+        indent: int = 2,
+        save_per_sample: bool = False,
+    ) -> None:
         """Save results to JSON file.
 
         Args:
             path: Path to save JSON file
             indent: JSON indentation level
+            save_per_sample: Whether to save per-sample results to separate file
         """
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Save per-sample data to separate file if requested
+        if save_per_sample and self.per_sample_results is not None:
+            # Create per-sample filename based on main result filename
+            per_sample_filename = path.stem + "_samples.jsonl.gz"
+            per_sample_path = path.parent / per_sample_filename
+            self.per_sample_results.save(per_sample_path, compress=True)
+            self.per_sample_path = str(per_sample_path)
+
         with open(path, "w") as f:
             json.dump(self.to_dict(), f, indent=indent)
 
@@ -352,31 +831,75 @@ class EvaluationResult:
         Returns:
             EvaluationResult instance
         """
+        # Handle nested dataclasses
         context_data = data.pop("context", None)
         context = None
         if context_data is not None:
             context = EvaluationContext(**context_data)
+
+        data_provenance_data = data.pop("data_provenance", None)
+        data_provenance = None
+        if data_provenance_data is not None:
+            data_provenance = DataProvenance(**data_provenance_data)
+
+        # Extract per_sample_path (per_sample_results loaded separately)
+        per_sample_path = data.pop("per_sample_path", None)
 
         # Convert confidence intervals back to tuples
         ci = data.get("confidence_intervals")
         if ci is not None:
             data["confidence_intervals"] = {k: tuple(v) for k, v in ci.items()}
 
-        return cls(**data, context=context)
+        return cls(
+            **data,
+            context=context,
+            data_provenance=data_provenance,
+            per_sample_path=per_sample_path,
+        )
 
     @classmethod
-    def from_json(cls, path: Path | str) -> EvaluationResult:
+    def from_json(
+        cls,
+        path: Path | str,
+        load_per_sample: bool = False,
+    ) -> EvaluationResult:
         """Load results from JSON file.
 
         Args:
             path: Path to JSON file
+            load_per_sample: Whether to also load per-sample results if available
 
         Returns:
             EvaluationResult instance
         """
         with open(path) as f:
             data = json.load(f)
-        return cls.from_dict(data)
+        result = cls.from_dict(data)
+
+        # Optionally load per-sample results
+        if load_per_sample and result.per_sample_path:
+            result.load_per_sample_results()
+
+        return result
+
+    def load_per_sample_results(self) -> PerSampleResults | None:
+        """Load per-sample results from the referenced file.
+
+        Returns:
+            PerSampleResults if available and loaded, None otherwise
+        """
+        if self.per_sample_path is None:
+            return None
+
+        try:
+            self.per_sample_results = PerSampleResults.load(self.per_sample_path)
+            return self.per_sample_results
+        except FileNotFoundError:
+            return None
+
+    def has_per_sample_data(self) -> bool:
+        """Check if per-sample data is available (either loaded or referenceable)."""
+        return self.per_sample_results is not None or self.per_sample_path is not None
 
     def summary(self) -> str:
         """Generate human-readable summary.

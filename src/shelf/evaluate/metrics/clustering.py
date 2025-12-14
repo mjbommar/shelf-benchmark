@@ -6,7 +6,7 @@ Uses sklearn for core computations.
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Sequence, cast
 
 from sklearn.metrics import (
     adjusted_rand_score,
@@ -165,5 +165,87 @@ def compute_clustering_metrics(
         "num_clusters_true": len(set(labels_true)),
         "num_clusters_pred": len(set(labels_pred)),
     }
+
+    return metrics
+
+
+def compute_discovery_metrics(
+    labels_true: Sequence[int | str],
+    labels_pred: Sequence[int],
+    noise_label: int = -1,
+) -> dict[str, Any]:
+    """Compute metrics for cluster discovery evaluation.
+
+    This extends standard clustering metrics with discovery-specific metrics:
+    - noise_ratio: Fraction of points labeled as noise
+    - num_clusters_pred: Number of clusters found (excluding noise)
+    - num_clusters_true: Number of true clusters
+    - cluster_k_error: Relative error in cluster count prediction
+
+    Args:
+        labels_true: Ground truth labels
+        labels_pred: Predicted cluster assignments (may include -1 for noise)
+        noise_label: Label used for noise points (default: -1)
+
+    Returns:
+        Dict with all clustering metrics plus discovery metrics
+    """
+    labels_true = list(labels_true)
+    labels_pred = list(labels_pred)
+
+    # Identify noise points
+    noise_mask = [p == noise_label for p in labels_pred]
+    num_noise = sum(noise_mask)
+    noise_ratio = num_noise / len(labels_pred) if labels_pred else 0.0
+
+    # Count clusters (excluding noise)
+    unique_pred = set(labels_pred)
+    if noise_label in unique_pred:
+        unique_pred.remove(noise_label)
+    num_clusters_pred = len(unique_pred)
+    num_clusters_true = len(set(labels_true))
+
+    # Compute k error
+    if num_clusters_true > 0:
+        cluster_k_error = abs(num_clusters_pred - num_clusters_true) / num_clusters_true
+    else:
+        cluster_k_error = float("inf") if num_clusters_pred > 0 else 0.0
+
+    # Filter out noise points for standard metrics
+    labels_true_filtered: list[int | str]
+    labels_pred_filtered: list[int]
+
+    if num_noise > 0 and num_noise < len(labels_pred):
+        labels_true_filtered = [t for t, n in zip(labels_true, noise_mask) if not n]
+        labels_pred_filtered = [p for p, n in zip(labels_pred, noise_mask) if not n]
+    else:
+        labels_true_filtered = labels_true
+        labels_pred_filtered = labels_pred
+
+    # Compute standard metrics on non-noise points
+    if labels_true_filtered and labels_pred_filtered:
+        # Cast to satisfy type checker - the lists will be homogeneous
+        metrics = compute_clustering_metrics(
+            cast("list[str] | list[int]", labels_true_filtered), labels_pred_filtered
+        )
+    else:
+        # All points are noise - return zeros
+        metrics = {
+            "v_measure": 0.0,
+            "nmi": 0.0,
+            "ari": 0.0,
+            "homogeneity": 0.0,
+            "completeness": 0.0,
+            "num_samples": len(labels_true),
+            "num_clusters_true": num_clusters_true,
+            "num_clusters_pred": 0,
+        }
+
+    # Add discovery metrics
+    metrics["noise_count"] = num_noise
+    metrics["noise_ratio"] = noise_ratio
+    metrics["num_clusters_pred"] = num_clusters_pred
+    metrics["cluster_k_error"] = cluster_k_error
+    metrics["num_samples_clustered"] = len(labels_pred) - num_noise
 
     return metrics

@@ -1,0 +1,52 @@
+{
+  "model": "KL3M Pico",
+  "model_key": "kl3m_pico",
+  "model_type": "sentence_transformer",
+  "task": "same_form_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "f1",
+  "primary_score": 0.6666666666666666,
+  "metrics": {
+    "f1": 0.6666666666666666,
+    "accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "auc_roc": 0.6315005,
+    "average_precision": 0.6342817273295818,
+    "threshold": 0.14107128977775574,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.7",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c326143008e256d971915b0bbbc62930",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T10:09:07.215597+00:00",
+    "model_name": "KL3M Pico",
+    "data_commit": null,
+    "code_commit": "06303cb",
+    "extra": {
+      "embedding_dim": 256
+    }
+  },
+  "efficiency": {
+    "num_params": 40201984,
+    "embedding_dim": 256,
+    "size_category": "10M-50M",
+    "flops_per_token": 80403968,
+    "relative_compute": 1.77,
+    "shelf_eff": 51.8549,
+    "shelf_compute": 0.3724,
+    "pareto_optimal": false,
+    "size_rank": 5
+  },
+  "shelf_score": 0.394318
+}

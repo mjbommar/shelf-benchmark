@@ -16,12 +16,27 @@ from tqdm import tqdm
 
 from shelf.evaluate.evaluators.base import TaskEvaluator
 from shelf.evaluate.metrics.retrieval import compute_retrieval_metrics
-from shelf.evaluate.results import EvaluationResult
+from shelf.evaluate.results import (
+    EvaluationResult,
+    PerSampleResult,
+    PerSampleResults,
+)
 from shelf.evaluate.tasks import TaskSpec
 from shelf.evaluate.schemas import (
     ValidationError,
     validate_retrieval_predictions,
 )
+
+# Metadata fields to capture for stratification analysis
+STRATIFICATION_FIELDS = [
+    "form",
+    "form_category",
+    "register",
+    "audience",
+    "lcc",
+    "topic",
+    "region",
+]
 
 if TYPE_CHECKING:
     from shelf.evaluate.adapters.bm25 import BM25Retriever
@@ -77,6 +92,8 @@ class RetrievalEvaluator(TaskEvaluator):
         ground_truth: pl.DataFrame,
         compute_ci: bool = False,
         corpus_splits: list[str] | None = None,
+        save_samples: bool = False,
+        model_key: str | None = None,
     ) -> EvaluationResult:
         """Evaluate retrieval predictions.
 
@@ -85,6 +102,8 @@ class RetrievalEvaluator(TaskEvaluator):
             ground_truth: DataFrame with query and corpus documents
             compute_ci: Whether to compute confidence intervals (not yet implemented)
             corpus_splits: Corpus splits to use for relevance (default: train + validation)
+            save_samples: Whether to capture per-query results for detailed analysis
+            model_key: Model identifier for per-sample results
 
         Returns:
             EvaluationResult with retrieval metrics
@@ -134,13 +153,80 @@ class RetrievalEvaluator(TaskEvaluator):
         per_query = metrics.pop("per_query", None)
         num_queries = metrics.pop("num_queries", len(results))
 
-        return self._create_result(
+        # Build per-sample results if requested
+        per_sample_list: list[PerSampleResult] = []
+        if save_samples and per_query:
+            # Get available columns for metadata extraction
+            available_cols = set(ground_truth.columns)
+            metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+            # Build a lookup for query metadata
+            query_metadata_map: dict[str, dict[str, Any]] = {}
+            for row in ground_truth.iter_rows(named=True):
+                query_id = row[id_field]
+                metadata: dict[str, Any] = {}
+                for field in metadata_fields:
+                    if field in row and row[field] is not None:
+                        metadata[field] = row[field]
+
+                # Add text length bucket for length analysis
+                text_field = self.task_spec.text_field
+                if text_field in row and row[text_field]:
+                    text_len = len(row[text_field])
+                    if text_len < 500:
+                        metadata["length_bucket"] = "short"
+                    elif text_len < 2000:
+                        metadata["length_bucket"] = "medium"
+                    else:
+                        metadata["length_bucket"] = "long"
+                    metadata["text_length"] = text_len
+
+                query_metadata_map[query_id] = metadata
+
+            # Create per-sample results for each query
+            for query_id, query_metrics in per_query.items():
+                # Get relevant doc IDs (ground truth)
+                relevant_ids = relevance.get(query_id, set())
+                # Get retrieved doc IDs (top k from predictions)
+                retrieved_ids = results.get(query_id, [])
+
+                # Check if any relevant doc was in top 10 (simple correctness measure)
+                top_k_retrieved = retrieved_ids[:10]
+                has_relevant = any(doc_id in relevant_ids for doc_id in top_k_retrieved)
+
+                # Use NDCG@10 as the per-query score
+                score = query_metrics.get("ndcg@10", 0.0)
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=query_id,
+                        y_true=list(relevant_ids),  # List of relevant doc IDs
+                        y_pred=top_k_retrieved,  # Top 10 retrieved doc IDs
+                        correct=has_relevant,
+                        score=score,
+                        metadata=query_metadata_map.get(query_id, {}),
+                    )
+                )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=ground_truth,
             split=self.task_spec.default_split,
             per_query_metrics=per_query,
             num_samples=num_queries,
         )
+
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="retrieval",
+                model_key=model_key or "unknown",
+                split=self.task_spec.default_split,
+                samples=per_sample_list,
+            )
+
+        return result
 
     def evaluate_embedder(
         self,
@@ -151,6 +237,7 @@ class RetrievalEvaluator(TaskEvaluator):
         top_k: int = 100,
         batch_size: int = 32,
         show_progress: bool = True,
+        save_samples: bool = False,
     ) -> EvaluationResult:
         """Evaluate an embedder directly on retrieval task.
 
@@ -169,6 +256,7 @@ class RetrievalEvaluator(TaskEvaluator):
             top_k: Number of documents to retrieve per query (default: 100)
             batch_size: Batch size for encoding
             show_progress: Whether to show progress bars
+            save_samples: Whether to capture per-query results for detailed analysis
 
         Returns:
             EvaluationResult with retrieval metrics
@@ -240,16 +328,75 @@ class RetrievalEvaluator(TaskEvaluator):
         )
 
         # Compute metrics
+        # Enable per-query metrics if save_samples is True
+        compute_per_query = save_samples
         metrics = compute_retrieval_metrics(
             results=results,
             relevance=relevance,
             k_values=self.k_values,
-            compute_per_query=False,  # Don't store per-query for large evaluations
+            compute_per_query=compute_per_query,
         )
 
+        # Extract per-query metrics if available
+        per_query = metrics.pop("per_query", None)
         num_queries = metrics.pop("num_queries", len(results))
 
-        return self._create_result(
+        # Build per-sample results if requested
+        per_sample_list: list[PerSampleResult] = []
+        if save_samples and per_query:
+            # Get available columns for metadata extraction
+            available_cols = set(queries_df.columns)
+            metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+            # Build a lookup for query metadata
+            query_metadata_map: dict[str, dict[str, Any]] = {}
+            for row in queries_df.iter_rows(named=True):
+                query_id = row[id_field]
+                metadata: dict[str, Any] = {}
+                for field in metadata_fields:
+                    if field in row and row[field] is not None:
+                        metadata[field] = row[field]
+
+                # Add text length bucket for length analysis
+                text_field = self.task_spec.text_field
+                if text_field in row and row[text_field]:
+                    text_len = len(row[text_field])
+                    if text_len < 500:
+                        metadata["length_bucket"] = "short"
+                    elif text_len < 2000:
+                        metadata["length_bucket"] = "medium"
+                    else:
+                        metadata["length_bucket"] = "long"
+                    metadata["text_length"] = text_len
+
+                query_metadata_map[query_id] = metadata
+
+            # Create per-sample results for each query
+            for query_id, query_metrics in per_query.items():
+                # Get relevant doc IDs (ground truth)
+                relevant_ids = relevance.get(query_id, set())
+                # Get retrieved doc IDs (top k from predictions)
+                retrieved_ids = results.get(query_id, [])
+
+                # Check if any relevant doc was in top 10 (simple correctness measure)
+                top_k_retrieved = retrieved_ids[:10]
+                has_relevant = any(doc_id in relevant_ids for doc_id in top_k_retrieved)
+
+                # Use NDCG@10 as the per-query score
+                score = query_metrics.get("ndcg@10", 0.0)
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=query_id,
+                        y_true=list(relevant_ids),  # List of relevant doc IDs
+                        y_pred=top_k_retrieved,  # Top 10 retrieved doc IDs
+                        correct=has_relevant,
+                        score=score,
+                        metadata=query_metadata_map.get(query_id, {}),
+                    )
+                )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=queries_df,
             split=split,
@@ -258,6 +405,18 @@ class RetrievalEvaluator(TaskEvaluator):
             corpus_size=len(corpus_df),
             embedding_dim=embedder.embedding_dim,
         )
+
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="retrieval",
+                model_key=embedder.model_name or "unknown",
+                split=split,
+                samples=per_sample_list,
+            )
+
+        return result
 
     def _compute_rankings(
         self,
@@ -321,6 +480,7 @@ class RetrievalEvaluator(TaskEvaluator):
         max_queries: int | None = None,
         top_k: int = 100,
         show_progress: bool = True,
+        save_samples: bool = False,
     ) -> EvaluationResult:
         """Evaluate a retriever directly on retrieval task.
 
@@ -334,6 +494,7 @@ class RetrievalEvaluator(TaskEvaluator):
             max_queries: Maximum number of queries to evaluate (for testing)
             top_k: Number of documents to retrieve per query
             show_progress: Whether to show progress bars
+            save_samples: Whether to capture per-query results for detailed analysis
 
         Returns:
             EvaluationResult with retrieval metrics
@@ -391,16 +552,76 @@ class RetrievalEvaluator(TaskEvaluator):
         )
 
         # Compute metrics
+        # Enable per-query metrics if save_samples is True
+        compute_per_query = save_samples
         metrics = compute_retrieval_metrics(
             results=results,
             relevance=relevance,
             k_values=self.k_values,
-            compute_per_query=False,
+            compute_per_query=compute_per_query,
         )
 
+        # Extract per-query metrics if available
+        per_query = metrics.pop("per_query", None)
         num_queries = metrics.pop("num_queries", len(results))
 
-        return self._create_result(
+        # Build per-sample results if requested
+        per_sample_list: list[PerSampleResult] = []
+        if save_samples and per_query:
+            # Get available columns for metadata extraction
+            id_field = self.task_spec.id_field
+            available_cols = set(queries_df.columns)
+            metadata_fields = [f for f in STRATIFICATION_FIELDS if f in available_cols]
+
+            # Build a lookup for query metadata
+            query_metadata_map: dict[str, dict[str, Any]] = {}
+            for row in queries_df.iter_rows(named=True):
+                query_id = row[id_field]
+                metadata: dict[str, Any] = {}
+                for field in metadata_fields:
+                    if field in row and row[field] is not None:
+                        metadata[field] = row[field]
+
+                # Add text length bucket for length analysis
+                text_field = self.task_spec.text_field
+                if text_field in row and row[text_field]:
+                    text_len = len(row[text_field])
+                    if text_len < 500:
+                        metadata["length_bucket"] = "short"
+                    elif text_len < 2000:
+                        metadata["length_bucket"] = "medium"
+                    else:
+                        metadata["length_bucket"] = "long"
+                    metadata["text_length"] = text_len
+
+                query_metadata_map[query_id] = metadata
+
+            # Create per-sample results for each query
+            for query_id, query_metrics in per_query.items():
+                # Get relevant doc IDs (ground truth)
+                relevant_ids = relevance.get(query_id, set())
+                # Get retrieved doc IDs (top k from predictions)
+                retrieved_ids = results.get(query_id, [])
+
+                # Check if any relevant doc was in top 10 (simple correctness measure)
+                top_k_retrieved = retrieved_ids[:10]
+                has_relevant = any(doc_id in relevant_ids for doc_id in top_k_retrieved)
+
+                # Use NDCG@10 as the per-query score
+                score = query_metrics.get("ndcg@10", 0.0)
+
+                per_sample_list.append(
+                    PerSampleResult(
+                        id=query_id,
+                        y_true=list(relevant_ids),  # List of relevant doc IDs
+                        y_pred=top_k_retrieved,  # Top 10 retrieved doc IDs
+                        correct=has_relevant,
+                        score=score,
+                        metadata=query_metadata_map.get(query_id, {}),
+                    )
+                )
+
+        result = self._create_result(
             metrics=metrics,
             ground_truth=queries_df,
             split=split,
@@ -408,6 +629,18 @@ class RetrievalEvaluator(TaskEvaluator):
             model_name=retriever.model_name,
             corpus_size=len(corpus_df),
         )
+
+        # Attach per-sample results if captured
+        if save_samples and per_sample_list:
+            result.per_sample_results = PerSampleResults(
+                task=self.task_spec.name,
+                task_type="retrieval",
+                model_key=retriever.model_name or "unknown",
+                split=split,
+                samples=per_sample_list,
+            )
+
+        return result
 
     def _build_relevance_judgments(
         self,

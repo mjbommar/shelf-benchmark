@@ -33,6 +33,10 @@ class SentenceTransformerEmbedder:
         embeddings = embedder.encode(["Hello world", "Another text"])
         print(embeddings.shape)  # (2, 384)
 
+        # Get model info for efficiency metrics
+        info = embedder.get_model_info()
+        print(info)  # {'num_params_torch': 22713216, 'hidden_size': 384, ...}
+
     Attributes:
         model: The underlying SentenceTransformer model
         normalize: Whether to normalize embeddings (default: True)
@@ -146,3 +150,58 @@ class SentenceTransformerEmbedder:
     def __repr__(self) -> str:
         """String representation."""
         return f"SentenceTransformerEmbedder(model={self.model_name}, dim={self.embedding_dim})"
+
+    @property
+    def num_params_torch(self) -> int:
+        """Count actual parameters via torch numel().
+
+        Returns:
+            Total number of trainable parameters in the model.
+        """
+        return sum(p.numel() for p in self.model.parameters())
+
+    @property
+    def hidden_size(self) -> int | None:
+        """Get hidden size from model config.
+
+        For sentence-transformers, the first module [0] is typically
+        the Transformer module with an auto_model attribute.
+
+        Returns:
+            Hidden size dimension, or None if not accessible.
+        """
+        try:
+            # sentence-transformers: model[0] is the Transformer module
+            auto_model = self.model[0].auto_model
+            return getattr(auto_model.config, "hidden_size", None)
+        except (IndexError, AttributeError):
+            return None
+
+    @property
+    def context_window(self) -> int | None:
+        """Get max position embeddings (context window) from model config.
+
+        Returns:
+            Maximum sequence length the model can handle, or None if not accessible.
+        """
+        try:
+            auto_model = self.model[0].auto_model
+            return getattr(auto_model.config, "max_position_embeddings", None)
+        except (IndexError, AttributeError):
+            return None
+
+    def get_model_info(self) -> dict[str, int | None]:
+        """Return all model info for efficiency metrics.
+
+        This provides a convenient way to get all model characteristics
+        in a single call for use in efficiency calculations.
+
+        Returns:
+            Dict with num_params_torch, hidden_size, context_window, embedding_dim
+        """
+        return {
+            "num_params_torch": self.num_params_torch,
+            "hidden_size": self.hidden_size,
+            "context_window": self.context_window,
+            "embedding_dim": self.embedding_dim,
+        }

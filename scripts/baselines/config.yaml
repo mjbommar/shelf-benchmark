@@ -1,279 +1,379 @@
-# SHELF Baseline Configuration
-# ==============================
-# This file defines all models and tasks for reproducible baseline evaluation.
-# Run with: python scripts/baselines/run_all.py
-
-version: "1.0.0"
-dataset_version: "0.3.0"
-dataset_repo: "mjbommar/SHELF"
-
-# Reproducibility settings
+version: 1.0.0
+dataset_version: 0.3.0
+dataset_repo: mjbommar/SHELF
 reproducibility:
   random_seed: 42
   num_bootstrap_samples: 1000
   confidence_level: 0.95
-
-# Models to evaluate
-# ------------------
-# Each model specifies:
-#   - type: adapter class to use
-#   - name: human-readable name for tables
-#   - description: what this model is
-#   - params: model-specific parameters
-#   - supports: which task types this model can handle
-
 models:
-  # =========================================================================
-  # SPARSE BASELINES (CPU only, fast)
-  # =========================================================================
-
   tf:
     type: tf
-    name: "TF+SVD"
-    description: "Term Frequency with SVD to 256 dimensions"
+    name: TF+SVD
+    description: Term Frequency with SVD to 256 dimensions
     params:
       embedding_dim: 256
-    supports: [classification, clustering, pair_classification]
-
+    supports:
+    - classification
+    - clustering
+    - pair_classification
   tfidf:
     type: tfidf
-    name: "TF-IDF+SVD"
-    description: "TF-IDF with SVD to 256 dimensions"
+    name: TF-IDF+SVD
+    description: TF-IDF with SVD to 256 dimensions
     params:
       embedding_dim: 256
-    supports: [retrieval, classification, clustering, pair_classification]
-
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
   bm25:
     type: bm25
-    name: "BM25"
-    description: "Okapi BM25 (k1=1.5, b=0.75)"
+    name: BM25
+    description: Okapi BM25 (k1=1.5, b=0.75)
     params:
       k1: 1.5
       b: 0.75
-    supports: [retrieval, pair_classification]
-
-  # =========================================================================
-  # SENTENCE TRANSFORMERS (GPU recommended)
-  # =========================================================================
-
-  # --- Small Models (< 100M params) ---
-
+    supports:
+    - retrieval
+    - pair_classification
   minilm:
     type: sentence_transformer
-    name: "MiniLM-L6"
-    description: "all-MiniLM-L6-v2 (22M params, 384 dims)"
-    model_name: "all-MiniLM-L6-v2"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  mpnet:
-    type: sentence_transformer
-    name: "MPNet"
-    description: "all-mpnet-base-v2 (110M params, 768 dims)"
-    model_name: "all-mpnet-base-v2"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  # --- MTEB Leading Models ---
-
+    name: MiniLM-L6
+    description: all-MiniLM-L6-v2 (22M params, 384 dims)
+    model_name: all-MiniLM-L6-v2
+    num_params: 22713216
+    embedding_dim: 384
+    size_category: 10M-50M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
   bge_small:
     type: sentence_transformer
-    name: "BGE-small"
-    description: "BAAI/bge-small-en-v1.5 (33M params, 384 dims)"
-    model_name: "BAAI/bge-small-en-v1.5"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  bge_base:
-    type: sentence_transformer
-    name: "BGE-base"
-    description: "BAAI/bge-base-en-v1.5 (110M params, 768 dims)"
-    model_name: "BAAI/bge-base-en-v1.5"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  bge_large:
-    type: sentence_transformer
-    name: "BGE-large"
-    description: "BAAI/bge-large-en-v1.5 (335M params, 1024 dims)"
-    model_name: "BAAI/bge-large-en-v1.5"
-    supports: [retrieval, classification, clustering, pair_classification]
-
+    name: BGE-small
+    description: BAAI/bge-small-en-v1.5 (33M params, 384 dims)
+    model_name: BAAI/bge-small-en-v1.5
+    num_params: 33360512
+    embedding_dim: 384
+    size_category: 10M-50M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
   e5_small:
     type: sentence_transformer
-    name: "E5-small"
-    description: "intfloat/e5-small-v2 (33M params, 384 dims)"
-    model_name: "intfloat/e5-small-v2"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  e5_base:
-    type: sentence_transformer
-    name: "E5-base"
-    description: "intfloat/e5-base-v2 (110M params, 768 dims)"
-    model_name: "intfloat/e5-base-v2"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  e5_large:
-    type: sentence_transformer
-    name: "E5-large"
-    description: "intfloat/e5-large-v2 (335M params, 1024 dims)"
-    model_name: "intfloat/e5-large-v2"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  gtr_t5_base:
-    type: sentence_transformer
-    name: "GTR-T5-base"
-    description: "sentence-transformers/gtr-t5-base (110M params, 768 dims)"
-    model_name: "sentence-transformers/gtr-t5-base"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  gtr_t5_large:
-    type: sentence_transformer
-    name: "GTR-T5-large"
-    description: "sentence-transformers/gtr-t5-large (335M params, 768 dims)"
-    model_name: "sentence-transformers/gtr-t5-large"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  # --- Specialized Models ---
-
+    name: E5-small
+    description: intfloat/e5-small-v2 (33M params, 384 dims)
+    model_name: intfloat/e5-small-v2
+    num_params: 33360512
+    embedding_dim: 384
+    size_category: 10M-50M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
   gte_small:
     type: sentence_transformer
-    name: "GTE-small"
-    description: "thenlper/gte-small (33M params, 384 dims)"
-    model_name: "thenlper/gte-small"
-    supports: [retrieval, classification, clustering, pair_classification]
-
+    name: GTE-small
+    description: thenlper/gte-small (33M params, 384 dims)
+    model_name: thenlper/gte-small
+    num_params: 33360512
+    embedding_dim: 384
+    size_category: 10M-50M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  mpnet:
+    type: sentence_transformer
+    name: MPNet
+    description: all-mpnet-base-v2 (110M params, 768 dims)
+    model_name: all-mpnet-base-v2
+    num_params: 109482240
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  bge_base:
+    type: sentence_transformer
+    name: BGE-base
+    description: BAAI/bge-base-en-v1.5 (110M params, 768 dims)
+    model_name: BAAI/bge-base-en-v1.5
+    num_params: 109482240
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  e5_base:
+    type: sentence_transformer
+    name: E5-base
+    description: intfloat/e5-base-v2 (110M params, 768 dims)
+    model_name: intfloat/e5-base-v2
+    num_params: 109482240
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  gtr_t5_base:
+    type: sentence_transformer
+    name: GTR-T5-base
+    description: sentence-transformers/gtr-t5-base (110M params, 768 dims)
+    model_name: sentence-transformers/gtr-t5-base
+    num_params: 109628416
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
   gte_base:
     type: sentence_transformer
-    name: "GTE-base"
-    description: "thenlper/gte-base (110M params, 768 dims)"
-    model_name: "thenlper/gte-base"
-    supports: [retrieval, classification, clustering, pair_classification]
-
+    name: GTE-base
+    description: thenlper/gte-base (110M params, 768 dims)
+    model_name: thenlper/gte-base
+    num_params: 109482240
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
   instructor_base:
     type: sentence_transformer
-    name: "Instructor-base"
-    description: "hkunlp/instructor-base (110M params, 768 dims)"
-    model_name: "hkunlp/instructor-base"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-  # --- Classic BERT Models (for reference) ---
-
+    name: Instructor-base
+    description: hkunlp/instructor-base (110M params, 768 dims)
+    model_name: hkunlp/instructor-base
+    num_params: 109482240
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
   bert:
     type: sentence_transformer
-    name: "BERT"
-    description: "bert-base-uncased (110M params, 768 dims)"
-    model_name: "bert-base-uncased"
-    supports: [retrieval, classification, clustering, pair_classification]
-
+    name: BERT
+    description: bert-base-uncased (110M params, 768 dims)
+    model_name: bert-base-uncased
+    num_params: 109482240
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
   roberta:
     type: sentence_transformer
-    name: "RoBERTa"
-    description: "roberta-base (125M params, 768 dims)"
-    model_name: "roberta-base"
-    supports: [retrieval, classification, clustering, pair_classification]
-
-# Tasks to evaluate
-# -----------------
-# Organized by task type, with all tasks enabled by default
-
+    name: RoBERTa
+    description: roberta-base (125M params, 768 dims)
+    model_name: roberta-base
+    num_params: 124645632
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  bge_large:
+    type: sentence_transformer
+    name: BGE-large
+    description: BAAI/bge-large-en-v1.5 (335M params, 1024 dims)
+    model_name: BAAI/bge-large-en-v1.5
+    num_params: 335141888
+    embedding_dim: 1024
+    size_category: 300M-1B
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  e5_large:
+    type: sentence_transformer
+    name: E5-large
+    description: intfloat/e5-large-v2 (335M params, 1024 dims)
+    model_name: intfloat/e5-large-v2
+    num_params: 335141888
+    embedding_dim: 1024
+    size_category: 300M-1B
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  gtr_t5_large:
+    type: sentence_transformer
+    name: GTR-T5-large
+    description: sentence-transformers/gtr-t5-large (335M params, 768 dims)
+    model_name: sentence-transformers/gtr-t5-large
+    num_params: 335854592
+    embedding_dim: 768
+    size_category: 300M-1B
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  ogbert_2m_sentence:
+    type: sentence_transformer
+    name: ogbert-2m-sentence
+    description: mjbommar/ogbert-2m-sentence (2.1M params, 128 dims)
+    model_name: mjbommar/ogbert-2m-sentence
+    num_params: 2123008
+    embedding_dim: 128
+    size_category: <10M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  ogbert_110m_base:
+    type: sentence_transformer
+    name: OGBert-110M Base
+    description: mjbommar/ogbert-110m-base (139.1M params, 768 dims)
+    model_name: mjbommar/ogbert-110m-base
+    num_params: 139054592
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  ogbert_110m_sentence:
+    type: sentence_transformer
+    name: OGBert-110M Sentence
+    description: mjbommar/ogbert-110m-sentence (139.1M params, 768 dims)
+    model_name: mjbommar/ogbert-110m-sentence
+    num_params: 139054592
+    embedding_dim: 768
+    size_category: 100M-300M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  ogbert_v1_mlm:
+    type: sentence_transformer
+    name: ogbert-v1-mlm
+    description: mjbommar/ogbert-v1-mlm (36.4M params, 384 dims)
+    model_name: mjbommar/ogbert-v1-mlm
+    num_params: 36364929
+    embedding_dim: 384
+    size_category: 10M-50M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
+  distilbert_base_uncased:
+    type: sentence_transformer
+    name: distilbert-base-uncased
+    description: distilbert/distilbert-base-uncased (67.0M params, 768 dims)
+    model_name: distilbert/distilbert-base-uncased
+    num_params: 66985530
+    embedding_dim: 768
+    hidden_size: 768
+    context_window: 512
+    size_category: 50M-100M
+    supports:
+    - retrieval
+    - classification
+    - clustering
+    - pair_classification
 tasks:
   retrieval:
-    - lcc_retrieval
-    - form_retrieval
-    - category_retrieval
-
+  - lcc_retrieval
+  - form_retrieval
+  - category_retrieval
   classification:
-    - lcc_classification
-    - lcgft_category_classification
-    - register_classification
-
+  - lcc_classification
+  - lcgft_category_classification
+  - register_classification
   clustering:
-    - lcc_clustering
-    - lcgft_clustering
-    - register_clustering
-    - geographic_clustering
-
+  - lcc_clustering
+  - lcgft_clustering
+  - register_clustering
+  - geographic_clustering
   pair_classification:
-    - same_lcc_pairs
-    - same_form_pairs
-    - same_register_pairs
-    - same_audience_pairs
-    - same_topic_pairs
-    - topic_overlap_pairs
-
-# Evaluation settings
-# -------------------
-
+  - same_lcc_pairs
+  - same_form_pairs
+  - same_register_pairs
+  - same_audience_pairs
+  - same_topic_pairs
+  - topic_overlap_pairs
 evaluation:
-  # Use full test set (no sampling)
   max_queries: null
-
-  # Batch sizes for embedding
   batch_size: 32
-
-  # Show progress bars
   show_progress: true
-
-  # Compute bootstrap confidence intervals
   compute_ci: true
-
-  # Stratify results by facets
   stratify_by:
-    - lcgft_category
-    - register
-    - model  # generation model
-
-# Output settings
-# ---------------
-
+  - lcgft_category
+  - register
+  - model
 output:
-  # Base directory for results (version-specific)
-  base_dir: "results"
-
-  # Save individual result JSONs
+  base_dir: results
   save_individual: true
-
-  # Save summary JSON
   save_summary: true
-
-  # Generate LaTeX tables
   generate_tables: true
-
-# Model groups for paper tables
-# -----------------------------
-# Define groups for generating comparison tables
-
 model_groups:
   sparse:
-    name: "Sparse Baselines"
-    models: [tf, tfidf, bm25]
-
+    name: Sparse Baselines
+    models:
+    - tf
+    - tfidf
+    - bm25
   small_dense:
-    name: "Small Dense (< 50M)"
-    models: [minilm, bge_small, e5_small, gte_small]
-
+    name: Small Dense (< 50M)
+    models:
+    - minilm
+    - bge_small
+    - e5_small
+    - gte_small
   base_dense:
-    name: "Base Dense (~110M)"
-    models: [mpnet, bge_base, e5_base, gte_base, gtr_t5_base, instructor_base]
-
+    name: Base Dense (~110M)
+    models:
+    - mpnet
+    - bge_base
+    - e5_base
+    - gte_base
+    - gtr_t5_base
+    - instructor_base
   large_dense:
-    name: "Large Dense (> 300M)"
-    models: [bge_large, e5_large, gtr_t5_large]
-
+    name: Large Dense (> 300M)
+    models:
+    - bge_large
+    - e5_large
+    - gtr_t5_large
   reference:
-    name: "Reference Models"
-    models: [bert, roberta]
-
-# SHELF Score computation
-# -----------------------
-# Aggregate score formula for leaderboard
-
+    name: Reference Models
+    models:
+    - bert
+    - roberta
 shelf_score:
-  # Weighted average across task types
   weights:
-    retrieval: 0.30
+    retrieval: 0.3
     classification: 0.25
-    clustering: 0.20
+    clustering: 0.2
     pair_classification: 0.25
-
-  # Primary metric for each task type
   metrics:
     retrieval: ndcg@10
     classification: macro_f1

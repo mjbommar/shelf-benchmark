@@ -50,31 +50,75 @@ shelf --help
 
 ## Usage
 
-```bash
-# List available taxonomies
-shelf list
+The `shelf` CLI provides tools for taxonomy management, benchmark generation, model management, and evaluation.
 
-# Show taxonomy details
-shelf info lcgft
+### Command Overview
 
-# Generate benchmark documents
-shelf gen create --count 1000 --stratified
 ```
+shelf                              # Main CLI
+├── list                           # List taxonomies
+├── info <taxonomy>                # Show taxonomy info
+├── extract <taxonomy>             # Extract taxonomy labels
+├── extract-all                    # Extract all taxonomies
+│
+├── gen                            # Generation subcommand
+│   ├── stats                      # Show taxonomy stats
+│   ├── sample                     # Generate sample docs
+│   ├── create                     # Generate benchmark
+│   └── distribution               # Analyze distribution
+│
+├── eval                           # Evaluation subcommand
+│   ├── run                        # Run evaluations
+│   ├── status                     # Show evaluation status
+│   ├── results                    # Show results summary
+│   └── efficiency                 # Show efficiency rankings
+│
+└── models                         # Model management
+    ├── list                       # List configured models
+    ├── add <hf_model_id>          # Add a model from HuggingFace
+    ├── remove <model_key>         # Remove a model
+    └── info <model_key>           # Show model details
+```
+
+### Quick Examples
+
+```bash
+# Taxonomy exploration
+shelf list                          # List all taxonomies
+shelf info lcgft                    # Show LCGFT taxonomy details
+
+# Benchmark generation
+shelf gen create --count 1000 --stratified
+
+# Model management
+shelf models list                   # List configured models
+shelf models add BAAI/bge-small-en-v1.5  # Add model from HuggingFace
+
+# Run evaluations
+shelf eval run --models minilm bge_small --skip-existing
+shelf eval status                   # Check progress
+shelf eval results                  # View SHELF scores and rankings
+shelf eval efficiency               # View efficiency rankings
+```
+
+See [docs/cli_reference.md](docs/cli_reference.md) for complete CLI documentation.
 
 ## Project Structure
 
 ```
 shelf/
-+-- src/shelf/              # Main Python package
-|   +-- taxonomies/         # Taxonomy loading and models
-|   +-- benchmark/          # Benchmark generation
-|   +-- sampler/            # Document sampling
-|   +-- hub/                # HuggingFace Hub integration
-|   +-- config/             # Configuration management
-|   +-- cli.py              # CLI entry point
-+-- scripts/                # Utility and analysis scripts
-+-- data/taxonomies/        # Extracted taxonomy files
-+-- docs/                   # Documentation and task definitions
+├── src/shelf/              # Main Python package
+│   ├── taxonomies/         # Taxonomy loading and models
+│   ├── benchmark/          # Benchmark generation
+│   ├── sampler/            # Document sampling
+│   ├── hub/                # HuggingFace Hub integration
+│   ├── evaluate/           # Evaluation framework
+│   ├── config/             # Configuration management
+│   ├── cli_cmds/           # CLI subcommand modules (models, eval)
+│   └── cli.py              # CLI entry point
+├── scripts/                # Utility and analysis scripts
+├── data/taxonomies/        # Extracted taxonomy files
+└── docs/                   # Documentation and task definitions
 ```
 
 ## Benchmark Tasks

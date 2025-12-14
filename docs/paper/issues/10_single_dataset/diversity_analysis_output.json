@@ -1,0 +1,227 @@
+{
+  "dataset_stats": {
+    "total_documents": 42616,
+    "train_split": 25569,
+    "val_split": 8523,
+    "test_split": 8524,
+    "generation_models": 9
+  },
+  "dimensions": {
+    "lcc_classes": {
+      "count": 21,
+      "description": "LCC main subject classes (A-Z)",
+      "labels": [
+        "A: General Works",
+        "B: Philosophy, Psychology, Religion",
+        "C: Auxiliary Sciences of History",
+        "D: World History",
+        "E: History of Americas (general, US)",
+        "F: History of Americas (local)",
+        "G: Geography, Anthropology, Recreation",
+        "H: Social Sciences",
+        "J: Political Science",
+        "K: Law",
+        "L: Education",
+        "M: Music",
+        "N: Fine Arts",
+        "P: Language and Literature",
+        "Q: Science",
+        "R: Medicine",
+        "S: Agriculture",
+        "T: Technology",
+        "U: Military Science",
+        "V: Naval Science",
+        "Z: Bibliography, Library Science"
+      ]
+    },
+    "lcgft_categories": {
+      "count": 14,
+      "description": "LCGFT genre/form categories"
+    },
+    "lcgft_forms": {
+      "count": 133,
+      "description": "Specific document forms within categories",
+      "examples": [
+        "Maps",
+        "Lectures",
+        "Prayers",
+        "Jokes",
+        "Biographies",
+        "Satellite imagery",
+        "Games",
+        "Legal briefs",
+        "Novels",
+        "Academic theses"
+      ]
+    },
+    "topics": {
+      "count": 112,
+      "description": "LCSH topical subjects",
+      "examples": [
+        "Art",
+        "Religion",
+        "Culture",
+        "Ethics",
+        "Defense",
+        "Democracy",
+        "Globalization",
+        "Climate change",
+        "Artificial intelligence"
+      ]
+    },
+    "geographic_regions": {
+      "count": 44,
+      "description": "Geographic coverage",
+      "examples": [
+        "United States",
+        "Europe",
+        "Asia",
+        "South America",
+        "Africa",
+        "Middle East"
+      ]
+    },
+    "audience_types": {
+      "count": 25,
+      "description": "Target audience (LCDGT-style)",
+      "examples": [
+        "Children",
+        "General public",
+        "Specialists",
+        "Lawyers",
+        "Researchers",
+        "Physicians"
+      ]
+    },
+    "registers": {
+      "count": 8,
+      "description": "Writing registers/tones",
+      "labels": [
+        "casual",
+        "conversational",
+        "professional",
+        "formal",
+        "academic",
+        "technical",
+        "journalistic",
+        "creative"
+      ]
+    }
+  },
+  "cross_product_diversity": {
+    "core_combinations": 558600,
+    "full_combinations_estimate": 5885476632.0,
+    "interpretation": "SHELF spans 21 subjects \u00d7 133 forms \u00d7 8 registers \u00d7 25 audiences = 558,600 core configurations"
+  },
+  "task_variety": {
+    "task_categories": [
+      "classification",
+      "retrieval",
+      "clustering",
+      "pair_classification"
+    ],
+    "tasks": {
+      "classification": {
+        "lcc_classification": "21-class subject classification",
+        "form_classification": "133-class document form classification",
+        "category_classification": "14-class genre category classification",
+        "register_classification": "8-class writing register classification",
+        "audience_classification": "25-class audience classification",
+        "topic_classification": "112-class topic classification (multi-label)"
+      },
+      "retrieval": {
+        "subject_retrieval": "Retrieve documents by LCC class",
+        "form_retrieval": "Retrieve documents by genre/form",
+        "topic_retrieval": "Retrieve documents by topic"
+      },
+      "clustering": {
+        "subject_clustering": "Cluster by LCC class",
+        "form_clustering": "Cluster by document form",
+        "register_clustering": "Cluster by writing register"
+      },
+      "pair_classification": {
+        "same_lcc_pairs": "Binary classification: same LCC class?",
+        "same_form_pairs": "Binary classification: same form?",
+        "same_register_pairs": "Binary classification: same register?",
+        "same_audience_pairs": "Binary classification: same audience?",
+        "same_topic_pairs": "Binary: share any topic?",
+        "topic_overlap_pairs": "Multi-class: how many topics shared? (0/1/2/3+)"
+      }
+    },
+    "total_distinct_tasks": 18,
+    "breakdown": {
+      "classification": 6,
+      "retrieval": 3,
+      "clustering": 3,
+      "pair_classification": 6
+    }
+  },
+  "effective_benchmarks": {
+    "conservative": {
+      "count": 21,
+      "interpretation": "21 subject domains = 21 domain-specific benchmarks"
+    },
+    "medium": {
+      "count": 294,
+      "interpretation": "21 subjects \u00d7 14 form categories = 294 task variants"
+    },
+    "aggressive": {
+      "count": 18,
+      "interpretation": "18 distinct evaluation tasks"
+    },
+    "conclusion": "SHELF contains between 21 and 18 effective benchmarks, comparable to multi-dataset suites"
+  },
+  "independence": {
+    "independence_claim": "Taxonomic dimensions are statistically independent",
+    "evidence": [
+      "Near-uniform LCC distribution (4.6-4.9% each class)",
+      "Every LCC class appears with every genre category",
+      "Cross-product diversity exceeds real-world corpora"
+    ],
+    "implications": [
+      "Maps about Philosophy exist (rare in real corpora)",
+      "Jokes about Law exist (uncommon in real datasets)",
+      "Prayers about Technology exist (virtually absent in natural data)"
+    ],
+    "advantage": "This independence creates more comprehensive coverage than real-world corpora, which exhibit strong genre-subject correlations",
+    "comparison_to_real_data": "Real corpora have correlated dimensions (e.g., medical papers \u2192 academic register \u2192 scholarly audience). SHELF breaks these correlations intentionally."
+  },
+  "mteb_comparison": {
+    "mteb": {
+      "name": "MTEB (Massive Text Embedding Benchmark)",
+      "type": "Multi-dataset benchmark suite",
+      "datasets": 58,
+      "tasks": 8,
+      "languages": 112,
+      "approach": "Aggregates diverse existing datasets",
+      "diversity_source": "Different datasets from different domains"
+    },
+    "shelf": {
+      "name": "SHELF",
+      "type": "Single synthetic dataset with internal diversity",
+      "datasets": 1,
+      "configurations": 7,
+      "tasks": 20,
+      "subject_classes": 21,
+      "document_forms": 133,
+      "topics": 112,
+      "approach": "Synthetic generation with controlled cross-product diversity",
+      "diversity_source": "Cross-product of independent taxonomic dimensions"
+    },
+    "key_differences": [
+      "MTEB achieves diversity through dataset aggregation (58 datasets)",
+      "SHELF achieves diversity through taxonomic cross-products (21\u00d7133\u00d78\u00d725\u00d7112 configurations)",
+      "MTEB covers 8 task types across multiple domains",
+      "SHELF covers 20 tasks within bibliographic classification",
+      "MTEB uses real-world data (risk of contamination)",
+      "SHELF uses synthetic data (less contamination risk, more control)"
+    ],
+    "complementarity": [
+      "MTEB focuses on embedding quality across diverse real-world tasks",
+      "SHELF focuses on document understanding within comprehensive taxonomies",
+      "MTEB evaluates generalization across datasets",
+      "SHELF evaluates generalization across taxonomic dimensions",
+      "Both are needed: MTEB for breadth, SHELF for depth in document classification"
+    ]
+  }
+}

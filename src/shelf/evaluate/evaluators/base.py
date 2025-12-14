@@ -200,6 +200,44 @@ class TaskEvaluator(ABC):
         # Apply filters if configured
         df = self._apply_filters(df)
 
+        # Filter out records with empty text (data quality check)
+        # This catches any bad records that made it into the dataset
+        df = self._filter_empty_text(df)
+
+        return df
+
+    def _filter_empty_text(self, df: pl.DataFrame) -> pl.DataFrame:
+        """Filter out records with empty or whitespace-only text.
+
+        This is a data quality safeguard that removes records with empty
+        text fields, which are typically failed generation artifacts.
+
+        Args:
+            df: Input DataFrame
+
+        Returns:
+            Filtered DataFrame with empty text records removed
+        """
+        text_field = self.task_spec.text_field
+
+        if text_field not in df.columns:
+            return df
+
+        original_len = len(df)
+
+        # Filter out null, empty string, and whitespace-only text
+        df = df.filter(
+            pl.col(text_field).is_not_null()
+            & (pl.col(text_field).str.strip_chars() != "")
+        )
+
+        filtered_count = original_len - len(df)
+        if filtered_count > 0:
+            logger.warning(
+                f"Filtered out {filtered_count} records with empty text field "
+                f"(data quality issue). {len(df)} records remaining."
+            )
+
         return df
 
     def _apply_filters(self, df: pl.DataFrame) -> pl.DataFrame:
@@ -266,6 +304,11 @@ class TaskEvaluator(ABC):
         split: str,
         per_class_metrics: dict[str, dict[str, float]] | None = None,
         confusion_matrix: list[list[int]] | None = None,
+        confusion_matrix_labels: list[str] | None = None,
+        top_confusions: list[dict[str, Any]] | None = None,
+        stratified_confusion_matrices: (
+            dict[str, dict[str, list[list[int]]]] | None
+        ) = None,
         per_query_metrics: dict[str, dict[str, float]] | None = None,
         num_correct: int | None = None,
         misclassified_ids: list[str] | None = None,
@@ -281,6 +324,10 @@ class TaskEvaluator(ABC):
             split: Dataset split evaluated
             per_class_metrics: Per-class breakdown
             confusion_matrix: Confusion matrix
+            confusion_matrix_labels: Labels for confusion matrix indices
+            top_confusions: Pre-computed top confused class pairs
+            stratified_confusion_matrices: Confusion matrices by stratum
+                e.g., {"audience": {"Physicians": [[...]], ...}}
             per_query_metrics: Per-query breakdown
             num_correct: Number of correct predictions
             misclassified_ids: List of misclassified IDs
@@ -325,6 +372,9 @@ class TaskEvaluator(ABC):
             metrics=metrics,
             per_class_metrics=per_class_metrics,
             confusion_matrix=confusion_matrix,
+            confusion_matrix_labels=confusion_matrix_labels,
+            top_confusions=top_confusions,
+            stratified_confusion_matrices=stratified_confusion_matrices,
             per_query_metrics=per_query_metrics,
             num_samples=len(ground_truth),
             num_correct=num_correct,
