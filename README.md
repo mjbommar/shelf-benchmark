@@ -73,6 +73,9 @@ shelf                              # Main CLI
 │   ├── results                    # Show results summary
 │   └── efficiency                 # Show efficiency rankings
 │
+├── train                          # Training subcommand
+│   └── classify                   # Fine-tune transformers classifiers on SHELF tasks
+│
 └── models                         # Model management
     ├── list                       # List configured models
     ├── add <hf_model_id>          # Add a model from HuggingFace
@@ -99,6 +102,24 @@ shelf eval run --models minilm bge_small --skip-existing
 shelf eval status                   # Check progress
 shelf eval results                  # View SHELF scores and rankings
 shelf eval efficiency               # View efficiency rankings
+# Classification tasks train lightweight heads on embeddings (LogReg + RandomForest by default);
+# customize with `--classifiers` or `evaluation.classification_heads` in config.
+
+# Full fine-tuning (transformers sequence classification)
+shelf train classify lcc_classification roberta-base -o results/finetune/roberta_lcc
+# Then evaluate the fine-tuned checkpoint by adding a model entry with type: transformers_classifier
+
+# Example: fair comparison (same LCC train/val) between full fine-tune and shallow logistic head
+CUDA_VISIBLE_DEVICES=0 uv run shelf train classify lcc_classification bert-base-uncased \
+  -o results/finetune/bert_lcc_full --epochs 3 --lr 2e-5 \
+  --train-batch-size 16 --eval-batch-size 64 --max-length 256 --warmup-ratio 0.1
+# Evaluate the fine-tuned checkpoint
+CUDA_VISIBLE_DEVICES=0 uv run shelf eval run --config scripts/baselines/config.yaml \
+  --models bert_lcc_finetune_full --tasks lcc_classification --batch-size 16
+# Logistic baseline on the same task (frozen embeddings + logistic head)
+CUDA_VISIBLE_DEVICES=0 uv run shelf eval run --config scripts/baselines/config.yaml \
+  --models bert --tasks lcc_classification --classifiers logistic_regression --batch-size 32
+# In our run: full fine-tune macro_f1≈0.918 vs logistic baseline macro_f1≈0.787
 ```
 
 See [docs/cli_reference.md](docs/cli_reference.md) for complete CLI documentation.

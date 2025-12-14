@@ -84,6 +84,13 @@ def cmd_run(
         int, typer.Option("--batch-size", "-b", help="Batch size for embedding")
     ] = 32,
     quiet: Annotated[bool, typer.Option("--quiet", "-q", help="Reduce output")] = False,
+    classifiers: Annotated[
+        Optional[list[str]],
+        typer.Option(
+            "--classifiers",
+            help="Classification heads to run (e.g., logistic_regression random_forest)",
+        ),
+    ] = None,
     jsonl_log: Annotated[
         Optional[Path], typer.Option("--jsonl-log", help="Path to JSONL log file")
     ] = None,
@@ -147,6 +154,9 @@ def cmd_run(
         except ValueError as e:
             console.print(f"[red]Error:[/red] {e}")
             raise typer.Exit(1)
+
+    if classifiers:
+        run_config = run_config.with_classifiers(classifiers)
 
     # Filter by dense/sparse
     if dense_only or sparse_only:

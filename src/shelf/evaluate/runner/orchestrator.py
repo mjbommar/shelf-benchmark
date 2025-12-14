@@ -155,6 +155,7 @@ class EvaluationOrchestrator:
         total_completed = 0
         total_failed = 0
         total_skipped = 0
+        multiple_classifiers = self._has_multiple_classifiers()
 
         # Evaluate each model
         for model_key in self.config.models:
@@ -167,16 +168,34 @@ class EvaluationOrchestrator:
 
             # Check which tasks need to run
             tasks_to_run, tasks_to_skip = self._filter_tasks(
-                model_key, model_tasks, output_dir
+                model_key, model_tasks, output_dir, model_type=model_type
             )
 
             # Load existing results for skipped tasks
             for task_name, reason in tasks_to_skip:
-                result_key = f"{model_key}_{task_name}"
-                result_path = output_dir / f"{result_key}.json"
-                if result_path.exists():
-                    with open(result_path) as f:
-                        all_results[result_key] = json.load(f)
+                if reason == "already exists" and multiple_classifiers:
+                    for head in self.config.classification_heads:
+                        result_key = self._get_result_key(
+                            model_key, task_name, classifier=head, multi_heads=True
+                        )
+                        result_path = self._get_result_path(
+                            model_key,
+                            task_name,
+                            classifier=head,
+                            multi_heads=True,
+                            output_dir=output_dir,
+                        )
+                        if result_path.exists():
+                            with open(result_path) as f:
+                                all_results[result_key] = json.load(f)
+                else:
+                    result_key = self._get_result_key(model_key, task_name)
+                    result_path = self._get_result_path(
+                        model_key, task_name, output_dir=output_dir
+                    )
+                    if result_path.exists():
+                        with open(result_path) as f:
+                            all_results[result_key] = json.load(f)
 
             # Emit model started
             self.output.on_model_started(
@@ -269,7 +288,7 @@ class EvaluationOrchestrator:
                 task_start_time = time.time()
 
                 try:
-                    result = self._evaluate_task(
+                    results = self._evaluate_task(
                         model=eval_model,
                         model_key=model_key,
                         model_config=model_config,
@@ -280,35 +299,51 @@ class EvaluationOrchestrator:
 
                     task_duration = time.time() - task_start_time
 
-                    # Add efficiency metrics (pass model_key for cached info lookup)
-                    result["efficiency"] = self._get_efficiency_dict(
-                        model_config, model_key
-                    )
-
-                    # Save result
-                    result_key = f"{model_key}_{task_name}"
-                    result_path = output_dir / f"{result_key}.json"
-                    with open(result_path, "w") as f:
-                        json.dump(result, f, indent=2, default=str)
-
-                    all_results[result_key] = result
-
-                    # Emit task completed
-                    self.output.on_task_completed(
-                        TaskCompleted(
-                            model_key=model_key,
-                            task_name=task_name,
-                            task_type=task_type,
-                            primary_metric=result["primary_metric"],
-                            primary_score=result["primary_score"],
-                            metrics=result["metrics"],
-                            duration_seconds=task_duration,
-                            result_path=result_path,
+                    for result in results:
+                        # Add efficiency metrics (pass model_key for cached info lookup)
+                        result["efficiency"] = self._get_efficiency_dict(
+                            model_config, model_key
                         )
-                    )
 
-                    model_completed += 1
-                    total_completed += 1
+                        classifier = result.get("classifier")
+                        result_key = self._get_result_key(
+                            model_key,
+                            task_name,
+                            classifier=classifier,
+                            multi_heads=self._has_multiple_classifiers(),
+                        )
+                        result_path = self._get_result_path(
+                            model_key,
+                            task_name,
+                            classifier=classifier,
+                            multi_heads=self._has_multiple_classifiers(),
+                            output_dir=output_dir,
+                        )
+
+                        with open(result_path, "w") as f:
+                            json.dump(result, f, indent=2, default=str)
+
+                        all_results[result_key] = result
+
+                        # Emit task completed
+                        display_task_name = (
+                            f"{task_name} [{classifier}]" if classifier else task_name
+                        )
+                        self.output.on_task_completed(
+                            TaskCompleted(
+                                model_key=model_key,
+                                task_name=display_task_name,
+                                task_type=task_type,
+                                primary_metric=result["primary_metric"],
+                                primary_score=result["primary_score"],
+                                metrics=result["metrics"],
+                                duration_seconds=task_duration,
+                                result_path=result_path,
+                            )
+                        )
+
+                        model_completed += 1
+                        total_completed += 1
 
                 except Exception as e:
                     task_duration = time.time() - task_start_time
@@ -407,11 +442,13 @@ class EvaluationOrchestrator:
         )
 
     def _calculate_total_combinations(self) -> int:
-        """Calculate total number of model-task combinations."""
+        """Calculate total number of model-task (and classifier) combinations."""
+        heads = self.config.classification_heads or ["logistic_regression"]
         total = 0
         for model_key in self.config.models:
             model_tasks = self.config.get_tasks_for_model(model_key)
-            total += len(model_tasks)
+            for _, task_type in model_tasks:
+                total += len(heads) if task_type == "classification" else 1
         return total
 
     def _dry_run_result(self, run_id: str) -> OrchestrationResult:
@@ -463,6 +500,7 @@ class EvaluationOrchestrator:
         model_key: str,
         model_tasks: list[tuple[str, str]],
         output_dir: Path,
+        model_type: str | None = None,
     ) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
         """Filter tasks to run vs skip.
 
@@ -472,9 +510,41 @@ class EvaluationOrchestrator:
         """
         to_run: list[tuple[str, str]] = []
         to_skip: list[tuple[str, str]] = []
+        heads = self.config.classification_heads or ["logistic_regression"]
+        multi_heads = len(heads) > 1
+        if model_type is not None and hasattr(model_type, "lower"):
+            # If the model exposes predict (classifier) we will only run one head
+            if model_type == "classifier":
+                multi_heads = False
 
         for task_name, task_type in model_tasks:
-            result_path = output_dir / f"{model_key}_{task_name}.json"
+            if (
+                task_type == "classification"
+                and self.config.skip_existing
+                and multi_heads
+            ):
+                # Skip only if all classifier variants already exist
+                paths = [
+                    self._get_result_path(
+                        model_key,
+                        task_name,
+                        classifier=head,
+                        multi_heads=True,
+                        output_dir=output_dir,
+                    )
+                    for head in heads
+                ]
+                if all(p.exists() for p in paths):
+                    to_skip.append((task_name, "already exists"))
+                    continue
+
+            result_path = self._get_result_path(
+                model_key,
+                task_name,
+                classifier=heads[0] if multi_heads else None,
+                multi_heads=multi_heads,
+                output_dir=output_dir,
+            )
 
             if self.config.skip_existing and result_path.exists():
                 to_skip.append((task_name, "already exists"))
@@ -482,6 +552,45 @@ class EvaluationOrchestrator:
                 to_run.append((task_name, task_type))
 
         return to_run, to_skip
+
+    def _has_multiple_classifiers(self) -> bool:
+        """Return True if more than one classification head is configured."""
+        heads = self.config.classification_heads or ["logistic_regression"]
+        return len(heads) > 1
+
+    def _get_result_path(
+        self,
+        model_key: str,
+        task_name: str,
+        *,
+        classifier: str | None = None,
+        multi_heads: bool = False,
+        output_dir: Path | None = None,
+    ) -> Path:
+        """Build result path, appending classifier suffix when running variants."""
+        base_dir = output_dir or (
+            self.config.output_dir / f"v{self.config.dataset_version}" / "baselines"
+        )
+
+        filename = f"{model_key}_{task_name}"
+        if multi_heads and classifier:
+            filename = f"{filename}_{classifier}"
+        filename = f"{filename}.json"
+        return Path(base_dir) / filename
+
+    def _get_result_key(
+        self,
+        model_key: str,
+        task_name: str,
+        *,
+        classifier: str | None = None,
+        multi_heads: bool = False,
+    ) -> str:
+        """Build an in-memory result key consistent with file naming."""
+        key = f"{model_key}_{task_name}"
+        if multi_heads and classifier:
+            key = f"{key}_{classifier}"
+        return key
 
     def _create_model(self, model_config: dict[str, Any]) -> Any:
         """Create a model instance from configuration."""
@@ -516,6 +625,22 @@ class EvaluationOrchestrator:
             if not model_name:
                 raise ValueError("sentence_transformer requires model_name")
             return SentenceTransformerEmbedder.from_pretrained(model_name)
+
+        elif model_type in ("transformers_classifier", "hf_classifier"):
+            from shelf.evaluate.adapters import TransformersSequenceClassifier
+
+            model_name = model_config.get("model_name")
+            if not model_name:
+                raise ValueError("transformers_classifier requires model_name")
+            device = model_config.get("device")
+            max_length = model_config.get("max_length")
+            trust_remote_code = bool(model_config.get("trust_remote_code", False))
+            return TransformersSequenceClassifier.from_pretrained(
+                model_name,
+                device=device,
+                max_length=max_length,
+                trust_remote_code=trust_remote_code,
+            )
 
         else:
             raise ValueError(f"Unknown model type: {model_type}")
@@ -610,7 +735,7 @@ class EvaluationOrchestrator:
         task_name: str,
         task_type: str,
         output_dir: Path,
-    ) -> dict[str, Any]:
+    ) -> list[dict[str, Any]]:
         """Evaluate a single model on a single task."""
         from shelf.evaluate import evaluate
         from shelf.evaluate.evaluators.pair import PairClassificationEvaluator
@@ -620,51 +745,132 @@ class EvaluationOrchestrator:
         model_type = model_config["type"]
         model_name = model_config["name"]
 
+        results: list[dict[str, Any]] = []
+
         # Handle pair classification separately for TF/TF-IDF/BM25
         if task_type == "pair_classification" and model_type in ("tf", "tfidf", "bm25"):
             evaluator = PairClassificationEvaluator(task_spec)
             if model_type == "bm25":
-                result = evaluator.evaluate_bm25(
+                eval_result = evaluator.evaluate_bm25(
                     model,
                     show_progress=self.config.show_progress,
                     save_samples=self.config.save_samples,
                 )
             else:
-                result = evaluator.evaluate_tfidf(
+                eval_result = evaluator.evaluate_tfidf(
                     model,
                     show_progress=self.config.show_progress,
                     save_samples=self.config.save_samples,
                 )
-        else:
-            # Standard evaluation
-            result = evaluate(
-                task=task_name,
-                model=model,
-                max_queries=self.config.max_queries,
-                batch_size=self.config.batch_size,
-                show_progress=self.config.show_progress,
-                save_samples=self.config.save_samples,
-                model_key=model_key,
-            )
 
-        # Build result dict
+            results.append(
+                self._build_result_dict(
+                    eval_result,
+                    model_name,
+                    model_key,
+                    model_type,
+                    task_name,
+                    task_type,
+                    output_dir=output_dir,
+                )
+            )
+            return results
+
+        # Standard evaluation
+        if task_type == "classification" and not hasattr(model, "predict"):
+            # Run one or more classification heads on top of embeddings
+            heads = self.config.classification_heads or ["logistic_regression"]
+            primary_head = heads[0]
+            for head in heads:
+                eval_result = evaluate(
+                    task=task_name,
+                    model=model,
+                    max_queries=self.config.max_queries,
+                    batch_size=self.config.batch_size,
+                    show_progress=self.config.show_progress,
+                    save_samples=self.config.save_samples,
+                    model_key=model_key,
+                    classifier=head,
+                )
+                result_dict = self._build_result_dict(
+                    eval_result,
+                    model_name,
+                    model_key,
+                    model_type,
+                    task_name,
+                    task_type,
+                    classifier=head,
+                    classifier_primary=head == primary_head,
+                    output_dir=output_dir,
+                )
+                results.append(result_dict)
+            return results
+
+        # Default single evaluation path
+        eval_result = evaluate(
+            task=task_name,
+            model=model,
+            max_queries=self.config.max_queries,
+            batch_size=self.config.batch_size,
+            show_progress=self.config.show_progress,
+            save_samples=self.config.save_samples,
+            model_key=model_key,
+        )
+
+        results.append(
+            self._build_result_dict(
+                eval_result,
+                model_name,
+                model_key,
+                model_type,
+                task_name,
+                task_type,
+                output_dir=output_dir,
+            )
+        )
+
+        return results
+
+    def _build_result_dict(
+        self,
+        eval_result: Any,
+        model_name: str,
+        model_key: str,
+        model_type: str,
+        task_name: str,
+        task_type: str,
+        *,
+        classifier: str | None = None,
+        classifier_primary: bool = True,
+        output_dir: Path,
+    ) -> dict[str, Any]:
+        """Construct result dictionary and save per-sample outputs if needed."""
         result_dict: dict[str, Any] = {
             "model": model_name,
             "model_key": model_key,
             "model_type": model_type,
             "task": task_name,
             "task_type": task_type,
-            "primary_metric": result.primary_metric,
-            "primary_score": result.primary_score,
-            "metrics": result.metrics,
-            "num_samples": result.num_samples,
-            "context": result.context.to_dict() if result.context else None,
+            "primary_metric": eval_result.primary_metric,
+            "primary_score": eval_result.primary_score,
+            "metrics": eval_result.metrics,
+            "num_samples": eval_result.num_samples,
+            "context": eval_result.context.to_dict() if eval_result.context else None,
         }
 
+        if classifier:
+            result_dict["classifier"] = classifier
+            result_dict["classifier_primary"] = classifier_primary
+
         # Save per-sample results if present
-        if self.config.save_samples and result.per_sample_results:
-            samples_path = output_dir / f"{model_key}_{task_name}_samples.jsonl.gz"
-            result.per_sample_results.save(samples_path)
+        if self.config.save_samples and eval_result.per_sample_results:
+            samples_suffix = (
+                f"_{classifier}" if classifier and self._has_multiple_classifiers() else ""
+            )
+            samples_path = (
+                output_dir / f"{model_key}_{task_name}{samples_suffix}_samples.jsonl.gz"
+            )
+            eval_result.per_sample_results.save(samples_path)
             result_dict["per_sample_path"] = str(samples_path)
 
         return result_dict
@@ -743,6 +949,12 @@ class EvaluationOrchestrator:
 
             model_key = result["model_key"]
             task_type = result["task_type"]
+            if (
+                task_type == "classification"
+                and result.get("classifier_primary") is False
+            ):
+                # Skip non-primary classifier variants when aggregating SHELF score
+                continue
             score = result["primary_score"]
 
             if model_key not in model_scores:

@@ -34,6 +34,7 @@ dependencies = [
     "tokenizers>=0.22.1",
     "tqdm>=4.66.0",
     "transformers @ git+https://github.com/huggingface/transformers",
+    "accelerate>=1.1.0",
     "typer>=0.12.0",
 ]
 

@@ -378,6 +378,8 @@ class ClassificationEvaluator(TaskEvaluator):
         batch_size: int = 32,
         show_progress: bool = True,
         save_samples: bool = False,
+        classifier: str | None = None,
+        classifier_params: dict[str, Any] | None = None,
     ) -> EvaluationResult:
         """Evaluate embedder by training a simple classifier on embeddings.
 
@@ -392,17 +394,19 @@ class ClassificationEvaluator(TaskEvaluator):
         Args:
             embedder: TextEmbedder instance
             split: Evaluation split (default: task default, usually "test")
-            train_split: Training split for classifier
-            batch_size: Batch size for encoding
-            show_progress: Whether to show progress bars
-            save_samples: Whether to capture per-sample results for detailed analysis
+        train_split: Training split for classifier
+        batch_size: Batch size for encoding
+        show_progress: Whether to show progress bars
+        save_samples: Whether to capture per-sample results for detailed analysis
+        classifier: Which classifier head to train (logistic_regression|random_forest)
+        classifier_params: Optional override parameters for the classifier
 
         Returns:
             EvaluationResult with classification metrics
         """
-        from sklearn.linear_model import LogisticRegression
-
         split = split or self.task_spec.default_split
+        classifier_name = (classifier or "logistic_regression").lower()
+        classifier_params = classifier_params or {}
 
         logger.info(f"Loading train data from split: {train_split}")
         train_df = self._load_ground_truth(train_split)
@@ -454,12 +458,12 @@ class ClassificationEvaluator(TaskEvaluator):
             )
 
         # Train classifier
-        logger.info("Training LogisticRegression classifier...")
-        clf = LogisticRegression(
-            max_iter=1000,
-            random_state=self.random_seed,
+        clf, clf_label = self._train_classifier(
+            classifier_name,
+            train_embeddings,
+            train_labels,
+            classifier_params,
         )
-        clf.fit(train_embeddings, train_labels)
 
         # Predict
         logger.info("Predicting on test data...")
@@ -588,7 +592,7 @@ class ClassificationEvaluator(TaskEvaluator):
             misclassified_ids=misclassified_ids[:100],
             model_name=embedder.model_name,
             embedding_dim=embedder.embedding_dim,
-            classifier="LogisticRegression",
+            classifier=clf_label,
             train_size=len(train_texts),
         )
 
@@ -603,3 +607,47 @@ class ClassificationEvaluator(TaskEvaluator):
             )
 
         return result
+
+    def _train_classifier(
+        self,
+        classifier_name: str,
+        train_embeddings,
+        train_labels,
+        classifier_params: dict[str, Any],
+    ):
+        """Instantiate and fit the requested classifier."""
+        from sklearn.ensemble import RandomForestClassifier
+        from sklearn.linear_model import LogisticRegression
+
+        name = classifier_name.lower()
+        if name in ("logreg", "logistic", "logistic_regression"):
+            params = {
+                "max_iter": 1000,
+                "random_state": self.random_seed,
+                "class_weight": "balanced",
+            }
+            params.update(classifier_params)
+            logger.info("Training LogisticRegression classifier...")
+            clf = LogisticRegression(**params)
+            clf.fit(train_embeddings, train_labels)
+            clf_label = "LogisticRegression"
+        elif name in ("rf", "random_forest", "random_forest_classifier"):
+            params = {
+                "n_estimators": 300,
+                "max_depth": None,
+                "n_jobs": -1,
+                "random_state": self.random_seed,
+                "class_weight": "balanced",
+            }
+            params.update(classifier_params)
+            logger.info(
+                "Training RandomForestClassifier "
+                f"(n_estimators={params.get('n_estimators')}, max_depth={params.get('max_depth')})..."
+            )
+            clf = RandomForestClassifier(**params)
+            clf.fit(train_embeddings, train_labels)
+            clf_label = "RandomForestClassifier"
+        else:
+            raise ValueError(f"Unsupported classifier type: {classifier_name}")
+
+        return clf, clf_label

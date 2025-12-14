@@ -35,6 +35,9 @@ shelf                              # Main CLI
 │   ├── results                    # Show results summary
 │   └── efficiency                 # Show efficiency rankings
 │
+├── train                          # Training subcommand
+│   └── classify                   # Fine-tune transformers classifiers
+│
 └── models                         # Model management
     ├── list                       # List configured models
     ├── add <hf_model_id>          # Add a model from HuggingFace
@@ -301,6 +304,7 @@ shelf eval run --dry-run
 - `--dense-only`: Run only dense models
 - `--sparse-only`: Run only sparse models
 - `--batch-size, -b`: Batch size for embedding (default: 32)
+- `--classifiers`: Classification heads to train on embeddings (default: logistic_regression random_forest)
 - `--dry-run`: Show what would be run
 - `--quiet, -q`: Reduce output
 
@@ -417,6 +421,46 @@ A model is Pareto-optimal if no other model has both higher SHELF score AND fewe
 
 ---
 
+## Training Commands
+
+### `shelf train classify`
+
+Fine-tune a transformers sequence classifier (AutoModelForSequenceClassification) on a SHELF classification task.
+
+```bash
+# Full-model fine-tune
+shelf train classify lcc_classification roberta-base -o results/finetune/roberta_lcc
+
+# Head-only tuning (freeze base encoder)
+shelf train classify lcc_classification roberta-base -o results/finetune/roberta_head --freeze-base
+
+# Fair comparison recipe (same LCC train/val)
+# 1) Full fine-tune (GPU)
+CUDA_VISIBLE_DEVICES=0 uv run shelf train classify lcc_classification bert-base-uncased \
+  -o results/finetune/bert_lcc_full --epochs 3 --lr 2e-5 \
+  --train-batch-size 16 --eval-batch-size 64 --max-length 256 --warmup-ratio 0.1
+# Add to config as type: transformers_classifier (model_name: results/finetune/bert_lcc_full)
+# 2) Evaluate fine-tuned checkpoint
+CUDA_VISIBLE_DEVICES=0 uv run shelf eval run --config scripts/baselines/config.yaml \
+  --models bert_lcc_finetune_full --tasks lcc_classification --batch-size 16
+# 3) Evaluate logistic baseline on the same task (frozen embeddings)
+CUDA_VISIBLE_DEVICES=0 uv run shelf eval run --config scripts/baselines/config.yaml \
+  --models bert --tasks lcc_classification --classifiers logistic_regression --batch-size 32
+# Observed in our run: fine-tune macro_f1≈0.918 vs logistic macro_f1≈0.787
+```
+
+**Key options:**
+- `--train-split` / `--eval-split`: Choose splits (default: train/validation)
+- `--max-length`: Tokenization length (default: 512)
+- `--epochs`, `--lr`, `--weight-decay`, `--warmup-ratio`
+- `--train-batch-size`, `--eval-batch-size`, `--grad-accum`
+- `--freeze-base`: Train only the classification head
+- `--fp16/--no-fp16`: Enable mixed precision when available
+
+After training, add a model entry with `type: transformers_classifier` and `model_name: <output_dir>` to evaluate the fine-tuned checkpoint with `shelf eval run`.
+
+---
+
 ## Configuration
 
 The CLI uses `scripts/baselines/config.yaml` for model and task configuration. See [config.yaml](../scripts/baselines/config.yaml) for the full specification.
@@ -437,4 +481,11 @@ models:
     embedding_dim: 768
     size_category: "base"
     supports: [retrieval, classification, clustering, pair_classification]
+
+  my_roberta_lcc_finetune:
+    type: transformers_classifier
+    name: "RoBERTa-base (SHELF LCC fine-tune)"
+    model_name: "results/finetune/roberta_lcc"   # path from shelf train classify
+    size_category: "base"
+    supports: [classification]
 ```

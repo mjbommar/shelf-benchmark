@@ -23,6 +23,9 @@ from shelf.evaluate.adapters.protocols import (
     TextEmbedder,
 )
 from shelf.evaluate.adapters.sentence_transformers import SentenceTransformerEmbedder
+from shelf.evaluate.adapters.transformers_classifier import (
+    TransformersSequenceClassifier,
+)
 from shelf.evaluate.adapters.tf import TfBackend, TfEmbedder
 from shelf.evaluate.adapters.tfidf import TfidfBackend, TfidfEmbedder
 
@@ -33,6 +36,7 @@ __all__ = [
     "PairClassifier",
     # Embedding Adapters
     "SentenceTransformerEmbedder",
+    "TransformersSequenceClassifier",
     "CachedEmbedder",
     "TfEmbedder",
     "TfBackend",

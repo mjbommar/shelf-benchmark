@@ -52,6 +52,7 @@ class RunConfig:
     skip_existing: bool = False
     use_cache: bool = True
     show_progress: bool = True
+    classification_heads: list[str] = field(default_factory=list)
     save_samples: bool = False
     shelf_score_weights: dict[str, float] = field(default_factory=dict)
     shelf_score_metrics: dict[str, str] = field(default_factory=dict)
@@ -94,6 +95,9 @@ class RunConfig:
         batch_size = eval_config.get("batch_size", 32)
         max_queries = eval_config.get("max_queries")
         show_progress = eval_config.get("show_progress", True)
+        classification_heads = eval_config.get(
+            "classification_heads", ["logistic_regression", "random_forest"]
+        )
 
         # Extract output directory
         output_config = config.get("output", {})
@@ -122,6 +126,7 @@ class RunConfig:
             skip_existing=False,  # Default to False, can be changed with with_skip_existing
             use_cache=True,  # Default to True
             show_progress=show_progress,
+            classification_heads=classification_heads,
             shelf_score_weights=shelf_score_weights,
             shelf_score_metrics=shelf_score_metrics,
         )
@@ -193,6 +198,17 @@ class RunConfig:
         ]
 
         return replace(self, tasks=filtered_tasks)
+
+    def with_classifiers(self, classifiers: list[str]) -> RunConfig:
+        """Return new config with selected classification heads.
+
+        Args:
+            classifiers: List of classifier names (e.g., ["logistic_regression"])
+
+        Returns:
+            New RunConfig instance with classification heads set
+        """
+        return replace(self, classification_heads=classifiers)
 
     def with_skip_existing(self, skip: bool) -> RunConfig:
         """Return new config with skip_existing flag set.

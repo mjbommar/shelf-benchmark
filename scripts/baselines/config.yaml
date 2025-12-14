@@ -180,6 +180,22 @@ models:
     - classification
     - clustering
     - pair_classification
+  bert_lcc_finetune_demo:
+    type: transformers_classifier
+    name: BERT-base (SHELF LCC demo finetune)
+    description: Fine-tuned on LCC (train[:200]) for demo
+    model_name: results/finetune/bert_lcc_demo_small2
+    size_category: 100M-300M
+    supports:
+    - classification
+  bert_lcc_finetune_full:
+    type: transformers_classifier
+    name: BERT-base (SHELF LCC full finetune)
+    description: Full-train fine-tune on LCC
+    model_name: results/finetune/bert_lcc_full
+    size_category: 100M-300M
+    supports:
+    - classification
   roberta:
     type: sentence_transformer
     name: RoBERTa
@@ -324,6 +340,9 @@ evaluation:
   max_queries: null
   batch_size: 32
   show_progress: true
+  classification_heads:
+  - logistic_regression
+  - random_forest
   compute_ci: true
   stratify_by:
   - lcgft_category

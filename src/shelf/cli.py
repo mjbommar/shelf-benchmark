@@ -21,6 +21,9 @@ from rich.progress import (
 )
 from rich.table import Table
 
+from shelf.cli_cmds.eval import app as eval_app
+from shelf.cli_cmds.models import app as models_app
+from shelf.cli_cmds.train import app as train_app
 from .taxonomies import TaxonomyType, Taxonomy
 from .taxonomies.loaders import load_taxonomy_from_frequencies
 from .benchmark import (
@@ -42,12 +45,9 @@ console = Console()
 gen_app = typer.Typer(help="Generate synthetic benchmark documents")
 app.add_typer(gen_app, name="gen")
 
-# Import and add model management and evaluation subcommands
-from shelf.cli_cmds.models import app as models_app
-from shelf.cli_cmds.eval import app as eval_app
-
 app.add_typer(models_app, name="models")
 app.add_typer(eval_app, name="eval")
+app.add_typer(train_app, name="train")
 
 
 def get_default_paths() -> tuple[Path, Path, Path]:

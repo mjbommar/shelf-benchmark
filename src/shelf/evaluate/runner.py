@@ -40,6 +40,7 @@ def evaluate(
     show_progress: bool = True,
     save_samples: bool = False,
     model_key: str | None = None,
+    classifier: str | None = None,
     **kwargs: Any,
 ) -> EvaluationResult:
     """Main evaluation entry point.
@@ -64,6 +65,7 @@ def evaluate(
         show_progress: Whether to show progress bars
         save_samples: Whether to capture per-sample results for detailed analysis
         model_key: Model identifier for per-sample results
+        classifier: Optional classifier head to train when using embedder for classification
         **kwargs: Additional arguments passed to evaluator
 
     Returns:
@@ -149,13 +151,14 @@ def evaluate(
                     show_progress=show_progress,
                 )
             else:
-                # Use embedder interface (train LogisticRegression on embeddings)
+                # Use embedder interface (train a shallow classifier on embeddings)
                 result = evaluator.evaluate_embedder_with_classifier(
                     embedder=model,
                     split=split,
                     batch_size=batch_size,
                     show_progress=show_progress,
                     save_samples=save_samples,
+                    classifier=classifier,
                 )
         elif task_spec.task_type == TaskType.CLUSTERING:
             # Check if evaluator has the evaluate_embedder method
