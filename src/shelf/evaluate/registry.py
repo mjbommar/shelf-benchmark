@@ -306,13 +306,15 @@ TASK_REGISTRY: dict[str, TaskSpec] = {
     "topic_overlap_pairs": TaskSpec(
         name="topic_overlap_pairs",
         task_type=TaskType.PAIR_CLASSIFICATION,
-        description="Predict how many topics two documents share (4-class: 0, 1, 2, 3+)",
+        # Note: Original labels are 0-3+ overlap levels, but evaluated as binary
+        # (0 = no overlap, 1+ = any overlap) since pair evaluators use similarity thresholds
+        description="Predict whether two documents share any topics (binarized from 4-class overlap)",
         text_field="text",  # Will need special handling for pairs
         label_field="label",
         id_field="pair_id",
-        label_space=("0", "1", "2", "3"),  # 4-class graded overlap
-        primary_metric="macro_f1",
-        secondary_metrics=("micro_f1", "accuracy"),
+        label_space=("0", "1"),  # Evaluated as binary (any overlap vs none)
+        primary_metric="f1",
+        secondary_metrics=("accuracy", "auc_roc"),
         dataset_name="mjbommar/SHELF",
         dataset_config="topic_overlap_pairs",
         default_split="test",

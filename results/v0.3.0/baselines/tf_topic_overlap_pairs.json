@@ -1,0 +1,40 @@
+{
+  "model": "TF+SVD",
+  "model_key": "tf",
+  "model_type": "tf",
+  "task": "topic_overlap_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "f1",
+  "primary_score": 0.7389885807504079,
+  "metrics": {
+    "f1": 0.7389885807504079,
+    "accuracy": 0.5860284605433377,
+    "precision": 0.5860284605433377,
+    "recall": 1.0,
+    "auc_roc": 0.582899972406181,
+    "average_precision": 0.6669571686511944,
+    "threshold": -0.012591037899255753,
+    "num_samples": 3865,
+    "num_positive": 2265,
+    "num_negative": 1600
+  },
+  "num_samples": 3865,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.2",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c751db9dfd4d169c1b34265aa6509096",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-36-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T01:51:26.158058+00:00",
+    "model_name": "tf-sklearn-1-2gram-dim256",
+    "data_commit": null,
+    "code_commit": "3104e9c",
+    "extra": {
+      "embedding_dim": 256
+    }
+  }
+}

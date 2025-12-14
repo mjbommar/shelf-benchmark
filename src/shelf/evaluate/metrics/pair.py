@@ -129,7 +129,7 @@ def find_best_threshold(
     """Find the threshold that maximizes a given metric.
 
     Args:
-        y_true: Ground truth labels (0 or 1)
+        y_true: Ground truth labels (0 or 1, or multi-class which gets binarized)
         y_scores: Predicted scores/probabilities
         metric: Metric to optimize ("f1", "accuracy")
 
@@ -138,6 +138,12 @@ def find_best_threshold(
     """
     y_true_arr = np.array(y_true)
     y_scores_arr = np.array(y_scores)
+
+    # Convert multiclass to binary if needed (0 vs non-0)
+    # This handles tasks like topic_overlap_pairs where labels are overlap levels
+    unique_labels = set(y_true_arr)
+    if unique_labels - {0, 1}:
+        y_true_arr = (y_true_arr > 0).astype(int)
 
     # Try thresholds from min to max score
     thresholds = np.unique(y_scores_arr)
@@ -173,7 +179,7 @@ def compute_pair_metrics(
     """Compute all pair classification metrics at once.
 
     Args:
-        y_true: Ground truth labels (0 or 1)
+        y_true: Ground truth labels (0 or 1, or multi-class which gets binarized)
         y_scores: Predicted similarity scores
         threshold: Classification threshold. If None, finds optimal threshold.
 
@@ -199,6 +205,12 @@ def compute_pair_metrics(
         raise ValueError(
             f"Length mismatch: y_true has {len(y_true)}, y_scores has {len(y_scores)}"
         )
+
+    # Convert multiclass to binary if needed (0 vs non-0)
+    # This handles tasks like topic_overlap_pairs where labels are overlap levels
+    unique_labels = set(y_true)
+    if unique_labels - {0, 1}:
+        y_true = [1 if y > 0 else 0 for y in y_true]
 
     # Find best threshold if not provided
     if threshold is None:

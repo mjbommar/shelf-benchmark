@@ -134,8 +134,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--version",
         type=str,
-        default="0.2.0",
-        help="Dataset version (default: 0.2.0)",
+        default="0.3.0",
+        help="Dataset version (default: 0.3.0)",
     )
     parser.add_argument(
         "--no-generation-metadata",

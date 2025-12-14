@@ -57,3 +57,24 @@ def get_async_openai_client() -> openai.AsyncOpenAI:
     if not _loaded and "OPENAI_API_KEY" not in os.environ:
         load_env()
     return openai.AsyncOpenAI()
+
+
+def get_anthropic_client():
+    """Get an Anthropic client, loading env.json if needed."""
+    import anthropic
+
+    if not _loaded and "ANTHROPIC_API_KEY" not in os.environ:
+        load_env()
+    return anthropic.Anthropic()
+
+
+def get_gemini_client():
+    """Get a Google Gemini client, loading env.json if needed."""
+    from google import genai
+
+    if not _loaded and "GEMINI_API_KEY" not in os.environ:
+        load_env()
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise KeyError("GEMINI_API_KEY missing; set it in env.json or environment")
+    return genai.Client(api_key=api_key)

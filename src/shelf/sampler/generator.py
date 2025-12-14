@@ -2,22 +2,27 @@
 Text generation for sampled documents.
 
 Takes label combinations and generates actual document text,
-either via templates or LLM (OpenAI gpt-5.1 via Responses API).
-
-Uses the OpenAI Responses API with:
-- client.responses.parse() for structured Pydantic output
-- service_tier="flex" for efficient batch generation
-- model="gpt-5.1"
+either via templates or an LLM backend (OpenAI, Anthropic, Gemini).
 """
 
 from dataclasses import dataclass
 from enum import Enum
 import random
+from typing import TYPE_CHECKING
 
-import openai
 from pydantic import BaseModel, Field
 
+from shelf.llm import (
+    GenerationParams,
+    GenerationRequest,
+    LLMBackend,
+    OpenAIResponsesBackend,
+)
+
 from .document import Document
+
+if TYPE_CHECKING:
+    import openai
 
 
 # =============================================================================
@@ -729,20 +734,9 @@ class RegisterSampler:
 
 class DocumentGenerator:
     """
-    Generate complete documents with text using OpenAI Responses API.
+    Generate complete documents with text using a configurable LLM backend.
 
-    Uses client.responses.parse() with Pydantic structured output.
-
-    Example:
-        generator = DocumentGenerator(seed=42)
-        doc = generator.generate(sampled_doc)
-
-        # Or with custom client/model
-        generator = DocumentGenerator(
-            seed=42,
-            model="gpt-5.1",
-            service_tier="flex",
-        )
+    Defaults to OpenAI Responses, but can be swapped for Anthropic or Gemini.
     """
 
     def __init__(
@@ -750,8 +744,9 @@ class DocumentGenerator:
         seed: int | None = None,
         model: str = DEFAULT_MODEL,
         service_tier: str | None = DEFAULT_SERVICE_TIER,
-        client: openai.OpenAI | None = None,
-        async_client: openai.AsyncOpenAI | None = None,
+        client: "openai.OpenAI | None" = None,
+        async_client: "openai.AsyncOpenAI | None" = None,
+        llm_backend: LLMBackend | None = None,
         length_weights: dict[DocumentLength, float] | None = None,
         register_weights: dict[Register, float] | None = None,
         temperature_range: tuple[float, float] = TEMPERATURE_RANGE,
@@ -764,6 +759,7 @@ class DocumentGenerator:
         self._service_tier = service_tier
         self._client = client
         self._async_client = async_client
+        self._llm_backend = llm_backend
         self._use_llm = use_llm
         self._template_gen = TemplateGenerator(seed)
         self._length_sampler = LengthSampler(length_weights, seed)
@@ -772,15 +768,18 @@ class DocumentGenerator:
             temperature_range, top_p_range, seed
         )
 
-    def _get_client(self) -> openai.OpenAI:
-        if self._client is None:
-            self._client = openai.OpenAI()
-        return self._client
+    def _get_llm_backend(self) -> LLMBackend:
+        if self._llm_backend is not None:
+            return self._llm_backend
 
-    def _get_async_client(self) -> openai.AsyncOpenAI:
-        if self._async_client is None:
-            self._async_client = openai.AsyncOpenAI()
-        return self._async_client
+        # Default to OpenAI Responses backend for compatibility
+        self._llm_backend = OpenAIResponsesBackend(
+            model=self._model,
+            service_tier=self._service_tier,
+            client=self._client,
+            async_client=self._async_client,
+        )
+        return self._llm_backend
 
     def sample_length(self) -> DocumentLength:
         """Sample a document length."""
@@ -809,23 +808,18 @@ class DocumentGenerator:
         input_text = build_generation_prompt(doc, length, register)
         sampling = self._sampling_sampler.sample()
 
-        # Build request kwargs - plain text output (no structured output)
-        request_kwargs = {
-            "model": self._model,
-            "instructions": GENERATION_INSTRUCTIONS,
-            "input": input_text,
-            "max_output_tokens": 4096,
-            "temperature": sampling.temperature,
-            "top_p": sampling.top_p,
-        }
-        if self._service_tier:
-            request_kwargs["service_tier"] = self._service_tier
-
-        response = self._get_client().responses.create(**request_kwargs)  # type: ignore[no-matching-overload]
-        raw_text = response.output_text or ""
-
-        if not raw_text.strip():
-            raise ValueError("Received empty output from LLM during generation")
+        gen_result = self._get_llm_backend().generate(
+            GenerationRequest(
+                prompt=input_text,
+                system_prompt=GENERATION_INSTRUCTIONS,
+            ),
+            GenerationParams(
+                temperature=sampling.temperature,
+                top_p=sampling.top_p,
+                max_output_tokens=4096,
+            ),
+        )
+        raw_text = gen_result.text
 
         # Parse: first line is "Title: ...", then blank line, then body
         title, body = _parse_generated_text(raw_text)
@@ -859,23 +853,18 @@ class DocumentGenerator:
         input_text = build_generation_prompt(doc, length, register)
         sampling = self._sampling_sampler.sample()
 
-        # Plain text output (no structured output)
-        request_kwargs = {
-            "model": self._model,
-            "instructions": GENERATION_INSTRUCTIONS,
-            "input": input_text,
-            "max_output_tokens": 4096,
-            "temperature": sampling.temperature,
-            "top_p": sampling.top_p,
-        }
-        if self._service_tier:
-            request_kwargs["service_tier"] = self._service_tier
-
-        response = await self._get_async_client().responses.create(**request_kwargs)  # type: ignore[no-matching-overload]
-        raw_text = response.output_text or ""
-
-        if not raw_text.strip():
-            raise ValueError("Received empty output from LLM during generation")
+        gen_result = await self._get_llm_backend().generate_async(
+            GenerationRequest(
+                prompt=input_text,
+                system_prompt=GENERATION_INSTRUCTIONS,
+            ),
+            GenerationParams(
+                temperature=sampling.temperature,
+                top_p=sampling.top_p,
+                max_output_tokens=4096,
+            ),
+        )
+        raw_text = gen_result.text
 
         title, body = _parse_generated_text(raw_text)
 
@@ -893,11 +882,65 @@ class DocumentGenerator:
         self,
         docs: list[Document],
         show_progress: bool = False,
+        use_backend_batch: bool = False,
     ) -> list[GeneratedDocument]:
         """Generate text for a batch of documents (sync)."""
-        results = []
-        for i, doc in enumerate(docs):
-            if show_progress and (i + 1) % 10 == 0:
-                print(f"Generated {i + 1}/{len(docs)}")
-            results.append(self.generate(doc))
+        if not self._use_llm or not use_backend_batch:
+            results = []
+            for i, doc in enumerate(docs):
+                if show_progress and (i + 1) % 10 == 0:
+                    print(f"Generated {i + 1}/{len(docs)}")
+                results.append(self.generate(doc))
+            return results
+
+        # Single sampling configuration applied to the whole batch
+        sampling = self._sampling_sampler.sample()
+        params = GenerationParams(
+            temperature=sampling.temperature,
+            top_p=sampling.top_p,
+            max_output_tokens=4096,
+        )
+
+        requests: list[GenerationRequest] = []
+        meta: list[tuple[Document, DocumentLength, Register]] = []
+        for doc in docs:
+            length = self.sample_length()
+            register = self.sample_register()
+            meta.append((doc, length, register))
+            requests.append(
+                GenerationRequest(
+                    prompt=build_generation_prompt(doc, length, register),
+                    system_prompt=GENERATION_INSTRUCTIONS,
+                )
+            )
+
+        results_raw = self._get_llm_backend().generate_batch(requests, params)
+        if len(results_raw) != len(docs):
+            raise ValueError(
+                "LLM backend returned mismatched batch size "
+                f"(expected {len(docs)}, got {len(results_raw)})"
+            )
+
+        results: list[GeneratedDocument] = []
+        for (doc, length, register), request, gen_result in zip(
+            meta, requests, results_raw
+        ):
+            raw_text = gen_result.text
+            if not raw_text.strip():
+                raise ValueError("Received empty output from LLM during batch generation")
+            title, body = _parse_generated_text(raw_text)
+            results.append(
+                GeneratedDocument(
+                    document=doc,
+                    title=title,
+                    body=body,
+                    prompt=request.prompt,
+                    target_length=length,
+                    register=register,
+                    sampling_params=SamplingParams(
+                        temperature=sampling.temperature,
+                        top_p=sampling.top_p,
+                    ),
+                )
+            )
         return results

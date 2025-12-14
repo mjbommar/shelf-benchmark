@@ -1,0 +1,40 @@
+{
+  "model": "TF-IDF+SVD",
+  "model_key": "tfidf",
+  "model_type": "tfidf",
+  "task": "same_audience_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "f1",
+  "primary_score": 0.6666666666666666,
+  "metrics": {
+    "f1": 0.6666666666666666,
+    "accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "auc_roc": 0.5437728749999999,
+    "average_precision": 0.5399486556528159,
+    "threshold": -0.07310108840465546,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.2",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "3994babeff294c3f0506d6418ebc8146",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-36-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-13T23:35:00.250558+00:00",
+    "model_name": "tfidf-sklearn-1-2gram-dim256",
+    "data_commit": null,
+    "code_commit": "3104e9c",
+    "extra": {
+      "embedding_dim": 256
+    }
+  }
+}

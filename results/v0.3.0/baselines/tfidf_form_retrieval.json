@@ -1,0 +1,53 @@
+{
+  "model": "TF-IDF+SVD",
+  "model_key": "tfidf",
+  "model_type": "tfidf",
+  "task": "form_retrieval",
+  "task_type": "retrieval",
+  "primary_metric": "ndcg@10",
+  "primary_score": 0.10053400104117431,
+  "metrics": {
+    "mrr": 0.23377348317413177,
+    "ndcg@1": 0.12681839511966214,
+    "recall@1": 0.0004371350936373223,
+    "precision@1": 0.12681839511966214,
+    "map@1": 0.0004371350936373223,
+    "ndcg@5": 0.10928482821697193,
+    "recall@5": 0.0017875342211220145,
+    "precision@5": 0.1045049272641952,
+    "map@5": 0.0011562087622463023,
+    "ndcg@10": 0.10053400104117431,
+    "recall@10": 0.0032214043393612004,
+    "precision@10": 0.09429845143125293,
+    "map@10": 0.001686978307017881,
+    "ndcg@50": 0.08107854222575543,
+    "recall@50": 0.012660617966110493,
+    "precision@50": 0.07476302205537307,
+    "map@50": 0.004217348030423284,
+    "ndcg@100": 0.07212373090261559,
+    "recall@100": 0.022361258367207558,
+    "precision@100": 0.06619662130455185,
+    "map@100": 0.0062495367466281
+  },
+  "num_samples": 8524,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.2",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c962d5456f368a0dde662869a89a1b00",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-36-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-13T23:29:49.219147+00:00",
+    "model_name": "tfidf-sklearn-1-2gram-dim256",
+    "data_commit": "ec08a1e",
+    "code_commit": "3104e9c",
+    "extra": {
+      "num_samples": 8524,
+      "corpus_size": 34092,
+      "embedding_dim": 256
+    }
+  }
+}

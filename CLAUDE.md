@@ -7,7 +7,7 @@ This project was renamed from `locbench` to `shelf` (SHELF) because another proj
 **SHELF** = **S**ynthetic **H**arness for **E**valuating **L**LM **F**itness
 
 The name:
-- **Synthetic**: Documents are AI-generated using GPT-5.1 and GPT-5.2
+- **Synthetic**: Documents are AI-generated using 9 frontier LLMs (GPT-5.x, Gemini 2.5/3, Claude 4.5)
 - **Harness**: A structured framework for running evaluations
 - **Evaluating**: Benchmark for measuring model capabilities
 - **LLM Fitness**: How well language models perform on classification, retrieval, and clustering tasks
@@ -26,13 +26,14 @@ SHELF is a synthetic benchmark for evaluating language models on bibliographic c
 
 Unlike narrow domain benchmarks (e.g., FinMTEB for finance, ChemTEB for chemistry), SHELF uses the Library of Congress Classification—the most comprehensive bibliographic taxonomy ever developed, designed to organize **all human knowledge**.
 
-**Coverage (from 20,000 documents):**
-- **21 LCC subject classes**: Near-uniform distribution (4.4-5.2% each) spanning Science, Fine Arts, Law, Medicine, Philosophy, History, Technology, Agriculture, etc.
+**Coverage (v0.3.0, 42,616 documents):**
+- **21 LCC subject classes**: Near-uniform distribution (4.6-4.9% each) spanning Science, Fine Arts, Law, Medicine, Philosophy, History, Technology, Agriculture, etc.
 - **133 document forms**: Lectures, Maps, Prayers, Jokes, Biographies, Satellite imagery, Games, Legal briefs, etc.
 - **112 topics**: Art, Religion, Culture, Ethics, Defense, Democracy, Globalization, etc.
 - **44 geographic regions**: Global coverage (US, Europe, Asia, South America, etc.)
 - **25 audience types**: Children to specialists, lawyers to general public
 - **8 writing registers**: Academic, professional, casual, creative, technical, etc.
+- **9 generation models**: GPT-5.1, GPT-5.2, Gemini 2.5 Flash/Pro, Gemini 3 Pro, Claude Haiku/Sonnet/Opus 4.5
 
 **Key insight**: The co-occurrence matrices show **independence** between dimensions—every LCC class appears with every genre category. This means the benchmark includes Maps about Philosophy, Jokes about Law, Prayers about Technology, etc. This cross-product diversity is **more comprehensive than real-world corpora**, which exhibit strong genre-subject correlations.
 
@@ -70,8 +71,9 @@ The benchmark evaluates LLM fitness across:
 ## HuggingFace Dataset
 
 - **Repo ID**: `mjbommar/SHELF`
-- **Configurations**: `default`, `same_lcc_pairs`, `same_form_pairs`
-- **Splits**: train (12,000), validation (4,000), test (4,000)
+- **Version**: 0.3.0
+- **Configurations**: `default`, `same_lcc_pairs`, `same_form_pairs`, `same_register_pairs`, `same_audience_pairs`, `same_topic_pairs`, `topic_overlap_pairs`
+- **Splits**: train (25,569), validation (8,523), test (8,524)
 
 ## CLI Usage
 

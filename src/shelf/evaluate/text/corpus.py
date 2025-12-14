@@ -493,6 +493,107 @@ class CorpusStatistics:
 
         return scores
 
+    def get_bm25_scores_batch_vectorized(
+        self,
+        queries_tokens: list[list[str]],
+        k1: float = 1.5,
+        b: float = 0.75,
+    ) -> np.ndarray:
+        """Compute BM25 scores using fully vectorized matrix operations.
+
+        This uses NumPy matrix operations that leverage multi-core BLAS,
+        providing significant speedup over the loop-based implementation.
+
+        Strategy:
+        1. Find unique terms across all queries in batch
+        2. Extract TF columns for those terms (sparse → dense subset)
+        3. Compute BM25 scores for all terms × all docs (vectorized)
+        4. Build query-term matrix and multiply to get final scores
+
+        Args:
+            queries_tokens: List of tokenized queries
+            k1: Term frequency saturation parameter (default: 1.5)
+            b: Length normalization parameter (default: 0.75)
+
+        Returns:
+            Array of shape (n_queries, n_docs) with BM25 scores
+        """
+        from shelf.evaluate.text.vocabulary import IdfFormula
+
+        if not self._is_fitted or self._document_lengths is None:
+            raise ValueError("Corpus not fitted. Call fit() first.")
+
+        n_queries = len(queries_tokens)
+        n_docs = self._num_documents
+
+        if n_queries == 0:
+            return np.zeros((0, n_docs), dtype=np.float64)
+
+        # Get BM25 IDF (computed once, cached)
+        idf = self.vocabulary.get_idf(IdfFormula.BM25)
+
+        # Precompute length normalization factor
+        doc_lengths = self._document_lengths
+        len_norm = 1 - b + b * (doc_lengths / self._avg_document_length)
+
+        # Step 1: Find unique terms and map to vocabulary indices
+        unique_terms: dict[str, int] = {}  # term -> local_idx
+        term_to_vocab: list[int] = []  # local_idx -> vocab_idx
+
+        for query_tokens in queries_tokens:
+            for token in query_tokens:
+                if token not in unique_terms:
+                    vocab_idx = self.vocabulary.get(token, -1)
+                    if vocab_idx >= 0:
+                        unique_terms[token] = len(term_to_vocab)
+                        term_to_vocab.append(vocab_idx)
+
+        n_unique_terms = len(term_to_vocab)
+
+        if n_unique_terms == 0:
+            return np.zeros((n_queries, n_docs), dtype=np.float64)
+
+        # Step 2: Build query-term matrix (n_queries × n_unique_terms)
+        # Using sparse for efficiency, then convert
+        from scipy.sparse import lil_matrix
+
+        Q_mat = lil_matrix((n_queries, n_unique_terms), dtype=np.float64)
+        for q_idx, query_tokens in enumerate(queries_tokens):
+            for token in query_tokens:
+                if token in unique_terms:
+                    Q_mat[q_idx, unique_terms[token]] += 1.0
+
+        Q_mat = Q_mat.tocsr()  # Convert to CSR for efficient row operations
+
+        # Step 3: Extract TF values for unique terms (n_docs × n_unique_terms)
+        # This is the key - we only extract columns we need
+        vocab_indices = np.array(term_to_vocab, dtype=np.int64)
+        tf_csc = self.term_freq_matrix_csc
+
+        # Extract columns efficiently using fancy indexing on CSC
+        TF_subset = tf_csc[:, vocab_indices].toarray()  # (n_docs × n_unique_terms)
+
+        # Step 4: Compute BM25 term scores (vectorized over all docs and terms)
+        # BM25_scores[d, t] = IDF[t] * TF[d,t] * (k1+1) / (TF[d,t] + k1 * len_norm[d])
+        idf_subset = idf[vocab_indices]  # (n_unique_terms,)
+
+        numerator = TF_subset * (k1 + 1)  # (n_docs × n_unique_terms)
+        denominator = TF_subset + k1 * len_norm[:, np.newaxis]  # broadcasting
+        BM25_term_scores = idf_subset * (numerator / denominator)  # (n_docs × n_unique)
+
+        # Step 5: Matrix multiply to get final scores
+        # scores = Q_mat @ BM25_term_scores.T
+        # Q_mat: (n_queries × n_unique_terms)
+        # BM25_term_scores.T: (n_unique_terms × n_docs)
+        # Result: (n_queries × n_docs)
+        scores = Q_mat @ BM25_term_scores.T
+
+        # Convert from sparse if needed
+        if hasattr(scores, "toarray"):
+            scores = scores.toarray()
+
+        return scores
+
     def get_bm25_top_k(
         self,
         query_tokens: list[str],

@@ -59,6 +59,9 @@ SHELF_FEATURES = {
     # Git versioning for reproducibility (allows filtering by generation code)
     "git_commit": "string",  # Short commit hash, e.g., "ee52a05"
     "code_version": "string",  # commit + "*" if dirty, e.g., "ee52a05*"
+    # Gemini thinking configuration (optional)
+    "thinking_budget": "int32",  # Thinking token budget (null if not applicable)
+    "token_multiplier": "float32",  # Output token multiplier for thinking overhead
 }
 
 
@@ -190,6 +193,20 @@ def _normalize_document(
     }
 
     if include_generation_metadata:
+        # Handle thinking_budget: can be None, 0, or positive int
+        thinking_budget = doc.get("thinking_budget")
+        if thinking_budget is None:
+            thinking_budget = -1  # Use -1 to represent "not applicable" (null)
+        else:
+            thinking_budget = int(thinking_budget)
+
+        # Handle token_multiplier: default to 1.0 if not present
+        token_multiplier = doc.get("token_multiplier")
+        if token_multiplier is None:
+            token_multiplier = 1.0
+        else:
+            token_multiplier = float(token_multiplier)
+
         normalized.update(
             {
                 "temperature": float(doc.get("temperature", 0.0)),
@@ -198,6 +215,9 @@ def _normalize_document(
                 # Git versioning for reproducibility
                 "git_commit": str(doc.get("git_commit") or ""),
                 "code_version": str(doc.get("code_version") or ""),
+                # Gemini thinking configuration
+                "thinking_budget": thinking_budget,
+                "token_multiplier": token_multiplier,
             }
         )
 
@@ -249,6 +269,9 @@ def _create_hf_features(include_generation_metadata: bool = True) -> Any:
                 # Git versioning for reproducibility
                 "git_commit": Value("string"),
                 "code_version": Value("string"),
+                # Gemini thinking configuration
+                "thinking_budget": Value("int32"),  # -1 means not applicable
+                "token_multiplier": Value("float32"),
             }
         )
 

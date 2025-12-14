@@ -1,0 +1,38 @@
+{
+  "run_id": "20251214_015114",
+  "config_version": "1.0.0",
+  "dataset_version": "0.3.0",
+  "dataset_checksum": "c783a572181708fe687929c759872306",
+  "models_evaluated": [
+    "tf",
+    "tfidf",
+    "bm25"
+  ],
+  "tasks_evaluated": [
+    "topic_overlap_pairs"
+  ],
+  "start_time": "2025-12-14T01:51:14.551953+00:00",
+  "end_time": "2025-12-14T01:52:18.001606+00:00",
+  "duration_seconds": 63.449653,
+  "versions": {
+    "python": "3.13.2",
+    "platform": "Linux-6.14.0-36-generic-x86_64-with-glibc2.39",
+    "sklearn": "1.8.0",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3",
+    "sentence_transformers": "5.2.0",
+    "torch": "2.9.1+cu128",
+    "cuda_available": "False",
+    "shelf": "0.2.0"
+  },
+  "git": {
+    "commit": "3104e9c",
+    "branch": "master",
+    "dirty": true
+  },
+  "reproducibility": {
+    "random_seed": 42,
+    "num_bootstrap_samples": 1000,
+    "confidence_level": 0.95
+  }
+}

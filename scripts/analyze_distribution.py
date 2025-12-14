@@ -45,6 +45,8 @@ def extract_dimensions(docs: list[dict]) -> dict[str, list]:
         # Flatten multi-value fields
         "topics": [t for d in docs for t in d.get("topics", [])],
         "geographic": [g for d in docs for g in d.get("geographic", [])] or ["(none)"],
+        # Generation metadata
+        "model": [d.get("model", "(unknown)") for d in docs],
     }
 
 
@@ -239,6 +241,9 @@ def main():
 
     # Print 1D distributions
     console.print("[bold underline]Per-Dimension Distributions[/bold underline]\n")
+
+    # Generation metadata first
+    print_distribution("model", distributions["model"])
 
     for name in [
         "lcc_code",

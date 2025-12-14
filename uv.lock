@@ -192,6 +192,19 @@ wheels = [
 ]
 
 [[package]]
+name = "bm25s"
+version = "0.2.14"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "scipy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/99/72/5ad06c30991ba494242785a3ab8987deb01c07dfc1c492847bde221e62bf/bm25s-0.2.14.tar.gz", hash = "sha256:7b6717770fffbdb3b962e5fe8ef1e6eac7f285d0fbc14484b321e136df837139", size = 59266 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7c/3e/e3ae2f0fb0f8f46f9c787fa419ca5203ff850d0630749a26baf0a6570453/bm25s-0.2.14-py3-none-any.whl", hash = "sha256:76cdb70ae40747941b150a1ec16a9c20c576d6534d0a3c3eebb303c779b3cf65", size = 55128 },
+]
+
+[[package]]
 name = "boto3"
 version = "1.42.7"
 source = { registry = "https://pypi.org/simple" }
@@ -3335,6 +3348,7 @@ name = "shelf"
 version = "0.2.0"
 source = { editable = "." }
 dependencies = [
+    { name = "bm25s" },
     { name = "datasets" },
     { name = "httpx" },
     { name = "huggingface-hub" },
@@ -3369,6 +3383,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "bm25s", specifier = ">=0.2.14" },
     { name = "datasets", specifier = ">=3.0.0" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "huggingface-hub", specifier = ">=0.25.0" },

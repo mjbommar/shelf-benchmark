@@ -20,6 +20,7 @@ from shelf.evaluate.schemas import (
     validate_clustering_predictions,
 )
 from shelf.evaluate.tasks import TaskSpec
+from shelf.taxonomies.geographic import get_region_from_list
 
 if TYPE_CHECKING:
     from shelf.evaluate.adapters.protocols import TextEmbedder
@@ -74,6 +75,56 @@ class ClusteringEvaluator(TaskEvaluator):
             self.n_clusters = len(task_spec.label_space)
         else:
             self.n_clusters = None  # Will be inferred from data
+
+    def _load_ground_truth(self, split: str) -> pl.DataFrame:
+        """Load ground truth with special handling for geographic_clustering.
+
+        For the geographic_clustering task, this method:
+        1. Loads the data with the 'geographic' column (list of place names)
+        2. Maps each document's geographic list to a region using get_region_from_list()
+        3. Filters out documents without a valid region
+        4. Adds the 'geographic_region' column expected by the task
+
+        Args:
+            split: Dataset split to load
+
+        Returns:
+            Polars DataFrame with ground truth data
+        """
+        df = super()._load_ground_truth(split)
+
+        # Special preprocessing for geographic_clustering task
+        if self.task_spec.name == "geographic_clustering":
+            label_field = self.task_spec.label_field  # "geographic_region"
+
+            # Check if we need to preprocess
+            if label_field not in df.columns and "geographic" in df.columns:
+                logger.info("Preprocessing geographic data for clustering...")
+
+                # Map geographic lists to regions
+                def map_to_region(geo_list: list[str] | None) -> str | None:
+                    if geo_list is None or len(geo_list) == 0:
+                        return None
+                    return get_region_from_list(geo_list)
+
+                # Add geographic_region column
+                df = df.with_columns(
+                    pl.col("geographic")
+                    .map_elements(map_to_region, return_dtype=pl.Utf8)
+                    .alias(label_field)
+                )
+
+                # Filter out documents without a valid region
+                original_count = len(df)
+                df = df.filter(pl.col(label_field).is_not_null())
+                filtered_count = len(df)
+
+                logger.info(
+                    f"Geographic filtering: {original_count} -> {filtered_count} docs "
+                    f"({filtered_count / original_count * 100:.1f}% have valid regions)"
+                )
+
+        return df
 
     def evaluate(
         self,

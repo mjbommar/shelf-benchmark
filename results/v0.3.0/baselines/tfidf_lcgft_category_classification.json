@@ -1,0 +1,55 @@
+{
+  "model": "TF-IDF+SVD",
+  "model_key": "tfidf",
+  "model_type": "tfidf",
+  "task": "lcgft_category_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.7547230151264088,
+  "metrics": {
+    "accuracy": 0.752346316283435,
+    "macro_f1": 0.7547230151264088,
+    "micro_f1": 0.752346316283435,
+    "weighted_f1": 0.7548149823998097,
+    "num_samples": 8524,
+    "num_correct": 6413,
+    "num_classes": 14
+  },
+  "num_samples": 8524,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.2",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c962d5456f368a0dde662869a89a1b00",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-36-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-13T23:32:34.500104+00:00",
+    "model_name": "tfidf-sklearn-1-2gram-dim256",
+    "data_commit": "ec08a1e",
+    "code_commit": "3104e9c",
+    "extra": {
+      "embedding_dim": 256,
+      "classifier": "LogisticRegression",
+      "train_size": 25569,
+      "labels": [
+        "Cartographic materials",
+        "Commemorative works",
+        "Creative nonfiction",
+        "Discursive works",
+        "Ephemera",
+        "Informational works",
+        "Instructional and educational works",
+        "Law materials",
+        "Literature",
+        "Music",
+        "Recreational works",
+        "Religious materials",
+        "Sound recordings",
+        "Visual works"
+      ]
+    }
+  }
+}

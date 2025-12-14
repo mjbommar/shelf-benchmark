@@ -1,0 +1,52 @@
+{
+  "model": "BM25",
+  "model_key": "bm25",
+  "model_type": "bm25",
+  "task": "form_retrieval",
+  "task_type": "retrieval",
+  "primary_metric": "ndcg@10",
+  "primary_score": 0.07162992206887132,
+  "metrics": {
+    "mrr": 0.16946004870435502,
+    "ndcg@1": 0.09209291412482402,
+    "recall@1": 0.0003222208901451396,
+    "precision@1": 0.09209291412482402,
+    "map@1": 0.0003222208901451396,
+    "ndcg@5": 0.0787761153282774,
+    "recall@5": 0.0013096446320701694,
+    "precision@5": 0.07512904739558894,
+    "map@5": 0.0008746696570203321,
+    "ndcg@10": 0.07162992206887132,
+    "recall@10": 0.0023281642270539305,
+    "precision@10": 0.0666823087752229,
+    "map@10": 0.001268232672667185,
+    "ndcg@50": 0.05193529080514274,
+    "recall@50": 0.007928499760947241,
+    "precision@50": 0.045713280150164244,
+    "map@50": 0.0026584214975757794,
+    "ndcg@100": 0.042943936857794636,
+    "recall@100": 0.012833886380257935,
+    "precision@100": 0.03706006569685593,
+    "map@100": 0.003408927738388462
+  },
+  "num_samples": 8524,
+  "context": {
+    "shelf_version": "0.2.0",
+    "python_version": "3.13.2",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c962d5456f368a0dde662869a89a1b00",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-36-generic-x86_64-with-glibc2.39",
+    "timestamp": "2025-12-14T01:27:11.958765+00:00",
+    "model_name": "bm25-shelf-k1=1.5-b=0.75",
+    "data_commit": "ec08a1e",
+    "code_commit": "3104e9c",
+    "extra": {
+      "num_samples": 8524,
+      "corpus_size": 34092
+    }
+  }
+}
