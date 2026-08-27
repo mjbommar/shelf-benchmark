@@ -37,7 +37,25 @@ Unlike narrow domain benchmarks (e.g., FinMTEB for finance, ChemTEB for chemistr
 
 **Key insight**: The co-occurrence matrices show **independence** between dimensions—every LCC class appears with every genre category. This means the benchmark includes Maps about Philosophy, Jokes about Law, Prayers about Technology, etc. This cross-product diversity is **more comprehensive than real-world corpora**, which exhibit strong genre-subject correlations.
 
-**Positioning**: SHELF is "domain-complete" rather than "domain-specific." Strong SHELF performance indicates genuine document understanding across the full breadth of human intellectual output.
+**Positioning**: SHELF is a factorial instrument for bibliographic
+classification. Its design fixes label semantics, generator, and genre
+independently, so it can measure things a natural corpus cannot separate.
+
+Two cautions, both measured rather than theoretical:
+
+- Do **not** claim SHELF scores transfer to natural text. They do not. A
+  lexical model scoring 0.893 in-domain scores 0.301 on human-written,
+  human-catalogued Gutenberg passages, and the failure is symmetric.
+- Do **not** call this "document understanding." That term already means
+  visually rich document analysis (DocVQA, UDOP, DUDE). Say
+  "bibliographic classification" or "taxonomic representation quality."
+
+An earlier version of this file claimed SHELF was "domain-complete" and
+measured "document understanding across the full breadth of human
+intellectual output." Both claims were retired on 2026-08-27: the first is
+the shape of generality claim Raji et al. (arXiv:2111.15366) argue fails
+construct validity, and the second is contradicted by our own transfer
+measurement.
 
 ## Project Structure
 

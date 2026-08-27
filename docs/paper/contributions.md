@@ -1,136 +1,145 @@
-# SHELF Paper Contributions
+# SHELF paper contributions
 
-## Primary Contributions
+Rewritten 2026-08-27. The previous version asserted six novelty claims,
+five of which do not survive a check against the literature. What follows
+records what we can defend, what we cannot, and the evidence for each.
 
-### 1. Novel Benchmark Design
-**Claim**: First "domain-complete" synthetic benchmark using Library of Congress taxonomies with controlled cross-dimensional independence.
-
-**Evidence**:
-- 21 LCC subject classes with uniform distribution (4.6-4.9% each)
-- 133 document forms × 21 subjects = factorial coverage
-- Co-occurrence matrices show independence (unlike natural corpora)
-
-**Novelty**: Prior benchmarks are either domain-specific (FinMTEB, ChemTEB) or lack controlled diversity (MTEB).
+Framing lives in [outline_v2.md](outline_v2.md). Read that first.
 
 ---
 
-### 2. Contamination Resistance
-**Claim**: Synthetic generation ensures zero overlap with any model's pretraining data.
+## What we cannot claim
 
-**Evidence**:
-- Documents generated Dec 2025 by GPT-5.x, Gemini 2.5/3, Claude 4.5
-- Embedding models trained before these documents existed
-- No web scraping = no contamination pathway
+Each of these appeared in the previous draft and has to go. Keeping them
+costs credibility on the claims that do hold.
 
-**Novelty**: First benchmark to explicitly address contamination through synthetic generation.
+| Retired claim | Why |
+|---|---|
+| First "domain-complete" synthetic benchmark | Invented category, and the exact claim shape Raji et al. (arXiv:2111.15366) argue fails construct validity. Naming the phenomenon narrowly is stronger. |
+| Synthetic generation ensures zero overlap with pretraining data | Overstated. It buys a date: documents generated in 2026 cannot sit in an embedder trained before them. It does not buy freedom from source bias. |
+| First benchmark to address contamination through synthesis | LiveBench, LiveCodeBench, GSM1k, and PhantomWiki all precede us. PhantomWiki does it while deliberately avoiding language models. |
+| Sparse outperforms neural, challenging scaling assumptions | Not novel. FinMTEB reports bag-of-words beating every dense model on financial semantic similarity; BEIR established BM25 as a strong zero-shot baseline in 2021. Report it as corroboration. |
+| First benchmark with efficiency-adjusted rankings | Unverified and implausible as stated. Drop the precedence claim; keep the analysis. |
+| First bibliographic benchmark | LCSHBench (arXiv:2606.04382) and SemEval-2025 Task 5 got there first, on real catalogue records with real cataloguer labels. Verified 2026-08-27 by loading LCSHBench from the hub. |
 
----
+Two presentational fixes:
 
-### 3. Surprising Empirical Finding
-**Claim**: Sparse TF-IDF+SVD outperforms all neural embeddings, challenging scaling assumptions.
-
-**Evidence**:
-- TF+SVD: 0.679 SHELF score
-- Best neural (BGE-large): 0.513
-- 32% performance gap
-- All neural models underperform BM25 baseline on average
-
-**Novelty**: Contradicts prevailing assumption that neural > sparse for text understanding.
-
----
-
-### 4. Multi-Task Evaluation Framework
-**Claim**: Same corpus enables comprehensive evaluation across four task types.
-
-**Evidence**:
-- Classification: 3 tasks (LCC, LCGFT, Register)
-- Retrieval: 3 tasks (Subject, Form, Category)
-- Clustering: 12 tasks (K-means, HDBSCAN, Agglomerative × 4 taxonomies)
-- Pair Classification: 6 tasks (Same-subject, same-form, topic overlap, etc.)
-
-**Novelty**: Single corpus with consistent splits across all task types.
+- **Do not write "document understanding."** In this literature it already
+  means visually rich document analysis (DocVQA, UDOP, DUDE, VRDU), so it
+  routes reviewers to the wrong prior work. Use "bibliographic
+  classification" or "taxonomic representation quality."
+- **Do not pool `default` with `v0_4_core` when reporting corpus size.**
+  Pooling returns gpt-5.2 to 47.7% of the corpus against 9.2% in
+  `v0_4_core`. Report slices separately, or report the pooled `all`
+  config and state the imbalance.
 
 ---
 
-### 5. Efficiency Analysis
-**Claim**: First benchmark to include efficiency-adjusted rankings and Pareto analysis.
+## What we can claim
 
-**Evidence**:
-- SHELF_eff = SHELF × 1000 / log10(params)
-- Pareto frontier identification
-- Size-category rankings
-- Throughput metrics (KB/s)
+### 1. The synthetic-to-natural transfer gap
 
-**Novelty**: Enables cost-aware model selection beyond raw performance.
+The strongest result in the project, and currently the only one with no
+counterpart in the literature for this task.
 
----
+TF-IDF with logistic regression, 21-class LCC, macro-F1:
 
-### 6. Open Infrastructure
-**Claim**: Complete, reproducible evaluation harness with rich tooling.
+| Train -> Test | macro-F1 |
+|---|---|
+| SHELF -> SHELF | 0.8932 |
+| SHELF -> Gutenberg | 0.3010 |
+| Gutenberg -> Gutenberg | 0.5261 |
+| Gutenberg -> SHELF | 0.2954 |
 
-**Evidence**:
-- CLI: `shelf eval run`, `shelf eval results`, `shelf models list`
-- Prediction-file-first interface (framework-agnostic)
-- Strict versioning (checksums, git hashes, library versions)
-- HuggingFace dataset + GitHub code
+Three properties carry it. The failure is symmetric, so it is not that
+synthetic text is simply easier. The natural in-domain control sits well
+above the transferred score, so it is not that natural text is hard. And
+the classifier has no pretraining, so contamination cannot explain it.
 
-**Novelty**: Production-quality benchmark infrastructure, not just a dataset.
+**Evidence status:** measured. Needs restating on v0.4 and the pooled
+corpus before publication.
 
----
+### 2. The design is the contribution, and it is load-bearing
 
-## Secondary Contributions
+Every point claim above falls to prior work. That is normal for a resource
+paper -- BEIR contained no novel dataset, MTEB no novel task. What matters
+is whether the combination enables a measurement that a single-axis
+benchmark cannot produce. Ours does: the transfer result requires at least
+four design elements holding at once.
 
-### 7. Task Difficulty Taxonomy
-**Finding**: Models handle *what* (topics, subjects) better than *how* (form, register) or *where* (geography).
+The ablation table in [outline_v2.md](outline_v2.md) §2.1 gives the full
+mapping of design element to confound removed to measurement enabled.
 
-| Difficulty | Task Type | Best Score |
-|------------|-----------|------------|
-| Easy | Subject classification | 0.88 |
-| Medium | Subject retrieval | 0.67 |
-| Hard | Form retrieval | 0.14 |
-| Very Hard | Geographic clustering | 0.02 |
+**Evidence status:** argued, and checkable from the table.
 
----
+### 3. Generator as a controlled factor
 
-### 8. Scaling Analysis
-**Finding**: 10x parameters (33M → 335M) yields only 3% improvement (0.496 → 0.513).
+Fifteen generators realising one identical spec block, split on `spec_id`,
+with generator-by-label independence measured (Cramer's V <= 0.028) and
+generator attribution measured at 93.1%. Largest generator share 9.24% in
+`v0_4_core`.
 
-**Implication**: Diminishing returns from scale on document understanding tasks.
+E5-Mistral and Cosmopedia used many models. Neither reports generator as
+an axis with paired realisations of a single specification.
 
----
+**Evidence status:** measured and published.
 
-### 9. Task-Specific Champions
-**Finding**: No single model dominates all tasks.
+### 4. Genre orthogonal to subject by construction
 
-| Task Type | Champion |
-|-----------|----------|
-| Classification | TF-IDF+SVD |
-| Retrieval | MPNet, E5-base |
-| Clustering | MPNet, BERT |
-| Pair Classification | MPNet |
+The 21 x 133 cross product with measured independence. Natural corpora
+correlate genre with subject, so they cannot separate "does the model read
+the subject" from "does the model read the register." QUEST comes closest
+and has no genre axis.
 
-**Implication**: Task-specific model selection outperforms single-model deployment.
+**Evidence status:** measured.
 
----
+### 5. Negative results retained
 
-## Contribution Mapping to Paper Sections
+Register clustering came in at chance (pooled ARI 0.0010 against a 0.0013
+flat baseline) and the task was retired rather than reported. The
+geographic label defect (76.4% of two-tag documents spanning different
+regions) was measured, fixed, and reported with a shuffled-label control.
+A prose-rewrite A/B was run and rejected on its own evidence.
 
-| Contribution | Section |
-|--------------|---------|
-| Novel benchmark design | §3 Methods (3.1 Data) |
-| Contamination resistance | §3 Methods (3.2 Generation) |
-| Sparse > Dense finding | §4 Results (4.1 Main) |
-| Multi-task framework | §3 Methods (3.3 Tasks) |
-| Efficiency analysis | §4 Results (4.3 Efficiency) |
-| Open infrastructure | §5 Discussion |
-| Task difficulty | §4 Results (4.2 Per-Task) |
-| Scaling analysis | §4 Results (4.4 Scaling) |
+Bean et al. (arXiv:2511.04703) found only 16.0% of 445 benchmarks conduct
+any statistical testing. Publishing this material is differentiating.
+
+**Evidence status:** measured.
 
 ---
 
-## Claims Requiring Strongest Evidence
+## Claims needing evidence we do not yet have
 
-1. **"Sparse outperforms dense"** - Need statistical significance, ablations, robustness checks
-2. **"Contamination-resistant"** - Need to verify no leakage pathways exist
-3. **"Domain-complete"** - Need to justify LC Classification as "universal"
-4. **"First X benchmark"** - Need thorough related work to confirm novelty
+### Rank agreement
+
+Absolute transfer is disproved -- by us. Rank agreement is the claim that
+remains, and it must be measured rather than asserted: does SHELF rank
+models the way natural bibliographic data ranks them?
+
+Precedents say the target is right and the numbers can be high: Majurski
+and Matuszek report Spearman 0.91 against human-curated benchmarks (TMLR
+2026), and YourBench reports rho = 1 for rankings from document-grounded
+synthetic evaluation. Neither is bibliographic, so ours is a new
+measurement rather than a replication.
+
+We now have two natural comparison corpora: the Gutenberg slice, and
+LCSHBench, which carries real LCC labels on real records.
+
+**Evidence status:** not yet run. This is the largest open item.
+
+### Source bias
+
+Neural retrievers prefer model-written text (Dai et al., KDD 2024). Our
+headline output is a model ranking, so a per-model bias term of unknown
+size sits underneath it. Measure it on matched pairs and report it beside
+each score as a second axis.
+
+**Evidence status:** not yet run.
+
+### A human ceiling
+
+No annotation round has been run, so absolute scores have no scale. The
+399-document kit is built and smoke-tested. Bowman and Dahl
+(arXiv:2104.02145) make reliable annotation a benchmark criterion.
+
+**Evidence status:** infrastructure ready, not run.

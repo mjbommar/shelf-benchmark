@@ -1,3 +1,12 @@
+> **SUPERSEDED, 2026-08-27.** Written before the literature check and
+> before the v0.4 corpus. It contains claims that do not survive review
+> (see [contributions.md](contributions.md) for the retired list) and
+> numbers that do not reproduce. Kept for history.
+>
+> Current framing: [outline_v2.md](outline_v2.md).
+> Current claims: [contributions.md](contributions.md).
+> Work queue: [TODO.md](TODO.md).
+
 # Related Work Notes
 
 ## Text Embedding Benchmarks
