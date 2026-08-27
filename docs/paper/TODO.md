@@ -83,21 +83,32 @@ Framing and evidence audit live in `outline_v2.md`.
 
 ---
 
-## Open decisions
+## Decisions — both resolved 2026-08-27
 
-- [ ] **Venue and timing.** NeurIPS Datasets and Benchmarks 2026 closed in
-      late spring; today is 2026-08-27, so that is the 2027 cycle and
-      there is no schedule pressure. ICLR's cycle typically closes in late
-      September, which would be about four weeks. Confirm real dates —
-      the answer decides whether step 6 is affordable.
-- [ ] **Human annotation round.** The 399-document kit is built and
-      smoke-tested. Without it, absolute scores have no scale and the
-      "no reliable annotation" objection (Bowman and Dahl) has no
-      rebuttal. My recommendation is to run it; it is the first thing I
-      would cut if the venue is four weeks out. Descoped for the data
-      phase, which was right then — this is a separate decision.
+- [x] **Venue and timing. Resolved by checking the calls.**
+      - **NeurIPS renamed the track.** What was "Datasets and Benchmarks"
+        is, from 2026, the **Evaluations & Datasets Track**. The 2026
+        deadline was 4 May (abstract) / 6 May (paper) and has passed; 2027
+        dates are not yet published, so by pattern roughly May 2027.
+      - **ICLR 2027 is the near option:** abstract **18 September 2026**,
+        paper **25 September 2026**, both AoE. That is 22 and 29 days from
+        today.
+      - **Recommendation: target ICLR 2027.** The evidence base is
+        complete — transfer matrix, rank agreement at n=22, the leakage
+        diagnostics — and the draft is consolidated. Nothing outstanding
+        needs another eight months. Keep NeurIPS Evaluations & Datasets
+        2027 as the fallback if the September window slips.
 
----
+- [x] **Human annotation round. Already decided by the user, and it
+      stands.** The instruction earlier in this project was explicit: "we're
+      not doing human labeling at this phase." That answers it. The
+      399-document kit stays built and smoke-tested for a later round.
+      The paper therefore ships without a human ceiling and says so in
+      Limitations rather than implying one exists. Note the cost: LCSHBench
+      reports 86.9% exact for its own task and we have no equivalent, so
+      absolute SHELF scores have no upper reference. That is a real
+      weakness, honestly stated, and it is survivable because the paper's
+      claims are about *rankings*, which need no ceiling.
 
 ## Submission requirements (NeurIPS D&B)
 

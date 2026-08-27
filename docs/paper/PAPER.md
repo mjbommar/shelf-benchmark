@@ -20,8 +20,11 @@ The title states the finding rather than naming the artifact. Avoid
 rich document analysis (DocVQA, UDOP, DUDE) and will route reviewers to the
 wrong prior work.
 
-**Venue: NeurIPS Datasets and Benchmarks.** Croissant metadata, hosting plan,
-and licence are all in place.
+**Venue: ICLR 2027** — abstract 18 September 2026, paper 25 September 2026
+(AoE). Fallback is the NeurIPS **Evaluations & Datasets Track**, renamed from
+"Datasets and Benchmarks" in 2026, whose 2027 call is not yet published.
+Croissant metadata, hosting plan, and licence are already in place, which the
+NeurIPS track requires and ICLR does not penalise.
 
 ---
 
@@ -250,9 +253,16 @@ recommendation are in `topic_leakage_experiment.md`.
 
 ---
 
-## 11. Open decisions
+## 11. Schedule
 
-- **Venue timing.** NeurIPS D&B 2026 closed in spring, so that is the 2027
-  cycle with no schedule pressure. ICLR typically closes in late September.
-- **Human annotation.** Recommended, and the only thing that gives absolute
-  scores a scale. First to cut if the venue is weeks away.
+Targeting **ICLR 2027**: abstract 18 September 2026, paper 25 September
+2026. Twenty-two and twenty-nine days out.
+
+No human annotation round — decided, not deferred by oversight. Absolute
+scores therefore have no upper reference, stated in Limitations. The paper
+survives this because its claims are about *rankings*, and a ranking needs
+no ceiling to be interpretable.
+
+Remaining before submission is writing, not measurement: the evidence base
+(transfer matrix, rank agreement at n=22, leakage diagnostics with a natural
+baseline) is complete.
