@@ -33,21 +33,20 @@ Framing and evidence audit live in `outline_v2.md`.
 - [x] Fixed the blocker: the evaluators hardcoded
       `data/hf_dataset/<split>.parquet`, so only one corpus could ever be
       scored. Added `SHELF_DATA_DIR`.
-- [~] Sweep running in background: 25 models x 16 tasks on the pooled
-      corpus, `results/pooled/baselines`. Local encoders, no API spend.
-      Slow — SVD refits per task on 37,795 x 50,000.
-- [ ] Produces the headline table and the SHELF ranking for step 3.
+- [x] Pooled sweep: the full 16-task version OOM'd the machine (61GB RSS,
+      similarity matrices over 62,899 documents) and was replaced by a
+      memory-capped classification+clustering sweep. The SHELF ranking for
+      step 3 comes from the complete 22-model v0.3.0 results instead.
+- [x] All sweeps now run under `systemd-run -p MemoryMax=`.
 
 ### 3. Rank agreement — closes outline §6
-- [ ] Run the same 22 models on **LCC classification only** across:
-      SHELF v0.4, the Gutenberg slice, and LCSHBench (`lc_class`).
-      One task, not sixteen.
-- [ ] Spearman between the three rankings, with confidence intervals.
-- [ ] LCSHBench is public, CC0, 15 languages, dev 18,993 / test 3,353,
-      22 LCC classes. Verified loadable from the hub 2026-08-27.
-- [ ] Targets from precedent: Majurski and Matuszek 0.91 (TMLR 2026),
-      YourBench rho = 1. Neither is bibliographic, so this is a new
-      measurement rather than a replication.
+- [x] 22 models scored on LCC classification across all three corpora.
+- [x] Spearman with bootstrap intervals over models: SHELF vs Gutenberg
+      0.878 [0.64, 0.99]; SHELF vs LCSHBench 0.781 [0.42, 0.97];
+      Gutenberg vs LCSHBench 0.963 [0.86, 0.99].
+- [x] LCSHBench verified and staged (English, 4,924 rows, 21 classes).
+- [x] Against precedent: Majurski and Matuszek report 0.91 in another
+      domain; SHELF's 0.878 against natural prose sits just below it.
 
 ---
 
@@ -61,7 +60,8 @@ Framing and evidence audit live in `outline_v2.md`.
 - [x] "domain-complete" removed from `CLAUDE.md`, replaced with the
       factorial-instrument framing plus the two measured cautions.
 - [x] "document understanding" flagged and replaced in the live docs.
-- [ ] Adopt V@k from CoDeR rather than the coined `contrast_violation`.
+- [x] Adopt V@k from CoDeR rather than the coined `contrast_violation`
+      (renamed in docs; code alias kept for existing result files).
 
 ### 5. Verify two citations before they enter a bibliography
 - [x] Gill et al. (arXiv:2505.22830) — **real, verified from the arXiv
