@@ -26,14 +26,17 @@ Framing and evidence audit live in `outline_v2.md`.
       (0.502), not the published 0.679. TF-IDF+SVD is 0.5163, rank 3.
       Any paper text citing 0.679 must change.
 
-### 2. v0.4 baseline sweep
-- [ ] Run 22 models x 16 tasks on v0.4. Local encoders, so compute only,
-      no API spend.
-- [ ] **Decision needed:** v0.4 only, or v0.3.0 and v0.4 side by side?
-      Side by side costs a second sweep but turns the version bump into
-      evidence that generator balancing changed scores — which supports
-      the factorial-design argument in `outline_v2.md` §2.1.
-- [ ] Produces the paper's headline table and the SHELF ranking for §3.
+### 2. Baseline sweep on the pooled corpus
+- [x] **Decision made** (user directive: pool everything, maximum
+      samples). Built `all`: 62,899 synthetic documents, published to the
+      hub as config `all`. See §Pooled corpus below.
+- [x] Fixed the blocker: the evaluators hardcoded
+      `data/hf_dataset/<split>.parquet`, so only one corpus could ever be
+      scored. Added `SHELF_DATA_DIR`.
+- [~] Sweep running in background: 25 models x 16 tasks on the pooled
+      corpus, `results/pooled/baselines`. Local encoders, no API spend.
+      Slow — SVD refits per task on 37,795 x 50,000.
+- [ ] Produces the headline table and the SHELF ranking for step 3.
 
 ### 3. Rank agreement — closes outline §6
 - [ ] Run the same 22 models on **LCC classification only** across:
@@ -98,9 +101,33 @@ Framing and evidence audit live in `outline_v2.md`.
 
 ## Submission requirements (NeurIPS D&B)
 
-- [ ] Croissant machine-readable metadata.
-- [ ] Hosting, licensing, and maintenance plan.
-- [ ] Data and code reachable by all reviewers at submission.
+- [x] Croissant machine-readable metadata. HF's auto-generated copy is a
+      stub (no `conformsTo`, no `distribution`, no `recordSet`), so
+      `scripts/build_croissant.py` writes a complete record: 7 configs,
+      19 typed fields each. Validates against `mlcroissant` with no
+      errors or warnings. Published at `croissant.json`.
+- [x] Data reachable by reviewers: the dataset is public with 13 configs.
+- [ ] Hosting, licensing, and maintenance plan (prose, for the paper).
+
+---
+
+## Pooled corpus
+
+- [x] `scripts/build_pooled_dataset.py` combines v0.3.1 `default` with
+      every v0.4 slice: **62,899 synthetic documents**, union schema of
+      44 columns, published as config `all` and verified loading from the
+      hub with `source_config` recoverable per row.
+- [x] Cleaning done in the pool: normalised the `anthropic/` routing
+      prefix so one model is one id (26 -> 25 generators), stripped
+      markdown and `Title:` prefixes from 169 titles, deduped on
+      normalised body text (0 duplicates — the two corpora use disjoint
+      spec blocks).
+- [x] **The cost is stated, not hidden.** Pooling puts gpt-5.2 at 47.7%
+      of the corpus against 9.2% in `v0_4_core`. Both configs remain
+      available; use `all` where sample count dominates and `v0_4_core`
+      where balance does.
+- [x] Gutenberg deliberately excluded from the pool — it is the transfer
+      control, and pooling it would destroy the measurement.
 
 ---
 
