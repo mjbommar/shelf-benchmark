@@ -51,33 +51,30 @@ Framing and evidence audit live in `outline_v2.md`.
 ## Parallel track (no compute)
 
 ### 4. Retire dead claims
-- [ ] `docs/paper/contributions.md` and `related_work_notes.md` carry
-      seven claims that will not survive review. Table in `outline_v2.md`
-      §2. Chief among them: "first bibliographic benchmark" (LCSHBench),
-      "first to address contamination by synthesis" (LiveBench, GSM1k,
-      PhantomWiki), and the "domain-complete" framing.
-- [ ] Remove "domain-complete" from `CLAUDE.md` too — it is the claim
-      shape Raji et al. wrote their paper to reject.
-- [ ] Replace "document understanding" throughout. In this literature it
-      means visually rich document analysis (DocVQA, UDOP, DUDE) and will
-      send reviewers to the wrong prior work. Use "bibliographic
-      classification" or "taxonomic representation quality".
+- [x] `contributions.md` rewritten around what is defensible; six retired
+      claims tabulated with reasons. `abstract.md`,
+      `related_work_notes.md`, `key_findings.md`, and
+      `reviewer_concerns.md` bannered as superseded.
+- [x] "domain-complete" removed from `CLAUDE.md`, replaced with the
+      factorial-instrument framing plus the two measured cautions.
+- [x] "document understanding" flagged and replaced in the live docs.
 - [ ] Adopt V@k from CoDeR rather than the coined `contrast_violation`.
 
 ### 5. Verify two citations before they enter a bibliography
-- [ ] Gill, Ravichander, Marasovic, "What Has Been Lost with Synthetic
-      Evaluation" (arXiv:2505.22830). No Google Scholar hit on
-      2026-08-27. Load-bearing for related work §4, so it needs a
-      primary-source check or removal.
-- [ ] Frank and Paynter 2004, JASIST. No Scholar hit for the stated
-      title. Scholar returned Subrahmanyam 2006, *Library Resources &
-      Technical Services*, on LCC class-number consistency across
-      libraries, which may be the better citation.
-- [ ] Fix the HUME characterisation. The review summarised it as models
+- [x] Gill et al. (arXiv:2505.22830) — **real, verified from the arXiv
+      abstract.** My Scholar-based doubt was wrong; Scholar indexing is
+      not an existence test. The load-bearing sentence is verbatim:
+      variants are "less challenging for LLMs than their human-authored
+      counterparts." Must be cited — it is the sharpest objection.
+- [x] Frank and Paynter — **real, verified via Crossref.** JASIST,
+      DOI 10.1002/asi.10360, issued 2003-10-28. The classical version of
+      SHELF's primary task. Subrahmanyam 2006 (LRTS) is a useful
+      additional citation on cross-library LCC consistency.
+- [x] Fix the HUME characterisation. The review summarised it as models
       passing the human ceiling; the paper's abstract resists that
       reading ("Rather than treating low human performance as a ceiling
       to surpass..."). Cite the gap, not a ceiling-crossing.
-- [ ] Add El Assadi, Muennighoff, Lee, "The Embedder's Dilemma"
+- [x] Add El Assadi, Muennighoff, Lee, "The Embedder's Dilemma"
       (arXiv:2608.12875, Aug 2026). Missed by the literature review,
       from the MTEB maintainers, 26 models.
 

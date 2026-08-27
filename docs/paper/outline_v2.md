@@ -285,31 +285,48 @@ any more — it decides how strong §6 is.
 
 ---
 
-## 7. Citations still to verify
+## 7. Citation verification log
 
-Two claims inherited from the literature review did not survive a Scholar
-check on 2026-08-27 and must not enter a bibliography as they stand:
+Checked against primary sources on 2026-08-27.
+
+**Both citations I had flagged as doubtful are real.** A Google Scholar
+search returned nothing for either, and I wrongly read that as evidence of
+absence. Scholar indexing is not a existence test -- the arXiv export API
+was also returning empty for known-good control IDs the same day. Verified
+directly:
 
 - **Gill, Ravichander, Marasovic, "What Has Been Lost with Synthetic
-  Evaluation" (arXiv:2505.22830).** No Scholar hit. The claim attributed
-  to it — that model-generated benchmark variants are easier than
-  human-authored ones — is load-bearing for §2 of related work, so it
-  needs a primary-source check.
-- **Frank and Paynter 2004, JASIST.** No Scholar hit for the stated title.
-  Scholar returned Subrahmanyam 2006, *Library Resources & Technical
-  Services*, on consistency of LCC class numbers across libraries, which
-  is relevant and may be the better citation.
+  Evaluation?"** arXiv:2505.22830. Confirmed from the arXiv abstract, and
+  the load-bearing sentence is verbatim: LLM-generated dataset variants
+  are "often valid according to the annotation guidelines, at a fraction
+  of the cost," but "are less challenging for LLMs than their
+  human-authored counterparts," which "calls for critically reassessing
+  the immediate use of this increasingly prevalent approach to benchmark
+  creation." Case studies are CondaQA (negation) and DROP (quantities).
+  **This is the sharpest objection to SHELF and it must be cited.**
+- **Frank and Paynter, "Predicting Library of Congress classifications
+  from Library of Congress subject headings."** JASIST,
+  DOI 10.1002/asi.10360, issued 2003-10-28. Confirmed via Crossref. This
+  is the classical version of SHELF's primary task and belongs in §2 of
+  related work.
 
-Verified in this pass: LCSHBench (loaded from the hub), MTEB's absence of
-any cataloguing task (grep over 1,443 installed tasks), Majurski and
-Matuszek, YourBench, HUME (ICLR 2026), Dai et al. (KDD 2024).
+Verified in the same pass: LCSHBench (loaded from the hub -- dev 18,993 /
+test 3,353, 15 languages, 22 LCC classes, `lc_class` field present), MTEB
+carrying no cataloguing task of any kind (grep over 1,443 installed task
+definitions), Majurski and Matuszek (TMLR 2026, Spearman 0.91 / Pearson
+0.74), YourBench, HUME (ICLR 2026), Dai et al. (KDD 2024).
 
-**One caution on HUME.** The review summarised it as showing models have
-passed the human ceiling. The paper's own abstract pushes back on that
-reading: "Rather than treating low human performance as a ceiling to
+**One caution on HUME.** The literature review summarised it as showing
+models have passed the human ceiling. The paper's own abstract resists
+that reading: "Rather than treating low human performance as a ceiling to
 surpass..." Cite the gap, not a ceiling-crossing claim.
 
 **One addition the review missed.** El Assadi, Muennighoff, and Lee, "The
 Embedder's Dilemma: LLMs Are Better, but at What Cost?" (arXiv:2608.12875,
-August 2026), evaluates 26 embedding models from 118M to 14B. Recent, from
-the MTEB maintainers, and directly relevant to §2 of related work.
+August 2026), 26 embedding models from 118M to 14B. Recent, from the MTEB
+maintainers, directly relevant to §2 of related work.
+
+**Still unverified [u].** The FinMTEB n=7 correlation caveat, the MTEB
+saturation figures, the Bean et al. 16.0% statistic, and the Dai et al.
+"over 30%" magnitude are all quoted from the literature review and have
+not been checked against the primary sources. Check before drafting.
