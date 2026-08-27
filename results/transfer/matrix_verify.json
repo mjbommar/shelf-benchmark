@@ -1,0 +1,28 @@
+{
+  "metric": "macro_f1",
+  "probe": "tfidf+logreg",
+  "seed": 42,
+  "balanced": false,
+  "n_per_corpus": {
+    "shelf": 62899,
+    "gutenberg": 3016,
+    "lcshbench": 4924
+  },
+  "matrix": {
+    "shelf": {
+      "shelf": 0.8872817141069278,
+      "gutenberg": 0.3133330820169635,
+      "lcshbench": 0.41129239128492
+    },
+    "gutenberg": {
+      "shelf": 0.2836029873623148,
+      "gutenberg": 0.5100850675569746,
+      "lcshbench": 0.21351850168875783
+    },
+    "lcshbench": {
+      "shelf": 0.44424250468829574,
+      "gutenberg": 0.28000665743975783,
+      "lcshbench": 0.555927467198041
+    }
+  }
+}

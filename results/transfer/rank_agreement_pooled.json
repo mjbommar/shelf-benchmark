@@ -1,0 +1,117 @@
+{
+  "task": "lcc_classification",
+  "metric": "macro_f1",
+  "n_bootstrap": 2000,
+  "per_corpus_models": {
+    "shelf_pooled": 22,
+    "gutenberg": 22,
+    "lcshbench": 22
+  },
+  "pairs": [
+    {
+      "a": "shelf_pooled",
+      "b": "gutenberg",
+      "n_models": 22,
+      "spearman": 0.8768361581920904,
+      "spearman_ci": [
+        0.6261363636363636,
+        0.9851682829435253
+      ],
+      "kendall": 0.7652173913043478,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_110m_sentence",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "a": "shelf_pooled",
+      "b": "lcshbench",
+      "n_models": 22,
+      "spearman": 0.7774011299435029,
+      "spearman_ci": [
+        0.41946499715424024,
+        0.9681274900398408
+      ],
+      "kendall": 0.6695652173913044,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_110m_sentence",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "a": "gutenberg",
+      "b": "lcshbench",
+      "n_models": 22,
+      "spearman": 0.9627118644067797,
+      "spearman_ci": [
+        0.8615995462280203,
+        0.9886039886039888
+      ],
+      "kendall": 0.8521739130434783,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_110m_sentence",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    }
+  ]
+}

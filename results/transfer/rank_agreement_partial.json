@@ -1,0 +1,141 @@
+{
+  "task": "lcc_classification",
+  "metric": "macro_f1",
+  "n_bootstrap": 2000,
+  "per_corpus_models": {
+    "shelf_v030": 25,
+    "pooled": 4,
+    "gutenberg": 14,
+    "lcshbench": 12
+  },
+  "pairs": [
+    {
+      "a": "shelf_v030",
+      "b": "pooled",
+      "n_models": 4,
+      "spearman": 1.0,
+      "spearman_ci": [
+        1.0,
+        1.0
+      ],
+      "kendall": 1.0,
+      "models": [
+        "bge_small",
+        "minilm",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "a": "shelf_v030",
+      "b": "gutenberg",
+      "n_models": 14,
+      "spearman": 0.7318681318681319,
+      "spearman_ci": [
+        0.27394209354120264,
+        0.9909297052154198
+      ],
+      "kendall": 0.6483516483516484,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_small",
+        "e5_base",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "a": "shelf_v030",
+      "b": "lcshbench",
+      "n_models": 12,
+      "spearman": 0.34965034965034975,
+      "spearman_ci": [
+        -0.32616487455197135,
+        0.8920863309352519
+      ],
+      "kendall": 0.303030303030303,
+      "models": [
+        "bge_base",
+        "bge_small",
+        "e5_base",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "a": "pooled",
+      "b": "gutenberg",
+      "n_models": 4,
+      "spearman": 0.0,
+      "spearman_ci": [
+        -1.0,
+        1.0
+      ],
+      "kendall": 0.0,
+      "models": [
+        "bge_small",
+        "minilm",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "a": "pooled",
+      "b": "lcshbench",
+      "n_models": 4,
+      "spearman": 0.0,
+      "spearman_ci": [
+        -1.0,
+        1.0
+      ],
+      "kendall": 0.0,
+      "models": [
+        "bge_small",
+        "minilm",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "a": "gutenberg",
+      "b": "lcshbench",
+      "n_models": 12,
+      "spearman": 0.8951048951048951,
+      "spearman_ci": [
+        0.5698924731182795,
+        0.9928057553956834
+      ],
+      "kendall": 0.7575757575757575,
+      "models": [
+        "bge_base",
+        "bge_small",
+        "e5_base",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tf",
+        "tfidf"
+      ]
+    }
+  ]
+}

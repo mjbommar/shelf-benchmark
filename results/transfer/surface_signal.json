@@ -1,0 +1,24 @@
+{
+  "trunc_words": 200,
+  "exhaustive": true,
+  "Gutenberg (natural)": {
+    "full": 8.952254641909814,
+    "truncated": 6.10079575596817,
+    "n": 3016
+  },
+  "SHELF (all)": {
+    "full": 23.418496319496334,
+    "truncated": 19.0766148905388,
+    "n": 62899
+  },
+  "generation_first": {
+    "lcc_name": 21.835323991347693,
+    "topics": 76.73745355788996,
+    "lcgft_form": 7.28392739584313
+  },
+  "generation_second": {
+    "lcc_name": 13.376941946034343,
+    "topics": 44.96168952417745,
+    "lcgft_form": 1.4063777596075224
+  }
+}
