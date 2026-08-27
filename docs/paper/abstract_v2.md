@@ -10,32 +10,31 @@ Reasoning in §2. Numbers verified 2026-08-27; bootstrap CIs in
 > Benchmarks for bibliographic classification are built on library
 > catalogue records, on the assumption that real records are the gold
 > standard and generated text is a compromise. We measure that assumption
-> and find it does not hold.
+> and find it is two separate questions with two different answers.
 >
 > We introduce SHELF, a corpus of 62,899 documents generated from
-> content-addressed specifications by 25 language models, labelled with
-> Library of Congress classes and genre terms. Because every document is
-> drawn from an explicit specification, generator, genre, and subject vary
+> content-addressed specifications by 25 language models and labelled with
+> Library of Congress classes and genre terms. Because every document comes
+> from an explicit specification, generator, genre, and subject vary
 > independently, which no natural corpus permits.
 >
-> We then measure how far a classifier trained on one corpus carries to
-> another, across SHELF, Project Gutenberg passages, and LCSHBench
-> catalogue records. Transfer is poor everywhere. The two human-catalogued
-> corpora reach only 0.21 and 0.25 macro-F1 on each other, below every
-> other pairing we test. There is no natural corpus that stands in for
-> bibliographic classification in general.
+> We measure how far a classifier trained on one corpus carries to another,
+> across SHELF, Project Gutenberg passages, and LCSHBench catalogue records.
+> Absolute scores do not carry. A lexical classifier scoring 0.887 on SHELF
+> scores 0.313 on Gutenberg, and the failure is symmetric. It is also not
+> peculiar to generated text: the two human-catalogued corpora reach only
+> 0.21 and 0.25 on each other, the worst pairing we measure. No natural
+> corpus stands in for bibliographic classification in general.
 >
-> Against that baseline, SHELF is the strongest available source of
-> training signal. At matched sample size it is never significantly worse
-> than a natural corpus as a transfer source, and it is better by 0.17
-> macro-F1 on catalogue records. At its own scale it is the best source
-> for both natural corpora we test. Scale is not a confound here: it is
-> what generation buys.
+> Model rankings are a different matter. Ranking 22 embedding models on each
+> corpus, SHELF orders them as Gutenberg does at Spearman 0.878 and as
+> LCSHBench does at 0.781. A benchmark can be useless for predicting a
+> production score and still be reliable for choosing between models.
 >
-> Absolute scores still do not transfer. A model scoring 0.89 on SHELF
-> scores 0.31 on Gutenberg, and we report SHELF as an instrument for
-> ranking and diagnosis rather than as an estimate of catalogue
-> performance.
+> We therefore report SHELF as an instrument for ranking and diagnosis, and
+> state plainly what it does not license. Natural corpora still agree with
+> each other more closely than SHELF agrees with either, at 0.963, though
+> the intervals overlap and we do not claim the difference is real.
 
 About 250 words.
 
@@ -89,23 +88,24 @@ a natural corpus as a transfer source, and is sometimes much better.**
 ### 2.3 The inference
 
 The standard objection to synthetic evaluation data assumes a natural
-corpus is the thing to be measured against. That assumption needs
-natural corpora to agree with each other. They do not: Gutenberg and
-LCSHBench, both human written and human catalogued, produce the two worst
-cells in the matrix.
+corpus is the thing to measure against. That assumption needs natural
+corpora to agree with each other. On absolute transfer they do not:
+Gutenberg and LCSHBench, both human written and human catalogued, produce
+the two worst cells in the matrix. Cross-corpus transfer failure is general,
+not synthetic-specific, and a synthetic-to-natural degradation reported
+without a natural-to-natural baseline has not isolated its effect.
 
-So the choice was never synthetic against real. Every corpus is a proxy,
-each fails to generalise to the others, and the practical question is
-which proxy to hold. On that question the synthetic corpus wins on the
-merits, because it is never a worse source and is the only one whose
-scale, balance, and difficulty can be set deliberately.
+But transfer is the wrong question for a benchmark. A benchmark is used to
+*choose between models*, which needs rank agreement, not score portability.
+Measured over 22 models, SHELF ranks like Gutenberg at 0.878 and like
+LCSHBench at 0.781, both intervals excluding zero (see
+`rank_agreement_findings.md`). That is the property SHELF actually has, and
+it is the one worth claiming.
 
-Scale deserves a sentence of its own, because it looks like a confound and
-is not. SHELF's full-size advantage does partly come from having 62,899
-documents. That is the point. One can generate another 62,899 SHELF
-documents; one cannot generate another 62,899 Harvard catalogue records.
-The balanced control is there to show the advantage does not *depend* on
-scale, not to argue that scale should be discounted.
+Natural-to-natural rank agreement is higher still, at 0.963. The intervals
+overlap so the difference is not demonstrated, but the honest form of the
+claim is that SHELF ranks models about as well as natural bibliographic data
+does -- not better.
 
 ### 2.4 What we keep conceding
 
