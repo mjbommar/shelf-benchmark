@@ -1,0 +1,2214 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "containedIn": "cr:containedIn",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "samplingRate": "cr:samplingRate",
+    "equivalentProperty": "cr:equivalentProperty"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "SHELF",
+  "alternateName": [
+    "Synthetic Harness for Evaluating LLM Fitness"
+  ],
+  "description": "SHELF is a factorial benchmark for bibliographic classification built on Library of Congress taxonomies (LCC, LCGFT, LCSH, LCDGT). Documents are model generated from content-addressed specifications, so generator and label are independent by construction and genre is orthogonal to subject. A natural-text Project Gutenberg slice is included as a transfer control. SHELF scores do not transfer to natural text in absolute terms: a lexical classifier scoring 0.893 in-domain scores 0.301 on Gutenberg, and the failure is symmetric.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://huggingface.co/datasets/mjbommar/SHELF",
+  "citeAs": "@misc{shelf2026, title={SHELF: A Factorial Benchmark for Bibliographic Classification}, author={Bommarito, Michael}, year={2026}, howpublished={\\url{https://huggingface.co/datasets/mjbommar/SHELF}}}",
+  "version": "0.4.0",
+  "datePublished": "2026-08-27",
+  "keywords": [
+    "bibliographic classification",
+    "Library of Congress Classification",
+    "text embeddings",
+    "synthetic evaluation data",
+    "taxonomic representation"
+  ],
+  "isLiveDataset": false,
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The SHELF dataset repository on Hugging Face.",
+      "contentUrl": "https://huggingface.co/datasets/mjbommar/SHELF",
+      "encodingFormat": "git+https",
+      "sha256": "main"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "all-files",
+      "name": "all-files",
+      "description": "Parquet shards for the all config.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "all/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "default-files",
+      "name": "default-files",
+      "description": "Parquet shards for the default config.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "default/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "v0_4_core-files",
+      "name": "v0_4_core-files",
+      "description": "Parquet shards for the v0_4_core config.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "v0_4_core/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "v0_4_supplement-files",
+      "name": "v0_4_supplement-files",
+      "description": "Parquet shards for the v0_4_supplement config.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "v0_4_supplement/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "v0_4_minimal_pairs-files",
+      "name": "v0_4_minimal_pairs-files",
+      "description": "Parquet shards for the v0_4_minimal_pairs config.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "v0_4_minimal_pairs/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "v0_4_holdout-files",
+      "name": "v0_4_holdout-files",
+      "description": "Parquet shards for the v0_4_holdout config.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "v0_4_holdout/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "transfer_gutenberg-files",
+      "name": "transfer_gutenberg-files",
+      "description": "Parquet shards for the transfer_gutenberg config.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "transfer_gutenberg/*.parquet"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "all",
+      "name": "all",
+      "description": "Every synthetic SHELF document pooled into one corpus (62,899). Not generator balanced: the largest generator is 47.7% of the corpus. Use v0_4_core when generator balance matters.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "all/id",
+          "name": "id",
+          "description": "Stable document identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/title",
+          "name": "title",
+          "description": "Document title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/body",
+          "name": "body",
+          "description": "Document text, excluding the title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "body"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/text",
+          "name": "text",
+          "description": "Body text. Excludes the title to avoid label leakage.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/lcc_code",
+          "name": "lcc_code",
+          "description": "Library of Congress Classification class, one of 21 (A-Z).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "lcc_code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/lcc_name",
+          "name": "lcc_name",
+          "description": "Human-readable name of the LCC class.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "lcc_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/lcc_uri",
+          "name": "lcc_uri",
+          "description": "URI of the LCC class in the LC linked data service.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "lcc_uri"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/lcgft_category",
+          "name": "lcgft_category",
+          "description": "Genre/Form category, one of 14.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "lcgft_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/lcgft_form",
+          "name": "lcgft_form",
+          "description": "Genre/Form term, one of 133.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "lcgft_form"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/topics",
+          "name": "topics",
+          "description": "Topic labels drawn from LCSH.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "topics"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/geographic",
+          "name": "geographic",
+          "description": "Geographic region label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "geographic"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/audience",
+          "name": "audience",
+          "description": "Intended audience (LCDGT-derived).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "audience"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/register",
+          "name": "register",
+          "description": "Writing register.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "register"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/model",
+          "name": "model",
+          "description": "Generating model. Provider routing prefixes normalised.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/word_count",
+          "name": "word_count",
+          "description": "Word count of the body.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "word_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/source_config",
+          "name": "source_config",
+          "description": "Config this row came from (present in `all`).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "source_config"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/source_version",
+          "name": "source_version",
+          "description": "Dataset version this row came from.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "source_version"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/spec_id",
+          "name": "spec_id",
+          "description": "Content hash of the document specification (v0.4).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "spec_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all/split",
+          "name": "split",
+          "description": "Split assignment: train, validation, or test.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "all-files"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "default",
+      "name": "default",
+      "description": "The v0.3.1 corpus (42,532 documents). Split at document level, not spec level, so near-duplicate realisations of one specification may straddle splits.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default/id",
+          "name": "id",
+          "description": "Stable document identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/title",
+          "name": "title",
+          "description": "Document title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/body",
+          "name": "body",
+          "description": "Document text, excluding the title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "body"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/text",
+          "name": "text",
+          "description": "Body text. Excludes the title to avoid label leakage.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/lcc_code",
+          "name": "lcc_code",
+          "description": "Library of Congress Classification class, one of 21 (A-Z).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "lcc_code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/lcc_name",
+          "name": "lcc_name",
+          "description": "Human-readable name of the LCC class.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "lcc_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/lcc_uri",
+          "name": "lcc_uri",
+          "description": "URI of the LCC class in the LC linked data service.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "lcc_uri"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/lcgft_category",
+          "name": "lcgft_category",
+          "description": "Genre/Form category, one of 14.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "lcgft_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/lcgft_form",
+          "name": "lcgft_form",
+          "description": "Genre/Form term, one of 133.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "lcgft_form"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/topics",
+          "name": "topics",
+          "description": "Topic labels drawn from LCSH.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "topics"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/geographic",
+          "name": "geographic",
+          "description": "Geographic region label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "geographic"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/audience",
+          "name": "audience",
+          "description": "Intended audience (LCDGT-derived).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "audience"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/register",
+          "name": "register",
+          "description": "Writing register.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "register"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/model",
+          "name": "model",
+          "description": "Generating model. Provider routing prefixes normalised.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/word_count",
+          "name": "word_count",
+          "description": "Word count of the body.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "word_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/source_config",
+          "name": "source_config",
+          "description": "Config this row came from (present in `all`).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "source_config"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/source_version",
+          "name": "source_version",
+          "description": "Dataset version this row came from.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "source_version"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/spec_id",
+          "name": "spec_id",
+          "description": "Content hash of the document specification (v0.4).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "spec_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/split",
+          "name": "split",
+          "description": "Split assignment: train, validation, or test.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "default-files"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "v0_4_core",
+      "name": "v0_4_core",
+      "description": "Generator-balanced v0.4 corpus (18,345 documents, 15 generators). Largest generator share 9.24%. Split on spec_id.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/id",
+          "name": "id",
+          "description": "Stable document identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/title",
+          "name": "title",
+          "description": "Document title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/body",
+          "name": "body",
+          "description": "Document text, excluding the title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "body"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/text",
+          "name": "text",
+          "description": "Body text. Excludes the title to avoid label leakage.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/lcc_code",
+          "name": "lcc_code",
+          "description": "Library of Congress Classification class, one of 21 (A-Z).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "lcc_code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/lcc_name",
+          "name": "lcc_name",
+          "description": "Human-readable name of the LCC class.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "lcc_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/lcc_uri",
+          "name": "lcc_uri",
+          "description": "URI of the LCC class in the LC linked data service.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "lcc_uri"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/lcgft_category",
+          "name": "lcgft_category",
+          "description": "Genre/Form category, one of 14.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "lcgft_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/lcgft_form",
+          "name": "lcgft_form",
+          "description": "Genre/Form term, one of 133.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "lcgft_form"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/topics",
+          "name": "topics",
+          "description": "Topic labels drawn from LCSH.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "topics"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/geographic",
+          "name": "geographic",
+          "description": "Geographic region label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "geographic"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/audience",
+          "name": "audience",
+          "description": "Intended audience (LCDGT-derived).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "audience"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/register",
+          "name": "register",
+          "description": "Writing register.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "register"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/model",
+          "name": "model",
+          "description": "Generating model. Provider routing prefixes normalised.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/word_count",
+          "name": "word_count",
+          "description": "Word count of the body.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "word_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/source_config",
+          "name": "source_config",
+          "description": "Config this row came from (present in `all`).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "source_config"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/source_version",
+          "name": "source_version",
+          "description": "Dataset version this row came from.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "source_version"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/spec_id",
+          "name": "spec_id",
+          "description": "Content hash of the document specification (v0.4).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "spec_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_core/split",
+          "name": "split",
+          "description": "Split assignment: train, validation, or test.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_core-files"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "v0_4_supplement",
+      "name": "v0_4_supplement",
+      "description": "Supplementary single-generator v0.4 documents (1,043). Carries no LCC subclass label: an intended subclass tier was generated from parent-class descriptions and is not shipped.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/id",
+          "name": "id",
+          "description": "Stable document identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/title",
+          "name": "title",
+          "description": "Document title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/body",
+          "name": "body",
+          "description": "Document text, excluding the title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "body"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/text",
+          "name": "text",
+          "description": "Body text. Excludes the title to avoid label leakage.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/lcc_code",
+          "name": "lcc_code",
+          "description": "Library of Congress Classification class, one of 21 (A-Z).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "lcc_code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/lcc_name",
+          "name": "lcc_name",
+          "description": "Human-readable name of the LCC class.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "lcc_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/lcc_uri",
+          "name": "lcc_uri",
+          "description": "URI of the LCC class in the LC linked data service.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "lcc_uri"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/lcgft_category",
+          "name": "lcgft_category",
+          "description": "Genre/Form category, one of 14.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "lcgft_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/lcgft_form",
+          "name": "lcgft_form",
+          "description": "Genre/Form term, one of 133.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "lcgft_form"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/topics",
+          "name": "topics",
+          "description": "Topic labels drawn from LCSH.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "topics"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/geographic",
+          "name": "geographic",
+          "description": "Geographic region label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "geographic"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/audience",
+          "name": "audience",
+          "description": "Intended audience (LCDGT-derived).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "audience"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/register",
+          "name": "register",
+          "description": "Writing register.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "register"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/model",
+          "name": "model",
+          "description": "Generating model. Provider routing prefixes normalised.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/word_count",
+          "name": "word_count",
+          "description": "Word count of the body.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "word_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/source_config",
+          "name": "source_config",
+          "description": "Config this row came from (present in `all`).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "source_config"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/source_version",
+          "name": "source_version",
+          "description": "Dataset version this row came from.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "source_version"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/spec_id",
+          "name": "spec_id",
+          "description": "Content hash of the document specification (v0.4).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "spec_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_supplement/split",
+          "name": "split",
+          "description": "Split assignment: train, validation, or test.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_supplement-files"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "v0_4_minimal_pairs",
+      "name": "v0_4_minimal_pairs",
+      "description": "Minimal pairs differing on one facet (687 documents). Paired by pair_id; do not split a pair across folds.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/id",
+          "name": "id",
+          "description": "Stable document identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/title",
+          "name": "title",
+          "description": "Document title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/body",
+          "name": "body",
+          "description": "Document text, excluding the title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "body"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/text",
+          "name": "text",
+          "description": "Body text. Excludes the title to avoid label leakage.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/lcc_code",
+          "name": "lcc_code",
+          "description": "Library of Congress Classification class, one of 21 (A-Z).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "lcc_code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/lcc_name",
+          "name": "lcc_name",
+          "description": "Human-readable name of the LCC class.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "lcc_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/lcc_uri",
+          "name": "lcc_uri",
+          "description": "URI of the LCC class in the LC linked data service.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "lcc_uri"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/lcgft_category",
+          "name": "lcgft_category",
+          "description": "Genre/Form category, one of 14.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "lcgft_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/lcgft_form",
+          "name": "lcgft_form",
+          "description": "Genre/Form term, one of 133.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "lcgft_form"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/topics",
+          "name": "topics",
+          "description": "Topic labels drawn from LCSH.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "topics"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/geographic",
+          "name": "geographic",
+          "description": "Geographic region label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "geographic"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/audience",
+          "name": "audience",
+          "description": "Intended audience (LCDGT-derived).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "audience"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/register",
+          "name": "register",
+          "description": "Writing register.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "register"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/model",
+          "name": "model",
+          "description": "Generating model. Provider routing prefixes normalised.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/word_count",
+          "name": "word_count",
+          "description": "Word count of the body.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "word_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/source_config",
+          "name": "source_config",
+          "description": "Config this row came from (present in `all`).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "source_config"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/source_version",
+          "name": "source_version",
+          "description": "Dataset version this row came from.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "source_version"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/spec_id",
+          "name": "spec_id",
+          "description": "Content hash of the document specification (v0.4).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "spec_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_minimal_pairs/split",
+          "name": "split",
+          "description": "Split assignment: train, validation, or test.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_minimal_pairs-files"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "v0_4_holdout",
+      "name": "v0_4_holdout",
+      "description": "Held-out v0.4 documents (292). Reserved for contamination checks.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/id",
+          "name": "id",
+          "description": "Stable document identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/title",
+          "name": "title",
+          "description": "Document title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/body",
+          "name": "body",
+          "description": "Document text, excluding the title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "body"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/text",
+          "name": "text",
+          "description": "Body text. Excludes the title to avoid label leakage.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/lcc_code",
+          "name": "lcc_code",
+          "description": "Library of Congress Classification class, one of 21 (A-Z).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "lcc_code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/lcc_name",
+          "name": "lcc_name",
+          "description": "Human-readable name of the LCC class.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "lcc_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/lcc_uri",
+          "name": "lcc_uri",
+          "description": "URI of the LCC class in the LC linked data service.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "lcc_uri"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/lcgft_category",
+          "name": "lcgft_category",
+          "description": "Genre/Form category, one of 14.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "lcgft_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/lcgft_form",
+          "name": "lcgft_form",
+          "description": "Genre/Form term, one of 133.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "lcgft_form"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/topics",
+          "name": "topics",
+          "description": "Topic labels drawn from LCSH.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "topics"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/geographic",
+          "name": "geographic",
+          "description": "Geographic region label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "geographic"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/audience",
+          "name": "audience",
+          "description": "Intended audience (LCDGT-derived).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "audience"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/register",
+          "name": "register",
+          "description": "Writing register.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "register"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/model",
+          "name": "model",
+          "description": "Generating model. Provider routing prefixes normalised.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/word_count",
+          "name": "word_count",
+          "description": "Word count of the body.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "word_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/source_config",
+          "name": "source_config",
+          "description": "Config this row came from (present in `all`).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "source_config"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/source_version",
+          "name": "source_version",
+          "description": "Dataset version this row came from.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "source_version"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/spec_id",
+          "name": "spec_id",
+          "description": "Content hash of the document specification (v0.4).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "spec_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "v0_4_holdout/split",
+          "name": "split",
+          "description": "Split assignment: train, validation, or test.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "transfer_gutenberg",
+      "name": "transfer_gutenberg",
+      "description": "Project Gutenberg passages, human written and human catalogued (3,016). NATURAL text, not synthetic. This is the transfer control. Never pool it into a training corpus: SHELF-to-Gutenberg transfer is the measurement it exists to support.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/id",
+          "name": "id",
+          "description": "Stable document identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/title",
+          "name": "title",
+          "description": "Document title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/body",
+          "name": "body",
+          "description": "Document text, excluding the title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "body"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/text",
+          "name": "text",
+          "description": "Body text. Excludes the title to avoid label leakage.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/lcc_code",
+          "name": "lcc_code",
+          "description": "Library of Congress Classification class, one of 21 (A-Z).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "lcc_code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/lcc_name",
+          "name": "lcc_name",
+          "description": "Human-readable name of the LCC class.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "lcc_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/lcc_uri",
+          "name": "lcc_uri",
+          "description": "URI of the LCC class in the LC linked data service.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "lcc_uri"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/lcgft_category",
+          "name": "lcgft_category",
+          "description": "Genre/Form category, one of 14.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "lcgft_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/lcgft_form",
+          "name": "lcgft_form",
+          "description": "Genre/Form term, one of 133.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "lcgft_form"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/topics",
+          "name": "topics",
+          "description": "Topic labels drawn from LCSH.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "topics"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/geographic",
+          "name": "geographic",
+          "description": "Geographic region label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "geographic"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/audience",
+          "name": "audience",
+          "description": "Intended audience (LCDGT-derived).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "audience"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/register",
+          "name": "register",
+          "description": "Writing register.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "register"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/model",
+          "name": "model",
+          "description": "Generating model. Provider routing prefixes normalised.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/word_count",
+          "name": "word_count",
+          "description": "Word count of the body.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "word_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/source_config",
+          "name": "source_config",
+          "description": "Config this row came from (present in `all`).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "source_config"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/source_version",
+          "name": "source_version",
+          "description": "Dataset version this row came from.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "source_version"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/spec_id",
+          "name": "spec_id",
+          "description": "Content hash of the document specification (v0.4).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "spec_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_gutenberg/split",
+          "name": "split",
+          "description": "Split assignment: train, validation, or test.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_gutenberg-files"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
