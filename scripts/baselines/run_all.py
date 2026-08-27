@@ -72,16 +72,41 @@ def collect_all_evaluation_texts(
 
     texts = set()
 
-    # Main dataset texts (body only - 'text' field)
-    logger.info("Loading main dataset texts...")
-    ds = load_dataset(dataset_repo)
-    for split in ["train", "validation", "test"]:
-        split_texts = ds[split]["text"]
-        texts.update(split_texts)
-        logger.info(f"  {split}: {len(split_texts)} texts (body only)")
+    # Main dataset texts (body only - 'text' field).
+    #
+    # Honour SHELF_DATA_DIR the way the evaluators do. Without this the cache
+    # is built from the hub repo no matter which corpus is being scored, so a
+    # 3,016-document Gutenberg run embedded 50,968 texts -- slow enough to
+    # dominate the run, and heavy enough to contribute to an OOM.
+    from shelf.evaluate.evaluators.base import data_root
+
+    local = data_root()
+    local_splits = [
+        s for s in ("train", "validation", "test") if (local / f"{s}.parquet").exists()
+    ]
+    if local_splits:
+        import polars as pl
+
+        logger.info(f"Loading main dataset texts from {local}...")
+        for split in local_splits:
+            df = pl.read_parquet(local / f"{split}.parquet")
+            col = "text" if "text" in df.columns else "body"
+            split_texts = [t for t in df[col].to_list() if t]
+            texts.update(split_texts)
+            logger.info(f"  {split}: {len(split_texts)} texts (body only)")
+    else:
+        logger.info("Loading main dataset texts...")
+        ds = load_dataset(dataset_repo)
+        for split in ["train", "validation", "test"]:
+            split_texts = ds[split]["text"]
+            texts.update(split_texts)
+            logger.info(f"  {split}: {len(split_texts)} texts (body only)")
 
     # Pair dataset texts (title + body format)
     pair_tasks = tasks_config.get("pair_classification", [])
+    if local_splits and pair_tasks:
+        logger.info("  (skipping hub pair texts: scoring a local corpus)")
+        pair_tasks = []
     for task_name in pair_tasks:
         logger.info(f"Loading pair texts from {task_name}...")
         try:

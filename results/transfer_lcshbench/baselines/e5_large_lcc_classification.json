@@ -1,0 +1,55 @@
+{
+  "model": "E5-large",
+  "model_key": "e5_large",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.6132910561287146,
+  "metrics": {
+    "accuracy": 0.6358695652173914,
+    "macro_f1": 0.6132910561287146,
+    "micro_f1": 0.6358695652173914,
+    "weighted_f1": 0.6163260702888266,
+    "num_samples": 736,
+    "num_correct": 468,
+    "num_classes": 21
+  },
+  "num_samples": 736,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T16:13:43.855314+00:00",
+    "model_name": "E5-large",
+    "data_commit": null,
+    "code_commit": "9200f08",
+    "extra": {
+      "embedding_dim": 1024,
+      "classifier": "LogisticRegression",
+      "train_size": 3145
+    }
+  },
+  "efficiency": {
+    "num_params": 335141888,
+    "embedding_dim": 1024,
+    "size_category": "300M-1B",
+    "flops_per_token": 670283776,
+    "relative_compute": 14.7554,
+    "shelf_eff": 71.9384,
+    "shelf_compute": 0.4686,
+    "pareto_optimal": false,
+    "size_rank": 2,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.613291
+}

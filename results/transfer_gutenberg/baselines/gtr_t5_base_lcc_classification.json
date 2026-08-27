@@ -1,0 +1,55 @@
+{
+  "model": "GTR-T5-base",
+  "model_key": "gtr_t5_base",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.44413764682739043,
+  "metrics": {
+    "accuracy": 0.47208931419457734,
+    "macro_f1": 0.44413764682739043,
+    "micro_f1": 0.47208931419457734,
+    "weighted_f1": 0.44431934213184104,
+    "num_samples": 627,
+    "num_correct": 296,
+    "num_classes": 21
+  },
+  "num_samples": 627,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c6a5679d52dbc0eeafe97bd7bad0f0f0",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T13:38:15.753962+00:00",
+    "model_name": "GTR-T5-base",
+    "data_commit": null,
+    "code_commit": "275f308",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 1801
+    }
+  },
+  "efficiency": {
+    "num_params": 109628416,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 219256832,
+    "relative_compute": 4.8266,
+    "shelf_eff": 55.2415,
+    "shelf_compute": 0.3794,
+    "pareto_optimal": false,
+    "size_rank": 6,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.444138
+}

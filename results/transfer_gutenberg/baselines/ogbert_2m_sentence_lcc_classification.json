@@ -1,0 +1,55 @@
+{
+  "model": "ogbert-2m-sentence",
+  "model_key": "ogbert_2m_sentence",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.25687257325398516,
+  "metrics": {
+    "accuracy": 0.2886762360446571,
+    "macro_f1": 0.25687257325398516,
+    "micro_f1": 0.2886762360446571,
+    "weighted_f1": 0.2567756309645522,
+    "num_samples": 627,
+    "num_correct": 181,
+    "num_classes": 21
+  },
+  "num_samples": 627,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c6a5679d52dbc0eeafe97bd7bad0f0f0",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T15:34:43.269919+00:00",
+    "model_name": "ogbert-2m-sentence",
+    "data_commit": null,
+    "code_commit": "9200f08",
+    "extra": {
+      "embedding_dim": 128,
+      "classifier": "LogisticRegression",
+      "train_size": 1801
+    }
+  },
+  "efficiency": {
+    "num_params": 2123008,
+    "embedding_dim": 128,
+    "size_category": "<10M",
+    "flops_per_token": 4246016,
+    "relative_compute": 0.0935,
+    "shelf_eff": 40.5997,
+    "shelf_compute": 0.3256,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.256873
+}
