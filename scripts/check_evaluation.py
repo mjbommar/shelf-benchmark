@@ -141,22 +141,39 @@ def main() -> int:
         )
 
     # --- A1/A2: one corpus per claim -----------------------------------
+    # Provenance lives in context.dataset_checksum, with the seed and library
+    # versions beside it. Several checksums per directory is EXPECTED: a pair
+    # task reads different data from a classification task. What must not
+    # happen is one task carrying two checksums inside one corpus, which means
+    # results were mixed across builds of the data.
     stamped = 0
+    per_task_checksums: dict[str, set[str]] = defaultdict(set)
     for f in results.glob("*.json"):
-        if f.name.startswith(("summary", "manifest")):
+        if f.name.startswith(("summary", "manifest", "baseline_summary")):
             continue
         try:
             r = json.loads(f.read_text())
         except Exception:
             continue
+        if "error" in r:
+            continue  # error stubs legitimately carry no provenance
         ctx = r.get("context") or {}
-        if ctx.get("dataset_version") or ctx.get("data_checksum"):
+        cks = ctx.get("dataset_checksum")
+        if cks and ctx.get("random_seed") is not None:
             stamped += 1
-    print(f"\nA2  results carrying a corpus stamp: {stamped}/{n_files}")
-    if stamped < n_files:
-        warnings.append(
-            f"A2: {n_files - stamped} results carry no corpus stamp. Name the "
-            "corpus beside every number."
+        if cks and r.get("task"):
+            per_task_checksums[r["task"]].add(cks)
+    print(f"\nA2  results with checksum and seed: {stamped}/{n_ok}")
+    if stamped < n_ok:
+        warnings.append(f"A2: {n_ok - stamped} results lack a checksum or seed.")
+
+    mixed = {t: c for t, c in per_task_checksums.items() if len(c) > 1}
+    print(f"A1  tasks whose results mix data builds: {len(mixed)}")
+    if mixed:
+        failures.append(
+            "A1: MIXED DATA BUILDS within one corpus for "
+            f"{len(mixed)} task(s): {', '.join(sorted(mixed)[:5])}. "
+            "All results for a task must come from one build of the data."
         )
 
     # --- G1: summary must not be narrower than the directory -----------
