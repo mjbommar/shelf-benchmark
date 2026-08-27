@@ -77,3 +77,14 @@ coverage.xml
 coverage.json
 htmlcov/
 .coverage
+
+# Pricing catalogue cache
+data/cache/
+data/taxonomies/enriched/.cache/
+
+# Staged evaluation corpora (rebuildable via scripts/build_*_dataset.py)
+data/hf_dataset/all/
+data/hf_dataset/transfer_gutenberg/
+data/hf_dataset/transfer_lcshbench/
+data/transfer/cache/
+data/hf_cache/
