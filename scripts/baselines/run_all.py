@@ -32,16 +32,15 @@ import json
 import logging
 import platform
 import subprocess
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-import yaml
 import numpy as np
-
+import yaml
 from shelf.evaluate.efficiency import (
-    compute_efficiency_metrics,
     compute_aggregate_efficiency,
+    compute_efficiency_metrics,
     get_size_category,
 )
 
@@ -322,6 +321,7 @@ def compute_shelf_score(
     results: dict[str, dict[str, Any]],
     weights: dict[str, float],
     metrics: dict[str, str],
+    exclude_tasks: set[str] | None = None,
 ) -> dict[str, float]:
     """Compute aggregate SHELF Score for each model.
 
@@ -338,6 +338,10 @@ def compute_shelf_score(
 
     for key, result in results.items():
         if "error" in result:
+            continue
+
+        if exclude_tasks and result.get("task") in exclude_tasks:
+            # Reported on its own, deliberately not folded into the aggregate.
             continue
 
         model_key = result["model_key"]
@@ -367,7 +371,15 @@ def compute_shelf_score(
         if total_weight > 0:
             shelf_scores[model_key] = weighted_sum / total_weight
         else:
-            shelf_scores[model_key] = 0.0
+            # No weighted task type ran for this model, so there is no aggregate
+            # to report. Emitting 0.0 would read as "scored zero" rather than
+            # "not scored", which is how a model that skipped the hardest
+            # category ends up looking comparable to one that did not.
+            logger.info(
+                "No weighted task types ran for %s; omitting it from SHELF scores "
+                "rather than reporting 0.0",
+                model_key,
+            )
 
     return shelf_scores
 
@@ -434,12 +446,19 @@ def print_summary_table(
             by_task_type[task_type] = []
         by_task_type[task_type].append((key, result))
 
-    for task_type in [
+    # Preferred display order, then anything else that actually ran. Appending
+    # the remainder rather than hard-coding the list means a newly added task
+    # type shows up instead of silently vanishing from every summary.
+    preferred = [
         "retrieval",
         "classification",
+        "multilabel",
         "clustering",
         "pair_classification",
-    ]:
+    ]
+    ordered = preferred + sorted(set(by_task_type) - set(preferred))
+
+    for task_type in ordered:
         if task_type not in by_task_type:
             continue
 
@@ -504,6 +523,43 @@ def save_manifest(
     logger.info(f"Manifest saved to: {manifest_path}")
 
 
+def harvest_existing_results(
+    output_dir: Path,
+    models_config: dict[str, Any],
+    tasks_config: dict[str, Any],
+    produced: dict[str, Any],
+) -> tuple[dict[str, Any], int]:
+    """Fold every per-task result on disk into this run's results.
+
+    summary.json describes the whole output directory, not the last
+    invocation. Without this, evaluating a single model rewrites the summary
+    with that single model and silently discards the rest of the table --
+    which is how a 22-model table was reduced to one fine-tune entry, and how
+    a headline number came to cite a run that no longer existed.
+
+    Results produced by the current run always win over what is on disk.
+    """
+    task_names = [t for task_list in tasks_config.values() for t in task_list]
+    merged = dict(produced)
+    recovered = 0
+    for model_key in models_config:
+        for task_name in task_names:
+            key = f"{model_key}_{task_name}"
+            if key in merged:
+                continue
+            path = output_dir / f"{key}.json"
+            if not path.exists():
+                continue
+            try:
+                with open(path) as f:
+                    merged[key] = json.load(f)
+            except (OSError, json.JSONDecodeError) as exc:
+                logger.warning(f"  could not read {path.name}: {exc}")
+                continue
+            recovered += 1
+    return merged, recovered
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Run SHELF baseline evaluations",
@@ -552,6 +608,11 @@ def main():
         type=str,
         default=None,
         help="Output directory (default: results/v{version}/baselines)",
+    )
+    parser.add_argument(
+        "--aggregate-only",
+        action="store_true",
+        help="Rebuild summary.json from results already on disk; run nothing.",
     )
     parser.add_argument(
         "--skip-existing",
@@ -613,6 +674,10 @@ def main():
         models_to_run = [m for m in args.models if m in models_config]
     else:
         models_to_run = list(models_config.keys())
+
+    if args.aggregate_only:
+        logger.info("Aggregate-only: rebuilding summary from existing results")
+        models_to_run = []
 
     # Filter by sparse/dense
     if args.sparse_only:
@@ -697,7 +762,7 @@ def main():
         )
 
     # Run evaluations
-    start_time = datetime.now(timezone.utc)
+    start_time = datetime.now(UTC)
     all_results: dict[str, dict[str, Any]] = {}
     tasks_completed: list[str] = []
 
@@ -766,6 +831,11 @@ def main():
                 cache=cache,
                 model_name=model_name,
                 embedding_dim=model.embedding_dim,
+                # Instruction-retrieval tasks prefix their queries, so those
+                # texts are never in a cache built from raw corpus text.
+                # Without a fallback the cache raises and every dense model
+                # fails those tasks while sparse models pass.
+                fallback=model,
             )
 
         for task_name, task_type in tasks_needing_run:
@@ -814,13 +884,29 @@ def main():
             stats = eval_model.get_stats()
             logger.info(f"Cache stats for {model_name}: {stats['hits']} hits")
 
-    end_time = datetime.now(timezone.utc)
+    end_time = datetime.now(UTC)
 
     # Compute SHELF scores
     shelf_score_config = config.get("shelf_score", {})
     weights = shelf_score_config.get("weights", {})
     metrics = shelf_score_config.get("metrics", {})
-    shelf_scores = compute_shelf_score(all_results, weights, metrics)
+    excluded = set(shelf_score_config.get("exclude_tasks") or [])
+    if excluded:
+        logger.info(
+            "Excluding %d task(s) from the SHELF aggregate: %s",
+            len(excluded),
+            ", ".join(sorted(excluded)),
+        )
+    all_results, recovered = harvest_existing_results(
+        output_dir, models_config, tasks_config, all_results
+    )
+    if recovered:
+        logger.info(
+            f"Recovered {recovered} prior result(s) from {output_dir} "
+            "so the summary covers the full directory"
+        )
+
+    shelf_scores = compute_shelf_score(all_results, weights, metrics, excluded)
 
     # Compute complete efficiency metrics (with SHELF scores, Pareto, size ranks)
     model_shelf_data = {
