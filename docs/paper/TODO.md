@@ -107,7 +107,8 @@ Framing and evidence audit live in `outline_v2.md`.
       19 typed fields each. Validates against `mlcroissant` with no
       errors or warnings. Published at `croissant.json`.
 - [x] Data reachable by reviewers: the dataset is public with 13 configs.
-- [ ] Hosting, licensing, and maintenance plan (prose, for the paper).
+- [x] Hosting, licensing, and maintenance plan:
+      `docs/paper/hosting_and_maintenance.md`.
 
 ---
 
