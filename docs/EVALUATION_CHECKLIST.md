@@ -83,6 +83,15 @@ any results go into a paper, a dataset card, or a message to the user.
       (`systemd-run --user --scope -p MemoryMax=`).
 - [ ] **F3. Know the cost of a task before scaling it.** An N-by-N
       similarity over 62,899 documents is 15.8GB per matrix.
+- [ ] **F4. Verify which GPU a job actually landed on**, with
+      `nvidia-smi --query-compute-apps=pid,gpu_uuid` mapped through
+      `--query-gpu=index,uuid`. Two traps stack here. `systemd-run --scope`
+      does not inherit `CUDA_VISIBLE_DEVICES`, so pass `--setenv`. And CUDA
+      orders GPUs fastest-first while `nvidia-smi` orders by PCI bus, so
+      `CUDA_VISIBLE_DEVICES=1` can select the card `nvidia-smi` calls 0.
+      Set `CUDA_DEVICE_ORDER=PCI_BUS_ID`. *Violated: two workers piled onto
+      a GPU already running another user's job while the second sat idle,
+      and the wasted capacity was read as normal load.*
 
 ## G. Reproducibility
 
