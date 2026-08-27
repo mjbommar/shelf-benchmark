@@ -12,6 +12,7 @@ Supports:
 from __future__ import annotations
 
 import logging
+import os
 from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
@@ -33,6 +34,17 @@ if TYPE_CHECKING:
     pass
 
 logger = logging.getLogger(__name__)
+
+
+def data_root() -> Path:
+    """Root directory for local evaluation ground truth.
+
+    Defaults to ``data/hf_dataset``. Override with ``SHELF_DATA_DIR`` to
+    evaluate a different corpus without editing code -- required for the
+    transfer and rank-agreement work, which scores the same models against
+    the pooled corpus, the Gutenberg control, and LCSHBench in turn.
+    """
+    return Path(os.environ.get("SHELF_DATA_DIR", "data/hf_dataset"))
 
 
 # Standard facet fields available for stratification
@@ -144,7 +156,7 @@ class TaskEvaluator(ABC):
     def _load_ground_truth(self, split: str) -> pl.DataFrame:
         """Load ground truth from local parquet or HuggingFace dataset.
 
-        Tries to load from local data/hf_dataset/ first, then falls back
+        Tries to load from data_root() first (SHELF_DATA_DIR), then falls back
         to HuggingFace Hub. Applies any configured filters.
 
         Args:
@@ -154,7 +166,7 @@ class TaskEvaluator(ABC):
             Polars DataFrame with ground truth data (filtered if filter_by is set)
         """
         # Try local parquet files first
-        local_path = Path("data/hf_dataset") / f"{split}.parquet"
+        local_path = data_root() / f"{split}.parquet"
         if local_path.exists():
             df = pl.read_parquet(local_path)
             # The 'text' field should be body-only (no title) to avoid label leakage.

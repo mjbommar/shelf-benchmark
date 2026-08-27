@@ -192,6 +192,18 @@ def build(out_dir: Path, cache_dir: str | None) -> int:
         logger.info(f"  {split:<11} {counts[split]:>7,}")
     logger.info(f"  {'TOTAL':<11} {sum(counts.values()):>7,}")
 
+    # Parquet as well: the evaluators read <SHELF_DATA_DIR>/<split>.parquet.
+    import polars as pl
+
+    for split in SPLITS:
+        rows_for_split = [r for r in kept if (r.get("split") or "train") == split]
+        if not rows_for_split:
+            continue
+        pl.DataFrame(rows_for_split, infer_schema_length=None).write_parquet(
+            out_dir / f"{split}.parquet"
+        )
+    logger.info(f"\nWrote parquet to {out_dir} (set SHELF_DATA_DIR to evaluate it)")
+
     by_source = Counter(r["source_config"] for r in kept)
     logger.info("\nBy source config")
     for src, n in by_source.most_common():

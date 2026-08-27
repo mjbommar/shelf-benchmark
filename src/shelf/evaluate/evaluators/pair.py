@@ -12,25 +12,24 @@ Supports:
 from __future__ import annotations
 
 import logging
-from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 import polars as pl
 from datasets import Dataset, load_dataset
 from sklearn.metrics.pairwise import cosine_similarity
 
-from shelf.evaluate.evaluators.base import TaskEvaluator
+from shelf.evaluate.evaluators.base import TaskEvaluator, data_root
 from shelf.evaluate.metrics.pair import compute_pair_metrics
 from shelf.evaluate.results import (
     EvaluationResult,
     PerSampleResult,
     PerSampleResults,
 )
-from shelf.evaluate.tasks import TaskSpec
 from shelf.evaluate.schemas import (
     ValidationError,
     validate_pair_predictions,
 )
+from shelf.evaluate.tasks import TaskSpec
 
 if TYPE_CHECKING:
     from shelf.evaluate.adapters.bm25 import BM25Retriever
@@ -120,7 +119,7 @@ class PairClassificationEvaluator(TaskEvaluator):
         local_dir = config_to_dir.get(config, config)
 
         # Try local parquet files first
-        local_path = Path("data/hf_dataset/pairs") / local_dir / f"{split}.parquet"
+        local_path = data_root() / "pairs" / local_dir / f"{split}.parquet"
         if local_path.exists():
             logger.info(f"Loading pairs from local file: {local_path}")
             return pl.read_parquet(local_path)
