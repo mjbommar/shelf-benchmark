@@ -10,14 +10,21 @@ Framing and evidence audit live in `outline_v2.md`.
 ## Critical path
 
 ### 1. Recover the baseline table
-- [ ] Fix `scripts/run_baselines.py:698` — `baseline_summary.json` is
-      overwritten on partial runs instead of merged. This is the bug that
-      lost the 22-model table and produced the 0.679 headline that would
-      not reproduce (recomputed 0.502).
-- [ ] Re-aggregate v0.3.0 from the surviving per-task JSON files. The
-      results are intact: 22 models x 16 tasks. Only the aggregate was
-      clobbered. No re-running needed.
-- [ ] Add a regression test: a partial run must not destroy prior results.
+- [x] Fix the overwrite. The real site was `scripts/baselines/run_all.py`,
+      not `run_baselines.py:698`: it wrote `summary.json` from only the
+      models the current invocation ran. Added
+      `harvest_existing_results()`, which folds every per-task result in
+      the output directory into the summary before scoring, with the
+      current run winning over stale copies.
+- [x] Re-aggregate v0.3.0. Recovered 1 -> 360 result cells and 1 -> 25
+      SHELF scores, nothing lost. Added `--aggregate-only` to rebuild
+      from disk without running anything.
+- [x] Regression test: 8 tests in
+      `tests/unit/test_baseline_summary_merge.py`. Full suite 1,977 pass.
+- [x] **Confirmed the headline does not reproduce.** The recovered table
+      puts TF+SVD at 0.5008, rank 10 — matching the earlier recomputation
+      (0.502), not the published 0.679. TF-IDF+SVD is 0.5163, rank 3.
+      Any paper text citing 0.679 must change.
 
 ### 2. v0.4 baseline sweep
 - [ ] Run 22 models x 16 tasks on v0.4. Local encoders, so compute only,
