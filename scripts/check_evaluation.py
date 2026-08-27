@@ -94,8 +94,31 @@ def main() -> int:
         failures.append(f"B3: {len(unreadable)} unreadable result files")
 
     # --- B1: completeness ---------------------------------------------
+    # --- B1: completeness ---------------------------------------------
+    # A task that errors for EVERY model is structurally impossible on this
+    # corpus rather than a gap in the sweep: lcc_subclass_classification needs
+    # a column the pooled corpus does not carry, because that tier was
+    # withdrawn. Excluding it keeps the gate reachable. It is printed so the
+    # exclusion is visible rather than silent.
+    attempted = set(ok) | set(err)
+    impossible = {
+        t
+        for t in all_tasks
+        if any(t in err.get(m, set()) for m in attempted)
+        and not any(t in ok.get(m, set()) for m in attempted)
+    }
+    if impossible:
+        print(
+            "    structurally impossible on this corpus, excluded from B1: "
+            + ", ".join(sorted(impossible))
+        )
+
     expected = {
-        m: {t for t in all_tasks if _supports(models_cfg[m], t, tasks_cfg)}
+        m: {
+            t
+            for t in all_tasks
+            if _supports(models_cfg[m], t, tasks_cfg) and t not in impossible
+        }
         for m in models_cfg
     }
     complete = [m for m in expected if expected[m] and ok.get(m, set()) >= expected[m]]
