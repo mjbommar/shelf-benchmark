@@ -129,6 +129,25 @@ ty check
 # NEVER use pyright or mypy - use ty for type checking
 ```
 
+## Before any result is reported
+
+**Run `python scripts/check_evaluation.py --results <dir>` before results go
+into a paper, a dataset card, or a message.** It gates the failures that have
+actually happened here: partial sweeps reported as complete, biased samples
+(a partial sweep finishes small models first), error stubs counted as
+results, and an aggregate overwritten by a partial run.
+
+Full list with the incident behind each check:
+[docs/EVALUATION_CHECKLIST.md](docs/EVALUATION_CHECKLIST.md). The statistical
+and metric items (intervals, single-model pilots, metrics that share
+vocabulary with the treatment) cannot be automated -- read them.
+
+Two resource rules, both learned by breaking the machine:
+
+- Check **system RAM**, not just GPU, before running jobs in parallel. An
+  N-by-N similarity over 62,899 documents is 15.8GB per matrix.
+- Run long jobs under `systemd-run --user --scope -p MemoryMax=`.
+
 ## Evaluation Design Notes
 
 Based on research into MTEB, HELM, EleutherAI eval harness, and benchmark gaming issues:
