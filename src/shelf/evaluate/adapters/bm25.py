@@ -32,6 +32,7 @@ Example:
 from __future__ import annotations
 
 import logging
+import os
 import re
 from enum import Enum
 from typing import TYPE_CHECKING, Any
@@ -521,7 +522,13 @@ class BM25Retriever:
             )
         else:
             uniq_per_query = 1
-        max_chunk_memory = 2 * 1024 * 1024 * 1024  # 2 GB for the dense block
+        # Budget for the dense block. Overridable because the right value
+        # depends on the machine: 2 GB is safe on a small box, but on a host
+        # with tens of gigabytes free a larger budget cuts wall-clock several
+        # fold (chunks of 8 versus 32 on this corpus).
+        max_chunk_memory = int(
+            os.environ.get("SHELF_BM25_CHUNK_BYTES", 8 * 1024 * 1024 * 1024)
+        )
 
         bytes_per_query_output = n_docs * 8
         # Unique terms grow sublinearly with chunk size; assume half overlap.
