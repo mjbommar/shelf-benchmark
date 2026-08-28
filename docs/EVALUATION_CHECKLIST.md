@@ -46,6 +46,16 @@ any results go into a paper, a dataset card, or a message to the user.
       *Violated: `claude-haiku-4.5` is an OpenRouter alias; the native API
       404s.*
 
+- [ ] **C5. A wrapper must not report success on a failed command.** Check
+      the exit code; `echo DONE` after a pipeline reports the exit of the
+      last stage, not the program. *Violated: `--task-types multilabel` is
+      not a valid choice, argparse exited non-zero, the wrapper printed
+      "MULTI WORKER DONE", and a whole task type was silently skipped for
+      20 models. It surfaced only from a coverage count.*
+- [ ] **C6. Enumerate task types from the config, never from memory.** The
+      sweep ran four of the five defined types because the fifth was not in
+      the list typed by hand.
+
 ## D. Statistics
 
 - [ ] **D1. Report an interval with every correlation and every
