@@ -208,7 +208,7 @@ class BM25Retriever:
         cls,
         preset: str = "default",
         backend: str | BM25Backend = BM25Backend.SHELF,
-    ) -> "BM25Retriever":
+    ) -> BM25Retriever:
         """Create retriever with preset configuration.
 
         Args:
@@ -238,7 +238,7 @@ class BM25Retriever:
         self,
         corpus_texts: list[str],
         corpus_ids: list[str],
-    ) -> "BM25Retriever":
+    ) -> BM25Retriever:
         """Build BM25 index from corpus.
 
         Args:
@@ -499,15 +499,41 @@ class BM25Retriever:
         else:
             tokenized_queries = [self.tokenizer(text) for text in query_texts]
 
-        # Memory-aware chunk size: limit to ~500MB per chunk
-        # Each chunk creates (chunk_size × n_docs) float64 array
-        bytes_per_query = n_docs * 8  # float64
-        max_chunk_memory = 500 * 1024 * 1024  # 500 MB
-        chunk_size = max(100, min(1000, max_chunk_memory // bytes_per_query))
+        # Memory-aware chunk size.
+        #
+        # The output array is (chunk_size x n_docs), but that is NOT the
+        # dominant cost. get_bm25_scores_batch_vectorized densifies a
+        # (n_docs x n_unique_terms) block for the chunk's vocabulary, and then
+        # holds roughly four such arrays at once (TF_subset, numerator,
+        # denominator, BM25_term_scores). Sizing chunks from the output alone
+        # under-counts by more than an order of magnitude: a 1,000-query chunk
+        # over long documents reaches tens of thousands of unique terms, so
+        # 50,395 docs x 30,000 terms x 8 bytes x 4 arrays is about 48 GB. That
+        # was SIGKILLed at a 50 GB cap even with only 2,000 queries.
+        #
+        # Estimate unique terms per query from the actual tokenised queries and
+        # budget for the dense block instead.
+        DENSE_COPIES = 4
+        sample = tokenized_queries[: min(200, len(tokenized_queries))]
+        if sample:
+            uniq_per_query = max(
+                1, sum(len(set(t)) for t in sample) // max(1, len(sample))
+            )
+        else:
+            uniq_per_query = 1
+        max_chunk_memory = 2 * 1024 * 1024 * 1024  # 2 GB for the dense block
+
+        bytes_per_query_output = n_docs * 8
+        # Unique terms grow sublinearly with chunk size; assume half overlap.
+        bytes_per_query_dense = n_docs * 8 * DENSE_COPIES * max(1, uniq_per_query // 2)
+        bytes_per_query = bytes_per_query_output + bytes_per_query_dense
+        chunk_size = int(max(8, min(1000, max_chunk_memory // max(1, bytes_per_query))))
 
         logger.info(
             f"Batch BM25: {len(query_ids)} queries in chunks of {chunk_size} "
-            f"(~{chunk_size * bytes_per_query / 1024 / 1024:.0f} MB/chunk)"
+            f"(~{uniq_per_query} unique terms/query, "
+            f"~{chunk_size * bytes_per_query / 1024 / 1024:.0f} MB/chunk incl. "
+            "dense term block)"
         )
 
         results: dict[str, list[str]] = {}
