@@ -44,6 +44,16 @@ def load(results_dir: Path) -> tuple[dict, dict, list]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--results", required=True)
+    ap.add_argument(
+        "--exclude-models",
+        default="finetune",
+        help=(
+            "Comma-separated substrings; matching models are dropped from the "
+            "completeness denominator. Default excludes fine-tuned models, "
+            "which are not zero-shot baselines and would mislead if mixed into "
+            "a baseline table. Pass an empty string to count everything."
+        ),
+    )
     ap.add_argument("--config", default="scripts/baselines/config.yaml")
     ap.add_argument(
         "--min-large-params",
@@ -62,6 +72,15 @@ def main() -> int:
 
     cfg = yaml.safe_load(Path(args.config).read_text())
     models_cfg = cfg.get("models", {})
+    drop = [x for x in args.exclude_models.split(",") if x]
+    if drop:
+        excluded = [m for m in models_cfg if any(d in m for d in drop)]
+        if excluded:
+            print(
+                "    excluded from completeness (not zero-shot baselines): "
+                + ", ".join(sorted(excluded))
+            )
+        models_cfg = {m: v for m, v in models_cfg.items() if m not in excluded}
     tasks_cfg = cfg.get("tasks", {})
     all_tasks = {t for tl in tasks_cfg.values() for t in tl}
 
