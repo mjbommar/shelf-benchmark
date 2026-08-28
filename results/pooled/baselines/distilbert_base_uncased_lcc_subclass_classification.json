@@ -1,0 +1,22 @@
+{
+  "model": "distilbert-base-uncased",
+  "model_key": "distilbert_base_uncased",
+  "task": "lcc_subclass_classification",
+  "task_type": "classification",
+  "error": "\"lcc_subclass\" not found",
+  "efficiency": {
+    "num_params": 66985530,
+    "embedding_dim": 768,
+    "size_category": "50M-100M",
+    "flops_per_token": 133971060,
+    "relative_compute": 2.9492,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  }
+}

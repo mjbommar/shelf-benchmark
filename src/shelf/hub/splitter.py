@@ -17,14 +17,17 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import random
 from collections import Counter
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 from sklearn.model_selection import StratifiedShuffleSplit
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -38,6 +41,16 @@ class SplitConfig:
         random_seed: Random seed for reproducibility (default: 42)
         min_per_class: Minimum samples per stratification class per split (default: 3)
         stratify_by: List of fields to use for stratification (default: ["lcc_code", "lcgft_category"])
+        group_by: Field whose value must never straddle two splits (default: None).
+
+            Set this to ``"spec_id"`` for any v0.4 corpus. Phase 1 gives the
+            same spec to every generator, so a spec's realizations are
+            near-duplicates by construction; splitting them independently
+            manufactures exactly the train/test leakage v0.3.1 avoids. With
+            ``group_by`` set, the split is performed over groups and expanded
+            back to documents, and a post-condition verifies no group straddles.
+
+            None reproduces v0.3.1 document-level splitting exactly.
     """
 
     train_ratio: float = 0.6
@@ -48,6 +61,7 @@ class SplitConfig:
     stratify_by: list[str] = field(
         default_factory=lambda: ["lcc_code", "lcgft_category"]
     )
+    group_by: str | None = None
 
     def __post_init__(self) -> None:
         """Validate split ratios sum to 1.0."""
@@ -259,6 +273,115 @@ class StratifiedSplitter:
 
         return stats
 
+    def _split_grouped(self, documents: list[dict[str, Any]]) -> SplitResult:
+        """Split so that a whole group lands in exactly one split.
+
+        Groups are split rather than documents. Each group contributes one
+        representative to stratification, since every member of a spec group
+        shares that spec's labels by construction.
+
+        Raises:
+            ValueError: If any document lacks the group field, or if the
+                resulting split somehow straddles a group. The second check is
+                a post-condition, not a guard against bad input -- if it ever
+                fires, the split is silently leaking and must not be published.
+        """
+        group_field = self.config.group_by
+        assert group_field is not None
+
+        missing = sum(1 for doc in documents if not doc.get(group_field))
+        if missing:
+            raise ValueError(
+                f"{missing} of {len(documents)} documents have no '{group_field}'; "
+                "cannot group-split without it"
+            )
+
+        groups: dict[str, list[dict[str, Any]]] = {}
+        for doc in documents:
+            groups.setdefault(str(doc[group_field]), []).append(doc)
+
+        if len(groups) < 100:
+            raise ValueError(
+                f"Group-splitting needs at least 100 distinct '{group_field}' values, "
+                f"got {len(groups)} across {len(documents)} documents. The split is "
+                f"performed over groups, so a coarse grouping field leaves too few "
+                f"units to stratify."
+            )
+
+        logger.info(
+            "Group-splitting %d documents into %d '%s' groups (mean %.1f docs/group)",
+            len(documents),
+            len(groups),
+            group_field,
+            len(documents) / len(groups),
+        )
+
+        # One representative per group carries the stratification labels.
+        representatives = [members[0] for members in groups.values()]
+        group_keys = list(groups)
+
+        sub_config = replace(self.config, group_by=None)
+        group_result = StratifiedSplitter(sub_config).split(
+            [
+                {**rep, "__group_key__": key}
+                for rep, key in zip(representatives, group_keys, strict=True)
+            ]
+        )
+
+        expanded: dict[str, list[dict[str, Any]]] = {}
+        assigned: dict[str, str] = {}
+        for split_name in ("train", "dev", "test"):
+            docs: list[dict[str, Any]] = []
+            for rep in group_result.get_split(split_name):
+                key = rep["__group_key__"]
+                assigned[key] = split_name
+                docs.extend(groups[key])
+            expanded[split_name] = docs
+
+        straddling = self._find_straddling_groups(expanded, group_field)
+        if straddling:
+            raise ValueError(
+                f"{len(straddling)} '{group_field}' groups straddle splits after "
+                f"grouping (e.g. {sorted(straddling)[:3]}); this would leak"
+            )
+
+        statistics = dict(group_result.statistics or {})
+        statistics["grouping"] = {
+            "group_by": group_field,
+            "n_groups": len(groups),
+            "n_documents": len(documents),
+            "mean_docs_per_group": round(len(documents) / len(groups), 4),
+            "groups_per_split": {
+                name: sum(1 for v in assigned.values() if v == name)
+                for name in ("train", "dev", "test")
+            },
+        }
+
+        return SplitResult(
+            train=expanded["train"],
+            dev=expanded["dev"],
+            test=expanded["test"],
+            config=self.config,
+            checksum=self._compute_checksum(
+                {
+                    name: [str(d.get("id", "")) for d in expanded[name]]
+                    for name in ("train", "dev", "test")
+                }
+            ),
+            statistics=statistics,
+        )
+
+    @staticmethod
+    def _find_straddling_groups(
+        splits: dict[str, list[dict[str, Any]]], group_field: str
+    ) -> set[str]:
+        """Return group values that appear in more than one split."""
+        seen: dict[str, set[str]] = {}
+        for split_name, docs in splits.items():
+            for doc in docs:
+                seen.setdefault(str(doc.get(group_field, "")), set()).add(split_name)
+        return {key for key, names in seen.items() if len(names) > 1}
+
     def split(self, documents: list[dict[str, Any]]) -> SplitResult:
         """Perform stratified split on documents.
 
@@ -272,6 +395,9 @@ class StratifiedSplitter:
             raise ValueError(
                 f"Need at least 100 documents for splitting, got {len(documents)}"
             )
+
+        if self.config.group_by:
+            return self._split_grouped(documents)
 
         # Set random seeds for reproducibility
         random.seed(self.config.random_seed)
@@ -441,7 +567,7 @@ def create_splits(
     filtered_count = 0
     empty_body_count = 0
     for json_file in sorted(artifacts_path.glob("*.json")):
-        with open(json_file, "r", encoding="utf-8") as f:
+        with open(json_file, encoding="utf-8") as f:
             doc = json.load(f)
 
         # Filter out documents with empty body (failed generations)

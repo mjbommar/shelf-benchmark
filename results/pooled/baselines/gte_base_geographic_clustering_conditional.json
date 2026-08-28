@@ -1,0 +1,71 @@
+{
+  "model": "GTE-base",
+  "model_key": "gte_base",
+  "model_type": "sentence_transformer",
+  "task": "geographic_clustering_conditional",
+  "task_type": "clustering",
+  "primary_metric": "ari_pooled",
+  "primary_score": 0.009006550009854467,
+  "metrics": {
+    "v_measure_macro": 0.3073713045308464,
+    "nmi_macro": 0.3073713045308464,
+    "ari_macro": 0.14083737384289807,
+    "homogeneity_macro": 0.3451584500213826,
+    "completeness_macro": 0.2775064381634149,
+    "v_measure_pooled": 0.1792190329927602,
+    "nmi_pooled": 0.1792190329927602,
+    "ari_pooled": 0.009006550009854467,
+    "homogeneity_pooled": 0.36587531375991167,
+    "completeness_pooled": 0.11867524061515432,
+    "ari": 0.009006550009854467,
+    "v_measure": 0.1792190329927602,
+    "n_classes_total": 21,
+    "n_classes_clustered": 21,
+    "n_classes_skipped": 0,
+    "n_samples_clustered": 5046
+  },
+  "num_samples": 5046,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "7adced9467526a201c0ea260b7351b50",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T17:04:25.501439+00:00",
+    "model_name": "GTE-base",
+    "data_commit": "ef75460",
+    "code_commit": "8ce1f71",
+    "extra": {
+      "embedding_dim": 768,
+      "class_field": "lcc_code",
+      "min_class_size": 20,
+      "skipped_classes": {},
+      "norm_stats": {
+        "norm_min": 0.99951171875,
+        "norm_max": 1.0,
+        "norm_mean": 1.0,
+        "norm_std": 0.00048828125
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": 57.9518,
+    "shelf_compute": 0.3981,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.465894
+}

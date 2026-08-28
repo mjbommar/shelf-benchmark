@@ -1,0 +1,56 @@
+{
+  "model": "OGBert-110M Base",
+  "model_key": "ogbert_110m_base",
+  "model_type": "sentence_transformer",
+  "task": "same_register_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "f1",
+  "primary_score": 0.6671140939597315,
+  "metrics": {
+    "f1": 0.6671140939597315,
+    "accuracy": 0.504,
+    "precision": 0.502020202020202,
+    "recall": 0.994,
+    "auc_roc": 0.56674975,
+    "average_precision": 0.5787574451850593,
+    "threshold": 0.7170447444915772,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "a8eeeee82a72b05a7643fd02243bfb1d",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T21:30:10.161591+00:00",
+    "model_name": "OGBert-110M Base",
+    "data_commit": null,
+    "code_commit": "583b4f6",
+    "extra": {
+      "embedding_dim": 768
+    }
+  },
+  "efficiency": {
+    "num_params": 139054592,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 278109184,
+    "relative_compute": 6.1222,
+    "shelf_eff": 50.2597,
+    "shelf_compute": 0.3414,
+    "pareto_optimal": false,
+    "size_rank": 8,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.409274
+}

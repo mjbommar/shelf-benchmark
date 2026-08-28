@@ -1,0 +1,51 @@
+{
+  "model": "BERT-base (SHELF LCC demo finetune)",
+  "model_key": "bert_lcc_finetune_demo",
+  "model_type": "transformers_classifier",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.018995074454540087,
+  "metrics": {
+    "accuracy": 0.05489596802633126,
+    "macro_f1": 0.018995074454540087,
+    "micro_f1": 0.05489596802633126,
+    "weighted_f1": 0.019050367195511213,
+    "num_samples": 8507,
+    "num_correct": 467,
+    "num_classes": 21
+  },
+  "num_samples": 8507,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.4",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "6e5bf28fe9e06661872b25d8c9568ee8",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.14.0-35-generic-x86_64-with-glibc2.41",
+    "timestamp": "2025-12-14T20:39:58.654979+00:00",
+    "model_name": "results/finetune/bert_lcc_demo_small2",
+    "data_commit": "7123a65",
+    "code_commit": "22b6a81",
+    "extra": {}
+  },
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.018995
+}

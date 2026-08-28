@@ -4,12 +4,26 @@ Individual dimension samplers for LC taxonomies.
 Each sampler is independent and can be used standalone or composed.
 """
 
-from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
+from __future__ import annotations
+
+import json
 import random
-from typing import TypeVar, Generic, Sequence
+from abc import ABC, abstractmethod
+from collections.abc import Sequence
+from dataclasses import dataclass, field
+from functools import lru_cache
+from pathlib import Path
+from typing import Final, Generic, Literal, TypeVar
 
 T = TypeVar("T")
+
+# Sentinel selecting the frozen, hand-curated v0.3.1 label pools (below) for
+# TopicSampler / GeographicSampler / LCGFTSampler, instead of the larger
+# frequency-ranked pools loaded from data/taxonomies/*.json. This is the
+# default for all three samplers, so existing callers -- and the published
+# v0.3.1 corpus -- are reproduced exactly unless a numeric `pool_size` is
+# passed explicitly. See docs/data_plan_v0.4.md section 4.1.
+PRESET_V0_3_1: Final = "v0.3.1"
 
 
 # =============================================================================
@@ -24,7 +38,7 @@ class Sampler(ABC, Generic[T]):
         self._rng = random.Random(seed)
         self._seed = seed
 
-    def reseed(self, seed: int) -> "Sampler[T]":
+    def reseed(self, seed: int) -> Sampler[T]:
         """Reset the random state with a new seed."""
         self._rng = random.Random(seed)
         self._seed = seed
@@ -101,13 +115,25 @@ LCC_DATA: dict[str, str] = {
 
 @dataclass
 class LCCClass:
-    """An LCC main class."""
+    """An LCC main class, optionally narrowed to one of its subclasses.
+
+    ``subclass`` carries the v0.4 difficulty tier (docs/data_plan_v0.4.md
+    section 6): ``code`` stays the single-letter main class so every existing
+    label, topic-domain lookup and task keeps working, while ``subclass`` adds
+    the finer LC code ("QA" under "Q") that demands within-domain
+    discrimination. It defaults to ``None``, so a v0.3.1 draw is unchanged in
+    every observable way -- including ``__str__`` and the derived ``uri``.
+    """
 
     code: str
     name: str
     uri: str | None = None
+    subclass: str | None = None
+    subclass_name: str | None = None
 
     def __str__(self) -> str:
+        if self.subclass:
+            return f"{self.subclass}: {self.subclass_name or self.name}"
         return f"{self.code}: {self.name}"
 
     def __post_init__(self):
@@ -139,6 +165,264 @@ class LCCSampler(Sampler[LCCClass]):
     def all_codes() -> list[str]:
         """Get all LCC codes."""
         return list(LCC_DATA.keys())
+
+
+# =============================================================================
+# LCC Subclass Sampler (v0.4 Phase 2 difficulty tier)
+# =============================================================================
+#
+# The flagship `lcc_classification` task is lexically saturated: TF-IDF+LR
+# reaches 0.892 macro-F1 and still scores 0.754 on 22-word documents, because
+# the 21 top-level classes are decodable from domain vocabulary alone. LCC
+# *subclasses* are not: QA/QC/QH all speak the vocabulary of science, KF/KJ/KZ
+# all speak the vocabulary of law. See docs/data_plan_v0.4.md section 6.
+
+# Ranked MARC frequency table (ids, frequencies, ranks) and the LC enrichment
+# pass over it (captions, parent class letters, URIs, scope notes).
+LCC_SUBCLASS_SOURCE: Final = "lcc_subclass_top100.json"
+LCC_SUBCLASS_ENRICHED_SOURCE: Final = "enriched/lcc_subclass_top100.json"
+
+# Not LCC codes. `IN`, `PAR` and `NOT` are extraction artifacts in the MARC
+# frequency table -- almost certainly truncated call-number text, not
+# classification -- and `IN` is even assigned parent letter "I", which LCC does
+# not use. data_plan_v0.4.md section 4.1 flags all three explicitly. They are
+# excluded from every pool this module builds, unconditionally.
+LCC_SUBCLASS_EXTRACTION_ARTIFACTS: Final[frozenset[str]] = frozenset(
+    {"IN", "PAR", "NOT"}
+)
+
+
+@dataclass(frozen=True)
+class LCCSubclass:
+    """One LCC subclass with its parent main class and LC caption."""
+
+    code: str
+    caption: str | None
+    class_code: str
+    class_name: str
+    frequency: int = 0
+    rank: int = 0
+    uri: str | None = None
+    description: str | None = None
+
+    @property
+    def is_main_class(self) -> bool:
+        """Whether this 'subclass' is really the bare main class letter.
+
+        The frequency table lists 16 single-letter codes (works classed at the
+        top level, e.g. bare "Q"). They are a poor difficulty-tier label: "Q"
+        versus "QA" is genuinely ambiguous for a generated document, so the
+        default pool leaves them out.
+        """
+        return len(self.code) == 1
+
+    def to_lcc_class(self) -> LCCClass:
+        """Materialize as an ``LCCClass`` carrying this subclass."""
+        return LCCClass(
+            code=self.class_code,
+            name=self.class_name,
+            subclass=self.code,
+            subclass_name=self.caption,
+        )
+
+    def __str__(self) -> str:
+        return f"{self.code}: {self.caption or self.class_name}"
+
+
+@lru_cache(maxsize=4)
+def _load_lcc_subclass_table(data_dir: str) -> tuple[LCCSubclass, ...]:
+    """Read the ranked subclass table, overlaid with the LC enrichment pass.
+
+    Rank order from the frequency table is preserved. Extraction artifacts and
+    codes whose parent letter is not a real LCC main class are dropped here, so
+    no caller can reintroduce them.
+    """
+    base = Path(data_dir) / "taxonomies" / LCC_SUBCLASS_SOURCE
+    if not base.exists():
+        return ()
+
+    with open(base, encoding="utf-8") as handle:
+        rows = json.load(handle).get("labels", [])
+
+    enriched_path = Path(data_dir) / "taxonomies" / LCC_SUBCLASS_ENRICHED_SOURCE
+    enriched: dict[str, dict] = {}
+    if enriched_path.exists():
+        with open(enriched_path, encoding="utf-8") as handle:
+            enriched = {
+                str(row.get("id")): row
+                for row in json.load(handle).get("labels", [])
+                if row.get("id")
+            }
+
+    pool: list[LCCSubclass] = []
+    for index, row in enumerate(rows):
+        code = str(row.get("id") or row.get("label") or "").strip()
+        if not code or code in LCC_SUBCLASS_EXTRACTION_ARTIFACTS:
+            continue
+        extra = enriched.get(code, {})
+        class_code = str(extra.get("class_letter") or code[0]).strip()
+        if class_code not in LCC_DATA:
+            # Belt-and-braces against a future artifact that is not on the
+            # hard-coded list: LCC has no I, O, W, X or Y main class.
+            continue
+        pool.append(
+            LCCSubclass(
+                code=code,
+                caption=(str(extra["caption"]) if extra.get("caption") else None),
+                class_code=class_code,
+                class_name=LCC_DATA[class_code],
+                frequency=int(row.get("frequency", 0)),
+                rank=int(row.get("rank", index + 1)),
+                uri=(str(extra["uri"]) if extra.get("uri") else None),
+                description=(
+                    str(extra["description"]) if extra.get("description") else None
+                ),
+            )
+        )
+    return tuple(pool)
+
+
+def load_lcc_subclass_pool(
+    size: int | None = None,
+    data_dir: str | None = None,
+    require_description: bool = True,
+    include_main_classes: bool = False,
+) -> list[LCCSubclass]:
+    """Load the LCC subclass label pool, in MARC frequency-rank order.
+
+    Args:
+        size: Keep only the top `size` entries by rank after filtering. ``None``
+            keeps the whole filtered pool.
+        data_dir: Data directory containing ``taxonomies/``. Defaults to the
+            repository's ``data/``.
+        require_description: Drop subclasses with no LC description. This is the
+            default because an undescribed code cannot be prompted for -- the
+            generator would fall back to the bare code name, which is exactly
+            the self-labeling the prompt forbids. Only `JX` (a discontinued
+            subclass that the classification API no longer resolves) is lost.
+        include_main_classes: Include the 16 single-letter codes. Off by
+            default; see :attr:`LCCSubclass.is_main_class`.
+
+    Returns:
+        Subclasses in rank order.
+
+    Raises:
+        FileNotFoundError: If the frequency table is missing.
+        ValueError: If `size` is not positive, or exceeds the filtered pool.
+    """
+    resolved = data_dir if data_dir is not None else str(_lcc_default_data_dir())
+    table = _load_lcc_subclass_table(resolved)
+    if not table:
+        raise FileNotFoundError(
+            f"LCC subclass table not found or empty: "
+            f"{Path(resolved) / 'taxonomies' / LCC_SUBCLASS_SOURCE}"
+        )
+
+    pool = [
+        entry
+        for entry in table
+        if (include_main_classes or not entry.is_main_class)
+        and (not require_description or entry.description)
+    ]
+
+    if size is None:
+        return pool
+    if size < 1:
+        raise ValueError(f"pool size must be >= 1, got {size}")
+    if size > len(pool):
+        raise ValueError(
+            f"pool size {size} exceeds the {len(pool)} usable LCC subclasses "
+            f"(require_description={require_description}, "
+            f"include_main_classes={include_main_classes})"
+        )
+    return pool[:size]
+
+
+def _lcc_default_data_dir() -> Path:
+    """Repository ``data/`` directory (shared with `lc_data`)."""
+    from .lc_data import _default_data_dir
+
+    return _default_data_dir()
+
+
+class LCCSubclassSampler(Sampler[LCCClass]):
+    """Sample LCC subclasses, uniformly by default.
+
+    **Uniform, not frequency-weighted.** The MARC table is wildly skewed --
+    `KF` alone is 122,484 of the reference corpus, 12x the next code and more
+    than the other 99 combined -- so frequency sampling would produce a corpus
+    that is mostly American law and would leave most subclasses with too few
+    documents to score. Uniform sampling is what the top-level `LCCSampler`
+    already does, and section 6 of the data plan requires it here. Frequency
+    weighting is reachable via ``weighting="frequency"`` for anyone who wants
+    to measure the skew, but it is not the corpus-building setting.
+
+    Every sample is an :class:`LCCClass` whose ``code`` is the parent main
+    class and whose ``subclass`` is the finer code, so a subclass-bearing
+    document still carries a valid top-level `lcc_code` label.
+
+    Composing it with `DocumentSampler` requires care about draw order.
+    `DocumentSampler` draws topics *for the class it drew*, so the subclass has
+    to be chosen first and the document constrained to its parent -- swapping
+    the class in afterwards would leave a document with, say, literature topics
+    under a mathematics label::
+
+        subclasses = LCCSubclassSampler(seed=seed)
+        lcc = subclasses.sample()                       # e.g. Q + subclass QA
+        doc = sampler.with_lcc_classes([lcc.code]).sample()
+        doc.lcc = lcc                                   # same code/name, plus
+                                                        # the finer label
+        spec = DocumentSpec.from_document(doc, length, register)
+    """
+
+    def __init__(
+        self,
+        codes: list[str] | None = None,
+        seed: int | None = None,
+        pool_size: int | None = None,
+        data_dir: str | None = None,
+        require_description: bool = True,
+        include_main_classes: bool = False,
+        weighting: Literal["uniform", "frequency"] = "uniform",
+    ):
+        super().__init__(seed)
+        self._weighting = weighting
+
+        pool = load_lcc_subclass_pool(
+            size=pool_size,
+            data_dir=data_dir,
+            require_description=require_description,
+            include_main_classes=include_main_classes,
+        )
+        if codes:
+            wanted = set(codes)
+            pool = [entry for entry in pool if entry.code in wanted]
+        if not pool:
+            raise ValueError("LCC subclass pool is empty after filtering")
+
+        self._pool = pool
+        self._classes = [entry.to_lcc_class() for entry in pool]
+        self._weights = (
+            [float(entry.frequency) or 1.0 for entry in pool]
+            if weighting == "frequency"
+            else None
+        )
+
+    def sample(self) -> LCCClass:
+        if self._weights:
+            return self._rng.choices(self._classes, weights=self._weights, k=1)[0]
+        return self._rng.choice(self._classes)
+
+    def values(self) -> list[LCCClass]:
+        return self._classes
+
+    def subclasses(self) -> list[LCCSubclass]:
+        """The underlying pool entries, in rank order."""
+        return list(self._pool)
+
+    def codes(self) -> list[str]:
+        """Subclass codes in the pool, in rank order."""
+        return [entry.code for entry in self._pool]
 
 
 # =============================================================================
@@ -334,24 +618,84 @@ class LCGFTTerm:
 
 
 class LCGFTSampler(Sampler[LCGFTTerm]):
-    """Sample from LCGFT genre/form terms."""
+    """Sample from LCGFT genre/form terms.
+
+    Two pool sources, selected by `pool_size`:
+
+    - ``pool_size="v0.3.1"`` (default): the original 133-form hand-curated
+      pool grouped into 14 categories (`LCGFT_DATA`). Frozen so the v0.3.1
+      corpus stays exactly reproducible.
+    - ``pool_size=<int>``: the 133 curated forms extended with the next most
+      frequent forms from `data/taxonomies/lcgft.json` (554 available; see
+      `lc_data.build_expanded_form_pool`) until `pool_size` distinct forms
+      are reached. Added forms keep a category where the LCGFT hierarchy
+      file resolves one unambiguously; most do not (category coverage for
+      added forms is ~19% at pool_size=300) and fall under "Uncategorized".
+      Must be >= 133 (the curated count) and <= 554.
+
+    `categories` filters the resulting pool to the named categories, in
+    either mode.
+
+    Sampling is two-stage in both modes: a category is chosen uniformly,
+    then a form is chosen from within it (uniformly, or by MARC frequency
+    if ``weighting="frequency"`` -- see the module-level docs on
+    `TopicSampler` for why uniform is the default).
+    """
 
     def __init__(
         self,
         categories: list[str] | None = None,
         seed: int | None = None,
+        pool_size: int | Literal["v0.3.1"] = PRESET_V0_3_1,
+        weighting: Literal["uniform", "frequency"] = "uniform",
+        data_dir: str | None = None,
     ):
         super().__init__(seed)
-        if categories:
-            self._data = {k: v for k, v in LCGFT_DATA.items() if k in categories}
+        self._pool_size = pool_size
+        self._weighting = weighting
+        self._weights_by_form: dict[str, float] | None = None
+
+        if pool_size == PRESET_V0_3_1:
+            if categories:
+                self._data = {k: v for k, v in LCGFT_DATA.items() if k in categories}
+            else:
+                self._data = LCGFT_DATA
         else:
-            self._data = LCGFT_DATA
+            from .lc_data import build_expanded_form_pool, load_form_pool
+
+            expanded = build_expanded_form_pool(pool_size, data_dir=data_dir)
+            if categories:
+                expanded = {k: v for k, v in expanded.items() if k in categories}
+            self._data = expanded
+
+            if weighting == "frequency":
+                freqs = {
+                    e.label.lower(): float(e.frequency)
+                    for e in load_form_pool(pool_size, data_dir=data_dir)
+                }
+                # Forms added beyond the ranked slice used to build the
+                # curated+extended pool (i.e. curated forms not already in
+                # the top `pool_size` ranked forms) get the lowest observed
+                # frequency as a conservative weight.
+                fallback = min(freqs.values()) if freqs else 1.0
+                self._weights_by_form = {
+                    form: freqs.get(form.lower(), fallback)
+                    for forms in self._data.values()
+                    for form in forms
+                }
+
         self._categories = list(self._data.keys())
 
     def sample(self) -> LCGFTTerm:
         category = self._rng.choice(self._categories)
         forms = self._data[category]
-        form = self._rng.choice(forms) if forms else category
+        if self._weights_by_form:
+            weights = [self._weights_by_form.get(f, 1.0) for f in forms]
+            form = (
+                self._rng.choices(forms, weights=weights, k=1)[0] if forms else category
+            )
+        else:
+            form = self._rng.choice(forms) if forms else category
         return LCGFTTerm(category, form)
 
     def sample_from_category(self, category: str) -> LCGFTTerm:
@@ -542,37 +886,83 @@ LCC_TO_DOMAIN: dict[str, list[str]] = {
 
 
 class TopicSampler(Sampler[str]):
-    """Sample LCSH-style topics, optionally filtered by domain."""
+    """Sample LCSH-style topics, optionally filtered by domain.
+
+    Two pool sources, selected by `pool_size`:
+
+    - ``pool_size="v0.3.1"`` (default): the original 112-topic hand-curated
+      pool grouped into 10 domains (`TOPICS_BY_DOMAIN`). Several of these,
+      especially in the "humanities" domain (e.g. "Art", "History",
+      "Culture", "Religion"), are broad top-level abstractions rather than
+      specific subject headings -- see docs/data_plan_v0.4.md section 4.1.
+      Frozen so the v0.3.1 corpus stays exactly reproducible. `domains` /
+      `lcc_class` filtering only applies to this pool.
+    - ``pool_size=<int>``: the top-N specific LCSH topical subject headings
+      by MARC corpus frequency (e.g. "Flood insurance", "Groundwater"),
+      loaded from `data/taxonomies/lcsh_topical_top*.json` via
+      `lc_data.load_topic_pool` (1 <= N <= `lc_data.TOPIC_POOL_MAX` == 2000).
+      This pool carries no domain grouping, so `domains` / `lcc_class` are
+      ignored when it is used.
+
+    Sampling within either pool is **uniform** by default
+    (``weighting="uniform"``). Pass ``weighting="frequency"`` to sample
+    proportional to raw MARC frequency instead. Uniform is the default
+    deliberately: raw frequency is extremely skewed even within these
+    curated top-N lists (e.g. rank-1 "Flood insurance" is ~22x the
+    rank-500 cutoff frequency in the topical list, and the skew is far
+    worse for geographic headings), so frequency weighting would recreate
+    the "corpus collapses onto a handful of head terms" problem that this
+    pool expansion exists to fix. It exists as an option for callers who
+    deliberately want a naturalistic, imbalanced label distribution.
+    """
 
     def __init__(
         self,
         domains: list[str] | None = None,
         lcc_class: str | None = None,
         seed: int | None = None,
+        pool_size: int | Literal["v0.3.1"] = PRESET_V0_3_1,
+        weighting: Literal["uniform", "frequency"] = "uniform",
+        data_dir: str | None = None,
     ):
         super().__init__(seed)
+        self._pool_size = pool_size
+        self._weighting = weighting
+        self._weights: list[float] | None = None
 
-        # Determine which domains to use
-        if domains:
-            self._domains = domains
-        elif lcc_class and lcc_class in LCC_TO_DOMAIN:
-            self._domains = LCC_TO_DOMAIN[lcc_class]
+        if pool_size == PRESET_V0_3_1:
+            # Determine which domains to use
+            if domains:
+                self._domains = domains
+            elif lcc_class and lcc_class in LCC_TO_DOMAIN:
+                self._domains = LCC_TO_DOMAIN[lcc_class]
+            else:
+                self._domains = list(TOPICS_BY_DOMAIN.keys())
+
+            # Collect topics from those domains
+            self._topics = []
+            for domain in self._domains:
+                self._topics.extend(TOPICS_BY_DOMAIN.get(domain, []))
+
+            if not self._topics:
+                self._topics = TOPICS_BY_DOMAIN["general"]
         else:
-            self._domains = list(TOPICS_BY_DOMAIN.keys())
+            from .lc_data import load_topic_pool
 
-        # Collect topics from those domains
-        self._topics = []
-        for domain in self._domains:
-            self._topics.extend(TOPICS_BY_DOMAIN.get(domain, []))
-
-        if not self._topics:
-            self._topics = TOPICS_BY_DOMAIN["general"]
+            self._domains = []
+            entries = load_topic_pool(pool_size, data_dir=data_dir)
+            self._topics = [e.label for e in entries]
+            if weighting == "frequency":
+                self._weights = [float(e.frequency) for e in entries]
 
     def sample(self) -> str:
+        if self._weights:
+            return self._rng.choices(self._topics, weights=self._weights, k=1)[0]
         return self._rng.choice(self._topics)
 
     def sample_n_unique(self, n: int) -> list[str]:
-        """Sample n unique topics."""
+        """Sample n unique topics (weighting, if any, is ignored -- this
+        draws a uniform simple random sample without replacement)."""
         n = min(n, len(self._topics))
         return self._rng.sample(self._topics, n)
 
@@ -585,7 +975,7 @@ class TopicSampler(Sampler[str]):
         return list(TOPICS_BY_DOMAIN.keys())
 
     @staticmethod
-    def for_lcc(lcc_code: str, seed: int | None = None) -> "TopicSampler":
+    def for_lcc(lcc_code: str, seed: int | None = None) -> TopicSampler:
         """Create a topic sampler for a specific LCC class."""
         return TopicSampler(lcc_class=lcc_code, seed=seed)
 
@@ -711,7 +1101,28 @@ GEOGRAPHIC_AREAS: dict[str, list[str]] = {
 
 
 class GeographicSampler(Sampler[str | None]):
-    """Sample geographic areas."""
+    """Sample geographic areas.
+
+    Two pool sources, selected by `pool_size`:
+
+    - ``pool_size="v0.3.1"`` (default): the original 44-area hand-curated
+      pool grouped into 4 area types (`GEOGRAPHIC_AREAS`). Frozen so the
+      v0.3.1 corpus stays exactly reproducible. `area_types` filtering only
+      applies to this pool.
+    - ``pool_size=<int>``: the top-N LCSH geographic headings by MARC corpus
+      frequency, loaded from `data/taxonomies/lcsh_geo_top500.json` via
+      `lc_data.load_geographic_pool` (1 <= N <= `lc_data.GEOGRAPHIC_POOL_MAX`
+      == 500). This pool carries no area-type grouping, so `area_types` is
+      ignored when it is used.
+
+    Sampling is **uniform** by default (see `TopicSampler` for the reasoning
+    -- it applies here even more strongly: "United States" alone accounts
+    for ~45% of total MARC frequency mass in the top-500 geographic list
+    (143,648 of 318,405; the #2 entry has only 6,172), so frequency
+    weighting would make most of the other 499 headings vanishingly rare).
+    Pass ``weighting="frequency"`` to opt into
+    frequency-proportional sampling instead.
+    """
 
     def __init__(
         self,
@@ -719,17 +1130,31 @@ class GeographicSampler(Sampler[str | None]):
         include_none: bool = True,
         none_probability: float = 0.4,
         seed: int | None = None,
+        pool_size: int | Literal["v0.3.1"] = PRESET_V0_3_1,
+        weighting: Literal["uniform", "frequency"] = "uniform",
+        data_dir: str | None = None,
     ):
         super().__init__(seed)
+        self._pool_size = pool_size
+        self._weighting = weighting
+        self._weights: list[float] | None = None
 
-        if area_types:
-            self._areas = []
-            for t in area_types:
-                self._areas.extend(GEOGRAPHIC_AREAS.get(t, []))
+        if pool_size == PRESET_V0_3_1:
+            if area_types:
+                self._areas = []
+                for t in area_types:
+                    self._areas.extend(GEOGRAPHIC_AREAS.get(t, []))
+            else:
+                self._areas = [
+                    area for areas in GEOGRAPHIC_AREAS.values() for area in areas
+                ]
         else:
-            self._areas = [
-                area for areas in GEOGRAPHIC_AREAS.values() for area in areas
-            ]
+            from .lc_data import load_geographic_pool
+
+            entries = load_geographic_pool(pool_size, data_dir=data_dir)
+            self._areas = [e.label for e in entries]
+            if weighting == "frequency":
+                self._weights = [float(e.frequency) for e in entries]
 
         self._include_none = include_none
         self._none_prob = none_probability
@@ -737,6 +1162,8 @@ class GeographicSampler(Sampler[str | None]):
     def sample(self) -> str | None:
         if self._include_none and self._rng.random() < self._none_prob:
             return None
+        if self._weights:
+            return self._rng.choices(self._areas, weights=self._weights, k=1)[0]
         return self._rng.choice(self._areas)
 
     def sample_n(self, n: int) -> list[str | None]:
@@ -792,7 +1219,8 @@ class RealLCGFTSampler(Sampler[LCTerm]):
         seed: int | None = None,
     ):
         super().__init__(seed)
-        from .lc_data import load_lc_data, LCTerm as LCDataTerm
+        from .lc_data import LCTerm as LCDataTerm
+        from .lc_data import load_lc_data
 
         loader = load_lc_data(data_dir)
 
@@ -841,7 +1269,8 @@ class RealLCSHSampler(Sampler[LCTerm]):
         seed: int | None = None,
     ):
         super().__init__(seed)
-        from .lc_data import load_lc_data, LCTerm as LCDataTerm
+        from .lc_data import LCTerm as LCDataTerm
+        from .lc_data import load_lc_data
 
         loader = load_lc_data(data_dir)
 
@@ -891,7 +1320,8 @@ class RealLCDGTSampler(Sampler[LCTerm]):
         seed: int | None = None,
     ):
         super().__init__(seed)
-        from .lc_data import load_lc_data, LCTerm as LCDataTerm
+        from .lc_data import LCTerm as LCDataTerm
+        from .lc_data import load_lc_data
 
         loader = load_lc_data(data_dir)
         converted_terms: list[LCTerm] = []

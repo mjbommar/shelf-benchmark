@@ -177,6 +177,13 @@ def _normalize_document(
         "lcc_code": str(doc.get("lcc_code", "")),
         "lcc_name": str(doc.get("lcc_name", "")),
         "lcc_uri": str(doc.get("lcc_uri", "")),
+        # v0.4 Phase 2 difficulty tier. Additive: every v0.3.1 document has no
+        # subclass and normalizes to "", which is also how a v0.4 document
+        # outside the subclass slice normalizes. The `lcc_subclass_classification`
+        # task therefore has to filter on a non-empty value rather than assume
+        # the whole split carries one.
+        "lcc_subclass": str(doc.get("lcc_subclass") or ""),
+        "lcc_subclass_name": str(doc.get("lcc_subclass_name") or ""),
         # LCGFT fields
         "lcgft_category": str(doc.get("lcgft_category", "")),
         "lcgft_form": str(doc.get("lcgft_form", "")),
@@ -190,6 +197,16 @@ def _normalize_document(
         # Length metadata
         "target_length": str(doc.get("target_length", "")),
         "target_word_range": list(doc.get("target_word_range") or [0, 0]),
+        # v0.4 provenance. Every field is additive and defaults to a v0.3.1-safe
+        # value, so a v0.3.1 artifact normalizes exactly as before.
+        #
+        # spec_id is the SPLIT KEY for any v0.4 corpus: Phase 1 gives one spec
+        # to every generator, so a spec's realizations are near-duplicates and
+        # must never straddle splits. See SplitConfig(group_by="spec_id").
+        "spec_id": str(doc.get("spec_id") or ""),
+        "block_id": str(doc.get("block_id") or ""),
+        "prompt_variant_id": str(doc.get("prompt_variant_id") or ""),
+        "source_type": str(doc.get("source_type") or "synthetic"),
     }
 
     if include_generation_metadata:
@@ -212,6 +229,14 @@ def _normalize_document(
                 "temperature": float(doc.get("temperature", 0.0)),
                 "top_p": float(doc.get("top_p", 0.0)),
                 "model": str(doc.get("model", "")),
+                # Which backend actually served the request. OpenRouter routes
+                # one model id to different providers with different
+                # quantization -- observed live, DeepInfra and DigitalOcean for
+                # the same id minutes apart -- so this is real provenance, not
+                # bookkeeping.
+                "provider_served": str(doc.get("provider_served") or ""),
+                "model_resolved": str(doc.get("model_resolved") or ""),
+                "reasoning_tokens": int(doc.get("reasoning_tokens") or 0),
                 # Git versioning for reproducibility
                 "git_commit": str(doc.get("git_commit") or ""),
                 "code_version": str(doc.get("code_version") or ""),
@@ -249,6 +274,9 @@ def _create_hf_features(include_generation_metadata: bool = True) -> Any:
         "lcc_code": Value("string"),
         "lcc_name": Value("string"),
         "lcc_uri": Value("string"),
+        # v0.4 Phase 2 (see _normalize_document)
+        "lcc_subclass": Value("string"),
+        "lcc_subclass_name": Value("string"),
         "lcgft_category": Value("string"),
         "lcgft_form": Value("string"),
         "topics": Sequence(Value("string")),
@@ -258,6 +286,11 @@ def _create_hf_features(include_generation_metadata: bool = True) -> Any:
         "register_description": Value("string"),
         "target_length": Value("string"),
         "target_word_range": Sequence(Value("int32")),
+        # v0.4 provenance (see _normalize_document)
+        "spec_id": Value("string"),
+        "block_id": Value("string"),
+        "prompt_variant_id": Value("string"),
+        "source_type": Value("string"),
     }
 
     if include_generation_metadata:
@@ -266,6 +299,9 @@ def _create_hf_features(include_generation_metadata: bool = True) -> Any:
                 "temperature": Value("float32"),
                 "top_p": Value("float32"),
                 "model": Value("string"),
+                "provider_served": Value("string"),
+                "model_resolved": Value("string"),
+                "reasoning_tokens": Value("int32"),
                 # Git versioning for reproducibility
                 "git_commit": Value("string"),
                 "code_version": Value("string"),

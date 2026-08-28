@@ -1,0 +1,67 @@
+{
+  "model": "TF-IDF+SVD",
+  "model_key": "tfidf",
+  "model_type": "tfidf",
+  "task": "geographic_clustering_conditional",
+  "task_type": "clustering",
+  "primary_metric": "ari_pooled",
+  "primary_score": 0.004426089664224238,
+  "metrics": {
+    "v_measure_macro": 0.21575546963098186,
+    "nmi_macro": 0.21575546963098186,
+    "ari_macro": 0.0637136958834791,
+    "homogeneity_macro": 0.2375444768563594,
+    "completeness_macro": 0.1979240753587319,
+    "v_measure_pooled": 0.12874143917886147,
+    "nmi_pooled": 0.12874143917886147,
+    "ari_pooled": 0.004426089664224238,
+    "homogeneity_pooled": 0.260117242972767,
+    "completeness_pooled": 0.08553885820483083,
+    "ari": 0.004426089664224238,
+    "v_measure": 0.12874143917886147,
+    "n_classes_total": 21,
+    "n_classes_clustered": 21,
+    "n_classes_skipped": 0,
+    "n_samples_clustered": 5046
+  },
+  "num_samples": 5046,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "7adced9467526a201c0ea260b7351b50",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T13:40:15.523591+00:00",
+    "model_name": "tfidf-sklearn-1-2gram-dim256",
+    "data_commit": "ef75460",
+    "code_commit": "275f308",
+    "extra": {
+      "embedding_dim": 256,
+      "class_field": "lcc_code",
+      "min_class_size": 20,
+      "skipped_classes": {},
+      "norm_stats": {
+        "norm_min": 0.9999997615814209,
+        "norm_max": 1.000000238418579,
+        "norm_mean": 1.0,
+        "norm_std": 5.6940503867508596e-08
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null
+  },
+  "shelf_score": 0.460781
+}

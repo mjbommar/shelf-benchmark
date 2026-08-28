@@ -1,35 +1,16 @@
 {
-  "run_id": "20251214_135123",
+  "run_id": "20260827_123159",
   "config_version": "1.0.0",
-  "dataset_version": "0.3.0",
-  "dataset_checksum": "v0.3.0",
-  "models_evaluated": [
-    "distilbert_base_uncased"
-  ],
-  "tasks_evaluated": [
-    "lcc_retrieval",
-    "form_retrieval",
-    "category_retrieval",
-    "lcc_classification",
-    "lcgft_category_classification",
-    "register_classification",
-    "lcc_clustering",
-    "lcgft_clustering",
-    "register_clustering",
-    "geographic_clustering",
-    "same_lcc_pairs",
-    "same_form_pairs",
-    "same_register_pairs",
-    "same_audience_pairs",
-    "same_topic_pairs",
-    "topic_overlap_pairs"
-  ],
-  "start_time": "2025-12-14T13:51:23.248720+00:00",
-  "end_time": "2025-12-14T14:00:43.571538+00:00",
-  "duration_seconds": 560.322818,
+  "dataset_version": "0.3.1",
+  "dataset_checksum": "v0.3.1",
+  "models_evaluated": [],
+  "tasks_evaluated": [],
+  "start_time": "2026-08-27T12:31:59.917521+00:00",
+  "end_time": "2026-08-27T12:31:59.917523+00:00",
+  "duration_seconds": 2e-06,
   "versions": {
-    "python": "3.13.7",
-    "platform": "Linux-6.14.0-29-generic-x86_64-with-glibc2.39",
+    "python": "3.13.5",
+    "platform": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
     "sklearn": "1.8.0",
     "numpy": "2.3.5",
     "scipy": "1.16.3",
@@ -37,10 +18,10 @@
     "torch": "2.9.1+cu128",
     "cuda_available": "True",
     "cuda_version": "12.8",
-    "shelf": "0.2.0"
+    "shelf": "0.3.1"
   },
   "git": {
-    "commit": "06303cb",
+    "commit": "67619e7",
     "branch": "master",
     "dirty": true
   },

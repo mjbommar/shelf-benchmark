@@ -84,6 +84,10 @@ any results go into a paper, a dataset card, or a message to the user.
       control is what makes that result publishable.*
 - [ ] **E4. Chance-normalise any rate whose base rate varies across
       conditions.**
+- [ ] **E5. Do not tune a decision threshold on test labels.** Pair tasks
+      publish AUC as their primary metric because it is threshold-free. F1
+      and accuracy from the stored exploratory runs used a test-optimised
+      threshold and are descriptive only; no paper claim may rest on them.
 
 ## F. Resources
 

@@ -13,12 +13,10 @@ from unittest.mock import patch
 import numpy as np
 import polars as pl
 import pytest
-
 from shelf.evaluate.evaluators.retrieval import RetrievalEvaluator
 from shelf.evaluate.results import EvaluationResult
 from shelf.evaluate.schemas import ValidationError
 from shelf.evaluate.tasks import TaskSpec, TaskType
-
 
 # ===========================================================================
 # Fixtures
@@ -967,3 +965,309 @@ def test_evaluate_compute_ci_not_implemented(
         )
 
     assert result is not None
+
+
+# ===========================================================================
+# Graded relevance (data_plan_v0.4 section 11.1)
+# ===========================================================================
+
+
+@pytest.fixture
+def faceted_queries() -> pl.DataFrame:
+    """Queries carrying the facet columns the graded schemes read."""
+    return pl.DataFrame(
+        {
+            "id": ["q1"],
+            "text": ["a lecture on physics"],
+            "lcc_code": ["Q"],
+            "lcgft_form": ["Lectures"],
+            "lcgft_category": ["Instructional and educational works"],
+            "topics": [["Physics"]],
+        }
+    )
+
+
+@pytest.fixture
+def faceted_corpus() -> pl.DataFrame:
+    """One document per relevance tier of the subject axis."""
+    return pl.DataFrame(
+        {
+            "id": ["same_class", "shared_topic", "unrelated"],
+            "text": ["a", "b", "c"],
+            "lcc_code": ["Q", "T", "K"],
+            "lcgft_form": ["Jokes", "Lectures", "Maps"],
+            "lcgft_category": [
+                "Recreational works",
+                "Instructional and educational works",
+                "Cartographic materials",
+            ],
+            "topics": [["Chemistry"], ["Physics"], ["Law"]],
+        }
+    )
+
+
+def _graded_task_spec(name: str, label_field: str) -> TaskSpec:
+    return TaskSpec(
+        name=name,
+        task_type=TaskType.RETRIEVAL,
+        description="graded test",
+        text_field="text",
+        label_field=label_field,
+        id_field="id",
+        label_space=None,
+        primary_metric="ndcg@10",
+        secondary_metrics=("graded_ndcg@10",),
+        dataset_name="test_dataset",
+        dataset_config="default",
+        default_split="test",
+    )
+
+
+def _evaluate_ranking(spec, queries, corpus, ranking, k_values=None):
+    evaluator = RetrievalEvaluator(spec, k_values=k_values or [1, 3])
+    with patch.object(evaluator, "_load_ground_truth") as mock_load:
+        mock_load.return_value = corpus
+        return evaluator.evaluate(
+            predictions=[{"query_id": "q1", "ranked_doc_ids": ranking}],
+            ground_truth=queries,
+            corpus_splits=["train"],
+        )
+
+
+def test_graded_metrics_are_reported_alongside_binary(faceted_queries, faceted_corpus):
+    """Graded NDCG is an addition, not a replacement: both must be present."""
+    spec = _graded_task_spec("graded_lcc", "lcc_code")
+    result = _evaluate_ranking(
+        spec, faceted_queries, faceted_corpus, ["same_class", "shared_topic"]
+    )
+
+    assert "ndcg@10" not in result.metrics  # k_values overridden in the fixture
+    assert result.metrics["ndcg@1"] == pytest.approx(1.0)
+    assert result.metrics["graded_ndcg@1"] == pytest.approx(1.0)
+    assert result.metrics["graded_relevance_max_gain"] == pytest.approx(3.0)
+
+
+def test_graded_gives_partial_credit_where_binary_gives_none(
+    faceted_queries, faceted_corpus
+):
+    """A different-class document sharing a topic is a near miss, not a miss."""
+    spec = _graded_task_spec("graded_lcc", "lcc_code")
+
+    partial = _evaluate_ranking(spec, faceted_queries, faceted_corpus, ["shared_topic"])
+    nothing = _evaluate_ranking(spec, faceted_queries, faceted_corpus, ["unrelated"])
+
+    # Binary relevance cannot tell these apart -- neither document is class Q.
+    assert partial.metrics["ndcg@1"] == pytest.approx(0.0)
+    assert nothing.metrics["ndcg@1"] == pytest.approx(0.0)
+
+    # Graded relevance can.
+    assert partial.metrics["graded_ndcg@1"] > 0.0
+    assert nothing.metrics["graded_ndcg@1"] == pytest.approx(0.0)
+
+
+def test_graded_form_axis_credits_same_category(faceted_queries, faceted_corpus):
+    """On the form axis, a same-category document earns the partial tier."""
+    spec = _graded_task_spec("graded_form", "lcgft_form")
+    result = _evaluate_ranking(
+        spec, faceted_queries, faceted_corpus, ["unrelated", "shared_topic"]
+    )
+    # shared_topic is also a Lecture, so it is the top tier and is ranked second.
+    assert 0.0 < result.metrics["graded_ndcg@3"] < 1.0
+
+
+def test_graded_category_axis_ranks_same_form_highest(faceted_queries, faceted_corpus):
+    """For a category query, a same-form document is the category match plus more."""
+    spec = _graded_task_spec("graded_category", "lcgft_category")
+    result = _evaluate_ranking(spec, faceted_queries, faceted_corpus, ["shared_topic"])
+    assert result.metrics["graded_ndcg@1"] == pytest.approx(1.0)
+    assert result.metrics["graded_relevance_max_gain"] == pytest.approx(3.0)
+
+
+def test_graded_metrics_absent_when_axis_has_no_scheme(
+    retrieval_task_spec, ground_truth_queries, ground_truth_corpus, perfect_predictions
+):
+    """An unknown axis degrades to binary-only rather than failing."""
+    evaluator = RetrievalEvaluator(retrieval_task_spec)
+    with patch.object(evaluator, "_load_ground_truth") as mock_load:
+        mock_load.return_value = ground_truth_corpus
+        result = evaluator.evaluate(
+            predictions=perfect_predictions,
+            ground_truth=ground_truth_queries,
+            corpus_splits=["train"],
+        )
+    assert not any(key.startswith("graded_") for key in result.metrics)
+
+
+def test_graded_metrics_absent_when_facet_columns_missing():
+    """The right axis but a corpus without the columns the scheme reads."""
+    spec = _graded_task_spec("graded_form", "lcgft_form")
+    queries = pl.DataFrame({"id": ["q1"], "text": ["x"], "lcgft_form": ["Lectures"]})
+    corpus = pl.DataFrame({"id": ["d1"], "text": ["y"], "lcgft_form": ["Lectures"]})
+    result = _evaluate_ranking(spec, queries, corpus, ["d1"])
+    assert not any(key.startswith("graded_") for key in result.metrics)
+
+
+# ===========================================================================
+# Instruction-conditioned retrieval (data_plan_v0.4 section 11.3)
+# ===========================================================================
+
+
+@pytest.fixture
+def instruction_queries() -> pl.DataFrame:
+    return pl.DataFrame(
+        {
+            "id": ["q1"],
+            "text": ["a lecture on physics"],
+            "lcc_code": ["Q"],
+            "lcgft_form": ["Lectures"],
+            "lcgft_category": ["Instructional and educational works"],
+            "topics": [["Physics"]],
+            "audience": ["General"],
+            "register": ["academic"],
+        }
+    )
+
+
+@pytest.fixture
+def instruction_corpus() -> pl.DataFrame:
+    return pl.DataFrame(
+        {
+            "id": ["same_both", "same_form_other_subject", "same_subject_other_form"],
+            "text": ["a", "b", "c"],
+            "lcc_code": ["Q", "K", "Q"],
+            "lcgft_form": ["Lectures", "Lectures", "Jokes"],
+            "lcgft_category": [
+                "Instructional and educational works",
+                "Instructional and educational works",
+                "Recreational works",
+            ],
+            "topics": [["Physics"], ["Law"], ["Humor"]],
+            "audience": ["General", "General", "General"],
+            "register": ["academic", "casual", "academic"],
+        }
+    )
+
+
+def _instruction_result(task_name, queries, corpus, ranking):
+    from shelf.evaluate.registry import get_task
+
+    evaluator = RetrievalEvaluator(get_task(task_name), k_values=[1, 3])
+    with patch.object(evaluator, "_load_ground_truth") as mock_load:
+        mock_load.return_value = corpus
+        return evaluator.evaluate(
+            predictions=[{"query_id": "q1", "ranked_doc_ids": ranking}],
+            ground_truth=queries,
+            corpus_splits=["train"],
+        )
+
+
+def test_same_query_different_instruction_different_answer(
+    instruction_queries, instruction_corpus
+):
+    """The claim the task rests on, checked end to end.
+
+    One ranking, one query, two instructions: the document that is correct
+    under one is wrong under the other.
+    """
+    ranking = ["same_form_other_subject", "same_subject_other_form"]
+
+    same_form = _instruction_result(
+        "instruction_same_form_diff_subject",
+        instruction_queries,
+        instruction_corpus,
+        ranking,
+    )
+    same_subject = _instruction_result(
+        "instruction_same_subject_diff_form",
+        instruction_queries,
+        instruction_corpus,
+        ranking,
+    )
+
+    assert same_form.metrics["ndcg@1"] == pytest.approx(1.0)
+    assert same_subject.metrics["ndcg@1"] == pytest.approx(0.0)
+    assert same_subject.metrics["ndcg@3"] > 0.0
+
+
+def test_instruction_constraint_diagnostics_are_reported(
+    instruction_queries, instruction_corpus
+):
+    result = _instruction_result(
+        "instruction_same_form_diff_subject",
+        instruction_queries,
+        instruction_corpus,
+        ["same_both"],
+    )
+    # same_both is a Lecture (anchor hit) but class Q (contrast violation).
+    assert result.metrics["anchor_match@1"] == pytest.approx(1.0)
+    assert result.metrics["contrast_violation@1"] == pytest.approx(1.0)
+    assert result.metrics["contrast_violation_lift@1"] > 1.0
+    assert result.metrics["queries_without_answer"] == pytest.approx(0.0)
+
+
+def test_instruction_relevance_ignores_label_field_grouping(
+    instruction_queries, instruction_corpus
+):
+    """Relevance must not fall back to task_spec.label_field.
+
+    ``instruction_same_form_diff_subject`` has ``label_field="lcgft_form"``. A
+    plain label match would make ``same_both`` relevant; the instruction does
+    not, because it is the same subject.
+    """
+    result = _instruction_result(
+        "instruction_same_form_diff_subject",
+        instruction_queries,
+        instruction_corpus,
+        ["same_both", "same_form_other_subject"],
+    )
+    assert result.metrics["ndcg@1"] == pytest.approx(0.0)
+
+
+def test_instruction_task_reports_no_graded_metrics(
+    instruction_queries, instruction_corpus
+):
+    """Grading is defined against a label axis, not against an instruction."""
+    result = _instruction_result(
+        "instruction_same_form_diff_subject",
+        instruction_queries,
+        instruction_corpus,
+        ["same_form_other_subject"],
+    )
+    assert not any(key.startswith("graded_") for key in result.metrics)
+
+
+def test_instruction_prefix_is_applied_to_queries(
+    instruction_queries, instruction_corpus
+):
+    """The instruction must reach the model, on the query side only."""
+    from shelf.evaluate.instructions import get_instruction
+    from shelf.evaluate.registry import get_task
+
+    spec = get_instruction("instruction_same_form_diff_subject")
+    assert spec is not None
+
+    seen: list[list[str]] = []
+
+    class RecordingEmbedder:
+        model_name = "recording"
+        embedding_dim = 2
+
+        def encode(self, texts, **_kwargs):
+            seen.append(list(texts))
+            return np.ones((len(texts), 2), dtype=float)
+
+    evaluator = RetrievalEvaluator(get_task("instruction_same_form_diff_subject"))
+    with patch.object(evaluator, "_load_ground_truth") as mock_load:
+        mock_load.side_effect = lambda split: (
+            instruction_queries if split == "test" else instruction_corpus
+        )
+        evaluator.evaluate_embedder(
+            RecordingEmbedder(),  # type: ignore[arg-type]
+            corpus_splits=["train"],
+            show_progress=False,
+        )
+
+    corpus_texts, query_texts = seen[0], seen[1]
+    assert all(spec.instruction not in text for text in corpus_texts)
+    assert all(text.startswith("Instruct: ") for text in query_texts)
+    assert query_texts[0].endswith("a lecture on physics")

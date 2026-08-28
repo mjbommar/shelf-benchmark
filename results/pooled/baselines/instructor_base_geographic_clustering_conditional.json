@@ -1,0 +1,71 @@
+{
+  "model": "Instructor-base",
+  "model_key": "instructor_base",
+  "model_type": "sentence_transformer",
+  "task": "geographic_clustering_conditional",
+  "task_type": "clustering",
+  "primary_metric": "ari_pooled",
+  "primary_score": 0.008103583903531667,
+  "metrics": {
+    "v_measure_macro": 0.2967104538519272,
+    "nmi_macro": 0.2967104538519272,
+    "ari_macro": 0.12717379180871607,
+    "homogeneity_macro": 0.330403435364565,
+    "completeness_macro": 0.2695984472377687,
+    "v_measure_pooled": 0.17245341526584035,
+    "nmi_pooled": 0.17245341526584035,
+    "ari_pooled": 0.008103583903531667,
+    "homogeneity_pooled": 0.3505068045236304,
+    "completeness_pooled": 0.11435990872027926,
+    "ari": 0.008103583903531667,
+    "v_measure": 0.17245341526584035,
+    "n_classes_total": 21,
+    "n_classes_clustered": 21,
+    "n_classes_skipped": 0,
+    "n_samples_clustered": 5046
+  },
+  "num_samples": 5046,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "7adced9467526a201c0ea260b7351b50",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T17:12:01.861175+00:00",
+    "model_name": "Instructor-base",
+    "data_commit": "ef75460",
+    "code_commit": "8ce1f71",
+    "extra": {
+      "embedding_dim": 768,
+      "class_field": "lcc_code",
+      "min_class_size": 20,
+      "skipped_classes": {},
+      "norm_stats": {
+        "norm_min": 0.9999999403953552,
+        "norm_max": 1.0000001192092896,
+        "norm_mean": 1.0,
+        "norm_std": 2.973728463473435e-08
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": 56.6242,
+    "shelf_compute": 0.389,
+    "pareto_optimal": false,
+    "size_rank": 4,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.455221
+}

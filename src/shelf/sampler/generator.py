@@ -5,10 +5,10 @@ Takes label combinations and generates actual document text,
 either via templates or an LLM backend (OpenAI, Anthropic, Gemini).
 """
 
+import random
 from dataclasses import dataclass
 from enum import Enum
-import random
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from pydantic import BaseModel, Field
 
@@ -142,6 +142,50 @@ DEFAULT_REGISTER_WEIGHTS = {
 }
 
 
+class PromptVariant(str, Enum):
+    """System-prompt variant used for a generation call.
+
+    ``V0_3_1`` is the frozen preset that reproduces the exact system prompt
+    used for all 42,532 documents published in v0.3.1 (see
+    ``GENERATION_INSTRUCTIONS``). It must never change: it is what makes the
+    published corpus byte-for-byte reproducible.
+
+    The remaining members are v0.4 variants. They differ from each other
+    (and from v0.3.1) only in framing, voice, and emphasis, plus a
+    form-conditional output-format instruction in place of v0.3.1's global
+    markdown mandate. Every variant retains the SHOW-DON'T-TELL block
+    verbatim (see ``SHOW_DONT_TELL_BLOCK``) — that constraint is load-bearing
+    for label non-triviality and is not a stylistic choice.
+    """
+
+    V0_3_1 = "v0.3.1"
+    DIRECT = "v0.4-direct"
+    PRACTITIONER = "v0.4-practitioner"
+    EDITORIAL = "v0.4-editorial"
+    ARCHIVAL = "v0.4-archival"
+
+
+class OutputFormat(str, Enum):
+    """A concrete output-format instruction for the generated document body.
+
+    Selected per-document from the document's LCGFT form/category (see
+    ``resolve_output_format``) so that output format is a property of the
+    document type, not a global mandate. Only used by v0.4 prompt variants —
+    ``PromptVariant.V0_3_1`` always uses its own frozen, globally-mandated
+    markdown instruction.
+    """
+
+    PLAIN_PROSE = "plain_prose"
+    VERSE = "verse"
+    STRUCTURED_MARKDOWN = "structured_markdown"
+    LEGAL_STYLE = "legal_style"
+    LETTER_STYLE = "letter_style"
+    TRANSCRIPT_STYLE = "transcript_style"
+    DIARY_STYLE = "diary_style"
+    LIST_STYLE = "list_style"
+    CAPTION_STYLE = "caption_style"
+
+
 class GeneratedContent(BaseModel):
     """Pydantic model for LLM-generated content."""
 
@@ -166,6 +210,7 @@ class GeneratedDocument:
     register: Register | None = None
     word_count: int | None = None
     sampling_params: SamplingParams | None = None
+    prompt_variant_id: str | None = None
 
     def __post_init__(self):
         if self.word_count is None:
@@ -195,6 +240,7 @@ class GeneratedDocument:
             "target_length": self.target_length.value if self.target_length else None,
             "register": self.register.value if self.register else None,
             "prompt": self.prompt,
+            "prompt_variant_id": self.prompt_variant_id,
             "sampling_params": self.sampling_params.to_dict()
             if self.sampling_params
             else None,
@@ -239,6 +285,24 @@ Output format: "Title: {title}\n\n{body}"
 Line 1: "Title: " followed by title text
 Line 2: blank (the split point is "\n\n")
 Line 3+: markdown body"""
+
+
+# The anti-self-labeling constraint block, verbatim as it appears inside
+# GENERATION_INSTRUCTIONS above. Extracted as its own constant so every v0.4
+# prompt variant can embed it identically rather than re-deriving it — this
+# is the piece that keeps labels non-trivial by suppressing self-announcing
+# text, and it is NOT a stylistic knob: every PromptVariant must contain it
+# unmodified. (Verified in tests/unit/test_prompt_variants.py.)
+SHOW_DONT_TELL_BLOCK = """SHOW, DON'T TELL - Avoid artificial self-labeling:
+- Don't open with field announcements like "In political science..." or "In the field of medicine..." - just write about the subject naturally
+- Don't use meta-commentary about the document type like "This satire explores..." or "This lecture covers..." - just BE that type
+- Don't add classification headers like "Document Type:" or "Subject Area:" or "Category:" or "LCGFT:" or "LCC:"
+- Using domain vocabulary naturally is fine and expected (e.g., "the court ruled" in a legal document, "the patient presented with" in a medical case)
+- The difference: "In political science, civil law refers to..." (bad - announces the field) vs. "Civil law systems trace their origins to Roman codes..." (good - demonstrates expertise naturally)"""
+
+assert SHOW_DONT_TELL_BLOCK in GENERATION_INSTRUCTIONS, (
+    "SHOW_DONT_TELL_BLOCK drifted from the text embedded in GENERATION_INSTRUCTIONS"
+)
 
 
 # Semantic descriptions for LCC classes (avoid using exact taxonomy names)
@@ -340,9 +404,7 @@ def _parse_generated_text(text: str) -> tuple[str, str]:
     first_line, sep, body = text.partition("\n\n")
 
     # Extract title from first line
-    if first_line.startswith("Title:"):
-        title = first_line[6:].strip()
-    elif first_line.startswith("Title "):
+    if first_line.startswith("Title:") or first_line.startswith("Title "):
         title = first_line[6:].strip()
     else:
         # Fallback: first line is title
@@ -353,11 +415,26 @@ def _parse_generated_text(text: str) -> tuple[str, str]:
     return title, body
 
 
-def _get_form_description(form: str, category: str) -> str:
-    """Get semantic description for a form, with category fallback."""
+def _get_form_description(form: str, category: str, enriched: Any | None = None) -> str:
+    """Get semantic description for a form, with category fallback.
+
+    Resolution order, best conditioning first: the hand-written description
+    (written specifically to describe a form without naming it), then a
+    sanitized Library of Congress description if ``enriched`` is supplied, then
+    the category description, then the bare form name.
+
+    ``enriched`` is an optional :class:`shelf.sampler.enriched.EnrichedDescriptions`.
+    When it is omitted -- the default -- this function behaves exactly as it did
+    in v0.3.1, so the frozen corpus stays byte-for-byte reproducible.
+    """
     # Try form-specific description first
     if form in LCGFT_FORM_DESCRIPTIONS:
         return LCGFT_FORM_DESCRIPTIONS[form]
+    # Sanitized LC text extends coverage to the ~500 forms nobody hand-wrote
+    if enriched is not None:
+        lc_description = enriched.for_form(form)
+        if lc_description:
+            return lc_description
     # Fall back to category description
     if category in LCGFT_CATEGORY_DESCRIPTIONS:
         return LCGFT_CATEGORY_DESCRIPTIONS[category]
@@ -365,30 +442,216 @@ def _get_form_description(form: str, category: str) -> str:
     return form.lower()
 
 
-def _get_domain_description(lcc_code: str, lcc_name: str) -> str:
-    """Get semantic description for a domain."""
+def _get_domain_description(
+    lcc_code: str,
+    lcc_name: str,
+    enriched: Any | None = None,
+    subclass: str | None = None,
+) -> str:
+    """Get semantic description for a domain.
+
+    As with :func:`_get_form_description`, the hand-written description wins and
+    sanitized LC text is the fallback that covers subclass codes. Omitting both
+    ``enriched`` and ``subclass`` reproduces v0.3.1 behavior exactly.
+
+    ``subclass`` is the v0.4 Phase 2 difficulty tier. When a document carries
+    one, its description **replaces** the parent class description rather than
+    supplementing it: the whole point of the tier is that "QA" and "QC" must be
+    separable, and conditioning both on `LCC_SEMANTIC_DESCRIPTIONS["Q"]` --
+    "science, mathematics, physics, chemistry, biology, astronomy" -- would
+    condition them on exactly the same words. The parent description stays as
+    the fallback for a subclass LC never described.
+    """
+    if subclass and enriched is not None:
+        subclass_description = enriched.for_lcc_subclass(subclass)
+        if subclass_description:
+            return subclass_description
     if lcc_code in LCC_SEMANTIC_DESCRIPTIONS:
         return LCC_SEMANTIC_DESCRIPTIONS[lcc_code]
+    if enriched is not None:
+        lc_description = enriched.for_lcc_subclass(lcc_code)
+        if lc_description:
+            return lc_description
     # Fall back to name but avoid exact match
     return lcc_name.lower().replace(" and ", ", ")
+
+
+# =============================================================================
+# Form-conditional output format (v0.4 prompt variants only)
+# =============================================================================
+#
+# v0.3.1 mandated "Line 3+: markdown body" for every document regardless of
+# form (see GENERATION_INSTRUCTIONS above). Measured against the published
+# corpus, that produced markdown headers in 41.3% of documents and bold in
+# 59.9% overall -- including 18.3% of Literature with headers and 24.5% of
+# Creative nonfiction with bold, neither of which is how those forms look in
+# the real world. The mapping below selects a format instruction from the
+# document's LCGFT form (falling back to its category, then to plain prose)
+# instead of mandating one format globally. It only affects PromptVariant
+# members other than V0_3_1; the frozen v0.3.1 preset is untouched.
+
+# Per-category default output format, keyed by the 14 LCGFT categories
+# (see LCGFT_CATEGORY_DESCRIPTIONS for the exact category strings).
+CATEGORY_OUTPUT_FORMATS: dict[str, OutputFormat] = {
+    "Cartographic materials": OutputFormat.LIST_STYLE,
+    "Commemorative works": OutputFormat.PLAIN_PROSE,
+    "Creative nonfiction": OutputFormat.PLAIN_PROSE,
+    "Discursive works": OutputFormat.PLAIN_PROSE,
+    "Ephemera": OutputFormat.LIST_STYLE,
+    "Informational works": OutputFormat.STRUCTURED_MARKDOWN,
+    "Instructional and educational works": OutputFormat.STRUCTURED_MARKDOWN,
+    "Law materials": OutputFormat.LEGAL_STYLE,
+    "Literature": OutputFormat.PLAIN_PROSE,
+    "Music": OutputFormat.VERSE,
+    "Recreational works": OutputFormat.PLAIN_PROSE,
+    "Religious materials": OutputFormat.PLAIN_PROSE,
+    "Sound recordings": OutputFormat.TRANSCRIPT_STYLE,
+    "Visual works": OutputFormat.CAPTION_STYLE,
+}
+
+# Form-level overrides for specific forms whose real-world format differs
+# from their category's default (e.g. Poetry is under a prose-leaning
+# category umbrella but is verse; Handbooks are informational but genuinely
+# benefit from structured markdown). Checked before the category default.
+FORM_OUTPUT_FORMATS: dict[str, OutputFormat] = {
+    "Poetry": OutputFormat.VERSE,
+    "Songs": OutputFormat.VERSE,
+    "Hymns": OutputFormat.VERSE,
+    "Prayers": OutputFormat.PLAIN_PROSE,
+    "Sermons": OutputFormat.PLAIN_PROSE,
+    "Speeches": OutputFormat.PLAIN_PROSE,
+    "Lectures": OutputFormat.PLAIN_PROSE,
+    "Jokes": OutputFormat.PLAIN_PROSE,
+    "Drama": OutputFormat.TRANSCRIPT_STYLE,
+    "Interviews": OutputFormat.TRANSCRIPT_STYLE,
+    "Letters": OutputFormat.LETTER_STYLE,
+    "Diaries": OutputFormat.DIARY_STYLE,
+    "Maps": OutputFormat.LIST_STYLE,
+    "Atlases": OutputFormat.LIST_STYLE,
+    "Games": OutputFormat.LIST_STYLE,
+    "Satellite imagery": OutputFormat.CAPTION_STYLE,
+    "Field recordings": OutputFormat.CAPTION_STYLE,
+    "Television programs": OutputFormat.CAPTION_STYLE,
+    "Films": OutputFormat.CAPTION_STYLE,
+    "Photographs": OutputFormat.CAPTION_STYLE,
+    "Handbooks": OutputFormat.STRUCTURED_MARKDOWN,
+    "Textbooks": OutputFormat.STRUCTURED_MARKDOWN,
+    "Tutorials": OutputFormat.STRUCTURED_MARKDOWN,
+    "Encyclopedias": OutputFormat.STRUCTURED_MARKDOWN,
+    "Reports": OutputFormat.STRUCTURED_MARKDOWN,
+    "Legal briefs": OutputFormat.LEGAL_STYLE,
+}
+
+# The "Line 3+" instruction for each output format. Deliberately silent on
+# em-dashes or any other negative style constraint -- see data_plan_v0.4.md
+# section 4.2: instructing against one artifact just substitutes another.
+_OUTPUT_FORMAT_INSTRUCTIONS: dict[OutputFormat, str] = {
+    OutputFormat.PLAIN_PROSE: (
+        "Line 3+: continuous prose in paragraphs separated by blank lines. "
+        "Do not use markdown headers, bold/italic emphasis markup, or "
+        "bullet lists -- this document type reads as running prose, not a "
+        "formatted document."
+    ),
+    OutputFormat.VERSE: (
+        "Line 3+: lineated verse. Break lines where the verse breaks, not "
+        "at the margin; separate stanzas with a blank line. Do not use "
+        "markdown headers, bullet lists, or prose paragraphs."
+    ),
+    OutputFormat.STRUCTURED_MARKDOWN: (
+        "Line 3+: markdown body. Use headers, bold for key terms, and "
+        "bullet or numbered lists where they genuinely aid the reader, the "
+        "way a real reference or instructional document would."
+    ),
+    OutputFormat.LEGAL_STYLE: (
+        "Line 3+: legal-document prose. Use ALL-CAPS or numbered section "
+        'labels (e.g. "I. BACKGROUND", "WHEREAS") the way real legal '
+        "instruments do. Do not use markdown bold, italics, or bullet "
+        "lists."
+    ),
+    OutputFormat.LETTER_STYLE: (
+        "Line 3+: epistolary form -- a salutation, body paragraphs, and a "
+        "closing/signature line, the way a real letter is laid out. Do not "
+        "use markdown headers or bullet lists."
+    ),
+    OutputFormat.TRANSCRIPT_STYLE: (
+        "Line 3+: turn-by-turn transcript. Label each turn with a speaker "
+        "name or role followed by a colon, on its own line. Do not use "
+        "markdown headers, bold, or bullet lists."
+    ),
+    OutputFormat.DIARY_STYLE: (
+        "Line 3+: dated journal entries. Begin each entry with a date or "
+        "day label on its own line, followed by first-person prose. Do not "
+        "use markdown headers, bold, or bullet lists."
+    ),
+    OutputFormat.LIST_STYLE: (
+        "Line 3+: a structured list or gazetteer-style entries (names, "
+        "labels, brief notations), the way a real map legend, program, or "
+        "ephemeral notice is laid out. Bullets or short lines are fine; do "
+        "not use markdown headers or bold prose paragraphs."
+    ),
+    OutputFormat.CAPTION_STYLE: (
+        "Line 3+: a brief descriptive caption or liner note in plain "
+        "prose, the way real visual or audio media is documented in text "
+        "form. Do not use markdown headers, bold, or bullet lists."
+    ),
+}
+
+
+# The envelope description shared by every prompt variant -- copied
+# verbatim (including its newline handling) from the tail of
+# GENERATION_INSTRUCTIONS, up to but not including the "Line 3+" line. Using
+# the exact same wording that already produced 42,532 correctly-parsed
+# documents avoids re-deriving new phrasing that might parse differently.
+_ENVELOPE_PREFIX = (
+    'Output format: "Title: {title}\n\n{body}"\n'
+    'Line 1: "Title: " followed by title text\n'
+    'Line 2: blank (the split point is "\n\n")\n'
+)
+
+assert GENERATION_INSTRUCTIONS.endswith(_ENVELOPE_PREFIX + "Line 3+: markdown body"), (
+    "_ENVELOPE_PREFIX drifted from the tail of GENERATION_INSTRUCTIONS"
+)
+
+
+def resolve_output_format(form: str, category: str) -> OutputFormat:
+    """Resolve the output format for a document from its LCGFT form/category.
+
+    Form-level overrides take precedence over the category default; an
+    unrecognized form/category falls back to plain prose rather than
+    markdown, since plain prose is the safer default for the majority of
+    document forms.
+    """
+    if form in FORM_OUTPUT_FORMATS:
+        return FORM_OUTPUT_FORMATS[form]
+    if category in CATEGORY_OUTPUT_FORMATS:
+        return CATEGORY_OUTPUT_FORMATS[category]
+    return OutputFormat.PLAIN_PROSE
 
 
 def build_generation_prompt(
     doc: Document,
     length: DocumentLength = DocumentLength.MEDIUM,
     register: Register = Register.PROFESSIONAL,
+    enriched: Any | None = None,
 ) -> str:
     """Build the input text for document generation.
 
     Uses semantic descriptions instead of exact taxonomy names to reduce
     label leakage in generated documents.
+
+    Pass an optional :class:`shelf.sampler.enriched.EnrichedDescriptions` as
+    ``enriched`` to extend description coverage to labels that have no
+    hand-written entry. Its text is sanitized of taxonomy names before it
+    reaches the prompt. Omitting it reproduces v0.3.1 byte-for-byte.
     """
     word_min, word_max = LENGTH_WORD_RANGES[length]
     register_desc = REGISTER_DESCRIPTIONS[register]
 
     # Use semantic descriptions instead of exact taxonomy names
-    form_desc = _get_form_description(doc.lcgft.form, doc.lcgft.category)
-    domain_desc = _get_domain_description(doc.lcc.code, doc.lcc.name)
+    form_desc = _get_form_description(doc.lcgft.form, doc.lcgft.category, enriched)
+    domain_desc = _get_domain_description(
+        doc.lcc.code, doc.lcc.name, enriched, subclass=doc.lcc.subclass
+    )
 
     parts = [
         f"style: {form_desc}",
@@ -407,13 +670,17 @@ def build_generation_prompt(
     return "\n".join(parts)
 
 
-def build_title_prompt(doc: Document) -> str:
+def build_title_prompt(doc: Document, enriched: Any | None = None) -> str:
     """Build a prompt just for title generation.
 
-    Uses semantic descriptions to reduce label leakage in titles.
+    Uses semantic descriptions to reduce label leakage in titles. As with
+    :func:`build_generation_prompt`, ``enriched`` is optional and omitting it
+    reproduces v0.3.1 behavior.
     """
-    form_desc = _get_form_description(doc.lcgft.form, doc.lcgft.category)
-    domain_desc = _get_domain_description(doc.lcc.code, doc.lcc.name)
+    form_desc = _get_form_description(doc.lcgft.form, doc.lcgft.category, enriched)
+    domain_desc = _get_domain_description(
+        doc.lcc.code, doc.lcc.name, enriched, subclass=doc.lcc.subclass
+    )
 
     return f"""Generate a creative, realistic title for a document that is:
 - Style: {form_desc}
@@ -427,6 +694,170 @@ Good: Titles that hint at content naturally - the way real documents are titled.
 
 The combination may be unconventional - embrace it creatively.
 Respond with ONLY the title, no quotes or explanation."""
+
+
+# =============================================================================
+# Prompt variants (v0.4) -- system prompt is a controlled, recorded factor
+# =============================================================================
+#
+# Each preamble below covers the same functional ground as
+# GENERATION_INSTRUCTIONS (style/subject/topics/audience/geographic framing,
+# then the SHOW_DONT_TELL_BLOCK, then a note on unusual combinations) but in
+# a distinct voice/framing. None of them add negative style instructions
+# (e.g. "avoid em-dashes") -- see data_plan_v0.4.md section 4.2, point 3.
+# The output-format instruction is appended separately by build_system_prompt
+# since it depends on the specific document's form/category.
+
+_VARIANT_PREAMBLES: dict[PromptVariant, str] = {
+    PromptVariant.DIRECT: (
+        "Write one realistic document to the specification below. Do not "
+        "explain what you're doing -- produce the document itself, exactly "
+        "as it would exist in the world.\n"
+        "\n"
+        "Style -- match this document type's real-world conventions: its "
+        "layout, its voice, its structural habits, down to how it opens "
+        "and closes.\n"
+        "\n"
+        "Subject -- write with the vocabulary, reasoning, and assumptions "
+        "native to this discipline. Expertise should show up in the "
+        "content, never in a label.\n"
+        "\n"
+        "Topics -- treat every listed topic as substantive material the "
+        "document must actually engage with, not a checklist to mention "
+        "in passing.\n"
+        "\n"
+        "Audience -- pitch vocabulary, assumed background, and depth of "
+        "explanation at exactly this reader.\n"
+        "\n"
+        "Geographic -- anchor the document in this place: real-feeling "
+        "names, institutions, and regional detail, not a generic "
+        "setting.\n"
+        "\n" + SHOW_DONT_TELL_BLOCK + "\n"
+        "\n"
+        "Treat any unlikely pairing of form and subject as a constraint to "
+        "satisfy, not a mismatch to flag. Write it straight."
+    ),
+    PromptVariant.PRACTITIONER: (
+        "You are the person who actually writes this kind of document for "
+        "a living, sitting down to produce one more of them. You are not "
+        "describing the form from outside it -- you are inside it, doing "
+        "the work.\n"
+        "\n"
+        "Form: this is what you are writing today. Let its real-world "
+        "conventions -- structure, pacing, the things practitioners always "
+        "include and always skip -- come through the way they would from "
+        "someone who has written a hundred of these before.\n"
+        "\n"
+        "Domain: write with the reflexes of someone trained in this field "
+        "-- its assumptions, its shorthand, its way of framing a problem "
+        "-- without ever naming the field.\n"
+        "\n"
+        "Topics: these are the actual substance of what you're writing "
+        "about today. Engage with each one the way the work requires, not "
+        "as items on a list.\n"
+        "\n"
+        "Audience: this is who is going to read what you produce. Write "
+        "for them specifically -- their vocabulary, what they already "
+        "know, how much explanation they need.\n"
+        "\n"
+        "Geographic: this is where the work is set or where it comes "
+        "from. Let real place names, local institutions, and regional "
+        "texture ground it.\n"
+        "\n" + SHOW_DONT_TELL_BLOCK + "\n"
+        "\n"
+        "If the assignment pairs an unexpected subject with this form, "
+        "that's just the job today -- do it the way a working "
+        "professional would, without commentary on how unusual it is."
+    ),
+    PromptVariant.EDITORIAL: (
+        "You are producing finished copy for a real publication or "
+        "institution that regularly puts out documents exactly like this "
+        "one. An editor will run it as-is -- it needs to already read like "
+        "something that belongs on their shelf, not a draft or an "
+        "approximation.\n"
+        "\n"
+        "Form: match the exact conventions this outlet's readers expect -- "
+        "the structure, the layout, the register -- for this kind of "
+        "piece.\n"
+        "\n"
+        "Subject: write with the command of the subject that this "
+        "publication's contributors are known for. Expertise reads "
+        "through the content, never through a label on it.\n"
+        "\n"
+        "Topics: every topic listed is something the piece is actually "
+        "about and must develop, not a keyword to touch on.\n"
+        "\n"
+        "Audience: this publication's readership. Write directly to them "
+        "-- their vocabulary, their assumed background, what they're "
+        "actually looking for from a piece like this.\n"
+        "\n"
+        "Geographic: the piece's place of origin or setting. Ground it in "
+        "specifics -- real institutions, real place names, real regional "
+        "detail -- the way a piece written from and for that place would "
+        "be.\n"
+        "\n" + SHOW_DONT_TELL_BLOCK + "\n"
+        "\n"
+        "If the pairing of form and subject is an unusual one for this "
+        "outlet, run with it as a deliberate editorial choice, not an "
+        "oddity to flag to the reader."
+    ),
+    PromptVariant.ARCHIVAL: (
+        "This document is being added to an existing collection that "
+        "already holds many genuine examples of this exact type. It has "
+        "to sit among them without standing out -- no tell that separates "
+        "it from the real holdings around it.\n"
+        "\n"
+        "Form: reproduce this type's real conventions precisely -- the "
+        "collection's other holdings of this form all share a "
+        "recognizable structure, voice, and layout, and this one should "
+        "be no exception.\n"
+        "\n"
+        "Subject: the collection's holdings on this subject demonstrate "
+        "real command of it -- vocabulary, reasoning, and assumptions "
+        "specific to the discipline, carried entirely by the content.\n"
+        "\n"
+        "Topics: these are the specific subjects a cataloguer would say "
+        "this item is substantively about -- each must actually appear in "
+        "the material, not just be gestured at.\n"
+        "\n"
+        "Audience: the collection's items are each written for a specific "
+        "kind of reader. Match this one's vocabulary, assumed knowledge, "
+        "and depth to that reader.\n"
+        "\n"
+        "Geographic: place this item concretely -- real names, "
+        "institutions, and regional detail consistent with where it comes "
+        "from.\n"
+        "\n" + SHOW_DONT_TELL_BLOCK + "\n"
+        "\n"
+        "Unusual pairings of form and subject already exist elsewhere in "
+        "the collection -- treat this one the same way: authentic and "
+        "unremarked upon, not framed as an oddity."
+    ),
+}
+
+
+def build_system_prompt(
+    doc: Document, variant: PromptVariant | str = PromptVariant.V0_3_1
+) -> str:
+    """Build the system prompt for a document, given a prompt variant.
+
+    ``PromptVariant.V0_3_1`` always returns ``GENERATION_INSTRUCTIONS``
+    unchanged (byte-for-byte), regardless of ``doc`` -- this is the frozen
+    preset that reproduces the published v0.3.1 corpus.
+
+    Every other variant appends a form-conditional output-format
+    instruction (see ``resolve_output_format``) to that variant's preamble,
+    keeping the same "Title: {title}\\n\\n{body}" envelope that
+    ``_parse_generated_text`` depends on.
+    """
+    variant = PromptVariant(variant)
+    if variant is PromptVariant.V0_3_1:
+        return GENERATION_INSTRUCTIONS
+
+    preamble = _VARIANT_PREAMBLES[variant]
+    output_format = resolve_output_format(doc.lcgft.form, doc.lcgft.category)
+    format_block = _ENVELOPE_PREFIX + _OUTPUT_FORMAT_INSTRUCTIONS[output_format]
+    return f"{preamble}\n\n{format_block}"
 
 
 # =============================================================================
@@ -732,6 +1163,36 @@ class RegisterSampler:
         return self._rng.choices(self._registers, weights=self._probs, k=1)[0]
 
 
+# Default distribution for PromptVariantSampler: uniform over the v0.4
+# variants only. PromptVariant.V0_3_1 is intentionally excluded from the
+# default pool -- it is a frozen reproduction preset for the already-published
+# corpus, not a candidate a v0.4 generation run should draw at random. Pass
+# an explicit weights dict (including V0_3_1) to change this.
+DEFAULT_PROMPT_VARIANT_WEIGHTS: dict[PromptVariant, float] = {
+    PromptVariant.DIRECT: 0.25,
+    PromptVariant.PRACTITIONER: 0.25,
+    PromptVariant.EDITORIAL: 0.25,
+    PromptVariant.ARCHIVAL: 0.25,
+}
+
+
+class PromptVariantSampler:
+    """Sample prompt variants with a configurable, seeded distribution."""
+
+    def __init__(
+        self,
+        weights: dict[PromptVariant, float] | None = None,
+        seed: int | None = None,
+    ):
+        self._rng = random.Random(seed)
+        self._weights = weights or DEFAULT_PROMPT_VARIANT_WEIGHTS
+        self._variants = list(self._weights.keys())
+        self._probs = list(self._weights.values())
+
+    def sample(self) -> PromptVariant:
+        return self._rng.choices(self._variants, weights=self._probs, k=1)[0]
+
+
 class DocumentGenerator:
     """
     Generate complete documents with text using a configurable LLM backend.
@@ -752,7 +1213,23 @@ class DocumentGenerator:
         temperature_range: tuple[float, float] = TEMPERATURE_RANGE,
         top_p_range: tuple[float, float] = TOP_P_RANGE,
         use_llm: bool = True,
+        prompt_variant: PromptVariant | str = PromptVariant.V0_3_1,
+        prompt_variant_weights: dict[PromptVariant, float] | None = None,
     ):
+        """
+        prompt_variant / prompt_variant_weights control which system prompt
+        (see PromptVariant) is used per document:
+
+        - By default (neither argument given), every document uses the
+          fixed, frozen ``PromptVariant.V0_3_1`` preset -- this keeps
+          DocumentGenerator's default behavior byte-for-byte identical to
+          v0.3.1, so existing call sites are unaffected.
+        - Passing ``prompt_variant`` alone fixes every document to that one
+          variant instead (still fully reproducible under ``seed``).
+        - Passing ``prompt_variant_weights`` activates a seeded
+          PromptVariantSampler that draws a (recorded) variant per document;
+          this takes precedence over ``prompt_variant``.
+        """
         self._seed = seed
         self._rng = random.Random(seed)
         self._model = model
@@ -766,6 +1243,12 @@ class DocumentGenerator:
         self._register_sampler = RegisterSampler(register_weights, seed)
         self._sampling_sampler = SamplingParamsSampler(
             temperature_range, top_p_range, seed
+        )
+        self._fixed_prompt_variant = PromptVariant(prompt_variant)
+        self._prompt_variant_sampler = (
+            PromptVariantSampler(prompt_variant_weights, seed)
+            if prompt_variant_weights is not None
+            else None
         )
 
     def _get_llm_backend(self) -> LLMBackend:
@@ -789,11 +1272,18 @@ class DocumentGenerator:
         """Sample a writing register."""
         return self._register_sampler.sample()
 
+    def sample_prompt_variant(self) -> PromptVariant:
+        """Sample (or return the fixed) prompt variant for the next document."""
+        if self._prompt_variant_sampler is not None:
+            return self._prompt_variant_sampler.sample()
+        return self._fixed_prompt_variant
+
     def generate(
         self,
         doc: Document,
         length: DocumentLength | None = None,
         register: Register | None = None,
+        prompt_variant: PromptVariant | None = None,
     ) -> GeneratedDocument:
         """Generate a complete document with text."""
         length = length or self.sample_length()
@@ -805,13 +1295,14 @@ class DocumentGenerator:
             result.register = register
             return result
 
+        variant = prompt_variant or self.sample_prompt_variant()
         input_text = build_generation_prompt(doc, length, register)
         sampling = self._sampling_sampler.sample()
 
         gen_result = self._get_llm_backend().generate(
             GenerationRequest(
                 prompt=input_text,
-                system_prompt=GENERATION_INSTRUCTIONS,
+                system_prompt=build_system_prompt(doc, variant),
             ),
             GenerationParams(
                 temperature=sampling.temperature,
@@ -832,6 +1323,7 @@ class DocumentGenerator:
             target_length=length,
             register=register,
             sampling_params=sampling,
+            prompt_variant_id=variant.value,
         )
 
     async def generate_async(
@@ -839,6 +1331,7 @@ class DocumentGenerator:
         doc: Document,
         length: DocumentLength | None = None,
         register: Register | None = None,
+        prompt_variant: PromptVariant | None = None,
     ) -> GeneratedDocument:
         """Generate a document asynchronously."""
         length = length or self.sample_length()
@@ -850,13 +1343,14 @@ class DocumentGenerator:
             result.register = register
             return result
 
+        variant = prompt_variant or self.sample_prompt_variant()
         input_text = build_generation_prompt(doc, length, register)
         sampling = self._sampling_sampler.sample()
 
         gen_result = await self._get_llm_backend().generate_async(
             GenerationRequest(
                 prompt=input_text,
-                system_prompt=GENERATION_INSTRUCTIONS,
+                system_prompt=build_system_prompt(doc, variant),
             ),
             GenerationParams(
                 temperature=sampling.temperature,
@@ -876,6 +1370,7 @@ class DocumentGenerator:
             target_length=length,
             register=register,
             sampling_params=sampling,
+            prompt_variant_id=variant.value,
         )
 
     def generate_batch(
@@ -902,15 +1397,16 @@ class DocumentGenerator:
         )
 
         requests: list[GenerationRequest] = []
-        meta: list[tuple[Document, DocumentLength, Register]] = []
+        meta: list[tuple[Document, DocumentLength, Register, PromptVariant]] = []
         for doc in docs:
             length = self.sample_length()
             register = self.sample_register()
-            meta.append((doc, length, register))
+            variant = self.sample_prompt_variant()
+            meta.append((doc, length, register, variant))
             requests.append(
                 GenerationRequest(
                     prompt=build_generation_prompt(doc, length, register),
-                    system_prompt=GENERATION_INSTRUCTIONS,
+                    system_prompt=build_system_prompt(doc, variant),
                 )
             )
 
@@ -922,7 +1418,7 @@ class DocumentGenerator:
             )
 
         results: list[GeneratedDocument] = []
-        for (doc, length, register), request, gen_result in zip(
+        for (doc, length, register, variant), request, gen_result in zip(
             meta, requests, results_raw
         ):
             raw_text = gen_result.text
@@ -943,6 +1439,7 @@ class DocumentGenerator:
                         temperature=sampling.temperature,
                         top_p=sampling.top_p,
                     ),
+                    prompt_variant_id=variant.value,
                 )
             )
         return results

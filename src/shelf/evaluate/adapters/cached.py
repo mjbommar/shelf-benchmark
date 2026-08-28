@@ -8,7 +8,7 @@ multiple times across different tasks.
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 
@@ -53,6 +53,7 @@ class CachedEmbedder:
         cache: dict[str, np.ndarray],
         model_name: str,
         embedding_dim: int,
+        fallback: Any | None = None,
     ):
         """Initialize cached embedder.
 
@@ -60,11 +61,22 @@ class CachedEmbedder:
             cache: Dictionary mapping text strings to embedding vectors
             model_name: Name of the model that generated the embeddings
             embedding_dim: Dimension of the embeddings
+            fallback: Optional embedder used to compute texts the cache does
+                not hold, whose results are then added to the cache.
+
+                Without it a cache miss is fatal, which breaks any task that
+                transforms its inputs. Instruction-following retrieval prefixes
+                every query with ``"Instruct: ...\nQuery: ..."``, so none of
+                its queries are ever in a cache built from raw corpus text --
+                the strict cache failed every dense model on those tasks while
+                sparse models, which do not use it, passed.
         """
         self._cache = cache
         self._model_name = model_name
         self._embedding_dim = embedding_dim
+        self._fallback = fallback
         self._hits = 0
+        self._computed = 0
         self._misses: list[str] = []
 
     @property
@@ -107,6 +119,17 @@ class CachedEmbedder:
                 missing.append(text)
                 self._misses.append(text[:100])  # Truncate for tracking
 
+        if missing and self._fallback is not None:
+            computed = self._fallback.encode(
+                missing, batch_size=batch_size, show_progress=show_progress
+            )
+            for text, vector in zip(missing, computed, strict=True):
+                self._cache[text] = vector
+            self._computed += len(missing)
+            missing = []
+            # Rebuild in the caller's order now that every text resolves.
+            embeddings = [self._cache[text] for text in texts]
+
         if missing:
             # Show first few missing texts for debugging
             sample = missing[:3]
@@ -114,6 +137,7 @@ class CachedEmbedder:
             raise KeyError(
                 f"Missing {len(missing)} texts from cache. "
                 f"Cache has {len(self._cache)} entries. "
+                f"Pass `fallback=` to compute misses instead of failing. "
                 f"Sample missing texts: {sample_preview}"
             )
 
@@ -125,6 +149,7 @@ class CachedEmbedder:
             "cache_size": len(self._cache),
             "hits": self._hits,
             "misses": len(self._misses),
+            "computed_by_fallback": self._computed,
         }
 
     def reset_stats(self) -> None:

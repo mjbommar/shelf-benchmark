@@ -22,10 +22,17 @@ from unittest.mock import MagicMock, Mock, patch
 import numpy as np
 import pytest
 
+# `_create_evaluator` is a private helper that lives in the legacy flat
+# `runner.py` module. The `shelf.evaluate.runner` package (config/context/
+# events/orchestrator) intentionally curates its public surface in
+# `__all__` and does not re-export private helpers, but it does load the
+# flat module into `sys.modules["shelf.evaluate._runner_impl"]` so that
+# `evaluate`/`evaluate_all` keep working. Import (and patch) the helper
+# from that real implementation module rather than the package shim.
+from shelf.evaluate._runner_impl import _create_evaluator
 from shelf.evaluate.results import EvaluationContext, EvaluationResult
-from shelf.evaluate.runner import _create_evaluator, evaluate, evaluate_all
+from shelf.evaluate.runner import evaluate, evaluate_all
 from shelf.evaluate.tasks import TaskType
-
 
 # ===========================================================================
 # Mock Models and Evaluators
@@ -143,8 +150,8 @@ class TestCreateEvaluator:
         assert evaluator.task_spec == task_spec
 
     @pytest.mark.unit
-    def test_create_evaluator_multilabel_not_implemented(self):
-        """Test creating evaluator for multilabel raises NotImplementedError."""
+    def test_create_evaluator_multilabel(self):
+        """Multilabel tasks now dispatch to MultiLabelClassificationEvaluator."""
         from shelf.evaluate.tasks import TaskSpec
 
         task_spec = TaskSpec(
@@ -162,10 +169,11 @@ class TestCreateEvaluator:
             default_split="test",
         )
 
-        with pytest.raises(
-            NotImplementedError, match="MultiLabelEvaluator not yet implemented"
-        ):
-            _create_evaluator(task_spec)
+        from shelf.evaluate.evaluators import MultiLabelClassificationEvaluator
+
+        evaluator = _create_evaluator(task_spec)
+        assert isinstance(evaluator, MultiLabelClassificationEvaluator)
+        assert evaluator.task_spec == task_spec
 
     @pytest.mark.unit
     def test_create_evaluator_unknown_type_raises(self):
@@ -189,7 +197,7 @@ class TestEvaluateWithPredictions:
     """Tests for evaluate() function using predictions (not models)."""
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.ClassificationEvaluator")
+    @patch("shelf.evaluate._runner_impl.ClassificationEvaluator")
     def test_evaluate_with_predictions_list(self, mock_evaluator_cls):
         """Test evaluate() with predictions as list of dicts."""
         # Setup mock evaluator
@@ -219,7 +227,7 @@ class TestEvaluateWithPredictions:
         mock_evaluator.evaluate.assert_called_once()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.ClassificationEvaluator")
+    @patch("shelf.evaluate._runner_impl.ClassificationEvaluator")
     def test_evaluate_with_predictions_file(self, mock_evaluator_cls):
         """Test evaluate() with predictions file path."""
         # Setup mock evaluator
@@ -247,7 +255,7 @@ class TestEvaluateWithPredictions:
             pred_file.unlink()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.ClassificationEvaluator")
+    @patch("shelf.evaluate._runner_impl.ClassificationEvaluator")
     def test_evaluate_with_predictions_string_path(self, mock_evaluator_cls):
         """Test evaluate() with predictions path as string."""
         # Setup mock evaluator
@@ -288,7 +296,7 @@ class TestEvaluateWithModels:
     """Tests for evaluate() function using models directly."""
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_retrieval_with_embedder(self, mock_create_eval):
         """Test evaluate() for retrieval task with embedder model."""
         from shelf.evaluate.evaluators.retrieval import RetrievalEvaluator
@@ -312,7 +320,7 @@ class TestEvaluateWithModels:
         mock_evaluator.evaluate_embedder.assert_called_once()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_retrieval_with_retriever(self, mock_create_eval):
         """Test evaluate() for retrieval task with retriever model (has retrieve method)."""
         from shelf.evaluate.evaluators.retrieval import RetrievalEvaluator
@@ -336,7 +344,7 @@ class TestEvaluateWithModels:
         mock_evaluator.evaluate_retriever.assert_called_once()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_classification_with_classifier(self, mock_create_eval):
         """Test evaluate() for classification with classifier model (has predict method)."""
         from shelf.evaluate.evaluators.classification import ClassificationEvaluator
@@ -355,7 +363,7 @@ class TestEvaluateWithModels:
         mock_evaluator.evaluate_classifier.assert_called_once()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_classification_with_embedder(self, mock_create_eval):
         """Test evaluate() for classification with embedder (trains LogisticRegression)."""
         from shelf.evaluate.evaluators.classification import ClassificationEvaluator
@@ -374,7 +382,7 @@ class TestEvaluateWithModels:
         mock_evaluator.evaluate_embedder_with_classifier.assert_called_once()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_clustering_with_embedder(self, mock_create_eval):
         """Test evaluate() for clustering with embedder."""
         from shelf.evaluate.evaluators.clustering import ClusteringEvaluator
@@ -398,7 +406,7 @@ class TestEvaluateWithModels:
         mock_evaluator.evaluate_embedder.assert_called_once()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_pair_classification_with_embedder(self, mock_create_eval):
         """Test evaluate() for pair classification with embedder."""
         from shelf.evaluate.evaluators.pair import PairClassificationEvaluator
@@ -422,7 +430,7 @@ class TestEvaluateWithModels:
         mock_evaluator.evaluate_embedder.assert_called_once()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_with_model_custom_split(self, mock_create_eval):
         """Test evaluate() with custom split parameter."""
         from shelf.evaluate.evaluators.retrieval import RetrievalEvaluator
@@ -446,7 +454,7 @@ class TestEvaluateWithModels:
         assert call_kwargs["split"] == "validation"
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_with_model_max_queries(self, mock_create_eval):
         """Test evaluate() with max_queries parameter for retrieval."""
         from shelf.evaluate.evaluators.retrieval import RetrievalEvaluator
@@ -470,7 +478,7 @@ class TestEvaluateWithModels:
         assert call_kwargs["max_queries"] == 100
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_with_model_batch_size(self, mock_create_eval):
         """Test evaluate() with custom batch_size parameter."""
         from shelf.evaluate.evaluators.classification import ClassificationEvaluator
@@ -489,7 +497,7 @@ class TestEvaluateWithModels:
         assert call_kwargs["batch_size"] == 64
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_with_model_show_progress_false(self, mock_create_eval):
         """Test evaluate() with show_progress=False."""
         from shelf.evaluate.evaluators.retrieval import RetrievalEvaluator
@@ -528,7 +536,7 @@ class TestEvaluateErrorHandling:
             evaluate("nonexistent_task", predictions=[])
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner._create_evaluator")
+    @patch("shelf.evaluate._runner_impl._create_evaluator")
     def test_evaluate_wrong_evaluator_type_raises(self, mock_create_eval):
         """Test evaluate() raises ValueError if evaluator type doesn't match task."""
         # Mock evaluator to return wrong type (not a RetrievalEvaluator)
@@ -551,7 +559,7 @@ class TestEvaluateOutputSaving:
     """Tests for output_path parameter in evaluate()."""
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.ClassificationEvaluator")
+    @patch("shelf.evaluate._runner_impl.ClassificationEvaluator")
     def test_evaluate_saves_output_json(self, mock_evaluator_cls, tmp_path):
         """Test evaluate() saves results to JSON when output_path provided."""
         # Setup mock evaluator
@@ -578,7 +586,7 @@ class TestEvaluateOutputSaving:
             assert data["primary_score"] == 0.85
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.ClassificationEvaluator")
+    @patch("shelf.evaluate._runner_impl.ClassificationEvaluator")
     def test_evaluate_output_path_as_string(self, mock_evaluator_cls, tmp_path):
         """Test evaluate() accepts output_path as string."""
         # Setup mock evaluator
@@ -608,7 +616,7 @@ class TestEvaluateAll:
     """Tests for evaluate_all() function."""
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_default_retrieval_tasks(self, mock_evaluate):
         """Test evaluate_all() defaults to retrieval tasks."""
 
@@ -635,7 +643,7 @@ class TestEvaluateAll:
         assert set(results.keys()) == expected_tasks
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_specific_tasks(self, mock_evaluate):
         """Test evaluate_all() with specific task list."""
 
@@ -659,7 +667,7 @@ class TestEvaluateAll:
         assert "form_retrieval" in results
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_by_task_types(self, mock_evaluate):
         """Test evaluate_all() with task_types filter."""
 
@@ -679,7 +687,7 @@ class TestEvaluateAll:
         assert set(results.keys()) == expected_tasks
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_multiple_task_types(self, mock_evaluate):
         """Test evaluate_all() with multiple task types."""
 
@@ -703,7 +711,7 @@ class TestEvaluateAll:
         assert set(results.keys()) == expected_tasks
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_saves_individual_results(self, mock_evaluate, tmp_path):
         """Test evaluate_all() saves individual result files when output_dir specified."""
 
@@ -732,7 +740,7 @@ class TestEvaluateAll:
         assert (output_dir / "form_retrieval.json").exists()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_passes_split_parameter(self, mock_evaluate):
         """Test evaluate_all() passes split parameter to evaluate()."""
         # Setup mock evaluate
@@ -752,7 +760,7 @@ class TestEvaluateAll:
         assert call_kwargs["split"] == "validation"
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_passes_kwargs(self, mock_evaluate):
         """Test evaluate_all() passes additional kwargs to evaluate()."""
         # Setup mock evaluate
@@ -776,7 +784,7 @@ class TestEvaluateAll:
         assert call_kwargs["max_queries"] == 100
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_skips_not_implemented(self, mock_evaluate, caplog):
         """Test evaluate_all() skips tasks that raise NotImplementedError."""
 
@@ -808,7 +816,7 @@ class TestEvaluateAll:
         assert "Skipping" in caplog.text
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_propagates_errors(self, mock_evaluate):
         """Test evaluate_all() propagates non-NotImplementedError exceptions."""
         # Setup mock to raise general exception
@@ -821,7 +829,7 @@ class TestEvaluateAll:
             evaluate_all(embedder, tasks=tasks)
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.evaluate")
+    @patch("shelf.evaluate._runner_impl.evaluate")
     def test_evaluate_all_returns_dict(self, mock_evaluate):
         """Test evaluate_all() returns dict mapping task names to results."""
 
@@ -857,7 +865,7 @@ class TestPredictionFileChecksum:
     """Tests for prediction file checksum tracking."""
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.ClassificationEvaluator")
+    @patch("shelf.evaluate._runner_impl.ClassificationEvaluator")
     def test_checksum_stored_for_file_predictions(self, mock_evaluator_cls):
         """Test that prediction file checksum is stored in context."""
         # Setup mock evaluator
@@ -895,7 +903,7 @@ class TestPredictionFileChecksum:
             pred_file.unlink()
 
     @pytest.mark.unit
-    @patch("shelf.evaluate.runner.ClassificationEvaluator")
+    @patch("shelf.evaluate._runner_impl.ClassificationEvaluator")
     def test_no_checksum_for_list_predictions(self, mock_evaluator_cls):
         """Test that no checksum is stored for predictions list (not file)."""
         # Setup mock evaluator

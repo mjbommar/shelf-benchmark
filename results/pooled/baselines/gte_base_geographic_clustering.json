@@ -1,0 +1,62 @@
+{
+  "model": "GTE-base",
+  "model_key": "gte_base",
+  "model_type": "sentence_transformer",
+  "task": "geographic_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.007423219457181882,
+  "metrics": {
+    "v_measure": 0.007423219457181882,
+    "nmi": 0.007423219457181881,
+    "ari": 0.0025200343339060985,
+    "homogeneity": 0.00813270090723832,
+    "completeness": 0.006827593140990423,
+    "num_samples": 8154,
+    "num_clusters_true": 8,
+    "num_clusters_pred": 8
+  },
+  "num_samples": 8154,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "35e031f5b21e926a2b9c87164770c416",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T17:04:24.175126+00:00",
+    "model_name": "GTE-base",
+    "data_commit": "7123a65",
+    "code_commit": "8ce1f71",
+    "extra": {
+      "embedding_dim": 768,
+      "n_clusters": 8,
+      "kmeans_inertia": 1766.2610432968202,
+      "norm_stats": {
+        "norm_min": 0.99951171875,
+        "norm_max": 1.0,
+        "norm_mean": 1.0,
+        "norm_std": 0.00048828125
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": 57.9518,
+    "shelf_compute": 0.3981,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.465894
+}

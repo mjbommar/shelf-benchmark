@@ -1,0 +1,56 @@
+{
+  "model": "MPNet",
+  "model_key": "mpnet",
+  "model_type": "sentence_transformer",
+  "task": "same_topic_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "f1",
+  "primary_score": 0.7616379310344827,
+  "metrics": {
+    "f1": 0.7616379310344827,
+    "accuracy": 0.7235,
+    "precision": 0.6693181818181818,
+    "recall": 0.8835,
+    "auc_roc": 0.8163032499999999,
+    "average_precision": 0.8059592691609787,
+    "threshold": 0.18307614594697952,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "f3621aebe13b62ddc6ebfcad548dfc0e",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T19:57:51.242511+00:00",
+    "model_name": "MPNet",
+    "data_commit": null,
+    "code_commit": "4dbffeb",
+    "extra": {
+      "embedding_dim": 768
+    }
+  },
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": 55.3239,
+    "shelf_compute": 0.38,
+    "pareto_optimal": false,
+    "size_rank": 5,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.444768
+}

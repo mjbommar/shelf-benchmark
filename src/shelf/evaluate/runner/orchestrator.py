@@ -725,6 +725,9 @@ class EvaluationOrchestrator:
             cache=cache,
             model_name=model_name,
             embedding_dim=model.embedding_dim,
+            # See run_all.py: tasks that transform their inputs (instruction
+            # retrieval) produce texts absent from a corpus-text cache.
+            fallback=model,
         )
 
     def _evaluate_task(
@@ -865,7 +868,9 @@ class EvaluationOrchestrator:
         # Save per-sample results if present
         if self.config.save_samples and eval_result.per_sample_results:
             samples_suffix = (
-                f"_{classifier}" if classifier and self._has_multiple_classifiers() else ""
+                f"_{classifier}"
+                if classifier and self._has_multiple_classifiers()
+                else ""
             )
             samples_path = (
                 output_dir / f"{model_key}_{task_name}{samples_suffix}_samples.jsonl.gz"

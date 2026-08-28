@@ -12,13 +12,17 @@ Tests cover:
 from __future__ import annotations
 
 import pytest
-
 from shelf.evaluate.metrics.retrieval import (
     average_precision,
+    compute_graded_retrieval_metrics,
     compute_retrieval_metrics,
+    dcg_from_gains,
+    gain_of,
+    ideal_gains_from_tiers,
     map_at_k,
     mrr,
     ndcg_at_k,
+    ndcg_from_gains,
     precision_at_k,
     recall_at_k,
 )
@@ -404,3 +408,181 @@ class TestRetrievalEdgeCases:
         assert prec == pytest.approx(0.0)
         assert mrr_score == pytest.approx(0.0)
         assert ap == pytest.approx(0.0)
+
+
+class TestGainTransforms:
+    """Tests for the gain transforms underlying graded NDCG."""
+
+    def test_linear_gain_is_the_relevance_level(self):
+        assert gain_of(0) == pytest.approx(0.0)
+        assert gain_of(2) == pytest.approx(2.0)
+        assert gain_of(3) == pytest.approx(3.0)
+
+    def test_exponential_gain(self):
+        assert gain_of(0, exponential=True) == pytest.approx(0.0)
+        assert gain_of(1, exponential=True) == pytest.approx(1.0)
+        assert gain_of(3, exponential=True) == pytest.approx(7.0)
+
+    def test_forms_agree_on_binary_judgments(self):
+        """Binary is the case where the choice of gain transform cannot matter."""
+        for level in (0, 1):
+            assert gain_of(level) == pytest.approx(gain_of(level, exponential=True))
+
+    def test_dcg_applies_the_log_discount(self):
+        # 3/log2(2) + 1/log2(3) = 3 + 0.6309
+        assert dcg_from_gains([3.0, 1.0], k=2) == pytest.approx(3.630929, abs=1e-6)
+
+    def test_dcg_respects_cutoff(self):
+        assert dcg_from_gains([3.0, 1.0], k=1) == pytest.approx(3.0)
+
+
+class TestIdealGainsFromTiers:
+    """Tests for expanding (gain, count) tiers into an ideal ranking."""
+
+    def test_expands_in_descending_gain_order(self):
+        assert ideal_gains_from_tiers([(1.0, 2), (3.0, 1)], k=3) == [3.0, 1.0, 1.0]
+
+    def test_truncates_at_k(self):
+        assert ideal_gains_from_tiers([(2.0, 1000)], k=3) == [2.0, 2.0, 2.0]
+
+    def test_drops_zero_and_empty_tiers(self):
+        assert ideal_gains_from_tiers([(0.0, 50), (2.0, 0), (1.0, 1)], k=5) == [1.0]
+
+    def test_zero_k_returns_empty(self):
+        assert ideal_gains_from_tiers([(3.0, 10)], k=0) == []
+
+    def test_negative_count_rejected(self):
+        with pytest.raises(ValueError, match="non-negative"):
+            ideal_gains_from_tiers([(3.0, -1)], k=5)
+
+
+class TestGradedNDCG:
+    """Tests for graded relevance in ndcg_at_k and ndcg_from_gains."""
+
+    def test_binary_set_unchanged(self):
+        """A set must score exactly as it always has."""
+        ranked = ["d1", "d2", "d3"]
+        assert ndcg_at_k(ranked, {"d1", "d3"}, k=3) == pytest.approx(
+            ndcg_at_k(ranked, {"d1": 1.0, "d3": 1.0}, k=3)
+        )
+
+    def test_graded_separates_rankings_binary_cannot(self):
+        """The reason grading was added.
+
+        Both rankings put one relevant document first. Under binary relevance
+        they are indistinguishable; under graded relevance the ranking that
+        surfaced the closer document wins.
+        """
+        gains = {"near": 3.0, "far": 1.0}
+        binary = {"near", "far"}
+
+        near_first = ["near", "far"]
+        far_first = ["far", "near"]
+
+        assert ndcg_at_k(near_first, binary, k=1) == pytest.approx(
+            ndcg_at_k(far_first, binary, k=1)
+        )
+        assert ndcg_at_k(near_first, gains, k=1) > ndcg_at_k(far_first, gains, k=1)
+
+    def test_graded_perfect_ranking_is_one(self):
+        gains = {"a": 3.0, "b": 2.0, "c": 1.0}
+        assert ndcg_at_k(["a", "b", "c"], gains, k=3) == pytest.approx(1.0)
+
+    def test_graded_reversed_ranking_is_below_one(self):
+        gains = {"a": 3.0, "b": 2.0, "c": 1.0}
+        assert ndcg_at_k(["c", "b", "a"], gains, k=3) < 1.0
+
+    def test_unjudged_documents_score_zero(self):
+        gains = {"a": 3.0}
+        assert ndcg_at_k(["x", "y"], gains, k=2) == pytest.approx(0.0)
+
+    def test_empty_judgments_score_zero(self):
+        assert ndcg_at_k(["a"], {}, k=5) == pytest.approx(0.0)
+
+    def test_all_zero_gains_score_zero(self):
+        assert ndcg_at_k(["a"], {"a": 0.0}, k=5) == pytest.approx(0.0)
+
+    def test_exponential_favours_the_top_tier(self):
+        """Exponential gains all but erase partial credit; linear keeps it."""
+        gains = {"top": 3.0, "partial": 1.0}
+        linear = ndcg_at_k(["partial", "top"], gains, k=2)
+        exponential = ndcg_at_k(["partial", "top"], gains, k=2, exponential=True)
+        assert exponential < linear
+
+    def test_ndcg_from_gains_sorts_ideal_defensively(self):
+        """Passing the ideal gains out of order must not inflate the score."""
+        ranked = [1.0, 3.0]
+        assert ndcg_from_gains(ranked, [1.0, 3.0], k=2) == pytest.approx(
+            ndcg_from_gains(ranked, [3.0, 1.0], k=2)
+        )
+
+    def test_ndcg_from_gains_zero_ideal(self):
+        assert ndcg_from_gains([1.0], [0.0], k=1) == pytest.approx(0.0)
+
+
+class TestComputeGradedRetrievalMetrics:
+    """Tests for the batched graded metric entry point."""
+
+    def test_reports_graded_ndcg_per_k(self):
+        metrics = compute_graded_retrieval_metrics(
+            results={"q1": ["a", "b", "c"]},
+            gains={"q1": {"a": 3.0, "b": 2.0}},
+            ideal_tiers={"q1": [(3.0, 1), (2.0, 1)]},
+            k_values=[1, 2],
+        )
+        assert metrics["graded_ndcg@1"] == pytest.approx(1.0)
+        assert metrics["graded_ndcg@2"] == pytest.approx(1.0)
+        assert metrics["num_queries"] == 1
+
+    def test_tiers_larger_than_k_are_not_enumerated(self):
+        """A 1,600-document tier normalizes an NDCG@10 without being listed."""
+        metrics = compute_graded_retrieval_metrics(
+            results={"q1": ["a"]},
+            gains={"q1": {"a": 2.0}},
+            ideal_tiers={"q1": [(2.0, 1600)]},
+            k_values=[1],
+        )
+        assert metrics["graded_ndcg@1"] == pytest.approx(1.0)
+
+    def test_queries_without_judgments_are_skipped(self):
+        """Skipped, not scored 0.0: that would report the qrels, not the run."""
+        metrics = compute_graded_retrieval_metrics(
+            results={"q1": ["a"], "q2": ["b"]},
+            gains={"q1": {"a": 2.0}},
+            ideal_tiers={"q1": [(2.0, 1)], "q2": []},
+            k_values=[1],
+        )
+        assert metrics["num_queries"] == 1
+        assert metrics["graded_ndcg@1"] == pytest.approx(1.0)
+
+    def test_per_query_breakdown(self):
+        metrics = compute_graded_retrieval_metrics(
+            results={"q1": ["a"]},
+            gains={"q1": {"a": 2.0}},
+            ideal_tiers={"q1": [(2.0, 1)]},
+            k_values=[1],
+            compute_per_query=True,
+        )
+        assert metrics["per_query"]["q1"]["graded_ndcg@1"] == pytest.approx(1.0)
+
+    def test_empty_results_rejected(self):
+        with pytest.raises(ValueError, match="cannot be empty"):
+            compute_graded_retrieval_metrics(
+                results={}, gains={}, ideal_tiers={}, k_values=[1]
+            )
+
+    def test_partial_credit_beats_nothing(self):
+        """A near miss must outscore an unrelated document, not tie with it."""
+        near = compute_graded_retrieval_metrics(
+            results={"q1": ["partial"]},
+            gains={"q1": {"partial": 1.0}},
+            ideal_tiers={"q1": [(3.0, 1), (1.0, 1)]},
+            k_values=[1],
+        )
+        miss = compute_graded_retrieval_metrics(
+            results={"q1": ["unrelated"]},
+            gains={"q1": {}},
+            ideal_tiers={"q1": [(3.0, 1), (1.0, 1)]},
+            k_values=[1],
+        )
+        assert near["graded_ndcg@1"] > miss["graded_ndcg@1"] == pytest.approx(0.0)

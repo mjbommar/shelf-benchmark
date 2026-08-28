@@ -1,0 +1,379 @@
+{
+  "generated": "2026-08-27T01:58:12.773473+00:00",
+  "script_version": "1.0.0",
+  "sources": {
+    "bulk_dumps": {
+      "lcsh": "https://id.loc.gov/download/authorities/subjects.skosrdf.jsonld.gz",
+      "lcgft": "https://id.loc.gov/download/authorities/genreForms.skosrdf.jsonld.gz"
+    },
+    "classification_api": "https://id.loc.gov/authorities/classification/",
+    "naf_label_service": "https://id.loc.gov/authorities/names/label/"
+  },
+  "taxonomies": {
+    "lcsh_topical": {
+      "total": 2000,
+      "matched_to_authority": 1966,
+      "unmatched": 34,
+      "with_description": 1932,
+      "verbatim_scope_note": 369,
+      "description_by_source": {
+        "hierarchy": 1515,
+        "none": 68,
+        "scope_note": 369,
+        "variant_labels": 48
+      },
+      "match_by_kind": {
+        "lcsh:alt_label": 11,
+        "lcsh:pref_label": 1954,
+        "lcsh:pref_label_variant": 1,
+        "none": 34
+      },
+      "description_contains_own_label": 63,
+      "unmatched_examples": [
+        "Diplomatic relations",
+        "Computerized simulation",
+        "Design analysis",
+        "Wind tunnel tests",
+        "Flow distribution",
+        "Data acquisition",
+        "Government Operations and Politics",
+        "Applications programs (computers)",
+        "Structural analysis",
+        "Flight tests",
+        "Control systems design",
+        "Cretaceous Geologic Period",
+        "Aerodynamic characteristics",
+        "Performance tests",
+        "Aircraft design",
+        "User manuals (computer programs)",
+        "Composite structures",
+        "Computational grids",
+        "Parallel processing (computers)",
+        "NASA programs"
+      ],
+      "no_description_examples": [
+        "Military assistance, American",
+        "Economic sanctions, American",
+        "Diplomatic relations",
+        "Humanitarian assistance, American",
+        "Technical assistance, American",
+        "Internal security",
+        "Investments, American",
+        "Computerized simulation",
+        "Rocks",
+        "Design analysis",
+        "Wind tunnel tests",
+        "Flow distribution",
+        "Wind tunnels",
+        "Air traffic controllers",
+        "Military intelligence",
+        "Indians",
+        "Food relief, American",
+        "Data acquisition",
+        "Surplus agricultural commodities, American",
+        "Government Operations and Politics"
+      ]
+    },
+    "lcsh_geo": {
+      "total": 500,
+      "matched_to_authority": 497,
+      "unmatched": 3,
+      "with_description": 296,
+      "verbatim_scope_note": 45,
+      "description_by_source": {
+        "hierarchy": 245,
+        "none": 204,
+        "scope_note": 45,
+        "variant_labels": 6
+      },
+      "match_by_kind": {
+        "lcsh:alt_label": 4,
+        "lcsh:alt_label_variant": 2,
+        "lcsh:pref_label": 292,
+        "lcsh:pref_label_variant": 1,
+        "naf:label_service": 198,
+        "none": 3
+      },
+      "description_contains_own_label": 7,
+      "unmatched_examples": [
+        "United States, West",
+        "West United States",
+        "Washington (D.C.) Metropolitan Area"
+      ],
+      "no_description_examples": [
+        "United States",
+        "California",
+        "China",
+        "Alaska",
+        "Texas",
+        "Montana",
+        "Oregon",
+        "Colorado",
+        "Washington (State)",
+        "New Mexico",
+        "Arizona",
+        "Utah",
+        "Nevada",
+        "Idaho",
+        "Washington (D.C.)",
+        "Wyoming",
+        "Florida",
+        "Pennsylvania",
+        "New York (State)",
+        "Wisconsin"
+      ]
+    },
+    "lcgft": {
+      "total": 554,
+      "matched_to_authority": 474,
+      "unmatched": 80,
+      "with_description": 451,
+      "verbatim_scope_note": 162,
+      "description_by_source": {
+        "hierarchy": 272,
+        "none": 103,
+        "scope_note": 162,
+        "variant_labels": 17
+      },
+      "match_by_kind": {
+        "lcgft:alt_label": 19,
+        "lcgft:alt_label_variant": 5,
+        "lcgft:pref_label": 296,
+        "lcgft:pref_label_variant": 28,
+        "lcsh:alt_label": 10,
+        "lcsh:alt_label_variant": 8,
+        "lcsh:pref_label": 101,
+        "lcsh:pref_label_variant": 7,
+        "none": 80
+      },
+      "description_contains_own_label": 7,
+      "unmatched_examples": [
+        "Online resources",
+        "Juvenile works",
+        "Statistiques",
+        "Handbook",
+        "Audiences législatives",
+        "Documents législatifs",
+        "Census, 1990",
+        "United States",
+        "Atlas",
+        "Guideline",
+        "Census, 1970",
+        "Practice Guideline",
+        "Guides et manuels",
+        "Collected Work",
+        "Patient Education Handout",
+        "Rapports techniques",
+        "Census, 1980",
+        "Resource Guide",
+        "E-map",
+        "Périodiques"
+      ],
+      "no_description_examples": [
+        "Online resources",
+        "Tables",
+        "Juvenile works",
+        "Sources",
+        "Statistiques",
+        "Handbook",
+        "Audiences législatives",
+        "Documents législatifs",
+        "Census, 1990",
+        "United States",
+        "Atlas",
+        "Guideline",
+        "Census, 1970",
+        "Practice Guideline",
+        "Forms",
+        "Cartographic materials",
+        "Sound recordings",
+        "Guides et manuels",
+        "Collected Work",
+        "Patient Education Handout"
+      ]
+    },
+    "curated_forms": {
+      "total": 133,
+      "matched_to_authority": 123,
+      "unmatched": 10,
+      "with_description": 123,
+      "verbatim_scope_note": 53,
+      "description_by_source": {
+        "hierarchy": 69,
+        "none": 10,
+        "scope_note": 53,
+        "variant_labels": 1
+      },
+      "match_by_kind": {
+        "lcgft:alt_label": 7,
+        "lcgft:pref_label": 103,
+        "lcgft:pref_label_variant": 1,
+        "lcsh:alt_label": 3,
+        "lcsh:pref_label": 9,
+        "none": 10
+      },
+      "description_contains_own_label": 4,
+      "unmatched_examples": [
+        "Anniversary publications",
+        "Flyers",
+        "Music recordings",
+        "News articles",
+        "Opinion pieces",
+        "Profiles",
+        "Satellite imagery",
+        "Theological works",
+        "Tributes",
+        "Tutorials"
+      ],
+      "no_description_examples": [
+        "Anniversary publications",
+        "Flyers",
+        "Music recordings",
+        "News articles",
+        "Opinion pieces",
+        "Profiles",
+        "Satellite imagery",
+        "Theological works",
+        "Tributes",
+        "Tutorials"
+      ]
+    },
+    "curated_topics": {
+      "total": 112,
+      "matched_to_authority": 103,
+      "unmatched": 9,
+      "with_description": 94,
+      "verbatim_scope_note": 32,
+      "description_by_source": {
+        "hierarchy": 55,
+        "none": 18,
+        "scope_note": 32,
+        "variant_labels": 7
+      },
+      "match_by_kind": {
+        "lcsh:alt_label": 11,
+        "lcsh:pref_label": 89,
+        "lcsh:pref_label_variant": 3,
+        "none": 9
+      },
+      "description_contains_own_label": 10,
+      "unmatched_examples": [
+        "Carbon emissions",
+        "Data science",
+        "Innovation",
+        "Knowledge",
+        "Networks",
+        "Ocean conservation",
+        "Operations",
+        "Renewable energy",
+        "Supply chain"
+      ],
+      "no_description_examples": [
+        "Carbon emissions",
+        "Climate",
+        "Conservation",
+        "Data science",
+        "Defense",
+        "Government",
+        "Innovation",
+        "Knowledge",
+        "Languages",
+        "Methodology",
+        "Networks",
+        "Ocean conservation",
+        "Oncology",
+        "Operations",
+        "Public policy",
+        "Renewable energy",
+        "Software",
+        "Supply chain"
+      ]
+    },
+    "curated_geographic": {
+      "total": 44,
+      "matched_to_authority": 35,
+      "unmatched": 9,
+      "with_description": 8,
+      "verbatim_scope_note": 3,
+      "description_by_source": {
+        "hierarchy": 2,
+        "none": 36,
+        "scope_note": 3,
+        "variant_labels": 3
+      },
+      "match_by_kind": {
+        "lcsh:pref_label": 8,
+        "lcsh:pref_label_variant": 1,
+        "naf:label_service": 26,
+        "none": 9
+      },
+      "description_contains_own_label": 0,
+      "unmatched_examples": [
+        "Beijing",
+        "Berlin",
+        "Chicago",
+        "Los Angeles",
+        "Mumbai",
+        "New York",
+        "New York City",
+        "São Paulo",
+        "Tokyo"
+      ],
+      "no_description_examples": [
+        "Australia",
+        "Beijing",
+        "Berlin",
+        "Brazil",
+        "California",
+        "Canada",
+        "Chicago",
+        "China",
+        "Florida",
+        "France",
+        "Georgia",
+        "Germany",
+        "Illinois",
+        "India",
+        "Italy",
+        "Japan",
+        "London",
+        "Los Angeles",
+        "Mexico",
+        "Michigan"
+      ]
+    },
+    "lcc_subclass": {
+      "total": 100,
+      "matched_to_authority": 96,
+      "unmatched": 4,
+      "with_description": 96,
+      "verbatim_scope_note": 18,
+      "description_by_source": {
+        "caption_hierarchy": 78,
+        "none": 4,
+        "scope_note": 18
+      },
+      "match_by_kind": {
+        "classification_api": 96,
+        "none": 4
+      },
+      "description_contains_own_label": 0,
+      "unmatched_examples": [
+        "JX",
+        "IN",
+        "PAR",
+        "NOT"
+      ],
+      "no_description_examples": [
+        "JX",
+        "IN",
+        "PAR",
+        "NOT"
+      ]
+    }
+  },
+  "http": {
+    "requests_made": 0,
+    "cache_hits": 1612
+  }
+}

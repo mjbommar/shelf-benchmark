@@ -1,0 +1,20 @@
+# Phase 6 natural transfer slice (docs/data_plan_v0.4.md §10).
+#
+# Bulk downloads and fetched full texts are never committed: the catalogue
+# archive alone is ~126 MB, and the per-book texts are reproducible from
+# Project Gutenberg by rerunning scripts/build_transfer_slice.py. What IS
+# worth committing is the small, reviewable output -- the selection, the
+# manifest, and the realized-distribution report, since those are what a
+# reader needs to audit the slice's skew and its contamination status.
+
+# Cached bulk downloads and intermediates
+cache/
+
+# Built slice payloads (regenerate with scripts/build_transfer_slice.py)
+*/records.jsonl
+*/selection.json
+
+# Keep the auditable artifacts
+!*/manifest.json
+!*/distribution_report.txt
+!*/distribution_report.json

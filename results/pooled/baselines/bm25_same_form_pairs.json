@@ -1,0 +1,50 @@
+{
+  "model": "BM25",
+  "model_key": "bm25",
+  "model_type": "bm25",
+  "task": "same_form_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "f1",
+  "primary_score": 0.6666666666666666,
+  "metrics": {
+    "f1": 0.6666666666666666,
+    "accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "auc_roc": 0.53194575,
+    "average_precision": 0.5385358347011804,
+    "threshold": 0.0,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "abfe77df5b56a04d30cf72643c23e41f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T17:52:37.378055+00:00",
+    "model_name": "bm25-shelf-k1=1.5-b=0.75",
+    "data_commit": null,
+    "code_commit": "8a203c1",
+    "extra": {}
+  },
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null
+  },
+  "shelf_score": 0.450511
+}

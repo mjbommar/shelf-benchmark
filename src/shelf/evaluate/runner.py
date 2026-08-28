@@ -15,7 +15,11 @@ from shelf.evaluate.evaluators.clustering import ClusteringEvaluator
 from shelf.evaluate.evaluators.clustering_agglomerative import (
     AgglomerativeClusteringEvaluator,
 )
+from shelf.evaluate.evaluators.clustering_conditional import (
+    SubjectConditionalClusteringEvaluator,
+)
 from shelf.evaluate.evaluators.clustering_hdbscan import HDBSCANClusteringEvaluator
+from shelf.evaluate.evaluators.multilabel import MultiLabelClassificationEvaluator
 from shelf.evaluate.evaluators.pair import PairClassificationEvaluator
 from shelf.evaluate.evaluators.retrieval import RetrievalEvaluator
 from shelf.evaluate.registry import get_task
@@ -32,7 +36,7 @@ logger = logging.getLogger(__name__)
 def evaluate(
     task: str,
     predictions: Path | str | list[dict[str, Any]] | None = None,
-    model: "TextEmbedder | None" = None,
+    model: TextEmbedder | None = None,
     split: str | None = None,
     output_path: Path | str | None = None,
     max_queries: int | None = None,
@@ -176,6 +180,22 @@ def evaluate(
                 show_progress=show_progress,
                 save_samples=save_samples,
             )
+        elif task_spec.task_type == TaskType.MULTILABEL:
+            if not isinstance(evaluator, MultiLabelClassificationEvaluator):
+                raise ValueError(
+                    f"Expected MultiLabelClassificationEvaluator for {task}"
+                )
+
+            # Multi-label tasks train a one-vs-rest head on frozen embeddings,
+            # matching the single-label protocol so results are comparable.
+            result = evaluator.evaluate_embedder_with_classifier(
+                embedder=model,
+                split=split,
+                batch_size=batch_size,
+                show_progress=show_progress,
+                save_samples=save_samples,
+                classifier=classifier,
+            )
         elif task_spec.task_type == TaskType.PAIR_CLASSIFICATION:
             if not isinstance(evaluator, PairClassificationEvaluator):
                 raise ValueError(f"Expected PairClassificationEvaluator for {task}")
@@ -207,7 +227,7 @@ def evaluate(
 
 
 def evaluate_all(
-    model: "TextEmbedder",
+    model: TextEmbedder,
     tasks: list[str] | None = None,
     task_types: list[TaskType] | None = None,
     split: str | None = None,
@@ -275,7 +295,7 @@ def evaluate_all(
     return results
 
 
-def _create_evaluator(task_spec: "TaskSpec", **kwargs: Any):
+def _create_evaluator(task_spec: TaskSpec, **kwargs: Any):
     """Create appropriate evaluator for task type.
 
     Args:
@@ -295,12 +315,22 @@ def _create_evaluator(task_spec: "TaskSpec", **kwargs: Any):
             return HDBSCANClusteringEvaluator(task_spec, **kwargs)
         elif "_agglomerative" in task_spec.name:
             return AgglomerativeClusteringEvaluator(task_spec, **kwargs)
+        elif "_conditional" in task_spec.name:
+            from shelf.taxonomies.geographic import GeographicLabelPolicy
+
+            # UNAMBIGUOUS_ONLY for the geographic task: 38.5% of
+            # geographically-labelled documents otherwise carry an arbitrary
+            # region taken from whichever tag came first.
+            if "geographic" in task_spec.name:
+                kwargs.setdefault(
+                    "geographic_policy", GeographicLabelPolicy.UNAMBIGUOUS_ONLY
+                )
+            return SubjectConditionalClusteringEvaluator(task_spec, **kwargs)
         else:
             # Default: k-means clustering
             return ClusteringEvaluator(task_spec, **kwargs)
     elif task_spec.task_type == TaskType.MULTILABEL:
-        # TODO: Implement MultiLabelEvaluator
-        raise NotImplementedError("MultiLabelEvaluator not yet implemented")
+        return MultiLabelClassificationEvaluator(task_spec, **kwargs)
     elif task_spec.task_type == TaskType.PAIR_CLASSIFICATION:
         return PairClassificationEvaluator(task_spec, **kwargs)
     else:

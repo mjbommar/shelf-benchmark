@@ -56,6 +56,13 @@ CONFIGS: dict[str, tuple[str, str]] = {
         "Held-out v0.4 documents (292).",
         "Reserved for contamination checks.",
     ),
+    "transfer_lcshbench": (
+        "English LCSHBench records: real catalogue records from Harvard, "
+        "Columbia and Princeton with real LCC classes (4,924).",
+        "NATURAL text, not synthetic, and catalogue metadata rather than "
+        "running prose (median 596 characters). A second transfer control. "
+        "Do not pool with transfer_gutenberg; report them separately.",
+    ),
     "transfer_gutenberg": (
         "Project Gutenberg passages, human written and human catalogued (3,016).",
         "NATURAL text, not synthetic. This is the transfer control. Never "

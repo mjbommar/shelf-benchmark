@@ -1,0 +1,58 @@
+{
+  "model": "TF-IDF+SVD",
+  "model_key": "tfidf",
+  "model_type": "tfidf",
+  "task": "lcc_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.3291699935975145,
+  "metrics": {
+    "v_measure": 0.3291699935975145,
+    "nmi": 0.3291699935975145,
+    "ari": 0.18526823339293158,
+    "homogeneity": 0.3235880732924415,
+    "completeness": 0.3349478713329672,
+    "num_samples": 12504,
+    "num_clusters_true": 21,
+    "num_clusters_pred": 21
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "bd842c503c69480055f9646139fab84f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T13:38:08.799895+00:00",
+    "model_name": "tfidf-sklearn-1-2gram-dim256",
+    "data_commit": "7123a65",
+    "code_commit": "275f308",
+    "extra": {
+      "embedding_dim": 256,
+      "n_clusters": 21,
+      "kmeans_inertia": 8836.8896484375,
+      "norm_stats": {
+        "norm_min": 0.9999997019767761,
+        "norm_max": 1.000000238418579,
+        "norm_mean": 1.0,
+        "norm_std": 5.8296080851505394e-08
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null
+  },
+  "shelf_score": 0.460781
+}

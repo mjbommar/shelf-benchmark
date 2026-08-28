@@ -1,0 +1,482 @@
+{
+  "C": {
+    "description": "Researchers reconstruct past societies by authenticating documents, dating records, interpreting inscriptions, coins, seals, and symbols, and tracing institutional, familial, and material evidence through archival and archaeological methods.",
+    "flag": null,
+    "source_overlap": 0.125
+  },
+  "CD": {
+    "description": "Researchers authenticate and interpret historical documents, examining their creation, transmission, preservation, material features, and official marks to establish provenance, authority, and evidentiary value.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "D": {
+    "description": "Researchers reconstruct European and Mediterranean pasts through archival documents, material remains, political institutions, and cultural practices, comparing regional change from antiquity through modern national formations.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "DK": {
+    "description": "Researchers reconstruct eastern European societies through archival records, travel accounts, landscapes, monuments, ethnographic observations, and studies of everyday customs, political change, and regional communities.",
+    "flag": null,
+    "source_overlap": 0.1364
+  },
+  "DR": {
+    "description": "Researchers reconstruct southeastern European pasts through archives, travel accounts, ethnographic observation, regional surveys, and serial publications, comparing political change, communities, landscapes, and everyday life across neighboring countries.",
+    "flag": null,
+    "source_overlap": 0.0625
+  },
+  "DS": {
+    "description": "Researchers reconstruct Asian societies and cultural change through archives, archaeology, languages, religious traditions, and comparative analysis across regions and diasporas.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "DT": {
+    "description": "Researchers reconstruct African pasts through archival records, oral traditions, archaeology, colonial encounters, and political change across regions, societies, and periods.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "E": {
+    "description": "Researchers reconstruct North and South American pasts by analyzing political institutions, social change, migration, conflict, and everyday life through archives, oral testimonies, material evidence, and comparative interpretation.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "F": {
+    "description": "Researchers reconstruct societies across the Western Hemisphere by analyzing archives, oral traditions, political institutions, migration, colonization, and cultural change in communities shaped by European and Indigenous encounters.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "G": {
+    "description": "Researchers examine Earth\u2019s surfaces, oceans, and spatial relationships, producing and interpreting maps, globes, atlases, and quantitative representations through field observation and measurement.",
+    "flag": null,
+    "source_overlap": 0.1818
+  },
+  "GB": {
+    "description": "Researchers examine Earth\u2019s surface processes, water movement, terrain formation, and hazards through field observation, mapping, measurement, modeling, and theoretical analysis.",
+    "flag": null,
+    "source_overlap": 0.0952
+  },
+  "GC": {
+    "description": "Researchers examine seawater, sediments, currents, seabed forms, and marine resources, using chemical analyses, physical measurements, regional comparisons, and underwater surveys to understand ocean processes and pollution.",
+    "flag": "high_overlap",
+    "source_overlap": 0.5
+  },
+  "GE": {
+    "description": "Researchers examine how human activities alter ecosystems, measure ecological conditions and risks, evaluate governance and education, and study public communication, ethical responsibilities, and equitable distribution of environmental harms.",
+    "flag": "high_overlap",
+    "source_overlap": 0.2667
+  },
+  "GN": {
+    "description": "Researchers investigate human biological variation, cultural practices, ancient remains, and philosophical questions through fieldwork, excavation, comparative analysis, measurement, and theoretical synthesis.",
+    "flag": null,
+    "source_overlap": 0.05
+  },
+  "GV": {
+    "description": "Researchers examine how people use free time for enjoyment, studying games, entertainment settings, participation patterns, cultural meanings, and social or psychological effects through observation, surveys, and historical analysis.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "HA": {
+    "description": "Researchers analyze population counts and social measurements, developing quantitative methods to collect, evaluate, interpret, and compare evidence about societies, institutions, and demographic change.",
+    "flag": null,
+    "source_overlap": 0.1
+  },
+  "HB": {
+    "description": "Researchers examine how births, deaths, migration, and household change shape economies, using statistical models and historical data to explain population trends, growth, recessions, and recoveries.",
+    "flag": null,
+    "source_overlap": 0.1111
+  },
+  "HC": {
+    "description": "Researchers examine how societies produce, distribute, and consume goods over time, analyzing resource use, markets, institutions, environmental constraints, and historical change through archival and quantitative evidence.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "HD": {
+    "description": "Researchers examine how production, employment, workplaces, firms, and regional economies evolve, using statistical analysis and institutional comparison to explain productivity, inequality, organization, and development.",
+    "flag": null,
+    "source_overlap": 0.0769
+  },
+  "HE": {
+    "description": "Researchers examine how people and goods move and how messages travel, analyzing infrastructure, networks, regulation, technologies, and their economic and social effects across regions.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "HF": {
+    "description": "Researchers examine cross-border exchange, pricing barriers, merchant organizations, and professional training through historical records, periodicals, institutional archives, and comparative economic analysis.",
+    "flag": null,
+    "source_overlap": 0.0667
+  },
+  "HG": {
+    "description": "Researchers examine how money is intermediated through banks, insurers, investment firms, and payment networks, analyzing risk, regulation, corporate decisions, markets, and services using quantitative and institutional methods.",
+    "flag": null,
+    "source_overlap": 0.1429
+  },
+  "HJ": {
+    "description": "Researchers examine how governments raise, borrow, allocate, and record money, evaluating tax systems, border collections, municipal budgets, spending decisions, debt management, financial reporting, and oversight practices.",
+    "flag": null,
+    "source_overlap": 0.1333
+  },
+  "HN": {
+    "description": "Researchers examine historical living conditions, inequality, poverty, reform movements, religious responses, neighborhood institutions, and global development through comparative evidence and social research methods.",
+    "flag": null,
+    "source_overlap": 0.1765
+  },
+  "HQ": {
+    "description": "Researchers examine intimate relationships, gender roles, household routines, sexual representation, bereavement, and practical wellbeing through social analysis, education, historical inquiry, and cultural interpretation.",
+    "flag": null,
+    "source_overlap": 0.0909
+  },
+  "HT": {
+    "description": "Researchers examine how people organize in cities and countryside, analyzing social inequality, community life, settlement patterns, and relationships between populations through surveys, demographic data, and fieldwork.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "HV": {
+    "description": "Researchers examine harmful substance use, offending, disasters, and vulnerable populations through prevention programs, aid services, institutional responses, and evaluation of rehabilitation and legal interventions.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "J": {
+    "description": "Researchers examine power, governing arrangements, constitutions, elections, bureaucracies, and competing ideas of authority through comparative analysis of regimes, institutions, and public decision-making.",
+    "flag": null,
+    "source_overlap": 0.1053
+  },
+  "JC": {
+    "description": "Researchers examine how collective power is organized across historical periods, using philosophical texts, institutions, maps, and territorial practices to explain sovereignty, borders, national identity, and governmental change.",
+    "flag": null,
+    "source_overlap": 0.0714
+  },
+  "JK": {
+    "description": "Researchers examine American governance, bureaucratic practice, constitutional development, and wartime governmental records through archival research, legal analysis, and historical comparison.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "JN": {
+    "description": "Researchers compare how European states organize authority, administer public services, and develop governing institutions, using constitutional records, administrative documents, and historical analysis across national cases.",
+    "flag": null,
+    "source_overlap": 0.1053
+  },
+  "JV": {
+    "description": "Researchers examine overseas expansion and population movement through governmental records, demographic data, regional comparisons, and accounts of encounters between settlers, governing powers, and native communities.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "JZ": {
+    "description": "Researchers explain cross-border power, diplomatic choices, and security cooperation by comparing state behavior, analyzing policy goals, and studying interactions among governments and autonomous organizations.",
+    "flag": null,
+    "source_overlap": 0.1667
+  },
+  "K": {
+    "description": "Researchers examine binding norms across societies and faiths, comparing interpretive traditions, reasoning from sacred texts, resolving disputes, and tracing how principles govern communal conduct.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "KF": {
+    "description": "Researchers examine nationwide American statutes, judicial precedents, equitable doctrines, and court-developed principles, comparing how federal and state institutions create, interpret, and apply legal rules.",
+    "flag": null,
+    "source_overlap": 0.1667
+  },
+  "KZ": {
+    "description": "Researchers analyze cross-border obligations, treaty interpretation, state responsibility, international organizations, arbitration, and rulings from global tribunals to determine how shared legal norms govern interstate conduct.",
+    "flag": null,
+    "source_overlap": 0.1538
+  },
+  "L": {
+    "description": "Researchers examine how learning is organized and experienced, tracing its historical development, institutional practices, specialized support, student life, instructional materials, and national variations through archival and comparative study.",
+    "flag": null,
+    "source_overlap": 0.0526
+  },
+  "LA": {
+    "description": "Researchers trace how schooling evolved across eras and places, examining institutions, policies, curricula, teachers, learners, and communities through archival records, statistics, oral testimony, and comparative analysis.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "LB": {
+    "description": "Researchers examine how people learn, how instruction should be organized, and how educational aims are justified, using classroom observation, comparative analysis, and philosophical argument.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "LC": {
+    "description": "Researchers examine how learning is organized across age groups and abilities, studying access, inclusion, ethics, community participation, lifelong development, and educational experiences beyond conventional institutions.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "ML": {
+    "description": "Researchers examine how individual performers and coordinated groups create, interpret, and evaluate musical works through rehearsal practices, live presentation, and comparative performance analysis.",
+    "flag": "high_overlap",
+    "source_overlap": 0.5
+  },
+  "N": {
+    "description": "Practitioners create and interpret visual forms, studying composition, materials, techniques, spatial structures, and ornamental purposes across images, objects, buildings, and crafted environments.",
+    "flag": null,
+    "source_overlap": 0.0769
+  },
+  "NA": {
+    "description": "Researchers examine how buildings and civic spaces are conceived, represented, ornamented, regulated, exhibited, and judged through drawings, competitions, historical comparisons, and urban design practices.",
+    "flag": null,
+    "source_overlap": 0.1667
+  },
+  "NX": {
+    "description": "Researchers compare creative practices across performance and image-making, examining how works combine movement, sound, narrative, staging, and visual form through historical, critical, and interpretive analysis.",
+    "flag": null,
+    "source_overlap": 0.1667
+  },
+  "PN": {
+    "description": "Scholars examine written and staged expression, tracing how narratives, speeches, personal records, and curated collections are composed, performed, circulated, and interpreted.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "Q": {
+    "description": "Researchers investigate the natural world through quantitative reasoning, observation, experimentation, and classification, studying matter, forces, celestial bodies, Earth processes, living organisms, plants, animals, and bodily structure.",
+    "flag": null,
+    "source_overlap": 0.0714
+  },
+  "QA": {
+    "description": "Researchers investigate quantity, form, motion, and uncertainty using logical proof, symbolic manipulation, measurement devices, computational procedures, historical texts, numerical tables, and data-based inference.",
+    "flag": null,
+    "source_overlap": 0.0625
+  },
+  "QB": {
+    "description": "Researchers measure celestial positions and motions, develop observing instruments and computational models, investigate cosmic origins and structure, and produce calibrated predictions from observatory and nonvisual data.",
+    "flag": null,
+    "source_overlap": 0.1111
+  },
+  "QC": {
+    "description": "Researchers investigate matter and energy through measurement and mathematical modeling, examining forces, radiation, charged systems, atmospheric processes, temperature, and interactions at atomic and subatomic scales.",
+    "flag": null,
+    "source_overlap": 0.125
+  },
+  "QD": {
+    "description": "Researchers investigate substances and reactions through synthesis, measurement, structural analysis, laboratory experimentation, theoretical modeling, historical study, and communication of results.",
+    "flag": null,
+    "source_overlap": 0.1053
+  },
+  "QE": {
+    "description": "Researchers reconstruct Earth\u2019s history by analyzing rocks, minerals, fossils, sediments, and plant remains, using field observations and laboratory methods to explain changing environments and geological processes.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "QH": {
+    "description": "Researchers investigate living organisms and their cells, heredity, reproduction, evolution, environments, and extraterrestrial conditions through laboratory experiments, field observations, comparative analysis, and specialized research techniques.",
+    "flag": null,
+    "source_overlap": 0.1875
+  },
+  "QK": {
+    "description": "Researchers investigate plant form, function, diversity, and relationships through field surveys, controlled experiments, microscopy, specimen collections, and ecological studies across environments.",
+    "flag": null,
+    "source_overlap": 0.0625
+  },
+  "QL": {
+    "description": "Researchers investigate animal diversity, body structures, evolutionary relationships, behavior, specimen preservation, and strategies for protecting threatened populations and their habitats through fieldwork and comparative analysis.",
+    "flag": null,
+    "source_overlap": 0.1667
+  },
+  "QP": {
+    "description": "Researchers investigate how animals function, examining organ systems, fluids, metabolism, nutrition, movement, circulation, and nervous control through laboratory experiments, measurements, and comparative studies.",
+    "flag": null,
+    "source_overlap": 0.1111
+  },
+  "R": {
+    "description": "Practitioners investigate human health and disease through clinical examination, laboratory testing, imaging, operative care, and prevention across organ systems and stages of life.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "RA": {
+    "description": "Researchers examine how healthcare interacts with government and law, investigating disease prevention, environmental conditions, poisoning, geographic patterns, and medical evidence used in courts.",
+    "flag": null,
+    "source_overlap": 0.0667
+  },
+  "RC": {
+    "description": "Practitioners diagnose and manage adult and family health problems through patient histories, physical examinations, laboratory testing, preventive care, and evidence-based treatment across organ systems.",
+    "flag": null,
+    "source_overlap": 0.2
+  },
+  "RD": {
+    "description": "Practitioners investigate disorders requiring operative correction, developing region-specific procedures, cancer removal, transplantation, anesthesia, and musculoskeletal reconstruction through clinical assessment, imaging, intervention, and outcomes research.",
+    "flag": null,
+    "source_overlap": 0.0909
+  },
+  "RG": {
+    "description": "Researchers investigate reproductive health across hormonal cycles, pregnancy, childbirth, and lactation, diagnosing and treating disorders affecting female reproductive organs, breasts, fertility, and endocrine regulation.",
+    "flag": null,
+    "source_overlap": 0.1429
+  },
+  "RJ": {
+    "description": "Researchers examine young people\u2019s growth, development, disease, treatment, and wellbeing, using clinical observation, physiological measurements, preventive care, and age-specific health practices from infancy through adolescence.",
+    "flag": null,
+    "source_overlap": 0.1667
+  },
+  "RM": {
+    "description": "This field examines how illnesses respond to medicines, hormones, biological agents, nutrition, exercise, and rehabilitative interventions, emphasizing clinical evaluation, treatment delivery, and recovery.",
+    "flag": null,
+    "source_overlap": 0.1667
+  },
+  "S": {
+    "description": "Researchers examine how plants, trees, domesticated animals, and aquatic species are propagated, managed, harvested, and conserved, using ecological monitoring, breeding experiments, and resource-management practices.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "SB": {
+    "description": "Researchers cultivate and improve edible, ornamental, and field-grown plants, investigating growth, landscape design, crop disorders, insect interactions, and practical garden management through experiments and observation.",
+    "flag": null,
+    "source_overlap": 0.2
+  },
+  "SD": {
+    "description": "Researchers examine wooded landscapes, tree cultivation, harvesting, soils, conservation, governance, education, historical change, transport, and notable specimens through ecological, administrative, and applied fieldwork.",
+    "flag": null,
+    "source_overlap": 0.1579
+  },
+  "SF": {
+    "description": "This field examines animal care, breeding, behavior, and management across livestock, companion species, working creatures, domesticated birds, and economically useful insects through practical guidance and applied study.",
+    "flag": "high_overlap",
+    "source_overlap": 0.2941
+  },
+  "SH": {
+    "description": "Researchers examine aquatic food production and harvesting, studying cultivated and wild species, catching practices, recreational participation, seafood supply chains, and publication-based communication.",
+    "flag": null,
+    "source_overlap": 0.1667
+  },
+  "SK": {
+    "description": "Researchers examine recreational pursuit of wild animals and aquatic species, studying tracking, capture techniques, equipment, environmental practices, regulations, and relationships between outdoor recreation and wildlife populations.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "T": {
+    "description": "This field studies designing and maintaining infrastructure for water, transportation, and public health, using engineering analysis, materials testing, environmental assessment, and large-scale construction practices.",
+    "flag": null,
+    "source_overlap": 0.1429
+  },
+  "TA": {
+    "description": "Researchers design and test built infrastructure, optical systems, transport networks, and plasma devices, using surveying, material characterization, structural analysis, and fluid-dynamic experiments to solve practical problems.",
+    "flag": null,
+    "source_overlap": 0.1875
+  },
+  "TC": {
+    "description": "They study moving and storing water, designing dams, channels, irrigation systems, ports, and shoreline defenses through fluid mechanics, surveying, hydrologic analysis, and construction planning.",
+    "flag": null,
+    "source_overlap": 0.0455
+  },
+  "TD": {
+    "description": "Researchers design and evaluate systems that manage water, waste, pollution, and sanitation, measuring environmental exposures and engineering controls to protect communities and improve everyday living conditions.",
+    "flag": null,
+    "source_overlap": 0.1538
+  },
+  "TE": {
+    "description": "Researchers design, build, and maintain transport routes by testing surfacing materials, analyzing terrain and drainage, developing compaction machinery, and evaluating construction practices across regions and languages.",
+    "flag": null,
+    "source_overlap": 0.1364
+  },
+  "TH": {
+    "description": "Researchers examine how structures are assembled, serviced, illuminated, heated, ventilated, decorated, and protected from fire, using technical drawings, material specifications, and performance standards.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "TJ": {
+    "description": "Researchers design, analyze, and manufacture machines, engines, boilers, pumps, locomotives, and industrial equipment, using mechanics, thermodynamics, fluid power, workshop practices, and regional applications.",
+    "flag": null,
+    "source_overlap": 0.1304
+  },
+  "TK": {
+    "description": "Researchers design and analyze circuits, generators, communication systems, power grids, lighting, household devices, and nuclear reactors using electromagnetic theory, materials science, and safety testing.",
+    "flag": null,
+    "source_overlap": 0.1818
+  },
+  "TL": {
+    "description": "Researchers design and analyze powered and human-propelled vehicles for roads, air, and space, studying propulsion, control, structural performance, and the engineering of mobile machines.",
+    "flag": "high_overlap",
+    "source_overlap": 0.25
+  },
+  "TN": {
+    "description": "Researchers extract and process ores, analyzing deposits, equipment, separation techniques, refining reactions, and industrial workflows to improve recovery, efficiency, safety, and environmental performance.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "TP": {
+    "description": "Researchers develop industrial processes that transform raw materials into polymers, foods, ceramics, glass, fuels, dyes, and textiles, optimizing chemical reactions, thermal treatment, purification, and large-scale manufacturing.",
+    "flag": null,
+    "source_overlap": 0.2
+  },
+  "TS": {
+    "description": "Researchers examine how raw materials become usable products, studying factory processes, tools, regional production patterns, and trade through technical analysis of metals, textiles, paper, wood, leather, and rubber.",
+    "flag": "high_overlap",
+    "source_overlap": 0.2353
+  },
+  "TX": {
+    "description": "Researchers examine household management and meal provision through nutrition, culinary preparation, budgeting, dining service, lodging operations, and maintenance practices, comparing domestic routines with commercial hospitality settings.",
+    "flag": null,
+    "source_overlap": 0.1905
+  },
+  "U": {
+    "description": "It examines armed-force organization, strategic conditions, logistics, ground and armored operations, firepower, fortification, and the planning and conduct of warfare beyond Earth.",
+    "flag": null,
+    "source_overlap": 0.1111
+  },
+  "UA": {
+    "description": "Researchers examine how societies organize protection, movement, communication, and preparedness, analyzing strategic planning, geographic constraints, civilian resilience, and nonviolent responses through historical and contemporary evidence.",
+    "flag": null,
+    "source_overlap": 0.0909
+  },
+  "UB": {
+    "description": "Researchers examine how armed forces organize personnel, issue orders, maintain administrative records, manage service careers, support veterans, and investigate misconduct through official correspondence and reports.",
+    "flag": null,
+    "source_overlap": 0.1786
+  },
+  "UC": {
+    "description": "Researchers examine how military forces move, house, feed, equip, and maintain personnel and animals, analyzing administrative systems, supply chains, transport vehicles, camps, barracks, and field support practices.",
+    "flag": null,
+    "source_overlap": 0.1333
+  },
+  "UF": {
+    "description": "This field examines weapon design, ammunition, projectile motion, explosive performance, firing instruments, targeting procedures, and the training documents governing their battlefield use.",
+    "flag": null,
+    "source_overlap": 0.0526
+  },
+  "UG": {
+    "description": "Researchers examine how armed forces operate in air and near-Earth environments, studying vehicle technologies, detection systems, fortifications, training rules, tactical doctrine, and defensive responses to missiles.",
+    "flag": null,
+    "source_overlap": 0.0588
+  },
+  "UH": {
+    "description": "Researchers examine how armed forces provide healthcare, spiritual support, animal assistance, morale activities, sanitation, and aid to personnel and communities through institutional records and operational studies.",
+    "flag": null,
+    "source_overlap": 0.0476
+  },
+  "V": {
+    "description": "Researchers examine maritime forces and commercial shipping through fleet organization, strategic deployment, administration, personnel systems, vessel upkeep and design, weapons, navigation, and supporting services.",
+    "flag": "high_overlap",
+    "source_overlap": 0.2778
+  },
+  "VA": {
+    "description": "Researchers examine how sea forces are structured, funded, distributed, and mobilized, comparing global fleets, reserve systems, maritime readiness, and the logistical consequences of naval policy.",
+    "flag": null,
+    "source_overlap": 0.1
+  },
+  "VC": {
+    "description": "It examines how maritime forces sustain personnel and vessels through logistics, budgeting, inventories, recordkeeping, transport networks, procurement, and management of bases and repair facilities.",
+    "flag": null,
+    "source_overlap": 0.0909
+  },
+  "VE": {
+    "description": "Researchers examine the organization, training, mat\u00e9riel, living conditions, honors, and historical development of military forces through regulations, instructional texts, technical records, and collected accounts.",
+    "flag": null,
+    "source_overlap": 0.1304
+  },
+  "VG": {
+    "description": "This field examines naval support operations, personnel welfare, communications, religious provision, bands, postal systems, coastal protection, and aviation through administrative and historical analysis.",
+    "flag": "high_overlap",
+    "source_overlap": 0.2174
+  },
+  "VK": {
+    "description": "Researchers study how commercial vessels determine position and course, applying geometry, instrumentation, chart interpretation, and error analysis to improve safe, efficient passage at sea.",
+    "flag": null,
+    "source_overlap": 0.0
+  },
+  "VM": {
+    "description": "Researchers design and analyze watercraft, studying hull behavior, construction practices, propulsion systems, onboard power, shipyard production, and specialized vessels through engineering calculations and practical testing.",
+    "flag": null,
+    "source_overlap": 0.1579
+  },
+  "Z": {
+    "description": "Researchers organize, describe, preserve, and interpret written records, studying book production, handwriting, publishing networks, cataloging practices, and how collections provide access to knowledge.",
+    "flag": null,
+    "source_overlap": 0.0
+  }
+}

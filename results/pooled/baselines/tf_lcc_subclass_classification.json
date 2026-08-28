@@ -1,0 +1,18 @@
+{
+  "model": "TF+SVD",
+  "model_key": "tf",
+  "task": "lcc_subclass_classification",
+  "task_type": "classification",
+  "error": "\"lcc_subclass\" not found",
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "model": "BGE-large",
+  "model_key": "bge_large",
+  "model_type": "sentence_transformer",
+  "task": "register_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.006672624159883653,
+  "metrics": {
+    "v_measure": 0.006672624159883653,
+    "nmi": 0.0066726241598836535,
+    "ari": 0.0020449408595878548,
+    "homogeneity": 0.006806659390532731,
+    "completeness": 0.006543765772197909,
+    "num_samples": 12504,
+    "num_clusters_true": 8,
+    "num_clusters_pred": 8
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "bd842c503c69480055f9646139fab84f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T19:16:23.355154+00:00",
+    "model_name": "BGE-large",
+    "data_commit": "7123a65",
+    "code_commit": "2282375",
+    "extra": {
+      "embedding_dim": 1024,
+      "n_clusters": 8,
+      "kmeans_inertia": 5118.2490234375,
+      "norm_stats": {
+        "norm_min": 0.9999998807907104,
+        "norm_max": 1.0000001192092896,
+        "norm_mean": 1.0,
+        "norm_std": 3.052759112165404e-08
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 335141888,
+    "embedding_dim": 1024,
+    "size_category": "300M-1B",
+    "flops_per_token": 670283776,
+    "relative_compute": 14.7554,
+    "shelf_eff": 55.8195,
+    "shelf_compute": 0.3636,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.475874
+}

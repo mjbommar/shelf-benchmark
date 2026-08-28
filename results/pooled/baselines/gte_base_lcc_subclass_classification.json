@@ -1,0 +1,22 @@
+{
+  "model": "GTE-base",
+  "model_key": "gte_base",
+  "task": "lcc_subclass_classification",
+  "task_type": "classification",
+  "error": "\"lcc_subclass\" not found",
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  }
+}

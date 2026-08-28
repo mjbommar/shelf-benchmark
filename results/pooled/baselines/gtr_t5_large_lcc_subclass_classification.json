@@ -1,0 +1,22 @@
+{
+  "model": "GTR-T5-large",
+  "model_key": "gtr_t5_large",
+  "task": "lcc_subclass_classification",
+  "task_type": "classification",
+  "error": "\"lcc_subclass\" not found",
+  "efficiency": {
+    "num_params": 335854592,
+    "embedding_dim": 768,
+    "size_category": "300M-1B",
+    "flops_per_token": 671709184,
+    "relative_compute": 14.7867,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  }
+}

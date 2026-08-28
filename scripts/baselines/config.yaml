@@ -14,6 +14,7 @@ models:
       embedding_dim: 256
     supports:
     - classification
+    - multilabel
     - clustering
     - pair_classification
   tfidf:
@@ -25,6 +26,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   bm25:
@@ -48,6 +50,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   bge_small:
@@ -61,6 +64,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   e5_small:
@@ -74,6 +78,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   gte_small:
@@ -87,6 +92,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   mpnet:
@@ -100,6 +106,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   bge_base:
@@ -113,6 +120,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   e5_base:
@@ -126,6 +134,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   gtr_t5_base:
@@ -139,6 +148,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   gte_base:
@@ -152,6 +162,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   instructor_base:
@@ -165,6 +176,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   bert:
@@ -178,6 +190,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   bert_lcc_finetune_demo:
@@ -207,6 +220,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   bge_large:
@@ -220,6 +234,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   e5_large:
@@ -233,6 +248,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   gtr_t5_large:
@@ -246,6 +262,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   ogbert_2m_sentence:
@@ -259,6 +276,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   ogbert_110m_base:
@@ -272,6 +290,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   ogbert_110m_sentence:
@@ -285,6 +304,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   ogbert_v1_mlm:
@@ -298,6 +318,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
   distilbert_base_uncased:
@@ -313,6 +334,7 @@ models:
     supports:
     - retrieval
     - classification
+    - multilabel
     - clustering
     - pair_classification
 tasks:
@@ -320,15 +342,32 @@ tasks:
   - lcc_retrieval
   - form_retrieval
   - category_retrieval
+  - instruction_same_subject_diff_form
+  - instruction_same_form_diff_subject
+  - instruction_same_topic_diff_subject
+  - instruction_same_audience_diff_register
   classification:
   - lcc_classification
+  # v0.4 Phase 2 difficulty tier: 80 LCC subclasses. `lcc_classification` is
+  # lexically saturated (TF-IDF+LR 0.892 macro-F1, 0.754 on 22-word documents),
+  # so this measures the within-domain discrimination -- QA vs QC vs QH, KF vs
+  # KZ -- that domain vocabulary alone cannot supply. Requires a corpus with a
+  # populated `lcc_subclass` field; every v0.3.1 document leaves it empty.
+  - lcc_subclass_classification
+  - form_classification
   - lcgft_category_classification
   - register_classification
+  multilabel:
+  - topic_classification
   clustering:
   - lcc_clustering
   - lcgft_clustering
   - register_clustering
   - geographic_clustering
+  # Subject-conditional variant: clusters within each LCC class so geography is
+  # measured with the dominant variance factor held constant. Reports pooled,
+  # chance-corrected ARI (see registry.py for the shuffled-label control).
+  - geographic_clustering_conditional
   pair_classification:
   - same_lcc_pairs
   - same_form_pairs
@@ -388,6 +427,25 @@ model_groups:
     - bert
     - roberta
 shelf_score:
+  # Tasks that run and are reported, but are deliberately kept OUT of the
+  # aggregate. The four instruction-retrieval tasks are TaskType.RETRIEVAL, so
+  # without this they would silently turn the retrieval average from 3 tasks
+  # into 7 and move every model's score. They also measure a different
+  # capability, and two of them are not yet demonstrated to measure
+  # instruction-following at all (a lexical baseline wins on both). Report them
+  # on their own; fold them in only once that is settled.
+  exclude_tasks:
+  # Register clustering is a measured NULL, not a defect awaiting a fix.
+  # Holding subject constant does not move it: pooled ARI 0.0010 against a flat
+  # baseline of 0.0013, per-class ARI ranging -0.004 to 0.054. Reported so the
+  # negative result stays visible; excluded so it cannot dilute the aggregate.
+  - register_clustering
+  - register_clustering_hdbscan
+  - register_clustering_agglomerative
+  - instruction_same_subject_diff_form
+  - instruction_same_form_diff_subject
+  - instruction_same_topic_diff_subject
+  - instruction_same_audience_diff_register
   weights:
     retrieval: 0.3
     classification: 0.25

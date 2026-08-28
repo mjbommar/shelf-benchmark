@@ -1,0 +1,56 @@
+{
+  "model": "GTR-T5-base",
+  "model_key": "gtr_t5_base",
+  "model_type": "sentence_transformer",
+  "task": "same_lcc_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "f1",
+  "primary_score": 0.6874045801526718,
+  "metrics": {
+    "f1": 0.6874045801526718,
+    "accuracy": 0.5905,
+    "precision": 0.5558641975308642,
+    "recall": 0.9005,
+    "auc_roc": 0.7103970000000001,
+    "average_precision": 0.7249033840655205,
+    "threshold": 0.5857376851557446,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "b750e46ef2feb608f3181d3e4b7bd37f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T20:12:33.491845+00:00",
+    "model_name": "GTR-T5-base",
+    "data_commit": null,
+    "code_commit": "4dbffeb",
+    "extra": {
+      "embedding_dim": 768
+    }
+  },
+  "efficiency": {
+    "num_params": 109628416,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 219256832,
+    "relative_compute": 4.8266,
+    "shelf_eff": 52.6196,
+    "shelf_compute": 0.3614,
+    "pareto_optimal": false,
+    "size_rank": 7,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.423057
+}

@@ -148,6 +148,17 @@
     },
     {
       "@type": "cr:FileSet",
+      "@id": "transfer_lcshbench-files",
+      "name": "transfer_lcshbench-files",
+      "description": "Parquet shards for the transfer_lcshbench config.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "transfer_lcshbench/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
       "@id": "transfer_gutenberg-files",
       "name": "transfer_gutenberg-files",
       "description": "Parquet shards for the transfer_gutenberg config.",
@@ -1909,6 +1920,299 @@
           "source": {
             "fileSet": {
               "@id": "v0_4_holdout-files"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "transfer_lcshbench",
+      "name": "transfer_lcshbench",
+      "description": "English LCSHBench records: real catalogue records from Harvard, Columbia and Princeton with real LCC classes (4,924). NATURAL text, not synthetic, and catalogue metadata rather than running prose (median 596 characters). A second transfer control. Do not pool with transfer_gutenberg; report them separately.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/id",
+          "name": "id",
+          "description": "Stable document identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/title",
+          "name": "title",
+          "description": "Document title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/body",
+          "name": "body",
+          "description": "Document text, excluding the title.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "body"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/text",
+          "name": "text",
+          "description": "Body text. Excludes the title to avoid label leakage.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/lcc_code",
+          "name": "lcc_code",
+          "description": "Library of Congress Classification class, one of 21 (A-Z).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "lcc_code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/lcc_name",
+          "name": "lcc_name",
+          "description": "Human-readable name of the LCC class.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "lcc_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/lcc_uri",
+          "name": "lcc_uri",
+          "description": "URI of the LCC class in the LC linked data service.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "lcc_uri"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/lcgft_category",
+          "name": "lcgft_category",
+          "description": "Genre/Form category, one of 14.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "lcgft_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/lcgft_form",
+          "name": "lcgft_form",
+          "description": "Genre/Form term, one of 133.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "lcgft_form"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/topics",
+          "name": "topics",
+          "description": "Topic labels drawn from LCSH.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "topics"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/geographic",
+          "name": "geographic",
+          "description": "Geographic region label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "geographic"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/audience",
+          "name": "audience",
+          "description": "Intended audience (LCDGT-derived).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "audience"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/register",
+          "name": "register",
+          "description": "Writing register.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "register"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/model",
+          "name": "model",
+          "description": "Generating model. Provider routing prefixes normalised.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/word_count",
+          "name": "word_count",
+          "description": "Word count of the body.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "word_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/source_config",
+          "name": "source_config",
+          "description": "Config this row came from (present in `all`).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "source_config"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/source_version",
+          "name": "source_version",
+          "description": "Dataset version this row came from.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "source_version"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/spec_id",
+          "name": "spec_id",
+          "description": "Content hash of the document specification (v0.4).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
+            },
+            "extract": {
+              "column": "spec_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "transfer_lcshbench/split",
+          "name": "split",
+          "description": "Split assignment: train, validation, or test.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "transfer_lcshbench-files"
             },
             "extract": {
               "column": "split"

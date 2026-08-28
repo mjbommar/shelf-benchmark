@@ -1,0 +1,62 @@
+{
+  "model": "OGBert-110M Base",
+  "model_key": "ogbert_110m_base",
+  "model_type": "sentence_transformer",
+  "task": "geographic_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.014837562476569437,
+  "metrics": {
+    "v_measure": 0.014837562476569437,
+    "nmi": 0.014837562476569435,
+    "ari": 0.003547541245910536,
+    "homogeneity": 0.015292320021185782,
+    "completeness": 0.014409070684886777,
+    "num_samples": 8154,
+    "num_clusters_true": 8,
+    "num_clusters_pred": 8
+  },
+  "num_samples": 8154,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "35e031f5b21e926a2b9c87164770c416",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T19:18:20.083939+00:00",
+    "model_name": "OGBert-110M Base",
+    "data_commit": "7123a65",
+    "code_commit": "2282375",
+    "extra": {
+      "embedding_dim": 768,
+      "n_clusters": 8,
+      "kmeans_inertia": 616.7142333984375,
+      "norm_stats": {
+        "norm_min": 0.9999998211860657,
+        "norm_max": 1.0000001192092896,
+        "norm_mean": 1.0,
+        "norm_std": 3.893896050044532e-08
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 139054592,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 278109184,
+    "relative_compute": 6.1222,
+    "shelf_eff": 50.2597,
+    "shelf_compute": 0.3414,
+    "pareto_optimal": false,
+    "size_rank": 8,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.409274
+}

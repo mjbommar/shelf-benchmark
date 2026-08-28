@@ -34,13 +34,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from shelf.hub import (
-    SplitConfig,
-    SHELFDataset,
-    DatasetConfig,
     CardConfig,
+    DatasetConfig,
+    SHELFDataset,
+    SplitConfig,
+    generate_dataset_card,
     push_to_hub,
     save_locally,
-    generate_dataset_card,
 )
 
 
@@ -143,6 +143,19 @@ def parse_args() -> argparse.Namespace:
         help="Exclude generation metadata (model, temperature, etc.)",
     )
 
+    parser.add_argument(
+        "--group-by",
+        default=None,
+        help=(
+            "Field that must never straddle two splits. Pass 'spec_id' for any "
+            "v0.4 corpus: Phase 1 gives one spec to every generator, so a spec's "
+            "realizations are near-duplicates and splitting them independently "
+            "leaks. Measured on a Phase-1-shaped corpus, document-level "
+            "splitting straddled 598 of 600 specs. Default None reproduces "
+            "v0.3.1 splitting."
+        ),
+    )
+
     # Verbosity
     parser.add_argument(
         "--quiet",
@@ -179,6 +192,8 @@ def main() -> int:
         )
         print(f"Random seed: {args.seed}")
         print(f"Stratify by: {args.stratify_by}")
+        if args.group_by:
+            print(f"Group by (split key): {args.group_by}")
         print(f"Output format: {args.format}")
         print()
 
@@ -189,6 +204,7 @@ def main() -> int:
         test_ratio=args.test_ratio,
         random_seed=args.seed,
         stratify_by=args.stratify_by,
+        group_by=args.group_by,
     )
 
     dataset_config = DatasetConfig(

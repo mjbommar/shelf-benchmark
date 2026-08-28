@@ -13,17 +13,21 @@ Tests cover:
 
 from __future__ import annotations
 
-import pytest
+from pathlib import Path
 
+import pytest
 from shelf.evaluate.registry import (
     GEOGRAPHIC_REGIONS,
     LCC_CODES,
     LCGFT_CATEGORIES,
+    LCGFT_FORMS,
     REGISTERS,
     TASK_REGISTRY,
+    TOPICS,
     get_task,
     list_classification_tasks,
     list_clustering_tasks,
+    list_multilabel_tasks,
     list_pair_tasks,
     list_retrieval_tasks,
     list_tasks,
@@ -285,7 +289,7 @@ class TestGetTask:
         assert task.task_type == TaskType.PAIR_CLASSIFICATION
         assert task.label_field == "label"
         assert task.label_space == ("0", "1")
-        assert task.primary_metric == "f1"
+        assert task.primary_metric == "auc_roc"
         assert task.dataset_config == "same_lcc_pairs"
 
     @pytest.mark.unit
@@ -602,7 +606,7 @@ class TestTaskSpecificationValidation:
         for task_name in list_classification_tasks():
             task = get_task(task_name)
             # Classification tasks should have F1 or accuracy as primary
-            assert task.primary_metric in ("macro_f1", "accuracy", "f1")
+            assert task.primary_metric in ("macro_f1", "accuracy", "f1", "auc_roc")
             # Should have classification-specific secondary metrics
             assert isinstance(task.secondary_metrics, tuple)
 
@@ -611,8 +615,22 @@ class TestTaskSpecificationValidation:
         """Test all clustering tasks have appropriate metrics."""
         for task_name in list_clustering_tasks():
             task = get_task(task_name)
-            # Clustering tasks should have v_measure, nmi, or ari as primary
-            assert task.primary_metric in ("v_measure", "nmi", "ari")
+            # Clustering tasks should have v_measure, nmi, or ari as primary.
+            # Subject-conditional tasks additionally distinguish macro from
+            # pooled, because they are different quantities: macro averages
+            # over classes and flatters small ones, pooled does not. They use
+            # ARI rather than V-measure because V-measure is not
+            # chance-corrected and inflates under conditioning (a shuffled-label
+            # control scores V-measure 0.0869 macro but ARI -0.0015).
+            assert task.primary_metric in (
+                "v_measure",
+                "nmi",
+                "ari",
+                "ari_pooled",
+                "ari_macro",
+                "v_measure_pooled",
+                "v_measure_macro",
+            )
             assert isinstance(task.secondary_metrics, tuple)
 
     @pytest.mark.unit
@@ -750,3 +768,193 @@ class TestTaskSpecImmutability:
         task = get_task("lcc_classification")
         with pytest.raises(AttributeError):
             task.label_space = ("X", "Y", "Z")
+
+
+class TestFormClassificationTask:
+    """Tests for the 133-way form_classification task."""
+
+    @pytest.mark.unit
+    def test_lcgft_forms_count(self):
+        """Test LCGFT_FORMS has exactly 133 genre/form terms."""
+        assert len(LCGFT_FORMS) == 133
+
+    @pytest.mark.unit
+    def test_lcgft_forms_unique_and_sorted(self):
+        """Test LCGFT_FORMS has no duplicates and is sorted."""
+        assert len(set(LCGFT_FORMS)) == len(LCGFT_FORMS)
+        assert list(LCGFT_FORMS) == sorted(LCGFT_FORMS)
+
+    @pytest.mark.unit
+    def test_lcgft_forms_sample_values(self):
+        """Test LCGFT_FORMS contains expected terms."""
+        for form in ("Lectures", "Maps", "Prayers", "Jokes", "Biographies"):
+            assert form in LCGFT_FORMS
+
+    @pytest.mark.unit
+    def test_task_registered(self):
+        """Test form_classification is in the registry."""
+        assert "form_classification" in TASK_REGISTRY
+        task = get_task("form_classification")
+        assert isinstance(task, TaskSpec)
+        assert task.name == "form_classification"
+
+    @pytest.mark.unit
+    def test_task_type_is_classification(self):
+        """Test form_classification is a single-label classification task."""
+        task = get_task("form_classification")
+        assert task.task_type == TaskType.CLASSIFICATION
+        assert "form_classification" in list_classification_tasks()
+
+    @pytest.mark.unit
+    def test_task_fields(self):
+        """Test form_classification reads lcgft_form from the default config."""
+        task = get_task("form_classification")
+        assert task.text_field == "text"
+        assert task.label_field == "lcgft_form"
+        assert task.id_field == "id"
+        assert task.dataset_name == "mjbommar/SHELF"
+        assert task.dataset_config == "default"
+        assert task.default_split == "test"
+
+    @pytest.mark.unit
+    def test_task_label_space_is_explicit(self):
+        """Test form_classification declares the full 133-term label space.
+
+        An explicit space keeps the macro-F1 denominator and the confusion
+        matrix ordering stable even on a filtered subset. This is the one
+        difference from form_retrieval, which uses an open vocabulary.
+        """
+        task = get_task("form_classification")
+        assert task.label_space == LCGFT_FORMS
+        assert task.num_classes == 133
+        assert get_task("form_retrieval").label_space is None
+
+    @pytest.mark.unit
+    def test_task_metrics(self):
+        """Test form_classification reports the full classification metric set."""
+        task = get_task("form_classification")
+        assert task.primary_metric == "macro_f1"
+        assert set(task.secondary_metrics) == {
+            "micro_f1",
+            "accuracy",
+            "weighted_f1",
+        }
+
+
+class TestTopicClassificationTask:
+    """Tests for the multi-label topic_classification task."""
+
+    @pytest.mark.unit
+    def test_topics_count(self):
+        """Test TOPICS has exactly 112 topical terms."""
+        assert len(TOPICS) == 112
+
+    @pytest.mark.unit
+    def test_topics_unique_and_sorted(self):
+        """Test TOPICS has no duplicates and is sorted."""
+        assert len(set(TOPICS)) == len(TOPICS)
+        assert list(TOPICS) == sorted(TOPICS)
+
+    @pytest.mark.unit
+    def test_topics_sample_values(self):
+        """Test TOPICS contains expected terms."""
+        for topic in ("Art", "Ethics", "Democracy", "Globalization"):
+            assert topic in TOPICS
+
+    @pytest.mark.unit
+    def test_task_registered(self):
+        """Test topic_classification is in the registry."""
+        assert "topic_classification" in TASK_REGISTRY
+        task = get_task("topic_classification")
+        assert isinstance(task, TaskSpec)
+        assert task.name == "topic_classification"
+
+    @pytest.mark.unit
+    def test_task_type_is_multilabel(self):
+        """Test topic_classification is SHELF's first multi-label task."""
+        task = get_task("topic_classification")
+        assert task.task_type == TaskType.MULTILABEL
+        assert list_multilabel_tasks() == ["topic_classification"]
+
+    @pytest.mark.unit
+    def test_multilabel_not_listed_as_classification(self):
+        """Test the multi-label task is not mixed into classification tasks."""
+        assert "topic_classification" not in list_classification_tasks()
+        assert "topic_classification" not in list_clustering_tasks()
+        assert "topic_classification" not in list_pair_tasks()
+        assert "topic_classification" not in list_retrieval_tasks()
+
+    @pytest.mark.unit
+    def test_task_fields(self):
+        """Test topic_classification reads the list-valued topics column."""
+        task = get_task("topic_classification")
+        assert task.text_field == "text"
+        assert task.label_field == "topics"
+        assert task.id_field == "id"
+        assert task.dataset_name == "mjbommar/SHELF"
+        assert task.dataset_config == "default"
+        assert task.default_split == "test"
+
+    @pytest.mark.unit
+    def test_task_label_space(self):
+        """Test topic_classification declares the 112-term label space."""
+        task = get_task("topic_classification")
+        assert task.label_space == TOPICS
+        assert task.num_classes == 112
+
+    @pytest.mark.unit
+    def test_task_metrics(self):
+        """Test topic_classification reports the full multi-label metric set."""
+        task = get_task("topic_classification")
+        assert task.primary_metric == "macro_f1"
+        # All four averagings plus set-level and ranking metrics, so no
+        # single number can be cherry-picked.
+        for metric in (
+            "micro_f1",
+            "samples_f1",
+            "weighted_f1",
+            "subset_accuracy",
+            "hamming_loss",
+            "lrap",
+            "map_micro",
+        ):
+            assert metric in task.secondary_metrics
+
+
+class TestNewTasksInBaselineConfig:
+    """Tests that the new tasks are wired into the baseline runner config."""
+
+    @pytest.mark.unit
+    def test_tasks_present_in_config(self):
+        """Test both new tasks appear under the config's tasks section."""
+        import yaml
+
+        config_path = (
+            Path(__file__).resolve().parents[2]
+            / "scripts"
+            / "baselines"
+            / "config.yaml"
+        )
+        config = yaml.safe_load(config_path.read_text())
+        tasks = config["tasks"]
+
+        assert "form_classification" in tasks["classification"]
+        assert "topic_classification" in tasks["multilabel"]
+
+    @pytest.mark.unit
+    def test_all_configured_tasks_exist_in_registry(self):
+        """Test every task named in the config resolves to a TaskSpec."""
+        import yaml
+
+        config_path = (
+            Path(__file__).resolve().parents[2]
+            / "scripts"
+            / "baselines"
+            / "config.yaml"
+        )
+        config = yaml.safe_load(config_path.read_text())
+
+        for task_type, task_names in config["tasks"].items():
+            for task_name in task_names:
+                task = get_task(task_name)
+                assert task.task_type.value == task_type

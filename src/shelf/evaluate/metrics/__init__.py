@@ -24,21 +24,38 @@ from shelf.evaluate.metrics.clustering import (
     normalized_mutual_info,
     v_measure,
 )
+from shelf.evaluate.metrics.multilabel import (
+    binarize_labels,
+    compute_multilabel_metrics,
+    hamming_loss,
+    label_cardinality,
+    label_coverage_error,
+    label_ranking_average_precision,
+    mean_average_precision,
+    multilabel_f1,
+    per_label_metrics,
+    subset_accuracy,
+)
 from shelf.evaluate.metrics.pair import (
     compute_pair_metrics,
     find_best_threshold,
     pair_accuracy,
-    pair_average_precision,
     pair_auc_roc,
+    pair_average_precision,
     pair_f1,
     pair_precision,
     pair_recall,
 )
 from shelf.evaluate.metrics.retrieval import (
+    compute_graded_retrieval_metrics,
     compute_retrieval_metrics,
+    dcg_from_gains,
+    gain_of,
+    ideal_gains_from_tiers,
     map_at_k,
     mrr,
     ndcg_at_k,
+    ndcg_from_gains,
     precision_at_k,
     recall_at_k,
 )
@@ -55,6 +72,17 @@ __all__ = [
     "compute_classification_metrics",
     "compute_stratified_confusion_matrices",
     "extract_top_confusions",
+    # Multi-label Classification
+    "binarize_labels",
+    "multilabel_f1",
+    "subset_accuracy",
+    "hamming_loss",
+    "label_ranking_average_precision",
+    "mean_average_precision",
+    "label_coverage_error",
+    "per_label_metrics",
+    "label_cardinality",
+    "compute_multilabel_metrics",
     # Clustering
     "v_measure",
     "normalized_mutual_info",
@@ -79,4 +107,10 @@ __all__ = [
     "precision_at_k",
     "map_at_k",
     "compute_retrieval_metrics",
+    # Retrieval (graded relevance)
+    "gain_of",
+    "dcg_from_gains",
+    "ndcg_from_gains",
+    "ideal_gains_from_tiers",
+    "compute_graded_retrieval_metrics",
 ]

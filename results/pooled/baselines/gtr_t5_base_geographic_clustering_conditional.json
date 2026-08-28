@@ -1,0 +1,71 @@
+{
+  "model": "GTR-T5-base",
+  "model_key": "gtr_t5_base",
+  "model_type": "sentence_transformer",
+  "task": "geographic_clustering_conditional",
+  "task_type": "clustering",
+  "primary_metric": "ari_pooled",
+  "primary_score": 0.007156917458758938,
+  "metrics": {
+    "v_measure_macro": 0.25677008384186517,
+    "nmi_macro": 0.2567700838418651,
+    "ari_macro": 0.10866942242411935,
+    "homogeneity_macro": 0.28544223690443216,
+    "completeness_macro": 0.23371844020075042,
+    "v_measure_pooled": 0.15146032153250244,
+    "nmi_pooled": 0.15146032153250244,
+    "ari_pooled": 0.007156917458758938,
+    "homogeneity_pooled": 0.30776047256498795,
+    "completeness_pooled": 0.10044700575612844,
+    "ari": 0.007156917458758938,
+    "v_measure": 0.15146032153250244,
+    "n_classes_total": 21,
+    "n_classes_clustered": 21,
+    "n_classes_skipped": 0,
+    "n_samples_clustered": 5046
+  },
+  "num_samples": 5046,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "7adced9467526a201c0ea260b7351b50",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T16:59:18.775902+00:00",
+    "model_name": "GTR-T5-base",
+    "data_commit": "ef75460",
+    "code_commit": "8ce1f71",
+    "extra": {
+      "embedding_dim": 768,
+      "class_field": "lcc_code",
+      "min_class_size": 20,
+      "skipped_classes": {},
+      "norm_stats": {
+        "norm_min": 0.99951171875,
+        "norm_max": 1.0,
+        "norm_mean": 1.0,
+        "norm_std": 0.00048828125
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 109628416,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 219256832,
+    "relative_compute": 4.8266,
+    "shelf_eff": 52.6196,
+    "shelf_compute": 0.3614,
+    "pareto_optimal": false,
+    "size_rank": 7,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.423057
+}

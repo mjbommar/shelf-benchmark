@@ -17,14 +17,19 @@ from unittest.mock import patch
 
 import pytest
 
+# `_create_evaluator` is a private helper defined in the legacy flat
+# `runner.py` module, loaded by the `shelf.evaluate.runner` package into
+# `sys.modules["shelf.evaluate._runner_impl"]`. The package's curated
+# `__all__` does not re-export private helpers, so import it from the
+# real implementation module instead.
+from shelf.evaluate._runner_impl import _create_evaluator
 from shelf.evaluate.evaluators.classification import ClassificationEvaluator
 from shelf.evaluate.evaluators.clustering import ClusteringEvaluator
 from shelf.evaluate.evaluators.retrieval import RetrievalEvaluator
 from shelf.evaluate.registry import get_task, list_tasks
 from shelf.evaluate.results import EvaluationResult
-from shelf.evaluate.runner import _create_evaluator, evaluate_all
+from shelf.evaluate.runner import evaluate_all
 from shelf.evaluate.tasks import TaskType
-
 
 # ===========================================================================
 # Integration Tests for evaluate() with Real Evaluators
@@ -242,7 +247,7 @@ class TestEvaluateAllIntegration:
                 num_samples=100,
             )
 
-        with patch("shelf.evaluate.runner.evaluate", side_effect=mock_eval):
+        with patch("shelf.evaluate._runner_impl.evaluate", side_effect=mock_eval):
             results = evaluate_all(mock_embedder)
 
         # Verify all retrieval tasks were discovered
@@ -263,7 +268,7 @@ class TestEvaluateAllIntegration:
                 num_samples=100,
             )
 
-        with patch("shelf.evaluate.runner.evaluate", side_effect=mock_eval):
+        with patch("shelf.evaluate._runner_impl.evaluate", side_effect=mock_eval):
             results = evaluate_all(
                 mock_embedder,
                 tasks=["lcc_retrieval", "form_retrieval"],
@@ -294,7 +299,7 @@ class TestEvaluateAllIntegration:
                 num_samples=100,
             )
 
-        with patch("shelf.evaluate.runner.evaluate", side_effect=mock_eval):
+        with patch("shelf.evaluate._runner_impl.evaluate", side_effect=mock_eval):
             results = evaluate_all(
                 mock_embedder,
                 task_types=[TaskType.CLASSIFICATION],
@@ -388,11 +393,15 @@ class TestSchemaValidation:
         # Missing required 'id' field
         invalid_predictions = [{"prediction": "A"}]
 
-        with patch.object(
-            evaluator, "_load_ground_truth", return_value=small_classification_dataset
-        ):
-            with pytest.raises(Exception):  # Could be ValidationError or KeyError
-                evaluator.evaluate(invalid_predictions, small_classification_dataset)
+        with (
+            patch.object(
+                evaluator,
+                "_load_ground_truth",
+                return_value=small_classification_dataset,
+            ),
+            pytest.raises(Exception),
+        ):  # Could be ValidationError or KeyError
+            evaluator.evaluate(invalid_predictions, small_classification_dataset)
 
     def test_mismatched_ids_handled(self, small_classification_dataset):
         """Test handling of predictions with IDs not in ground truth.

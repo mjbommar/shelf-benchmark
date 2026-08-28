@@ -2,11 +2,29 @@
 
 Evaluates embedding models on retrieval tasks like LCC retrieval,
 form retrieval, and topic retrieval.
+
+Two things happen here beyond plain label-match retrieval, both from
+``docs/data_plan_v0.4.md`` sections 11.1/11.3/11.4.
+
+**Graded relevance.** Judging a corpus document relevant iff it carries the
+query's label makes ~5% of a 34k corpus relevant to every LCC query, and NDCG@10
+stops discriminating. The LC taxonomies already encode an ordinal relation
+ladder, so every (query, corpus document) pair is graded through
+``shelf.evaluate.strata.classify_relation`` and reported as ``graded_ndcg@k``
+*alongside* the binary metrics, which are left untouched so earlier runs stay
+comparable.
+
+**Instruction-conditioned relevance.** When the task carries an instruction (see
+``shelf.evaluate.instructions``), relevance comes from the instruction rather
+than from ``task_spec.label_field``, the query text is prefixed with the
+instruction, and two constraint diagnostics are reported next to the IR metrics.
 """
 
 from __future__ import annotations
 
 import logging
+from collections.abc import Mapping
+from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any
 
 import numpy as np
@@ -15,17 +33,31 @@ from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 
 from shelf.evaluate.evaluators.base import TaskEvaluator
-from shelf.evaluate.metrics.retrieval import compute_retrieval_metrics
+from shelf.evaluate.instructions import (
+    InstructionJudge,
+    InstructionSpec,
+    get_instruction,
+)
+from shelf.evaluate.metrics.retrieval import (
+    compute_graded_retrieval_metrics,
+    compute_retrieval_metrics,
+)
 from shelf.evaluate.results import (
     EvaluationResult,
     PerSampleResult,
     PerSampleResults,
 )
-from shelf.evaluate.tasks import TaskSpec
 from shelf.evaluate.schemas import (
     ValidationError,
     validate_retrieval_predictions,
 )
+from shelf.evaluate.strata import (
+    DocumentFacets,
+    FormRelation,
+    SubjectRelation,
+    classify_relation,
+)
+from shelf.evaluate.tasks import TaskSpec
 
 # Metadata fields to capture for stratification analysis
 STRATIFICATION_FIELDS = [
@@ -38,11 +70,300 @@ STRATIFICATION_FIELDS = [
     "region",
 ]
 
+# Facet columns the graded judgments read. Absent columns degrade the scheme
+# rather than disabling it, except for the axis the task is actually about.
+_LCC_FIELD = "lcc_code"
+_SUBCLASS_FIELD = "lcc_subclass"
+_FORM_FIELD = "lcgft_form"
+_CATEGORY_FIELD = "lcgft_category"
+_TOPICS_FIELD = "topics"
+
+
+@dataclass(frozen=True)
+class GradedScheme:
+    """Ordinal gain tiers for one retrieval axis.
+
+    Gains are linear (0-3), not exponential: the whole point of grading is to
+    give partial credit for a near miss, and ``2**rel - 1`` weights the top tier
+    so heavily that graded NDCG collapses back onto binary NDCG.
+
+    The three schemes differ in how much a cross-axis match is worth, because
+    that depends on what was asked for. For a *form* query a mere category match
+    is a weak consolation (gain 1); for a *category* query a form match is the
+    category match plus more (gain 3 over 2).
+
+    Attributes:
+        axis: The label field this scheme grades.
+        tiers: ``(gain, relation name)`` pairs, best first, for reporting.
+        needs: Columns without which the scheme cannot be built.
+    """
+
+    axis: str
+    tiers: tuple[tuple[float, str], ...]
+    needs: tuple[str, ...]
+
+
+#: Gain tiers per retrieval axis. Registered by `label_field`, not by task name,
+#: so a new task on an existing axis is graded without further wiring.
+GRADED_SCHEMES: dict[str, GradedScheme] = {
+    _LCC_FIELD: GradedScheme(
+        axis=_LCC_FIELD,
+        tiers=(
+            (3.0, "same_lcc_subclass"),
+            (2.0, "same_lcc_class"),
+            (1.0, "shared_topic_different_class"),
+        ),
+        needs=(_LCC_FIELD,),
+    ),
+    _FORM_FIELD: GradedScheme(
+        axis=_FORM_FIELD,
+        tiers=(
+            (3.0, "same_lcgft_form"),
+            (1.0, "same_lcgft_category"),
+        ),
+        needs=(_FORM_FIELD, _CATEGORY_FIELD),
+    ),
+    _CATEGORY_FIELD: GradedScheme(
+        axis=_CATEGORY_FIELD,
+        tiers=(
+            (3.0, "same_lcgft_form"),
+            (2.0, "same_lcgft_category"),
+        ),
+        needs=(_CATEGORY_FIELD, _FORM_FIELD),
+    ),
+}
+
 if TYPE_CHECKING:
     from shelf.evaluate.adapters.bm25 import BM25Retriever
     from shelf.evaluate.adapters.protocols import TextEmbedder
 
 logger = logging.getLogger(__name__)
+
+
+def _merge_per_query(
+    base: dict[str, dict[str, float]] | None,
+    extra: dict[str, dict[str, float]] | None,
+) -> dict[str, dict[str, float]] | None:
+    """Fold extra per-query metrics into the standard per-query breakdown."""
+    if not extra:
+        return base
+    merged: dict[str, dict[str, float]] = {
+        query_id: dict(metrics) for query_id, metrics in (base or {}).items()
+    }
+    for query_id, metrics in extra.items():
+        merged.setdefault(query_id, {}).update(metrics)
+    return merged
+
+
+def _as_topics(value: Any) -> tuple[str, ...]:
+    """Coerce a topics cell to a tuple of strings."""
+    if value is None:
+        return ()
+    if isinstance(value, str):
+        return (value,)
+    if isinstance(value, np.ndarray):
+        value = value.tolist()
+    try:
+        return tuple(str(item) for item in value if item is not None)
+    except TypeError:
+        return (str(value),)
+
+
+def _facets_from_row(row: Mapping[str, Any]) -> DocumentFacets:
+    """Build the strata facet record for one document row."""
+    subclass = row.get(_SUBCLASS_FIELD)
+    return DocumentFacets(
+        lcc_code=str(row.get(_LCC_FIELD) or ""),
+        lcgft_form=str(row.get(_FORM_FIELD) or ""),
+        lcgft_category=str(row.get(_CATEGORY_FIELD) or ""),
+        topics=_as_topics(row.get(_TOPICS_FIELD)),
+        lcc_subclass=str(subclass) if subclass else None,
+    )
+
+
+class GradedJudge:
+    """Assigns graded relevance to (query, corpus document) pairs.
+
+    Grading delegates to ``shelf.evaluate.strata.classify_relation`` so the
+    relation ladder has exactly one definition in the codebase; this class only
+    maps a :class:`~shelf.evaluate.strata.PairRelation` onto the gain scale for
+    the axis under evaluation.
+
+    Two things are computed separately for good reason. Gains are needed only
+    for the documents a run actually retrieved (at most ``top_k`` per query),
+    while NDCG's *normalizer* needs the size of each relevance tier across the
+    whole corpus. Enumerating a tier holding 1,600 documents to normalize an
+    NDCG@10 would be pure waste, so tier sizes come from precomputed group
+    counts and are expanded only as far as the cutoff requires.
+    """
+
+    def __init__(
+        self,
+        scheme: GradedScheme,
+        corpus_df: pl.DataFrame,
+        id_field: str = "id",
+    ):
+        """Index a corpus for graded judging.
+
+        Args:
+            scheme: Gain tiers for the axis under evaluation.
+            corpus_df: Corpus documents.
+            id_field: Column holding the document ID.
+        """
+        self.scheme = scheme
+        self.id_field = id_field
+
+        columns = set(corpus_df.columns)
+        self.has_subclass = _SUBCLASS_FIELD in columns
+        self.has_topics = _TOPICS_FIELD in columns
+
+        self._facets: dict[str, DocumentFacets] = {}
+        self._class_counts: dict[str, int] = {}
+        self._subclass_counts: dict[str, int] = {}
+        self._form_counts: dict[str, int] = {}
+        self._category_counts: dict[str, int] = {}
+
+        lcc_values: list[str] = []
+        topic_rows: list[frozenset[str]] = []
+
+        for row in corpus_df.iter_rows(named=True):
+            doc_id = str(row[id_field])
+            facets = _facets_from_row(row)
+            self._facets[doc_id] = facets
+
+            lcc_values.append(facets.lcc_code)
+            topic_rows.append(facets.topic_set())
+
+            if facets.lcc_code:
+                self._class_counts[facets.lcc_code] = (
+                    self._class_counts.get(facets.lcc_code, 0) + 1
+                )
+            if facets.lcc_subclass:
+                self._subclass_counts[facets.lcc_subclass] = (
+                    self._subclass_counts.get(facets.lcc_subclass, 0) + 1
+                )
+            if facets.lcgft_form:
+                self._form_counts[facets.lcgft_form] = (
+                    self._form_counts.get(facets.lcgft_form, 0) + 1
+                )
+            if facets.lcgft_category:
+                self._category_counts[facets.lcgft_category] = (
+                    self._category_counts.get(facets.lcgft_category, 0) + 1
+                )
+
+        self._lcc_array = np.array(lcc_values, dtype=object)
+        self._topic_membership: dict[str, np.ndarray] = {}
+        size = len(topic_rows)
+        for i, topics in enumerate(topic_rows):
+            for topic in topics:
+                column = self._topic_membership.get(topic)
+                if column is None:
+                    column = np.zeros(size, dtype=bool)
+                    self._topic_membership[topic] = column
+                column[i] = True
+
+    def gain(self, query: DocumentFacets, doc_id: str) -> float:
+        """Graded relevance of one corpus document to one query."""
+        facets = self._facets.get(doc_id)
+        if facets is None:
+            return 0.0
+        return self.gain_for_relation(query, facets)
+
+    def gain_for_relation(self, query: DocumentFacets, doc: DocumentFacets) -> float:
+        """Map the strata relation between two documents onto the gain scale."""
+        relation = classify_relation(query, doc)
+
+        if self.scheme.axis == _LCC_FIELD:
+            if relation.subject_level is SubjectRelation.SAME_SUBCLASS:
+                return 3.0
+            if relation.subject_level is SubjectRelation.SAME_CLASS:
+                return 2.0
+            # Different class: a shared LCSH topic is the only partial credit
+            # the subject axis admits, and it is genuinely subject-bearing --
+            # unlike a shared genre, which says nothing about subject.
+            if relation.shares_any_topic:
+                return 1.0
+            return 0.0
+
+        if self.scheme.axis == _FORM_FIELD:
+            if relation.form_level is FormRelation.SAME_FORM:
+                return 3.0
+            if relation.form_level is FormRelation.SAME_CATEGORY:
+                return 1.0
+            return 0.0
+
+        if self.scheme.axis == _CATEGORY_FIELD:
+            if relation.form_level is FormRelation.SAME_FORM:
+                return 3.0
+            if relation.form_level is FormRelation.SAME_CATEGORY:
+                return 2.0
+            return 0.0
+
+        return 0.0
+
+    def ideal_tiers(self, query: DocumentFacets, k: int) -> list[tuple[float, int]]:
+        """Sizes of each positive relevance tier, best first.
+
+        Counting stops as soon as the tiers seen can fill ``k`` positions, so
+        the expensive shared-topic tier is only ever counted for a query whose
+        subject tiers are smaller than the cutoff.
+        """
+        tiers: list[tuple[float, int]] = []
+        total = 0
+
+        for gain, count in self._tier_counts(query):
+            if count <= 0:
+                continue
+            tiers.append((gain, count))
+            total += count
+            if total >= k:
+                break
+
+        return tiers
+
+    def _tier_counts(self, query: DocumentFacets):
+        """Yield ``(gain, corpus count)`` per tier, best first and lazily."""
+        if self.scheme.axis == _LCC_FIELD:
+            subclass_count = (
+                self._subclass_counts.get(query.lcc_subclass or "", 0)
+                if query.lcc_subclass
+                else 0
+            )
+            yield 3.0, subclass_count
+            yield 2.0, self._class_counts.get(query.lcc_code, 0) - subclass_count
+            yield 1.0, self._shared_topic_count(query)
+            return
+
+        form_count = self._form_counts.get(query.lcgft_form, 0)
+        category_count = self._category_counts.get(query.lcgft_category, 0)
+
+        if self.scheme.axis == _FORM_FIELD:
+            yield 3.0, form_count
+            yield 1.0, category_count - form_count
+            return
+
+        if self.scheme.axis == _CATEGORY_FIELD:
+            yield 3.0, form_count
+            yield 2.0, category_count - form_count
+
+    def _shared_topic_count(self, query: DocumentFacets) -> int:
+        """Corpus documents in a different LCC class sharing at least one topic."""
+        if not self.has_topics or self._lcc_array.size == 0:
+            return 0
+
+        topics = query.topic_set()
+        if not topics:
+            return 0
+
+        mask = np.zeros(self._lcc_array.shape[0], dtype=bool)
+        for topic in topics:
+            column = self._topic_membership.get(topic)
+            if column is not None:
+                mask |= column
+
+        if query.lcc_code:
+            mask &= self._lcc_array != query.lcc_code
+        return int(mask.sum())
 
 
 class RetrievalEvaluator(TaskEvaluator):
@@ -135,10 +456,13 @@ class RetrievalEvaluator(TaskEvaluator):
             ranked_ids = pred["ranked_doc_ids"]
             results[query_id] = ranked_ids
 
-        # Build relevance judgments from query and corpus DataFrames
-        relevance = self._build_relevance_judgments_from_df(
+        # Build relevance judgments. For an instruction task these come from the
+        # instruction, not from task_spec.label_field.
+        relevance, extra_metrics, extra_per_query = self._judge(
             queries_df=ground_truth,
             corpus_df=corpus_df,
+            results=results,
+            compute_per_query=True,
         )
 
         # Compute metrics
@@ -148,9 +472,11 @@ class RetrievalEvaluator(TaskEvaluator):
             k_values=self.k_values,
             compute_per_query=True,
         )
+        metrics.update(extra_metrics)
 
         # Extract per-query metrics
         per_query = metrics.pop("per_query", None)
+        per_query = _merge_per_query(per_query, extra_per_query)
         num_queries = metrics.pop("num_queries", len(results))
 
         # Build per-sample results if requested
@@ -230,7 +556,7 @@ class RetrievalEvaluator(TaskEvaluator):
 
     def evaluate_embedder(
         self,
-        embedder: "TextEmbedder",
+        embedder: TextEmbedder,
         split: str | None = None,
         corpus_splits: list[str] | None = None,
         max_queries: int | None = None,
@@ -302,13 +628,23 @@ class RetrievalEvaluator(TaskEvaluator):
             show_progress=show_progress,
         )
 
-        # Encode queries
+        # Encode queries. An instruction task prefixes the query text with its
+        # instruction and uses the query encoding role, so an instruct-embedder
+        # sees the prompt shape its model card documents.
         logger.info("Encoding queries...")
-        query_embeddings = embedder.encode(
-            query_texts,
-            batch_size=batch_size,
-            show_progress=show_progress,
-        )
+        if self.instruction is not None:
+            query_embeddings = self._encode_queries(
+                embedder,
+                self._render_queries(query_texts),
+                batch_size=batch_size,
+                show_progress=show_progress,
+            )
+        else:
+            query_embeddings = embedder.encode(
+                query_texts,
+                batch_size=batch_size,
+                show_progress=show_progress,
+            )
 
         # Compute rankings
         logger.info("Computing rankings...")
@@ -321,24 +657,29 @@ class RetrievalEvaluator(TaskEvaluator):
             show_progress=show_progress,
         )
 
-        # Build relevance judgments
-        relevance = self._build_relevance_judgments_from_df(
+        # Build relevance judgments. For an instruction task these come from the
+        # instruction, not from task_spec.label_field.
+        compute_per_query = save_samples
+        relevance, extra_metrics, extra_per_query = self._judge(
             queries_df=queries_df,
             corpus_df=corpus_df,
+            results=results,
+            compute_per_query=compute_per_query,
         )
 
         # Compute metrics
         # Enable per-query metrics if save_samples is True
-        compute_per_query = save_samples
         metrics = compute_retrieval_metrics(
             results=results,
             relevance=relevance,
             k_values=self.k_values,
             compute_per_query=compute_per_query,
         )
+        metrics.update(extra_metrics)
 
         # Extract per-query metrics if available
         per_query = metrics.pop("per_query", None)
+        per_query = _merge_per_query(per_query, extra_per_query)
         num_queries = metrics.pop("num_queries", len(results))
 
         # Build per-sample results if requested
@@ -474,7 +815,7 @@ class RetrievalEvaluator(TaskEvaluator):
 
     def evaluate_retriever(
         self,
-        retriever: "BM25Retriever",
+        retriever: BM25Retriever,
         split: str | None = None,
         corpus_splits: list[str] | None = None,
         max_queries: int | None = None,
@@ -536,33 +877,41 @@ class RetrievalEvaluator(TaskEvaluator):
         logger.info("Fitting retriever on corpus...")
         retriever.fit(corpus_texts, corpus_ids)
 
-        # Retrieve for queries
+        # Retrieve for queries. A lexical retriever gets the same instruction
+        # prefix a dense model does: it is the honest null, and a sparse model
+        # that still scores well is telling us the task is lexically solvable
+        # rather than instruction-sensitive.
         logger.info("Retrieving documents for queries...")
         results = retriever.retrieve(
-            query_texts=query_texts,
+            query_texts=self._render_queries(query_texts),
             query_ids=query_ids,
             top_k=top_k,
             show_progress=show_progress,
         )
 
-        # Build relevance judgments
-        relevance = self._build_relevance_judgments_from_df(
+        # Build relevance judgments. For an instruction task these come from the
+        # instruction, not from task_spec.label_field.
+        compute_per_query = save_samples
+        relevance, extra_metrics, extra_per_query = self._judge(
             queries_df=queries_df,
             corpus_df=corpus_df,
+            results=results,
+            compute_per_query=compute_per_query,
         )
 
         # Compute metrics
         # Enable per-query metrics if save_samples is True
-        compute_per_query = save_samples
         metrics = compute_retrieval_metrics(
             results=results,
             relevance=relevance,
             k_values=self.k_values,
             compute_per_query=compute_per_query,
         )
+        metrics.update(extra_metrics)
 
         # Extract per-query metrics if available
         per_query = metrics.pop("per_query", None)
+        per_query = _merge_per_query(per_query, extra_per_query)
         num_queries = metrics.pop("num_queries", len(results))
 
         # Build per-sample results if requested
@@ -641,6 +990,202 @@ class RetrievalEvaluator(TaskEvaluator):
             )
 
         return result
+
+    # ------------------------------------------------------------------
+    # Judging: graded relevance and instruction-conditioned relevance
+    # ------------------------------------------------------------------
+
+    @property
+    def instruction(self) -> InstructionSpec | None:
+        """The instruction backing this task, or None for a label-match task."""
+        return get_instruction(self.task_spec.name)
+
+    def _render_queries(self, query_texts: list[str]) -> list[str]:
+        """Prefix query texts with the task instruction, if there is one.
+
+        The prefix is applied on the query side only, which is what makes the
+        task well-formed for a plain similarity model as well: it reads the
+        instruction as a few extra words and is therefore the null condition
+        this task is designed to separate an instruct-embedder from.
+        """
+        instruction = self.instruction
+        if instruction is None:
+            return query_texts
+        return [instruction.render(text) for text in query_texts]
+
+    @staticmethod
+    def _encode_queries(
+        embedder: TextEmbedder,
+        texts: list[str],
+        batch_size: int,
+        show_progress: bool,
+    ) -> np.ndarray:
+        """Encode queries with the model-card query prompt when one exists.
+
+        E5 wants ``"query: "``, BGE wants an instruction, and running them
+        without it evaluates the model outside its documented usage. Adapters
+        without the query role fall back to ``encode``, so nothing changes for
+        the sparse baselines.
+        """
+        encode_queries = getattr(embedder, "encode_queries", None)
+        if callable(encode_queries):
+            return encode_queries(
+                texts, batch_size=batch_size, show_progress=show_progress
+            )
+        return embedder.encode(
+            texts, batch_size=batch_size, show_progress=show_progress
+        )
+
+    def _judge(
+        self,
+        queries_df: pl.DataFrame,
+        corpus_df: pl.DataFrame,
+        results: dict[str, list[str]],
+        compute_per_query: bool = False,
+    ) -> tuple[dict[str, set[str]], dict[str, float], dict[str, dict[str, float]]]:
+        """Build relevance judgments and any extra metrics they support.
+
+        Args:
+            queries_df: Query documents.
+            corpus_df: Corpus documents.
+            results: query_id -> ranked corpus document IDs.
+            compute_per_query: Whether to keep per-query breakdowns.
+
+        Returns:
+            ``(relevance, extra_metrics, extra_per_query)``. ``relevance`` is
+            the binary qrels the standard IR metrics are computed from;
+            ``extra_metrics`` holds graded NDCG for a label-match task and the
+            constraint diagnostics for an instruction task.
+        """
+        instruction = self.instruction
+        if instruction is not None:
+            return self._judge_instruction(
+                instruction, queries_df, corpus_df, results, compute_per_query
+            )
+
+        relevance = self._build_relevance_judgments_from_df(
+            queries_df=queries_df,
+            corpus_df=corpus_df,
+        )
+        graded_metrics, graded_per_query = self._graded_metrics(
+            queries_df=queries_df,
+            corpus_df=corpus_df,
+            results=results,
+            compute_per_query=compute_per_query,
+        )
+        return relevance, graded_metrics, graded_per_query
+
+    def _judge_instruction(
+        self,
+        instruction: InstructionSpec,
+        queries_df: pl.DataFrame,
+        corpus_df: pl.DataFrame,
+        results: dict[str, list[str]],
+        compute_per_query: bool,
+    ) -> tuple[dict[str, set[str]], dict[str, float], dict[str, dict[str, float]]]:
+        """Judge an instruction task, including the constraint diagnostics."""
+        missing = [
+            name
+            for name in instruction.required_fields
+            if name not in corpus_df.columns or name not in queries_df.columns
+        ]
+        if missing:
+            raise ValueError(
+                f"task {self.task_spec.name!r} needs columns {missing}, which the "
+                f"dataset does not provide"
+            )
+
+        judge = InstructionJudge(
+            instruction,
+            list(corpus_df.iter_rows(named=True)),
+            id_field=self.task_spec.id_field,
+        )
+        judgments = judge.judge(
+            list(queries_df.iter_rows(named=True)),
+            results=results,
+            k_values=self.k_values,
+            compute_per_query=compute_per_query,
+        )
+
+        metrics = dict(judgments.metrics)
+        # Queries the instruction has no answer for are reported, not hidden:
+        # a large count means the instruction is mis-specified for this corpus.
+        metrics["queries_without_answer"] = float(judgments.num_empty)
+
+        if judgments.num_empty:
+            logger.info(
+                "%s: %d of %d queries have no document satisfying the instruction",
+                self.task_spec.name,
+                judgments.num_empty,
+                judgments.num_empty + judgments.num_queries,
+            )
+
+        return judgments.relevance, metrics, judgments.per_query
+
+    def _graded_metrics(
+        self,
+        queries_df: pl.DataFrame,
+        corpus_df: pl.DataFrame,
+        results: dict[str, list[str]],
+        compute_per_query: bool,
+    ) -> tuple[dict[str, float], dict[str, dict[str, float]]]:
+        """Compute graded NDCG for a label-match retrieval task.
+
+        Returns empty dictionaries when the dataset cannot support grading --
+        a task on an axis with no registered scheme, or a corpus missing the
+        facet columns the scheme reads. Grading is an addition to the report,
+        so its absence must never break an evaluation.
+        """
+        scheme = GRADED_SCHEMES.get(self.task_spec.label_field)
+        if scheme is None:
+            return {}, {}
+
+        available = set(corpus_df.columns) & set(queries_df.columns)
+        missing = [name for name in scheme.needs if name not in available]
+        if missing:
+            logger.info(
+                "Skipping graded relevance for %s: missing columns %s",
+                self.task_spec.name,
+                missing,
+            )
+            return {}, {}
+
+        if not results:
+            return {}, {}
+
+        id_field = self.task_spec.id_field
+        judge = GradedJudge(scheme, corpus_df, id_field=id_field)
+        max_k = max(self.k_values)
+
+        gains: dict[str, dict[str, float]] = {}
+        ideal_tiers: dict[str, list[tuple[float, int]]] = {}
+
+        for row in queries_df.iter_rows(named=True):
+            query_id = str(row[id_field])
+            ranked = results.get(query_id)
+            if ranked is None:
+                continue
+
+            query_facets = _facets_from_row(row)
+            ideal_tiers[query_id] = judge.ideal_tiers(query_facets, max_k)
+            gains[query_id] = {
+                doc_id: gain
+                for doc_id in ranked[:max_k]
+                if (gain := judge.gain(query_facets, doc_id)) > 0.0
+            }
+
+        graded = compute_graded_retrieval_metrics(
+            results=results,
+            gains=gains,
+            ideal_tiers=ideal_tiers,
+            k_values=self.k_values,
+            compute_per_query=compute_per_query,
+        )
+        per_query = graded.pop("per_query", {})
+        graded.pop("num_queries", None)
+        graded["graded_relevance_max_gain"] = float(scheme.tiers[0][0])
+
+        return graded, per_query
 
     def _build_relevance_judgments(
         self,

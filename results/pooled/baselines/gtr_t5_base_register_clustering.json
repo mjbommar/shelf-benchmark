@@ -1,0 +1,62 @@
+{
+  "model": "GTR-T5-base",
+  "model_key": "gtr_t5_base",
+  "model_type": "sentence_transformer",
+  "task": "register_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.021917852330834056,
+  "metrics": {
+    "v_measure": 0.021917852330834056,
+    "nmi": 0.021917852330834056,
+    "ari": 0.011006509477707507,
+    "homogeneity": 0.022329410082310926,
+    "completeness": 0.021521191023874293,
+    "num_samples": 12504,
+    "num_clusters_true": 8,
+    "num_clusters_pred": 8
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "bd842c503c69480055f9646139fab84f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T16:59:13.453584+00:00",
+    "model_name": "GTR-T5-base",
+    "data_commit": "7123a65",
+    "code_commit": "8ce1f71",
+    "extra": {
+      "embedding_dim": 768,
+      "n_clusters": 8,
+      "kmeans_inertia": 4309.705288255912,
+      "norm_stats": {
+        "norm_min": 0.99951171875,
+        "norm_max": 1.0,
+        "norm_mean": 1.0,
+        "norm_std": 0.0
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 109628416,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 219256832,
+    "relative_compute": 4.8266,
+    "shelf_eff": 52.6196,
+    "shelf_compute": 0.3614,
+    "pareto_optimal": false,
+    "size_rank": 7,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.423057
+}

@@ -1,0 +1,17 @@
+{
+  "config_name": "all",
+  "data_files": [
+    {
+      "split": "train",
+      "path": "all/train-00000-of-00001.parquet"
+    },
+    {
+      "split": "validation",
+      "path": "all/validation-00000-of-00001.parquet"
+    },
+    {
+      "split": "test",
+      "path": "all/test-00000-of-00001.parquet"
+    }
+  ]
+}

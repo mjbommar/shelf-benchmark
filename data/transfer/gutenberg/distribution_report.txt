@@ -1,0 +1,96 @@
+==============================================================================
+NATURAL TRANSFER SLICE - REALIZED DISTRIBUTION
+==============================================================================
+
+CONTAMINATION: This slice is NOT contamination-free and must never be presented as such. Project Gutenberg is in the pretraining data of essentially every model SHELF evaluates. Its value is comparative: SHELF is the clean-synthetic condition, this slice is the contaminated-natural condition, and the GAP between them is the measurement. Report the two as separate conditions; never pool them into a single metric.
+
+SKEW: The Project Gutenberg pool is heavily P (Language and Literature), pre-1929, English, and book-length. The builder subsamples toward the flattest achievable LCC distribution and publishes what it actually realized -- never an assumed outcome -- next to the source-pool coverage. Read both: an even passage count can still rest on a near-exhausted class, so a class drawn from 100 candidates and one drawn from 30,000 are not equally diverse even at identical N. This is a transfer slice, not a balanced corpus; report per-class results, not only the macro average.
+
+------------------------------------------------------------------------------
+source=project_gutenberg  source_type=natural  contamination=known_contaminated
+passages=3,016  works=1,008
+
+LCC MAIN CLASS: natural vs SHELF synthetic
+  cls  name                                      passages    nat%  shelf%   delta
+  A    General Works                                  142   4.71%   4.84%  -0.13
+  B    Philosophy, Psychology, Religion               144   4.77%   4.98%  -0.21
+  C    Auxiliary Sciences of History                  144   4.77%   4.70%  +0.07
+  D    World History (except Americas)                144   4.77%   4.91%  -0.14
+  E    History of the Americas (general, US)          144   4.77%   4.83%  -0.06
+  F    History of the Americas (local)                143   4.74%   4.68%  +0.06
+  G    Geography, Anthropology, Recreation            144   4.77%   4.57%  +0.20
+  H    Social Sciences                                144   4.77%   4.75%  +0.03
+  J    Political Science                              144   4.77%   4.74%  +0.04
+  K    Law                                            144   4.77%   4.63%  +0.14
+  L    Education                                      144   4.77%   4.71%  +0.06
+  M    Music                                          144   4.77%   4.74%  +0.04
+  N    Fine Arts                                      143   4.74%   4.88%  -0.14
+  P    Language and Literature                        144   4.77%   4.71%  +0.06
+  Q    Science                                        142   4.71%   4.78%  -0.08
+  R    Medicine                                       142   4.71%   4.75%  -0.04
+  S    Agriculture                                    144   4.77%   4.74%  +0.04
+  T    Technology                                     144   4.77%   4.90%  -0.13
+  U    Military Science                               144   4.77%   4.77%  +0.00
+  V    Naval Science                                  144   4.77%   4.85%  -0.08
+  Z    Bibliography, Library Science                  144   4.77%   4.51%  +0.26
+
+  normalized entropy (1.0 = flat over 21 classes): natural 1.0000  synthetic 0.9999
+  total variation distance from SHELF: 0.0100
+  most over-represented: Z +0.26pp, G +0.20pp, K +0.14pp, C +0.07pp, F +0.06pp
+  most under-represented: B -0.21pp, D -0.14pp, N -0.14pp, A -0.13pp, T -0.13pp
+
+WORKS PER LCC CLASS (label independence check)
+  A=48, B=48, C=48, D=48, E=48, F=48, G=48, H=48, J=48, K=48, L=48, M=48, N=48, P=48, Q=48, R=48, S=48, T=48, U=48, V=48, Z=48
+
+PASSAGE LENGTH (words)
+  min 184  p10 404  median 449  mean 479.6  p90 603  max 896
+  chunks per work: min 1  median 3  max 3
+
+LANGUAGE MIX
+  en          3,016  100.00%
+
+DATE RANGE
+  author birth/death years: 65 .. 2024
+  author era: 1-100=3, 201-300=3, 1101-1200=3, 1401-1500=3, 1501-1600=12, 1601-1700=30, 1701-1800=63, 1801-1900=585, 1901-2000=1517, 2001-2100=9
+  Project Gutenberg release years: 1996 .. 2026
+
+SOURCE POOL COVERAGE (residual skew after the sample is flattened)
+  A flat passage count is not a flat corpus. These are the eligible works
+  available per class before subsampling; a class sampled at a high fraction
+  is near-exhausted and carries far less variety than its count suggests.
+  cls    eligible   sampled  sampled %
+  A         2,692        48      1.78%
+  B         3,726        48      1.29%
+  C           268        48     17.91%
+  D         5,629        48      0.85%
+  E         2,080        48      2.31%
+  F         1,586        48      3.03%
+  G         1,092        48      4.40%
+  H         1,559        48      3.08%
+  J           309        48     15.53%
+  K           192        48     25.00%
+  L           309        48     15.53%
+  M           400        48     12.00%
+  N           949        48      5.06%
+  P        31,524        48      0.15%
+  Q         2,164        48      2.22%
+  R           598        48      8.03%
+  S           723        48      6.64%
+  T         1,449        48      3.31%
+  U           244        48     19.67%
+  V           103        48     46.60%
+  Z           481        48      9.98%
+  sampling fraction spans 0.15% to 46.60% -- a 306x range
+
+DERIVED LCGFT CATEGORY (inferred from LCSH form subdivisions; 686/3,016 = 22.7% of passages)
+  Gutenberg RDF carries no LCGFT. Passages with no unambiguous LCSH form
+  marker are left unlabelled rather than guessed.
+  Creative nonfiction                           396
+  Literature                                    201
+  Religious materials                            27
+  Informational works                            21
+  Recreational works                             17
+  Instructional and educational works            15
+  Discursive works                                9
+
+==============================================================================

@@ -1,0 +1,51 @@
+{
+  "model": "TF-IDF+SVD",
+  "model_key": "tfidf",
+  "model_type": "tfidf",
+  "task": "form_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.17349448733696357,
+  "metrics": {
+    "accuracy": 0.1980166346769034,
+    "macro_f1": 0.17349448733696357,
+    "micro_f1": 0.1980166346769034,
+    "weighted_f1": 0.1940416251504571,
+    "num_samples": 12504,
+    "num_correct": 2476,
+    "num_classes": 133
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "bd842c503c69480055f9646139fab84f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-27T13:29:22.976808+00:00",
+    "model_name": "tfidf-sklearn-1-2gram-dim256",
+    "data_commit": "7123a65",
+    "code_commit": "3034eb7",
+    "extra": {
+      "embedding_dim": 256,
+      "classifier": "LogisticRegression",
+      "train_size": 37795
+    }
+  },
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null
+  },
+  "shelf_score": 0.460781
+}

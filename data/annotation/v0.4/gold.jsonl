@@ -1,0 +1,399 @@
+{"annotation_id": "doc_0000", "id": "20260827_044617_e38f3612", "lcc_code": "H", "lcgft_category": "Cartographic materials", "lcgft_form": "Satellite imagery", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0001", "id": "20260827_033857_bc63a95b", "lcc_code": "P", "lcgft_category": "Creative nonfiction", "lcgft_form": "Journalism", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0002", "id": "20260827_071333_53e016c8", "lcc_code": "Q", "lcgft_category": "Law materials", "lcgft_form": "Administrative regulations", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0003", "id": "20260827_071755_834af570", "lcc_code": "D", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0004", "id": "20260827_045223_95d19fe7", "lcc_code": "V", "lcgft_category": "Recreational works", "lcgft_form": "Games", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0005", "id": "20260827_052141_21402e0c", "lcc_code": "G", "lcgft_category": "Music", "lcgft_form": "Chamber music", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0006", "id": "20260827_071857_65dcdf51", "lcc_code": "V", "lcgft_category": "Creative nonfiction", "lcgft_form": "Essays", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0007", "id": "20260827_074852_dd34ca52", "lcc_code": "D", "lcgft_category": "Sound recordings", "lcgft_form": "Music recordings", "model": "x-ai/grok-4.6"}
+{"annotation_id": "doc_0008", "id": "20260827_043413_e61247e3", "lcc_code": "K", "lcgft_category": "Ephemera", "lcgft_form": "Postcards", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0009", "id": "20260827_053939_9b5a909e", "lcc_code": "N", "lcgft_category": "Commemorative works", "lcgft_form": "Memorial books", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0010", "id": "20260827_034110_d94c6d44", "lcc_code": "F", "lcgft_category": "Informational works", "lcgft_form": "News articles", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0011", "id": "20260827_071139_757f3b89", "lcc_code": "V", "lcgft_category": "Recreational works", "lcgft_form": "Humor", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0012", "id": "20260827_073117_e5599854", "lcc_code": "G", "lcgft_category": "Discursive works", "lcgft_form": "Letters to the editor", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0013", "id": "20260827_055344_c50865fc", "lcc_code": "S", "lcgft_category": "Religious materials", "lcgft_form": "Theological works", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0014", "id": "20260827_071943_061d994a", "lcc_code": "U", "lcgft_category": "Cartographic materials", "lcgft_form": "Floor plans", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0015", "id": "20260827_043926_81153012", "lcc_code": "M", "lcgft_category": "Music", "lcgft_form": "Popular music", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0016", "id": "20260827_070155_8cc45e0b", "lcc_code": "G", "lcgft_category": "Sound recordings", "lcgft_form": "Music recordings", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0017", "id": "20260827_043313_f333f3d3", "lcc_code": "Q", "lcgft_category": "Religious materials", "lcgft_form": "Prayers", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0018", "id": "20260827_063447_cc7dcec6", "lcc_code": "D", "lcgft_category": "Law materials", "lcgft_form": "Statutes and codes", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0019", "id": "20260827_040206_cf6781bc", "lcc_code": "D", "lcgft_category": "Law materials", "lcgft_form": "Constitutions", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0020", "id": "20260827_071345_3bad9d7a", "lcc_code": "V", "lcgft_category": "Music", "lcgft_form": "Songs", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0021", "id": "20260827_062611_ad77c30e", "lcc_code": "Z", "lcgft_category": "Visual works", "lcgft_form": "Illustrations", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0022", "id": "20260827_035302_6aadc90f", "lcc_code": "E", "lcgft_category": "Music", "lcgft_form": "Songs", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0023", "id": "20260827_042021_1740be04", "lcc_code": "D", "lcgft_category": "Recreational works", "lcgft_form": "Jokes", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0024", "id": "20260827_051305_4e3f9c46", "lcc_code": "M", "lcgft_category": "Law materials", "lcgft_form": "Constitutions", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0025", "id": "20260827_052454_8116756f", "lcc_code": "H", "lcgft_category": "Instructional and educational works", "lcgft_form": "Course materials", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0026", "id": "20260827_055340_f1e1334d", "lcc_code": "F", "lcgft_category": "Recreational works", "lcgft_form": "Riddles", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0027", "id": "20260827_070609_5f25d497", "lcc_code": "R", "lcgft_category": "Law materials", "lcgft_form": "Treaties", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0028", "id": "20260827_072824_018d6229", "lcc_code": "K", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0029", "id": "20260827_071817_c1c63b3d", "lcc_code": "B", "lcgft_category": "Instructional and educational works", "lcgft_form": "Textbooks", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0030", "id": "20260827_035611_dda55545", "lcc_code": "G", "lcgft_category": "Visual works", "lcgft_form": "Television programs", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0031", "id": "20260827_072918_f82456c8", "lcc_code": "S", "lcgft_category": "Commemorative works", "lcgft_form": "Festschriften", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0032", "id": "20260827_063120_f23c3404", "lcc_code": "U", "lcgft_category": "Cartographic materials", "lcgft_form": "Nautical charts", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0033", "id": "20260827_065844_12c6876b", "lcc_code": "Z", "lcgft_category": "Recreational works", "lcgft_form": "Humor", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0034", "id": "20260827_050033_6a214185", "lcc_code": "V", "lcgft_category": "Commemorative works", "lcgft_form": "Anniversary publications", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0035", "id": "20260827_070900_70095b15", "lcc_code": "N", "lcgft_category": "Sound recordings", "lcgft_form": "Field recordings", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0036", "id": "20260827_072739_3040bafd", "lcc_code": "R", "lcgft_category": "Discursive works", "lcgft_form": "Debates", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0037", "id": "20260827_065741_ae5eec13", "lcc_code": "Z", "lcgft_category": "Cartographic materials", "lcgft_form": "Architectural drawings", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0038", "id": "20260827_075604_1f158f9c", "lcc_code": "P", "lcgft_category": "Informational works", "lcgft_form": "Administrative regulations", "model": "x-ai/grok-4.6"}
+{"annotation_id": "doc_0039", "id": "20260827_072158_d0775559", "lcc_code": "D", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0040", "id": "20260827_064007_3e4ac111", "lcc_code": "D", "lcgft_category": "Recreational works", "lcgft_form": "Puzzles", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0041", "id": "20260827_033501_3041e43a", "lcc_code": "K", "lcgft_category": "Visual works", "lcgft_form": "Charts", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0042", "id": "20260827_045633_42bd12c3", "lcc_code": "F", "lcgft_category": "Visual works", "lcgft_form": "Motion pictures", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0043", "id": "20260827_055734_c83fc568", "lcc_code": "K", "lcgft_category": "Law materials", "lcgft_form": "Contracts", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0044", "id": "20260827_062122_07ad26ff", "lcc_code": "N", "lcgft_category": "Cartographic materials", "lcgft_form": "Atlases", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0045", "id": "20260827_044240_14e0f78d", "lcc_code": "A", "lcgft_category": "Ephemera", "lcgft_form": "Calendars", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0046", "id": "20260827_033933_9f198e2b", "lcc_code": "M", "lcgft_category": "Creative nonfiction", "lcgft_form": "Travel writing", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0047", "id": "20260827_034003_17ad4680", "lcc_code": "L", "lcgft_category": "Religious materials", "lcgft_form": "Sermons", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0048", "id": "20260827_051258_87a7bcf6", "lcc_code": "U", "lcgft_category": "Cartographic materials", "lcgft_form": "Floor plans", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0049", "id": "20260827_054434_cb380743", "lcc_code": "G", "lcgft_category": "Instructional and educational works", "lcgft_form": "Textbooks", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0050", "id": "20260827_071113_7daa7861", "lcc_code": "G", "lcgft_category": "Religious materials", "lcgft_form": "Devotional literature", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0051", "id": "20260827_050820_3d6cae93", "lcc_code": "U", "lcgft_category": "Creative nonfiction", "lcgft_form": "Biographies", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0052", "id": "20260827_065219_8c0723d7", "lcc_code": "C", "lcgft_category": "Sound recordings", "lcgft_form": "Radio programs", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0053", "id": "20260827_054442_dc4e98e7", "lcc_code": "A", "lcgft_category": "Ephemera", "lcgft_form": "Calendars", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0054", "id": "20260827_065956_1dd97bbc", "lcc_code": "K", "lcgft_category": "Sound recordings", "lcgft_form": "Oral histories", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0055", "id": "20260827_072827_65391b8f", "lcc_code": "A", "lcgft_category": "Visual works", "lcgft_form": "Photographs", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0056", "id": "20260827_054445_67bdc641", "lcc_code": "E", "lcgft_category": "Cartographic materials", "lcgft_form": "Satellite imagery", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0057", "id": "20260827_071302_ae6d41ab", "lcc_code": "Q", "lcgft_category": "Sound recordings", "lcgft_form": "Oral histories", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0058", "id": "20260827_074001_d57e3c72", "lcc_code": "N", "lcgft_category": "Religious materials", "lcgft_form": "Sacred works", "model": "x-ai/grok-4.6"}
+{"annotation_id": "doc_0059", "id": "20260827_073053_1ce27192", "lcc_code": "A", "lcgft_category": "Cartographic materials", "lcgft_form": "Nautical charts", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0060", "id": "20260827_043413_0d5d8962", "lcc_code": "V", "lcgft_category": "Recreational works", "lcgft_form": "Games", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0061", "id": "20260827_040449_d26de975", "lcc_code": "P", "lcgft_category": "Cartographic materials", "lcgft_form": "Aerial photographs", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0062", "id": "20260827_072810_eb36ea72", "lcc_code": "J", "lcgft_category": "Cartographic materials", "lcgft_form": "Nautical charts", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0063", "id": "20260827_071111_784c0c69", "lcc_code": "B", "lcgft_category": "Cartographic materials", "lcgft_form": "Globes", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0064", "id": "20260827_050019_e8d5ac22", "lcc_code": "G", "lcgft_category": "Visual works", "lcgft_form": "Drawings", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0065", "id": "20260827_063614_5a5a856d", "lcc_code": "L", "lcgft_category": "Ephemera", "lcgft_form": "Menus", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0066", "id": "20260827_050230_e2757a83", "lcc_code": "H", "lcgft_category": "Commemorative works", "lcgft_form": "Tributes", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0067", "id": "20260827_060521_05e48065", "lcc_code": "Z", "lcgft_category": "Creative nonfiction", "lcgft_form": "Profiles", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0068", "id": "20260827_055142_ad389d28", "lcc_code": "G", "lcgft_category": "Commemorative works", "lcgft_form": "Eulogies", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0069", "id": "20260827_065121_241fb916", "lcc_code": "L", "lcgft_category": "Informational works", "lcgft_form": "Databases", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0070", "id": "20260827_070605_943827df", "lcc_code": "K", "lcgft_category": "Recreational works", "lcgft_form": "Jokes", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0071", "id": "20260827_065033_5e82947c", "lcc_code": "D", "lcgft_category": "Informational works", "lcgft_form": "Surveys", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0072", "id": "20260827_070110_d72f5a2a", "lcc_code": "L", "lcgft_category": "Recreational works", "lcgft_form": "Jokes", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0073", "id": "20260827_055956_ba422815", "lcc_code": "M", "lcgft_category": "Recreational works", "lcgft_form": "Riddles", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0074", "id": "20260827_055529_2dfaf5be", "lcc_code": "B", "lcgft_category": "Visual works", "lcgft_form": "Infographics", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0075", "id": "20260827_064609_aff617b4", "lcc_code": "L", "lcgft_category": "Law materials", "lcgft_form": "Statutes and codes", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0076", "id": "20260827_051242_1fdfdb6e", "lcc_code": "V", "lcgft_category": "Recreational works", "lcgft_form": "Humor", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0077", "id": "20260827_060016_2a402456", "lcc_code": "G", "lcgft_category": "Ephemera", "lcgft_form": "Greeting cards", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0078", "id": "20260827_043553_7a548be6", "lcc_code": "D", "lcgft_category": "Cartographic materials", "lcgft_form": "Aerial photographs", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0079", "id": "20260827_050039_5a09c1a2", "lcc_code": "Z", "lcgft_category": "Ephemera", "lcgft_form": "Flyers", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0080", "id": "20260827_060621_14f6a599", "lcc_code": "Q", "lcgft_category": "Music", "lcgft_form": "Art music", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0081", "id": "20260827_042922_4d1e6a1a", "lcc_code": "R", "lcgft_category": "Music", "lcgft_form": "Art music", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0082", "id": "20260827_054219_e418cd9a", "lcc_code": "Z", "lcgft_category": "Commemorative works", "lcgft_form": "Anniversary publications", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0083", "id": "20260827_054807_8aeec224", "lcc_code": "T", "lcgft_category": "Recreational works", "lcgft_form": "Riddles", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0084", "id": "20260827_045942_d594a424", "lcc_code": "C", "lcgft_category": "Law materials", "lcgft_form": "Legal forms", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0085", "id": "20260827_070355_cf648a37", "lcc_code": "P", "lcgft_category": "Informational works", "lcgft_form": "Reviews", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0086", "id": "20260827_045443_ca09f7b9", "lcc_code": "B", "lcgft_category": "Sound recordings", "lcgft_form": "Interviews", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0087", "id": "20260827_041457_1b3ace78", "lcc_code": "M", "lcgft_category": "Sound recordings", "lcgft_form": "Audiobooks", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0088", "id": "20260827_070702_60de203a", "lcc_code": "B", "lcgft_category": "Creative nonfiction", "lcgft_form": "Journalism", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0089", "id": "20260827_033759_206a81a7", "lcc_code": "N", "lcgft_category": "Commemorative works", "lcgft_form": "Memorial books", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0090", "id": "20260827_034919_7f61ab70", "lcc_code": "U", "lcgft_category": "Sound recordings", "lcgft_form": "Lectures", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0091", "id": "20260827_050026_860a0add", "lcc_code": "M", "lcgft_category": "Visual works", "lcgft_form": "Illustrations", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0092", "id": "20260827_070532_a05ca4a1", "lcc_code": "M", "lcgft_category": "Recreational works", "lcgft_form": "Puzzles", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0093", "id": "20260827_072646_595ca700", "lcc_code": "T", "lcgft_category": "Visual works", "lcgft_form": "Video recordings", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0094", "id": "20260827_040316_fab2ede7", "lcc_code": "S", "lcgft_category": "Religious materials", "lcgft_form": "Liturgical texts", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0095", "id": "20260827_034702_a8698784", "lcc_code": "P", "lcgft_category": "Visual works", "lcgft_form": "Video recordings", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0096", "id": "20260827_064820_94a9d22b", "lcc_code": "P", "lcgft_category": "Cartographic materials", "lcgft_form": "Maps", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0097", "id": "20260827_072734_231eaae7", "lcc_code": "Z", "lcgft_category": "Commemorative works", "lcgft_form": "Festschriften", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0098", "id": "20260827_072147_0420d6cf", "lcc_code": "B", "lcgft_category": "Recreational works", "lcgft_form": "Jokes", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0099", "id": "20260827_041646_7ac24edb", "lcc_code": "Z", "lcgft_category": "Creative nonfiction", "lcgft_form": "Essays", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0100", "id": "20260827_035118_2880b45a", "lcc_code": "N", "lcgft_category": "Commemorative works", "lcgft_form": "Eulogies", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0101", "id": "20260827_073438_c1825ca9", "lcc_code": "R", "lcgft_category": "Creative nonfiction", "lcgft_form": "True crime stories", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0102", "id": "20260827_071610_0b6e8bfb", "lcc_code": "R", "lcgft_category": "Law materials", "lcgft_form": "Statutes and codes", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0103", "id": "20260827_065746_c27a83bb", "lcc_code": "D", "lcgft_category": "Law materials", "lcgft_form": "Constitutions", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0104", "id": "20260827_033933_27958f4f", "lcc_code": "J", "lcgft_category": "Music", "lcgft_form": "Popular music", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0105", "id": "20260827_042919_310a3db0", "lcc_code": "U", "lcgft_category": "Religious materials", "lcgft_form": "Sermons", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0106", "id": "20260827_060051_c120fff6", "lcc_code": "J", "lcgft_category": "Informational works", "lcgft_form": "Blogs", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0107", "id": "20260827_045326_b9d850bc", "lcc_code": "Z", "lcgft_category": "Discursive works", "lcgft_form": "Speeches", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0108", "id": "20260827_033832_4dad1043", "lcc_code": "Q", "lcgft_category": "Instructional and educational works", "lcgft_form": "Lesson plans", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0109", "id": "20260827_034300_35d202a6", "lcc_code": "C", "lcgft_category": "Visual works", "lcgft_form": "Television programs", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0110", "id": "20260827_040556_1c6dd267", "lcc_code": "J", "lcgft_category": "Creative nonfiction", "lcgft_form": "True crime stories", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0111", "id": "20260827_045042_840b3f95", "lcc_code": "R", "lcgft_category": "Music", "lcgft_form": "Instrumental music", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0112", "id": "20260827_050351_52be3666", "lcc_code": "C", "lcgft_category": "Law materials", "lcgft_form": "Treaties", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0113", "id": "20260827_063742_33a20d58", "lcc_code": "G", "lcgft_category": "Instructional and educational works", "lcgft_form": "Workbooks", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0114", "id": "20260827_045524_b351d731", "lcc_code": "C", "lcgft_category": "Commemorative works", "lcgft_form": "Yearbooks", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0115", "id": "20260827_041741_9b821c9a", "lcc_code": "U", "lcgft_category": "Cartographic materials", "lcgft_form": "Architectural drawings", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0116", "id": "20260827_050203_82b12a3a", "lcc_code": "S", "lcgft_category": "Ephemera", "lcgft_form": "Posters", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0117", "id": "20260827_045454_1202f20c", "lcc_code": "A", "lcgft_category": "Informational works", "lcgft_form": "Academic theses", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0118", "id": "20260827_075341_4e3679ec", "lcc_code": "H", "lcgft_category": "Music", "lcgft_form": "Folk music", "model": "x-ai/grok-4.6"}
+{"annotation_id": "doc_0119", "id": "20260827_042049_cfda60da", "lcc_code": "G", "lcgft_category": "Discursive works", "lcgft_form": "Panel discussions", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0120", "id": "20260827_042828_833b207d", "lcc_code": "P", "lcgft_category": "Instructional and educational works", "lcgft_form": "FAQs", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0121", "id": "20260827_063626_13b8f855", "lcc_code": "K", "lcgft_category": "Discursive works", "lcgft_form": "Interviews", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0122", "id": "20260827_055827_d9d5f9c2", "lcc_code": "F", "lcgft_category": "Music", "lcgft_form": "Art music", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0123", "id": "20260827_071412_e6f7e80a", "lcc_code": "A", "lcgft_category": "Law materials", "lcgft_form": "Statutes and codes", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0124", "id": "20260827_064654_9d5698bb", "lcc_code": "E", "lcgft_category": "Discursive works", "lcgft_form": "Panel discussions", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0125", "id": "20260827_060653_9cddab5e", "lcc_code": "N", "lcgft_category": "Sound recordings", "lcgft_form": "Field recordings", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0126", "id": "20260827_071145_863034d1", "lcc_code": "D", "lcgft_category": "Recreational works", "lcgft_form": "Puzzles", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0127", "id": "20260827_054421_b1bf662b", "lcc_code": "T", "lcgft_category": "Visual works", "lcgft_form": "Photographs", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0128", "id": "20260827_034257_46a621f9", "lcc_code": "S", "lcgft_category": "Music", "lcgft_form": "Chamber music", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0129", "id": "20260827_065122_17f7e45b", "lcc_code": "H", "lcgft_category": "Visual works", "lcgft_form": "Charts", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0130", "id": "20260827_070903_a3923e18", "lcc_code": "L", "lcgft_category": "Sound recordings", "lcgft_form": "Lectures", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0131", "id": "20260827_034958_80a3c5a1", "lcc_code": "R", "lcgft_category": "Ephemera", "lcgft_form": "Calendars", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0132", "id": "20260827_054723_c16ef55d", "lcc_code": "T", "lcgft_category": "Creative nonfiction", "lcgft_form": "Personal narratives", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0133", "id": "20260827_065404_336e93e3", "lcc_code": "K", "lcgft_category": "Discursive works", "lcgft_form": "Interviews", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0134", "id": "20260827_065617_fea02aaf", "lcc_code": "H", "lcgft_category": "Literature", "lcgft_form": "Fantasy fiction", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0135", "id": "20260827_050231_54e79e85", "lcc_code": "G", "lcgft_category": "Commemorative works", "lcgft_form": "Anniversary publications", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0136", "id": "20260827_070547_34e17aa2", "lcc_code": "T", "lcgft_category": "Instructional and educational works", "lcgft_form": "Cookbooks", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0137", "id": "20260827_072153_365e49e9", "lcc_code": "Q", "lcgft_category": "Creative nonfiction", "lcgft_form": "Essays", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0138", "id": "20260827_052754_6046e60b", "lcc_code": "U", "lcgft_category": "Discursive works", "lcgft_form": "Commentaries", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0139", "id": "20260827_055600_ef22eb2b", "lcc_code": "B", "lcgft_category": "Discursive works", "lcgft_form": "Interviews", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0140", "id": "20260827_044014_3deda855", "lcc_code": "H", "lcgft_category": "Visual works", "lcgft_form": "Television programs", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0141", "id": "20260827_070947_d41583ce", "lcc_code": "C", "lcgft_category": "Informational works", "lcgft_form": "News articles", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0142", "id": "20260827_034548_436ae80e", "lcc_code": "M", "lcgft_category": "Visual works", "lcgft_form": "Illustrations", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0143", "id": "20260827_062305_f612e2e1", "lcc_code": "M", "lcgft_category": "Discursive works", "lcgft_form": "Panel discussions", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0144", "id": "20260827_050228_2d0a0a0d", "lcc_code": "B", "lcgft_category": "Cartographic materials", "lcgft_form": "Aerial photographs", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0145", "id": "20260827_035327_e6456433", "lcc_code": "E", "lcgft_category": "Literature", "lcgft_form": "Poetry", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0146", "id": "20260827_051145_db8a00e2", "lcc_code": "P", "lcgft_category": "Visual works", "lcgft_form": "Charts", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0147", "id": "20260827_060603_00a24820", "lcc_code": "J", "lcgft_category": "Recreational works", "lcgft_form": "Games", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0148", "id": "20260827_050454_a88cceff", "lcc_code": "C", "lcgft_category": "Sound recordings", "lcgft_form": "Radio programs", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0149", "id": "20260827_061549_3e80e20b", "lcc_code": "S", "lcgft_category": "Law materials", "lcgft_form": "Legal forms", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0150", "id": "20260827_044955_6a562562", "lcc_code": "S", "lcgft_category": "Literature", "lcgft_form": "Short stories", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0151", "id": "20260827_042759_50170277", "lcc_code": "R", "lcgft_category": "Informational works", "lcgft_form": "Maps", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0152", "id": "20260827_065602_be2cff84", "lcc_code": "B", "lcgft_category": "Religious materials", "lcgft_form": "Liturgical texts", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0153", "id": "20260827_063420_6040911d", "lcc_code": "B", "lcgft_category": "Informational works", "lcgft_form": "Biographies", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0154", "id": "20260827_063355_b5bc946e", "lcc_code": "B", "lcgft_category": "Literature", "lcgft_form": "Comics (Graphic works)", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0155", "id": "20260827_035937_bdbe3d64", "lcc_code": "F", "lcgft_category": "Instructional and educational works", "lcgft_form": "Educational films", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0156", "id": "20260827_041737_69ebe94c", "lcc_code": "U", "lcgft_category": "Commemorative works", "lcgft_form": "Yearbooks", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0157", "id": "20260827_050158_175b3472", "lcc_code": "M", "lcgft_category": "Music", "lcgft_form": "Chamber music", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0158", "id": "20260827_071525_dca21da9", "lcc_code": "F", "lcgft_category": "Instructional and educational works", "lcgft_form": "Lesson plans", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0159", "id": "20260827_033501_d593e2b7", "lcc_code": "E", "lcgft_category": "Cartographic materials", "lcgft_form": "Satellite imagery", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0160", "id": "20260827_073900_e7fc8119", "lcc_code": "A", "lcgft_category": "Discursive works", "lcgft_form": "Editorials", "model": "x-ai/grok-4.6"}
+{"annotation_id": "doc_0161", "id": "20260827_060448_3423dde3", "lcc_code": "F", "lcgft_category": "Sound recordings", "lcgft_form": "Oral histories", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0162", "id": "20260827_050458_545897a6", "lcc_code": "D", "lcgft_category": "Cartographic materials", "lcgft_form": "Atlases", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0163", "id": "20260827_045246_4abd2301", "lcc_code": "S", "lcgft_category": "Sound recordings", "lcgft_form": "Podcasts", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0164", "id": "20260827_070953_104a7178", "lcc_code": "G", "lcgft_category": "Literature", "lcgft_form": "Screenplays", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0165", "id": "20260827_054552_09f8d42a", "lcc_code": "F", "lcgft_category": "Sound recordings", "lcgft_form": "Lectures", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0166", "id": "20260827_060557_29289c67", "lcc_code": "Z", "lcgft_category": "Music", "lcgft_form": "Folk music", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0167", "id": "20260827_041419_502afbe2", "lcc_code": "V", "lcgft_category": "Recreational works", "lcgft_form": "Humor", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0168", "id": "20260827_074959_6ee77c38", "lcc_code": "J", "lcgft_category": "Discursive works", "lcgft_form": "Letters to the editor", "model": "x-ai/grok-4.6"}
+{"annotation_id": "doc_0169", "id": "20260827_070047_570bbe23", "lcc_code": "S", "lcgft_category": "Ephemera", "lcgft_form": "Posters", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0170", "id": "20260827_050100_d7098e9b", "lcc_code": "B", "lcgft_category": "Visual works", "lcgft_form": "Motion pictures", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0171", "id": "20260827_070510_beedf228", "lcc_code": "H", "lcgft_category": "Law materials", "lcgft_form": "Legal forms", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0172", "id": "20260827_055829_bebd6d20", "lcc_code": "V", "lcgft_category": "Music", "lcgft_form": "Instrumental music", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0173", "id": "20260827_050127_e3916b18", "lcc_code": "S", "lcgft_category": "Instructional and educational works", "lcgft_form": "Course materials", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0174", "id": "20260827_045701_ecdb132f", "lcc_code": "A", "lcgft_category": "Instructional and educational works", "lcgft_form": "Study guides", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0175", "id": "20260827_050137_b22e700d", "lcc_code": "F", "lcgft_category": "Creative nonfiction", "lcgft_form": "Biographies", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0176", "id": "20260827_071522_9767d6e7", "lcc_code": "M", "lcgft_category": "Ephemera", "lcgft_form": "Broadsides", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0177", "id": "20260827_072715_9b895a98", "lcc_code": "H", "lcgft_category": "Creative nonfiction", "lcgft_form": "Essays", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0178", "id": "20260827_033138_d2a7ef43", "lcc_code": "N", "lcgft_category": "Law materials", "lcgft_form": "Statutes and codes", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0179", "id": "20260827_054246_70375850", "lcc_code": "K", "lcgft_category": "Sound recordings", "lcgft_form": "Oral histories", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0180", "id": "20260827_045222_de1a8a01", "lcc_code": "T", "lcgft_category": "Informational works", "lcgft_form": "Blogs", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0181", "id": "20260827_040153_04ddd4a0", "lcc_code": "A", "lcgft_category": "Cartographic materials", "lcgft_form": "Maps", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0182", "id": "20260827_042419_d8ae783b", "lcc_code": "P", "lcgft_category": "Creative nonfiction", "lcgft_form": "Profiles", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0183", "id": "20260827_072701_8ab7eccd", "lcc_code": "A", "lcgft_category": "Law materials", "lcgft_form": "Treaties", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0184", "id": "20260827_073438_63878912", "lcc_code": "S", "lcgft_category": "Instructional and educational works", "lcgft_form": "Examinations", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0185", "id": "20260827_051941_76897bb8", "lcc_code": "L", "lcgft_category": "Informational works", "lcgft_form": "Press releases", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0186", "id": "20260827_072015_22bcbabb", "lcc_code": "T", "lcgft_category": "Law materials", "lcgft_form": "Contracts", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0187", "id": "20260827_062030_acff7039", "lcc_code": "E", "lcgft_category": "Law materials", "lcgft_form": "Constitutions", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0188", "id": "20260827_055439_64d0baaf", "lcc_code": "Z", "lcgft_category": "Religious materials", "lcgft_form": "Sermons", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0189", "id": "20260827_071720_9fe8012b", "lcc_code": "B", "lcgft_category": "Instructional and educational works", "lcgft_form": "Lectures", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0190", "id": "20260827_071443_7038b7e8", "lcc_code": "J", "lcgft_category": "Commemorative works", "lcgft_form": "Yearbooks", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0191", "id": "20260827_064453_5a3194d0", "lcc_code": "U", "lcgft_category": "Ephemera", "lcgft_form": "Postcards", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0192", "id": "20260827_051424_dceb3469", "lcc_code": "Q", "lcgft_category": "Commemorative works", "lcgft_form": "Obituaries", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0193", "id": "20260827_065957_3b2b9d89", "lcc_code": "C", "lcgft_category": "Recreational works", "lcgft_form": "Jokes", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0194", "id": "20260827_061917_2c11e1d2", "lcc_code": "S", "lcgft_category": "Law materials", "lcgft_form": "Legislative materials", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0195", "id": "20260827_072430_2119d104", "lcc_code": "U", "lcgft_category": "Commemorative works", "lcgft_form": "Festschriften", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0196", "id": "20260827_042908_62b74b08", "lcc_code": "J", "lcgft_category": "Law materials", "lcgft_form": "Constitutions", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0197", "id": "20260827_044717_9008aab4", "lcc_code": "N", "lcgft_category": "Discursive works", "lcgft_form": "Commentaries", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0198", "id": "20260827_040122_b329b5b0", "lcc_code": "D", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0199", "id": "20260827_050115_78caf374", "lcc_code": "U", "lcgft_category": "Sound recordings", "lcgft_form": "Lectures", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0200", "id": "20260827_080702_7816ea4a", "lcc_code": "G", "lcgft_category": "Literature", "lcgft_form": "Fiction", "model": "x-ai/grok-4.6"}
+{"annotation_id": "doc_0201", "id": "20260827_065137_75528380", "lcc_code": "P", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0202", "id": "20260827_054905_ba7790d6", "lcc_code": "C", "lcgft_category": "Law materials", "lcgft_form": "Legislative materials", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0203", "id": "20260827_042656_d70036fe", "lcc_code": "P", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0204", "id": "20260827_054906_7b8431c7", "lcc_code": "T", "lcgft_category": "Sound recordings", "lcgft_form": "Music recordings", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0205", "id": "20260827_072636_e1d6eb95", "lcc_code": "D", "lcgft_category": "Music", "lcgft_form": "Art music", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0206", "id": "20260827_050145_1a483391", "lcc_code": "B", "lcgft_category": "Discursive works", "lcgft_form": "Criticism", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0207", "id": "20260827_033846_b01edb7d", "lcc_code": "E", "lcgft_category": "Sound recordings", "lcgft_form": "Audiobooks", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0208", "id": "20260827_065129_4de5c637", "lcc_code": "C", "lcgft_category": "Literature", "lcgft_form": "Fiction", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0209", "id": "20260827_033235_5bf1c9a9", "lcc_code": "K", "lcgft_category": "Discursive works", "lcgft_form": "Editorials", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0210", "id": "20260827_070842_2a83f920", "lcc_code": "Q", "lcgft_category": "Religious materials", "lcgft_form": "Prayers", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0211", "id": "20260827_052005_5113859e", "lcc_code": "C", "lcgft_category": "Recreational works", "lcgft_form": "Activity books", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0212", "id": "20260827_072723_589552ac", "lcc_code": "D", "lcgft_category": "Commemorative works", "lcgft_form": "Memorial books", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0213", "id": "20260827_061559_9a9307a3", "lcc_code": "Q", "lcgft_category": "Commemorative works", "lcgft_form": "Festschriften", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0214", "id": "20260827_043445_be91626d", "lcc_code": "T", "lcgft_category": "Music", "lcgft_form": "Opera", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0215", "id": "20260827_042342_8af5ace0", "lcc_code": "G", "lcgft_category": "Informational works", "lcgft_form": "Infographics", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0216", "id": "20260827_045331_50839d86", "lcc_code": "C", "lcgft_category": "Creative nonfiction", "lcgft_form": "Personal narratives", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0217", "id": "20260827_072954_22ce8012", "lcc_code": "M", "lcgft_category": "Religious materials", "lcgft_form": "Sacred works", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0218", "id": "20260827_053444_93a6271e", "lcc_code": "R", "lcgft_category": "Informational works", "lcgft_form": "Reference works", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0219", "id": "20260827_050819_b0b3cfc5", "lcc_code": "T", "lcgft_category": "Cartographic materials", "lcgft_form": "Floor plans", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0220", "id": "20260827_040119_d9eb42e8", "lcc_code": "Z", "lcgft_category": "Instructional and educational works", "lcgft_form": "Study guides", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0221", "id": "20260827_045004_fcfcd6d4", "lcc_code": "F", "lcgft_category": "Instructional and educational works", "lcgft_form": "Handbooks and manuals", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0222", "id": "20260827_062522_7205ea98", "lcc_code": "J", "lcgft_category": "Ephemera", "lcgft_form": "Menus", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0223", "id": "20260827_045810_fe1db993", "lcc_code": "Z", "lcgft_category": "Informational works", "lcgft_form": "Databases", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0224", "id": "20260827_033841_969be9c6", "lcc_code": "N", "lcgft_category": "Recreational works", "lcgft_form": "Games", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0225", "id": "20260827_044217_0fc0dd35", "lcc_code": "L", "lcgft_category": "Visual works", "lcgft_form": "Photographs", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0226", "id": "20260827_040252_8ca71c3f", "lcc_code": "P", "lcgft_category": "Ephemera", "lcgft_form": "Greeting cards", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0227", "id": "20260827_063356_2faa9034", "lcc_code": "E", "lcgft_category": "Discursive works", "lcgft_form": "Analysis", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0228", "id": "20260827_072917_9172a75b", "lcc_code": "Z", "lcgft_category": "Instructional and educational works", "lcgft_form": "Workbooks", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0229", "id": "20260827_071939_8cecc1d1", "lcc_code": "U", "lcgft_category": "Instructional and educational works", "lcgft_form": "Handbooks and manuals", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0230", "id": "20260827_050123_b58fa346", "lcc_code": "R", "lcgft_category": "Ephemera", "lcgft_form": "Calendars", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0231", "id": "20260827_073439_1636d207", "lcc_code": "J", "lcgft_category": "Informational works", "lcgft_form": "Blogs", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0232", "id": "20260827_054943_6f8c5a70", "lcc_code": "R", "lcgft_category": "Music", "lcgft_form": "Orchestral music", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0233", "id": "20260827_054627_91cef610", "lcc_code": "S", "lcgft_category": "Literature", "lcgft_form": "Comics (Graphic works)", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0234", "id": "20260827_043918_62eb9462", "lcc_code": "R", "lcgft_category": "Ephemera", "lcgft_form": "Calendars", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0235", "id": "20260827_042744_78fdba54", "lcc_code": "N", "lcgft_category": "Creative nonfiction", "lcgft_form": "Journalism", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0236", "id": "20260827_033758_c16b3f42", "lcc_code": "E", "lcgft_category": "Discursive works", "lcgft_form": "Criticism", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0237", "id": "20260827_064928_9985188e", "lcc_code": "A", "lcgft_category": "Informational works", "lcgft_form": "Databases", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0238", "id": "20260827_052435_73257a59", "lcc_code": "F", "lcgft_category": "Recreational works", "lcgft_form": "Riddles", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0239", "id": "20260827_064213_09a773ad", "lcc_code": "K", "lcgft_category": "Instructional and educational works", "lcgft_form": "Tutorials", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0240", "id": "20260827_035749_72c78546", "lcc_code": "Q", "lcgft_category": "Informational works", "lcgft_form": "Infographics", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0241", "id": "20260827_065432_da6d8a32", "lcc_code": "J", "lcgft_category": "Informational works", "lcgft_form": "Blogs", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0242", "id": "20260827_050037_17cb39e1", "lcc_code": "B", "lcgft_category": "Commemorative works", "lcgft_form": "Memorial books", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0243", "id": "20260827_055215_1a16cc66", "lcc_code": "G", "lcgft_category": "Visual works", "lcgft_form": "Television programs", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0244", "id": "20260827_070530_717e85d5", "lcc_code": "P", "lcgft_category": "Sound recordings", "lcgft_form": "Audiobooks", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0245", "id": "20260827_050908_d8544a1e", "lcc_code": "J", "lcgft_category": "Discursive works", "lcgft_form": "Letters to the editor", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0246", "id": "20260827_070747_cfc3a4e9", "lcc_code": "B", "lcgft_category": "Literature", "lcgft_form": "Comics (Graphic works)", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0247", "id": "20260827_073217_8f4226e3", "lcc_code": "D", "lcgft_category": "Informational works", "lcgft_form": "Surveys", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0248", "id": "20260827_050512_76f99a5b", "lcc_code": "J", "lcgft_category": "Instructional and educational works", "lcgft_form": "Examinations", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0249", "id": "20260827_051423_1d611fe4", "lcc_code": "A", "lcgft_category": "Music", "lcgft_form": "Orchestral music", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0250", "id": "20260827_035359_dd7c4b4e", "lcc_code": "Q", "lcgft_category": "Instructional and educational works", "lcgft_form": "Examinations", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0251", "id": "20260827_054655_3daa803a", "lcc_code": "C", "lcgft_category": "Sound recordings", "lcgft_form": "Lectures", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0252", "id": "20260827_040545_6b98c14a", "lcc_code": "F", "lcgft_category": "Informational works", "lcgft_form": "Blogs", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0253", "id": "20260827_034900_835c9c77", "lcc_code": "T", "lcgft_category": "Ephemera", "lcgft_form": "Broadsides", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0254", "id": "20260827_044641_f6efd331", "lcc_code": "T", "lcgft_category": "Ephemera", "lcgft_form": "Greeting cards", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0255", "id": "20260827_040554_f0bfb670", "lcc_code": "U", "lcgft_category": "Cartographic materials", "lcgft_form": "Nautical charts", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0256", "id": "20260827_071620_9f92d561", "lcc_code": "L", "lcgft_category": "Ephemera", "lcgft_form": "Postcards", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0257", "id": "20260827_055256_57f6cb20", "lcc_code": "C", "lcgft_category": "Creative nonfiction", "lcgft_form": "Essays", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0258", "id": "20260827_041510_2f67b87b", "lcc_code": "E", "lcgft_category": "Commemorative works", "lcgft_form": "Festschriften", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0259", "id": "20260827_051132_545f4dd9", "lcc_code": "Q", "lcgft_category": "Music", "lcgft_form": "Songs", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0260", "id": "20260827_051706_99ee6351", "lcc_code": "K", "lcgft_category": "Instructional and educational works", "lcgft_form": "Cookbooks", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0261", "id": "20260827_050244_d1a37edf", "lcc_code": "A", "lcgft_category": "Instructional and educational works", "lcgft_form": "Study guides", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0262", "id": "20260827_071302_c4e8fced", "lcc_code": "Z", "lcgft_category": "Creative nonfiction", "lcgft_form": "Essays", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0263", "id": "20260827_043951_770998ce", "lcc_code": "Z", "lcgft_category": "Literature", "lcgft_form": "Plays", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0264", "id": "20260827_053933_373a718d", "lcc_code": "E", "lcgft_category": "Ephemera", "lcgft_form": "Brochures", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0265", "id": "20260827_054026_ba23f490", "lcc_code": "E", "lcgft_category": "Ephemera", "lcgft_form": "Broadsides", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0266", "id": "20260827_043848_9f097084", "lcc_code": "N", "lcgft_category": "Music", "lcgft_form": "Songs", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0267", "id": "20260827_061032_3a62e6e5", "lcc_code": "H", "lcgft_category": "Creative nonfiction", "lcgft_form": "Memoirs", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0268", "id": "20260827_072219_55824dfc", "lcc_code": "N", "lcgft_category": "Informational works", "lcgft_form": "Abstracts", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0269", "id": "20260827_051541_f7a6388f", "lcc_code": "P", "lcgft_category": "Instructional and educational works", "lcgft_form": "Textbooks", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0270", "id": "20260827_054423_b1931fc6", "lcc_code": "T", "lcgft_category": "Creative nonfiction", "lcgft_form": "True crime stories", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0271", "id": "20260827_065724_fced17d8", "lcc_code": "V", "lcgft_category": "Sound recordings", "lcgft_form": "Field recordings", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0272", "id": "20260827_054837_7bf29a3f", "lcc_code": "L", "lcgft_category": "Ephemera", "lcgft_form": "Postcards", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0273", "id": "20260827_052501_0b7e1a8c", "lcc_code": "T", "lcgft_category": "Sound recordings", "lcgft_form": "Radio programs", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0274", "id": "20260827_045143_46f03695", "lcc_code": "Q", "lcgft_category": "Sound recordings", "lcgft_form": "Radio programs", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0275", "id": "20260827_070626_5ecccd25", "lcc_code": "P", "lcgft_category": "Discursive works", "lcgft_form": "Panel discussions", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0276", "id": "20260827_050044_2a812026", "lcc_code": "V", "lcgft_category": "Recreational works", "lcgft_form": "Puzzles", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0277", "id": "20260827_061503_54b37b1d", "lcc_code": "C", "lcgft_category": "Discursive works", "lcgft_form": "Analysis", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0278", "id": "20260827_070214_064400db", "lcc_code": "K", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0279", "id": "20260827_033204_491c09dc", "lcc_code": "T", "lcgft_category": "Discursive works", "lcgft_form": "Debates", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0280", "id": "20260827_043817_6614e935", "lcc_code": "H", "lcgft_category": "Commemorative works", "lcgft_form": "Yearbooks", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0281", "id": "20260827_072028_fd52cff6", "lcc_code": "M", "lcgft_category": "Ephemera", "lcgft_form": "Brochures", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0282", "id": "20260827_063439_5321054f", "lcc_code": "T", "lcgft_category": "Ephemera", "lcgft_form": "Menus", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0283", "id": "20260827_073306_dfc3b299", "lcc_code": "S", "lcgft_category": "Religious materials", "lcgft_form": "Liturgical texts", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0284", "id": "20260827_052434_b2840fb5", "lcc_code": "M", "lcgft_category": "Ephemera", "lcgft_form": "Flyers", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0285", "id": "20260827_043219_b72b791b", "lcc_code": "Q", "lcgft_category": "Creative nonfiction", "lcgft_form": "Essays", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0286", "id": "20260827_043709_21638f40", "lcc_code": "L", "lcgft_category": "Law materials", "lcgft_form": "Legal forms", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0287", "id": "20260827_044651_72292f0d", "lcc_code": "E", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0288", "id": "20260827_071514_1902308a", "lcc_code": "E", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0289", "id": "20260827_063918_22e0c169", "lcc_code": "H", "lcgft_category": "Cartographic materials", "lcgft_form": "Nautical charts", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0290", "id": "20260827_043839_6d304dcb", "lcc_code": "C", "lcgft_category": "Religious materials", "lcgft_form": "Devotional literature", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0291", "id": "20260827_070131_e267807f", "lcc_code": "F", "lcgft_category": "Commemorative works", "lcgft_form": "Yearbooks", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0292", "id": "20260827_071117_1fd8d141", "lcc_code": "F", "lcgft_category": "Recreational works", "lcgft_form": "Riddles", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0293", "id": "20260827_072606_a32c3bf9", "lcc_code": "L", "lcgft_category": "Creative nonfiction", "lcgft_form": "Travel writing", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0294", "id": "20260827_050022_4343c30c", "lcc_code": "V", "lcgft_category": "Creative nonfiction", "lcgft_form": "Biographies", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0295", "id": "20260827_041126_04ded006", "lcc_code": "D", "lcgft_category": "Law materials", "lcgft_form": "Constitutions", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0296", "id": "20260827_054916_2e351bd7", "lcc_code": "L", "lcgft_category": "Law materials", "lcgft_form": "Statutes and codes", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0297", "id": "20260827_072620_5e5ddcf9", "lcc_code": "D", "lcgft_category": "Cartographic materials", "lcgft_form": "Aerial photographs", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0298", "id": "20260827_072730_015b495a", "lcc_code": "Q", "lcgft_category": "Sound recordings", "lcgft_form": "Field recordings", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0299", "id": "20260827_072922_c47f04fb", "lcc_code": "L", "lcgft_category": "Law materials", "lcgft_form": "Casebooks (Law)", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0300", "id": "20260827_070907_7706fc78", "lcc_code": "G", "lcgft_category": "Religious materials", "lcgft_form": "Commentaries", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0301", "id": "20260827_053849_beb14733", "lcc_code": "P", "lcgft_category": "Commemorative works", "lcgft_form": "Anniversary publications", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0302", "id": "20260827_071817_49c70e7f", "lcc_code": "Q", "lcgft_category": "Religious materials", "lcgft_form": "Sermons", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0303", "id": "20260827_054106_0fef9c04", "lcc_code": "V", "lcgft_category": "Literature", "lcgft_form": "Plays", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0304", "id": "20260827_055557_d536e4f8", "lcc_code": "A", "lcgft_category": "Informational works", "lcgft_form": "Conference papers and proceedings", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0305", "id": "20260827_072701_9d3054bb", "lcc_code": "V", "lcgft_category": "Visual works", "lcgft_form": "Photographs", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0306", "id": "20260827_033131_2d6aba3f", "lcc_code": "M", "lcgft_category": "Religious materials", "lcgft_form": "Liturgical texts", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0307", "id": "20260827_050004_86f4c625", "lcc_code": "R", "lcgft_category": "Literature", "lcgft_form": "Screenplays", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0308", "id": "20260827_051117_8a71fbd5", "lcc_code": "K", "lcgft_category": "Recreational works", "lcgft_form": "Jokes", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0309", "id": "20260827_071832_ab01d146", "lcc_code": "E", "lcgft_category": "Visual works", "lcgft_form": "Diagrams", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0310", "id": "20260827_080143_a9c4ce89", "lcc_code": "R", "lcgft_category": "Recreational works", "lcgft_form": "Puzzles", "model": "x-ai/grok-4.6"}
+{"annotation_id": "doc_0311", "id": "20260827_064116_8e813b6e", "lcc_code": "E", "lcgft_category": "Law materials", "lcgft_form": "Treaties", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0312", "id": "20260827_064924_f0f21a3c", "lcc_code": "A", "lcgft_category": "Discursive works", "lcgft_form": "Lectures", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0313", "id": "20260827_055433_93843c93", "lcc_code": "N", "lcgft_category": "Informational works", "lcgft_form": "Reference works", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0314", "id": "20260827_043708_7237324a", "lcc_code": "N", "lcgft_category": "Commemorative works", "lcgft_form": "Memorial books", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0315", "id": "20260827_035407_7cd97101", "lcc_code": "J", "lcgft_category": "Informational works", "lcgft_form": "Conference papers and proceedings", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0316", "id": "20260827_050244_b7c3e83d", "lcc_code": "H", "lcgft_category": "Recreational works", "lcgft_form": "Activity books", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0317", "id": "20260827_042346_fa070c7a", "lcc_code": "J", "lcgft_category": "Creative nonfiction", "lcgft_form": "True crime stories", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0318", "id": "20260827_035724_7d9d77ea", "lcc_code": "K", "lcgft_category": "Recreational works", "lcgft_form": "Games", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0319", "id": "20260827_062056_94cb1506", "lcc_code": "Q", "lcgft_category": "Ephemera", "lcgft_form": "Pamphlets", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0320", "id": "20260827_045401_a897e70a", "lcc_code": "V", "lcgft_category": "Ephemera", "lcgft_form": "Broadsides", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0321", "id": "20260827_041544_83449073", "lcc_code": "C", "lcgft_category": "Creative nonfiction", "lcgft_form": "Personal narratives", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0322", "id": "20260827_035244_840a19f8", "lcc_code": "K", "lcgft_category": "Discursive works", "lcgft_form": "Criticism", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0323", "id": "20260827_073307_fc93d5e9", "lcc_code": "R", "lcgft_category": "Visual works", "lcgft_form": "Drawings", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0324", "id": "20260827_055646_2a52ee0f", "lcc_code": "P", "lcgft_category": "Visual works", "lcgft_form": "Art", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0325", "id": "20260827_050524_6a1f243c", "lcc_code": "T", "lcgft_category": "Informational works", "lcgft_form": "Surveys", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0326", "id": "20260827_045306_76b847b9", "lcc_code": "C", "lcgft_category": "Religious materials", "lcgft_form": "Commentaries", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0327", "id": "20260827_064453_52547a25", "lcc_code": "R", "lcgft_category": "Sound recordings", "lcgft_form": "Interviews", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0328", "id": "20260827_041600_22503761", "lcc_code": "A", "lcgft_category": "Music", "lcgft_form": "Orchestral music", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0329", "id": "20260827_054509_92678f05", "lcc_code": "L", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0330", "id": "20260827_042348_0ed3c5a2", "lcc_code": "G", "lcgft_category": "Discursive works", "lcgft_form": "Panel discussions", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0331", "id": "20260827_064009_6b94edf4", "lcc_code": "U", "lcgft_category": "Sound recordings", "lcgft_form": "Lectures", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0332", "id": "20260827_042005_ad1ab597", "lcc_code": "E", "lcgft_category": "Ephemera", "lcgft_form": "Broadsides", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0333", "id": "20260827_042516_76795a6e", "lcc_code": "Q", "lcgft_category": "Religious materials", "lcgft_form": "Sermons", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0334", "id": "20260827_064452_b8949fc1", "lcc_code": "F", "lcgft_category": "Commemorative works", "lcgft_form": "Yearbooks", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0335", "id": "20260827_065828_81139d82", "lcc_code": "P", "lcgft_category": "Commemorative works", "lcgft_form": "Anniversary publications", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0336", "id": "20260827_040053_09332a72", "lcc_code": "V", "lcgft_category": "Cartographic materials", "lcgft_form": "Floor plans", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0337", "id": "20260827_051654_c8454689", "lcc_code": "E", "lcgft_category": "Literature", "lcgft_form": "Screenplays", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0338", "id": "20260827_073214_499ba7cd", "lcc_code": "M", "lcgft_category": "Sound recordings", "lcgft_form": "Music recordings", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0339", "id": "20260827_072627_a6aaaa8a", "lcc_code": "K", "lcgft_category": "Instructional and educational works", "lcgft_form": "Tutorials", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0340", "id": "20260827_040941_18c0dd42", "lcc_code": "J", "lcgft_category": "Visual works", "lcgft_form": "Art", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0341", "id": "20260827_052834_bdff6381", "lcc_code": "K", "lcgft_category": "Creative nonfiction", "lcgft_form": "Memoirs", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0342", "id": "20260827_041631_452a44e5", "lcc_code": "K", "lcgft_category": "Visual works", "lcgft_form": "Illustrations", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0343", "id": "20260827_062209_191fd468", "lcc_code": "A", "lcgft_category": "Creative nonfiction", "lcgft_form": "Biographies", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0344", "id": "20260827_055701_cf243e3d", "lcc_code": "R", "lcgft_category": "Visual works", "lcgft_form": "Motion pictures", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0345", "id": "20260827_051856_2eea9fe4", "lcc_code": "N", "lcgft_category": "Music", "lcgft_form": "Art music", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0346", "id": "20260827_050128_d845729c", "lcc_code": "L", "lcgft_category": "Discursive works", "lcgft_form": "Opinion pieces", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0347", "id": "20260827_035257_f2d795fc", "lcc_code": "Q", "lcgft_category": "Law materials", "lcgft_form": "Administrative regulations", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0348", "id": "20260827_041807_7cb5e4fa", "lcc_code": "J", "lcgft_category": "Informational works", "lcgft_form": "Data sets", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0349", "id": "20260827_064410_780fc30e", "lcc_code": "S", "lcgft_category": "Instructional and educational works", "lcgft_form": "Course materials", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0350", "id": "20260827_033450_26f2bc56", "lcc_code": "V", "lcgft_category": "Creative nonfiction", "lcgft_form": "Biographies", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0351", "id": "20260827_063529_49461c77", "lcc_code": "M", "lcgft_category": "Literature", "lcgft_form": "Plays", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0352", "id": "20260827_065302_f412ce06", "lcc_code": "R", "lcgft_category": "Religious materials", "lcgft_form": "Prayers", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0353", "id": "20260827_041002_bc135e96", "lcc_code": "N", "lcgft_category": "Sound recordings", "lcgft_form": "Field recordings", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0354", "id": "20260827_045526_4d5a7f52", "lcc_code": "S", "lcgft_category": "Informational works", "lcgft_form": "Academic theses", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0355", "id": "20260827_052110_79c76075", "lcc_code": "H", "lcgft_category": "Creative nonfiction", "lcgft_form": "Diaries", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0356", "id": "20260827_072006_1e32e91b", "lcc_code": "S", "lcgft_category": "Literature", "lcgft_form": "Satire", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0357", "id": "20260827_050435_181df527", "lcc_code": "B", "lcgft_category": "Sound recordings", "lcgft_form": "Interviews", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0358", "id": "20260827_062909_20375311", "lcc_code": "V", "lcgft_category": "Law materials", "lcgft_form": "Legislative materials", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0359", "id": "20260827_044922_724c5fb3", "lcc_code": "J", "lcgft_category": "Law materials", "lcgft_form": "Administrative regulations", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0360", "id": "20260827_052719_4645d093", "lcc_code": "V", "lcgft_category": "Law materials", "lcgft_form": "Constitutions", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0361", "id": "20260827_052307_1b220ead", "lcc_code": "G", "lcgft_category": "Commemorative works", "lcgft_form": "Obituaries", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0362", "id": "20260827_050919_2747756b", "lcc_code": "F", "lcgft_category": "Visual works", "lcgft_form": "Art", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0363", "id": "20260827_065621_26530f8f", "lcc_code": "C", "lcgft_category": "Visual works", "lcgft_form": "Drawings", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0364", "id": "20260827_043517_1f7ea7bc", "lcc_code": "J", "lcgft_category": "Discursive works", "lcgft_form": "Letters to the editor", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0365", "id": "20260827_044314_07a85a64", "lcc_code": "T", "lcgft_category": "Informational works", "lcgft_form": "Maps", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0366", "id": "20260827_071918_363b1ebc", "lcc_code": "S", "lcgft_category": "Sound recordings", "lcgft_form": "Field recordings", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0367", "id": "20260827_072229_36756cf1", "lcc_code": "N", "lcgft_category": "Visual works", "lcgft_form": "Infographics", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0368", "id": "20260827_055916_26a1a591", "lcc_code": "H", "lcgft_category": "Law materials", "lcgft_form": "Administrative regulations", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0369", "id": "20260827_034303_9ac2ad36", "lcc_code": "Z", "lcgft_category": "Creative nonfiction", "lcgft_form": "Profiles", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0370", "id": "20260827_062521_c720e971", "lcc_code": "D", "lcgft_category": "Instructional and educational works", "lcgft_form": "FAQs", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0371", "id": "20260827_050238_e37d54a6", "lcc_code": "T", "lcgft_category": "Creative nonfiction", "lcgft_form": "Personal narratives", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0372", "id": "20260827_050048_c52e4c8a", "lcc_code": "M", "lcgft_category": "Cartographic materials", "lcgft_form": "Floor plans", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0373", "id": "20260827_054727_97ccce41", "lcc_code": "A", "lcgft_category": "Creative nonfiction", "lcgft_form": "Travel writing", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0374", "id": "20260827_045704_91ace90b", "lcc_code": "F", "lcgft_category": "Music", "lcgft_form": "Sacred music", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0375", "id": "20260827_050211_8aa2eee0", "lcc_code": "L", "lcgft_category": "Literature", "lcgft_form": "Novels", "model": "mistralai/mistral-medium-3-5"}
+{"annotation_id": "doc_0376", "id": "20260827_070618_ddd3325d", "lcc_code": "A", "lcgft_category": "Creative nonfiction", "lcgft_form": "Journalism", "model": "anthropic/claude-haiku-4.5"}
+{"annotation_id": "doc_0377", "id": "20260827_065252_5db70b89", "lcc_code": "H", "lcgft_category": "Informational works", "lcgft_form": "Infographics", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0378", "id": "20260827_073341_ef37bfef", "lcc_code": "H", "lcgft_category": "Instructional and educational works", "lcgft_form": "Lesson plans", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0379", "id": "20260827_041448_de42c082", "lcc_code": "U", "lcgft_category": "Music", "lcgft_form": "Opera", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0380", "id": "20260827_034945_81e422d8", "lcc_code": "E", "lcgft_category": "Ephemera", "lcgft_form": "Pamphlets", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0381", "id": "20260827_053922_f4885b59", "lcc_code": "L", "lcgft_category": "Law materials", "lcgft_form": "Legal forms", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0382", "id": "20260827_050643_9bc46752", "lcc_code": "S", "lcgft_category": "Music", "lcgft_form": "Chamber music", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0383", "id": "20260827_033425_4d81de69", "lcc_code": "B", "lcgft_category": "Instructional and educational works", "lcgft_form": "How-to guides", "model": "anthropic/claude-opus-5"}
+{"annotation_id": "doc_0384", "id": "20260827_065257_78865282", "lcc_code": "U", "lcgft_category": "Sound recordings", "lcgft_form": "Oral histories", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0385", "id": "20260827_061136_f3590ed0", "lcc_code": "P", "lcgft_category": "Commemorative works", "lcgft_form": "Festschriften", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0386", "id": "20260827_051027_2ab27ea0", "lcc_code": "H", "lcgft_category": "Literature", "lcgft_form": "Mystery fiction", "model": "qwen/qwen3.5-397b-a17b"}
+{"annotation_id": "doc_0387", "id": "20260827_042329_a2859cf4", "lcc_code": "F", "lcgft_category": "Discursive works", "lcgft_form": "Criticism", "model": "anthropic/claude-sonnet-5"}
+{"annotation_id": "doc_0388", "id": "20260827_075631_03677709", "lcc_code": "U", "lcgft_category": "Commemorative works", "lcgft_form": "Tributes", "model": "x-ai/grok-4.6"}
+{"annotation_id": "doc_0389", "id": "20260827_035653_454544d7", "lcc_code": "Z", "lcgft_category": "Sound recordings", "lcgft_form": "Field recordings", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0390", "id": "20260827_061254_982f177e", "lcc_code": "H", "lcgft_category": "Creative nonfiction", "lcgft_form": "Essays", "model": "deepseek/deepseek-v4-pro"}
+{"annotation_id": "doc_0391", "id": "20260827_053703_749605fb", "lcc_code": "M", "lcgft_category": "Cartographic materials", "lcgft_form": "Globes", "model": "z-ai/glm-5"}
+{"annotation_id": "doc_0392", "id": "20260827_063806_56824d43", "lcc_code": "Z", "lcgft_category": "Ephemera", "lcgft_form": "Flyers", "model": "minimax/minimax-m3"}
+{"annotation_id": "doc_0393", "id": "20260827_072747_b4c99da4", "lcc_code": "F", "lcgft_category": "Cartographic materials", "lcgft_form": "Atlases", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0394", "id": "20260827_071737_264020ac", "lcc_code": "N", "lcgft_category": "Ephemera", "lcgft_form": "Flyers", "model": "openai/gpt-5.6-luna"}
+{"annotation_id": "doc_0395", "id": "20260827_040510_22f08744", "lcc_code": "R", "lcgft_category": "Creative nonfiction", "lcgft_form": "True crime stories", "model": "openai/gpt-5.6-sol"}
+{"annotation_id": "doc_0396", "id": "20260827_043925_44d07148", "lcc_code": "L", "lcgft_category": "Discursive works", "lcgft_form": "Opinion pieces", "model": "moonshotai/kimi-k2.6"}
+{"annotation_id": "doc_0397", "id": "20260827_072439_e88f6c51", "lcc_code": "B", "lcgft_category": "Cartographic materials", "lcgft_form": "Globes", "model": "meta-llama/llama-4-maverick"}
+{"annotation_id": "doc_0398", "id": "20260827_052754_778fb85c", "lcc_code": "U", "lcgft_category": "Recreational works", "lcgft_form": "Puzzles", "model": "qwen/qwen3.5-397b-a17b"}

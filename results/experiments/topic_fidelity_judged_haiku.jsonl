@@ -231,3 +231,43 @@
 {"row": 31, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Culture", "verdict": "YES", "covered": true}
 {"row": 115, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "History", "verdict": "YES", "covered": true}
 {"row": 31, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "History", "verdict": "YES", "covered": true}
+{"row": 9, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "International relations", "verdict": "YES", "covered": true}
+{"row": 33, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Sociology", "verdict": "YES", "covered": true}
+{"row": 8, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "Nutrition", "verdict": "YES", "covered": true}
+{"row": 9, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Political parties", "verdict": "NO", "covered": false}
+{"row": 30, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Aesthetics", "verdict": "NO", "covered": false}
+{"row": 76, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Public administration", "verdict": "YES", "covered": true}
+{"row": 21, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Research", "verdict": "YES", "covered": true}
+{"row": 13, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Criminal law", "verdict": "YES", "covered": true}
+{"row": 104, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "Analysis", "verdict": "YES", "covered": true}
+{"row": 30, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "History", "verdict": "YES", "covered": true}
+{"row": 39, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Knowledge", "verdict": "YES", "covered": true}
+{"row": 71, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "History", "verdict": "YES", "covered": true}
+{"row": 14, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "Civil law", "verdict": "YES", "covered": true}
+{"row": 80, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "Culture", "verdict": "NO", "covered": false}
+{"row": 75, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Defense", "verdict": "YES", "covered": true}
+{"row": 0, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Information", "verdict": "YES", "covered": true}
+{"row": 85, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Conservation", "verdict": "YES", "covered": true}
+{"row": 81, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Anthropology", "verdict": "YES", "covered": true}
+{"row": 116, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "History", "verdict": "YES", "covered": true}
+{"row": 60, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Literature", "verdict": "YES", "covered": true}
+{"row": 116, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "Literature", "verdict": "NO", "covered": false}
+{"row": 21, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Artificial intelligence", "verdict": "NO", "covered": false}
+{"row": 82, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Social welfare", "verdict": "NO", "covered": false}
+{"row": 34, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Commerce", "verdict": "YES", "covered": true}
+{"row": 3, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Public administration", "verdict": "YES", "covered": true}
+{"row": 111, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Evolution", "verdict": "YES", "covered": true}
+{"row": 41, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "Information", "verdict": "YES", "covered": true}
+{"row": 39, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Information", "verdict": "NO", "covered": false}
+{"row": 16, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Globalization", "verdict": "YES", "covered": true}
+{"row": 4, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Political parties", "verdict": "NO", "covered": false}
+{"row": 4, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Public administration", "verdict": "YES", "covered": true}
+{"row": 83, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "Public policy", "verdict": "YES", "covered": true}
+{"row": 15, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Globalization", "verdict": "YES", "covered": true}
+{"row": 19, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "International law", "verdict": "YES", "covered": true}
+{"row": 25, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Music", "verdict": "YES", "covered": true}
+{"row": 40, "arm": "guided", "model": "claude-haiku-4-5-20251001", "topic": "Analysis", "verdict": "YES", "covered": true}
+{"row": 44, "arm": "guided_gloss", "model": "claude-haiku-4-5-20251001", "topic": "Contracts", "verdict": "YES", "covered": true}
+{"row": 57, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Demographics", "verdict": "YES", "covered": true}
+{"row": 3, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Political parties", "verdict": "NO", "covered": false}
+{"row": 21, "arm": "control", "model": "claude-haiku-4-5-20251001", "topic": "Information", "verdict": "YES", "covered": true}

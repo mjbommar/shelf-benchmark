@@ -5,8 +5,10 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+from typing import TYPE_CHECKING
 
-import openai
+if TYPE_CHECKING:
+    import openai
 
 _loaded = False
 
@@ -47,6 +49,8 @@ def load_env(env_file: Path | str | None = None) -> dict[str, str]:
 
 def get_openai_client() -> openai.OpenAI:
     """Get an OpenAI client, loading env.json if needed."""
+    import openai
+
     if not _loaded and "OPENAI_API_KEY" not in os.environ:
         load_env()
     return openai.OpenAI()
@@ -54,6 +58,8 @@ def get_openai_client() -> openai.OpenAI:
 
 def get_async_openai_client() -> openai.AsyncOpenAI:
     """Get an async OpenAI client, loading env.json if needed."""
+    import openai
+
     if not _loaded and "OPENAI_API_KEY" not in os.environ:
         load_env()
     return openai.AsyncOpenAI()
