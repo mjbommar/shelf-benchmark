@@ -38,9 +38,27 @@ THRESHOLD = 0.6
 
 
 def load(results_dir: Path, task: str) -> dict[str, float]:
+    """Scores for one task, searching the sibling _pairs directory too.
+
+    Pair sweeps write to `results/<corpus>_pairs/baselines` while every other
+    task writes to `results/<corpus>/baselines`. Reading only the latter made
+    pair results invisible: the driver reported "too few shared models" and
+    the pre-registered rule then counted the formulation as untested. Search
+    both, so a formulation cannot be silently dropped because of where its
+    output landed.
+    """
     key = PRIMARY[task]
     out: dict[str, float] = {}
-    for f in sorted(results_dir.glob(f"*_{task}.json")):
+    search = [results_dir]
+    sibling = (
+        results_dir.parent.parent
+        / f"{results_dir.parent.name}_pairs"
+        / results_dir.name
+    )
+    if sibling.is_dir():
+        search.append(sibling)
+    files = [f for d in search for f in sorted(d.glob(f"*_{task}.json"))]
+    for f in files:
         try:
             r = json.loads(f.read_text())
         except (OSError, json.JSONDecodeError):
@@ -89,6 +107,17 @@ def boot(models, x, y, n, seed):
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--shelf", default="results/pooled/baselines")
+    ap.add_argument(
+        "--shelf-pairs",
+        default=None,
+        help=(
+            "Directory holding SHELF pair results built on the SAME mining "
+            "policy as the natural corpora. Without this the SHELF arm reads "
+            "the published hub pair config, which uses a different scheme "
+            "(no dedup, no use cap, no class quota) -- comparing two mining "
+            "schemes rather than two corpora."
+        ),
+    )
     ap.add_argument("--natural", action="append", required=True, metavar="NAME=DIR")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=42)
@@ -131,7 +160,16 @@ def main() -> int:
     logger.info(f"{'task':<20}{'corpus':<14}{'n':>4}{'rho':>8}{'95% CI':>18}  verdict")
     logger.info("-" * 74)
     for task in PRIMARY:
-        s = load(Path(args.shelf), task)
+        if task == "same_lcc_pairs" and args.shelf_pairs:
+            s = load(Path(args.shelf_pairs), task)
+        else:
+            s = load(Path(args.shelf), task)
+        if task == "same_lcc_pairs" and not args.shelf_pairs:
+            logger.warning(
+                "  same_lcc_pairs: SHELF arm is using the hub pair config, "
+                "a different mining policy from the natural corpora. Pass "
+                "--shelf-pairs for a like-for-like comparison."
+            )
         if task == "lcc_clustering" and "shelf" in medians:
             s = {k: v for k, v in medians["shelf"].items()}
         if not s:
