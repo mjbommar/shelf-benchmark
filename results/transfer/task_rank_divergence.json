@@ -1,0 +1,11 @@
+{
+  "comparison": "lcc_classification vs form_classification (within SHELF pooled)",
+  "n_models": 22,
+  "spearman": 0.8610169491525425,
+  "ci": [
+    0.6293746414228341,
+    0.9670079635949945
+  ],
+  "n_boot": 4000,
+  "note": "archived so the paper interval is traceable to a file"
+}

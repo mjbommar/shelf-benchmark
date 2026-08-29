@@ -967,9 +967,20 @@ def main():
     print_summary_table(all_results, shelf_scores, models_config)
 
     # Save summary
+    # On --aggregate-only, keep the dataset_version the results were actually
+    # produced under. Taking it from the current config restamps historical
+    # results with today's version, which silently rewrites provenance.
+    stamped_version = dataset_version
+    if args.aggregate_only:
+        try:
+            prior = json.loads((output_dir / "summary.json").read_text())
+            stamped_version = prior.get("dataset_version", dataset_version)
+        except (OSError, json.JSONDecodeError):
+            pass
+
     summary = {
         "timestamp": end_time.isoformat(),
-        "dataset_version": dataset_version,
+        "dataset_version": stamped_version,
         "dataset_checksum": dataset_checksum,
         "versions": version_info,
         "git": git_info,
