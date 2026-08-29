@@ -5,14 +5,14 @@
   "task": "lcc_classification",
   "task_type": "classification",
   "primary_metric": "macro_f1",
-  "primary_score": 0.8279870887914479,
+  "primary_score": 0.82906668835724,
   "metrics": {
-    "accuracy": 0.8293346129238643,
-    "macro_f1": 0.8279870887914479,
-    "micro_f1": 0.8293346129238643,
-    "weighted_f1": 0.8292346357643453,
+    "accuracy": 0.8304542546385156,
+    "macro_f1": 0.82906668835724,
+    "micro_f1": 0.8304542546385156,
+    "weighted_f1": 0.8303610355582627,
     "num_samples": 12504,
-    "num_correct": 10370,
+    "num_correct": 10384,
     "num_classes": 21
   },
   "num_samples": 12504,
@@ -26,10 +26,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T17:29:28.258759+00:00",
+    "timestamp": "2026-08-29T18:01:11.093358+00:00",
     "model_name": "GTR-T5-large",
     "data_commit": "7123a65",
-    "code_commit": "229c2c3",
+    "code_commit": "a6ae789",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",
@@ -42,14 +42,13 @@
     "size_category": "300M-1B",
     "flops_per_token": 671709184,
     "relative_compute": 14.7867,
-    "shelf_eff": 97.1115,
-    "shelf_compute": 0.6325,
-    "pareto_optimal": false,
-    "size_rank": 3,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  },
-  "shelf_score": 0.827987
+  }
 }
