@@ -48,17 +48,42 @@ def main() -> int:
     spec = get_task(args.task)
     per_model: dict[str, dict[int, float]] = {}
 
+    # Embed once per model, then let the five seeds share the cache. Without
+    # this, evaluate_embedder re-encodes the whole corpus on every seed: on the
+    # pooled corpus that is five passes over 63k documents per model, hours of
+    # work to produce embeddings that are now identical by construction. The
+    # seed is meant to vary the clustering, not the representation.
+    texts = None
+    if any(mcfg[k].get("type") == "sentence_transformer" for k in args.models):
+        texts = R.collect_all_evaluation_texts(
+            tasks_config={"clustering": [args.task]},
+        )
+        logger.info(f"cache corpus: {len(texts)} texts")
+
     for key in args.models:
         try:
             model = R.create_model(mcfg[key])
         except Exception as exc:
             logger.warning(f"  {key}: cannot build ({exc})")
             continue
+
+        eval_model = model
+        if texts is not None and mcfg[key].get("type") == "sentence_transformer":
+            from shelf.evaluate.adapters.cached import CachedEmbedder
+
+            embs = model.encode(texts, show_progress=False)
+            eval_model = CachedEmbedder(
+                cache=dict(zip(texts, embs, strict=True)),
+                model_name=key,
+                embedding_dim=model.embedding_dim,
+                fallback=model,
+            )
+
         scores: dict[int, float] = {}
         for seed in SEEDS:
             try:
                 ev = ClusteringEvaluator(spec, random_seed=seed)
-                res = ev.evaluate_embedder(model)
+                res = ev.evaluate_embedder(eval_model)
                 scores[seed] = float((res.metrics or {}).get("ari", float("nan")))
             except Exception as exc:
                 logger.warning(f"  {key} seed {seed}: {type(exc).__name__}: {exc}")
