@@ -1,8 +1,8 @@
 {
   "run_id": "20260827_123159",
   "config_version": "1.0.0",
-  "dataset_version": "0.3.1",
-  "dataset_checksum": "v0.3.1",
+  "dataset_version": "0.3.0",
+  "dataset_checksum": "v0.3.0",
   "models_evaluated": [],
   "tasks_evaluated": [],
   "start_time": "2026-08-27T12:31:59.917521+00:00",
@@ -29,5 +29,6 @@
     "random_seed": 42,
     "num_bootstrap_samples": 1000,
     "confidence_level": 0.95
-  }
+  },
+  "dataset_version_note": "Repaired 2026-08-29. An --aggregate-only rebuild had restamped dataset_version 0.3.0 -> 0.3.1 from the then-current config, leaving the checksum and the sibling provenance file inconsistent. Both files are now consistent and the rebuild path preserves version, checksum and this note."
 }

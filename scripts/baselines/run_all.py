@@ -978,10 +978,24 @@ def main():
         except (OSError, json.JSONDecodeError):
             pass
 
+    # Preserve the checksum and the repair note alongside the version, and
+    # carry any prior note forward: reconstructing the dict fresh each rebuild
+    # silently dropped it.
+    stamped_checksum = dataset_checksum
+    prior_note = None
+    if args.aggregate_only:
+        try:
+            _prior = json.loads((output_dir / "summary.json").read_text())
+            stamped_checksum = _prior.get("dataset_checksum", dataset_checksum)
+            prior_note = _prior.get("dataset_version_note")
+        except (OSError, json.JSONDecodeError):
+            pass
+
     summary = {
         "timestamp": end_time.isoformat(),
         "dataset_version": stamped_version,
-        "dataset_checksum": dataset_checksum,
+        "dataset_checksum": stamped_checksum,
+        **({"dataset_version_note": prior_note} if prior_note else {}),
         "versions": version_info,
         "git": git_info,
         "shelf_scores": shelf_scores,
@@ -995,6 +1009,20 @@ def main():
     logger.info(f"\nSummary saved to: {summary_path}")
 
     # Save manifest
+    if args.aggregate_only:
+        # save_manifest reads dataset_version from the CURRENT config; on a
+        # rebuild that restamps historical provenance the same way the summary
+        # used to be restamped.
+        try:
+            _m = json.loads((output_dir / "manifest.json").read_text())
+            config = {
+                **config,
+                "dataset_version": _m.get(
+                    "dataset_version", config.get("dataset_version")
+                ),
+            }
+        except (OSError, json.JSONDecodeError):
+            pass
     save_manifest(
         output_dir=output_dir,
         config=config,

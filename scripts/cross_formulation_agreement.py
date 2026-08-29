@@ -141,13 +141,31 @@ def main() -> int:
         nat[n] = Path(d)
 
     medians: dict[str, dict[str, float]] = {}
+    stability: dict[str, tuple] = {}
+    dropped: set[str] = set()
     for e in args.clustering_medians:
         n, _, f = e.partition("=")
-        medians[n] = json.loads(Path(f).read_text())["median_ari"]
-        logger.info(
-            f"  {n}: using median ARI over seeds for clustering "
-            f"({len(medians[n])} models)"
-        )
+        _st = json.loads(Path(f).read_text())
+        medians[n] = _st["median_ari"]
+        _stab = _st.get("median_rank_stability")
+        _floor = _st.get("floor", 0.90)
+        stability[n] = (_stab, _floor)
+        if _stab is not None and _stab < _floor:
+            # Prereg section 6: below the floor clustering is DROPPED from the
+            # claim. Reading median_ari while ignoring the gate let a file
+            # whose own verdict said "drop clustering" still count toward a
+            # broad verdict.
+            dropped.add(n)
+            logger.warning(
+                f"  {n}: clustering rank stability {_stab:.3f} below the "
+                f"pre-registered floor {_floor}; DROPPING clustering from the "
+                "rank-agreement claim for this corpus."
+            )
+        else:
+            logger.info(
+                f"  {n}: clustering uses the five-seed median "
+                f"({len(medians[n])} models)"
+            )
 
     report = {
         "threshold": THRESHOLD,
@@ -184,6 +202,9 @@ def main() -> int:
             logger.info(f"{task:<20}{'—':<14}{'—':>4}   no SHELF results yet")
             continue
         for name, d in nat.items():
+            if task == "lcc_clustering" and name in dropped:
+                logger.info(f"{task:<20}{name:<14}   DROPPED (stability gate)")
+                continue
             o = load(d, task)
             if task == "lcc_clustering" and name in medians:
                 o = {k: v for k, v in medians[name].items()}
@@ -235,9 +256,14 @@ def main() -> int:
     cls = [p for p in report["pairs"] if p["task"] == "lcc_classification"]
     contradicted = any(p["ci"][0] <= 0 for p in cls) if cls else False
 
-    clustering_provisional = not medians and any(
-        p["task"] == "lcc_clustering" for p in report["pairs"]
+    # Provisional if ANY corpus's clustering row used seed-42 ARI, not only
+    # when no medians at all were supplied.
+    prov = sorted(
+        p["corpus"]
+        for p in report["pairs"]
+        if p["task"] == "lcc_clustering" and p["corpus"] not in medians
     )
+    clustering_provisional = bool(prov)
     if contradicted:
         verdict = "CONTRADICTED: classification interval crosses zero"
     elif broad:
@@ -246,8 +272,10 @@ def main() -> int:
         verdict = "NARROW CLAIM ONLY: title must scope to classification"
     if clustering_provisional:
         verdict += (
-            "  [PROVISIONAL: clustering used seed-42 ARI, not the "
-            "pre-registered five-seed median; stability gate not applied]"
+            "  [PROVISIONAL: clustering used seed-42 ARI for "
+            + ", ".join(prov)
+            + "; not the pre-registered five-seed median, stability gate "
+            "not applied there]"
         )
     logger.info(f"\n  VERDICT (pre-registered rule): {verdict}")
     report["verdict"] = verdict
