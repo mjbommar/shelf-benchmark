@@ -353,7 +353,7 @@ class PairClassificationEvaluator(TaskEvaluator):
         labels = [int(x) for x in ground_truth[label_field].to_list()]
 
         # Get unique texts to avoid redundant encoding
-        all_texts = list(set(texts_a) | set(texts_b))
+        all_texts = sorted(set(texts_a) | set(texts_b))
         logger.info(f"Unique texts to encode: {len(all_texts)}")
 
         # Encode all unique texts
@@ -495,7 +495,7 @@ class PairClassificationEvaluator(TaskEvaluator):
         labels = [int(x) for x in ground_truth[label_field].to_list()]
 
         # Get unique texts
-        all_texts = list(set(texts_a) | set(texts_b))
+        all_texts = sorted(set(texts_a) | set(texts_b))
         text_ids = [f"doc_{i}" for i in range(len(all_texts))]
 
         logger.info(f"Unique texts: {len(all_texts)}")
@@ -659,7 +659,7 @@ class PairClassificationEvaluator(TaskEvaluator):
         labels = [int(x) for x in ground_truth[label_field].to_list()]
 
         # Get unique texts to avoid redundant encoding
-        all_texts = list(set(texts_a) | set(texts_b))
+        all_texts = sorted(set(texts_a) | set(texts_b))
         logger.info(f"Unique texts to encode: {len(all_texts)}")
 
         # Fit and encode all unique texts

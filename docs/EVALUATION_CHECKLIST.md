@@ -132,3 +132,18 @@ any results go into a paper, a dataset card, or a message to the user.
       it.** *The 0.679 headline was actually 0.502.*
 - [ ] **G3. Record the corpus, code version, seed, and library versions
       with every result.**
+- [ ] **G4. Run the same cell twice in two processes and diff it before
+      trusting any number.** *Violated: the same model on the same data
+      gave 0.82799, 0.82907, 0.82867. Two separate causes. BLAS thread
+      count was unpinned, so reduction order followed machine load. And
+      the embedding cache was built from `list(texts)` over a set, so the
+      hash seed decided which texts shared a batch, and batch composition
+      decided padding. A seed is not enough; anything that reaches a
+      kernel in a different order is a second seed you did not set.*
+- [ ] **G5. Sort any collection before it drives computation.** *A set or
+      dict of strings iterates in hash order, which changes per process.
+      `sorted()` costs nothing here and removes a whole class of drift.*
+- [ ] **G6. When a determinism fix lands, do not mix its output with
+      earlier results.** *253 cells were archived rather than blended,
+      because a table whose rows were computed under two different
+      orderings cannot be checked by anyone.*

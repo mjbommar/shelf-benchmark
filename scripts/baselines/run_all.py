@@ -136,7 +136,11 @@ def collect_all_evaluation_texts(
             logger.warning(f"Could not load {task_name}: {e}")
 
     logger.info(f"Total unique texts collected: {len(texts)}")
-    return list(texts)
+    # Sort before returning. The cache is built by embedding this list in
+    # order, so set-iteration order decides which texts share a batch, and
+    # batch composition decides padding. That made every run differ in the
+    # fourth decimal place -- reproducible only within a single process.
+    return sorted(texts)
 
 
 # Path to this script's directory
@@ -202,6 +206,13 @@ def get_version_info() -> dict[str, str]:
         "sklearn": sklearn.__version__,
         "numpy": np.__version__,
         "scipy": scipy.__version__,
+        # Reproducibility knobs, recorded so a result file says how it was made.
+        # blas_threads: unpinned BLAS varies its reduction order with machine
+        # load. deterministic_text_order: the embedding cache is now built in
+        # sorted order, so batch composition no longer depends on the hash seed.
+        "blas_threads": _os.environ.get("OMP_NUM_THREADS", "unset"),
+        "python_hash_seed": _os.environ.get("PYTHONHASHSEED", "unset"),
+        "deterministic_text_order": "true",
     }
 
     try:

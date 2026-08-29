@@ -88,3 +88,4 @@ data/hf_dataset/transfer_gutenberg/
 data/hf_dataset/transfer_lcshbench/
 data/transfer/cache/
 data/hf_cache/
+.archive/
