@@ -12,10 +12,11 @@ the pair count, and the intervals widen accordingly -- which is the honest
 result.
 
 Scores are computed here rather than read from saved predictions: the pair
-evaluator does not write per-sample output by default. Models are built
-through the same factory the sweep uses, so lexical baselines (tf, tfidf,
-bm25) and pooled transformer models are covered, not only
-sentence-transformers.
+evaluator does not write per-sample output by default. Models are built through the same factory the sweep uses, so the lexical
+embedders (tf, tfidf) and pooled transformer models are covered, not only
+sentence-transformers. **BM25 is not covered**: it is a retriever that must
+be fitted against a corpus and has no embedding interface, so 22 of the 23
+models can be scored here and the script refuses the 23rd explicitly.
 """
 
 from __future__ import annotations
@@ -95,6 +96,19 @@ def main() -> int:
     mcfg = yaml.safe_load(Path("scripts/baselines/config.yaml").read_text())["models"]
     if args.model not in mcfg:
         logger.error(f"unknown model key '{args.model}'")
+        return 2
+    # BM25 is a retriever, not an embedder: it has no usable .encode and
+    # must be fitted against a corpus first. The pair evaluator scores it
+    # through a separate evaluate_bm25 path. Refuse it explicitly rather
+    # than let it fail deep inside the bootstrap, and do not claim coverage
+    # this script does not have.
+    if mcfg[args.model].get("type") == "bm25":
+        logger.error(
+            f"'{args.model}' is a retriever, not an embedder. This script "
+            "covers the 22 embedding models; BM25 pair scoring goes through "
+            "PairClassificationEvaluator.evaluate_bm25 and is not implemented "
+            "here."
+        )
         return 2
     model = R.create_model(mcfg[args.model])
     emb = np.asarray(model.encode([texts[i] for i in ids]))
