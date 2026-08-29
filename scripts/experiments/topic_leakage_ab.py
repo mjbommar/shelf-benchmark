@@ -64,7 +64,7 @@ def _gloss(topic: str, enriched: EnrichedDescriptions) -> str | None:
 
     Topic descriptions come from three sources. Only ``scope_note`` is quoted
     from LC and reliably about the sense we mean. The ``hierarchy`` source
-    (1,546 of 1,983 topics) is templated from wherever the label sits in the
+    (1,515 of 1,932 topics) is templated from wherever the label sits in the
     LC tree and silently picks the wrong sense: "Information" resolves to
     "a topic within Criminal procedure", "Cloud computing" to "Electronic data
     processing--Distributed processing", "Security" to "Investments".
