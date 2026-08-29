@@ -195,6 +195,28 @@ def get_git_info() -> dict[str, str | bool]:
     return info
 
 
+def _with_repro(ctx: dict[str, Any] | None) -> dict[str, Any] | None:
+    """Stamp the reproducibility knobs onto a per-task context.
+
+    These used to be recorded only in summary.json, but every analysis reads
+    the per-task files, so a single cell could not say how it was made. Thread
+    count and text ordering both changed results before they were pinned, so
+    they belong next to the seed rather than in a file one level up.
+    """
+    if ctx is None:
+        return None
+    extra = dict(ctx.get("extra") or {})
+    extra.update(
+        {
+            "blas_threads": _os.environ.get("OMP_NUM_THREADS", "unset"),
+            "python_hash_seed": _os.environ.get("PYTHONHASHSEED", "unset"),
+            "deterministic_text_order": True,
+        }
+    )
+    ctx["extra"] = extra
+    return ctx
+
+
 def get_version_info() -> dict[str, str]:
     """Get version information for reproducibility."""
     import scipy
@@ -352,7 +374,9 @@ def evaluate_task(
             # used to drop them, which was misdiagnosed as an evaluator gap.
             "per_class_metrics": getattr(result, "per_class_metrics", None),
             "num_samples": result.num_samples,
-            "context": result.context.to_dict() if result.context else None,
+            "context": _with_repro(
+                result.context.to_dict() if result.context else None
+            ),
         }
 
     except Exception as e:
