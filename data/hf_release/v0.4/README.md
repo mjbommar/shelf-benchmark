@@ -1095,9 +1095,9 @@ no body. 13-15% of raw generations were affected. QC removes them, so the
 published slices are clean but roughly 14% smaller than their nominal spec count.
 
 **Generator confound on register and length.** In `v0_4_core`, generator is
-independent of the labels that matter -- LCC class (Cramer's V 0.018) and LCGFT
-category (0.028) -- but correlates weakly with `register` (0.062),
-`target_length` (0.066) and `prompt_variant_id` (0.085). The cause is non-uniform
+independent of the labels that matter -- LCC class (Cramer's V 0.016) and LCGFT
+category (0.027) -- but correlates weakly with `register` (0.061),
+`target_length` (0.064) and `prompt_variant_id` (0.084). The cause is non-uniform
 QC removal: the empty-body defect hit short documents hardest and two generators
 failed for part of the run. Effect sizes are small; p-values are not marginal.
 Analyses conditioned on register or length carry this confound.

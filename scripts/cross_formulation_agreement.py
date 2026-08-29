@@ -196,6 +196,16 @@ def main() -> int:
                 "the claim entirely. Pass --clustering-medians, or treat any "
                 "clustering row below as provisional."
             )
+        if task == "lcc_clustering" and "shelf" in dropped:
+            # The gate applies to the SHELF arm too. clustering_stability_v2
+            # writes the SHELF file by default, so this is the axis most
+            # likely to fail, and skipping it let a file whose own verdict
+            # read "UNSTABLE: drop clustering" still produce a broad verdict.
+            logger.info(
+                f"{task:<20}{'ALL':<14}   DROPPED (SHELF failed the stability "
+                "gate; the whole clustering row is withdrawn)"
+            )
+            continue
         if task == "lcc_clustering" and "shelf" in medians:
             s = {k: v for k, v in medians["shelf"].items()}
         if not s:
@@ -244,9 +254,12 @@ def main() -> int:
             f"(of {len(PRIMARY)} formulations)"
         )
         if tested[n] < len(PRIMARY):
+            n_dropped = 1 if n in dropped else 0
             logger.info(
-                f"     {len(PRIMARY) - tested[n]} formulation(s) NOT TESTED; "
-                "the broad claim requires all four"
+                f"     {len(PRIMARY) - tested[n] - n_dropped} formulation(s) "
+                f"NOT TESTED"
+                + (f", {n_dropped} DROPPED by the stability gate" if n_dropped else "")
+                + "; the broad claim requires all four"
             )
     # Prereg section 3 requires >= 3 of the FOUR formulations against BOTH
     # corpora. Counting "3 of 3 tested" as sufficient let an untested
@@ -258,10 +271,19 @@ def main() -> int:
 
     # Provisional if ANY corpus's clustering row used seed-42 ARI, not only
     # when no medians at all were supplied.
+    # A corpus is provisional if its clustering row used seed-42 ARI. That
+    # includes the SHELF arm, which is not in report["pairs"] because those
+    # rows name only the natural corpus -- omitting it let a run with medians
+    # for both natural corpora print a clean verdict while SHELF ran on
+    # seed 42.
+    has_clustering = any(p["task"] == "lcc_clustering" for p in report["pairs"])
     prov = sorted(
-        p["corpus"]
-        for p in report["pairs"]
-        if p["task"] == "lcc_clustering" and p["corpus"] not in medians
+        {
+            p["corpus"]
+            for p in report["pairs"]
+            if p["task"] == "lcc_clustering" and p["corpus"] not in medians
+        }
+        | ({"shelf"} if has_clustering and "shelf" not in medians else set())
     )
     clustering_provisional = bool(prov)
     if contradicted:

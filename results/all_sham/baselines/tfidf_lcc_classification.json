@@ -46,5 +46,6 @@
     "shelf_compute": null,
     "pareto_optimal": null,
     "size_rank": null
-  }
+  },
+  "shelf_score": 0.867265
 }
