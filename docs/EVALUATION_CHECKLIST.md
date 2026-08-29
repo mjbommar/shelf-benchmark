@@ -123,6 +123,18 @@ any results go into a paper, a dataset card, or a message to the user.
       recreating the biased-sample defect (B2) inside the very run that was
       meant to fix it.*
 
+- [ ] **F6. Count GPU memory, not GPU utilisation, before adding a job.**
+      *Violated: a third concurrent sweep was added because the card showed
+      an idle slot. The card had 15.57 GiB; two arms held 3.64 GiB each and
+      the new one needed 6.83 GiB when it reached the largest model. It died
+      of CUDA OOM. A slot that is idle in utilisation is not free in memory,
+      and the largest model decides the peak, not the current one.*
+- [ ] **F7. A wrapper must check the exit code of every command it runs.**
+      *Violated twice. The second time, a driver printed DIRDONE after CUDA
+      OOM killed a run mid-sweep: six cells vanished and the arm looked
+      finished. Compare per-task counts across arms of the same shape --
+      cls=16 next to ret=22 is the tell.*
+
 ## G. Reproducibility
 
 - [ ] **G1. Never overwrite an aggregate from a partial run.** *Violated:
