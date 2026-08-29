@@ -75,7 +75,7 @@ mapping of design element to confound removed to measurement enabled.
 ### 3. Generator as a controlled factor
 
 Fifteen generators realising one identical spec block, split on `spec_id`,
-with generator-by-label independence measured (Cramer's V <= 0.028) and
+with generator-by-label independence measured (Cramer's V 0.016 (subject) and 0.027 (genre category)) and
 generator attribution measured at 93.1%. Largest generator share 9.24% in
 `v0_4_core`.
 

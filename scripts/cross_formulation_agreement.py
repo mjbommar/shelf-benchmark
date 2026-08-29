@@ -170,7 +170,16 @@ def main() -> int:
     report = {
         "threshold": THRESHOLD,
         "pairs": [],
-        "clustering_uses_seed_median": sorted(medians),
+        # A corpus dropped by the stability gate did NOT use the seed median
+        # for its reported row -- it has no reported row. Listing it here
+        # asserted a false provenance about how the pre-registered clustering
+        # metric was computed, in the only durable record of the verdict.
+        "clustering_uses_seed_median": sorted(set(medians) - dropped),
+        "clustering_dropped_by_gate": sorted(dropped),
+        "clustering_stability": {
+            n: {"median_rank_stability": s, "floor": f}
+            for n, (s, f) in stability.items()
+        },
     }
     holds = dict.fromkeys(nat, 0)
     tested = dict.fromkeys(nat, 0)
@@ -254,7 +263,10 @@ def main() -> int:
             f"(of {len(PRIMARY)} formulations)"
         )
         if tested[n] < len(PRIMARY):
-            n_dropped = 1 if n in dropped else 0
+            # SHELF failing the gate withdraws clustering for every corpus,
+            # so a natural corpus can be short a formulation without being in
+            # `dropped` itself. Count that as dropped, not untested.
+            n_dropped = 1 if (n in dropped or "shelf" in dropped) else 0
             logger.info(
                 f"     {len(PRIMARY) - tested[n] - n_dropped} formulation(s) "
                 f"NOT TESTED"

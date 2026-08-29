@@ -92,7 +92,7 @@ what it bought.
 
 1. **Generator as a controlled factor.** Fifteen generators over one
    identical spec block, split on `spec_id`, with generator-by-label
-   independence measured (Cramer's V <= 0.028). E5-Mistral and Cosmopedia
+   independence measured (Cramer's V 0.016 (subject) and 0.027 (genre category)). E5-Mistral and Cosmopedia
    used many models; neither reports generator as an axis.
 2. **Genre orthogonal to subject by construction.** Real corpora correlate
    the two, so they cannot separate the questions. Ours can.

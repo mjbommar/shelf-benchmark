@@ -204,7 +204,7 @@ def build() -> dict[str, Any]:
             "construction and genre is orthogonal to subject. A natural-text "
             "Project Gutenberg slice is included as a transfer control. "
             "SHELF scores do not transfer to natural text in absolute terms: "
-            "a lexical classifier scoring 0.893 in-domain scores 0.301 on "
+            "a lexical classifier scoring 0.887 in-domain scores 0.313 on "
             "Gutenberg, and the failure is symmetric."
         ),
         "license": "https://creativecommons.org/licenses/by/4.0/",

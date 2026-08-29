@@ -56,7 +56,7 @@
   "alternateName": [
     "Synthetic Harness for Evaluating LLM Fitness"
   ],
-  "description": "SHELF is a factorial benchmark for bibliographic classification built on Library of Congress taxonomies (LCC, LCGFT, LCSH, LCDGT). Documents are model generated from content-addressed specifications, so generator and label are independent by construction and genre is orthogonal to subject. A natural-text Project Gutenberg slice is included as a transfer control. SHELF scores do not transfer to natural text in absolute terms: a lexical classifier scoring 0.893 in-domain scores 0.301 on Gutenberg, and the failure is symmetric.",
+  "description": "SHELF is a factorial benchmark for bibliographic classification built on Library of Congress taxonomies (LCC, LCGFT, LCSH, LCDGT). Documents are model generated from content-addressed specifications, so generator and label are independent by construction and genre is orthogonal to subject. A natural-text Project Gutenberg slice is included as a transfer control. SHELF scores do not transfer to natural text in absolute terms: a lexical classifier scoring 0.887 in-domain scores 0.313 on Gutenberg, and the failure is symmetric.",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "url": "https://huggingface.co/datasets/mjbommar/SHELF",
   "citeAs": "@misc{shelf2026, title={SHELF: A Factorial Benchmark for Bibliographic Classification}, author={Bommarito, Michael}, year={2026}, howpublished={\\url{https://huggingface.co/datasets/mjbommar/SHELF}}}",
