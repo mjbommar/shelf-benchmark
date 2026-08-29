@@ -528,13 +528,20 @@ def save_manifest(
     dataset_checksum: str,
     start_time: datetime,
     end_time: datetime,
+    version_note: str | None = None,
 ) -> None:
-    """Save run manifest for reproducibility."""
+    """Save run manifest for reproducibility.
+
+    ``version_note`` carries a provenance-repair note forward. A rebuild that
+    reconstructs this dict from scratch silently drops it, which is how a
+    hand-repaired directory reverted on the next --aggregate-only run.
+    """
     manifest = {
         "run_id": f"{start_time.strftime('%Y%m%d_%H%M%S')}",
         "config_version": config.get("version", "unknown"),
         "dataset_version": config.get("dataset_version", "unknown"),
         "dataset_checksum": dataset_checksum,
+        **({"dataset_version_note": version_note} if version_note else {}),
         "models_evaluated": models_run,
         "tasks_evaluated": tasks_run,
         "start_time": start_time.isoformat(),
@@ -1030,9 +1037,10 @@ def main():
         tasks_run=list(set(tasks_completed)),
         version_info=version_info,
         git_info=git_info,
-        dataset_checksum=dataset_checksum,
+        dataset_checksum=stamped_checksum,
         start_time=start_time,
         end_time=end_time,
+        version_note=prior_note,
     )
 
     logger.info(f"\nTotal time: {(end_time - start_time).total_seconds():.1f}s")

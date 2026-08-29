@@ -1,7 +1,8 @@
 {
-  "timestamp": "2026-08-27T12:31:59.917523+00:00",
+  "timestamp": "2026-08-29T17:37:05.350396+00:00",
   "dataset_version": "0.3.0",
   "dataset_checksum": "v0.3.0",
+  "dataset_version_note": "Repaired 2026-08-29. An --aggregate-only rebuild had restamped dataset_version 0.3.0 -> 0.3.1 from the then-current config, leaving the checksum and the sibling provenance file inconsistent. Both files are now consistent and the rebuild path preserves version, checksum and this note.",
   "versions": {
     "python": "3.13.5",
     "platform": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
@@ -15,7 +16,7 @@
     "shelf": "0.3.1"
   },
   "git": {
-    "commit": "67619e7",
+    "commit": "7d7266b",
     "branch": "master",
     "dirty": true
   },
@@ -22205,6 +22206,5 @@
       },
       "shelf_score": 0.463835
     }
-  },
-  "dataset_version_note": "Repaired 2026-08-29. An --aggregate-only rebuild had restamped dataset_version 0.3.0 -> 0.3.1 from the then-current config, leaving the checksum and the sibling provenance file inconsistent. Both files are now consistent and the rebuild path preserves version, checksum and this note."
+  }
 }
