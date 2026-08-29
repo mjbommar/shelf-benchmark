@@ -184,10 +184,13 @@ Prevalence is not difficulty, so:
 
 - Macro aggregation stays primary throughout, which already weights classes
   equally.
-- Per-class scores are **not** currently emitted: classification results
-  carry accuracy, macro/micro/weighted F1 and counts only. An earlier version
-  of this section promised them. They require a change to the classification
-  evaluator and are listed as outstanding rather than claimed.
+- Per-class scores **are** computed and serialised by the classification
+  evaluator (`classification.py` passes `compute_per_class=True`;
+  `results.py` writes `per_class_metrics`). An earlier version of this
+  section blamed the evaluator; that was wrong. `run_all.py` hand-built its
+  output dict and dropped the field. Fixed, so results produced from now on
+  carry per-class metrics. Results already on disk predate the fix and do
+  not, which is why the paper reports macro aggregation only.
 **True prevalence — corrected 2026-08-29 after a second review.** An earlier
 version of this section reported Gutenberg at 1.01x and asserted that its real
 distribution was "not recoverable from this repository". **Both were wrong.**
