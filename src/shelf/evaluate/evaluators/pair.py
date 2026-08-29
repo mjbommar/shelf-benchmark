@@ -124,7 +124,19 @@ class PairClassificationEvaluator(TaskEvaluator):
             logger.info(f"Loading pairs from local file: {local_path}")
             return pl.read_parquet(local_path)
 
-        # Fall back to HuggingFace Hub
+        # Fall back to the Hub. This is LOUD on purpose: when SHELF_DATA_DIR
+        # points at a non-default corpus, silently loading the hub's SHELF
+        # pairs scores the wrong data and looks plausible. It produced a
+        # perfect 1.000 rank correlation once, because both arms were the
+        # same pairs.
+        import os
+
+        if os.environ.get("SHELF_DATA_DIR"):
+            logger.warning(
+                f"SHELF_DATA_DIR is set but {local_path} does not exist; "
+                f"falling back to the hub for '{config}'. The scored pairs "
+                "will NOT come from the local corpus."
+            )
         logger.info(f"Loading pairs from HuggingFace: {config}")
         dataset = load_dataset(
             self.task_spec.dataset_name,
