@@ -188,6 +188,22 @@ Prevalence is not difficulty, so:
   carry accuracy, macro/micro/weighted F1 and counts only. An earlier version
   of this section promised them. They require a change to the classification
   evaluator and are listed as outstanding rather than claimed.
+**True prevalence, measured 2026-08-29.** The review asked for the natural
+corpora's real class distribution rather than the balanced slices':
+
+| corpus | source | n | max/min |
+|---|---|---|---|
+| Gutenberg | `data/transfer/gutenberg/records.jsonl` | 3,016 | **1.01x** |
+| LCSHBench | English dev split, as published | 4,204 | **1.19x** |
+
+Two things follow. LCSHBench is close to uniform *as published*, so
+composition is genuinely not a confound there. Gutenberg's source file in this
+repository is already balanced at 1.01x, which means it was stratified
+upstream of anything measured here -- **Project Gutenberg's true LCC
+prevalence is not recoverable from this repository**, and no claim about it
+is made. Recovering it would mean rebuilding the slice from the full
+Gutenberg catalogue, which is future work.
+
 - **Correction, added after review.** An earlier version of this section said
   "the original distribution remains the primary ecological result." That was
   empty: no result in this project uses any natural corpus's original class
