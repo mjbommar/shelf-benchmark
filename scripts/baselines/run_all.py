@@ -26,6 +26,19 @@ Usage:
 
 from __future__ import annotations
 
+# Pin BLAS threads BEFORE numpy/sklearn are imported. Unpinned, the thread
+# count is chosen from available cores and varies with machine load, which
+# changes float reduction order and therefore lbfgs convergence: the same
+# model, task, seed and data checksum produced 0.82799, 0.82907 and 0.82867
+# across three runs. Reproducibility is a claim this project makes, so the
+# count is fixed here and recorded in the result context.
+import os as _os
+
+_os.environ.setdefault("OMP_NUM_THREADS", _os.environ.get("SHELF_NUM_THREADS", "8"))
+_os.environ.setdefault("OPENBLAS_NUM_THREADS", _os.environ["OMP_NUM_THREADS"])
+_os.environ.setdefault("MKL_NUM_THREADS", _os.environ["OMP_NUM_THREADS"])
+_os.environ.setdefault("NUMEXPR_NUM_THREADS", _os.environ["OMP_NUM_THREADS"])
+
 import argparse
 import hashlib
 import json

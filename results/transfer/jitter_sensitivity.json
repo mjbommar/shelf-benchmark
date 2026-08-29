@@ -1,0 +1,40 @@
+{
+  "jitter_magnitude": 0.00041,
+  "source": "unpinned BLAS thread count before scripts/baselines/run_all.py pinned OMP/OPENBLAS/MKL/NUMEXPR threads",
+  "rows": [
+    {
+      "task": "lcc_classification",
+      "corpus": "gutenberg",
+      "n_models": 22,
+      "rho": 0.8768361581920904,
+      "max_deviation": 0.0010597606765623269,
+      "mean_deviation": 0.0005616820909378394
+    },
+    {
+      "task": "lcc_classification",
+      "corpus": "lcshbench",
+      "n_models": 22,
+      "rho": 0.7774011299435029,
+      "max_deviation": 0.012548051310026342,
+      "mean_deviation": 0.0006233089926531701
+    },
+    {
+      "task": "lcc_retrieval",
+      "corpus": "gutenberg",
+      "n_models": 22,
+      "rho": 0.804292604792028,
+      "max_deviation": 0.007113380527000945,
+      "mean_deviation": 0.0015489700486460505
+    },
+    {
+      "task": "lcc_retrieval",
+      "corpus": "lcshbench",
+      "n_models": 22,
+      "rho": 0.939847538183943,
+      "max_deviation": 0.0008300339490472375,
+      "mean_deviation": 0.0005686334567229303
+    }
+  ],
+  "worst_case_rho_deviation": 0.012548051310026342,
+  "conclusion": "Worst-case movement in a reported rank correlation is 0.0125, one to two orders of magnitude below the width of the reported bootstrap intervals. Pre-fix results are therefore not regenerated; the jitter is disclosed instead."
+}
