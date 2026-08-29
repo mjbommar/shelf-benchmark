@@ -188,21 +188,28 @@ Prevalence is not difficulty, so:
   carry accuracy, macro/micro/weighted F1 and counts only. An earlier version
   of this section promised them. They require a change to the classification
   evaluator and are listed as outstanding rather than claimed.
-**True prevalence, measured 2026-08-29.** The review asked for the natural
-corpora's real class distribution rather than the balanced slices':
+**True prevalence — corrected 2026-08-29 after a second review.** An earlier
+version of this section reported Gutenberg at 1.01x and asserted that its real
+distribution was "not recoverable from this repository". **Both were wrong.**
+1.01x is the stratified evaluation slice, which is the very quantity the
+review said must not be passed off as true prevalence, and the real figure was
+already computed by this project's own pipeline and committed:
 
-| corpus | source | n | max/min |
+| source | file (tracked) | n | max/min |
 |---|---|---|---|
-| Gutenberg | `data/transfer/gutenberg/records.jsonl` | 3,016 | **1.01x** |
-| LCSHBench | English dev split, as published | 4,204 | **1.19x** |
+| Project Gutenberg eligible pool | `data/transfer/gutenberg/manifest.json` | 58,077 | **306x** |
+| LCSHBench English dev, as published | LCSHBench | 4,204 | 1.19x |
+| Gutenberg *evaluation slice* (stratified) | `transfer_gutenberg` | 3,016 | 1.01x |
 
-Two things follow. LCSHBench is close to uniform *as published*, so
-composition is genuinely not a confound there. Gutenberg's source file in this
-repository is already balanced at 1.01x, which means it was stratified
-upstream of anything measured here -- **Project Gutenberg's true LCC
-prevalence is not recoverable from this repository**, and no claim about it
-is made. Recovering it would mean rebuilding the slice from the full
-Gutenberg catalogue, which is future work.
+Gutenberg's real pool is dominated by P (Language and Literature): P 54.3\%; D 9.7\%; B 6.4\%; A 4.6\%.
+`data/transfer/gutenberg/distribution_report.json`, also tracked, already
+carried a skew notice saying so.
+
+So the honest statement is: **the evaluated Gutenberg slice is a 21-class
+stratified sample drawn from a pool with 306-fold class imbalance.** That is a
+deliberate design choice, not a property of the corpus, and any claim about
+ecological performance on Project Gutenberg would need the slice rebuilt at
+natural prevalence. LCSHBench needs no such caveat at 1.19x.
 
 - **Correction, added after review.** An earlier version of this section said
   "the original distribution remains the primary ecological result." That was

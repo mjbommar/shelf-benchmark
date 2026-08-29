@@ -324,6 +324,9 @@ def evaluate_task(
             "primary_metric": result.primary_metric,
             "primary_score": result.primary_score,
             "metrics": result.metrics,
+            # The evaluator computes and serialises per-class metrics; this dict
+            # used to drop them, which was misdiagnosed as an evaluator gap.
+            "per_class_metrics": getattr(result, "per_class_metrics", None),
             "num_samples": result.num_samples,
             "context": result.context.to_dict() if result.context else None,
         }

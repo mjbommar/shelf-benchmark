@@ -5,35 +5,35 @@
   "task": "lcc_classification",
   "task_type": "classification",
   "primary_metric": "macro_f1",
-  "primary_score": 0.5240594889294995,
+  "primary_score": 0.8636757828187107,
   "metrics": {
-    "accuracy": 0.5422647527910686,
-    "macro_f1": 0.5240594889294995,
-    "micro_f1": 0.5422647527910686,
-    "weighted_f1": 0.5244950553182949,
-    "num_samples": 627,
-    "num_correct": 340,
+    "accuracy": 0.8649232245681382,
+    "macro_f1": 0.8636757828187107,
+    "micro_f1": 0.8649232245681382,
+    "weighted_f1": 0.8647008710678131,
+    "num_samples": 12504,
+    "num_correct": 10815,
     "num_classes": 21
   },
-  "num_samples": 627,
+  "num_samples": 12504,
   "context": {
     "shelf_version": "0.3.1",
     "python_version": "3.13.5",
     "sklearn_version": "1.8.0",
     "numpy_version": "2.3.5",
     "polars_version": "1.36.1",
-    "dataset_checksum": "c6a5679d52dbc0eeafe97bd7bad0f0f0",
+    "dataset_checksum": "5be829df374cb4d79b3d6b91a252da2b",
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-27T16:11:06.148652+00:00",
+    "timestamp": "2026-08-29T15:58:31.282478+00:00",
     "model_name": "BGE-large",
-    "data_commit": null,
-    "code_commit": "9200f08",
+    "data_commit": "7123a65",
+    "code_commit": "59e9d45",
     "extra": {
       "embedding_dim": 1024,
       "classifier": "LogisticRegression",
-      "train_size": 1801
+      "train_size": 37795
     }
   },
   "efficiency": {
@@ -42,14 +42,13 @@
     "size_category": "300M-1B",
     "flops_per_token": 670283776,
     "relative_compute": 14.7554,
-    "shelf_eff": 53.4195,
-    "shelf_compute": 0.3479,
-    "pareto_optimal": true,
-    "size_rank": 1,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  },
-  "shelf_score": 0.455414
+  }
 }

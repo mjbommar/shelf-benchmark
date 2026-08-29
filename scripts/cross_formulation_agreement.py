@@ -92,6 +92,17 @@ def main() -> int:
     ap.add_argument("--natural", action="append", required=True, metavar="NAME=DIR")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument(
+        "--clustering-medians",
+        action="append",
+        default=[],
+        metavar="NAME=FILE",
+        help=(
+            "Optional clustering_stability_v2 output per corpus. When given, "
+            "lcc_clustering uses the per-model MEDIAN ARI across seeds instead "
+            "of the single seed-42 result, as the pre-registration specifies."
+        ),
+    )
     ap.add_argument("--output", default="results/transfer/cross_formulation.json")
     args = ap.parse_args()
 
@@ -100,7 +111,20 @@ def main() -> int:
         n, _, d = e.partition("=")
         nat[n] = Path(d)
 
-    report = {"threshold": THRESHOLD, "pairs": []}
+    medians: dict[str, dict[str, float]] = {}
+    for e in args.clustering_medians:
+        n, _, f = e.partition("=")
+        medians[n] = json.loads(Path(f).read_text())["median_ari"]
+        logger.info(
+            f"  {n}: using median ARI over seeds for clustering "
+            f"({len(medians[n])} models)"
+        )
+
+    report = {
+        "threshold": THRESHOLD,
+        "pairs": [],
+        "clustering_uses_seed_median": sorted(medians),
+    }
     holds = dict.fromkeys(nat, 0)
     tested = dict.fromkeys(nat, 0)
 
@@ -108,11 +132,15 @@ def main() -> int:
     logger.info("-" * 74)
     for task in PRIMARY:
         s = load(Path(args.shelf), task)
+        if task == "lcc_clustering" and "shelf" in medians:
+            s = {k: v for k, v in medians["shelf"].items()}
         if not s:
             logger.info(f"{task:<20}{'—':<14}{'—':>4}   no SHELF results yet")
             continue
         for name, d in nat.items():
             o = load(d, task)
+            if task == "lcc_clustering" and name in medians:
+                o = {k: v for k, v in medians[name].items()}
             shared = sorted(set(s) & set(o))
             if len(shared) < 4:
                 logger.info(

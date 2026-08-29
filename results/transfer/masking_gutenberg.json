@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    "unmasked",
+    "masked",
+    "sham"
+  ],
+  "rows": [
+    {
+      "task": "lcc_classification",
+      "corpus": "gutenberg",
+      "n_models": 15,
+      "mean_unmasked": 0.45598586509317013,
+      "mean_masked": 0.44263756177612373,
+      "mean_sham": 0.4549956710643299,
+      "delta_masked": -0.013348303317046395,
+      "delta_sham": -0.0009901940288402078,
+      "rho_masked_vs_unmasked": 0.9892857142857142,
+      "ci": [
+        0.923497267759563,
+        1.0
+      ]
+    },
+    {
+      "task": "lcc_retrieval",
+      "corpus": "gutenberg",
+      "n_models": 22,
+      "mean_unmasked": 0.35715664004023234,
+      "mean_masked": 0.3431450760517488,
+      "mean_sham": 0.35661748311382535,
+      "delta_masked": -0.014011563988483522,
+      "delta_sham": -0.0005391569264069918,
+      "rho_masked_vs_unmasked": 0.9807909604519774,
+      "ci": [
+        0.9167616875712657,
+        0.9965967101531479
+      ]
+    }
+  ]
+}

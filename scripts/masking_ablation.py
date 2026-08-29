@@ -49,7 +49,12 @@ def load(d: Path, task: str) -> dict[str, float]:
         if "error" in r:
             continue
         m = r.get("model_key") or r.get("model")
-        v = (r.get("metrics") or {}).get(key, r.get("primary_score"))
+        v = (r.get("metrics") or {}).get(key)
+        if v is None:
+            raise SystemExit(
+                f"{f.name}: metric '{key}' missing; refusing to "
+                "fall back to primary_score"
+            )
         if m and v is not None:
             out[m] = float(v)
     return out
@@ -59,6 +64,25 @@ def spearman(a, b):
     from scipy.stats import spearmanr
 
     return float(spearmanr(a, b).statistic)
+
+
+def _boot_rho_diff(models, u, m, s, n=2000, seed=42):
+    """Interval on rho(u,m) - rho(u,s), resampling models once per replicate."""
+    rng = random.Random(seed)
+    st = []
+    for _ in range(n):
+        p = [models[rng.randrange(len(models))] for _ in range(len(models))]
+        xu = [u[k] for k in p]
+        if len(set(xu)) < 2:
+            continue
+        xm, xs = [m[k] for k in p], [s[k] for k in p]
+        if len(set(xm)) < 2 or len(set(xs)) < 2:
+            continue
+        st.append(spearman(xu, xm) - spearman(xu, xs))
+    if not st:
+        return float("nan"), float("nan")
+    st.sort()
+    return st[int(0.025 * len(st))], st[int(0.975 * len(st))]
 
 
 def _boot_mean_diff(dm: list[float], ds: list[float], n=2000, seed=42):
@@ -131,11 +155,23 @@ def main() -> int:
             # not only on scores. Without this the rule is undecidable.
             rho_s = spearman([u[k] for k in shared], [s[k] for k in shared])
             slo, shi = boot_rho(shared, u, s)
+            # The rule's ranking arm is rho(u,m) < rho(u,s). Two overlapping
+            # CIs are not a test of that; bootstrap the DIFFERENCE.
+            rlo, rhi = _boot_rho_diff(shared, u, m, s)
             # Per-model paired deltas, so the headline is not a mean of means
             # over heterogeneous models.
             dm = [m[k] - u[k] for k in shared]
             ds = [s[k] - u[k] for k in shared]
             dlo, dhi = _boot_mean_diff(dm, ds)
+            score_sep = dhi < 0  # masking beats sham on scores
+            rank_changed = rhi < 0  # masking degrades ranking beyond sham
+            verdict = (
+                "leakage distorted model selection"
+                if rank_changed
+                else "leakage inflated scores uniformly; ranking preserved"
+                if score_sep
+                else "not separable from sham"
+            )
             logger.info(
                 f"{name:<12}{len(shared):>4}{mu_u:>9.4f}{mu_m:>9.4f}{mu_s:>9.4f}"
                 f"{statistics.mean(dm):>9.4f}{statistics.mean(ds):>9.4f}"
@@ -145,7 +181,11 @@ def main() -> int:
                 f"{'':>16}sham rank rho {rho_s:.3f} [{slo:.2f}, {shi:.2f}]   "
                 f"paired (mask-sham) delta {statistics.mean(dm) - statistics.mean(ds):+.4f} "
                 f"[{dlo:+.4f}, {dhi:+.4f}]"
-                f"{'  <- masking effect exceeds sham' if dhi < 0 else '  <- NOT separable from sham'}"
+                f"{'  <- masking effect exceeds sham' if score_sep else '  <- NOT separable from sham'}"
+            )
+            logger.info(
+                f"{'':>16}rank arm: rho(u,m)-rho(u,s) = {rho - rho_s:+.3f} "
+                f"[{rlo:+.3f}, {rhi:+.3f}]   VERDICT: {verdict}"
             )
             masked_scores[name] = m
             report["rows"].append(

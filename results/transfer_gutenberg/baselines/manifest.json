@@ -1,41 +1,13 @@
 {
-  "run_id": "20260829_134527",
+  "run_id": "20260829_162456",
   "config_version": "1.0.0",
   "dataset_version": "0.3.1",
   "dataset_checksum": "v0.3.1",
-  "models_evaluated": [
-    "tf",
-    "tfidf",
-    "bm25",
-    "minilm",
-    "bge_small",
-    "e5_small",
-    "gte_small",
-    "mpnet",
-    "bge_base",
-    "e5_base",
-    "gtr_t5_base",
-    "gte_base",
-    "instructor_base",
-    "bert",
-    "bert_lcc_finetune_demo",
-    "bert_lcc_finetune_full",
-    "roberta",
-    "bge_large",
-    "e5_large",
-    "gtr_t5_large",
-    "ogbert_2m_sentence",
-    "ogbert_110m_base",
-    "ogbert_110m_sentence",
-    "ogbert_v1_mlm",
-    "distilbert_base_uncased"
-  ],
-  "tasks_evaluated": [
-    "same_lcc_pairs"
-  ],
-  "start_time": "2026-08-29T13:45:27.452978+00:00",
-  "end_time": "2026-08-29T13:47:16.742637+00:00",
-  "duration_seconds": 109.289659,
+  "models_evaluated": [],
+  "tasks_evaluated": [],
+  "start_time": "2026-08-29T16:24:56.494907+00:00",
+  "end_time": "2026-08-29T16:24:56.494909+00:00",
+  "duration_seconds": 2e-06,
   "versions": {
     "python": "3.13.5",
     "platform": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
@@ -49,7 +21,7 @@
     "shelf": "0.3.1"
   },
   "git": {
-    "commit": "8a97c6d",
+    "commit": "13ab870",
     "branch": "master",
     "dirty": true
   },

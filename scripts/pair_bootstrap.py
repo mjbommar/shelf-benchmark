@@ -11,8 +11,11 @@ dyadic data. The effective sample size is therefore the document count, not
 the pair count, and the intervals widen accordingly -- which is the honest
 result.
 
-Scores come from the saved per-sample predictions where a task wrote them;
-where it did not, the script says so rather than inventing numbers.
+Scores are computed here rather than read from saved predictions: the pair
+evaluator does not write per-sample output by default. Models are built
+through the same factory the sweep uses, so lexical baselines (tf, tfidf,
+bm25) and pooled transformer models are covered, not only
+sentence-transformers.
 """
 
 from __future__ import annotations
@@ -57,7 +60,8 @@ def main() -> int:
         required=True,
         help="pair parquet, e.g. data/.../pairs/same_lcc/test.parquet",
     )
-    ap.add_argument("--model", required=True, help="sentence-transformers model name")
+    ap.add_argument("--model", required=True, help="model key from config.yaml")
+    ap.add_argument("--output", default=None, help="where to store the result")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
@@ -67,9 +71,14 @@ def main() -> int:
         logger.error(f"{p} not found")
         return 2
 
+    import sys as _sys
+
     import numpy as np
     import polars as pl
-    from sentence_transformers import SentenceTransformer
+    import yaml
+
+    _sys.path.insert(0, str(Path(__file__).resolve().parent / "baselines"))
+    import run_all as R
 
     recs = pl.read_parquet(p).to_dicts()
 
@@ -83,10 +92,14 @@ def main() -> int:
                 body = r.get(f"doc_{side}_body") or ""
                 texts[did] = f"{title}\n\n{body}".strip()
     ids = sorted(texts)
-    st = SentenceTransformer(args.model)
-    emb = st.encode(
-        [texts[i] for i in ids], normalize_embeddings=True, show_progress_bar=False
-    )
+    mcfg = yaml.safe_load(Path("scripts/baselines/config.yaml").read_text())["models"]
+    if args.model not in mcfg:
+        logger.error(f"unknown model key '{args.model}'")
+        return 2
+    model = R.create_model(mcfg[args.model])
+    emb = np.asarray(model.encode([texts[i] for i in ids]))
+    norms = np.linalg.norm(emb, axis=1, keepdims=True)
+    emb = emb / np.where(norms == 0, 1.0, norms)
     idx = {d: i for i, d in enumerate(ids)}
 
     rows = [
@@ -138,17 +151,22 @@ def main() -> int:
     )
     logger.info(f"AUC {point:.4f}   95% document-clustered CI [{lo:.4f}, {hi:.4f}]")
     logger.info("Interval resamples DOCUMENTS; pairs are not independent.")
-    print(
-        json.dumps(
-            {
-                "auc": point,
-                "ci": [lo, hi],
-                "n_pairs": len(rows),
-                "n_documents": len(docs),
-                "n_boot": len(stats),
-            }
-        )
-    )
+    rec = {
+        "model": args.model,
+        "pairs_file": str(p),
+        "auc": point,
+        "ci": [lo, hi],
+        "n_pairs": len(rows),
+        "n_documents": len(docs),
+        "n_boot": len(stats),
+        "bootstrap": "multiplicity-weighted document cluster",
+    }
+    if args.output:
+        out = Path(args.output)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(rec, indent=2))
+        logger.info(f"  wrote {out}")
+    print(json.dumps(rec))
     return 0
 
 

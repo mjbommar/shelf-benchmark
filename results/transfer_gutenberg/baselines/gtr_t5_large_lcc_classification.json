@@ -42,8 +42,8 @@
     "size_category": "300M-1B",
     "flops_per_token": 671709184,
     "relative_compute": 14.7867,
-    "shelf_eff": 53.1682,
-    "shelf_compute": 0.3463,
+    "shelf_eff": 45.2923,
+    "shelf_compute": 0.295,
     "pareto_optimal": false,
     "size_rank": 3,
     "num_params_torch": null,
@@ -51,5 +51,5 @@
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.45332
+  "shelf_score": 0.386169
 }

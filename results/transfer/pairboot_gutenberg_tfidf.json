@@ -1,0 +1,13 @@
+{
+  "model": "tfidf",
+  "pairs_file": "data/hf_dataset/transfer_gutenberg/pairs/same_lcc/test.parquet",
+  "auc": 0.64097125,
+  "ci": [
+    0.6131537145650049,
+    0.6679409857724821
+  ],
+  "n_pairs": 4000,
+  "n_documents": 2807,
+  "n_boot": 200,
+  "bootstrap": "multiplicity-weighted document cluster"
+}
