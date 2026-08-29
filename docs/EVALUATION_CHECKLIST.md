@@ -116,6 +116,13 @@ any results go into a paper, a dataset card, or a message to the user.
       a GPU already running another user's job while the second sat idle,
       and the wasted capacity was read as normal load.*
 
+- [ ] **F5. Concurrency is not free on a shared GPU.** Count processes
+      against GPU memory before launching, not after. *Violated three times
+      in one session: the third put seven processes on one 16GB card, and
+      the models that survived the resulting CUDA OOM were the small ones —
+      recreating the biased-sample defect (B2) inside the very run that was
+      meant to fix it.*
+
 ## G. Reproducibility
 
 - [ ] **G1. Never overwrite an aggregate from a partial run.** *Violated:

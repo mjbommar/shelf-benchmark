@@ -1,0 +1,123 @@
+"""Clustering seed stability, measured THROUGH the evaluator.
+
+Replaces clustering_stability.py, which a reviewer correctly faulted on two
+counts: it covered only the 13 sentence-transformer models, excluding both
+lexical baselines and all three large models, so the gate was decided on the
+subset least likely to fail it; and it re-implemented the encode-and-cluster
+pipeline rather than calling the evaluator, so for three of thirteen models
+its ARI fell outside the seed range entirely -- the difference was
+preprocessing, not seed.
+
+This drives the real ClusteringEvaluator at five seeds, so the stability
+measured is the stability of the clustering the paper reports.
+"""
+
+from __future__ import annotations
+
+import argparse
+import itertools
+import json
+import logging
+import statistics
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent / "baselines"))
+
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+logger = logging.getLogger(__name__)
+
+SEEDS = (0, 1, 2, 3, 4)
+FLOOR = 0.90
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--task", default="lcc_clustering")
+    ap.add_argument("--models", nargs="+", required=True)
+    ap.add_argument("--output", required=True)
+    args = ap.parse_args()
+
+    import run_all as R
+    import yaml
+    from scipy.stats import spearmanr
+    from shelf.evaluate.evaluators.clustering import ClusteringEvaluator
+    from shelf.evaluate.registry import get_task
+
+    mcfg = yaml.safe_load(Path("scripts/baselines/config.yaml").read_text())["models"]
+    spec = get_task(args.task)
+    per_model: dict[str, dict[int, float]] = {}
+
+    for key in args.models:
+        try:
+            model = R.create_model(mcfg[key])
+        except Exception as exc:
+            logger.warning(f"  {key}: cannot build ({exc})")
+            continue
+        scores: dict[int, float] = {}
+        for seed in SEEDS:
+            try:
+                ev = ClusteringEvaluator(spec, random_seed=seed)
+                res = ev.evaluate_embedder(model)
+                scores[seed] = float((res.metrics or {}).get("ari", float("nan")))
+            except Exception as exc:
+                logger.warning(f"  {key} seed {seed}: {type(exc).__name__}: {exc}")
+        good = {k: v for k, v in scores.items() if v == v}
+        if len(good) < len(SEEDS):
+            logger.warning(f"  {key}: only {len(good)}/{len(SEEDS)} seeds usable")
+            continue
+        per_model[key] = good
+        logger.info(
+            f"  {key:<24} median ARI {statistics.median(good.values()):.4f}  "
+            f"spread {max(good.values()) - min(good.values()):.4f}"
+        )
+
+    if len(per_model) < 6:
+        logger.error("too few models to assess stability")
+        return 1
+
+    models = sorted(per_model)
+    stab = []
+    for a, b in itertools.combinations(SEEDS, 2):
+        xa = [per_model[m][a] for m in models]
+        xb = [per_model[m][b] for m in models]
+        stab.append(float(spearmanr(xa, xb).statistic))
+    med = statistics.median(stab)
+    verdict = (
+        "stable enough to carry the rank-agreement claim"
+        if med >= FLOOR
+        else "UNSTABLE: drop clustering from the rank-agreement claim"
+    )
+    logger.info(
+        f"\n  {len(models)} models, rank stability median {med:.3f} "
+        f"(min {min(stab):.3f}, max {max(stab):.3f})"
+    )
+    logger.info(f"  pre-registered floor {FLOOR}: {verdict}")
+
+    out = Path(args.output)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(
+        json.dumps(
+            {
+                "task": args.task,
+                "seeds": list(SEEDS),
+                "n_models": len(models),
+                "per_model": per_model,
+                "median_ari": {
+                    m: statistics.median(v.values()) for m, v in per_model.items()
+                },
+                "rank_stability": stab,
+                "median_rank_stability": med,
+                "floor": FLOOR,
+                "verdict": verdict,
+                "measured_through": "ClusteringEvaluator (not a reimplementation)",
+            },
+            indent=2,
+        )
+    )
+    logger.info(f"  wrote {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
