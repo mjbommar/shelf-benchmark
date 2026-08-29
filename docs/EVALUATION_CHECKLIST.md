@@ -19,6 +19,15 @@ any results go into a paper, a dataset card, or a message to the user.
       `v0_4_core` (15 models, max 9.24%); scale belongs to `all` (62,899,
       max 47.7%). *Violated: claimed both from one number.*
 
+- [ ] **A4. The evidence must cover the scope of the claim.** Before
+      writing a claim, list every way it could have been tested and say why
+      the untested ones were skipped. *Violated: the paper's title-level
+      claim that rankings transfer rested on subject classification, one of
+      four formulations the shared label supports. Retrieval and clustering
+      needed no new code and were simply never run. The limitation written
+      to cover this described a different constraint (genre labels) and was
+      itself partly false.*
+
 ## B. Complete before reported
 
 - [ ] **B1. A sweep is complete or it is labelled partial in the same
