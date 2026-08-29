@@ -122,7 +122,24 @@ def main() -> int:
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--output", default=None)
+    ap.add_argument(
+        "--exclude-models",
+        default="",
+        help=(
+            "Comma-separated model keys to drop before correlating. Use this "
+            "for weight duplicates: ogbert-110m-base and ogbert-110m-sentence "
+            "resolve to the same 556 MB safetensors blob (identical sha256), "
+            "so keeping both adds a pair that always agrees with itself and "
+            "raises every correlation it takes part in."
+        ),
+    )
     args = ap.parse_args()
+
+    excluded = {m.strip() for m in args.exclude_models.split(",") if m.strip()}
+    if excluded:
+        logger.info(
+            f"excluding {len(excluded)} model(s): {', '.join(sorted(excluded))}"
+        )
 
     corpora: dict[str, dict[str, float]] = {}
     for entry in args.corpus:
@@ -133,8 +150,12 @@ def main() -> int:
         scores = load_scores(Path(path), args.task, args.metric)
         if not scores:
             logger.warning(f"{name}: no results for task {args.task} in {path}")
+        dropped = sorted(set(scores) & excluded)
+        for m in dropped:
+            del scores[m]
         corpora[name] = scores
-        logger.info(f"{name:<12} {len(scores):>3} models scored")
+        note = f"  (dropped {', '.join(dropped)})" if dropped else ""
+        logger.info(f"{name:<12} {len(scores):>3} models scored{note}")
 
     names = [n for n in corpora if corpora[n]]
     if len(names) < 2:
@@ -146,6 +167,7 @@ def main() -> int:
         "metric": args.metric,
         "n_bootstrap": args.n_boot,
         "per_corpus_models": {n: len(corpora[n]) for n in names},
+        "excluded_models": sorted(excluded),
         "pairs": [],
     }
 
