@@ -207,7 +207,7 @@ def main() -> int:
             )
             continue
         if task == "lcc_clustering" and "shelf" in medians:
-            s = {k: v for k, v in medians["shelf"].items()}
+            s = dict(medians["shelf"])
         if not s:
             logger.info(f"{task:<20}{'—':<14}{'—':>4}   no SHELF results yet")
             continue
@@ -217,7 +217,7 @@ def main() -> int:
                 continue
             o = load(d, task)
             if task == "lcc_clustering" and name in medians:
-                o = {k: v for k, v in medians[name].items()}
+                o = dict(medians[name])
             shared = sorted(set(s) & set(o))
             if len(shared) < 4:
                 logger.info(

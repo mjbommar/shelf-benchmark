@@ -1106,8 +1106,8 @@ Analyses conditioned on register or length carry this confound.
 pretraining data of essentially every model that would be evaluated on it. SHELF
 is the clean-synthetic condition, Gutenberg is the contaminated-natural one, and
 the gap between them is the measurement. A lexical baseline trained on SHELF
-scores 0.893 macro-F1 in-domain and **0.301 on Gutenberg**; trained on Gutenberg
-it reaches 0.526 in-domain. Transfer fails symmetrically, which is domain shift
+scores 0.887 macro-F1 in-domain and **0.313 on Gutenberg**; trained on Gutenberg
+it reaches 0.510 in-domain. Transfer fails symmetrically, which is domain shift
 rather than memorisation.
 
 **No human ceiling yet.** No human annotation round has been run, so model scores
