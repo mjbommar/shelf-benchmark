@@ -118,15 +118,29 @@ def main() -> int:
         action="append",
         required=True,
         metavar="NAME=BASEDIR",
-        help="BASEDIR without the _masked/_sham suffix",
+        help=(
+            "BASEDIR without the _masked/_sham suffix, or an explicit "
+            "UNMASKED:MASKED:SHAM triple when the unmasked results do not "
+            "share the arms' directory prefix"
+        ),
     )
     ap.add_argument("--output", default="results/transfer/masking_ablation.json")
     args = ap.parse_args()
 
+    # A corpus is either a prefix (base, base_masked, base_sham) or an explicit
+    # triple. The triple exists because the pooled corpus keeps its unmasked
+    # results in results/pooled while its arms are results/all_masked and
+    # results/all_sham, so no single prefix reaches all three.
     corpora = {}
     for e in args.corpus:
         n, _, d = e.partition("=")
-        corpora[n] = d
+        parts = d.split(":")
+        if len(parts) == 3:
+            corpora[n] = tuple(parts)
+        elif len(parts) == 1:
+            corpora[n] = (d, f"{d}_masked", f"{d}_sham")
+        else:
+            ap.error(f"--corpus {n}: expected BASEDIR or UNMASKED:MASKED:SHAM")
 
     report: dict = {"conditions": ["unmasked", "masked", "sham"], "rows": []}
 
@@ -138,10 +152,10 @@ def main() -> int:
         )
         logger.info("-" * 87)
         masked_scores = {}
-        for name, base in corpora.items():
-            u = load(Path(f"{base}/baselines"), task)
-            m = load(Path(f"{base}_masked/baselines"), task)
-            s = load(Path(f"{base}_sham/baselines"), task)
+        for name, (d_u, d_m, d_s) in corpora.items():
+            u = load(Path(f"{d_u}/baselines"), task)
+            m = load(Path(f"{d_m}/baselines"), task)
+            s = load(Path(f"{d_s}/baselines"), task)
             shared = sorted(set(u) & set(m) & set(s))
             if len(shared) < 4:
                 logger.info(f"{name:<12}{len(shared):>4}   incomplete")
