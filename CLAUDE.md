@@ -131,7 +131,7 @@ ty check
 
 ## Before any result is reported
 
-**Run `python scripts/check_evaluation.py --results <dir>` before results go
+**Run `uv run python scripts/check_evaluation.py --results <dir>` before results go
 into a paper, a dataset card, or a message.** It gates the failures that have
 actually happened here: partial sweeps reported as complete, biased samples
 (a partial sweep finishes small models first), error stubs counted as

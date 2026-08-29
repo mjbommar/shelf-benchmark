@@ -3,7 +3,7 @@
 Every check here exists because its absence produced a wrong number in this
 project. See docs/EVALUATION_CHECKLIST.md for the incident behind each one.
 
-    python scripts/check_evaluation.py --results results/pooled/baselines
+    uv run python scripts/check_evaluation.py --results results/pooled/baselines
 
 Exit status is non-zero if any check fails, so it can gate a build.
 """
@@ -68,6 +68,24 @@ def main() -> int:
     results = Path(args.results)
     if not results.is_dir():
         print(f"{RED}FAIL{RESET} results directory not found: {results}")
+        return 2
+
+    # Accept either the run directory or its baselines/ subdirectory. Pointing
+    # this at the parent used to glob nothing and then report every model as
+    # "not started", which reads like a finding rather than a bad path.
+    if not any(results.glob("*.json")) and (results / "baselines").is_dir():
+        results = results / "baselines"
+        print(f"    (descended into {results})")
+
+    # A gate that scores an empty directory is worse than no gate: "0 of 23
+    # complete" looks like a real answer. Refuse instead.
+    n_files = len([f for f in results.glob("*.json") if f.name != "summary.json"])
+    if n_files == 0:
+        print(
+            f"{RED}FAIL{RESET} no result files in {results}. "
+            "Nothing was checked -- this is a bad path or an empty run, "
+            "not a finding about model coverage."
+        )
         return 2
 
     cfg = yaml.safe_load(Path(args.config).read_text())

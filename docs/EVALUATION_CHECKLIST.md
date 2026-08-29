@@ -1,7 +1,7 @@
 # Evaluation integrity checklist
 
 Every item here exists because it was violated in this project and produced a
-wrong or indefensible number. Run `python scripts/check_evaluation.py` before
+wrong or indefensible number. Run `uv run python scripts/check_evaluation.py` before
 any results go into a paper, a dataset card, or a message to the user.
 
 ---
