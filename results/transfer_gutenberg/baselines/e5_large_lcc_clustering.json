@@ -1,0 +1,62 @@
+{
+  "model": "E5-large",
+  "model_key": "e5_large",
+  "model_type": "sentence_transformer",
+  "task": "lcc_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.3320985997034793,
+  "metrics": {
+    "v_measure": 0.3320985997034793,
+    "nmi": 0.33209859970347927,
+    "ari": 0.11829866046190132,
+    "homogeneity": 0.3277717629417613,
+    "completeness": 0.33654119970553414,
+    "num_samples": 627,
+    "num_clusters_true": 21,
+    "num_clusters_pred": 21
+  },
+  "num_samples": 627,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "c6a5679d52dbc0eeafe97bd7bad0f0f0",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T13:05:30.015523+00:00",
+    "model_name": "E5-large",
+    "data_commit": null,
+    "code_commit": "1b22bf2",
+    "extra": {
+      "embedding_dim": 1024,
+      "n_clusters": 21,
+      "kmeans_inertia": 118.25987243652344,
+      "norm_stats": {
+        "norm_min": 0.9999999403953552,
+        "norm_max": 1.0000001192092896,
+        "norm_mean": 1.0,
+        "norm_std": 3.0015453234000233e-08
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 335141888,
+    "embedding_dim": 1024,
+    "size_category": "300M-1B",
+    "flops_per_token": 670283776,
+    "relative_compute": 14.7554,
+    "shelf_eff": 58.1959,
+    "shelf_compute": 0.3791,
+    "pareto_optimal": false,
+    "size_rank": 2,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.496133
+}

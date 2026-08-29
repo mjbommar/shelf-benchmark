@@ -1,0 +1,62 @@
+{
+  "model": "OGBert-110M Sentence",
+  "model_key": "ogbert_110m_sentence",
+  "model_type": "sentence_transformer",
+  "task": "lcc_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.18700394441621052,
+  "metrics": {
+    "v_measure": 0.18700394441621052,
+    "nmi": 0.18700394441621046,
+    "ari": 0.0323714392193107,
+    "homogeneity": 0.17998101952666265,
+    "completeness": 0.19459719790596303,
+    "num_samples": 736,
+    "num_clusters_true": 21,
+    "num_clusters_pred": 21
+  },
+  "num_samples": 736,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T13:39:02.907234+00:00",
+    "model_name": "OGBert-110M Sentence",
+    "data_commit": null,
+    "code_commit": "8a97c6d",
+    "extra": {
+      "embedding_dim": 768,
+      "n_clusters": 21,
+      "kmeans_inertia": 65.39958190917969,
+      "norm_stats": {
+        "norm_min": 0.9999999403953552,
+        "norm_max": 1.0000001192092896,
+        "norm_mean": 1.0,
+        "norm_std": 4.0092515973810805e-08
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 139054592,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 278109184,
+    "relative_compute": 6.1222,
+    "shelf_eff": 37.2497,
+    "shelf_compute": 0.2531,
+    "pareto_optimal": false,
+    "size_rank": 9,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.303331
+}

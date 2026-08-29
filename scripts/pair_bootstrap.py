@@ -109,12 +109,21 @@ def main() -> int:
     rng = random.Random(args.seed)
     stats = []
     for _ in range(args.n_boot):
-        keep = {docs[rng.randrange(len(docs))] for _ in range(len(docs))}
-        sel = [
-            (float(r["score"]), int(r["label"]))
-            for r in rows
-            if r["doc_a_id"] in keep and r["doc_b_id"] in keep
-        ]
+        # Multiplicity-weighted cluster bootstrap. Drawing documents into a
+        # SET discards multiplicity and gives a ~63% subsample, not a
+        # bootstrap. Keep each document's draw count k_d; a pair (a, b) then
+        # enters the replicate k_a * k_b times, the correct weighting for
+        # dyadic data.
+        counts: dict[str, int] = {}
+        for _ in range(len(docs)):
+            d = docs[rng.randrange(len(docs))]
+            counts[d] = counts.get(d, 0) + 1
+        sel: list[tuple[float, int]] = []
+        for r in rows:
+            ka = counts.get(r["doc_a_id"], 0)
+            kb = counts.get(r["doc_b_id"], 0)
+            if ka and kb:
+                sel.extend([(float(r["score"]), int(r["label"]))] * (ka * kb))
         if len({y for _, y in sel}) == 2:
             v = auc(sel)
             if v == v:

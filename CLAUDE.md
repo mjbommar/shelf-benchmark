@@ -44,7 +44,7 @@ independently, so it can measure things a natural corpus cannot separate.
 Two cautions, both measured rather than theoretical:
 
 - Do **not** claim SHELF scores transfer to natural text. They do not. A
-  lexical model scoring 0.893 in-domain scores 0.301 on human-written,
+  lexical model scoring 0.887 in-domain scores 0.313 on human-written,
   human-catalogued Gutenberg passages, and the failure is symmetric.
 - Do **not** call this "document understanding." That term already means
   visually rich document analysis (DocVQA, UDOP, DUDE). Say

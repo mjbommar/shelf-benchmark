@@ -42,14 +42,14 @@
     "size_category": "100M-300M",
     "flops_per_token": 278109184,
     "relative_compute": 6.1222,
-    "shelf_eff": 40.7821,
-    "shelf_compute": 0.2771,
+    "shelf_eff": 47.2676,
+    "shelf_compute": 0.3211,
     "pareto_optimal": false,
-    "size_rank": 8,
+    "size_rank": 9,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.332096
+  "shelf_score": 0.384909
 }

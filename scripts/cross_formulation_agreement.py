@@ -50,7 +50,16 @@ def load(results_dir: Path, task: str) -> dict[str, float]:
         m = r.get("model_key") or r.get("model")
         v = (r.get("metrics") or {}).get(key)
         if v is None:
-            v = r.get("primary_score")
+            # Do NOT fall back to primary_score. For clustering that is
+            # v_measure, which the pre-registration rejects for not being
+            # chance-corrected; for pairs it is threshold-tuned F1. Silently
+            # substituting a forbidden metric is how three earlier bugs in
+            # this project produced plausible wrong numbers.
+            raise SystemExit(
+                f"{f.name}: metric '{key}' missing. Refusing to fall back to "
+                "primary_score, which may be a metric the pre-registration "
+                "rejects. Re-run the task or fix the metric key."
+            )
         if m and v is not None:
             out[m] = float(v)
     return out
@@ -135,8 +144,20 @@ def main() -> int:
 
     logger.info("-" * 74)
     for n in nat:
-        logger.info(f"  {n}: {holds[n]}/{tested[n]} formulations hold")
-    broad = all(holds[n] >= 3 for n in nat) and all(tested[n] >= 3 for n in nat)
+        logger.info(
+            f"  {n}: {holds[n]} hold of {tested[n]} tested "
+            f"(of {len(PRIMARY)} formulations)"
+        )
+        if tested[n] < len(PRIMARY):
+            logger.info(
+                f"     {len(PRIMARY) - tested[n]} formulation(s) NOT TESTED; "
+                "the broad claim requires all four"
+            )
+    # Prereg section 3 requires >= 3 of the FOUR formulations against BOTH
+    # corpora. Counting "3 of 3 tested" as sufficient let an untested
+    # formulation count toward the broad claim.
+    n_formulations = len(PRIMARY)
+    broad = all(holds[n] >= 3 and tested[n] == n_formulations for n in nat)
     cls = [p for p in report["pairs"] if p["task"] == "lcc_classification"]
     contradicted = any(p["ci"][0] <= 0 for p in cls) if cls else False
 

@@ -61,6 +61,18 @@ def spearman(a, b):
     return float(spearmanr(a, b).statistic)
 
 
+def _boot_mean_diff(dm: list[float], ds: list[float], n=2000, seed=42):
+    """Interval on (mean masked delta - mean sham delta), paired by model."""
+    rng = random.Random(seed)
+    diffs = [a - b for a, b in zip(dm, ds, strict=True)]
+    st = []
+    for _ in range(n):
+        samp = [diffs[rng.randrange(len(diffs))] for _ in range(len(diffs))]
+        st.append(statistics.mean(samp))
+    st.sort()
+    return st[int(0.025 * len(st))], st[int(0.975 * len(st))]
+
+
 def boot_rho(models, x, y, n=2000, seed=42):
     rng = random.Random(seed)
     st = []
@@ -115,10 +127,25 @@ def main() -> int:
             mu_s = statistics.mean(s[k] for k in shared)
             rho = spearman([u[k] for k in shared], [m[k] for k in shared])
             lo, hi = boot_rho(shared, u, m)
+            # The pre-registered rule turns on the sham's effect ON RANKING,
+            # not only on scores. Without this the rule is undecidable.
+            rho_s = spearman([u[k] for k in shared], [s[k] for k in shared])
+            slo, shi = boot_rho(shared, u, s)
+            # Per-model paired deltas, so the headline is not a mean of means
+            # over heterogeneous models.
+            dm = [m[k] - u[k] for k in shared]
+            ds = [s[k] - u[k] for k in shared]
+            dlo, dhi = _boot_mean_diff(dm, ds)
             logger.info(
                 f"{name:<12}{len(shared):>4}{mu_u:>9.4f}{mu_m:>9.4f}{mu_s:>9.4f}"
-                f"{mu_m - mu_u:>9.4f}{mu_s - mu_u:>9.4f}{rho:>10.3f}"
-                f"{f'[{lo:.2f}, {hi:.2f}]':>16}"
+                f"{statistics.mean(dm):>9.4f}{statistics.mean(ds):>9.4f}"
+                f"{rho:>10.3f}{f'[{lo:.2f}, {hi:.2f}]':>16}"
+            )
+            logger.info(
+                f"{'':>16}sham rank rho {rho_s:.3f} [{slo:.2f}, {shi:.2f}]   "
+                f"paired (mask-sham) delta {statistics.mean(dm) - statistics.mean(ds):+.4f} "
+                f"[{dlo:+.4f}, {dhi:+.4f}]"
+                f"{'  <- masking effect exceeds sham' if dhi < 0 else '  <- NOT separable from sham'}"
             )
             masked_scores[name] = m
             report["rows"].append(

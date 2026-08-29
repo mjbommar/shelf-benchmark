@@ -218,6 +218,31 @@ def main() -> int:
             "All results for a task must come from one build of the data."
         )
 
+    # --- A4: does the evidence cover the scope of the claim? -----------
+    # Not fully automatable, but the common failure is mechanical: a claim
+    # spanning several task formulations resting on results for one. Report
+    # which formulations have results so the gap is visible.
+    families = {
+        "classification": [t for t in all_tasks if "classification" in t],
+        "retrieval": [t for t in all_tasks if "retrieval" in t],
+        "clustering": [t for t in all_tasks if "clustering" in t],
+        "pairs": [t for t in all_tasks if t.endswith("_pairs")],
+    }
+    covered = {
+        fam: sum(1 for t in ts if any(t in v for v in ok.values()))
+        for fam, ts in families.items()
+    }
+    missing = [f for f, c in covered.items() if c == 0]
+    print(
+        "\nA4  task families with results: "
+        + ", ".join(f"{f}={c}" for f, c in covered.items())
+    )
+    if missing:
+        warnings.append(
+            f"A4: no results for {', '.join(missing)}. A claim spanning task "
+            "formulations must not rest on the ones that happen to be run."
+        )
+
     # --- G1: summary must not be narrower than the directory -----------
     for name in ("summary.json", "baseline_summary.json"):
         sp = results / name

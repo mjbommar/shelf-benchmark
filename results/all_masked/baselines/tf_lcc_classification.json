@@ -1,0 +1,50 @@
+{
+  "model": "TF+SVD",
+  "model_key": "tf",
+  "model_type": "tf",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.7735320657854731,
+  "metrics": {
+    "accuracy": 0.7738323736404351,
+    "macro_f1": 0.7735320657854731,
+    "micro_f1": 0.7738323736404351,
+    "weighted_f1": 0.7741467954601381,
+    "num_samples": 12504,
+    "num_correct": 9676,
+    "num_classes": 21
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "37c1c6331da1d069d8519bd293a68578",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T13:42:21.276335+00:00",
+    "model_name": "tf-sklearn-1-2gram-dim256",
+    "data_commit": "7123a65",
+    "code_commit": "8a97c6d",
+    "extra": {
+      "embedding_dim": 256,
+      "classifier": "LogisticRegression",
+      "train_size": 37795
+    }
+  },
+  "efficiency": {
+    "num_params": null,
+    "embedding_dim": 256,
+    "size_category": "sparse",
+    "flops_per_token": null,
+    "relative_compute": null,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null
+  }
+}

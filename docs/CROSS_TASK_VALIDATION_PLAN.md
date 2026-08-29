@@ -22,9 +22,8 @@ tasks run on Gutenberg with no code change** (TF-IDF reaches v-measure 0.2572
 on clustering; retrieval ran over 627 queries against a 2,389-document
 corpus). They were never run there. Nothing prevented it.
 
-And the label claim is itself partly false. Gutenberg carries `lcgft_form`
-(22 distinct), `lcgft_category` (7), and 1,314 LCSH topics on a minority of
-documents. Only LCSHBench is subject-only.
+And the label claim is itself partly false. Gutenberg carries LCSH topics on **all** 3,016 documents, and
+`lcgft_form` (22 distinct) and `lcgft_category` (7) on 686 of them. Only LCSHBench is subject-only.
 
 So the true constraint is narrower: **subject is the only label present in
 all three corpora at full coverage** — and subject alone supports four task

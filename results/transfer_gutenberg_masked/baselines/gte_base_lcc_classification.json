@@ -1,0 +1,55 @@
+{
+  "model": "GTE-base",
+  "model_key": "gte_base",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.4840452742225856,
+  "metrics": {
+    "accuracy": 0.5135566188197768,
+    "macro_f1": 0.4840452742225856,
+    "micro_f1": 0.5135566188197768,
+    "weighted_f1": 0.484493846826167,
+    "num_samples": 627,
+    "num_correct": 322,
+    "num_classes": 21
+  },
+  "num_samples": 627,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "399c3bfa160847f9e73519a6686f67af",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T12:53:52.196070+00:00",
+    "model_name": "GTE-base",
+    "data_commit": null,
+    "code_commit": "c39a943",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 1801
+    }
+  },
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": 54.3719,
+    "shelf_compute": 0.3735,
+    "pareto_optimal": false,
+    "size_rank": 2,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.437114
+}

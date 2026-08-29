@@ -1,0 +1,55 @@
+{
+  "model": "BGE-large",
+  "model_key": "bge_large",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.5216882679906382,
+  "metrics": {
+    "accuracy": 0.5406698564593302,
+    "macro_f1": 0.5216882679906382,
+    "micro_f1": 0.5406698564593302,
+    "weighted_f1": 0.5220989727540941,
+    "num_samples": 627,
+    "num_correct": 339,
+    "num_classes": 21
+  },
+  "num_samples": 627,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "9be673178389f83f20fa4e2a9dcba217",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T14:29:30.502957+00:00",
+    "model_name": "BGE-large",
+    "data_commit": null,
+    "code_commit": "f586b5b",
+    "extra": {
+      "embedding_dim": 1024,
+      "classifier": "LogisticRegression",
+      "train_size": 1801
+    }
+  },
+  "efficiency": {
+    "num_params": 335141888,
+    "embedding_dim": 1024,
+    "size_category": "300M-1B",
+    "flops_per_token": 670283776,
+    "relative_compute": 14.7554,
+    "shelf_eff": 56.3147,
+    "shelf_compute": 0.3668,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.480096
+}

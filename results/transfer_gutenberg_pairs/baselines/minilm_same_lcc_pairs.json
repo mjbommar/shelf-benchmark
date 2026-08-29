@@ -1,0 +1,56 @@
+{
+  "model": "MiniLM-L6",
+  "model_key": "minilm",
+  "model_type": "sentence_transformer",
+  "task": "same_lcc_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "auc_roc",
+  "primary_score": 0.7032205,
+  "metrics": {
+    "f1": 0.6946969696969697,
+    "accuracy": 0.597,
+    "precision": 0.5591463414634147,
+    "recall": 0.917,
+    "auc_roc": 0.7032205,
+    "average_precision": 0.7036687584010113,
+    "threshold": 0.05440254166722298,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "7dba9382f57a30cba0c5ba9e0b6bc635",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T14:42:02.839757+00:00",
+    "model_name": "MiniLM-L6",
+    "data_commit": null,
+    "code_commit": "f586b5b",
+    "extra": {
+      "embedding_dim": 384
+    }
+  },
+  "efficiency": {
+    "num_params": 22713216,
+    "embedding_dim": 384,
+    "size_category": "10M-50M",
+    "flops_per_token": 45426432,
+    "relative_compute": 1.0,
+    "shelf_eff": 95.5946,
+    "shelf_compute": 0.7032,
+    "pareto_optimal": true,
+    "size_rank": 3,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.703221
+}

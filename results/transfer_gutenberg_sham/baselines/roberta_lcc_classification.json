@@ -1,0 +1,55 @@
+{
+  "model": "RoBERTa",
+  "model_key": "roberta",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.2882772962513935,
+  "metrics": {
+    "accuracy": 0.3094098883572568,
+    "macro_f1": 0.2882772962513935,
+    "micro_f1": 0.3094098883572568,
+    "weighted_f1": 0.288093616528351,
+    "num_samples": 627,
+    "num_correct": 194,
+    "num_classes": 21
+  },
+  "num_samples": 627,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "9be673178389f83f20fa4e2a9dcba217",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T14:26:09.500393+00:00",
+    "model_name": "RoBERTa",
+    "data_commit": null,
+    "code_commit": "f586b5b",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 1801
+    }
+  },
+  "efficiency": {
+    "num_params": 124645632,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 249291264,
+    "relative_compute": 5.4878,
+    "shelf_eff": 37.9935,
+    "shelf_compute": 0.2594,
+    "pareto_optimal": false,
+    "size_rank": 10,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.307583
+}

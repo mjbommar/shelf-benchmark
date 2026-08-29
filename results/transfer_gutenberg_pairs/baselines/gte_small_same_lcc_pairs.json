@@ -1,0 +1,56 @@
+{
+  "model": "GTE-small",
+  "model_key": "gte_small",
+  "model_type": "sentence_transformer",
+  "task": "same_lcc_pairs",
+  "task_type": "pair_classification",
+  "primary_metric": "auc_roc",
+  "primary_score": 0.741583,
+  "metrics": {
+    "f1": 0.7096774193548387,
+    "accuracy": 0.64,
+    "precision": 0.5945945945945946,
+    "recall": 0.88,
+    "auc_roc": 0.741583,
+    "average_precision": 0.7464068642647714,
+    "threshold": 0.7725975969609709,
+    "num_samples": 4000,
+    "num_positive": 2000,
+    "num_negative": 2000
+  },
+  "num_samples": 4000,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "7dba9382f57a30cba0c5ba9e0b6bc635",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T14:43:27.243981+00:00",
+    "model_name": "GTE-small",
+    "data_commit": null,
+    "code_commit": "f586b5b",
+    "extra": {
+      "embedding_dim": 384
+    }
+  },
+  "efficiency": {
+    "num_params": 33360512,
+    "embedding_dim": 384,
+    "size_category": "10M-50M",
+    "flops_per_token": 66721024,
+    "relative_compute": 1.4688,
+    "shelf_eff": 98.5724,
+    "shelf_compute": 0.7136,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.741583
+}

@@ -1,0 +1,55 @@
+{
+  "model": "BERT",
+  "model_key": "bert",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.41052842050656274,
+  "metrics": {
+    "accuracy": 0.4258373205741627,
+    "macro_f1": 0.41052842050656274,
+    "micro_f1": 0.4258373205741627,
+    "weighted_f1": 0.41027699725176725,
+    "num_samples": 627,
+    "num_correct": 267,
+    "num_classes": 21
+  },
+  "num_samples": 627,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "9be673178389f83f20fa4e2a9dcba217",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T14:24:59.284463+00:00",
+    "model_name": "BERT",
+    "data_commit": null,
+    "code_commit": "f586b5b",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 1801
+    }
+  },
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": 48.8528,
+    "shelf_compute": 0.3356,
+    "pareto_optimal": false,
+    "size_rank": 6,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.392744
+}

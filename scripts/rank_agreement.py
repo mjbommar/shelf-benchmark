@@ -1,7 +1,7 @@
 """Measure whether SHELF ranks models the way natural corpora rank them.
 
 SHELF scores do not transfer to natural text in absolute terms -- we
-measured that ourselves (0.8932 in-domain against 0.3010 on Gutenberg,
+measured that ourselves (0.8873 in-domain against 0.3133 on Gutenberg,
 symmetrically). Rank agreement is the weaker claim that survives: a
 benchmark can be useless for predicting an absolute score and still be
 useful for choosing between models.

@@ -1,0 +1,62 @@
+{
+  "model": "MPNet",
+  "model_key": "mpnet",
+  "model_type": "sentence_transformer",
+  "task": "lcc_clustering",
+  "task_type": "clustering",
+  "primary_metric": "v_measure",
+  "primary_score": 0.4647493666235154,
+  "metrics": {
+    "v_measure": 0.4647493666235154,
+    "nmi": 0.46474936662351535,
+    "ari": 0.2464721284864061,
+    "homogeneity": 0.46261115226533256,
+    "completeness": 0.4669074386552558,
+    "num_samples": 736,
+    "num_clusters_true": 21,
+    "num_clusters_pred": 21
+  },
+  "num_samples": 736,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T13:27:06.792724+00:00",
+    "model_name": "MPNet",
+    "data_commit": null,
+    "code_commit": "8a97c6d",
+    "extra": {
+      "embedding_dim": 768,
+      "n_clusters": 21,
+      "kmeans_inertia": 484.0086975097656,
+      "norm_stats": {
+        "norm_min": 0.9999998807907104,
+        "norm_max": 1.0000001192092896,
+        "norm_mean": 1.0,
+        "norm_std": 2.9229934028762727e-08
+      }
+    }
+  },
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": 66.2686,
+    "shelf_compute": 0.4552,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.532756
+}

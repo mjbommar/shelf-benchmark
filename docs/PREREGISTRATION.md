@@ -184,10 +184,20 @@ Prevalence is not difficulty, so:
 
 - Macro aggregation stays primary throughout, which already weights classes
   equally.
-- Per-class scores are reported for classification on all three corpora, so a
-  reader can see whether the same classes are hard everywhere.
-- The original distribution remains the primary ecological result; no
-  reweighting is applied to the headline numbers.
+- Per-class scores are **not** currently emitted: classification results
+  carry accuracy, macro/micro/weighted F1 and counts only. An earlier version
+  of this section promised them. They require a change to the classification
+  evaluator and are listed as outstanding rather than claimed.
+- **Correction, added after review.** An earlier version of this section said
+  "the original distribution remains the primary ecological result." That was
+  empty: no result in this project uses any natural corpus's original class
+  distribution. Gutenberg is uniform *because it was built uniform* --- 142 to
+  144 documents in each of 21 classes is a stratified sample, not Project
+  Gutenberg's true LCC prevalence, which is not reported anywhere here. The
+  honest statement is that all three evaluated slices are near-balanced by
+  construction, so composition cannot explain a ranking difference between
+  them, and that no ecological result exists. Producing one requires
+  resampling Gutenberg to its natural prevalence, which is future work.
 
 ---
 
