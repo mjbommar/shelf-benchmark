@@ -1,3 +1,5 @@
+> **PARTIALLY SUPERSEDED, 2026-08-29.** The coverage figures below (-13.5 / -8.1, "both intervals exclude zero") came from a partial judging run, as the note in this file warned. Judging completed at 543 judgements and the effect shrank to -11.7 [-19.5, -3.4] and -6.6 [-13.7, +1.2]; **the gloss interval now spans zero**, so the claim that both arms show a significant coverage loss is retracted. The paper carries the corrected figures. The leakage-reduction numbers and the method note are unaffected.
+
 # Reducing verbatim topic echo
 
 Measured 2026-08-27. 40 specifications x 3 arms, generated with

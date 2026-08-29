@@ -170,6 +170,14 @@ def main() -> int:
                 "a different mining policy from the natural corpora. Pass "
                 "--shelf-pairs for a like-for-like comparison."
             )
+        if task == "lcc_clustering" and not medians:
+            logger.warning(
+                "  lcc_clustering: using the SINGLE seed-42 ARI. The "
+                "pre-registration fixes per-model MEDIAN ARI over five seeds "
+                "and a 0.9 rank-stability gate that can drop clustering from "
+                "the claim entirely. Pass --clustering-medians, or treat any "
+                "clustering row below as provisional."
+            )
         if task == "lcc_clustering" and "shelf" in medians:
             s = {k: v for k, v in medians["shelf"].items()}
         if not s:
@@ -227,12 +235,20 @@ def main() -> int:
     cls = [p for p in report["pairs"] if p["task"] == "lcc_classification"]
     contradicted = any(p["ci"][0] <= 0 for p in cls) if cls else False
 
+    clustering_provisional = not medians and any(
+        p["task"] == "lcc_clustering" for p in report["pairs"]
+    )
     if contradicted:
         verdict = "CONTRADICTED: classification interval crosses zero"
     elif broad:
         verdict = "BROAD CLAIM SUPPORTED"
     else:
         verdict = "NARROW CLAIM ONLY: title must scope to classification"
+    if clustering_provisional:
+        verdict += (
+            "  [PROVISIONAL: clustering used seed-42 ARI, not the "
+            "pre-registered five-seed median; stability gate not applied]"
+        )
     logger.info(f"\n  VERDICT (pre-registered rule): {verdict}")
     report["verdict"] = verdict
 

@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-08-27T12:31:59.917523+00:00",
-  "dataset_version": "0.3.1",
+  "dataset_version": "0.3.0",
   "dataset_checksum": "v0.3.1",
   "versions": {
     "python": "3.13.5",
@@ -22205,5 +22205,6 @@
       },
       "shelf_score": 0.463835
     }
-  }
+  },
+  "dataset_version_note": "Repaired 2026-08-29. An --aggregate-only rebuild had restamped this 0.3.0 -> 0.3.1 from the then-current config. The rebuild no longer restamps, but it reads the stored value forward, so the corrupted value had to be corrected here or it would have been cemented."
 }
