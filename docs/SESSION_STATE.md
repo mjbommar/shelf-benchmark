@@ -59,6 +59,27 @@ models land:
    distinct models" and "22 configurations" figure in sections 4b, 4c, 5, 6b,
    7 and the abstract has to be recomputed, not edited by hand.
 
+## Sweep complete; refresh in progress
+
+All five models landed: 165 cells, 33 each, zero OOMs during the sweep
+itself. The only error stubs are `lcc_subclass_classification`, which fails
+for all 27 models because the pooled corpus has no such column. Pre-existing
+config defect, never reported in the paper.
+
+`scripts/refresh_analyses.sh` is now running. Stage 1, the clustering gate,
+is 81 model-corpus results (27 models x 3 corpora) and takes about three
+hours on one card.
+
+**The gate OOM'd once and was fixed** (`aeddb00`). It embedded every model at
+the adapter's default batch of 32, which allocates 4 GiB in one block at 8192
+tokens. Batch now follows the configured context: 32 at or below 512, 16 up
+to 2048, 4 beyond. If the gate dies again, check that first.
+
+Five-seed medians so far, pooled corpus, for comparison against the
+single-seed numbers quoted elsewhere: `granite_small_r2` 0.4806 (single seed
+said 0.4905, which is why the pre-registration wants medians),
+`gte_modernbert_2k` 0.3802.
+
 ## Analysis to redo after the sweep
 
 All of these read the results directories, so they must be re-run, not patched:
@@ -95,6 +116,10 @@ All of these read the results directories, so they must be re-run, not patched:
   and exclude your own ancestry. See checklist F8.
 - **Sub-command arguments need their flag.** Task names passed positionally
   make argparse exit 2 and evaluate nothing. See checklist F9.
+- **Batch size is per model, everywhere it is set.** Setting it in the sweep
+  driver and not in the clustering gate cost a CUDA OOM and a three-hour
+  restart. Any code path that calls `encode` on a long-context model needs
+  the same treatment.
 
 ## Outstanding from the adversarial review
 
