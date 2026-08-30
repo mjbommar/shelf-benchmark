@@ -1,0 +1,233 @@
+{
+  "comparison": "gte-modernbert-base at 2048 vs 8192 tokens, identical weights",
+  "n_cells": 32,
+  "mean_delta": -0.000552285830376932,
+  "median_delta": -2.2654328561827475e-05,
+  "max_abs_delta": 0.0063279991840847205,
+  "cells": [
+    {
+      "corpus": "all_pairs",
+      "task": "same_lcc_pairs",
+      "s_2k": 0.7487787499999999,
+      "s_8k": 0.7463185,
+      "delta": -0.0024602499999999417
+    },
+    {
+      "corpus": "pooled",
+      "task": "category_retrieval",
+      "s_2k": 0.4628780683656015,
+      "s_8k": 0.4641056597651054,
+      "delta": 0.0012275913995039023
+    },
+    {
+      "corpus": "pooled",
+      "task": "form_classification",
+      "s_2k": 0.22813637058024702,
+      "s_8k": 0.22691752993353517,
+      "delta": -0.0012188406467118496
+    },
+    {
+      "corpus": "pooled",
+      "task": "form_retrieval",
+      "s_2k": 0.1075999904231526,
+      "s_8k": 0.1078818456461384,
+      "delta": 0.000281855222985794
+    },
+    {
+      "corpus": "pooled",
+      "task": "geographic_clustering",
+      "s_2k": 0.0014548734406044429,
+      "s_8k": 0.0013676247543232111,
+      "delta": -8.724868628123177e-05
+    },
+    {
+      "corpus": "pooled",
+      "task": "geographic_clustering_conditional",
+      "s_2k": 0.005854734633474679,
+      "s_8k": 0.005919467645448731,
+      "delta": 6.473301197405194e-05
+    },
+    {
+      "corpus": "pooled",
+      "task": "instruction_same_audience_diff_register",
+      "s_2k": 0.07932350027362939,
+      "s_8k": 0.08054124971331166,
+      "delta": 0.001217749439682267
+    },
+    {
+      "corpus": "pooled",
+      "task": "instruction_same_form_diff_subject",
+      "s_2k": 0.04300522945078312,
+      "s_8k": 0.04325738778427535,
+      "delta": 0.0002521583334922292
+    },
+    {
+      "corpus": "pooled",
+      "task": "instruction_same_subject_diff_form",
+      "s_2k": 0.606766594876511,
+      "s_8k": 0.6054879413205085,
+      "delta": -0.0012786535560024292
+    },
+    {
+      "corpus": "pooled",
+      "task": "instruction_same_topic_diff_subject",
+      "s_2k": 0.18611041998792896,
+      "s_8k": 0.18672693985502534,
+      "delta": 0.0006165198670963767
+    },
+    {
+      "corpus": "pooled",
+      "task": "lcc_classification",
+      "s_2k": 0.8646219139583683,
+      "s_8k": 0.8655046280225301,
+      "delta": 0.0008827140641618492
+    },
+    {
+      "corpus": "pooled",
+      "task": "lcc_clustering",
+      "s_2k": 0.3715646046044364,
+      "s_8k": 0.37246074648539534,
+      "delta": 0.0008961418809589339
+    },
+    {
+      "corpus": "pooled",
+      "task": "lcc_retrieval",
+      "s_2k": 0.6538296974035681,
+      "s_8k": 0.6517552549900153,
+      "delta": -0.0020744424135528128
+    },
+    {
+      "corpus": "pooled",
+      "task": "lcgft_category_classification",
+      "s_2k": 0.7574927232929863,
+      "s_8k": 0.7588831804359829,
+      "delta": 0.0013904571429965706
+    },
+    {
+      "corpus": "pooled",
+      "task": "lcgft_clustering",
+      "s_2k": 0.07152428984135004,
+      "s_8k": 0.0728559452503623,
+      "delta": 0.0013316554090122695
+    },
+    {
+      "corpus": "pooled",
+      "task": "register_classification",
+      "s_2k": 0.5301307716494963,
+      "s_8k": 0.5291406714885037,
+      "delta": -0.0009901001609925464
+    },
+    {
+      "corpus": "pooled",
+      "task": "register_clustering",
+      "s_2k": 0.003487247545196941,
+      "s_8k": 0.0030757189978287496,
+      "delta": -0.00041152854736819155
+    },
+    {
+      "corpus": "pooled",
+      "task": "same_audience_pairs",
+      "s_2k": 0.5490725000000001,
+      "s_8k": 0.54853075,
+      "delta": -0.0005417500000001185
+    },
+    {
+      "corpus": "pooled",
+      "task": "same_form_pairs",
+      "s_2k": 0.6480935,
+      "s_8k": 0.645638,
+      "delta": -0.002455499999999944
+    },
+    {
+      "corpus": "pooled",
+      "task": "same_lcc_pairs",
+      "s_2k": 0.7487787499999999,
+      "s_8k": 0.7463185,
+      "delta": -0.0024602499999999417
+    },
+    {
+      "corpus": "pooled",
+      "task": "same_register_pairs",
+      "s_2k": 0.53669975,
+      "s_8k": 0.5357295,
+      "delta": -0.0009702500000000613
+    },
+    {
+      "corpus": "pooled",
+      "task": "same_topic_pairs",
+      "s_2k": 0.7583342499999999,
+      "s_8k": 0.7542254999999999,
+      "delta": -0.004108749999999994
+    },
+    {
+      "corpus": "pooled",
+      "task": "topic_classification",
+      "s_2k": 0.4601052795616769,
+      "s_8k": 0.46316134506185047,
+      "delta": 0.003056065500173566
+    },
+    {
+      "corpus": "pooled",
+      "task": "topic_overlap_pairs",
+      "s_2k": 0.7788728030644434,
+      "s_8k": 0.7753348918431726,
+      "delta": -0.003537911221270784
+    },
+    {
+      "corpus": "transfer_gutenberg",
+      "task": "lcc_classification",
+      "s_2k": 0.5356344069731529,
+      "s_8k": 0.5356344069731529,
+      "delta": 0.0
+    },
+    {
+      "corpus": "transfer_gutenberg",
+      "task": "lcc_clustering",
+      "s_2k": 0.16423141576047479,
+      "s_8k": 0.15790341657639007,
+      "delta": -0.0063279991840847205
+    },
+    {
+      "corpus": "transfer_gutenberg",
+      "task": "lcc_retrieval",
+      "s_2k": 0.4132996873627546,
+      "s_8k": 0.4132868787056309,
+      "delta": -1.280865712366408e-05
+    },
+    {
+      "corpus": "transfer_gutenberg_pairs",
+      "task": "same_lcc_pairs",
+      "s_2k": 0.7088400000000001,
+      "s_8k": 0.708864,
+      "delta": 2.399999999991298e-05
+    },
+    {
+      "corpus": "transfer_lcshbench",
+      "task": "lcc_classification",
+      "s_2k": 0.6423441627986164,
+      "s_8k": 0.6422760291288732,
+      "delta": -6.81336697432311e-05
+    },
+    {
+      "corpus": "transfer_lcshbench",
+      "task": "lcc_clustering",
+      "s_2k": 0.18302477085942678,
+      "s_8k": 0.18302477085942678,
+      "delta": 0.0
+    },
+    {
+      "corpus": "transfer_lcshbench",
+      "task": "lcc_retrieval",
+      "s_2k": 0.45606835637543736,
+      "s_8k": 0.45619048527446926,
+      "delta": 0.0001221288990319036
+    },
+    {
+      "corpus": "transfer_lcshbench_pairs",
+      "task": "same_lcc_pairs",
+      "s_2k": 0.70428525,
+      "s_8k": 0.70425275,
+      "delta": -3.249999999999087e-05
+    }
+  ]
+}
