@@ -8,7 +8,10 @@
 # its evidence. Run this, then verify_paper_numbers.py, then write prose.
 #
 # GPU work (the clustering stability gate) runs one corpus at a time on the
-# single free device. Nothing here runs concurrently: three jobs on one card
+# single free device, and only for models not already measured: a model's
+# median ARI over seeds does not depend on which other models are in the
+# sweep, so previously stored per-seed values are reused and only the rank
+# statistics are recomputed. Nothing here runs concurrently: three jobs on one card
 # is what OOM'd this project before.
 #
 # Usage:
@@ -34,7 +37,7 @@ step() { echo; echo "=== $* ==="; }
 fail=0
 guard() { "$@" || { echo "FAILED: $*"; fail=1; }; }
 
-step "1. clustering stability, five seeds, one corpus at a time"
+step "1. clustering stability, five seeds, new models only"
 if [ "$GPU_OK" = "1" ]; then
   MODELS=$(uv run python -c "
 import yaml
@@ -50,8 +53,8 @@ print(' '.join(k for k, v in c.items()
       $CL --setenv=PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
       --setenv=SHELF_NUM_THREADS=8 --setenv=PYTHONHASHSEED=0 \
       --setenv=SHELF_DATA_DIR="data/hf_dataset/$corpus" --setenv=COLUMNS=200 \
-      uv run python scripts/clustering_stability_v2.py \
-        --task lcc_clustering --models $MODELS --output "$out"
+      uv run python scripts/clustering_stability_merge.py \
+        --existing "$out" --models $MODELS --task lcc_clustering --output "$out"
   done
 else
   echo "  skipped (--no-gpu); existing medians will be reused"
