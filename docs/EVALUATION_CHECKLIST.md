@@ -151,6 +151,19 @@ any results go into a paper, a dataset card, or a message to the user.
       556 MB blob with one SHA-256. Counting both raised every correlation
       they entered by up to 0.027.*
 
+- [ ] **F8. A process-matching pattern matches the shell that runs it.**
+      *Violated four times in one session, twice after writing this down.
+      `pgrep -f 'bash /tmp/.*driver\\.sh'` matches the shell whose command
+      line contains that very pattern, so the kill takes out your own session
+      mid-edit. Enumerate `/proc`, exclude your own PID and its ancestors, and
+      drop anything whose cmdline looks like a shell wrapper. Knowing about
+      the trap is demonstrably not enough; use a method that cannot self-match.*
+- [ ] **F9. Pass sub-command arguments through their flag, not positionally.**
+      *A driver appended task names after `--output-dir`; argparse exited 2 and
+      evaluated nothing. Caught only because the driver checks exit codes (F7).
+      Prove the exact invocation works standalone before launching a sweep
+      built on it.*
+
 ## G. Reproducibility
 
 - [ ] **G1. Never overwrite an aggregate from a partial run.** *Violated:

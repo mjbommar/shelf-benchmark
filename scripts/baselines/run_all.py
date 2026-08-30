@@ -312,7 +312,19 @@ def create_model(model_config: dict[str, Any]):
         model_name = model_config.get("model_name")
         if not model_name:
             raise ValueError("sentence_transformer requires model_name")
-        return SentenceTransformerEmbedder.from_pretrained(model_name)
+        # The adapter has always supported a pinned context budget and
+        # model-card prompts; create_model discarded both, so every model ran
+        # at its own default. That is unsound across models on long documents
+        # and it is why the newer long-context entries carry an explicit
+        # max_seq_length.
+        params = model_config.get("params", {}) or {}
+        return SentenceTransformerEmbedder.from_pretrained(
+            model_name,
+            max_seq_length=params.get("max_seq_length"),
+            query_prompt=params.get("query_prompt", ""),
+            document_prompt=params.get("document_prompt", ""),
+            **({"trust_remote_code": True} if params.get("trust_remote_code") else {}),
+        )
 
     else:
         raise ValueError(f"Unknown model type: {model_type}")

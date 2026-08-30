@@ -337,6 +337,93 @@ models:
     - multilabel
     - clustering
     - pair_classification
+  # --- 2025 small encoders, added 2026-08-30 -------------------------------
+  # The sweep otherwise stops at 2023 and at a 512-token context. These four
+  # models are all under 600M and three read far past 512 tokens, so they also
+  # measure what the context cap costs. No model in this sweep is given its
+  # model-card prompt, these included, so the handicap is uniform.
+  granite_small_r2:
+    type: sentence_transformer
+    name: Granite-small-r2
+    description: ibm-granite/granite-embedding-small-english-r2 (47.7M params, 384 dims)
+    model_name: ibm-granite/granite-embedding-small-english-r2
+    num_params: 47662464
+    embedding_dim: 384
+    size_category: 10M-50M
+    params:
+      max_seq_length: 2048
+    supports:
+    - retrieval
+    - classification
+    - multilabel
+    - clustering
+    - pair_classification
+  gte_modernbert_2k:
+    type: sentence_transformer
+    name: GTE-ModernBERT-2k
+    description: Alibaba-NLP/gte-modernbert-base at 2048 tokens (149M params, 768 dims)
+    model_name: Alibaba-NLP/gte-modernbert-base
+    num_params: 149014272
+    embedding_dim: 768
+    size_category: 100M-300M
+    params:
+      max_seq_length: 2048
+      trust_remote_code: true
+    supports:
+    - retrieval
+    - classification
+    - multilabel
+    - clustering
+    - pair_classification
+  gte_modernbert_8k:
+    type: sentence_transformer
+    name: GTE-ModernBERT-8k
+    description: Alibaba-NLP/gte-modernbert-base at 8192 tokens (149M params, 768 dims)
+    model_name: Alibaba-NLP/gte-modernbert-base
+    num_params: 149014272
+    embedding_dim: 768
+    size_category: 100M-300M
+    params:
+      max_seq_length: 8192
+      trust_remote_code: true
+    supports:
+    - retrieval
+    - classification
+    - multilabel
+    - clustering
+    - pair_classification
+  embeddinggemma_300m:
+    type: sentence_transformer
+    name: EmbeddingGemma-300M
+    description: google/embeddinggemma-300m (307.6M params, 768 dims)
+    model_name: google/embeddinggemma-300m
+    num_params: 307581696
+    embedding_dim: 768
+    size_category: 300M-1B
+    params:
+      max_seq_length: 2048
+    supports:
+    - retrieval
+    - classification
+    - multilabel
+    - clustering
+    - pair_classification
+  qwen3_embed_600m:
+    type: sentence_transformer
+    name: Qwen3-Embedding-0.6B
+    description: Qwen/Qwen3-Embedding-0.6B at 2048 tokens (595.8M params, 1024 dims)
+    model_name: Qwen/Qwen3-Embedding-0.6B
+    num_params: 595776512
+    embedding_dim: 1024
+    size_category: 300M-1B
+    params:
+      max_seq_length: 2048
+    supports:
+    - retrieval
+    - classification
+    - multilabel
+    - clustering
+    - pair_classification
 tasks:
   retrieval:
   - lcc_retrieval
