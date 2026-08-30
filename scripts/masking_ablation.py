@@ -232,6 +232,22 @@ def main() -> int:
                     "delta_sham": mu_s - mu_u,
                     "rho_masked_vs_unmasked": rho,
                     "ci": [lo, hi],
+                    # These were computed, printed, and then dropped. The
+                    # paper's "spans zero" claim had no artifact behind it.
+                    "rho_sham_vs_unmasked": rho_s,
+                    "rho_diff_masked_minus_sham": rho - rho_s,
+                    "rho_diff_ci": [rlo, rhi],
+                    "paired_mean_diff": statistics.mean(dm) - statistics.mean(ds),
+                    "paired_mean_diff_ci": [dlo, dhi],
+                    "paired_mean_diff_resamples": "models",
+                    "paired_mean_diff_note": (
+                        "The pre-registration fixes documents as the resampling "
+                        "unit for classification and retrieval. This interval "
+                        "resamples models instead, because the quantity is a "
+                        "difference of per-model means and the per-document "
+                        "predictions are not retained by the sweep. Recorded as "
+                        "a deviation rather than presented as the frozen test."
+                    ),
                 }
             )
 

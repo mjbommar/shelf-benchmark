@@ -21,7 +21,20 @@
       "ci": [
         0.9368005266622779,
         1.0
-      ]
+      ],
+      "rho_sham_vs_unmasked": 1.0,
+      "rho_diff_masked_minus_sham": -0.012987012987013102,
+      "rho_diff_ci": [
+        -0.06319947333772213,
+        0.0
+      ],
+      "paired_mean_diff": -0.033257993343686156,
+      "paired_mean_diff_ci": [
+        -0.03559867337435424,
+        -0.030835523162155272
+      ],
+      "paired_mean_diff_resamples": "models",
+      "paired_mean_diff_note": "The pre-registration fixes documents as the resampling unit for classification and retrieval. This interval resamples models instead, because the quantity is a difference of per-model means and the per-document predictions are not retained by the sweep. Recorded as a deviation rather than presented as the frozen test."
     },
     {
       "task": "lcc_classification",
@@ -36,7 +49,20 @@
       "ci": [
         0.9420289855072465,
         1.0
-      ]
+      ],
+      "rho_sham_vs_unmasked": 0.9896103896103896,
+      "rho_diff_masked_minus_sham": -0.0012987012987012436,
+      "rho_diff_ci": [
+        -0.04470742932281391,
+        0.035340314136125484
+      ],
+      "paired_mean_diff": -0.012182351319145579,
+      "paired_mean_diff_ci": [
+        -0.015404452490130807,
+        -0.00814522972116736
+      ],
+      "paired_mean_diff_resamples": "models",
+      "paired_mean_diff_note": "The pre-registration fixes documents as the resampling unit for classification and retrieval. This interval resamples models instead, because the quantity is a difference of per-model means and the per-document predictions are not retained by the sweep. Recorded as a deviation rather than presented as the frozen test."
     },
     {
       "task": "lcc_classification",
@@ -51,7 +77,20 @@
       "ci": [
         0.9070680628272251,
         0.9986885245901641
-      ]
+      ],
+      "rho_sham_vs_unmasked": 0.9896103896103896,
+      "rho_diff_masked_minus_sham": -0.00649350649350644,
+      "rho_diff_ci": [
+        -0.04638833664678599,
+        0.00913242009132409
+      ],
+      "paired_mean_diff": -0.025106192589586806,
+      "paired_mean_diff_ci": [
+        -0.028987688939006145,
+        -0.021277815756235625
+      ],
+      "paired_mean_diff_resamples": "models",
+      "paired_mean_diff_note": "The pre-registration fixes documents as the resampling unit for classification and retrieval. This interval resamples models instead, because the quantity is a difference of per-model means and the per-document predictions are not retained by the sweep. Recorded as a deviation rather than presented as the frozen test."
     },
     {
       "task": "lcc_classification",
@@ -86,7 +125,20 @@
       "ci": [
         0.9370078740157481,
         1.0
-      ]
+      ],
+      "rho_sham_vs_unmasked": 1.0,
+      "rho_diff_masked_minus_sham": -0.011688311688311637,
+      "rho_diff_ci": [
+        -0.06299212598425186,
+        0.0
+      ],
+      "paired_mean_diff": -0.04043084420786757,
+      "paired_mean_diff_ci": [
+        -0.04576950128996319,
+        -0.03539329474927281
+      ],
+      "paired_mean_diff_resamples": "models",
+      "paired_mean_diff_note": "The pre-registration fixes documents as the resampling unit for classification and retrieval. This interval resamples models instead, because the quantity is a difference of per-model means and the per-document predictions are not retained by the sweep. Recorded as a deviation rather than presented as the frozen test."
     },
     {
       "task": "lcc_retrieval",
@@ -101,7 +153,20 @@
       "ci": [
         0.927774130006566,
         0.9986859395532195
-      ]
+      ],
+      "rho_sham_vs_unmasked": 0.9974025974025975,
+      "rho_diff_masked_minus_sham": -0.012987012987013102,
+      "rho_diff_ci": [
+        -0.06919060052219317,
+        0.014379084967320321
+      ],
+      "paired_mean_diff": -0.013783674457844897,
+      "paired_mean_diff_ci": [
+        -0.016885836747044105,
+        -0.010464520628001453
+      ],
+      "paired_mean_diff_resamples": "models",
+      "paired_mean_diff_note": "The pre-registration fixes documents as the resampling unit for classification and retrieval. This interval resamples models instead, because the quantity is a difference of per-model means and the per-document predictions are not retained by the sweep. Recorded as a deviation rather than presented as the frozen test."
     },
     {
       "task": "lcc_retrieval",
@@ -116,7 +181,20 @@
       "ci": [
         0.9803793328973184,
         1.0
-      ]
+      ],
+      "rho_sham_vs_unmasked": 0.9987012987012988,
+      "rho_diff_masked_minus_sham": 0.0,
+      "rho_diff_ci": [
+        -0.018384766907419414,
+        0.019607843137254832
+      ],
+      "paired_mean_diff": -0.02530702981941394,
+      "paired_mean_diff_ci": [
+        -0.028795666340578046,
+        -0.02132955699175665
+      ],
+      "paired_mean_diff_resamples": "models",
+      "paired_mean_diff_note": "The pre-registration fixes documents as the resampling unit for classification and retrieval. This interval resamples models instead, because the quantity is a difference of per-model means and the per-document predictions are not retained by the sweep. Recorded as a deviation rather than presented as the frozen test."
     },
     {
       "task": "lcc_retrieval",
