@@ -133,7 +133,21 @@ def main() -> int:
         ),
     )
     ap.add_argument("--output", default="results/transfer/cross_formulation.json")
+    ap.add_argument(
+        "--exclude-models",
+        default="ogbert_110m_sentence",
+        help=(
+            "Model keys to drop before correlating. Defaults to the weight "
+            "duplicate: ogbert-110m-base and ogbert-110m-sentence are one "
+            "safetensors blob with one SHA-256, so keeping both adds a pair "
+            "that always agrees with itself and raises every correlation."
+        ),
+    )
     args = ap.parse_args()
+
+    excluded = {m.strip() for m in args.exclude_models.split(",") if m.strip()}
+    if excluded:
+        logger.info(f"excluding {len(excluded)}: {', '.join(sorted(excluded))}")
 
     nat = {}
     for e in args.natural:
@@ -227,7 +241,7 @@ def main() -> int:
             o = load(d, task)
             if task == "lcc_clustering" and name in medians:
                 o = dict(medians[name])
-            shared = sorted(set(s) & set(o))
+            shared = sorted((set(s) & set(o)) - excluded)
             if len(shared) < 4:
                 logger.info(
                     f"{task:<20}{name:<14}{len(shared):>4}   too few shared models"
