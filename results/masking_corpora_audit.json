@@ -1,0 +1,34 @@
+{
+  "rows": [
+    {
+      "corpus": "all",
+      "n_documents": 62899,
+      "sham_matched_documents": 62899,
+      "sham_matched_pct": 100.0,
+      "documents_masking_touches": 54305,
+      "documents_masking_touches_pct": 86.33682570470118,
+      "mean_tokens_removed": 9.130272341372677,
+      "mean_words_unmasked": 612.1506224264297
+    },
+    {
+      "corpus": "transfer_gutenberg",
+      "n_documents": 3016,
+      "sham_matched_documents": 3016,
+      "sham_matched_pct": 100.0,
+      "documents_masking_touches": 1578,
+      "documents_masking_touches_pct": 52.320954907161806,
+      "mean_tokens_removed": 1.8942307692307692,
+      "mean_words_unmasked": 479.5931697612732
+    },
+    {
+      "corpus": "transfer_lcshbench",
+      "n_documents": 4924,
+      "sham_matched_documents": 4924,
+      "sham_matched_pct": 100.0,
+      "documents_masking_touches": 1188,
+      "documents_masking_touches_pct": 24.12672623883022,
+      "mean_tokens_removed": 0.6318034118602762,
+      "mean_words_unmasked": 139.75710804224207
+    }
+  ]
+}
