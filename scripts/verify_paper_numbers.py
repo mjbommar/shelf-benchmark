@@ -37,8 +37,11 @@ logger = logging.getLogger(__name__)
 RED, GREEN, RESET = "\033[31m", "\033[32m", "\033[0m"
 
 # Display names in the paper that differ from the name in the result file.
+# Display name in the paper -> name recorded in the result files, and the
+# reverse, because the completeness check needs to go both ways.
 ALIAS = {
     "DistilBERT": "distilbert-base-uncased",
+    "distilbert-base-uncased": "DistilBERT",
     "OGBert-110M Sent.": "OGBert-110M Sentence",
     "ogbert-2m-sent.": "ogbert-2m-sentence",
 }
@@ -295,6 +298,38 @@ def main() -> int:
     c2, b2 = check_artifact_tables(sections, args.tol)
     checked += c2
     bad += b2
+
+    # Completeness. Everything above verifies that numbers PRESENT in a table
+    # match their artifacts. It cannot see a model that was left out, and that
+    # is exactly what happened: five models were added to the sweep and the
+    # classification table kept showing the older 24, including after one of
+    # the new models took first place.
+    for label, (fname, cols, metric) in PER_MODEL.items():
+        tex = (sections / fname).read_text()
+        blk = table_block(tex, label)
+        if blk is None:
+            continue
+        scored = set(scores(results, cols[0], metric))
+        key2name = {k: n for n, k in name2key.items()}
+        missing = []
+        for key in sorted(scored):
+            disp = key2name.get(key, key)
+            alias = ALIAS.get(disp, disp)
+            # a row is present if its display name, its alias, or a
+            # distinctive prefix of either appears in the table body
+            found = any(
+                cand and cand in blk
+                for cand in (disp, alias, disp.split()[0][:10], alias.split()[0][:10])
+            )
+            if not found:
+                missing.append(key)
+        checked += 1
+        if missing:
+            bad += 1
+            logger.info(
+                f"  {RED}INCOMPLETE{RESET} {label}: {len(missing)} model(s) have "
+                f"results but no row: {', '.join(missing)}"
+            )
 
     if checked == 0:
         logger.error(
