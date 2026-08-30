@@ -71,7 +71,14 @@ def main() -> int:
         if texts is not None and mcfg[key].get("type") == "sentence_transformer":
             from shelf.evaluate.adapters.cached import CachedEmbedder
 
-            embs = model.encode(texts, show_progress=False)
+            # Batch size has to follow the model's context budget. A model
+            # pinned to 8192 tokens allocates 4 GiB in one block at the
+            # default batch and OOMs a 16 GiB card, which is how the first
+            # attempt at this gate died. Scale it down as context grows.
+            seq = int((mcfg[key].get("params") or {}).get("max_seq_length") or 512)
+            bs = 32 if seq <= 512 else 16 if seq <= 2048 else 4
+            logger.info(f"  {key}: seq={seq} batch={bs}")
+            embs = model.encode(texts, batch_size=bs, show_progress=False)
             eval_model = CachedEmbedder(
                 cache=dict(zip(texts, embs, strict=True)),
                 model_name=key,
