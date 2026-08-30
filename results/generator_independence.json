@@ -1,0 +1,45 @@
+{
+  "measure": "Cramer's V between generation model and label",
+  "anthropic_prefix_normalised": true,
+  "core_slice": "v0.4",
+  "wide_slices": [
+    "v0.4",
+    "v0.4_subclass",
+    "v0.4_holdout",
+    "v0.4_minimal_pairs"
+  ],
+  "rows": [
+    {
+      "slice": "v0_4_core",
+      "label": "lcc_code",
+      "n": 18345,
+      "generators": 15,
+      "cramers_v": 0.015751403453592328,
+      "chi2_p": 1.0
+    },
+    {
+      "slice": "v0_4_core",
+      "label": "lcgft_category",
+      "n": 18345,
+      "generators": 15,
+      "cramers_v": 0.026984909677466105,
+      "chi2_p": 0.6586713307813788
+    },
+    {
+      "slice": "v0_4_generation",
+      "label": "lcc_code",
+      "n": 20367,
+      "generators": 16,
+      "cramers_v": 0.03700629441638326,
+      "chi2_p": 7.160463923319244e-06
+    },
+    {
+      "slice": "v0_4_generation",
+      "label": "lcgft_category",
+      "n": 20367,
+      "generators": 16,
+      "cramers_v": 0.028352147569063766,
+      "chi2_p": 0.18129043194116679
+    }
+  ]
+}
