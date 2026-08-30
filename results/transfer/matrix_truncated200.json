@@ -1,0 +1,80 @@
+{
+  "metric": "macro_f1",
+  "probe": "tfidf+logreg",
+  "seed": 42,
+  "balanced": false,
+  "n_per_corpus": {
+    "shelf": 62899,
+    "gutenberg": 3016,
+    "lcshbench": 4924
+  },
+  "split": {
+    "shelf": "grouped on spec_id (0 straddling)",
+    "gutenberg": "stratified by label (no spec_id in this corpus)",
+    "lcshbench": "stratified by label (no spec_id in this corpus)"
+  },
+  "truncate_words": 200,
+  "n_boot": 1000,
+  "bootstrap": "test documents resampled with replacement",
+  "matrix": {
+    "shelf": {
+      "shelf": 0.8521381606181245,
+      "gutenberg": 0.2601309343915165,
+      "lcshbench": 0.413255880559936
+    },
+    "gutenberg": {
+      "shelf": 0.26077361137508986,
+      "gutenberg": 0.44782634291823636,
+      "lcshbench": 0.21963440745379686
+    },
+    "lcshbench": {
+      "shelf": 0.4356528031387212,
+      "gutenberg": 0.2532502739496647,
+      "lcshbench": 0.5521985088753119
+    }
+  },
+  "ci": {
+    "shelf": {
+      "shelf": [
+        0.8474048223288163,
+        0.8569145094648415
+      ],
+      "gutenberg": [
+        0.23091621511285496,
+        0.28455891093242924
+      ],
+      "lcshbench": [
+        0.38613457424059516,
+        0.4348616596806624
+      ]
+    },
+    "gutenberg": {
+      "shelf": [
+        0.2549791793076396,
+        0.2658939998149804
+      ],
+      "gutenberg": [
+        0.4162153206398355,
+        0.47579775335355884
+      ],
+      "lcshbench": [
+        0.19710815924680056,
+        0.2386038438315732
+      ]
+    },
+    "lcshbench": {
+      "shelf": [
+        0.4293256608083594,
+        0.44230619538158406
+      ],
+      "gutenberg": [
+        0.22311553778169152,
+        0.2787055713791486
+      ],
+      "lcshbench": [
+        0.5273661411192604,
+        0.5734026390818321
+      ]
+    }
+  }
+}
