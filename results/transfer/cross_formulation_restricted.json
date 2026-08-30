@@ -4,11 +4,11 @@
     {
       "task": "lcc_classification",
       "corpus": "gutenberg",
-      "n_models": 17,
-      "spearman": 0.7352941176470589,
+      "n_models": 21,
+      "spearman": 0.8077922077922077,
       "ci": [
-        0.26276463262764627,
-        0.9701863354037269
+        0.4671916010498688,
+        0.9750656167979003
       ],
       "holds": true,
       "models": [
@@ -20,13 +20,17 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
         "instructor_base",
         "minilm",
         "mpnet",
+        "qwen3_embed_600m",
         "tf",
         "tfidf"
       ]
@@ -34,13 +38,13 @@
     {
       "task": "lcc_classification",
       "corpus": "lcshbench",
-      "n_models": 17,
-      "spearman": 0.5392156862745099,
+      "n_models": 21,
+      "spearman": 0.6545454545454545,
       "ci": [
-        -0.009975062344139649,
-        0.9454094292803968
+        0.22483660130718958,
+        0.9290873276428101
       ],
-      "holds": false,
+      "holds": true,
       "models": [
         "bert",
         "bge_base",
@@ -50,13 +54,17 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
         "instructor_base",
         "minilm",
         "mpnet",
+        "qwen3_embed_600m",
         "tf",
         "tfidf"
       ]
@@ -64,11 +72,11 @@
     {
       "task": "lcc_retrieval",
       "corpus": "gutenberg",
-      "n_models": 17,
-      "spearman": 0.6519607843137255,
+      "n_models": 21,
+      "spearman": 0.7402597402597402,
       "ci": [
-        0.21137206427688507,
-        0.8740740740740739
+        0.464215364412344,
+        0.8853333333333335
       ],
       "holds": true,
       "models": [
@@ -81,24 +89,28 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
         "instructor_base",
         "minilm",
         "mpnet",
+        "qwen3_embed_600m",
         "tfidf"
       ]
     },
     {
       "task": "lcc_retrieval",
       "corpus": "lcshbench",
-      "n_models": 17,
-      "spearman": 0.9093137254901962,
+      "n_models": 21,
+      "spearman": 0.8597402597402597,
       "ci": [
-        0.6625,
-        0.997496871088861
+        0.6607727570399475,
+        0.9554390563564877
       ],
       "holds": true,
       "models": [
@@ -111,24 +123,28 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
         "instructor_base",
         "minilm",
         "mpnet",
+        "qwen3_embed_600m",
         "tfidf"
       ]
     },
     {
       "task": "lcc_clustering",
       "corpus": "gutenberg",
-      "n_models": 17,
-      "spearman": 0.9191176470588237,
+      "n_models": 21,
+      "spearman": 0.9064935064935065,
       "ci": [
-        0.7580246913580246,
-        0.9823899371069184
+        0.721602101116218,
+        0.9736842105263159
       ],
       "holds": true,
       "models": [
@@ -140,13 +156,17 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
         "instructor_base",
         "minilm",
         "mpnet",
+        "qwen3_embed_600m",
         "tf",
         "tfidf"
       ]
@@ -154,11 +174,11 @@
     {
       "task": "lcc_clustering",
       "corpus": "lcshbench",
-      "n_models": 17,
-      "spearman": 0.9436274509803922,
+      "n_models": 21,
+      "spearman": 0.92987012987013,
       "ci": [
-        0.8014888337468982,
-        0.997496871088861
+        0.8078431372549021,
+        0.9789473684210529
       ],
       "holds": true,
       "models": [
@@ -170,13 +190,17 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
         "instructor_base",
         "minilm",
         "mpnet",
+        "qwen3_embed_600m",
         "tf",
         "tfidf"
       ]
@@ -184,11 +208,11 @@
     {
       "task": "same_lcc_pairs",
       "corpus": "gutenberg",
-      "n_models": 18,
-      "spearman": 0.9174406604747163,
+      "n_models": 22,
+      "spearman": 0.8746470920383964,
       "ci": [
-        0.7306889352818372,
-        0.9748163693599162
+        0.6456558773424191,
+        0.9567936327458783
       ],
       "holds": true,
       "models": [
@@ -201,13 +225,17 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
         "instructor_base",
         "minilm",
         "mpnet",
+        "qwen3_embed_600m",
         "tf",
         "tfidf"
       ]
@@ -215,11 +243,11 @@
     {
       "task": "same_lcc_pairs",
       "corpus": "lcshbench",
-      "n_models": 18,
-      "spearman": 0.9318885448916409,
+      "n_models": 22,
+      "spearman": 0.917560700169396,
       "ci": [
-        0.7133757961783439,
-        0.997920997920998
+        0.7509948834565092,
+        0.9771036061820263
       ],
       "holds": true,
       "models": [
@@ -232,13 +260,17 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
         "instructor_base",
         "minilm",
         "mpnet",
+        "qwen3_embed_600m",
         "tf",
         "tfidf"
       ]
@@ -252,17 +284,17 @@
   "clustering_dropped_by_gate": [],
   "clustering_stability": {
     "shelf": {
-      "median_rank_stability": 0.987291764871113,
+      "median_rank_stability": 0.9909937529593698,
       "floor": 0.9
     },
     "gutenberg": {
-      "median_rank_stability": 0.9587570621468926,
+      "median_rank_stability": 0.9321323629271856,
       "floor": 0.9
     },
     "lcshbench": {
-      "median_rank_stability": 0.9745762711864407,
+      "median_rank_stability": 0.9621374045801527,
       "floor": 0.9
     }
   },
-  "verdict": "CONTRADICTED: classification interval crosses zero"
+  "verdict": "BROAD CLAIM SUPPORTED"
 }

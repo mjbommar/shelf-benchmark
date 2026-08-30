@@ -4,11 +4,11 @@
     {
       "task": "lcc_classification",
       "corpus": "gutenberg",
-      "n_models": 21,
-      "spearman": 0.8584415584415584,
+      "n_models": 25,
+      "spearman": 0.8853846153846154,
       "ci": [
-        0.5923482849604222,
-        0.9815668202764976
+        0.648334624322231,
+        0.9845559845559846
       ],
       "holds": true,
       "models": [
@@ -20,7 +20,10 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
@@ -30,6 +33,7 @@
         "ogbert_110m_base",
         "ogbert_2m_sentence",
         "ogbert_v1_mlm",
+        "qwen3_embed_600m",
         "roberta",
         "tf",
         "tfidf"
@@ -38,11 +42,11 @@
     {
       "task": "lcc_classification",
       "corpus": "lcshbench",
-      "n_models": 21,
-      "spearman": 0.7506493506493507,
+      "n_models": 25,
+      "spearman": 0.7923076923076923,
       "ci": [
-        0.37638617090671883,
-        0.9660352710646637
+        0.4633009708737864,
+        0.964506172839506
       ],
       "holds": true,
       "models": [
@@ -54,7 +58,10 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
@@ -64,6 +71,7 @@
         "ogbert_110m_base",
         "ogbert_2m_sentence",
         "ogbert_v1_mlm",
+        "qwen3_embed_600m",
         "roberta",
         "tf",
         "tfidf"
@@ -72,11 +80,11 @@
     {
       "task": "lcc_retrieval",
       "corpus": "gutenberg",
-      "n_models": 21,
-      "spearman": 0.7922077922077921,
+      "n_models": 25,
+      "spearman": 0.8323076923076923,
       "ci": [
-        0.5058977719528179,
-        0.9151436031331592
+        0.6248543689320387,
+        0.9149922720247295
       ],
       "holds": true,
       "models": [
@@ -89,7 +97,10 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
@@ -99,6 +110,7 @@
         "ogbert_110m_base",
         "ogbert_2m_sentence",
         "ogbert_v1_mlm",
+        "qwen3_embed_600m",
         "roberta",
         "tfidf"
       ]
@@ -106,11 +118,11 @@
     {
       "task": "lcc_retrieval",
       "corpus": "lcshbench",
-      "n_models": 21,
-      "spearman": 0.9402597402597404,
+      "n_models": 25,
+      "spearman": 0.91,
       "ci": [
-        0.7925147734734077,
-        0.9894944189100459
+        0.782675947409126,
+        0.9635941130906275
       ],
       "holds": true,
       "models": [
@@ -123,7 +135,10 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
@@ -133,6 +148,7 @@
         "ogbert_110m_base",
         "ogbert_2m_sentence",
         "ogbert_v1_mlm",
+        "qwen3_embed_600m",
         "roberta",
         "tfidf"
       ]
@@ -140,11 +156,11 @@
     {
       "task": "lcc_clustering",
       "corpus": "gutenberg",
-      "n_models": 21,
-      "spearman": 0.8948051948051948,
+      "n_models": 25,
+      "spearman": 0.9076923076923077,
       "ci": [
-        0.6989528795811518,
-        0.9646827992151732
+        0.7726920093095425,
+        0.965034965034965
       ],
       "holds": true,
       "models": [
@@ -156,7 +172,10 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
@@ -166,6 +185,7 @@
         "ogbert_110m_base",
         "ogbert_2m_sentence",
         "ogbert_v1_mlm",
+        "qwen3_embed_600m",
         "roberta",
         "tf",
         "tfidf"
@@ -174,11 +194,11 @@
     {
       "task": "lcc_clustering",
       "corpus": "lcshbench",
-      "n_models": 21,
-      "spearman": 0.9519480519480519,
+      "n_models": 25,
+      "spearman": 0.9476923076923076,
       "ci": [
-        0.856673241288626,
-        0.9842829076620824
+        0.8654292343387472,
+        0.9737248840803712
       ],
       "holds": true,
       "models": [
@@ -190,7 +210,10 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
@@ -200,6 +223,7 @@
         "ogbert_110m_base",
         "ogbert_2m_sentence",
         "ogbert_v1_mlm",
+        "qwen3_embed_600m",
         "roberta",
         "tf",
         "tfidf"
@@ -208,11 +232,11 @@
     {
       "task": "same_lcc_pairs",
       "corpus": "gutenberg",
-      "n_models": 22,
-      "spearman": 0.9378881987577641,
+      "n_models": 26,
+      "spearman": 0.9138461538461539,
       "ci": [
-        0.8158803222094362,
-        0.9772985244040865
+        0.7712126417038818,
+        0.9656475437993818
       ],
       "holds": true,
       "models": [
@@ -225,7 +249,10 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
@@ -235,6 +262,7 @@
         "ogbert_110m_base",
         "ogbert_2m_sentence",
         "ogbert_v1_mlm",
+        "qwen3_embed_600m",
         "roberta",
         "tf",
         "tfidf"
@@ -243,11 +271,11 @@
     {
       "task": "same_lcc_pairs",
       "corpus": "lcshbench",
-      "n_models": 22,
-      "spearman": 0.9593450028232637,
+      "n_models": 26,
+      "spearman": 0.9480341880341879,
       "ci": [
-        0.8482601254991444,
-        0.9965831435079725
+        0.8444061962134252,
+        0.9855371900826446
       ],
       "holds": true,
       "models": [
@@ -260,7 +288,10 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
@@ -270,6 +301,7 @@
         "ogbert_110m_base",
         "ogbert_2m_sentence",
         "ogbert_v1_mlm",
+        "qwen3_embed_600m",
         "roberta",
         "tf",
         "tfidf"
@@ -284,15 +316,15 @@
   "clustering_dropped_by_gate": [],
   "clustering_stability": {
     "shelf": {
-      "median_rank_stability": 0.987291764871113,
+      "median_rank_stability": 0.9909937529593698,
       "floor": 0.9
     },
     "gutenberg": {
-      "median_rank_stability": 0.9587570621468926,
+      "median_rank_stability": 0.9321323629271856,
       "floor": 0.9
     },
     "lcshbench": {
-      "median_rank_stability": 0.9745762711864407,
+      "median_rank_stability": 0.9621374045801527,
       "floor": 0.9
     }
   },
