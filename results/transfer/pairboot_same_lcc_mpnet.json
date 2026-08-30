@@ -1,0 +1,13 @@
+{
+  "model": "mpnet",
+  "pairs_file": "data/hf_dataset/all/pairs/same_lcc/test.parquet",
+  "auc": 0.83092775,
+  "ci": [
+    0.8093312619265501,
+    0.8511024333646416
+  ],
+  "n_pairs": 4000,
+  "n_documents": 7516,
+  "n_boot": 2000,
+  "bootstrap": "multiplicity-weighted document cluster"
+}
