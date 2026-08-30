@@ -27,8 +27,9 @@ Driver: `$SCRATCH/newmodels.sh`, log `/tmp/shelf_newmodels.log`, progress
 `$SCRATCH/newmodels_progress.log`. One writer at a time, memory-capped,
 retries once and reports `FAIL` on a non-zero exit.
 
-Complete: `granite_small_r2`, `gte_modernbert_2k`, `embeddinggemma_300m`.
-Running: `qwen3_embed_600m`. Queued: `gte_modernbert_8k`.
+Complete: `granite_small_r2`, `gte_modernbert_2k`, `embeddinggemma_300m`,
+`qwen3_embed_600m`. Running: `gte_modernbert_8k` (the truncation arm).
+Zero CUDA OOMs across the whole sweep.
 
 Re-running the driver is safe: every call passes `--skip-existing`.
 
@@ -43,9 +44,17 @@ models land:
    claim narrows rather than disappears.
 2. **Genre-form headroom shrank.** Section 6b is built on the task topping out
    at 0.2106. EmbeddingGemma reaches 0.2605, a 24% relative jump.
-3. **Not recency dominance.** MPNet (2020) still leads retrieval and pairs;
-   granite (48M, 2025) leads clustering at 0.4905 against the old best 0.4482.
-   Task-specific, which is the more interesting result.
+3. **Not recency dominance, but close.** With four models in, 2025 encoders
+   lead four of five tasks. Qwen3-0.6B takes retrieval (0.7104 against MPNet's
+   0.6806) and clustering (0.5152 against the old best 0.4482); EmbeddingGemma
+   takes classification and genre form. But **MPNet (2020) still leads pair
+   classification at 0.8474**, no 2025 model beats it, and `gte_modernbert_2k`
+   sits at #12 on that task despite being new. Three different 2025 models hold
+   the three new top spots rather than one dominating, which supports section
+   6b's claim that the tasks measure different capabilities.
+
+   Ceilings that moved: clustering 0.4482 -> 0.5152 (+15%), genre form
+   0.2106 -> 0.2605 (+24%), subject classification 0.8686 -> 0.8887.
 4. **Model counts move everywhere.** 30 configured models now. Every "21
    distinct models" and "22 configurations" figure in sections 4b, 4c, 5, 6b,
    7 and the abstract has to be recomputed, not edited by hand.
