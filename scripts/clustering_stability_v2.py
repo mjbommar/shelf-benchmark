@@ -105,7 +105,33 @@ def main() -> int:
         )
 
     if len(per_model) < 6:
-        logger.error("too few models to assess stability")
+        # Write the per-model values anyway. Stability needs three models,
+        # but the ARI measurements are valid on their own and a caller
+        # measuring a small batch for a merge should not lose an hour of GPU
+        # work because this script cannot compute one summary statistic.
+        logger.error(
+            "too few models to assess stability; writing per-model values only"
+        )
+        Path(args.output).write_text(
+            json.dumps(
+                {
+                    "task": args.task,
+                    "seeds": list(SEEDS),
+                    "n_models": len(per_model),
+                    "per_model": {
+                        m: {str(k): v for k, v in d.items()}
+                        for m, d in per_model.items()
+                    },
+                    "median_ari": {
+                        m: statistics.median(d.values()) for m, d in per_model.items()
+                    },
+                    "rank_stability": None,
+                    "note": "fewer than three models: stability not computed",
+                    "measured_through": "ClusteringEvaluator (not a reimplementation)",
+                },
+                indent=2,
+            )
+        )
         return 1
 
     models = sorted(per_model)
