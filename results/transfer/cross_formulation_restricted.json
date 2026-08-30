@@ -1,0 +1,268 @@
+{
+  "threshold": 0.6,
+  "pairs": [
+    {
+      "task": "lcc_classification",
+      "corpus": "gutenberg",
+      "n_models": 17,
+      "spearman": 0.7352941176470589,
+      "ci": [
+        0.26276463262764627,
+        0.9701863354037269
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_classification",
+      "corpus": "lcshbench",
+      "n_models": 17,
+      "spearman": 0.5392156862745099,
+      "ci": [
+        -0.009975062344139649,
+        0.9454094292803968
+      ],
+      "holds": false,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_retrieval",
+      "corpus": "gutenberg",
+      "n_models": 17,
+      "spearman": 0.6519607843137255,
+      "ci": [
+        0.21137206427688507,
+        0.8740740740740739
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "bm25",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_retrieval",
+      "corpus": "lcshbench",
+      "n_models": 17,
+      "spearman": 0.9093137254901962,
+      "ci": [
+        0.6625,
+        0.997496871088861
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "bm25",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_clustering",
+      "corpus": "gutenberg",
+      "n_models": 17,
+      "spearman": 0.9191176470588237,
+      "ci": [
+        0.7580246913580246,
+        0.9823899371069184
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_clustering",
+      "corpus": "lcshbench",
+      "n_models": 17,
+      "spearman": 0.9436274509803922,
+      "ci": [
+        0.8014888337468982,
+        0.997496871088861
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "same_lcc_pairs",
+      "corpus": "gutenberg",
+      "n_models": 18,
+      "spearman": 0.9174406604747163,
+      "ci": [
+        0.7306889352818372,
+        0.9748163693599162
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "bm25",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "same_lcc_pairs",
+      "corpus": "lcshbench",
+      "n_models": 18,
+      "spearman": 0.9318885448916409,
+      "ci": [
+        0.7133757961783439,
+        0.997920997920998
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "bm25",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "tf",
+        "tfidf"
+      ]
+    }
+  ],
+  "clustering_uses_seed_median": [
+    "gutenberg",
+    "lcshbench",
+    "shelf"
+  ],
+  "clustering_dropped_by_gate": [],
+  "clustering_stability": {
+    "shelf": {
+      "median_rank_stability": 0.987291764871113,
+      "floor": 0.9
+    },
+    "gutenberg": {
+      "median_rank_stability": 0.9587570621468926,
+      "floor": 0.9
+    },
+    "lcshbench": {
+      "median_rank_stability": 0.9745762711864407,
+      "floor": 0.9
+    }
+  },
+  "verdict": "CONTRADICTED: classification interval crosses zero"
+}
