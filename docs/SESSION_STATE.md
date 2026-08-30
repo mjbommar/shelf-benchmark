@@ -80,6 +80,34 @@ single-seed numbers quoted elsewhere: `granite_small_r2` 0.4806 (single seed
 said 0.4905, which is why the pre-registration wants medians),
 `gte_modernbert_2k` 0.3802.
 
+## Open question: batch size moves the clustering score
+
+`granite_small_r2` on the pooled corpus gives median ARI 0.4806 when embedded
+at batch 32 and 0.4741 at batch 16. Same model, same fixed seeds (0-4), same
+corpus. The difference, 0.0065, is far larger than the 1.4e-4 determinism
+jitter measured earlier.
+
+The mechanism is almost certainly the one already documented: batch
+composition decides padding, padding perturbs embeddings slightly, and ARI
+amplifies small perturbations because a tiny shift can flip cluster
+assignments near a boundary. That is precisely why the pre-registration
+requires a five-seed median and a stability gate.
+
+Two things this does **not** break:
+
+- The 22 previously measured models are unaffected. Their context is 512 or
+  less, so the batch rule gives them 32, which is what they already ran at.
+  The merge does not mix conditions for them.
+- Rank stability compares orderings across seeds using one cached embedding
+  per model, so a model's batch is constant within its own stability figure.
+
+What it does mean: the five new models are measured at batch 16 or 4 while
+the older ones are at 32, and part of any difference between them is batch,
+not model. **Measure this after the gate finishes** by running one model at
+two batch sizes on the same corpus and seeds, then either disclose the size
+of the effect or note that the ordering is unaffected. Do not report the
+clustering table as if all models were measured identically without checking.
+
 ## Analysis to redo after the sweep
 
 All of these read the results directories, so they must be re-run, not patched:
