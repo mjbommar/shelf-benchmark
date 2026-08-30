@@ -1,0 +1,300 @@
+{
+  "threshold": 0.6,
+  "pairs": [
+    {
+      "task": "lcc_classification",
+      "corpus": "gutenberg",
+      "n_models": 21,
+      "spearman": 0.8584415584415584,
+      "ci": [
+        0.5923482849604222,
+        0.9815668202764976
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_classification",
+      "corpus": "lcshbench",
+      "n_models": 21,
+      "spearman": 0.7506493506493507,
+      "ci": [
+        0.37638617090671883,
+        0.9660352710646637
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_retrieval",
+      "corpus": "gutenberg",
+      "n_models": 21,
+      "spearman": 0.7922077922077921,
+      "ci": [
+        0.5058977719528179,
+        0.9151436031331592
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "bm25",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_retrieval",
+      "corpus": "lcshbench",
+      "n_models": 21,
+      "spearman": 0.9402597402597404,
+      "ci": [
+        0.7925147734734077,
+        0.9894944189100459
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "bm25",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_clustering",
+      "corpus": "gutenberg",
+      "n_models": 21,
+      "spearman": 0.8948051948051948,
+      "ci": [
+        0.6989528795811518,
+        0.9646827992151732
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "lcc_clustering",
+      "corpus": "lcshbench",
+      "n_models": 21,
+      "spearman": 0.9519480519480519,
+      "ci": [
+        0.856673241288626,
+        0.9842829076620824
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "same_lcc_pairs",
+      "corpus": "gutenberg",
+      "n_models": 22,
+      "spearman": 0.9378881987577641,
+      "ci": [
+        0.8158803222094362,
+        0.9772985244040865
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "bm25",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    },
+    {
+      "task": "same_lcc_pairs",
+      "corpus": "lcshbench",
+      "n_models": 22,
+      "spearman": 0.9593450028232637,
+      "ci": [
+        0.8482601254991444,
+        0.9965831435079725
+      ],
+      "holds": true,
+      "models": [
+        "bert",
+        "bge_base",
+        "bge_large",
+        "bge_small",
+        "bm25",
+        "distilbert_base_uncased",
+        "e5_base",
+        "e5_large",
+        "e5_small",
+        "gte_base",
+        "gte_small",
+        "gtr_t5_base",
+        "gtr_t5_large",
+        "instructor_base",
+        "minilm",
+        "mpnet",
+        "ogbert_110m_base",
+        "ogbert_2m_sentence",
+        "ogbert_v1_mlm",
+        "roberta",
+        "tf",
+        "tfidf"
+      ]
+    }
+  ],
+  "clustering_uses_seed_median": [
+    "gutenberg",
+    "lcshbench",
+    "shelf"
+  ],
+  "clustering_dropped_by_gate": [],
+  "clustering_stability": {
+    "shelf": {
+      "median_rank_stability": 0.987291764871113,
+      "floor": 0.9
+    },
+    "gutenberg": {
+      "median_rank_stability": 0.9587570621468926,
+      "floor": 0.9
+    },
+    "lcshbench": {
+      "median_rank_stability": 0.9745762711864407,
+      "floor": 0.9
+    }
+  },
+  "verdict": "BROAD CLAIM SUPPORTED"
+}
