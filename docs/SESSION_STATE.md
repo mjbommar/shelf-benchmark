@@ -80,6 +80,24 @@ single-seed numbers quoted elsewhere: `granite_small_r2` 0.4806 (single seed
 said 0.4905, which is why the pre-registration wants medians),
 `gte_modernbert_2k` 0.3802.
 
+## Clustering stability weakened, and the paper must say so
+
+Adding the five models lowered the seed-to-seed stability of the clustering
+ranking on Gutenberg:
+
+| corpus | 22 models | 27 models |
+|---|---|---|
+| Gutenberg median | 0.9588 | **0.9321** |
+| Gutenberg worst seed pair | 0.9175 | **0.8923** |
+| LCSHBench median | 0.9746 | 0.9621 |
+| LCSHBench worst seed pair | 0.9582 | 0.9176 |
+
+The pre-registered rule is a floor of 0.90 **on the median**, so it passes and
+clustering stays in the claim. But one of ten seed pairs on Gutenberg is now
+below the floor, where none was before. Report it as "passes the frozen test,
+with one seed pair below the floor on one corpus", not as clearing
+comfortably. Do not reinterpret the rule after seeing the number.
+
 ## Open question: batch size moves the clustering score
 
 `granite_small_r2` on the pooled corpus gives median ARI 0.4806 when embedded
