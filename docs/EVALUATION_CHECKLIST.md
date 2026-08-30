@@ -135,6 +135,22 @@ any results go into a paper, a dataset card, or a message to the user.
       finished. Compare per-task counts across arms of the same shape --
       cls=16 next to ret=22 is the tell.*
 
+- [ ] **A5. Check every table number against the file that produced it.**
+      *All tables are hand-transcribed. Run
+      `uv run python scripts/verify_paper_numbers.py`; it reads the LaTeX and
+      compares 153 numbers to the results on disk. Prove it can fail before
+      trusting a pass -- perturb one number and confirm it exits 1.*
+- [ ] **A6. Confirm which metric a table reports before comparing to it.**
+      *Twice in one audit the checker read the wrong field and every row
+      looked wrong: clustering `primary_score` is v_measure, not the ARI the
+      paper reports, and pair `primary_score` is a degenerate f1 rather than
+      auc_roc. All-rows-fail means the checker is wrong, not the paper.*
+- [ ] **A7. Hash model weights before counting models.**
+      *Two config entries with different names, different described parameter
+      counts, and scores differing in the seventh decimal turned out to be one
+      556 MB blob with one SHA-256. Counting both raised every correlation
+      they entered by up to 0.027.*
+
 ## G. Reproducibility
 
 - [ ] **G1. Never overwrite an aggregate from a partial run.** *Violated:
