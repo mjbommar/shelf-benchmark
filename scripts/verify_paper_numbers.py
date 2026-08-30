@@ -108,6 +108,74 @@ SUMMARY = {
 }
 
 
+# Tables whose numbers come from a derived artifact rather than per-model
+# result files. Each entry maps a row label in the table to the artifact row
+# and the fields to compare, in table-column order.
+ARTIFACT_TABLES = {
+    "tab:masking": {
+        "file": "06_surface.tex",
+        "artifact": "results/transfer/masking_ablation.json",
+        "task": "lcc_classification",
+        "rows": {
+            "shelf": "SHELF",
+            "gutenberg": "Gutenberg",
+            "lcshbench": "LCSHBench",
+        },
+        "fields": [
+            "mean_unmasked",
+            "mean_masked",
+            "delta_masked",
+            "mean_sham",
+            "delta_sham",
+        ],
+    },
+}
+
+
+def check_artifact_tables(sections: Path, tol: float) -> tuple[int, int]:
+    """Compare tables built from a derived JSON artifact."""
+    checked = bad = 0
+    for label, spec in ARTIFACT_TABLES.items():
+        path = Path(spec["artifact"])
+        if not path.exists():
+            logger.warning(f"  {label}: artifact {path} missing")
+            continue
+        data = json.loads(path.read_text())
+        rows = {
+            (r["corpus"], r["task"]): r
+            for r in data.get("rows", [])
+            if "corpus" in r and "task" in r
+        }
+        tex = (sections / spec["file"]).read_text()
+        blk = table_block(tex, label)
+        if blk is None:
+            logger.warning(f"  {label}: not found in {spec['file']}")
+            continue
+        for corpus, display in spec["rows"].items():
+            line = next(
+                (ln for ln in blk.splitlines() if ln.strip().startswith(display)), None
+            )
+            if line is None:
+                logger.info(f"  {RED}MISMATCH{RESET} {label}: no row for {display}")
+                bad += 1
+                continue
+            vals = [float(x) for x in re.findall(r"-?\d\.\d{4}", line)]
+            art = rows.get((corpus, spec["task"]))
+            if art is None or len(vals) != len(spec["fields"]):
+                logger.info(f"  {RED}MISMATCH{RESET} {label} {display}: shape")
+                bad += 1
+                continue
+            for field, paper in zip(spec["fields"], vals, strict=True):
+                checked += 1
+                if abs(round(art[field], 4) - paper) >= tol:
+                    bad += 1
+                    logger.info(
+                        f"  {RED}MISMATCH{RESET} {label} {display} {field}: "
+                        f"paper={paper} artifact={round(art[field], 4)}"
+                    )
+    return checked, bad
+
+
 def table_block(tex: str, label: str) -> str | None:
     for m in re.finditer(r"\\begin\{table\}.*?\\end\{table\}", tex, re.S):
         if label in m.group(0):
@@ -223,6 +291,10 @@ def main() -> int:
                             f"  {RED}MISMATCH{RESET} {label} bm25 {t}: "
                             f"paper={paper} artifact={art if art is None else round(art, 4)}"
                         )
+
+    c2, b2 = check_artifact_tables(sections, args.tol)
+    checked += c2
+    bad += b2
 
     if checked == 0:
         logger.error(
