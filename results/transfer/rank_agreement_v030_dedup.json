@@ -4,10 +4,11 @@
   "n_bootstrap": 2000,
   "per_corpus_models": {
     "shelf_v030": 24,
-    "gutenberg": 21,
-    "lcshbench": 21
+    "gutenberg": 25,
+    "lcshbench": 25
   },
   "excluded_models": [
+    "gte_modernbert_8k",
     "ogbert_110m_sentence"
   ],
   "pairs": [
@@ -82,13 +83,13 @@
     {
       "a": "gutenberg",
       "b": "lcshbench",
-      "n_models": 21,
-      "spearman": 0.9597402597402598,
+      "n_models": 25,
+      "spearman": 0.9630769230769232,
       "spearman_ci": [
-        0.8472584856396866,
-        0.9882429784454606
+        0.8802163833075735,
+        0.9876017047655947
       ],
-      "kendall": 0.8476190476190477,
+      "kendall": 0.8533333333333332,
       "models": [
         "bert",
         "bge_base",
@@ -98,7 +99,10 @@
         "e5_base",
         "e5_large",
         "e5_small",
+        "embeddinggemma_300m",
+        "granite_small_r2",
         "gte_base",
+        "gte_modernbert_2k",
         "gte_small",
         "gtr_t5_base",
         "gtr_t5_large",
@@ -108,6 +112,7 @@
         "ogbert_110m_base",
         "ogbert_2m_sentence",
         "ogbert_v1_mlm",
+        "qwen3_embed_600m",
         "roberta",
         "tf",
         "tfidf"
