@@ -125,6 +125,16 @@ def main() -> int:
         ),
     )
     ap.add_argument("--output", default="results/transfer/masking_ablation.json")
+    ap.add_argument(
+        "--exclude-models",
+        default="ogbert_110m_sentence",
+        help=(
+            "Model keys to drop before correlating. Defaults to the weight "
+            "duplicate: ogbert-110m-base and ogbert-110m-sentence are one "
+            "safetensors blob with one SHA-256, and a pair that is one model "
+            "always agrees with itself."
+        ),
+    )
     args = ap.parse_args()
 
     # A corpus is either a prefix (base, base_masked, base_sham) or an explicit
@@ -142,7 +152,15 @@ def main() -> int:
         else:
             ap.error(f"--corpus {n}: expected BASEDIR or UNMASKED:MASKED:SHAM")
 
-    report: dict = {"conditions": ["unmasked", "masked", "sham"], "rows": []}
+    excluded = {m.strip() for m in args.exclude_models.split(",") if m.strip()}
+    if excluded:
+        logger.info(f"excluding {len(excluded)}: {', '.join(sorted(excluded))}")
+
+    report: dict = {
+        "conditions": ["unmasked", "masked", "sham"],
+        "excluded_models": sorted(excluded),
+        "rows": [],
+    }
 
     for task in PRIMARY:
         logger.info(f"\n=== {task} ===")
@@ -156,7 +174,7 @@ def main() -> int:
             u = load(Path(f"{d_u}/baselines"), task)
             m = load(Path(f"{d_m}/baselines"), task)
             s = load(Path(f"{d_s}/baselines"), task)
-            shared = sorted(set(u) & set(m) & set(s))
+            shared = sorted((set(u) & set(m) & set(s)) - excluded)
             if len(shared) < 4:
                 logger.info(f"{name:<12}{len(shared):>4}   incomplete")
                 continue
@@ -222,7 +240,10 @@ def main() -> int:
             for name, sc in masked_scores.items():
                 if name == "shelf":
                     continue
-                shared = sorted(set(masked_scores["shelf"]) & set(sc))
+                # Same exclusion as the per-corpus rows above: without it the
+                # cross-corpus lines silently ran on 22 models while the table
+                # above them ran on 21.
+                shared = sorted((set(masked_scores["shelf"]) & set(sc)) - excluded)
                 if len(shared) < 4:
                     continue
                 rho = spearman(
