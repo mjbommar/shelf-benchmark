@@ -13,7 +13,7 @@ SHELF evaluates LLM fitness across classification, retrieval, and clustering tas
 
 ## Dataset statistics
 
-The released corpus pools the v0.3.1 and v0.4.0 generations.
+The aggregate `all` configuration is the primary released corpus.
 
 | Metric | Value |
 |--------|-------|
@@ -26,19 +26,18 @@ The released corpus pools the v0.3.1 and v0.4.0 generations.
 | LCGFT forms | 133 |
 | Writing registers | 8 |
 
-The `v0_4_core` slice holds 18,345 documents from 15 current-generation models
-across 11 laboratories, with the largest single model at 9.24%. Use it when
-generator balance matters; use `all` when sample count matters.
+The corpus includes a generator-balanced factorial component of 18,345
+documents from 15 models across 11 laboratories. Use `all` for the complete
+62,899-document corpus and `v0_4_core` when generator balance or replicated
+specifications matter.
 
 ## Generation Models
 
-Documents are synthetically generated using multiple frontier language models to reduce single-model biases:
-
-| Provider | Models | Corpus Share |
-|----------|--------|--------------|
-| **OpenAI** | GPT-5.1, GPT-5.2 | ~94% |
-| **Google** | Gemini 2.5 Flash, Flash Lite, Pro; Gemini 3 Pro Preview | ~3% |
-| **Anthropic** | Claude Haiku 4.5, Sonnet 4.5, Opus 4.5 | ~3% |
+The aggregate corpus contains documents from 25 writing models. Its factorial
+component contains 15 models from Anthropic, OpenAI, Google, Alibaba,
+DeepSeek, Zhipu, Moonshot, MiniMax, Meta, Mistral, and xAI. The aggregate
+corpus is not generator-balanced: its largest writing model supplies 47.7% of
+documents. In the factorial component, the largest share is 9.24%.
 
 Each document includes generation metadata (`model`, `temperature`, `top_p`) for filtering or analysis by source model.
 
@@ -162,8 +161,8 @@ The benchmark dataset is available on HuggingFace: [mjbommar/SHELF](https://hugg
 ```python
 from datasets import load_dataset
 
-# Load the main dataset
-dataset = load_dataset("mjbommar/SHELF")
+# Load the complete 62,899-document corpus
+dataset = load_dataset("mjbommar/SHELF", "all")
 
 # Load pair classification subsets
 lcc_pairs = load_dataset("mjbommar/SHELF", name="same_lcc_pairs")
@@ -175,7 +174,7 @@ form_pairs = load_dataset("mjbommar/SHELF", name="same_form_pairs")
 | Config | Description | Train | Val | Test |
 |--------|-------------|-------|-----|------|
 | `all` | Pooled corpus, every document | 37,795 | 12,600 | 12,504 |
-| `default` | The v0.3.1 generation | 25,569 | 8,523 | 8,524 |
+| `default` | Original 42,532-document release | 25,518 | 8,507 | 8,507 |
 | `same_lcc_pairs` | Document pairs labeled by LCC match | 20,000 | 4,000 | 4,000 |
 | `same_form_pairs` | Document pairs labeled by LCGFT form match | 20,000 | 4,000 | 4,000 |
 | `same_register_pairs` | Document pairs labeled by register match | 20,000 | 4,000 | 4,000 |
