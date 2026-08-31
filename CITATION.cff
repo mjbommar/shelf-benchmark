@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use SHELF, please cite the dataset and the paper."
-title: "SHELF: A Factorial Benchmark for Bibliographic Classification"
+title: "SHELF: A Synthetic Harness for Multi-Task Bibliographic Benchmarking"
 abstract: >-
   A benchmark for bibliographic classification built from 62,899
   model-written documents labelled with Library of Congress classes and
