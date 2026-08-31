@@ -89,3 +89,14 @@ data/hf_dataset/transfer_lcshbench/
 data/transfer/cache/
 data/hf_cache/
 .archive/
+
+# Fine-tuning weights and optimiser state. These are multi-gigabyte LFS
+# objects, are not used anywhere in the paper (check_evaluation.py excludes
+# fine-tuned models from every baseline table), and are reproducible from the
+# training scripts. The metrics, configs and tokenizers stay.
+results/finetune/**/*.safetensors
+results/finetune/**/optimizer.pt
+results/finetune/**/scheduler.pt
+results/finetune/**/rng_state.pth
+results/finetune/**/scaler.pt
+results/finetune/**/training_args.bin

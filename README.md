@@ -11,18 +11,24 @@ SHELF evaluates LLM fitness across classification, retrieval, and clustering tas
 - **LCSH** (Library of Congress Subject Headings): 112 topics and 44 geographic terms
 - **LCDGT** (Library of Congress Demographic Group Terms): 25 audience types
 
-## Dataset Statistics (v0.3.0)
+## Dataset statistics
+
+The released corpus pools the v0.3.1 and v0.4.0 generations.
 
 | Metric | Value |
 |--------|-------|
-| Total documents | 42,616 |
-| Train split | 25,569 (60%) |
-| Validation split | 8,523 (20%) |
-| Test split | 8,524 (20%) |
-| Generation models | 9 |
+| Total documents | 62,899 |
+| Train split | 37,795 |
+| Validation split | 12,600 |
+| Test split | 12,504 |
+| Generation models | 25 |
 | LCC classes | 21 |
 | LCGFT forms | 133 |
 | Writing registers | 8 |
+
+The `v0_4_core` slice holds 18,345 documents from 15 current-generation models
+across 11 laboratories, with the largest single model at 9.24%. Use it when
+generator balance matters; use `all` when sample count matters.
 
 ## Generation Models
 
@@ -168,7 +174,8 @@ form_pairs = load_dataset("mjbommar/SHELF", name="same_form_pairs")
 
 | Config | Description | Train | Val | Test |
 |--------|-------------|-------|-----|------|
-| `default` | Individual documents with all metadata | 25,569 | 8,523 | 8,524 |
+| `all` | Pooled corpus, every document | 37,795 | 12,600 | 12,504 |
+| `default` | The v0.3.1 generation | 25,569 | 8,523 | 8,524 |
 | `same_lcc_pairs` | Document pairs labeled by LCC match | 20,000 | 4,000 | 4,000 |
 | `same_form_pairs` | Document pairs labeled by LCGFT form match | 20,000 | 4,000 | 4,000 |
 | `same_register_pairs` | Document pairs labeled by register match | 20,000 | 4,000 | 4,000 |

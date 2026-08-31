@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use SHELF, please cite the dataset and the paper."
+title: "SHELF: A Factorial Benchmark for Bibliographic Classification"
+abstract: >-
+  A benchmark for bibliographic classification built from 62,899
+  model-written documents labelled with Library of Congress classes and
+  genre terms, with a factorial slice that varies subject, genre, audience
+  and writing conditions independently.
+type: dataset
+license: CC-BY-4.0
+authors:
+  - family-names: Bommarito
+    given-names: Michael J.
+    email: michael.bommarito@gmail.com
+repository-code: "https://github.com/mjbommar/shelf-benchmark"
+url: "https://huggingface.co/datasets/mjbommar/SHELF"
+keywords:
+  - bibliographic classification
+  - text embeddings
+  - benchmark validity
+  - Library of Congress Classification
