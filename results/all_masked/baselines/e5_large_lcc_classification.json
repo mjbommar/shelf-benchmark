@@ -15,6 +15,134 @@
     "num_correct": 10371,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.8811320754716981,
+      "recall": 0.7706270627062707,
+      "f1": 0.8221830985915493,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.7544169611307421,
+      "recall": 0.7152428810720268,
+      "f1": 0.7343078245915735,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.874031007751938,
+      "recall": 0.799645390070922,
+      "f1": 0.8351851851851851,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.8148820326678766,
+      "recall": 0.7421487603305785,
+      "f1": 0.7768166089965398,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8656462585034014,
+      "recall": 0.8222940226171244,
+      "f1": 0.8434134217067109,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.7528301886792453,
+      "recall": 0.6797274275979557,
+      "f1": 0.7144136078782453,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.9131238447319778,
+      "recall": 0.8790035587188612,
+      "f1": 0.8957388939256573,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.8261538461538461,
+      "recall": 0.8578274760383386,
+      "f1": 0.841692789968652,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.7073170731707317,
+      "recall": 0.7173144876325088,
+      "f1": 0.712280701754386,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.7963246554364471,
+      "recall": 0.8482871125611745,
+      "f1": 0.8214849921011058,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.8296178343949044,
+      "recall": 0.8712374581939799,
+      "f1": 0.8499184339314845,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.7388059701492538,
+      "recall": 0.856401384083045,
+      "f1": 0.7932692307692307,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7794612794612794,
+      "recall": 0.8080279232111692,
+      "f1": 0.7934875749785776,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.7327102803738318,
+      "recall": 0.7088607594936709,
+      "f1": 0.7205882352941176,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8165413533834587,
+      "recall": 0.8537735849056604,
+      "f1": 0.8347425057647964,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8228228228228228,
+      "recall": 0.9272419627749577,
+      "f1": 0.8719172633253779,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9500831946755408,
+      "recall": 0.9284552845528455,
+      "f1": 0.9391447368421053,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.8191653786707882,
+      "recall": 0.848,
+      "f1": 0.8333333333333334,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.8957264957264958,
+      "recall": 0.9003436426116839,
+      "f1": 0.8980291345329906,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9386792452830188,
+      "recall": 0.9598070739549839,
+      "f1": 0.9491255961844197,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.9134948096885813,
+      "recall": 0.9010238907849829,
+      "f1": 0.9072164948453608,
+      "support": 586
+    }
+  },
   "num_samples": 12504,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T16:49:13.016348+00:00",
+    "timestamp": "2026-08-29T23:00:32.400497+00:00",
     "model_name": "E5-large",
     "data_commit": "7123a65",
-    "code_commit": "dcd852f",
+    "code_commit": "00ea683",
     "extra": {
       "embedding_dim": 1024,
       "classifier": "LogisticRegression",
@@ -42,13 +170,14 @@
     "size_category": "300M-1B",
     "flops_per_token": 670283776,
     "relative_compute": 14.7554,
-    "shelf_eff": null,
-    "shelf_compute": null,
-    "pareto_optimal": null,
-    "size_rank": null,
+    "shelf_eff": 80.5722,
+    "shelf_compute": 0.5248,
+    "pareto_optimal": false,
+    "size_rank": 2,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  }
+  },
+  "shelf_score": 0.686896
 }

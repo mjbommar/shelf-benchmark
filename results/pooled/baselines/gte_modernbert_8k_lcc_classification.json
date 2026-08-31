@@ -1,0 +1,186 @@
+{
+  "model": "GTE-ModernBERT-8k",
+  "model_key": "gte_modernbert_8k",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.8655046280225301,
+  "metrics": {
+    "accuracy": 0.8667626359564939,
+    "macro_f1": 0.8655046280225301,
+    "micro_f1": 0.8667626359564939,
+    "weighted_f1": 0.8665306476047312,
+    "num_samples": 12504,
+    "num_correct": 10838,
+    "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.9353146853146853,
+      "recall": 0.8828382838283828,
+      "f1": 0.9083191850594228,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.7981818181818182,
+      "recall": 0.7353433835845896,
+      "f1": 0.7654751525719268,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8923933209647495,
+      "recall": 0.8528368794326241,
+      "f1": 0.8721668177697189,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.8198970840480274,
+      "recall": 0.7900826446280992,
+      "f1": 0.8047138047138047,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8949211908931699,
+      "recall": 0.8255250403877221,
+      "f1": 0.8588235294117647,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.7982142857142858,
+      "recall": 0.7614991482112436,
+      "f1": 0.7794245858761988,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.947069943289225,
+      "recall": 0.891459074733096,
+      "f1": 0.918423464711274,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.8683001531393568,
+      "recall": 0.9057507987220448,
+      "f1": 0.8866301798279906,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.773037542662116,
+      "recall": 0.8003533568904594,
+      "f1": 0.7864583333333334,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.8723747980613893,
+      "recall": 0.8809135399673735,
+      "f1": 0.8766233766233766,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.8693548387096774,
+      "recall": 0.9013377926421404,
+      "f1": 0.8850574712643678,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.803486529318542,
+      "recall": 0.8771626297577855,
+      "f1": 0.8387096774193549,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7770491803278688,
+      "recall": 0.8272251308900523,
+      "f1": 0.801352493660186,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.7495361781076066,
+      "recall": 0.7305605786618445,
+      "f1": 0.73992673992674,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8655589123867069,
+      "recall": 0.9009433962264151,
+      "f1": 0.8828967642526965,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.874806800618238,
+      "recall": 0.9576988155668359,
+      "f1": 0.9143780290791599,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9758620689655172,
+      "recall": 0.9203252032520325,
+      "f1": 0.9472803347280335,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.8850393700787401,
+      "recall": 0.8992,
+      "f1": 0.8920634920634921,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.9087837837837838,
+      "recall": 0.9243986254295533,
+      "f1": 0.9165247018739353,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9429012345679012,
+      "recall": 0.9823151125401929,
+      "f1": 0.9622047244094488,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.9446366782006921,
+      "recall": 0.931740614334471,
+      "f1": 0.9381443298969072,
+      "support": 586
+    }
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "bd842c503c69480055f9646139fab84f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-30T15:55:03.051567+00:00",
+    "model_name": "GTE-ModernBERT-8k",
+    "data_commit": "7123a65",
+    "code_commit": "8a167a2",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 37795,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
+    }
+  },
+  "efficiency": {
+    "num_params": 149014272,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 298028544,
+    "relative_compute": 6.5607,
+    "shelf_eff": 57.3677,
+    "shelf_compute": 0.3885,
+    "pareto_optimal": false,
+    "size_rank": 2,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.468879
+}

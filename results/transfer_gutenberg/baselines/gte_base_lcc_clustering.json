@@ -52,7 +52,7 @@
     "shelf_eff": 53.7302,
     "shelf_compute": 0.3691,
     "pareto_optimal": false,
-    "size_rank": 2,
+    "size_rank": 4,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,

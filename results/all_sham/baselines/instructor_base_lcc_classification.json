@@ -15,6 +15,134 @@
     "num_correct": 10281,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.9236641221374046,
+      "recall": 0.7986798679867987,
+      "f1": 0.856637168141593,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.6987522281639929,
+      "recall": 0.6566164154103853,
+      "f1": 0.6770293609671848,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8619329388560157,
+      "recall": 0.774822695035461,
+      "f1": 0.8160597572362278,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.8305400372439479,
+      "recall": 0.7371900826446282,
+      "f1": 0.7810858143607706,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8626086956521739,
+      "recall": 0.8012924071082391,
+      "f1": 0.830820770519263,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.7617260787992496,
+      "recall": 0.6916524701873935,
+      "f1": 0.725,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8939393939393939,
+      "recall": 0.8398576512455516,
+      "f1": 0.8660550458715597,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.8323076923076923,
+      "recall": 0.8642172523961661,
+      "f1": 0.8479623824451411,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.7008695652173913,
+      "recall": 0.7120141342756183,
+      "f1": 0.7063978965819456,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.7853881278538812,
+      "recall": 0.8417618270799347,
+      "f1": 0.8125984251968504,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.8377049180327869,
+      "recall": 0.8545150501672241,
+      "f1": 0.8460264900662252,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.6906474820143885,
+      "recall": 0.8304498269896193,
+      "f1": 0.7541241162608012,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7441471571906354,
+      "recall": 0.7766143106457243,
+      "f1": 0.7600341588385995,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6873857404021938,
+      "recall": 0.6799276672694394,
+      "f1": 0.6836363636363636,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8379629629629629,
+      "recall": 0.8537735849056604,
+      "f1": 0.8457943925233645,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8421052631578947,
+      "recall": 0.9475465313028765,
+      "f1": 0.89171974522293,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9353233830845771,
+      "recall": 0.9170731707317074,
+      "f1": 0.9261083743842364,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.834375,
+      "recall": 0.8544,
+      "f1": 0.8442687747035573,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.8764415156507414,
+      "recall": 0.9140893470790378,
+      "f1": 0.894869638351556,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9138972809667674,
+      "recall": 0.9726688102893891,
+      "f1": 0.942367601246106,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.9243986254295533,
+      "recall": 0.9180887372013652,
+      "f1": 0.9212328767123288,
+      "support": 586
+    }
+  },
   "num_samples": 12504,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T16:44:51.506422+00:00",
+    "timestamp": "2026-08-29T21:32:24.825475+00:00",
     "model_name": "Instructor-base",
     "data_commit": "7123a65",
-    "code_commit": "dcd852f",
+    "code_commit": "6ea0260",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",
@@ -42,8 +170,8 @@
     "size_category": "100M-300M",
     "flops_per_token": 218964480,
     "relative_compute": 4.8202,
-    "shelf_eff": 102.0566,
-    "shelf_compute": 0.7011,
+    "shelf_eff": 86.3435,
+    "shelf_compute": 0.5931,
     "pareto_optimal": false,
     "size_rank": 5,
     "num_params_torch": null,
@@ -51,5 +179,5 @@
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.820468
+  "shelf_score": 0.694145
 }

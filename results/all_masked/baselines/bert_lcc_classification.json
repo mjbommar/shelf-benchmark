@@ -1,0 +1,183 @@
+{
+  "model": "BERT",
+  "model_key": "bert",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.7667915104970897,
+  "metrics": {
+    "accuracy": 0.7683941138835573,
+    "macro_f1": 0.7667915104970897,
+    "micro_f1": 0.7683941138835573,
+    "weighted_f1": 0.7680093496764138,
+    "num_samples": 12504,
+    "num_correct": 9608,
+    "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.7689393939393939,
+      "recall": 0.66996699669967,
+      "f1": 0.7160493827160493,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.6563011456628478,
+      "recall": 0.6716917922948074,
+      "f1": 0.6639072847682119,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8011472275334608,
+      "recall": 0.7429078014184397,
+      "f1": 0.7709291628334867,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.7447183098591549,
+      "recall": 0.6991735537190082,
+      "f1": 0.7212276214833759,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8399280575539568,
+      "recall": 0.7544426494345718,
+      "f1": 0.7948936170212766,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.6711026615969582,
+      "recall": 0.6013628620102215,
+      "f1": 0.6343216531895777,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8227848101265823,
+      "recall": 0.8096085409252669,
+      "f1": 0.8161434977578476,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.7739403453689168,
+      "recall": 0.7875399361022364,
+      "f1": 0.7806809184481394,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.6375838926174496,
+      "recall": 0.6713780918727915,
+      "f1": 0.6540447504302926,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.7185534591194969,
+      "recall": 0.7455138662316476,
+      "f1": 0.7317854283426741,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.7546583850931677,
+      "recall": 0.8127090301003345,
+      "f1": 0.782608695652174,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.6651017214397497,
+      "recall": 0.7352941176470589,
+      "f1": 0.6984387838948234,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7104,
+      "recall": 0.774869109947644,
+      "f1": 0.7412353923205343,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6576923076923077,
+      "recall": 0.6184448462929476,
+      "f1": 0.6374650512581547,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.780952380952381,
+      "recall": 0.7735849056603774,
+      "f1": 0.7772511848341233,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8173228346456692,
+      "recall": 0.8781725888324873,
+      "f1": 0.8466557911908646,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9269949066213922,
+      "recall": 0.8878048780487805,
+      "f1": 0.9069767441860465,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.7888198757763976,
+      "recall": 0.8128,
+      "f1": 0.8006304176516943,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.8209677419354838,
+      "recall": 0.8745704467353952,
+      "f1": 0.8469217970049917,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9295081967213115,
+      "recall": 0.9115755627009646,
+      "f1": 0.9204545454545454,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.8403908794788274,
+      "recall": 0.8805460750853242,
+      "f1": 0.86,
+      "support": 586
+    }
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "37c1c6331da1d069d8519bd293a68578",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T21:43:35.946968+00:00",
+    "model_name": "BERT",
+    "data_commit": "7123a65",
+    "code_commit": "6ea0260",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 37795
+    }
+  },
+  "efficiency": {
+    "num_params": 109482240,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 218964480,
+    "relative_compute": 4.8202,
+    "shelf_eff": 74.7753,
+    "shelf_compute": 0.5137,
+    "pareto_optimal": false,
+    "size_rank": 7,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.601145
+}

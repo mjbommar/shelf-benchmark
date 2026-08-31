@@ -15,6 +15,134 @@
     "num_correct": 10416,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.8598130841121495,
+      "recall": 0.759075907590759,
+      "f1": 0.8063102541630149,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.745674740484429,
+      "recall": 0.7219430485762144,
+      "f1": 0.7336170212765958,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8504672897196262,
+      "recall": 0.8067375886524822,
+      "f1": 0.8280254777070064,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.8378378378378378,
+      "recall": 0.768595041322314,
+      "f1": 0.8017241379310345,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8948275862068965,
+      "recall": 0.8384491114701131,
+      "f1": 0.8657214345287739,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.7322695035460993,
+      "recall": 0.7035775127768313,
+      "f1": 0.7176368375325803,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8945454545454545,
+      "recall": 0.8754448398576512,
+      "f1": 0.8848920863309353,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.8190045248868778,
+      "recall": 0.8674121405750799,
+      "f1": 0.8425135764158262,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.7090301003344481,
+      "recall": 0.7491166077738516,
+      "f1": 0.7285223367697594,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.7993630573248408,
+      "recall": 0.8189233278955954,
+      "f1": 0.8090249798549557,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.8161993769470405,
+      "recall": 0.8762541806020067,
+      "f1": 0.8451612903225807,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.767515923566879,
+      "recall": 0.8339100346020761,
+      "f1": 0.7993366500829188,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.8148148148148148,
+      "recall": 0.806282722513089,
+      "f1": 0.8105263157894737,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.7174721189591078,
+      "recall": 0.6980108499095841,
+      "f1": 0.7076076993583869,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8353846153846154,
+      "recall": 0.8537735849056604,
+      "f1": 0.8444790046656299,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8555900621118012,
+      "recall": 0.9323181049069373,
+      "f1": 0.8923076923076924,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9675213675213675,
+      "recall": 0.9203252032520325,
+      "f1": 0.9433333333333334,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.8457943925233645,
+      "recall": 0.8688,
+      "f1": 0.8571428571428571,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.8853820598006644,
+      "recall": 0.915807560137457,
+      "f1": 0.9003378378378378,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9266770670826833,
+      "recall": 0.954983922829582,
+      "f1": 0.9406175771971497,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.9119170984455959,
+      "recall": 0.9010238907849829,
+      "f1": 0.9064377682403434,
+      "support": 586
+    }
+  },
   "num_samples": 12504,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T15:58:04.726894+00:00",
+    "timestamp": "2026-08-29T22:32:25.203303+00:00",
     "model_name": "BGE-large",
     "data_commit": "7123a65",
-    "code_commit": "59e9d45",
+    "code_commit": "6ea0260",
     "extra": {
       "embedding_dim": 1024,
       "classifier": "LogisticRegression",
@@ -42,13 +170,14 @@
     "size_category": "300M-1B",
     "flops_per_token": 670283776,
     "relative_compute": 14.7554,
-    "shelf_eff": null,
-    "shelf_compute": null,
-    "pareto_optimal": null,
-    "size_rank": null,
+    "shelf_eff": 84.5322,
+    "shelf_compute": 0.5506,
+    "pareto_optimal": false,
+    "size_rank": 1,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  }
+  },
+  "shelf_score": 0.720656
 }

@@ -5,15 +5,143 @@
   "task": "lcc_classification",
   "task_type": "classification",
   "primary_metric": "macro_f1",
-  "primary_score": 0.8060425961446724,
+  "primary_score": 0.8061225784562746,
   "metrics": {
-    "accuracy": 0.8075815738963532,
-    "macro_f1": 0.8060425961446724,
-    "micro_f1": 0.8075815738963532,
-    "weighted_f1": 0.8072761196730912,
+    "accuracy": 0.8076615483045425,
+    "macro_f1": 0.8061225784562746,
+    "micro_f1": 0.8076615483045425,
+    "weighted_f1": 0.8073555760360076,
     "num_samples": 12504,
-    "num_correct": 10098,
+    "num_correct": 10099,
     "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.8365019011406845,
+      "recall": 0.7260726072607261,
+      "f1": 0.7773851590106007,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.7275862068965517,
+      "recall": 0.7068676716917923,
+      "f1": 0.7170773152081563,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8582677165354331,
+      "recall": 0.7730496453900709,
+      "f1": 0.8134328358208955,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.8035714285714286,
+      "recall": 0.743801652892562,
+      "f1": 0.7725321888412017,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.841025641025641,
+      "recall": 0.7948303715670436,
+      "f1": 0.8172757475083057,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.6921708185053381,
+      "recall": 0.6626916524701874,
+      "f1": 0.6771105308964317,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8646209386281588,
+      "recall": 0.8523131672597865,
+      "f1": 0.8584229390681004,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.8012048192771084,
+      "recall": 0.8498402555910544,
+      "f1": 0.8248062015503876,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.6644628099173554,
+      "recall": 0.7102473498233216,
+      "f1": 0.6865926558497011,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.7957166392092258,
+      "recall": 0.7879282218597063,
+      "f1": 0.7918032786885246,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.8111111111111111,
+      "recall": 0.8545150501672241,
+      "f1": 0.8322475570032574,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.7288676236044657,
+      "recall": 0.7906574394463668,
+      "f1": 0.75850622406639,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7710437710437711,
+      "recall": 0.7993019197207679,
+      "f1": 0.7849185946872322,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6592592592592592,
+      "recall": 0.64376130198915,
+      "f1": 0.6514181152790485,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8105263157894737,
+      "recall": 0.8474842767295597,
+      "f1": 0.8285933897002306,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8497652582159625,
+      "recall": 0.9187817258883249,
+      "f1": 0.8829268292682927,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9557069846678024,
+      "recall": 0.9121951219512195,
+      "f1": 0.9334442595673876,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.7987804878048781,
+      "recall": 0.8384,
+      "f1": 0.8181108508977362,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.8797250859106529,
+      "recall": 0.8797250859106529,
+      "f1": 0.8797250859106529,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9190031152647975,
+      "recall": 0.9485530546623794,
+      "f1": 0.9335443037974683,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.8849407783417935,
+      "recall": 0.8924914675767918,
+      "f1": 0.8887000849617672,
+      "support": 586
+    }
   },
   "num_samples": 12504,
   "context": {
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:15:15.158994+00:00",
+    "timestamp": "2026-08-29T20:53:54.872810+00:00",
     "model_name": "BGE-base",
     "data_commit": "7123a65",
-    "code_commit": "f586b5b",
+    "code_commit": "d1f73a9",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",
@@ -42,13 +170,14 @@
     "size_category": "100M-300M",
     "flops_per_token": 218964480,
     "relative_compute": 4.8202,
-    "shelf_eff": null,
-    "shelf_compute": null,
-    "pareto_optimal": null,
-    "size_rank": null,
+    "shelf_eff": 84.7448,
+    "shelf_compute": 0.5821,
+    "pareto_optimal": false,
+    "size_rank": 3,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  }
+  },
+  "shelf_score": 0.681292
 }

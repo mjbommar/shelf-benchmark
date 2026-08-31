@@ -15,6 +15,134 @@
     "num_correct": 10027,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.8676207513416816,
+      "recall": 0.8003300330033003,
+      "f1": 0.8326180257510729,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.6666666666666666,
+      "recall": 0.6465661641541038,
+      "f1": 0.6564625850340136,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8043875685557587,
+      "recall": 0.7801418439716312,
+      "f1": 0.7920792079207921,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.7777777777777778,
+      "recall": 0.740495867768595,
+      "f1": 0.7586790855207451,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8342245989304813,
+      "recall": 0.7560581583198708,
+      "f1": 0.7932203389830509,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.6952054794520548,
+      "recall": 0.6916524701873935,
+      "f1": 0.6934244235695987,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8763837638376384,
+      "recall": 0.8451957295373665,
+      "f1": 0.8605072463768116,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.8112324492979719,
+      "recall": 0.8306709265175719,
+      "f1": 0.8208366219415943,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.6785109983079526,
+      "recall": 0.7084805653710248,
+      "f1": 0.693171996542783,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.8016,
+      "recall": 0.8172920065252854,
+      "f1": 0.8093699515347335,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.8439108061749572,
+      "recall": 0.822742474916388,
+      "f1": 0.8331922099915327,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.6868217054263566,
+      "recall": 0.7664359861591695,
+      "f1": 0.7244480784955029,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7525773195876289,
+      "recall": 0.7643979057591623,
+      "f1": 0.7584415584415585,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6509090909090909,
+      "recall": 0.6473779385171791,
+      "f1": 0.6491387126019945,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.799079754601227,
+      "recall": 0.8191823899371069,
+      "f1": 0.8090062111801242,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8497652582159625,
+      "recall": 0.9187817258883249,
+      "f1": 0.8829268292682927,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.931323283082077,
+      "recall": 0.9040650406504065,
+      "f1": 0.9174917491749175,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.8250773993808049,
+      "recall": 0.8528,
+      "f1": 0.8387096774193549,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.8602693602693603,
+      "recall": 0.8780068728522337,
+      "f1": 0.8690476190476191,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9211356466876972,
+      "recall": 0.9389067524115756,
+      "f1": 0.9299363057324841,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.8977469670710572,
+      "recall": 0.8839590443686007,
+      "f1": 0.8907996560619088,
+      "support": 586
+    }
+  },
   "num_samples": 12504,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:40:57.874516+00:00",
+    "timestamp": "2026-08-29T20:18:47.226947+00:00",
     "model_name": "MiniLM-L6",
     "data_commit": "7123a65",
-    "code_commit": "f586b5b",
+    "code_commit": "b506498",
     "extra": {
       "embedding_dim": 384,
       "classifier": "LogisticRegression",
@@ -42,14 +170,14 @@
     "size_category": "10M-50M",
     "flops_per_token": 45426432,
     "relative_compute": 1.0,
-    "shelf_eff": 108.8381,
-    "shelf_compute": 0.8006,
+    "shelf_eff": 94.7152,
+    "shelf_compute": 0.6968,
     "pareto_optimal": true,
-    "size_rank": 4,
+    "size_rank": 3,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.800643
+  "shelf_score": 0.696751
 }

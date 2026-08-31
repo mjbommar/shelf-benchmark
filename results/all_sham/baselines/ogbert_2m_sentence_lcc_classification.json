@@ -5,15 +5,143 @@
   "task": "lcc_classification",
   "task_type": "classification",
   "primary_metric": "macro_f1",
-  "primary_score": 0.5396891589798484,
+  "primary_score": 0.5396054798640341,
   "metrics": {
-    "accuracy": 0.544465770953295,
-    "macro_f1": 0.5396891589798484,
-    "micro_f1": 0.544465770953295,
-    "weighted_f1": 0.5411021400538835,
+    "accuracy": 0.5443857965451055,
+    "macro_f1": 0.5396054798640341,
+    "micro_f1": 0.5443857965451055,
+    "weighted_f1": 0.5410198417791342,
     "num_samples": 12504,
-    "num_correct": 6808,
+    "num_correct": 6807,
     "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.6239015817223199,
+      "recall": 0.5858085808580858,
+      "f1": 0.6042553191489362,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.48,
+      "recall": 0.5829145728643216,
+      "f1": 0.5264750378214826,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.5020491803278688,
+      "recall": 0.43439716312056736,
+      "f1": 0.46577946768060835,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.45799457994579945,
+      "recall": 0.2793388429752066,
+      "f1": 0.3470225872689938,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.4358108108108108,
+      "recall": 0.4168012924071082,
+      "f1": 0.42609413707679605,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.43573667711598746,
+      "recall": 0.4735945485519591,
+      "f1": 0.45387755102040817,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.5441941074523396,
+      "recall": 0.5587188612099644,
+      "f1": 0.5513608428446005,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.5589171974522293,
+      "recall": 0.560702875399361,
+      "f1": 0.5598086124401914,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.42857142857142855,
+      "recall": 0.36042402826855124,
+      "f1": 0.3915547024952015,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.493099121706399,
+      "recall": 0.6411092985318108,
+      "f1": 0.5574468085106383,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.5521472392638037,
+      "recall": 0.6020066889632107,
+      "f1": 0.576,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.4616724738675958,
+      "recall": 0.458477508650519,
+      "f1": 0.4600694444444444,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.5151515151515151,
+      "recall": 0.5340314136125655,
+      "f1": 0.5244215938303342,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.45614035087719296,
+      "recall": 0.4231464737793852,
+      "f1": 0.43902439024390244,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.6266447368421053,
+      "recall": 0.5990566037735849,
+      "f1": 0.612540192926045,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.6790123456790124,
+      "recall": 0.7445008460236887,
+      "f1": 0.7102502017756255,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.7214983713355049,
+      "recall": 0.7203252032520325,
+      "f1": 0.7209113100081367,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.6253822629969419,
+      "recall": 0.6544,
+      "f1": 0.6395621579358874,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.5470588235294118,
+      "recall": 0.4793814432989691,
+      "f1": 0.510989010989011,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.5207715133531158,
+      "recall": 0.5643086816720257,
+      "f1": 0.5416666666666666,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.7019867549668874,
+      "recall": 0.7235494880546075,
+      "f1": 0.7126050420168067,
+      "support": 586
+    }
   },
   "num_samples": 12504,
   "context": {
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:55:50.183173+00:00",
+    "timestamp": "2026-08-29T23:22:55.905513+00:00",
     "model_name": "ogbert-2m-sentence",
     "data_commit": "7123a65",
-    "code_commit": "f586b5b",
+    "code_commit": "00ea683",
     "extra": {
       "embedding_dim": 128,
       "classifier": "LogisticRegression",
@@ -42,7 +170,7 @@
     "size_category": "<10M",
     "flops_per_token": 4246016,
     "relative_compute": 0.0935,
-    "shelf_eff": 66.8316,
+    "shelf_eff": 66.8256,
     "shelf_compute": 0.5359,
     "pareto_optimal": true,
     "size_rank": 1,
@@ -51,5 +179,5 @@
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.42284
+  "shelf_score": 0.422802
 }

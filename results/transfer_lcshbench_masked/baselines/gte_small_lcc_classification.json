@@ -15,6 +15,134 @@
     "num_correct": 425,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.5833333333333334,
+      "recall": 0.2,
+      "f1": 0.2978723404255319,
+      "support": 35
+    },
+    "B": {
+      "precision": 0.48936170212765956,
+      "recall": 0.7931034482758621,
+      "f1": 0.6052631578947368,
+      "support": 29
+    },
+    "C": {
+      "precision": 0.5217391304347826,
+      "recall": 0.26666666666666666,
+      "f1": 0.35294117647058826,
+      "support": 45
+    },
+    "D": {
+      "precision": 0.3684210526315789,
+      "recall": 0.2413793103448276,
+      "f1": 0.2916666666666667,
+      "support": 29
+    },
+    "E": {
+      "precision": 0.3793103448275862,
+      "recall": 0.4230769230769231,
+      "f1": 0.4,
+      "support": 26
+    },
+    "F": {
+      "precision": 0.4827586206896552,
+      "recall": 0.4117647058823529,
+      "f1": 0.4444444444444444,
+      "support": 34
+    },
+    "G": {
+      "precision": 0.3235294117647059,
+      "recall": 0.3548387096774194,
+      "f1": 0.3384615384615385,
+      "support": 31
+    },
+    "H": {
+      "precision": 0.59375,
+      "recall": 0.5,
+      "f1": 0.5428571428571428,
+      "support": 38
+    },
+    "J": {
+      "precision": 0.4375,
+      "recall": 0.4375,
+      "f1": 0.4375,
+      "support": 32
+    },
+    "K": {
+      "precision": 0.6888888888888889,
+      "recall": 0.7209302325581395,
+      "f1": 0.7045454545454546,
+      "support": 43
+    },
+    "L": {
+      "precision": 0.8,
+      "recall": 0.717948717948718,
+      "f1": 0.7567567567567568,
+      "support": 39
+    },
+    "M": {
+      "precision": 0.7837837837837838,
+      "recall": 0.90625,
+      "f1": 0.8405797101449275,
+      "support": 32
+    },
+    "N": {
+      "precision": 0.5272727272727272,
+      "recall": 0.7837837837837838,
+      "f1": 0.6304347826086957,
+      "support": 37
+    },
+    "P": {
+      "precision": 0.4791666666666667,
+      "recall": 0.7419354838709677,
+      "f1": 0.5822784810126582,
+      "support": 31
+    },
+    "Q": {
+      "precision": 0.6666666666666666,
+      "recall": 0.6285714285714286,
+      "f1": 0.6470588235294118,
+      "support": 35
+    },
+    "R": {
+      "precision": 0.7111111111111111,
+      "recall": 0.7804878048780488,
+      "f1": 0.7441860465116279,
+      "support": 41
+    },
+    "S": {
+      "precision": 0.7428571428571429,
+      "recall": 0.7878787878787878,
+      "f1": 0.7647058823529411,
+      "support": 33
+    },
+    "T": {
+      "precision": 0.45454545454545453,
+      "recall": 0.2564102564102564,
+      "f1": 0.32786885245901637,
+      "support": 39
+    },
+    "U": {
+      "precision": 0.6,
+      "recall": 0.675,
+      "f1": 0.6352941176470588,
+      "support": 40
+    },
+    "V": {
+      "precision": 0.6842105263157895,
+      "recall": 0.8666666666666667,
+      "f1": 0.7647058823529411,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.5853658536585366,
+      "recall": 0.6486486486486487,
+      "f1": 0.6153846153846154,
+      "support": 37
+    }
+  },
   "num_samples": 736,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T13:36:19.303345+00:00",
+    "timestamp": "2026-08-29T21:08:57.136565+00:00",
     "model_name": "GTE-small",
     "data_commit": null,
-    "code_commit": "8a97c6d",
+    "code_commit": "333a405",
     "extra": {
       "embedding_dim": 384,
       "classifier": "LogisticRegression",
@@ -42,8 +170,8 @@
     "size_category": "10M-50M",
     "flops_per_token": 66721024,
     "relative_compute": 1.4688,
-    "shelf_eff": 65.8436,
-    "shelf_compute": 0.4767,
+    "shelf_eff": 65.8378,
+    "shelf_compute": 0.4766,
     "pareto_optimal": false,
     "size_rank": 2,
     "num_params_torch": null,
@@ -51,5 +179,5 @@
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.495357
+  "shelf_score": 0.495313
 }

@@ -15,6 +15,134 @@
     "num_correct": 188,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.5,
+      "recall": 0.034482758620689655,
+      "f1": 0.06451612903225806,
+      "support": 29
+    },
+    "B": {
+      "precision": 0.48148148148148145,
+      "recall": 0.43333333333333335,
+      "f1": 0.45614035087719296,
+      "support": 30
+    },
+    "C": {
+      "precision": 0.08333333333333333,
+      "recall": 0.1,
+      "f1": 0.09090909090909091,
+      "support": 30
+    },
+    "D": {
+      "precision": 0.2727272727272727,
+      "recall": 0.1,
+      "f1": 0.14634146341463414,
+      "support": 30
+    },
+    "E": {
+      "precision": 0.23529411764705882,
+      "recall": 0.13333333333333333,
+      "f1": 0.1702127659574468,
+      "support": 30
+    },
+    "F": {
+      "precision": 0.5,
+      "recall": 0.06666666666666667,
+      "f1": 0.11764705882352941,
+      "support": 30
+    },
+    "G": {
+      "precision": 0.6666666666666666,
+      "recall": 0.06666666666666667,
+      "f1": 0.12121212121212122,
+      "support": 30
+    },
+    "H": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 30
+    },
+    "J": {
+      "precision": 0.24,
+      "recall": 0.6,
+      "f1": 0.34285714285714286,
+      "support": 30
+    },
+    "K": {
+      "precision": 0.3,
+      "recall": 0.2,
+      "f1": 0.24,
+      "support": 30
+    },
+    "L": {
+      "precision": 0.5,
+      "recall": 0.2,
+      "f1": 0.2857142857142857,
+      "support": 30
+    },
+    "M": {
+      "precision": 0.4090909090909091,
+      "recall": 0.3,
+      "f1": 0.34615384615384615,
+      "support": 30
+    },
+    "N": {
+      "precision": 0.2727272727272727,
+      "recall": 0.2,
+      "f1": 0.23076923076923078,
+      "support": 30
+    },
+    "P": {
+      "precision": 0.20714285714285716,
+      "recall": 0.9666666666666667,
+      "f1": 0.3411764705882353,
+      "support": 30
+    },
+    "Q": {
+      "precision": 0.3448275862068966,
+      "recall": 0.3448275862068966,
+      "f1": 0.3448275862068966,
+      "support": 29
+    },
+    "R": {
+      "precision": 0.6956521739130435,
+      "recall": 0.5517241379310345,
+      "f1": 0.6153846153846154,
+      "support": 29
+    },
+    "S": {
+      "precision": 0.34146341463414637,
+      "recall": 0.4666666666666667,
+      "f1": 0.39436619718309857,
+      "support": 30
+    },
+    "T": {
+      "precision": 0.3,
+      "recall": 0.5,
+      "f1": 0.375,
+      "support": 30
+    },
+    "U": {
+      "precision": 1.0,
+      "recall": 0.16666666666666666,
+      "f1": 0.2857142857142857,
+      "support": 30
+    },
+    "V": {
+      "precision": 0.30952380952380953,
+      "recall": 0.43333333333333335,
+      "f1": 0.3611111111111111,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.28888888888888886,
+      "recall": 0.43333333333333335,
+      "f1": 0.3466666666666667,
+      "support": 30
+    }
+  },
   "num_samples": 627,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T13:04:05.778822+00:00",
+    "timestamp": "2026-08-29T20:28:42.985579+00:00",
     "model_name": "ogbert-v1-mlm",
     "data_commit": null,
-    "code_commit": "1b22bf2",
+    "code_commit": "e7043bd",
     "extra": {
       "embedding_dim": 384,
       "classifier": "LogisticRegression",

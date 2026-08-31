@@ -1,0 +1,858 @@
+{
+  "model": "Qwen3-Embedding-0.6B",
+  "model_key": "qwen3_embed_600m",
+  "model_type": "sentence_transformer",
+  "task": "form_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.19331717189542402,
+  "metrics": {
+    "accuracy": 0.21513115802943059,
+    "macro_f1": 0.19331717189542402,
+    "micro_f1": 0.21513115802943059,
+    "weighted_f1": 0.21345447624097566,
+    "num_samples": 12504,
+    "num_correct": 2690,
+    "num_classes": 133
+  },
+  "per_class_metrics": {
+    "Abstracts": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 37
+    },
+    "Academic theses": {
+      "precision": 0.10606060606060606,
+      "recall": 0.22580645161290322,
+      "f1": 0.14432989690721648,
+      "support": 31
+    },
+    "Activity books": {
+      "precision": 0.32075471698113206,
+      "recall": 0.2764227642276423,
+      "f1": 0.29694323144104806,
+      "support": 123
+    },
+    "Administrative decisions": {
+      "precision": 0.0625,
+      "recall": 0.18421052631578946,
+      "f1": 0.09333333333333334,
+      "support": 38
+    },
+    "Administrative regulations": {
+      "precision": 0.24545454545454545,
+      "recall": 0.20149253731343283,
+      "f1": 0.22131147540983606,
+      "support": 134
+    },
+    "Aerial photographs": {
+      "precision": 0.3493975903614458,
+      "recall": 0.35802469135802467,
+      "f1": 0.35365853658536583,
+      "support": 81
+    },
+    "Analysis": {
+      "precision": 0.04580152671755725,
+      "recall": 0.09523809523809523,
+      "f1": 0.061855670103092786,
+      "support": 63
+    },
+    "Anniversary publications": {
+      "precision": 0.2937062937062937,
+      "recall": 0.2781456953642384,
+      "f1": 0.2857142857142857,
+      "support": 151
+    },
+    "Architectural drawings": {
+      "precision": 0.48717948717948717,
+      "recall": 0.36893203883495146,
+      "f1": 0.4198895027624309,
+      "support": 103
+    },
+    "Art": {
+      "precision": 0.15853658536585366,
+      "recall": 0.11607142857142858,
+      "f1": 0.13402061855670103,
+      "support": 112
+    },
+    "Art music": {
+      "precision": 0.25862068965517243,
+      "recall": 0.1388888888888889,
+      "f1": 0.18072289156626506,
+      "support": 108
+    },
+    "Atlases": {
+      "precision": 0.34814814814814815,
+      "recall": 0.47474747474747475,
+      "f1": 0.4017094017094017,
+      "support": 99
+    },
+    "Audiobooks": {
+      "precision": 0.40229885057471265,
+      "recall": 0.30434782608695654,
+      "f1": 0.3465346534653465,
+      "support": 115
+    },
+    "Biographies": {
+      "precision": 0.41916167664670656,
+      "recall": 0.6363636363636364,
+      "f1": 0.5054151624548736,
+      "support": 110
+    },
+    "Blogs": {
+      "precision": 0.024390243902439025,
+      "recall": 0.08,
+      "f1": 0.037383177570093455,
+      "support": 25
+    },
+    "Broadsides": {
+      "precision": 0.15384615384615385,
+      "recall": 0.11764705882352941,
+      "f1": 0.13333333333333333,
+      "support": 102
+    },
+    "Brochures": {
+      "precision": 0.03333333333333333,
+      "recall": 0.023809523809523808,
+      "f1": 0.027777777777777776,
+      "support": 84
+    },
+    "Calendars": {
+      "precision": 0.25,
+      "recall": 0.28378378378378377,
+      "f1": 0.26582278481012656,
+      "support": 74
+    },
+    "Case studies": {
+      "precision": 0.05063291139240506,
+      "recall": 0.14285714285714285,
+      "f1": 0.07476635514018691,
+      "support": 28
+    },
+    "Casebooks (Law)": {
+      "precision": 0.14678899082568808,
+      "recall": 0.17582417582417584,
+      "f1": 0.16,
+      "support": 91
+    },
+    "Chamber music": {
+      "precision": 0.2191780821917808,
+      "recall": 0.3404255319148936,
+      "f1": 0.26666666666666666,
+      "support": 47
+    },
+    "Charts": {
+      "precision": 0.09615384615384616,
+      "recall": 0.07692307692307693,
+      "f1": 0.08547008547008547,
+      "support": 65
+    },
+    "Comics (Graphic works)": {
+      "precision": 0.024390243902439025,
+      "recall": 0.011764705882352941,
+      "f1": 0.015873015873015872,
+      "support": 85
+    },
+    "Commentaries": {
+      "precision": 0.15555555555555556,
+      "recall": 0.03763440860215054,
+      "f1": 0.06060606060606061,
+      "support": 186
+    },
+    "Conference papers and proceedings": {
+      "precision": 0.04918032786885246,
+      "recall": 0.09090909090909091,
+      "f1": 0.06382978723404255,
+      "support": 33
+    },
+    "Constitutions": {
+      "precision": 0.37623762376237624,
+      "recall": 0.3333333333333333,
+      "f1": 0.35348837209302325,
+      "support": 114
+    },
+    "Contracts": {
+      "precision": 0.1565217391304348,
+      "recall": 0.1836734693877551,
+      "f1": 0.16901408450704225,
+      "support": 98
+    },
+    "Cookbooks": {
+      "precision": 0.3050847457627119,
+      "recall": 0.20454545454545456,
+      "f1": 0.24489795918367346,
+      "support": 88
+    },
+    "Course materials": {
+      "precision": 0.08771929824561403,
+      "recall": 0.06756756756756757,
+      "f1": 0.07633587786259542,
+      "support": 74
+    },
+    "Court decisions and opinions": {
+      "precision": 0.14150943396226415,
+      "recall": 0.20833333333333334,
+      "f1": 0.16853932584269662,
+      "support": 72
+    },
+    "Criticism": {
+      "precision": 0.17,
+      "recall": 0.1619047619047619,
+      "f1": 0.16585365853658537,
+      "support": 105
+    },
+    "Data sets": {
+      "precision": 0.08955223880597014,
+      "recall": 0.15789473684210525,
+      "f1": 0.11428571428571428,
+      "support": 38
+    },
+    "Databases": {
+      "precision": 0.1686746987951807,
+      "recall": 0.2692307692307692,
+      "f1": 0.2074074074074074,
+      "support": 52
+    },
+    "Debates": {
+      "precision": 0.10948905109489052,
+      "recall": 0.22058823529411764,
+      "f1": 0.14634146341463414,
+      "support": 68
+    },
+    "Devotional literature": {
+      "precision": 0.26229508196721313,
+      "recall": 0.27350427350427353,
+      "f1": 0.26778242677824265,
+      "support": 117
+    },
+    "Diagrams": {
+      "precision": 0.24675324675324675,
+      "recall": 0.24675324675324675,
+      "f1": 0.24675324675324675,
+      "support": 77
+    },
+    "Diaries": {
+      "precision": 0.49019607843137253,
+      "recall": 0.4166666666666667,
+      "f1": 0.45045045045045046,
+      "support": 120
+    },
+    "Drama": {
+      "precision": 0.16279069767441862,
+      "recall": 0.24561403508771928,
+      "f1": 0.1958041958041958,
+      "support": 57
+    },
+    "Drawings": {
+      "precision": 0.075,
+      "recall": 0.05660377358490566,
+      "f1": 0.06451612903225806,
+      "support": 106
+    },
+    "Editorials": {
+      "precision": 0.112,
+      "recall": 0.1590909090909091,
+      "f1": 0.13145539906103287,
+      "support": 88
+    },
+    "Educational films": {
+      "precision": 0.1864406779661017,
+      "recall": 0.19298245614035087,
+      "f1": 0.1896551724137931,
+      "support": 57
+    },
+    "Essays": {
+      "precision": 0.15384615384615385,
+      "recall": 0.048484848484848485,
+      "f1": 0.07373271889400922,
+      "support": 165
+    },
+    "Eulogies": {
+      "precision": 0.2014388489208633,
+      "recall": 0.19047619047619047,
+      "f1": 0.1958041958041958,
+      "support": 147
+    },
+    "Examinations": {
+      "precision": 0.24489795918367346,
+      "recall": 0.14634146341463414,
+      "f1": 0.183206106870229,
+      "support": 82
+    },
+    "FAQs": {
+      "precision": 0.024691358024691357,
+      "recall": 0.029411764705882353,
+      "f1": 0.026845637583892617,
+      "support": 68
+    },
+    "Fantasy fiction": {
+      "precision": 0.13793103448275862,
+      "recall": 0.15,
+      "f1": 0.1437125748502994,
+      "support": 80
+    },
+    "Festschriften": {
+      "precision": 0.2268041237113402,
+      "recall": 0.16417910447761194,
+      "f1": 0.19047619047619047,
+      "support": 134
+    },
+    "Fiction": {
+      "precision": 0.058823529411764705,
+      "recall": 0.03125,
+      "f1": 0.04081632653061224,
+      "support": 64
+    },
+    "Field recordings": {
+      "precision": 0.627906976744186,
+      "recall": 0.7168141592920354,
+      "f1": 0.6694214876033058,
+      "support": 113
+    },
+    "Floor plans": {
+      "precision": 0.35,
+      "recall": 0.30434782608695654,
+      "f1": 0.32558139534883723,
+      "support": 92
+    },
+    "Flyers": {
+      "precision": 0.09876543209876543,
+      "recall": 0.07407407407407407,
+      "f1": 0.08465608465608465,
+      "support": 108
+    },
+    "Folk literature": {
+      "precision": 0.14772727272727273,
+      "recall": 0.15853658536585366,
+      "f1": 0.15294117647058825,
+      "support": 82
+    },
+    "Folk music": {
+      "precision": 0.3114754098360656,
+      "recall": 0.22093023255813954,
+      "f1": 0.2585034013605442,
+      "support": 86
+    },
+    "Games": {
+      "precision": 0.3333333333333333,
+      "recall": 0.43478260869565216,
+      "f1": 0.37735849056603776,
+      "support": 92
+    },
+    "Globes": {
+      "precision": 0.42857142857142855,
+      "recall": 0.42391304347826086,
+      "f1": 0.4262295081967213,
+      "support": 92
+    },
+    "Greeting cards": {
+      "precision": 0.22580645161290322,
+      "recall": 0.15217391304347827,
+      "f1": 0.18181818181818182,
+      "support": 92
+    },
+    "Handbooks and manuals": {
+      "precision": 0.043478260869565216,
+      "recall": 0.045454545454545456,
+      "f1": 0.044444444444444446,
+      "support": 66
+    },
+    "How-to guides": {
+      "precision": 0.0958904109589041,
+      "recall": 0.0945945945945946,
+      "f1": 0.09523809523809523,
+      "support": 74
+    },
+    "Humor": {
+      "precision": 0.18181818181818182,
+      "recall": 0.07936507936507936,
+      "f1": 0.11049723756906077,
+      "support": 126
+    },
+    "Illustrations": {
+      "precision": 0.1619047619047619,
+      "recall": 0.2125,
+      "f1": 0.1837837837837838,
+      "support": 80
+    },
+    "Infographics": {
+      "precision": 0.08333333333333333,
+      "recall": 0.0234375,
+      "f1": 0.036585365853658534,
+      "support": 128
+    },
+    "Instrumental music": {
+      "precision": 0.2421875,
+      "recall": 0.32978723404255317,
+      "f1": 0.27927927927927926,
+      "support": 94
+    },
+    "Interviews": {
+      "precision": 0.2839506172839506,
+      "recall": 0.1111111111111111,
+      "f1": 0.1597222222222222,
+      "support": 207
+    },
+    "Jokes": {
+      "precision": 0.4230769230769231,
+      "recall": 0.28061224489795916,
+      "f1": 0.3374233128834356,
+      "support": 196
+    },
+    "Journalism": {
+      "precision": 0.13402061855670103,
+      "recall": 0.22033898305084745,
+      "f1": 0.16666666666666666,
+      "support": 59
+    },
+    "Lectures": {
+      "precision": 0.45454545454545453,
+      "recall": 0.10416666666666667,
+      "f1": 0.1694915254237288,
+      "support": 240
+    },
+    "Legal briefs": {
+      "precision": 0.20833333333333334,
+      "recall": 0.15306122448979592,
+      "f1": 0.17647058823529413,
+      "support": 98
+    },
+    "Legal forms": {
+      "precision": 0.1746031746031746,
+      "recall": 0.19642857142857142,
+      "f1": 0.18487394957983194,
+      "support": 112
+    },
+    "Legislative materials": {
+      "precision": 0.18095238095238095,
+      "recall": 0.2345679012345679,
+      "f1": 0.20430107526881722,
+      "support": 81
+    },
+    "Lesson plans": {
+      "precision": 0.18181818181818182,
+      "recall": 0.19444444444444445,
+      "f1": 0.18791946308724833,
+      "support": 72
+    },
+    "Letters to the editor": {
+      "precision": 0.04597701149425287,
+      "recall": 0.03571428571428571,
+      "f1": 0.04020100502512563,
+      "support": 112
+    },
+    "Liturgical texts": {
+      "precision": 0.24,
+      "recall": 0.2631578947368421,
+      "f1": 0.2510460251046025,
+      "support": 114
+    },
+    "Maps": {
+      "precision": 0.3422818791946309,
+      "recall": 0.38345864661654133,
+      "f1": 0.3617021276595745,
+      "support": 133
+    },
+    "Memoirs": {
+      "precision": 0.18840579710144928,
+      "recall": 0.3466666666666667,
+      "f1": 0.24413145539906103,
+      "support": 75
+    },
+    "Memorial books": {
+      "precision": 0.32456140350877194,
+      "recall": 0.2781954887218045,
+      "f1": 0.29959514170040485,
+      "support": 133
+    },
+    "Menus": {
+      "precision": 0.30392156862745096,
+      "recall": 0.34831460674157305,
+      "f1": 0.32460732984293195,
+      "support": 89
+    },
+    "Motion pictures": {
+      "precision": 0.3333333333333333,
+      "recall": 0.2956521739130435,
+      "f1": 0.31336405529953915,
+      "support": 115
+    },
+    "Music recordings": {
+      "precision": 0.3055555555555556,
+      "recall": 0.21359223300970873,
+      "f1": 0.25142857142857145,
+      "support": 103
+    },
+    "Mystery fiction": {
+      "precision": 0.125,
+      "recall": 0.19480519480519481,
+      "f1": 0.15228426395939088,
+      "support": 77
+    },
+    "Nautical charts": {
+      "precision": 0.39814814814814814,
+      "recall": 0.48863636363636365,
+      "f1": 0.4387755102040816,
+      "support": 88
+    },
+    "News articles": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 32
+    },
+    "Novels": {
+      "precision": 0.057692307692307696,
+      "recall": 0.1016949152542373,
+      "f1": 0.0736196319018405,
+      "support": 59
+    },
+    "Obituaries": {
+      "precision": 0.25,
+      "recall": 0.2833333333333333,
+      "f1": 0.265625,
+      "support": 120
+    },
+    "Opera": {
+      "precision": 0.3146067415730337,
+      "recall": 0.4057971014492754,
+      "f1": 0.35443037974683544,
+      "support": 69
+    },
+    "Opinion pieces": {
+      "precision": 0.05389221556886228,
+      "recall": 0.13432835820895522,
+      "f1": 0.07692307692307693,
+      "support": 67
+    },
+    "Oral histories": {
+      "precision": 0.24719101123595505,
+      "recall": 0.1981981981981982,
+      "f1": 0.22,
+      "support": 111
+    },
+    "Orchestral music": {
+      "precision": 0.34782608695652173,
+      "recall": 0.3950617283950617,
+      "f1": 0.3699421965317919,
+      "support": 81
+    },
+    "Pamphlets": {
+      "precision": 0.01818181818181818,
+      "recall": 0.012048192771084338,
+      "f1": 0.014492753623188406,
+      "support": 83
+    },
+    "Panel discussions": {
+      "precision": 0.009615384615384616,
+      "recall": 0.012658227848101266,
+      "f1": 0.01092896174863388,
+      "support": 79
+    },
+    "Personal narratives": {
+      "precision": 0.1896551724137931,
+      "recall": 0.07006369426751592,
+      "f1": 0.10232558139534884,
+      "support": 157
+    },
+    "Photographs": {
+      "precision": 0.34507042253521125,
+      "recall": 0.6805555555555556,
+      "f1": 0.45794392523364486,
+      "support": 72
+    },
+    "Plays": {
+      "precision": 0.02197802197802198,
+      "recall": 0.019230769230769232,
+      "f1": 0.020512820512820513,
+      "support": 104
+    },
+    "Podcasts": {
+      "precision": 0.2761904761904762,
+      "recall": 0.2396694214876033,
+      "f1": 0.25663716814159293,
+      "support": 121
+    },
+    "Poetry": {
+      "precision": 0.14074074074074075,
+      "recall": 0.2676056338028169,
+      "f1": 0.18446601941747573,
+      "support": 71
+    },
+    "Policy briefs": {
+      "precision": 0.05,
+      "recall": 0.10204081632653061,
+      "f1": 0.06711409395973154,
+      "support": 49
+    },
+    "Popular music": {
+      "precision": 0.20689655172413793,
+      "recall": 0.17647058823529413,
+      "f1": 0.19047619047619047,
+      "support": 102
+    },
+    "Postcards": {
+      "precision": 0.19736842105263158,
+      "recall": 0.17647058823529413,
+      "f1": 0.18633540372670807,
+      "support": 85
+    },
+    "Posters": {
+      "precision": 0.08163265306122448,
+      "recall": 0.038461538461538464,
+      "f1": 0.05228758169934641,
+      "support": 104
+    },
+    "Prayers": {
+      "precision": 0.45789473684210524,
+      "recall": 0.6041666666666666,
+      "f1": 0.5209580838323353,
+      "support": 144
+    },
+    "Press releases": {
+      "precision": 0.05263157894736842,
+      "recall": 0.08108108108108109,
+      "f1": 0.06382978723404255,
+      "support": 37
+    },
+    "Profiles": {
+      "precision": 0.05813953488372093,
+      "recall": 0.05102040816326531,
+      "f1": 0.05434782608695652,
+      "support": 98
+    },
+    "Puzzles": {
+      "precision": 0.3103448275862069,
+      "recall": 0.2556818181818182,
+      "f1": 0.2803738317757009,
+      "support": 176
+    },
+    "Radio programs": {
+      "precision": 0.18556701030927836,
+      "recall": 0.13432835820895522,
+      "f1": 0.15584415584415584,
+      "support": 134
+    },
+    "Reference works": {
+      "precision": 0.06349206349206349,
+      "recall": 0.1,
+      "f1": 0.07766990291262135,
+      "support": 40
+    },
+    "Reviews": {
+      "precision": 0.027777777777777776,
+      "recall": 0.034482758620689655,
+      "f1": 0.03076923076923077,
+      "support": 58
+    },
+    "Riddles": {
+      "precision": 0.4351145038167939,
+      "recall": 0.30978260869565216,
+      "f1": 0.3619047619047619,
+      "support": 184
+    },
+    "Sacred music": {
+      "precision": 0.23376623376623376,
+      "recall": 0.21686746987951808,
+      "f1": 0.225,
+      "support": 83
+    },
+    "Sacred works": {
+      "precision": 0.18571428571428572,
+      "recall": 0.18309859154929578,
+      "f1": 0.18439716312056736,
+      "support": 142
+    },
+    "Sagas": {
+      "precision": 0.07228915662650602,
+      "recall": 0.08695652173913043,
+      "f1": 0.07894736842105263,
+      "support": 69
+    },
+    "Satellite imagery": {
+      "precision": 0.41379310344827586,
+      "recall": 0.48484848484848486,
+      "f1": 0.44651162790697674,
+      "support": 99
+    },
+    "Satire": {
+      "precision": 0.1984126984126984,
+      "recall": 0.5,
+      "f1": 0.2840909090909091,
+      "support": 50
+    },
+    "Science fiction": {
+      "precision": 0.0958904109589041,
+      "recall": 0.12280701754385964,
+      "f1": 0.1076923076923077,
+      "support": 57
+    },
+    "Screenplays": {
+      "precision": 0.019230769230769232,
+      "recall": 0.017543859649122806,
+      "f1": 0.01834862385321101,
+      "support": 57
+    },
+    "Sermons": {
+      "precision": 0.4375,
+      "recall": 0.4883720930232558,
+      "f1": 0.46153846153846156,
+      "support": 172
+    },
+    "Short stories": {
+      "precision": 0.01818181818181818,
+      "recall": 0.05405405405405406,
+      "f1": 0.027210884353741496,
+      "support": 37
+    },
+    "Songs": {
+      "precision": 0.304,
+      "recall": 0.3958333333333333,
+      "f1": 0.3438914027149321,
+      "support": 96
+    },
+    "Speeches": {
+      "precision": 0.3235294117647059,
+      "recall": 0.33,
+      "f1": 0.32673267326732675,
+      "support": 100
+    },
+    "Statistics": {
+      "precision": 0.0641025641025641,
+      "recall": 0.06944444444444445,
+      "f1": 0.06666666666666667,
+      "support": 72
+    },
+    "Statutes and codes": {
+      "precision": 0.21,
+      "recall": 0.20388349514563106,
+      "f1": 0.20689655172413793,
+      "support": 103
+    },
+    "Study guides": {
+      "precision": 0.08695652173913043,
+      "recall": 0.05714285714285714,
+      "f1": 0.06896551724137931,
+      "support": 70
+    },
+    "Surveys": {
+      "precision": 0.017857142857142856,
+      "recall": 0.024390243902439025,
+      "f1": 0.020618556701030927,
+      "support": 41
+    },
+    "Technical reports": {
+      "precision": 0.057971014492753624,
+      "recall": 0.125,
+      "f1": 0.07920792079207921,
+      "support": 32
+    },
+    "Television programs": {
+      "precision": 0.49206349206349204,
+      "recall": 0.4025974025974026,
+      "f1": 0.44285714285714284,
+      "support": 77
+    },
+    "Textbooks": {
+      "precision": 0.04819277108433735,
+      "recall": 0.0784313725490196,
+      "f1": 0.05970149253731343,
+      "support": 51
+    },
+    "Theological works": {
+      "precision": 0.2336448598130841,
+      "recall": 0.17123287671232876,
+      "f1": 0.1976284584980237,
+      "support": 146
+    },
+    "Travel writing": {
+      "precision": 0.12213740458015267,
+      "recall": 0.22857142857142856,
+      "f1": 0.15920398009950248,
+      "support": 70
+    },
+    "Treaties": {
+      "precision": 0.21818181818181817,
+      "recall": 0.2696629213483146,
+      "f1": 0.24120603015075376,
+      "support": 89
+    },
+    "Tributes": {
+      "precision": 0.1056338028169014,
+      "recall": 0.14285714285714285,
+      "f1": 0.1214574898785425,
+      "support": 105
+    },
+    "True crime stories": {
+      "precision": 0.33613445378151263,
+      "recall": 0.2777777777777778,
+      "f1": 0.3041825095057034,
+      "support": 144
+    },
+    "Tutorials": {
+      "precision": 0.06521739130434782,
+      "recall": 0.08333333333333333,
+      "f1": 0.07317073170731707,
+      "support": 72
+    },
+    "Video recordings": {
+      "precision": 0.23008849557522124,
+      "recall": 0.203125,
+      "f1": 0.2157676348547718,
+      "support": 128
+    },
+    "Workbooks": {
+      "precision": 0.05128205128205128,
+      "recall": 0.057971014492753624,
+      "f1": 0.05442176870748299,
+      "support": 69
+    },
+    "Yearbooks": {
+      "precision": 0.44565217391304346,
+      "recall": 0.1943127962085308,
+      "f1": 0.2706270627062706,
+      "support": 211
+    }
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "bd842c503c69480055f9646139fab84f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-30T14:44:17.348256+00:00",
+    "model_name": "Qwen3-Embedding-0.6B",
+    "data_commit": "7123a65",
+    "code_commit": "bbd8324",
+    "extra": {
+      "embedding_dim": 1024,
+      "classifier": "LogisticRegression",
+      "train_size": 37795,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
+    }
+  },
+  "efficiency": {
+    "num_params": 595776512,
+    "embedding_dim": 1024,
+    "size_category": "300M-1B",
+    "flops_per_token": 1191553024,
+    "relative_compute": 26.2304,
+    "shelf_eff": 53.3639,
+    "shelf_compute": 0.3378,
+    "pareto_optimal": false,
+    "size_rank": 3,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.468273
+}

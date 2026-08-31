@@ -15,6 +15,134 @@
     "num_correct": 9935,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.8469184890656064,
+      "recall": 0.7029702970297029,
+      "f1": 0.7682596934174932,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.7132987910189983,
+      "recall": 0.6917922948073701,
+      "f1": 0.7023809523809523,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8356435643564356,
+      "recall": 0.74822695035461,
+      "f1": 0.7895229186155285,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.7737881508078994,
+      "recall": 0.7123966942148761,
+      "f1": 0.7418244406196214,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8493870402802102,
+      "recall": 0.7835218093699515,
+      "f1": 0.8151260504201681,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.689594356261023,
+      "recall": 0.666098807495741,
+      "f1": 0.6776429809358753,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8521739130434782,
+      "recall": 0.8718861209964412,
+      "f1": 0.8619173262972736,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.7901990811638591,
+      "recall": 0.8242811501597445,
+      "f1": 0.8068803752931978,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.646964856230032,
+      "recall": 0.715547703180212,
+      "f1": 0.6795302013422819,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.7774086378737541,
+      "recall": 0.763458401305057,
+      "f1": 0.7703703703703704,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.7877358490566038,
+      "recall": 0.8377926421404682,
+      "f1": 0.8119935170178282,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.7013996889580093,
+      "recall": 0.7802768166089965,
+      "f1": 0.7387387387387387,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7641996557659209,
+      "recall": 0.774869109947644,
+      "f1": 0.7694974003466204,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6494661921708185,
+      "recall": 0.6600361663652803,
+      "f1": 0.6547085201793722,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.7920489296636085,
+      "recall": 0.8144654088050315,
+      "f1": 0.8031007751937984,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8375,
+      "recall": 0.9069373942470389,
+      "f1": 0.8708367181153533,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.95,
+      "recall": 0.8959349593495934,
+      "f1": 0.9221757322175732,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.7920489296636085,
+      "recall": 0.8288,
+      "f1": 0.8100078186082877,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.863481228668942,
+      "recall": 0.8694158075601375,
+      "f1": 0.8664383561643836,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9166666666666666,
+      "recall": 0.9372990353697749,
+      "f1": 0.9268680445151033,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.867003367003367,
+      "recall": 0.878839590443686,
+      "f1": 0.8728813559322034,
+      "support": 586
+    }
+  },
   "num_samples": 12504,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T13:50:53.655390+00:00",
+    "timestamp": "2026-08-29T20:24:01.567530+00:00",
     "model_name": "BGE-small",
     "data_commit": "7123a65",
-    "code_commit": "38893ba",
+    "code_commit": "b506498",
     "extra": {
       "embedding_dim": 384,
       "classifier": "LogisticRegression",
@@ -42,13 +170,14 @@
     "size_category": "10M-50M",
     "flops_per_token": 66721024,
     "relative_compute": 1.4688,
-    "shelf_eff": null,
-    "shelf_compute": null,
-    "pareto_optimal": null,
-    "size_rank": null,
+    "shelf_eff": 89.6503,
+    "shelf_compute": 0.649,
+    "pareto_optimal": false,
+    "size_rank": 2,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  }
+  },
+  "shelf_score": 0.67446
 }

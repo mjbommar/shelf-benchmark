@@ -5,15 +5,143 @@
   "task": "lcc_classification",
   "task_type": "classification",
   "primary_metric": "macro_f1",
-  "primary_score": 0.82906668835724,
+  "primary_score": 0.8279047112455952,
   "metrics": {
-    "accuracy": 0.8304542546385156,
-    "macro_f1": 0.82906668835724,
-    "micro_f1": 0.8304542546385156,
-    "weighted_f1": 0.8303610355582627,
+    "accuracy": 0.8292546385156749,
+    "macro_f1": 0.8279047112455952,
+    "micro_f1": 0.8292546385156749,
+    "weighted_f1": 0.8291616619616768,
     "num_samples": 12504,
-    "num_correct": 10384,
+    "num_correct": 10369,
     "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.924812030075188,
+      "recall": 0.8118811881188119,
+      "f1": 0.8646748681898067,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.7157894736842105,
+      "recall": 0.6834170854271356,
+      "f1": 0.699228791773779,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.833941605839416,
+      "recall": 0.8102836879432624,
+      "f1": 0.8219424460431655,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.8378870673952641,
+      "recall": 0.7603305785123967,
+      "f1": 0.7972270363951474,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8850987432675045,
+      "recall": 0.7964458804523424,
+      "f1": 0.8384353741496599,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.7491103202846975,
+      "recall": 0.717206132879046,
+      "f1": 0.7328111401218451,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.9033457249070632,
+      "recall": 0.8647686832740213,
+      "f1": 0.8836363636363637,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.8274809160305343,
+      "recall": 0.865814696485623,
+      "f1": 0.8462138953942233,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.7347670250896058,
+      "recall": 0.7243816254416962,
+      "f1": 0.7295373665480427,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.8154311649016641,
+      "recall": 0.8792822185970636,
+      "f1": 0.8461538461538461,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.8464106844741235,
+      "recall": 0.8478260869565217,
+      "f1": 0.8471177944862155,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.7337367624810892,
+      "recall": 0.8391003460207612,
+      "f1": 0.7828894269572235,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7624784853700516,
+      "recall": 0.7731239092495636,
+      "f1": 0.7677642980935875,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6649305555555556,
+      "recall": 0.6925858951175407,
+      "f1": 0.6784765279007972,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8143712574850299,
+      "recall": 0.8553459119496856,
+      "f1": 0.8343558282208589,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8664546899841018,
+      "recall": 0.922165820642978,
+      "f1": 0.8934426229508197,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9382303839732888,
+      "recall": 0.9138211382113821,
+      "f1": 0.9258649093904449,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.8385579937304075,
+      "recall": 0.856,
+      "f1": 0.8471892319873318,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.8813559322033898,
+      "recall": 0.8934707903780069,
+      "f1": 0.8873720136518771,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9347826086956522,
+      "recall": 0.9678456591639871,
+      "f1": 0.9510268562401264,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.9083191850594228,
+      "recall": 0.9129692832764505,
+      "f1": 0.9106382978723404,
+      "support": 586
+    }
   },
   "num_samples": 12504,
   "context": {
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T18:01:11.093358+00:00",
+    "timestamp": "2026-08-29T23:21:09.723973+00:00",
     "model_name": "GTR-T5-large",
     "data_commit": "7123a65",
-    "code_commit": "a6ae789",
+    "code_commit": "00ea683",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",
@@ -42,13 +170,14 @@
     "size_category": "300M-1B",
     "flops_per_token": 671709184,
     "relative_compute": 14.7867,
-    "shelf_eff": null,
-    "shelf_compute": null,
-    "pareto_optimal": null,
-    "size_rank": null,
+    "shelf_eff": 80.9301,
+    "shelf_compute": 0.5271,
+    "pareto_optimal": false,
+    "size_rank": 3,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  }
+  },
+  "shelf_score": 0.690023
 }

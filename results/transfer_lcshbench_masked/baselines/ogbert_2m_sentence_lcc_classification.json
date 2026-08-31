@@ -1,0 +1,183 @@
+{
+  "model": "ogbert-2m-sentence",
+  "model_key": "ogbert_2m_sentence",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.25926126619337375,
+  "metrics": {
+    "accuracy": 0.27853260869565216,
+    "macro_f1": 0.25926126619337375,
+    "micro_f1": 0.27853260869565216,
+    "weighted_f1": 0.2654454717192473,
+    "num_samples": 736,
+    "num_correct": 205,
+    "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.23076923076923078,
+      "recall": 0.17142857142857143,
+      "f1": 0.19672131147540983,
+      "support": 35
+    },
+    "B": {
+      "precision": 0.30303030303030304,
+      "recall": 0.3448275862068966,
+      "f1": 0.3225806451612903,
+      "support": 29
+    },
+    "C": {
+      "precision": 0.13636363636363635,
+      "recall": 0.06666666666666667,
+      "f1": 0.08955223880597014,
+      "support": 45
+    },
+    "D": {
+      "precision": 0.11904761904761904,
+      "recall": 0.1724137931034483,
+      "f1": 0.14084507042253522,
+      "support": 29
+    },
+    "E": {
+      "precision": 0.14285714285714285,
+      "recall": 0.038461538461538464,
+      "f1": 0.06060606060606061,
+      "support": 26
+    },
+    "F": {
+      "precision": 0.13793103448275862,
+      "recall": 0.11764705882352941,
+      "f1": 0.12698412698412698,
+      "support": 34
+    },
+    "G": {
+      "precision": 0.047619047619047616,
+      "recall": 0.03225806451612903,
+      "f1": 0.038461538461538464,
+      "support": 31
+    },
+    "H": {
+      "precision": 0.5,
+      "recall": 0.2631578947368421,
+      "f1": 0.3448275862068966,
+      "support": 38
+    },
+    "J": {
+      "precision": 0.21621621621621623,
+      "recall": 0.25,
+      "f1": 0.2318840579710145,
+      "support": 32
+    },
+    "K": {
+      "precision": 0.3333333333333333,
+      "recall": 0.4418604651162791,
+      "f1": 0.38,
+      "support": 43
+    },
+    "L": {
+      "precision": 0.4634146341463415,
+      "recall": 0.48717948717948717,
+      "f1": 0.475,
+      "support": 39
+    },
+    "M": {
+      "precision": 0.4827586206896552,
+      "recall": 0.4375,
+      "f1": 0.45901639344262296,
+      "support": 32
+    },
+    "N": {
+      "precision": 0.23684210526315788,
+      "recall": 0.24324324324324326,
+      "f1": 0.24,
+      "support": 37
+    },
+    "P": {
+      "precision": 0.1891891891891892,
+      "recall": 0.45161290322580644,
+      "f1": 0.26666666666666666,
+      "support": 31
+    },
+    "Q": {
+      "precision": 0.39215686274509803,
+      "recall": 0.5714285714285714,
+      "f1": 0.46511627906976744,
+      "support": 35
+    },
+    "R": {
+      "precision": 0.5106382978723404,
+      "recall": 0.5853658536585366,
+      "f1": 0.5454545454545454,
+      "support": 41
+    },
+    "S": {
+      "precision": 0.21052631578947367,
+      "recall": 0.24242424242424243,
+      "f1": 0.22535211267605634,
+      "support": 33
+    },
+    "T": {
+      "precision": 0.18181818181818182,
+      "recall": 0.05128205128205128,
+      "f1": 0.08,
+      "support": 39
+    },
+    "U": {
+      "precision": 0.2777777777777778,
+      "recall": 0.25,
+      "f1": 0.2631578947368421,
+      "support": 40
+    },
+    "V": {
+      "precision": 0.15789473684210525,
+      "recall": 0.2,
+      "f1": 0.17647058823529413,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.3076923076923077,
+      "recall": 0.32432432432432434,
+      "f1": 0.3157894736842105,
+      "support": 37
+    }
+  },
+  "num_samples": 736,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "1e571d8ba2eab0527aa44e51aed22887",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T21:18:10.822055+00:00",
+    "model_name": "ogbert-2m-sentence",
+    "data_commit": null,
+    "code_commit": "6ea0260",
+    "extra": {
+      "embedding_dim": 128,
+      "classifier": "LogisticRegression",
+      "train_size": 3145
+    }
+  },
+  "efficiency": {
+    "num_params": 2123008,
+    "embedding_dim": 128,
+    "size_category": "<10M",
+    "flops_per_token": 4246016,
+    "relative_compute": 0.0935,
+    "shelf_eff": 32.814,
+    "shelf_compute": 0.2631,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.207613
+}

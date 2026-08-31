@@ -1,0 +1,183 @@
+{
+  "model": "RoBERTa",
+  "model_key": "roberta",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.2881322989251741,
+  "metrics": {
+    "accuracy": 0.3179347826086957,
+    "macro_f1": 0.2881322989251741,
+    "micro_f1": 0.3179347826086957,
+    "weighted_f1": 0.28709046774155683,
+    "num_samples": 736,
+    "num_correct": 234,
+    "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.15384615384615385,
+      "recall": 0.11428571428571428,
+      "f1": 0.13114754098360656,
+      "support": 35
+    },
+    "B": {
+      "precision": 0.3684210526315789,
+      "recall": 0.4827586206896552,
+      "f1": 0.417910447761194,
+      "support": 29
+    },
+    "C": {
+      "precision": 0.14285714285714285,
+      "recall": 0.022222222222222223,
+      "f1": 0.038461538461538464,
+      "support": 45
+    },
+    "D": {
+      "precision": 0.375,
+      "recall": 0.20689655172413793,
+      "f1": 0.26666666666666666,
+      "support": 29
+    },
+    "E": {
+      "precision": 0.26666666666666666,
+      "recall": 0.15384615384615385,
+      "f1": 0.1951219512195122,
+      "support": 26
+    },
+    "F": {
+      "precision": 0.17391304347826086,
+      "recall": 0.11764705882352941,
+      "f1": 0.14035087719298245,
+      "support": 34
+    },
+    "G": {
+      "precision": 0.23529411764705882,
+      "recall": 0.12903225806451613,
+      "f1": 0.16666666666666666,
+      "support": 31
+    },
+    "H": {
+      "precision": 0.5454545454545454,
+      "recall": 0.15789473684210525,
+      "f1": 0.24489795918367346,
+      "support": 38
+    },
+    "J": {
+      "precision": 0.22727272727272727,
+      "recall": 0.15625,
+      "f1": 0.18518518518518517,
+      "support": 32
+    },
+    "K": {
+      "precision": 0.2755102040816326,
+      "recall": 0.627906976744186,
+      "f1": 0.3829787234042553,
+      "support": 43
+    },
+    "L": {
+      "precision": 0.5,
+      "recall": 0.20512820512820512,
+      "f1": 0.2909090909090909,
+      "support": 39
+    },
+    "M": {
+      "precision": 0.3877551020408163,
+      "recall": 0.59375,
+      "f1": 0.4691358024691358,
+      "support": 32
+    },
+    "N": {
+      "precision": 0.3958333333333333,
+      "recall": 0.5135135135135135,
+      "f1": 0.4470588235294118,
+      "support": 37
+    },
+    "P": {
+      "precision": 0.22535211267605634,
+      "recall": 0.5161290322580645,
+      "f1": 0.3137254901960784,
+      "support": 31
+    },
+    "Q": {
+      "precision": 0.5384615384615384,
+      "recall": 0.6,
+      "f1": 0.5675675675675675,
+      "support": 35
+    },
+    "R": {
+      "precision": 0.36363636363636365,
+      "recall": 0.5853658536585366,
+      "f1": 0.4485981308411215,
+      "support": 41
+    },
+    "S": {
+      "precision": 0.5,
+      "recall": 0.21212121212121213,
+      "f1": 0.2978723404255319,
+      "support": 33
+    },
+    "T": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 39
+    },
+    "U": {
+      "precision": 0.45454545454545453,
+      "recall": 0.375,
+      "f1": 0.410958904109589,
+      "support": 40
+    },
+    "V": {
+      "precision": 0.24561403508771928,
+      "recall": 0.4666666666666667,
+      "f1": 0.3218390804597701,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.24615384615384617,
+      "recall": 0.43243243243243246,
+      "f1": 0.3137254901960784,
+      "support": 37
+    }
+  },
+  "num_samples": 736,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "1e571d8ba2eab0527aa44e51aed22887",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T21:13:26.692252+00:00",
+    "model_name": "RoBERTa",
+    "data_commit": null,
+    "code_commit": "333a405",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 3145
+    }
+  },
+  "efficiency": {
+    "num_params": 124645632,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 249291264,
+    "relative_compute": 5.4878,
+    "shelf_eff": 29.4083,
+    "shelf_compute": 0.2008,
+    "pareto_optimal": false,
+    "size_rank": 10,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.23808
+}

@@ -1,0 +1,144 @@
+{
+  "model": "GTE-ModernBERT-2k",
+  "model_key": "gte_modernbert_2k",
+  "model_type": "sentence_transformer",
+  "task": "lcgft_category_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.7574927232929863,
+  "metrics": {
+    "accuracy": 0.7563979526551503,
+    "macro_f1": 0.7574927232929863,
+    "micro_f1": 0.7563979526551503,
+    "weighted_f1": 0.7573705327040785,
+    "num_samples": 12504,
+    "num_correct": 9458,
+    "num_classes": 14
+  },
+  "per_class_metrics": {
+    "Cartographic materials": {
+      "precision": 0.8587223587223587,
+      "recall": 0.9295212765957447,
+      "f1": 0.89272030651341,
+      "support": 752
+    },
+    "Commemorative works": {
+      "precision": 0.9168336673346693,
+      "recall": 0.9140859140859141,
+      "f1": 0.9154577288644322,
+      "support": 1001
+    },
+    "Creative nonfiction": {
+      "precision": 0.6546511627906977,
+      "recall": 0.6220994475138122,
+      "f1": 0.6379603399433428,
+      "support": 905
+    },
+    "Discursive works": {
+      "precision": 0.4944954128440367,
+      "recall": 0.600891861761427,
+      "f1": 0.5425264217413186,
+      "support": 897
+    },
+    "Ephemera": {
+      "precision": 0.8472584856396866,
+      "recall": 0.7904993909866017,
+      "f1": 0.8178954001260239,
+      "support": 821
+    },
+    "Informational works": {
+      "precision": 0.5294784580498866,
+      "recall": 0.5405092592592593,
+      "f1": 0.5349369988545246,
+      "support": 864
+    },
+    "Instructional and educational works": {
+      "precision": 0.7167042889390519,
+      "recall": 0.6857451403887689,
+      "f1": 0.7008830022075055,
+      "support": 926
+    },
+    "Law materials": {
+      "precision": 0.8333333333333334,
+      "recall": 0.8901918976545842,
+      "f1": 0.8608247422680413,
+      "support": 938
+    },
+    "Literature": {
+      "precision": 0.670814479638009,
+      "recall": 0.624868282402529,
+      "f1": 0.6470267321331151,
+      "support": 949
+    },
+    "Music": {
+      "precision": 0.7824427480916031,
+      "recall": 0.8028720626631853,
+      "f1": 0.7925257731958762,
+      "support": 766
+    },
+    "Recreational works": {
+      "precision": 0.8655569782330346,
+      "recall": 0.7536231884057971,
+      "f1": 0.8057210965435042,
+      "support": 897
+    },
+    "Religious materials": {
+      "precision": 0.8462311557788945,
+      "recall": 0.8863157894736842,
+      "f1": 0.8658097686375321,
+      "support": 950
+    },
+    "Sound recordings": {
+      "precision": 0.7561247216035635,
+      "recall": 0.7404580152671756,
+      "f1": 0.7482093663911846,
+      "support": 917
+    },
+    "Visual works": {
+      "precision": 0.87122969837587,
+      "recall": 0.8154180238870793,
+      "f1": 0.8424004486819966,
+      "support": 921
+    }
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "bd842c503c69480055f9646139fab84f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-30T12:08:26.123516+00:00",
+    "model_name": "GTE-ModernBERT-2k",
+    "data_commit": "7123a65",
+    "code_commit": "f3eff8b",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 37795,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
+    }
+  },
+  "efficiency": {
+    "num_params": 149014272,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 298028544,
+    "relative_compute": 6.5607,
+    "shelf_eff": 57.4757,
+    "shelf_compute": 0.3892,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.469762
+}

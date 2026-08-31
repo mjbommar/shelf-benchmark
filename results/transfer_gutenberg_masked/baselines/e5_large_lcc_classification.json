@@ -15,6 +15,134 @@
     "num_correct": 327,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.25,
+      "recall": 0.034482758620689655,
+      "f1": 0.06060606060606061,
+      "support": 29
+    },
+    "B": {
+      "precision": 0.46875,
+      "recall": 0.5,
+      "f1": 0.4838709677419355,
+      "support": 30
+    },
+    "C": {
+      "precision": 0.4444444444444444,
+      "recall": 0.13333333333333333,
+      "f1": 0.20512820512820512,
+      "support": 30
+    },
+    "D": {
+      "precision": 0.5,
+      "recall": 0.36666666666666664,
+      "f1": 0.4230769230769231,
+      "support": 30
+    },
+    "E": {
+      "precision": 0.44,
+      "recall": 0.36666666666666664,
+      "f1": 0.4,
+      "support": 30
+    },
+    "F": {
+      "precision": 0.4090909090909091,
+      "recall": 0.3,
+      "f1": 0.34615384615384615,
+      "support": 30
+    },
+    "G": {
+      "precision": 0.6,
+      "recall": 0.2,
+      "f1": 0.3,
+      "support": 30
+    },
+    "H": {
+      "precision": 0.36363636363636365,
+      "recall": 0.26666666666666666,
+      "f1": 0.3076923076923077,
+      "support": 30
+    },
+    "J": {
+      "precision": 0.3829787234042553,
+      "recall": 0.6,
+      "f1": 0.4675324675324675,
+      "support": 30
+    },
+    "K": {
+      "precision": 0.5,
+      "recall": 0.6,
+      "f1": 0.5454545454545454,
+      "support": 30
+    },
+    "L": {
+      "precision": 0.5,
+      "recall": 0.4666666666666667,
+      "f1": 0.4827586206896552,
+      "support": 30
+    },
+    "M": {
+      "precision": 0.7857142857142857,
+      "recall": 0.7333333333333333,
+      "f1": 0.7586206896551724,
+      "support": 30
+    },
+    "N": {
+      "precision": 0.5675675675675675,
+      "recall": 0.7,
+      "f1": 0.6268656716417911,
+      "support": 30
+    },
+    "P": {
+      "precision": 0.45,
+      "recall": 0.9,
+      "f1": 0.6,
+      "support": 30
+    },
+    "Q": {
+      "precision": 0.5833333333333334,
+      "recall": 0.4827586206896552,
+      "f1": 0.5283018867924528,
+      "support": 29
+    },
+    "R": {
+      "precision": 0.7666666666666667,
+      "recall": 0.7931034482758621,
+      "f1": 0.7796610169491526,
+      "support": 29
+    },
+    "S": {
+      "precision": 0.4864864864864865,
+      "recall": 0.6,
+      "f1": 0.5373134328358209,
+      "support": 30
+    },
+    "T": {
+      "precision": 0.4418604651162791,
+      "recall": 0.6333333333333333,
+      "f1": 0.5205479452054794,
+      "support": 30
+    },
+    "U": {
+      "precision": 0.6129032258064516,
+      "recall": 0.6333333333333333,
+      "f1": 0.6229508196721312,
+      "support": 30
+    },
+    "V": {
+      "precision": 0.6410256410256411,
+      "recall": 0.8333333333333334,
+      "f1": 0.7246376811594203,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.5853658536585366,
+      "recall": 0.8,
+      "f1": 0.676056338028169,
+      "support": 30
+    }
+  },
   "num_samples": 627,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T12:58:43.302621+00:00",
+    "timestamp": "2026-08-29T20:21:45.805018+00:00",
     "model_name": "E5-large",
     "data_commit": null,
-    "code_commit": "c39a943",
+    "code_commit": "b506498",
     "extra": {
       "embedding_dim": 1024,
       "classifier": "LogisticRegression",
@@ -42,8 +170,8 @@
     "size_category": "300M-1B",
     "flops_per_token": 670283776,
     "relative_compute": 14.7554,
-    "shelf_eff": 53.7319,
-    "shelf_compute": 0.35,
+    "shelf_eff": 53.7236,
+    "shelf_compute": 0.3499,
     "pareto_optimal": false,
     "size_rank": 2,
     "num_params_torch": null,
@@ -51,5 +179,5 @@
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.458076
+  "shelf_score": 0.458006
 }

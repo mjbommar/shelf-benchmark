@@ -20,21 +20,22 @@
     "recall@10": 0.0023401355367454234,
     "precision@10": 0.563011836212412,
     "map@10": 0.0019284123131275185,
-    "ndcg@50": 0.5198483780528825,
+    "ndcg@50": 0.5198483924106717,
     "recall@50": 0.010433968174132004,
     "precision@50": 0.5022360844529751,
-    "map@50": 0.0076059982409651,
-    "ndcg@100": 0.48917301222371384,
-    "recall@100": 0.01956079490693459,
-    "precision@100": 0.47085172744721693,
-    "map@100": 0.013526383880298715,
+    "map@50": 0.007605998951682917,
+    "ndcg@100": 0.48917243400898547,
+    "recall@100": 0.019560761091117172,
+    "precision@100": 0.470850927703135,
+    "map@100": 0.013526368920272008,
     "graded_ndcg@1": 0.6973768394113884,
     "graded_ndcg@5": 0.6663304952239334,
     "graded_ndcg@10": 0.6494919919079913,
-    "graded_ndcg@50": 0.5964226390652294,
-    "graded_ndcg@100": 0.5669339628692383,
+    "graded_ndcg@50": 0.5964226301266169,
+    "graded_ndcg@100": 0.5669339463520395,
     "graded_relevance_max_gain": 3.0
   },
+  "per_class_metrics": null,
   "num_samples": 12504,
   "context": {
     "shelf_version": "0.3.1",
@@ -46,14 +47,17 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:59:49.451684+00:00",
+    "timestamp": "2026-08-30T01:00:31.397970+00:00",
     "model_name": "BGE-small",
     "data_commit": "7123a65",
-    "code_commit": "f586b5b",
+    "code_commit": "67611f4",
     "extra": {
       "num_samples": 12504,
       "corpus_size": 50395,
-      "embedding_dim": 384
+      "embedding_dim": 384,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
     }
   },
   "efficiency": {
@@ -62,13 +66,14 @@
     "size_category": "10M-50M",
     "flops_per_token": 66721024,
     "relative_compute": 1.4688,
-    "shelf_eff": null,
-    "shelf_compute": null,
-    "pareto_optimal": null,
-    "size_rank": null,
+    "shelf_eff": 89.6503,
+    "shelf_compute": 0.649,
+    "pareto_optimal": false,
+    "size_rank": 2,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  }
+  },
+  "shelf_score": 0.67446
 }

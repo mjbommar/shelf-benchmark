@@ -5,15 +5,143 @@
   "task": "lcc_classification",
   "task_type": "classification",
   "primary_metric": "macro_f1",
-  "primary_score": 0.7793554191018918,
+  "primary_score": 0.7793537149207388,
   "metrics": {
     "accuracy": 0.7808701215611005,
-    "macro_f1": 0.7793554191018918,
+    "macro_f1": 0.7793537149207388,
     "micro_f1": 0.7808701215611005,
-    "weighted_f1": 0.7805202950831208,
+    "weighted_f1": 0.7805188810628003,
     "num_samples": 12504,
     "num_correct": 9764,
     "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.8078358208955224,
+      "recall": 0.7145214521452146,
+      "f1": 0.7583187390542907,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.676678445229682,
+      "recall": 0.6415410385259631,
+      "f1": 0.6586414445399829,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8014705882352942,
+      "recall": 0.7730496453900709,
+      "f1": 0.7870036101083032,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.7622504537205081,
+      "recall": 0.6942148760330579,
+      "f1": 0.726643598615917,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8297101449275363,
+      "recall": 0.7399030694668821,
+      "f1": 0.7822374039282665,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.6741154562383612,
+      "recall": 0.616695059625213,
+      "f1": 0.6441281138790036,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8678899082568807,
+      "recall": 0.8416370106761566,
+      "f1": 0.8545618789521229,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.807570977917981,
+      "recall": 0.8178913738019169,
+      "f1": 0.8126984126984127,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.6752577319587629,
+      "recall": 0.6943462897526502,
+      "f1": 0.6846689895470384,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.7614678899082569,
+      "recall": 0.8123980424143556,
+      "f1": 0.7861089187056038,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.789049919484702,
+      "recall": 0.8193979933110368,
+      "f1": 0.8039376538146021,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.6565349544072948,
+      "recall": 0.7474048442906575,
+      "f1": 0.6990291262135923,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.6894904458598726,
+      "recall": 0.7556719022687609,
+      "f1": 0.7210657785179018,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6485507246376812,
+      "recall": 0.6473779385171791,
+      "f1": 0.6479638009049774,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8009708737864077,
+      "recall": 0.7783018867924528,
+      "f1": 0.7894736842105263,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8341307814992025,
+      "recall": 0.8849407783417935,
+      "f1": 0.8587848932676518,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9172297297297297,
+      "recall": 0.8829268292682927,
+      "f1": 0.899751449875725,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.7786259541984732,
+      "recall": 0.816,
+      "f1": 0.796875,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.8288,
+      "recall": 0.8900343642611683,
+      "f1": 0.8583264291632146,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9240710823909531,
+      "recall": 0.9196141479099679,
+      "f1": 0.9218372280419017,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.8585526315789473,
+      "recall": 0.8907849829351536,
+      "f1": 0.8743718592964824,
+      "support": 586
+    }
   },
   "num_samples": 12504,
   "context": {
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T17:39:59.980739+00:00",
+    "timestamp": "2026-08-30T00:24:07.833043+00:00",
     "model_name": "distilbert-base-uncased",
     "data_commit": "7123a65",
-    "code_commit": "392082c",
+    "code_commit": "67611f4",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",
@@ -42,8 +170,8 @@
     "size_category": "50M-100M",
     "flops_per_token": 133971060,
     "relative_compute": 2.9492,
-    "shelf_eff": 99.5857,
-    "shelf_compute": 0.6995,
+    "shelf_eff": 78.8547,
+    "shelf_compute": 0.5539,
     "pareto_optimal": false,
     "size_rank": 1,
     "num_params_torch": null,
@@ -51,5 +179,5 @@
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.779355
+  "shelf_score": 0.617116
 }

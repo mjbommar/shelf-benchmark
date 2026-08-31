@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-29T13:20:15.166026+00:00",
+  "timestamp": "2026-08-29T20:57:39.892182+00:00",
   "dataset_version": "0.3.1",
   "dataset_checksum": "v0.3.1",
   "versions": {
@@ -8,6 +8,9 @@
     "sklearn": "1.8.0",
     "numpy": "2.3.5",
     "scipy": "1.16.3",
+    "blas_threads": "8",
+    "python_hash_seed": "0",
+    "deterministic_text_order": "true",
     "sentence_transformers": "5.3.0.dev0",
     "torch": "2.9.1+cu128",
     "cuda_available": "True",
@@ -15,7 +18,7 @@
     "shelf": "0.3.1"
   },
   "git": {
-    "commit": "1b22bf2",
+    "commit": "e7043bd",
     "branch": "master",
     "dirty": true
   },
@@ -35,7 +38,7 @@
     "bert": 0.3917899394841347,
     "roberta": 0.2988345458899826,
     "bge_large": 0.4645118766925814,
-    "e5_large": 0.4580763134440555,
+    "e5_large": 0.45800564852676573,
     "gtr_t5_large": 0.39910874691954085,
     "ogbert_2m_sentence": 0.23308584151028663,
     "ogbert_110m_base": 0.3210086445929833,
@@ -246,8 +249,8 @@
       "size_category": "300M-1B",
       "flops_per_token": 670283776,
       "relative_compute": 14.7554,
-      "shelf_eff": 53.7319,
-      "shelf_compute": 0.35,
+      "shelf_eff": 53.7236,
+      "shelf_compute": 0.3499,
       "pareto_optimal": false,
       "size_rank": 2,
       "num_params_torch": null,
@@ -369,21 +372,22 @@
         "recall@10": 0.027739582969646952,
         "precision@10": 0.3156299840510367,
         "map@10": 0.020413998046291987,
-        "ndcg@50": 0.24500832969298303,
+        "ndcg@50": 0.2450075484854351,
         "recall@50": 0.09352206149450774,
         "precision@50": 0.21279106858054228,
-        "map@50": 0.04942838992080263,
-        "ndcg@100": 0.19999464064236655,
+        "map@50": 0.04942745668831509,
+        "ndcg@100": 0.19999427724339344,
         "recall@100": 0.14949435521592508,
         "precision@100": 0.17007974481658694,
-        "map@100": 0.06503346865256579,
+        "map@100": 0.06503271255667008,
         "graded_ndcg@1": 0.47926634768740034,
         "graded_ndcg@5": 0.3893601643097946,
         "graded_ndcg@10": 0.35088808217579076,
-        "graded_ndcg@50": 0.2501857288952316,
-        "graded_ndcg@100": 0.204671318931428,
+        "graded_ndcg@50": 0.25018494768768373,
+        "graded_ndcg@100": 0.20467095553245493,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -395,10 +399,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:04:47.781318+00:00",
+        "timestamp": "2026-08-29T20:29:20.002933+00:00",
         "model_name": "tfidf-sklearn-1-2gram-dim256",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -455,6 +459,7 @@
         "graded_ndcg@100": 0.057927625604227644,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -466,10 +471,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:04:51.112033+00:00",
+        "timestamp": "2026-08-29T20:33:05.639223+00:00",
         "model_name": "bm25-shelf-k1=1.5-b=0.75",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389
@@ -510,21 +515,22 @@
         "recall@10": 0.025962564878555368,
         "precision@10": 0.2953748006379585,
         "map@10": 0.018054110979980612,
-        "ndcg@50": 0.24217241967469216,
+        "ndcg@50": 0.24217222150053164,
         "recall@50": 0.09507350117258678,
         "precision@50": 0.21633173843700162,
-        "map@50": 0.04589884573146886,
-        "ndcg@100": 0.20359589439681539,
+        "map@50": 0.04589879585510986,
+        "ndcg@100": 0.20359577161361803,
         "recall@100": 0.15713492634778148,
         "precision@100": 0.1787878787878788,
-        "map@100": 0.06320305988786964,
+        "map@100": 0.06320304347316741,
         "graded_ndcg@1": 0.44258373205741625,
         "graded_ndcg@5": 0.36385348480032453,
         "graded_ndcg@10": 0.3283555783399265,
-        "graded_ndcg@50": 0.24856252164964684,
-        "graded_ndcg@100": 0.20916926851993556,
+        "graded_ndcg@50": 0.24856232347548635,
+        "graded_ndcg@100": 0.20916914573673812,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -536,10 +542,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:04:58.288791+00:00",
+        "timestamp": "2026-08-29T20:33:17.339360+00:00",
         "model_name": "MiniLM-L6",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -585,21 +591,22 @@
         "recall@10": 0.030419905177829335,
         "precision@10": 0.3460925039872408,
         "map@10": 0.02250649630101987,
-        "ndcg@50": 0.28230916822230206,
+        "ndcg@50": 0.28230902475652847,
         "recall@50": 0.11028283472085103,
         "precision@50": 0.25094098883572574,
-        "map@50": 0.05933380201420393,
-        "ndcg@100": 0.23602435920197043,
+        "map@50": 0.05933376951636723,
+        "ndcg@100": 0.23602427083040128,
         "recall@100": 0.18110318986694834,
         "precision@100": 0.20604465709728867,
-        "map@100": 0.08222108061128816,
+        "map@100": 0.08222104811345146,
         "graded_ndcg@1": 0.5199362041467305,
         "graded_ndcg@5": 0.4288861008788468,
         "graded_ndcg@10": 0.38576789868813366,
-        "graded_ndcg@50": 0.28933151068776475,
-        "graded_ndcg@100": 0.24204955239680898,
+        "graded_ndcg@50": 0.28933136722199115,
+        "graded_ndcg@100": 0.2420494640252398,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -611,10 +618,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:05:14.928772+00:00",
+        "timestamp": "2026-08-29T20:33:43.731110+00:00",
         "model_name": "BGE-small",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -664,17 +671,18 @@
         "recall@50": 0.09599030037585672,
         "precision@50": 0.21840510366826155,
         "map@50": 0.04880328160714145,
-        "ndcg@100": 0.20692378758055227,
+        "ndcg@100": 0.20692381388381842,
         "recall@100": 0.1533483784973011,
         "precision@100": 0.17444976076555027,
-        "map@100": 0.06422244150359419,
+        "map@100": 0.064222480102029,
         "graded_ndcg@1": 0.5247208931419458,
         "graded_ndcg@5": 0.4226171457270404,
         "graded_ndcg@10": 0.3730090881500477,
         "graded_ndcg@50": 0.2601028520545834,
-        "graded_ndcg@100": 0.2122086744827999,
+        "graded_ndcg@100": 0.212208700786066,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -686,10 +694,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:05:30.735416+00:00",
+        "timestamp": "2026-08-29T20:34:11.145417+00:00",
         "model_name": "E5-small",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -735,21 +743,22 @@
         "recall@10": 0.03089186176970846,
         "precision@10": 0.3515151515151515,
         "map@10": 0.02243054197842192,
-        "ndcg@50": 0.28097386689538045,
+        "ndcg@50": 0.28097373317871127,
         "recall@50": 0.10983972542328141,
         "precision@50": 0.24998405103668264,
-        "map@50": 0.058647977021689585,
-        "ndcg@100": 0.23305636665083218,
+        "map@50": 0.05864782173802537,
+        "ndcg@100": 0.23305617191222902,
         "recall@100": 0.17827417409453544,
         "precision@100": 0.2028708133971292,
-        "map@100": 0.0807303256431172,
+        "map@100": 0.08073000215601873,
         "graded_ndcg@1": 0.4840510366826156,
         "graded_ndcg@5": 0.42291370458752625,
         "graded_ndcg@10": 0.38709027435937854,
-        "graded_ndcg@50": 0.2886811623218822,
-        "graded_ndcg@100": 0.23989670611915698,
+        "graded_ndcg@50": 0.28868102860521305,
+        "graded_ndcg@100": 0.23989651138055387,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -761,10 +770,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:05:38.124314+00:00",
+        "timestamp": "2026-08-29T20:34:24.291698+00:00",
         "model_name": "GTE-small",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -825,6 +834,7 @@
         "graded_ndcg@100": 0.25134852425875936,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -836,10 +846,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:06:12.895691+00:00",
+        "timestamp": "2026-08-29T20:37:26.977088+00:00",
         "model_name": "MPNet",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -885,21 +895,22 @@
         "recall@10": 0.03116423965589263,
         "precision@10": 0.35454545454545455,
         "map@10": 0.02279536990098034,
-        "ndcg@50": 0.27589770837945166,
+        "ndcg@50": 0.2758981014971172,
         "recall@50": 0.10596651188174243,
         "precision@50": 0.24108452950558218,
-        "map@50": 0.05679499501157322,
-        "ndcg@100": 0.22741653766208775,
+        "map@50": 0.056795146421948765,
+        "ndcg@100": 0.22741677981339725,
         "recall@100": 0.17151685016269624,
         "precision@100": 0.1951196172248804,
-        "map@100": 0.07678024330134002,
+        "map@100": 0.07678039471171556,
         "graded_ndcg@1": 0.5287081339712919,
         "graded_ndcg@5": 0.4366872444563062,
         "graded_ndcg@10": 0.3930105666221676,
-        "graded_ndcg@50": 0.28239486145962933,
-        "graded_ndcg@100": 0.2332396748813481,
+        "graded_ndcg@50": 0.28239525457729486,
+        "graded_ndcg@100": 0.23323991703265762,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -911,10 +922,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:06:45.169060+00:00",
+        "timestamp": "2026-08-29T20:38:18.149460+00:00",
         "model_name": "BGE-base",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -964,17 +975,18 @@
         "recall@50": 0.10497703730611338,
         "precision@50": 0.23885167464114831,
         "map@50": 0.05683146213537144,
-        "ndcg@100": 0.22705190790329424,
+        "ndcg@100": 0.2270520025119153,
         "recall@100": 0.16894783146345915,
         "precision@100": 0.19220095693779904,
-        "map@100": 0.07586057076857826,
+        "map@100": 0.0758607155874502,
         "graded_ndcg@1": 0.5701754385964912,
         "graded_ndcg@5": 0.4578108350617753,
         "graded_ndcg@10": 0.4052957716003622,
-        "graded_ndcg@50": 0.28387358185226036,
-        "graded_ndcg@100": 0.23258576292335917,
+        "graded_ndcg@50": 0.2838734215787065,
+        "graded_ndcg@100": 0.23258575880721066,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -986,10 +998,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:07:16.481138+00:00",
+        "timestamp": "2026-08-29T20:39:14.737878+00:00",
         "model_name": "E5-base",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1050,6 +1062,7 @@
         "graded_ndcg@100": 0.1934569540857562,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1061,10 +1074,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:07:46.824997+00:00",
+        "timestamp": "2026-08-29T20:41:13.051724+00:00",
         "model_name": "GTR-T5-base",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1114,17 +1127,18 @@
         "recall@50": 0.11042348075662616,
         "precision@50": 0.2512918660287081,
         "map@50": 0.059648358903417624,
-        "ndcg@100": 0.23885003362636584,
+        "ndcg@100": 0.23885006962485175,
         "recall@100": 0.18092589662466846,
         "precision@100": 0.20586921850079748,
-        "map@100": 0.0821977216582101,
+        "map@100": 0.08219775512787206,
         "graded_ndcg@1": 0.5566188197767146,
         "graded_ndcg@5": 0.4591995178541528,
         "graded_ndcg@10": 0.4077479164816771,
         "graded_ndcg@50": 0.2949894779343847,
-        "graded_ndcg@100": 0.24529307519831425,
+        "graded_ndcg@100": 0.2452931111968001,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1136,10 +1150,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:07:59.654733+00:00",
+        "timestamp": "2026-08-29T20:41:25.490952+00:00",
         "model_name": "GTE-base",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1185,21 +1199,22 @@
         "recall@10": 0.031107906956704543,
         "precision@10": 0.35390749601275917,
         "map@10": 0.023515607239121893,
-        "ndcg@50": 0.27516266898402203,
+        "ndcg@50": 0.2751624708098615,
         "recall@50": 0.10518961586546711,
         "precision@50": 0.23933014354066987,
-        "map@50": 0.056910773728663336,
-        "ndcg@100": 0.2252952963981406,
+        "map@50": 0.05691071138321458,
+        "ndcg@100": 0.22529520133152847,
         "recall@100": 0.1688729275447585,
         "precision@100": 0.19212121212121214,
-        "map@100": 0.07584676408370025,
+        "map@100": 0.07584674974895399,
         "graded_ndcg@1": 0.5255183413078149,
         "graded_ndcg@5": 0.4395607422544039,
         "graded_ndcg@10": 0.39423217235870145,
-        "graded_ndcg@50": 0.2811140372811307,
-        "graded_ndcg@100": 0.2306884055069222,
+        "graded_ndcg@50": 0.2811138391069702,
+        "graded_ndcg@100": 0.23068831044031013,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1211,10 +1226,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:08:40.534860+00:00",
+        "timestamp": "2026-08-29T20:42:28.785918+00:00",
         "model_name": "Instructor-base",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1275,6 +1290,7 @@
         "graded_ndcg@100": 0.21223861580629783,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1286,10 +1302,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:09:14.941972+00:00",
+        "timestamp": "2026-08-29T20:43:22.233405+00:00",
         "model_name": "BERT",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1322,7 +1338,7 @@
       "primary_metric": "ndcg@10",
       "primary_score": 0.32285660054236887,
       "metrics": {
-        "mrr": 0.6036741463430558,
+        "mrr": 0.6036734393854619,
         "ndcg@1": 0.4864433811802233,
         "recall@1": 0.004275218539920816,
         "precision@1": 0.4864433811802233,
@@ -1335,21 +1351,22 @@
         "recall@10": 0.025305391324070996,
         "precision@10": 0.2878787878787879,
         "map@10": 0.018025574532511995,
-        "ndcg@50": 0.21856029589243628,
+        "ndcg@50": 0.2185616494954803,
         "recall@50": 0.08118619083735647,
         "precision@50": 0.18472089314194579,
-        "map@50": 0.03914718840446144,
-        "ndcg@100": 0.1782257341051284,
+        "map@50": 0.039147880468744296,
+        "ndcg@100": 0.17822655020260128,
         "recall@100": 0.13090406925133471,
         "precision@100": 0.14893141945773528,
-        "map@100": 0.05107846493980377,
+        "map@100": 0.05107921595253604,
         "graded_ndcg@1": 0.4904306220095694,
         "graded_ndcg@5": 0.3734891386508894,
         "graded_ndcg@10": 0.3268817761780007,
-        "graded_ndcg@50": 0.22214619182944287,
-        "graded_ndcg@100": 0.18144570293276918,
+        "graded_ndcg@50": 0.22214754543248694,
+        "graded_ndcg@100": 0.1814465401458985,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1361,10 +1378,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:09:49.534488+00:00",
+        "timestamp": "2026-08-29T20:44:15.048029+00:00",
         "model_name": "RoBERTa",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "829b096",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1425,6 +1442,7 @@
         "graded_ndcg@100": 0.25858440857351406,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1436,10 +1454,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:11:07.848478+00:00",
+        "timestamp": "2026-08-29T20:46:59.933688+00:00",
         "model_name": "BGE-large",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "829b096",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1470,36 +1488,37 @@
       "task": "lcc_retrieval",
       "task_type": "retrieval",
       "primary_metric": "ndcg@10",
-      "primary_score": 0.42721810536110433,
+      "primary_score": 0.4270885530127399,
       "metrics": {
-        "mrr": 0.7039521106861463,
-        "ndcg@1": 0.5885167464114832,
-        "recall@1": 0.005171960826117176,
-        "precision@1": 0.5885167464114832,
-        "map@1": 0.005171960826117176,
-        "ndcg@5": 0.4753600161080426,
+        "mrr": 0.703154662520277,
+        "ndcg@1": 0.5869218500797448,
+        "recall@1": 0.005157970507417717,
+        "precision@1": 0.5869218500797448,
+        "map@1": 0.005157970507417717,
+        "ndcg@5": 0.47516037664944766,
         "recall@5": 0.019528008741844446,
         "precision@5": 0.4443381180223286,
-        "map@5": 0.016426167310510213,
-        "ndcg@10": 0.42721810536110433,
+        "map@5": 0.016419172151160483,
+        "ndcg@10": 0.4270885530127399,
         "recall@10": 0.034344994325873394,
         "precision@10": 0.39074960127591707,
-        "map@10": 0.02595860350969479,
-        "ndcg@50": 0.29692412358746684,
+        "map@10": 0.02595160835034506,
+        "ndcg@50": 0.296878485427971,
         "recall@50": 0.11225423157617406,
         "precision@50": 0.2554066985645933,
-        "map@50": 0.06416573485841379,
-        "ndcg@100": 0.24086938690871,
+        "map@50": 0.06415873969906405,
+        "ndcg@100": 0.24084123077967484,
         "recall@100": 0.17833149725876418,
         "precision@100": 0.2028708133971292,
-        "map@100": 0.08509650371839222,
-        "graded_ndcg@1": 0.5996810207336523,
-        "graded_ndcg@5": 0.4842966626336084,
-        "graded_ndcg@10": 0.43521854347663225,
-        "graded_ndcg@50": 0.30400098860205044,
-        "graded_ndcg@100": 0.24714196345717557,
+        "map@100": 0.08508948008485248,
+        "graded_ndcg@1": 0.5980861244019139,
+        "graded_ndcg@5": 0.4840970231750133,
+        "graded_ndcg@10": 0.4350889911282677,
+        "graded_ndcg@50": 0.3039553504425546,
+        "graded_ndcg@100": 0.2471138073281404,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1511,10 +1530,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:12:29.569453+00:00",
+        "timestamp": "2026-08-29T20:49:45.498640+00:00",
         "model_name": "E5-large",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "6a696d5",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1527,8 +1546,8 @@
         "size_category": "300M-1B",
         "flops_per_token": 670283776,
         "relative_compute": 14.7554,
-        "shelf_eff": 53.7319,
-        "shelf_compute": 0.35,
+        "shelf_eff": 53.7236,
+        "shelf_compute": 0.3499,
         "pareto_optimal": false,
         "size_rank": 2,
         "num_params_torch": null,
@@ -1536,7 +1555,7 @@
         "context_window": null,
         "throughput_bytes_sec": null
       },
-      "shelf_score": 0.458076
+      "shelf_score": 0.458006
     },
     "gtr_t5_large_lcc_retrieval": {
       "model": "GTR-T5-large",
@@ -1575,6 +1594,7 @@
         "graded_ndcg@100": 0.20762652582292346,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1586,10 +1606,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:13:46.204504+00:00",
+        "timestamp": "2026-08-29T20:51:49.396910+00:00",
         "model_name": "GTR-T5-large",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "6a696d5",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1635,21 +1655,22 @@
         "recall@10": 0.01767794385400347,
         "precision@10": 0.2011164274322169,
         "map@10": 0.010796996079499613,
-        "ndcg@50": 0.16442747428082233,
+        "ndcg@50": 0.16442693783306808,
         "recall@50": 0.06438592281751648,
         "precision@50": 0.14650717703349284,
-        "map@50": 0.024522159484643345,
-        "ndcg@100": 0.1411122710981183,
+        "map@50": 0.0245220444238268,
+        "ndcg@100": 0.1411119698903703,
         "recall@100": 0.10988454396637172,
         "precision@100": 0.1250239234449761,
-        "map@100": 0.03346010389151692,
+        "map@100": 0.03346000194217289,
         "graded_ndcg@1": 0.31259968102073366,
         "graded_ndcg@5": 0.250151446067388,
         "graded_ndcg@10": 0.22409139994510574,
-        "graded_ndcg@50": 0.16790610211173518,
-        "graded_ndcg@100": 0.1444585629012298,
+        "graded_ndcg@50": 0.167905565663981,
+        "graded_ndcg@100": 0.1444582616934818,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1661,10 +1682,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:14:09.841229+00:00",
+        "timestamp": "2026-08-29T20:52:05.106188+00:00",
         "model_name": "ogbert-2m-sentence",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "6a696d5",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1710,21 +1731,22 @@
         "recall@10": 0.02562815911919925,
         "precision@10": 0.2915470494417863,
         "map@10": 0.017968916345680333,
-        "ndcg@50": 0.22433934412273498,
+        "ndcg@50": 0.22433939433399092,
         "recall@50": 0.08476399818051572,
         "precision@50": 0.19285486443381183,
-        "map@50": 0.04124978915999851,
-        "ndcg@100": 0.18493528274523033,
+        "map@50": 0.04124989937630398,
+        "ndcg@100": 0.18493515702069135,
         "recall@100": 0.13805696015879135,
         "precision@100": 0.15706539074960127,
-        "map@100": 0.054772710162092626,
+        "map@100": 0.05477260314783316,
         "graded_ndcg@1": 0.4704944178628389,
         "graded_ndcg@5": 0.36693109664021845,
         "graded_ndcg@10": 0.32717164493692913,
-        "graded_ndcg@50": 0.22841353981767332,
-        "graded_ndcg@100": 0.18875094811290247,
+        "graded_ndcg@50": 0.22841359002892925,
+        "graded_ndcg@100": 0.18875079557661345,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1736,10 +1758,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:16:33.645292+00:00",
+        "timestamp": "2026-08-29T20:53:56.657841+00:00",
         "model_name": "OGBert-110M Base",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "d1f73a9",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1785,21 +1807,22 @@
         "recall@10": 0.02562815911919925,
         "precision@10": 0.2915470494417863,
         "map@10": 0.017968916345680333,
-        "ndcg@50": 0.22433976167206063,
+        "ndcg@50": 0.22433964535651646,
         "recall@50": 0.08476399818051572,
         "precision@50": 0.19285486443381183,
-        "map@50": 0.041250198383330126,
-        "ndcg@100": 0.18493545978981207,
+        "map@50": 0.041250138267769416,
+        "ndcg@100": 0.18493523148864977,
         "recall@100": 0.13805696015879135,
         "precision@100": 0.15706539074960127,
-        "map@100": 0.054772972904612006,
+        "map@100": 0.054772695558486344,
         "graded_ndcg@1": 0.4704944178628389,
         "graded_ndcg@5": 0.36693109664021845,
         "graded_ndcg@10": 0.32717164493692913,
-        "graded_ndcg@50": 0.2284137081546326,
-        "graded_ndcg@100": 0.18875097164848134,
+        "graded_ndcg@50": 0.22841359183908844,
+        "graded_ndcg@100": 0.188750716535569,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1811,10 +1834,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:19:03.054571+00:00",
+        "timestamp": "2026-08-29T20:56:26.547726+00:00",
         "model_name": "OGBert-110M Sentence",
         "data_commit": null,
-        "code_commit": "8a97c6d",
+        "code_commit": "d1f73a9",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1860,21 +1883,22 @@
         "recall@10": 0.022179855080107575,
         "precision@10": 0.25231259968102077,
         "map@10": 0.014513813815470962,
-        "ndcg@50": 0.19524055728581047,
+        "ndcg@50": 0.19524046070442455,
         "recall@50": 0.07455676070389379,
         "precision@50": 0.1696331738437002,
-        "map@50": 0.03223862772997662,
-        "ndcg@100": 0.16219411771709216,
+        "map@50": 0.032238509099183806,
+        "ndcg@100": 0.16219395359133149,
         "recall@100": 0.12245193582677956,
         "precision@100": 0.13931419457735247,
-        "map@100": 0.04281949594194107,
+        "map@100": 0.042819290395781806,
         "graded_ndcg@1": 0.3875598086124402,
         "graded_ndcg@5": 0.31736743070110185,
         "graded_ndcg@10": 0.28088877768681686,
-        "graded_ndcg@50": 0.1992119479634393,
-        "graded_ndcg@100": 0.16571026815407788,
+        "graded_ndcg@50": 0.1992117796491666,
+        "graded_ndcg@100": 0.16571005984253265,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1886,10 +1910,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:19:48.602162+00:00",
+        "timestamp": "2026-08-29T20:57:12.923581+00:00",
         "model_name": "ogbert-v1-mlm",
         "data_commit": null,
-        "code_commit": "8a97c6d",
+        "code_commit": "d1f73a9",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -1950,6 +1974,7 @@
         "graded_ndcg@100": 0.21002288028209923,
         "graded_relevance_max_gain": 3.0
       },
+      "per_class_metrics": null,
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -1961,10 +1986,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:20:15.163392+00:00",
+        "timestamp": "2026-08-29T20:57:39.888327+00:00",
         "model_name": "distilbert-base-uncased",
         "data_commit": null,
-        "code_commit": "8a97c6d",
+        "code_commit": "d1f73a9",
         "extra": {
           "num_samples": 627,
           "corpus_size": 2389,
@@ -2005,6 +2030,134 @@
         "num_correct": 207,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.13333333333333333,
+          "recall": 0.06896551724137931,
+          "f1": 0.09090909090909091,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.3333333333333333,
+          "recall": 0.4,
+          "f1": 0.36363636363636365,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.16279069767441862,
+          "recall": 0.23333333333333334,
+          "f1": 0.1917808219178082,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.11538461538461539,
+          "recall": 0.1,
+          "f1": 0.10714285714285714,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.07142857142857142,
+          "recall": 0.06666666666666667,
+          "f1": 0.06896551724137931,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.1891891891891892,
+          "recall": 0.23333333333333334,
+          "f1": 0.208955223880597,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.2,
+          "recall": 0.1,
+          "f1": 0.13333333333333333,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.4,
+          "recall": 0.13333333333333333,
+          "f1": 0.2,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.2857142857142857,
+          "recall": 0.4666666666666667,
+          "f1": 0.35443037974683544,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5217391304347826,
+          "recall": 0.4,
+          "f1": 0.4528301886792453,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.7142857142857143,
+          "recall": 0.3333333333333333,
+          "f1": 0.45454545454545453,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.34782608695652173,
+          "recall": 0.26666666666666666,
+          "f1": 0.3018867924528302,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.3181818181818182,
+          "recall": 0.23333333333333334,
+          "f1": 0.2692307692307692,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.36363636363636365,
+          "recall": 0.9333333333333333,
+          "f1": 0.5233644859813084,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.2631578947368421,
+          "recall": 0.3448275862068966,
+          "f1": 0.29850746268656714,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.4782608695652174,
+          "recall": 0.3793103448275862,
+          "f1": 0.4230769230769231,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.2553191489361702,
+          "recall": 0.4,
+          "f1": 0.3116883116883117,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.6111111111111112,
+          "recall": 0.36666666666666664,
+          "f1": 0.4583333333333333,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.6538461538461539,
+          "recall": 0.5666666666666667,
+          "f1": 0.6071428571428571,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.56,
+          "recall": 0.4666666666666667,
+          "f1": 0.509090909090909,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.40625,
+          "recall": 0.43333333333333335,
+          "f1": 0.41935483870967744,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2016,10 +2169,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:50:14.807319+00:00",
+        "timestamp": "2026-08-29T20:14:36.920166+00:00",
         "model_name": "tf-sklearn-1-2gram-dim256",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 256,
           "classifier": "LogisticRegression",
@@ -2056,6 +2209,134 @@
         "num_correct": 278,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.16666666666666666,
+          "recall": 0.10344827586206896,
+          "f1": 0.1276595744680851,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.40625,
+          "recall": 0.43333333333333335,
+          "f1": 0.41935483870967744,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.12903225806451613,
+          "recall": 0.13333333333333333,
+          "f1": 0.13114754098360656,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.27906976744186046,
+          "recall": 0.4,
+          "f1": 0.3287671232876712,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.5555555555555556,
+          "recall": 0.3333333333333333,
+          "f1": 0.4166666666666667,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.4,
+          "recall": 0.4,
+          "f1": 0.4,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.3333333333333333,
+          "recall": 0.13333333333333333,
+          "f1": 0.19047619047619047,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.22727272727272727,
+          "recall": 0.16666666666666666,
+          "f1": 0.19230769230769232,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.3333333333333333,
+          "recall": 0.6,
+          "f1": 0.42857142857142855,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.7777777777777778,
+          "recall": 0.4666666666666667,
+          "f1": 0.5833333333333334,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.55,
+          "recall": 0.36666666666666664,
+          "f1": 0.44,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.6956521739130435,
+          "recall": 0.5333333333333333,
+          "f1": 0.6037735849056604,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.4,
+          "recall": 0.3333333333333333,
+          "f1": 0.36363636363636365,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.3333333333333333,
+          "recall": 0.9333333333333333,
+          "f1": 0.49122807017543857,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.6086956521739131,
+          "recall": 0.4827586206896552,
+          "f1": 0.5384615384615384,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.8571428571428571,
+          "recall": 0.6206896551724138,
+          "f1": 0.72,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.4666666666666667,
+          "recall": 0.7,
+          "f1": 0.56,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.5384615384615384,
+          "recall": 0.4666666666666667,
+          "f1": 0.5,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.6538461538461539,
+          "recall": 0.5666666666666667,
+          "f1": 0.6071428571428571,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.7142857142857143,
+          "recall": 0.6666666666666666,
+          "f1": 0.6896551724137931,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.5,
+          "recall": 0.4666666666666667,
+          "f1": 0.4827586206896552,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2067,10 +2348,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:50:27.680317+00:00",
+        "timestamp": "2026-08-29T20:14:40.060534+00:00",
         "model_name": "tfidf-sklearn-1-2gram-dim256",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 256,
           "classifier": "LogisticRegression",
@@ -2107,6 +2388,134 @@
         "num_correct": 297,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.05555555555555555,
+          "recall": 0.034482758620689655,
+          "f1": 0.0425531914893617,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.4411764705882353,
+          "recall": 0.5,
+          "f1": 0.46875,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.25,
+          "recall": 0.1,
+          "f1": 0.14285714285714285,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3,
+          "f1": 0.3157894736842105,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.4583333333333333,
+          "recall": 0.36666666666666664,
+          "f1": 0.4074074074074074,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.5263157894736842,
+          "recall": 0.3333333333333333,
+          "f1": 0.40816326530612246,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.23333333333333334,
+          "recall": 0.23333333333333334,
+          "f1": 0.23333333333333334,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.19047619047619047,
+          "recall": 0.13333333333333333,
+          "f1": 0.1568627450980392,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.45454545454545453,
+          "recall": 0.5,
+          "f1": 0.47619047619047616,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5263157894736842,
+          "recall": 0.6666666666666666,
+          "f1": 0.5882352941176471,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.4827586206896552,
+          "recall": 0.4666666666666667,
+          "f1": 0.4745762711864407,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.625,
+          "recall": 0.6666666666666666,
+          "f1": 0.6451612903225806,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.5581395348837209,
+          "recall": 0.8,
+          "f1": 0.6575342465753424,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.4444444444444444,
+          "recall": 0.41379310344827586,
+          "f1": 0.42857142857142855,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7333333333333333,
+          "recall": 0.7586206896551724,
+          "f1": 0.7457627118644068,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.3684210526315789,
+          "recall": 0.4666666666666667,
+          "f1": 0.4117647058823529,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.425531914893617,
+          "recall": 0.6666666666666666,
+          "f1": 0.5194805194805194,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.5757575757575758,
+          "recall": 0.6333333333333333,
+          "f1": 0.6031746031746031,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6896551724137931,
+          "recall": 0.6666666666666666,
+          "f1": 0.6779661016949152,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.6666666666666666,
+          "recall": 0.7333333333333333,
+          "f1": 0.6984126984126984,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2118,10 +2527,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:50:33.892650+00:00",
+        "timestamp": "2026-08-29T20:14:44.048594+00:00",
         "model_name": "MiniLM-L6",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 384,
           "classifier": "LogisticRegression",
@@ -2162,6 +2571,134 @@
         "num_correct": 314,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.2222222222222222,
+          "recall": 0.06896551724137931,
+          "f1": 0.10526315789473684,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.3783783783783784,
+          "recall": 0.4666666666666667,
+          "f1": 0.417910447761194,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.2727272727272727,
+          "recall": 0.1,
+          "f1": 0.14634146341463414,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.3870967741935484,
+          "recall": 0.4,
+          "f1": 0.39344262295081966,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.4,
+          "recall": 0.3333333333333333,
+          "f1": 0.36363636363636365,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.42105263157894735,
+          "recall": 0.26666666666666666,
+          "f1": 0.32653061224489793,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.4444444444444444,
+          "recall": 0.26666666666666666,
+          "f1": 0.3333333333333333,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.35,
+          "recall": 0.23333333333333334,
+          "f1": 0.28,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.42857142857142855,
+          "recall": 0.5,
+          "f1": 0.46153846153846156,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5121951219512195,
+          "recall": 0.7,
+          "f1": 0.5915492957746479,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.5833333333333334,
+          "recall": 0.4666666666666667,
+          "f1": 0.5185185185185185,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.7727272727272727,
+          "recall": 0.5666666666666667,
+          "f1": 0.6538461538461539,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.525,
+          "recall": 0.7,
+          "f1": 0.6,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.4745762711864407,
+          "recall": 0.9333333333333333,
+          "f1": 0.6292134831460674,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.4666666666666667,
+          "recall": 0.4827586206896552,
+          "f1": 0.4745762711864407,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.6774193548387096,
+          "recall": 0.7241379310344828,
+          "f1": 0.7,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.5151515151515151,
+          "recall": 0.5666666666666667,
+          "f1": 0.5396825396825397,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.46511627906976744,
+          "recall": 0.6666666666666666,
+          "f1": 0.547945205479452,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.6071428571428571,
+          "recall": 0.5666666666666667,
+          "f1": 0.5862068965517241,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.5945945945945946,
+          "recall": 0.7333333333333333,
+          "f1": 0.6567164179104478,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.6764705882352942,
+          "recall": 0.7666666666666667,
+          "f1": 0.71875,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2173,10 +2710,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:50:50.971184+00:00",
+        "timestamp": "2026-08-29T20:14:52.362097+00:00",
         "model_name": "BGE-small",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 384,
           "classifier": "LogisticRegression",
@@ -2217,6 +2754,134 @@
         "num_correct": 309,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 1.0,
+          "recall": 0.034482758620689655,
+          "f1": 0.06666666666666667,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.4411764705882353,
+          "recall": 0.5,
+          "f1": 0.46875,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.1,
+          "recall": 0.03333333333333333,
+          "f1": 0.05,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.5263157894736842,
+          "recall": 0.3333333333333333,
+          "f1": 0.40816326530612246,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.5217391304347826,
+          "recall": 0.4,
+          "f1": 0.4528301886792453,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.4444444444444444,
+          "recall": 0.26666666666666666,
+          "f1": 0.3333333333333333,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5384615384615384,
+          "recall": 0.23333333333333334,
+          "f1": 0.32558139534883723,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.3333333333333333,
+          "recall": 0.2,
+          "f1": 0.25,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.4,
+          "recall": 0.4666666666666667,
+          "f1": 0.4307692307692308,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.45,
+          "recall": 0.6,
+          "f1": 0.5142857142857142,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.4827586206896552,
+          "recall": 0.4666666666666667,
+          "f1": 0.4745762711864407,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.6785714285714286,
+          "recall": 0.6333333333333333,
+          "f1": 0.6551724137931034,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.5,
+          "recall": 0.6,
+          "f1": 0.5454545454545454,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.3670886075949367,
+          "recall": 0.9666666666666667,
+          "f1": 0.5321100917431193,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.43243243243243246,
+          "recall": 0.5517241379310345,
+          "f1": 0.48484848484848486,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7777777777777778,
+          "recall": 0.7241379310344828,
+          "f1": 0.75,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.5277777777777778,
+          "recall": 0.6333333333333333,
+          "f1": 0.5757575757575758,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.4418604651162791,
+          "recall": 0.6333333333333333,
+          "f1": 0.5205479452054794,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.5806451612903226,
+          "recall": 0.6,
+          "f1": 0.5901639344262295,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6097560975609756,
+          "recall": 0.8333333333333334,
+          "f1": 0.704225352112676,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.6551724137931034,
+          "recall": 0.6333333333333333,
+          "f1": 0.6440677966101694,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2228,10 +2893,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:51:07.071227+00:00",
+        "timestamp": "2026-08-29T20:15:00.696071+00:00",
         "model_name": "E5-small",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 384,
           "classifier": "LogisticRegression",
@@ -2272,6 +2937,134 @@
         "num_correct": 308,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.5,
+          "recall": 0.034482758620689655,
+          "f1": 0.06451612903225806,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.4,
+          "recall": 0.5333333333333333,
+          "f1": 0.45714285714285713,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.25,
+          "recall": 0.03333333333333333,
+          "f1": 0.058823529411764705,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.38461538461538464,
+          "recall": 0.3333333333333333,
+          "f1": 0.35714285714285715,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.43478260869565216,
+          "recall": 0.3333333333333333,
+          "f1": 0.37735849056603776,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.5384615384615384,
+          "recall": 0.23333333333333334,
+          "f1": 0.32558139534883723,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5555555555555556,
+          "recall": 0.16666666666666666,
+          "f1": 0.2564102564102564,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.3157894736842105,
+          "recall": 0.2,
+          "f1": 0.24489795918367346,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.4166666666666667,
+          "recall": 0.5,
+          "f1": 0.45454545454545453,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5526315789473685,
+          "recall": 0.7,
+          "f1": 0.6176470588235294,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.52,
+          "recall": 0.43333333333333335,
+          "f1": 0.4727272727272727,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.7916666666666666,
+          "recall": 0.6333333333333333,
+          "f1": 0.7037037037037037,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.5263157894736842,
+          "recall": 0.6666666666666666,
+          "f1": 0.5882352941176471,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.3783783783783784,
+          "recall": 0.9333333333333333,
+          "f1": 0.5384615384615384,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.46875,
+          "recall": 0.5172413793103449,
+          "f1": 0.4918032786885246,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7,
+          "recall": 0.7241379310344828,
+          "f1": 0.711864406779661,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.47368421052631576,
+          "recall": 0.6,
+          "f1": 0.5294117647058824,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.4166666666666667,
+          "recall": 0.6666666666666666,
+          "f1": 0.5128205128205128,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.59375,
+          "recall": 0.6333333333333333,
+          "f1": 0.6129032258064516,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.5609756097560976,
+          "recall": 0.7666666666666667,
+          "f1": 0.647887323943662,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.5714285714285714,
+          "recall": 0.6666666666666666,
+          "f1": 0.6153846153846154,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2283,10 +3076,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:51:15.241088+00:00",
+        "timestamp": "2026-08-29T20:15:05.817760+00:00",
         "model_name": "GTE-small",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 384,
           "classifier": "LogisticRegression",
@@ -2327,6 +3120,134 @@
         "num_correct": 320,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.2222222222222222,
+          "recall": 0.06896551724137931,
+          "f1": 0.10526315789473684,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.5,
+          "recall": 0.4666666666666667,
+          "f1": 0.4827586206896552,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.2,
+          "recall": 0.13333333333333333,
+          "f1": 0.16,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.5,
+          "recall": 0.36666666666666664,
+          "f1": 0.4230769230769231,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.4,
+          "recall": 0.3333333333333333,
+          "f1": 0.36363636363636365,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.38461538461538464,
+          "recall": 0.3333333333333333,
+          "f1": 0.35714285714285715,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.35294117647058826,
+          "recall": 0.4,
+          "f1": 0.375,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.375,
+          "recall": 0.3,
+          "f1": 0.3333333333333333,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.45161290322580644,
+          "recall": 0.4666666666666667,
+          "f1": 0.45901639344262296,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5348837209302325,
+          "recall": 0.7666666666666667,
+          "f1": 0.6301369863013698,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.5,
+          "recall": 0.4,
+          "f1": 0.4444444444444444,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.7692307692307693,
+          "recall": 0.6666666666666666,
+          "f1": 0.7142857142857143,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.53125,
+          "recall": 0.5666666666666667,
+          "f1": 0.5483870967741935,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.5102040816326531,
+          "recall": 0.8333333333333334,
+          "f1": 0.6329113924050633,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.5,
+          "recall": 0.4827586206896552,
+          "f1": 0.49122807017543857,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7857142857142857,
+          "recall": 0.7586206896551724,
+          "f1": 0.7719298245614035,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.5,
+          "recall": 0.5666666666666667,
+          "f1": 0.53125,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.5116279069767442,
+          "recall": 0.7333333333333333,
+          "f1": 0.6027397260273972,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.5555555555555556,
+          "recall": 0.6666666666666666,
+          "f1": 0.6060606060606061,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.631578947368421,
+          "recall": 0.8,
+          "f1": 0.7058823529411765,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.6666666666666666,
+          "recall": 0.6,
+          "f1": 0.631578947368421,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2338,10 +3259,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:51:57.022980+00:00",
+        "timestamp": "2026-08-29T20:15:23.614569+00:00",
         "model_name": "MPNet",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -2382,6 +3303,134 @@
         "num_correct": 323,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.15384615384615385,
+          "recall": 0.06896551724137931,
+          "f1": 0.09523809523809523,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.40540540540540543,
+          "recall": 0.5,
+          "f1": 0.44776119402985076,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.42857142857142855,
+          "recall": 0.1,
+          "f1": 0.16216216216216217,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.5,
+          "recall": 0.4,
+          "f1": 0.4444444444444444,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.48,
+          "recall": 0.4,
+          "f1": 0.43636363636363634,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.4,
+          "recall": 0.4,
+          "f1": 0.4,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5238095238095238,
+          "recall": 0.36666666666666664,
+          "f1": 0.43137254901960786,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.3684210526315789,
+          "recall": 0.23333333333333334,
+          "f1": 0.2857142857142857,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.38461538461538464,
+          "recall": 0.5,
+          "f1": 0.43478260869565216,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5714285714285714,
+          "recall": 0.6666666666666666,
+          "f1": 0.6153846153846154,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.5416666666666666,
+          "recall": 0.43333333333333335,
+          "f1": 0.48148148148148145,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.76,
+          "recall": 0.6333333333333333,
+          "f1": 0.6909090909090909,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.6,
+          "recall": 0.7,
+          "f1": 0.6461538461538462,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.48333333333333334,
+          "recall": 0.9666666666666667,
+          "f1": 0.6444444444444445,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.4444444444444444,
+          "recall": 0.41379310344827586,
+          "f1": 0.42857142857142855,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7,
+          "recall": 0.7241379310344828,
+          "f1": 0.711864406779661,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.5,
+          "recall": 0.6333333333333333,
+          "f1": 0.5588235294117647,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.45,
+          "recall": 0.6,
+          "f1": 0.5142857142857142,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.5882352941176471,
+          "recall": 0.6666666666666666,
+          "f1": 0.625,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.7142857142857143,
+          "recall": 0.6666666666666666,
+          "f1": 0.6896551724137931,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.6111111111111112,
+          "recall": 0.7333333333333333,
+          "f1": 0.6666666666666666,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2393,10 +3442,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:52:32.054226+00:00",
+        "timestamp": "2026-08-29T20:15:49.354984+00:00",
         "model_name": "BGE-base",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -2437,6 +3486,134 @@
         "num_correct": 312,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.5,
+          "recall": 0.5333333333333333,
+          "f1": 0.5161290322580645,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.16666666666666666,
+          "recall": 0.06666666666666667,
+          "f1": 0.09523809523809523,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.47368421052631576,
+          "recall": 0.3,
+          "f1": 0.3673469387755102,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.35714285714285715,
+          "recall": 0.3333333333333333,
+          "f1": 0.3448275862068966,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.5238095238095238,
+          "recall": 0.36666666666666664,
+          "f1": 0.43137254901960786,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5882352941176471,
+          "recall": 0.3333333333333333,
+          "f1": 0.425531914893617,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.2631578947368421,
+          "recall": 0.16666666666666666,
+          "f1": 0.20408163265306123,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.41025641025641024,
+          "recall": 0.5333333333333333,
+          "f1": 0.463768115942029,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5,
+          "recall": 0.6666666666666666,
+          "f1": 0.5714285714285714,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.45161290322580644,
+          "recall": 0.4666666666666667,
+          "f1": 0.45901639344262296,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.8636363636363636,
+          "recall": 0.6333333333333333,
+          "f1": 0.7307692307692307,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.5,
+          "recall": 0.6,
+          "f1": 0.5454545454545454,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.4117647058823529,
+          "recall": 0.9333333333333333,
+          "f1": 0.5714285714285714,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.5357142857142857,
+          "recall": 0.5172413793103449,
+          "f1": 0.5263157894736842,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.8076923076923077,
+          "recall": 0.7241379310344828,
+          "f1": 0.7636363636363637,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.5142857142857142,
+          "recall": 0.6,
+          "f1": 0.5538461538461539,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.3829787234042553,
+          "recall": 0.6,
+          "f1": 0.4675324675324675,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.5625,
+          "recall": 0.6,
+          "f1": 0.5806451612903226,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6285714285714286,
+          "recall": 0.7333333333333333,
+          "f1": 0.676923076923077,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.5945945945945946,
+          "recall": 0.7333333333333333,
+          "f1": 0.6567164179104478,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2448,10 +3625,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:53:11.589248+00:00",
+        "timestamp": "2026-08-29T20:16:07.407698+00:00",
         "model_name": "E5-base",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -2492,6 +3669,134 @@
         "num_correct": 289,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.4482758620689655,
+          "recall": 0.43333333333333335,
+          "f1": 0.4406779661016949,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.23076923076923078,
+          "recall": 0.1,
+          "f1": 0.13953488372093023,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.3157894736842105,
+          "recall": 0.2,
+          "f1": 0.24489795918367346,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.37037037037037035,
+          "recall": 0.3333333333333333,
+          "f1": 0.3508771929824561,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.5789473684210527,
+          "recall": 0.36666666666666664,
+          "f1": 0.4489795918367347,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.2857142857142857,
+          "recall": 0.13333333333333333,
+          "f1": 0.18181818181818182,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.11764705882352941,
+          "recall": 0.06666666666666667,
+          "f1": 0.0851063829787234,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.45,
+          "recall": 0.6,
+          "f1": 0.5142857142857142,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5333333333333333,
+          "recall": 0.5333333333333333,
+          "f1": 0.5333333333333333,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.4666666666666667,
+          "recall": 0.4666666666666667,
+          "f1": 0.4666666666666667,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.7142857142857143,
+          "recall": 0.6666666666666666,
+          "f1": 0.6896551724137931,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.5128205128205128,
+          "recall": 0.6666666666666666,
+          "f1": 0.5797101449275363,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.3466666666666667,
+          "recall": 0.8666666666666667,
+          "f1": 0.49523809523809526,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.4482758620689655,
+          "recall": 0.4482758620689655,
+          "f1": 0.4482758620689655,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7777777777777778,
+          "recall": 0.7241379310344828,
+          "f1": 0.75,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.4473684210526316,
+          "recall": 0.5666666666666667,
+          "f1": 0.5,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.38095238095238093,
+          "recall": 0.5333333333333333,
+          "f1": 0.4444444444444444,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.53125,
+          "recall": 0.5666666666666667,
+          "f1": 0.5483870967741935,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6388888888888888,
+          "recall": 0.7666666666666667,
+          "f1": 0.696969696969697,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.5135135135135135,
+          "recall": 0.6333333333333333,
+          "f1": 0.5671641791044776,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2503,10 +3808,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:53:36.616934+00:00",
+        "timestamp": "2026-08-29T20:16:24.686264+00:00",
         "model_name": "GTR-T5-base",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -2547,6 +3852,134 @@
         "num_correct": 322,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.4166666666666667,
+          "recall": 0.5,
+          "f1": 0.45454545454545453,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.3333333333333333,
+          "recall": 0.06666666666666667,
+          "f1": 0.1111111111111111,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.47058823529411764,
+          "recall": 0.26666666666666666,
+          "f1": 0.3404255319148936,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.4074074074074074,
+          "recall": 0.36666666666666664,
+          "f1": 0.38596491228070173,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.4444444444444444,
+          "recall": 0.26666666666666666,
+          "f1": 0.3333333333333333,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5625,
+          "recall": 0.3,
+          "f1": 0.391304347826087,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.36363636363636365,
+          "recall": 0.26666666666666666,
+          "f1": 0.3076923076923077,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.40540540540540543,
+          "recall": 0.5,
+          "f1": 0.44776119402985076,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5833333333333334,
+          "recall": 0.7,
+          "f1": 0.6363636363636364,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.6,
+          "recall": 0.5,
+          "f1": 0.5454545454545454,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.8,
+          "recall": 0.6666666666666666,
+          "f1": 0.7272727272727273,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.5405405405405406,
+          "recall": 0.6666666666666666,
+          "f1": 0.5970149253731343,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.4084507042253521,
+          "recall": 0.9666666666666667,
+          "f1": 0.5742574257425742,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.4375,
+          "recall": 0.4827586206896552,
+          "f1": 0.45901639344262296,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7,
+          "recall": 0.7241379310344828,
+          "f1": 0.711864406779661,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.5405405405405406,
+          "recall": 0.6666666666666666,
+          "f1": 0.5970149253731343,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.47619047619047616,
+          "recall": 0.6666666666666666,
+          "f1": 0.5555555555555556,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.5675675675675675,
+          "recall": 0.7,
+          "f1": 0.6268656716417911,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6176470588235294,
+          "recall": 0.7,
+          "f1": 0.65625,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.631578947368421,
+          "recall": 0.8,
+          "f1": 0.7058823529411765,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2558,10 +3991,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:53:52.196070+00:00",
+        "timestamp": "2026-08-29T20:16:34.791979+00:00",
         "model_name": "GTE-base",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -2602,6 +4035,134 @@
         "num_correct": 300,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.3902439024390244,
+          "recall": 0.5333333333333333,
+          "f1": 0.4507042253521127,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.18181818181818182,
+          "recall": 0.06666666666666667,
+          "f1": 0.0975609756097561,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.375,
+          "recall": 0.2,
+          "f1": 0.2608695652173913,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.5714285714285714,
+          "recall": 0.4,
+          "f1": 0.47058823529411764,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.5625,
+          "recall": 0.3,
+          "f1": 0.391304347826087,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.4166666666666667,
+          "recall": 0.16666666666666666,
+          "f1": 0.23809523809523808,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.29411764705882354,
+          "recall": 0.16666666666666666,
+          "f1": 0.2127659574468085,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.34782608695652173,
+          "recall": 0.5333333333333333,
+          "f1": 0.42105263157894735,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5128205128205128,
+          "recall": 0.6666666666666666,
+          "f1": 0.5797101449275363,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.5416666666666666,
+          "recall": 0.43333333333333335,
+          "f1": 0.48148148148148145,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.6,
+          "recall": 0.6,
+          "f1": 0.6,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.45,
+          "recall": 0.6,
+          "f1": 0.5142857142857142,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.39436619718309857,
+          "recall": 0.9333333333333333,
+          "f1": 0.5544554455445545,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.48,
+          "recall": 0.41379310344827586,
+          "f1": 0.4444444444444444,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7777777777777778,
+          "recall": 0.7241379310344828,
+          "f1": 0.75,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.475,
+          "recall": 0.6333333333333333,
+          "f1": 0.5428571428571428,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.4473684210526316,
+          "recall": 0.5666666666666667,
+          "f1": 0.5,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.5757575757575758,
+          "recall": 0.6333333333333333,
+          "f1": 0.6031746031746031,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.5581395348837209,
+          "recall": 0.8,
+          "f1": 0.6575342465753424,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.5405405405405406,
+          "recall": 0.6666666666666666,
+          "f1": 0.5970149253731343,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2613,10 +4174,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:54:39.117225+00:00",
+        "timestamp": "2026-08-29T20:17:00.121542+00:00",
         "model_name": "Instructor-base",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -2657,6 +4218,134 @@
         "num_correct": 271,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.15384615384615385,
+          "recall": 0.06896551724137931,
+          "f1": 0.09523809523809523,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.37777777777777777,
+          "recall": 0.5666666666666667,
+          "f1": 0.4533333333333333,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.2962962962962963,
+          "recall": 0.26666666666666666,
+          "f1": 0.2807017543859649,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.3333333333333333,
+          "recall": 0.26666666666666666,
+          "f1": 0.2962962962962963,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.3333333333333333,
+          "recall": 0.23333333333333334,
+          "f1": 0.27450980392156865,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.35294117647058826,
+          "recall": 0.2,
+          "f1": 0.2553191489361702,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.2631578947368421,
+          "recall": 0.16666666666666666,
+          "f1": 0.20408163265306123,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.3269230769230769,
+          "recall": 0.5666666666666667,
+          "f1": 0.4146341463414634,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.43243243243243246,
+          "recall": 0.5333333333333333,
+          "f1": 0.47761194029850745,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.631578947368421,
+          "recall": 0.4,
+          "f1": 0.4897959183673469,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.6,
+          "recall": 0.5,
+          "f1": 0.5454545454545454,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.42424242424242425,
+          "recall": 0.4666666666666667,
+          "f1": 0.4444444444444444,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.391304347826087,
+          "recall": 0.9,
+          "f1": 0.5454545454545454,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.7222222222222222,
+          "recall": 0.4482758620689655,
+          "f1": 0.5531914893617021,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.8,
+          "recall": 0.6896551724137931,
+          "f1": 0.7407407407407407,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.40816326530612246,
+          "recall": 0.6666666666666666,
+          "f1": 0.5063291139240507,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.6071428571428571,
+          "recall": 0.5666666666666667,
+          "f1": 0.5862068965517241,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.5862068965517241,
+          "recall": 0.5666666666666667,
+          "f1": 0.576271186440678,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.40540540540540543,
+          "recall": 0.5,
+          "f1": 0.44776119402985076,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2668,10 +4357,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:55:12.241550+00:00",
+        "timestamp": "2026-08-29T20:17:25.165529+00:00",
         "model_name": "BERT",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -2712,6 +4401,134 @@
         "num_correct": 183,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.25,
+          "recall": 0.034482758620689655,
+          "f1": 0.06060606060606061,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.3076923076923077,
+          "recall": 0.4,
+          "f1": 0.34782608695652173,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.06666666666666667,
+          "recall": 0.03333333333333333,
+          "f1": 0.044444444444444446,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.3333333333333333,
+          "recall": 0.1,
+          "f1": 0.15384615384615385,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.25,
+          "recall": 0.06666666666666667,
+          "f1": 0.10526315789473684,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.18181818181818182,
+          "recall": 0.06666666666666667,
+          "f1": 0.0975609756097561,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5,
+          "recall": 0.1,
+          "f1": 0.16666666666666666,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.17708333333333334,
+          "recall": 0.5666666666666667,
+          "f1": 0.2698412698412698,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.3684210526315789,
+          "recall": 0.23333333333333334,
+          "f1": 0.2857142857142857,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.5454545454545454,
+          "recall": 0.2,
+          "f1": 0.2926829268292683,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.7692307692307693,
+          "recall": 0.3333333333333333,
+          "f1": 0.46511627906976744,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.5,
+          "recall": 0.3,
+          "f1": 0.375,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.19230769230769232,
+          "recall": 1.0,
+          "f1": 0.3225806451612903,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.3181818181818182,
+          "recall": 0.2413793103448276,
+          "f1": 0.27450980392156865,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.6666666666666666,
+          "recall": 0.5517241379310345,
+          "f1": 0.6037735849056604,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.391304347826087,
+          "recall": 0.3,
+          "f1": 0.33962264150943394,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.34,
+          "recall": 0.5666666666666667,
+          "f1": 0.425,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.7272727272727273,
+          "recall": 0.26666666666666666,
+          "f1": 0.3902439024390244,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6153846153846154,
+          "recall": 0.26666666666666666,
+          "f1": 0.37209302325581395,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.19230769230769232,
+          "recall": 0.5,
+          "f1": 0.2777777777777778,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2723,10 +4540,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:55:48.335032+00:00",
+        "timestamp": "2026-08-29T20:17:59.939447+00:00",
         "model_name": "RoBERTa",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -2767,6 +4584,134 @@
         "num_correct": 332,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.4375,
+          "recall": 0.4666666666666667,
+          "f1": 0.45161290322580644,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.1875,
+          "recall": 0.1,
+          "f1": 0.13043478260869565,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.5833333333333334,
+          "recall": 0.4666666666666667,
+          "f1": 0.5185185185185185,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.46153846153846156,
+          "recall": 0.4,
+          "f1": 0.42857142857142855,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.4074074074074074,
+          "recall": 0.36666666666666664,
+          "f1": 0.38596491228070173,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5555555555555556,
+          "recall": 0.3333333333333333,
+          "f1": 0.4166666666666667,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.3076923076923077,
+          "recall": 0.26666666666666666,
+          "f1": 0.2857142857142857,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.4358974358974359,
+          "recall": 0.5666666666666667,
+          "f1": 0.4927536231884058,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5277777777777778,
+          "recall": 0.6333333333333333,
+          "f1": 0.5757575757575758,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.5,
+          "recall": 0.43333333333333335,
+          "f1": 0.4642857142857143,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.875,
+          "recall": 0.7,
+          "f1": 0.7777777777777778,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.5806451612903226,
+          "recall": 0.6,
+          "f1": 0.5901639344262295,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.5294117647058824,
+          "recall": 0.9,
+          "f1": 0.6666666666666666,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.5333333333333333,
+          "recall": 0.5517241379310345,
+          "f1": 0.5423728813559322,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.6764705882352942,
+          "recall": 0.7931034482758621,
+          "f1": 0.7301587301587301,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.5517241379310345,
+          "recall": 0.5333333333333333,
+          "f1": 0.5423728813559322,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.4782608695652174,
+          "recall": 0.7333333333333333,
+          "f1": 0.5789473684210527,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.6333333333333333,
+          "recall": 0.6333333333333333,
+          "f1": 0.6333333333333333,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6153846153846154,
+          "recall": 0.8,
+          "f1": 0.6956521739130435,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.6756756756756757,
+          "recall": 0.8333333333333334,
+          "f1": 0.746268656716418,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2778,10 +4723,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:57:28.752105+00:00",
+        "timestamp": "2026-08-29T20:19:32.640150+00:00",
         "model_name": "BGE-large",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 1024,
           "classifier": "LogisticRegression",
@@ -2822,6 +4767,134 @@
         "num_correct": 327,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.25,
+          "recall": 0.034482758620689655,
+          "f1": 0.06060606060606061,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.46875,
+          "recall": 0.5,
+          "f1": 0.4838709677419355,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.4444444444444444,
+          "recall": 0.13333333333333333,
+          "f1": 0.20512820512820512,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.5,
+          "recall": 0.36666666666666664,
+          "f1": 0.4230769230769231,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.44,
+          "recall": 0.36666666666666664,
+          "f1": 0.4,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.4090909090909091,
+          "recall": 0.3,
+          "f1": 0.34615384615384615,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.6,
+          "recall": 0.2,
+          "f1": 0.3,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.36363636363636365,
+          "recall": 0.26666666666666666,
+          "f1": 0.3076923076923077,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.3829787234042553,
+          "recall": 0.6,
+          "f1": 0.4675324675324675,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5,
+          "recall": 0.6,
+          "f1": 0.5454545454545454,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.5,
+          "recall": 0.4666666666666667,
+          "f1": 0.4827586206896552,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.7857142857142857,
+          "recall": 0.7333333333333333,
+          "f1": 0.7586206896551724,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.5675675675675675,
+          "recall": 0.7,
+          "f1": 0.6268656716417911,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.45,
+          "recall": 0.9,
+          "f1": 0.6,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.5833333333333334,
+          "recall": 0.4827586206896552,
+          "f1": 0.5283018867924528,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7666666666666667,
+          "recall": 0.7931034482758621,
+          "f1": 0.7796610169491526,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.4864864864864865,
+          "recall": 0.6,
+          "f1": 0.5373134328358209,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.4418604651162791,
+          "recall": 0.6333333333333333,
+          "f1": 0.5205479452054794,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.6129032258064516,
+          "recall": 0.6333333333333333,
+          "f1": 0.6229508196721312,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6410256410256411,
+          "recall": 0.8333333333333334,
+          "f1": 0.7246376811594203,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.5853658536585366,
+          "recall": 0.8,
+          "f1": 0.676056338028169,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2833,10 +4906,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:58:43.302621+00:00",
+        "timestamp": "2026-08-29T20:21:45.805018+00:00",
         "model_name": "E5-large",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 1024,
           "classifier": "LogisticRegression",
@@ -2849,8 +4922,8 @@
         "size_category": "300M-1B",
         "flops_per_token": 670283776,
         "relative_compute": 14.7554,
-        "shelf_eff": 53.7319,
-        "shelf_compute": 0.35,
+        "shelf_eff": 53.7236,
+        "shelf_compute": 0.3499,
         "pareto_optimal": false,
         "size_rank": 2,
         "num_params_torch": null,
@@ -2858,7 +4931,7 @@
         "context_window": null,
         "throughput_bytes_sec": null
       },
-      "shelf_score": 0.458076
+      "shelf_score": 0.458006
     },
     "gtr_t5_large_lcc_classification": {
       "model": "GTR-T5-large",
@@ -2877,6 +4950,134 @@
         "num_correct": 300,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.16666666666666666,
+          "recall": 0.034482758620689655,
+          "f1": 0.05714285714285714,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.3939393939393939,
+          "recall": 0.43333333333333335,
+          "f1": 0.4126984126984127,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.2222222222222222,
+          "recall": 0.06666666666666667,
+          "f1": 0.10256410256410256,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.42857142857142855,
+          "recall": 0.3,
+          "f1": 0.35294117647058826,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.38461538461538464,
+          "recall": 0.3333333333333333,
+          "f1": 0.35714285714285715,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.6428571428571429,
+          "recall": 0.3,
+          "f1": 0.4090909090909091,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5,
+          "recall": 0.26666666666666666,
+          "f1": 0.34782608695652173,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.36363636363636365,
+          "recall": 0.26666666666666666,
+          "f1": 0.3076923076923077,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.4411764705882353,
+          "recall": 0.5,
+          "f1": 0.46875,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5294117647058824,
+          "recall": 0.6,
+          "f1": 0.5625,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.4117647058823529,
+          "recall": 0.4666666666666667,
+          "f1": 0.4375,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.6666666666666666,
+          "recall": 0.6,
+          "f1": 0.631578947368421,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.475,
+          "recall": 0.6333333333333333,
+          "f1": 0.5428571428571428,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.36,
+          "recall": 0.9,
+          "f1": 0.5142857142857142,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.4230769230769231,
+          "recall": 0.3793103448275862,
+          "f1": 0.4,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7333333333333333,
+          "recall": 0.7586206896551724,
+          "f1": 0.7457627118644068,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.4411764705882353,
+          "recall": 0.5,
+          "f1": 0.46875,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.5,
+          "recall": 0.6333333333333333,
+          "f1": 0.5588235294117647,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.5428571428571428,
+          "recall": 0.6333333333333333,
+          "f1": 0.5846153846153846,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6388888888888888,
+          "recall": 0.7666666666666667,
+          "f1": 0.696969696969697,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.5405405405405406,
+          "recall": 0.6666666666666666,
+          "f1": 0.5970149253731343,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2888,10 +5089,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T12:59:58.555310+00:00",
+        "timestamp": "2026-08-29T20:23:41.115102+00:00",
         "model_name": "GTR-T5-large",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -2932,6 +5133,134 @@
         "num_correct": 175,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.3333333333333333,
+          "recall": 0.26666666666666666,
+          "f1": 0.2962962962962963,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.027777777777777776,
+          "recall": 0.03333333333333333,
+          "f1": 0.030303030303030304,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.06896551724137931,
+          "recall": 0.06666666666666667,
+          "f1": 0.06779661016949153,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.5,
+          "recall": 0.13333333333333333,
+          "f1": 0.21052631578947367,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.22727272727272727,
+          "recall": 0.16666666666666666,
+          "f1": 0.19230769230769232,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.25,
+          "recall": 0.03333333333333333,
+          "f1": 0.058823529411764705,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.2375,
+          "recall": 0.6333333333333333,
+          "f1": 0.34545454545454546,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.3333333333333333,
+          "recall": 0.2,
+          "f1": 0.25,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.36,
+          "recall": 0.3,
+          "f1": 0.32727272727272727,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.5,
+          "recall": 0.16666666666666666,
+          "f1": 0.25,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.4090909090909091,
+          "recall": 0.3,
+          "f1": 0.34615384615384615,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.24166666666666667,
+          "recall": 0.9666666666666667,
+          "f1": 0.38666666666666666,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.30303030303030304,
+          "recall": 0.3448275862068966,
+          "f1": 0.3225806451612903,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.5416666666666666,
+          "recall": 0.4482758620689655,
+          "f1": 0.49056603773584906,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.325,
+          "recall": 0.43333333333333335,
+          "f1": 0.37142857142857144,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.3181818181818182,
+          "recall": 0.4666666666666667,
+          "f1": 0.3783783783783784,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.5384615384615384,
+          "recall": 0.23333333333333334,
+          "f1": 0.32558139534883723,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.20689655172413793,
+          "recall": 0.2,
+          "f1": 0.2033898305084746,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.3111111111111111,
+          "recall": 0.4666666666666667,
+          "f1": 0.37333333333333335,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2943,10 +5272,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:00:09.655550+00:00",
+        "timestamp": "2026-08-29T20:23:53.204263+00:00",
         "model_name": "ogbert-2m-sentence",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 128,
           "classifier": "LogisticRegression",
@@ -2987,6 +5316,134 @@
         "num_correct": 219,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.3783783783783784,
+          "recall": 0.4666666666666667,
+          "f1": 0.417910447761194,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.12,
+          "recall": 0.1,
+          "f1": 0.10909090909090909,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.11764705882352941,
+          "recall": 0.06666666666666667,
+          "f1": 0.0851063829787234,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.18181818181818182,
+          "recall": 0.13333333333333333,
+          "f1": 0.15384615384615385,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.5,
+          "recall": 0.13333333333333333,
+          "f1": 0.21052631578947367,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5,
+          "recall": 0.03333333333333333,
+          "f1": 0.0625,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.5,
+          "recall": 0.06666666666666667,
+          "f1": 0.11764705882352941,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.2857142857142857,
+          "recall": 0.5333333333333333,
+          "f1": 0.37209302325581395,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5,
+          "recall": 0.3333333333333333,
+          "f1": 0.4,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.47058823529411764,
+          "recall": 0.26666666666666666,
+          "f1": 0.3404255319148936,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.4827586206896552,
+          "recall": 0.4666666666666667,
+          "f1": 0.4745762711864407,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.26666666666666666,
+          "recall": 0.26666666666666666,
+          "f1": 0.26666666666666666,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.24369747899159663,
+          "recall": 0.9666666666666667,
+          "f1": 0.38926174496644295,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.45,
+          "recall": 0.3103448275862069,
+          "f1": 0.3673469387755102,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.8,
+          "recall": 0.6896551724137931,
+          "f1": 0.7407407407407407,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.3409090909090909,
+          "recall": 0.5,
+          "f1": 0.40540540540540543,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.34782608695652173,
+          "recall": 0.5333333333333333,
+          "f1": 0.42105263157894735,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.7647058823529411,
+          "recall": 0.43333333333333335,
+          "f1": 0.5531914893617021,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.4186046511627907,
+          "recall": 0.6,
+          "f1": 0.4931506849315068,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.2826086956521739,
+          "recall": 0.43333333333333335,
+          "f1": 0.34210526315789475,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -2998,10 +5455,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:01:47.992655+00:00",
+        "timestamp": "2026-08-29T20:25:31.589002+00:00",
         "model_name": "OGBert-110M Base",
         "data_commit": null,
-        "code_commit": "c39a943",
+        "code_commit": "b506498",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -3042,6 +5499,134 @@
         "num_correct": 219,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.3783783783783784,
+          "recall": 0.4666666666666667,
+          "f1": 0.417910447761194,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.12,
+          "recall": 0.1,
+          "f1": 0.10909090909090909,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.11764705882352941,
+          "recall": 0.06666666666666667,
+          "f1": 0.0851063829787234,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.18181818181818182,
+          "recall": 0.13333333333333333,
+          "f1": 0.15384615384615385,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.5,
+          "recall": 0.13333333333333333,
+          "f1": 0.21052631578947367,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.5,
+          "recall": 0.03333333333333333,
+          "f1": 0.0625,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.5,
+          "recall": 0.06666666666666667,
+          "f1": 0.11764705882352941,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.2857142857142857,
+          "recall": 0.5333333333333333,
+          "f1": 0.37209302325581395,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.5,
+          "recall": 0.3333333333333333,
+          "f1": 0.4,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.47058823529411764,
+          "recall": 0.26666666666666666,
+          "f1": 0.3404255319148936,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.4827586206896552,
+          "recall": 0.4666666666666667,
+          "f1": 0.4745762711864407,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.26666666666666666,
+          "recall": 0.26666666666666666,
+          "f1": 0.26666666666666666,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.24369747899159663,
+          "recall": 0.9666666666666667,
+          "f1": 0.38926174496644295,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.45,
+          "recall": 0.3103448275862069,
+          "f1": 0.3673469387755102,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.8,
+          "recall": 0.6896551724137931,
+          "f1": 0.7407407407407407,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.3409090909090909,
+          "recall": 0.5,
+          "f1": 0.40540540540540543,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.34782608695652173,
+          "recall": 0.5333333333333333,
+          "f1": 0.42105263157894735,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.7647058823529411,
+          "recall": 0.43333333333333335,
+          "f1": 0.5531914893617021,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.4186046511627907,
+          "recall": 0.6,
+          "f1": 0.4931506849315068,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.2826086956521739,
+          "recall": 0.43333333333333335,
+          "f1": 0.34210526315789475,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -3053,10 +5638,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:03:30.609560+00:00",
+        "timestamp": "2026-08-29T20:27:56.879774+00:00",
         "model_name": "OGBert-110M Sentence",
         "data_commit": null,
-        "code_commit": "a6d9286",
+        "code_commit": "e7043bd",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",
@@ -3097,6 +5682,134 @@
         "num_correct": 188,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.5,
+          "recall": 0.034482758620689655,
+          "f1": 0.06451612903225806,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.48148148148148145,
+          "recall": 0.43333333333333335,
+          "f1": 0.45614035087719296,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.08333333333333333,
+          "recall": 0.1,
+          "f1": 0.09090909090909091,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.2727272727272727,
+          "recall": 0.1,
+          "f1": 0.14634146341463414,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.23529411764705882,
+          "recall": 0.13333333333333333,
+          "f1": 0.1702127659574468,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.5,
+          "recall": 0.06666666666666667,
+          "f1": 0.11764705882352941,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.6666666666666666,
+          "recall": 0.06666666666666667,
+          "f1": 0.12121212121212122,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.24,
+          "recall": 0.6,
+          "f1": 0.34285714285714286,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.3,
+          "recall": 0.2,
+          "f1": 0.24,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.5,
+          "recall": 0.2,
+          "f1": 0.2857142857142857,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.4090909090909091,
+          "recall": 0.3,
+          "f1": 0.34615384615384615,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.2727272727272727,
+          "recall": 0.2,
+          "f1": 0.23076923076923078,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.20714285714285716,
+          "recall": 0.9666666666666667,
+          "f1": 0.3411764705882353,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.3448275862068966,
+          "recall": 0.3448275862068966,
+          "f1": 0.3448275862068966,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.6956521739130435,
+          "recall": 0.5517241379310345,
+          "f1": 0.6153846153846154,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.34146341463414637,
+          "recall": 0.4666666666666667,
+          "f1": 0.39436619718309857,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.3,
+          "recall": 0.5,
+          "f1": 0.375,
+          "support": 30
+        },
+        "U": {
+          "precision": 1.0,
+          "recall": 0.16666666666666666,
+          "f1": 0.2857142857142857,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.30952380952380953,
+          "recall": 0.43333333333333335,
+          "f1": 0.3611111111111111,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.28888888888888886,
+          "recall": 0.43333333333333335,
+          "f1": 0.3466666666666667,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -3108,10 +5821,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:04:05.778822+00:00",
+        "timestamp": "2026-08-29T20:28:42.985579+00:00",
         "model_name": "ogbert-v1-mlm",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "embedding_dim": 384,
           "classifier": "LogisticRegression",
@@ -3152,6 +5865,134 @@
         "num_correct": 261,
         "num_classes": 21
       },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.16666666666666666,
+          "recall": 0.13793103448275862,
+          "f1": 0.1509433962264151,
+          "support": 29
+        },
+        "B": {
+          "precision": 0.35714285714285715,
+          "recall": 0.5,
+          "f1": 0.4166666666666667,
+          "support": 30
+        },
+        "C": {
+          "precision": 0.23076923076923078,
+          "recall": 0.1,
+          "f1": 0.13953488372093023,
+          "support": 30
+        },
+        "D": {
+          "precision": 0.3333333333333333,
+          "recall": 0.23333333333333334,
+          "f1": 0.27450980392156865,
+          "support": 30
+        },
+        "E": {
+          "precision": 0.4074074074074074,
+          "recall": 0.36666666666666664,
+          "f1": 0.38596491228070173,
+          "support": 30
+        },
+        "F": {
+          "precision": 0.375,
+          "recall": 0.2,
+          "f1": 0.2608695652173913,
+          "support": 30
+        },
+        "G": {
+          "precision": 0.42857142857142855,
+          "recall": 0.1,
+          "f1": 0.16216216216216217,
+          "support": 30
+        },
+        "H": {
+          "precision": 0.25,
+          "recall": 0.13333333333333333,
+          "f1": 0.17391304347826086,
+          "support": 30
+        },
+        "J": {
+          "precision": 0.3269230769230769,
+          "recall": 0.5666666666666667,
+          "f1": 0.4146341463414634,
+          "support": 30
+        },
+        "K": {
+          "precision": 0.4,
+          "recall": 0.5333333333333333,
+          "f1": 0.45714285714285713,
+          "support": 30
+        },
+        "L": {
+          "precision": 0.5294117647058824,
+          "recall": 0.3,
+          "f1": 0.3829787234042553,
+          "support": 30
+        },
+        "M": {
+          "precision": 0.5555555555555556,
+          "recall": 0.5,
+          "f1": 0.5263157894736842,
+          "support": 30
+        },
+        "N": {
+          "precision": 0.42105263157894735,
+          "recall": 0.5333333333333333,
+          "f1": 0.47058823529411764,
+          "support": 30
+        },
+        "P": {
+          "precision": 0.3698630136986301,
+          "recall": 0.9,
+          "f1": 0.5242718446601942,
+          "support": 30
+        },
+        "Q": {
+          "precision": 0.47368421052631576,
+          "recall": 0.3103448275862069,
+          "f1": 0.375,
+          "support": 29
+        },
+        "R": {
+          "precision": 0.7916666666666666,
+          "recall": 0.6551724137931034,
+          "f1": 0.7169811320754716,
+          "support": 29
+        },
+        "S": {
+          "precision": 0.4,
+          "recall": 0.4,
+          "f1": 0.4,
+          "support": 30
+        },
+        "T": {
+          "precision": 0.37735849056603776,
+          "recall": 0.6666666666666666,
+          "f1": 0.4819277108433735,
+          "support": 30
+        },
+        "U": {
+          "precision": 0.6538461538461539,
+          "recall": 0.5666666666666667,
+          "f1": 0.6071428571428571,
+          "support": 30
+        },
+        "V": {
+          "precision": 0.6071428571428571,
+          "recall": 0.5666666666666667,
+          "f1": 0.5862068965517241,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.4117647058823529,
+          "recall": 0.4666666666666667,
+          "f1": 0.4375,
+          "support": 30
+        }
+      },
       "num_samples": 627,
       "context": {
         "shelf_version": "0.3.1",
@@ -3163,10 +6004,10 @@
         "prediction_file_checksum": null,
         "random_seed": 42,
         "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:04:28.930753+00:00",
+        "timestamp": "2026-08-29T20:29:05.834023+00:00",
         "model_name": "distilbert-base-uncased",
         "data_commit": null,
-        "code_commit": "1b22bf2",
+        "code_commit": "e7043bd",
         "extra": {
           "embedding_dim": 768,
           "classifier": "LogisticRegression",

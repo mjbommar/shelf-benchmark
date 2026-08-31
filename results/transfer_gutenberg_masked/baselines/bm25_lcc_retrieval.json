@@ -35,6 +35,7 @@
     "graded_ndcg@100": 0.057927625604227644,
     "graded_relevance_max_gain": 3.0
   },
+  "per_class_metrics": null,
   "num_samples": 627,
   "context": {
     "shelf_version": "0.3.1",
@@ -46,10 +47,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T13:04:51.112033+00:00",
+    "timestamp": "2026-08-29T20:33:05.639223+00:00",
     "model_name": "bm25-shelf-k1=1.5-b=0.75",
     "data_commit": null,
-    "code_commit": "1b22bf2",
+    "code_commit": "e7043bd",
     "extra": {
       "num_samples": 627,
       "corpus_size": 2389

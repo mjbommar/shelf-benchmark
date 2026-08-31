@@ -15,6 +15,134 @@
     "num_correct": 10188,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.8382899628252788,
+      "recall": 0.7442244224422442,
+      "f1": 0.7884615384615384,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.7147707979626485,
+      "recall": 0.7051926298157454,
+      "f1": 0.7099494097807757,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8431372549019608,
+      "recall": 0.7624113475177305,
+      "f1": 0.8007448789571695,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.7901023890784983,
+      "recall": 0.7652892561983471,
+      "f1": 0.7774979009235936,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8478260869565217,
+      "recall": 0.8190630048465266,
+      "f1": 0.8331963845521775,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.6950998185117967,
+      "recall": 0.6524701873935264,
+      "f1": 0.6731107205623902,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8909426987060998,
+      "recall": 0.8576512455516014,
+      "f1": 0.8739800543970988,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.7988165680473372,
+      "recall": 0.8626198083067093,
+      "f1": 0.8294930875576036,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.6806451612903226,
+      "recall": 0.7455830388692579,
+      "f1": 0.7116357504215851,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.8159203980099502,
+      "recall": 0.802610114192496,
+      "f1": 0.8092105263157895,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.8523489932885906,
+      "recall": 0.8494983277591973,
+      "f1": 0.8509212730318257,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.7318952234206472,
+      "recall": 0.8217993079584776,
+      "f1": 0.7742461287693562,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7737478411053541,
+      "recall": 0.7818499127399651,
+      "f1": 0.7777777777777778,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6964618249534451,
+      "recall": 0.6763110307414105,
+      "f1": 0.6862385321100918,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8191653786707882,
+      "recall": 0.8333333333333334,
+      "f1": 0.8261886204208886,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8478260869565217,
+      "recall": 0.9238578680203046,
+      "f1": 0.8842105263157894,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9478991596638655,
+      "recall": 0.9170731707317074,
+      "f1": 0.9322314049586777,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.8163884673748103,
+      "recall": 0.8608,
+      "f1": 0.838006230529595,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.8791018998272885,
+      "recall": 0.8745704467353952,
+      "f1": 0.8768303186907838,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9308176100628931,
+      "recall": 0.9517684887459807,
+      "f1": 0.9411764705882353,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.8984238178633975,
+      "recall": 0.8754266211604096,
+      "f1": 0.8867761452031115,
+      "support": 586
+    }
+  },
   "num_samples": 12504,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:05:34.775940+00:00",
+    "timestamp": "2026-08-29T20:41:26.039733+00:00",
     "model_name": "MPNet",
     "data_commit": "7123a65",
-    "code_commit": "38893ba",
+    "code_commit": "e7043bd",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",
@@ -42,13 +170,14 @@
     "size_category": "100M-300M",
     "flops_per_token": 218964480,
     "relative_compute": 4.8202,
-    "shelf_eff": null,
-    "shelf_compute": null,
-    "pareto_optimal": null,
-    "size_rank": null,
+    "shelf_eff": 89.7438,
+    "shelf_compute": 0.6165,
+    "pareto_optimal": true,
+    "size_rank": 1,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  }
+  },
+  "shelf_score": 0.721481
 }

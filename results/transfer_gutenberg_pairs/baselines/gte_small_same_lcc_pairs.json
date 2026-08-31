@@ -5,19 +5,20 @@
   "task": "same_lcc_pairs",
   "task_type": "pair_classification",
   "primary_metric": "auc_roc",
-  "primary_score": 0.741583,
+  "primary_score": 0.7415797500000001,
   "metrics": {
     "f1": 0.7096774193548387,
     "accuracy": 0.64,
     "precision": 0.5945945945945946,
     "recall": 0.88,
-    "auc_roc": 0.741583,
-    "average_precision": 0.7464068642647714,
+    "auc_roc": 0.7415797500000001,
+    "average_precision": 0.7464038774221327,
     "threshold": 0.7725975969609709,
     "num_samples": 4000,
     "num_positive": 2000,
     "num_negative": 2000
   },
+  "per_class_metrics": null,
   "num_samples": 4000,
   "context": {
     "shelf_version": "0.3.1",
@@ -29,12 +30,15 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:43:27.243981+00:00",
+    "timestamp": "2026-08-30T07:00:53.057952+00:00",
     "model_name": "GTE-small",
     "data_commit": null,
-    "code_commit": "f586b5b",
+    "code_commit": "76a813b",
     "extra": {
-      "embedding_dim": 384
+      "embedding_dim": 384,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
     }
   },
   "efficiency": {
@@ -43,7 +47,7 @@
     "size_category": "10M-50M",
     "flops_per_token": 66721024,
     "relative_compute": 1.4688,
-    "shelf_eff": 98.5724,
+    "shelf_eff": 98.572,
     "shelf_compute": 0.7136,
     "pareto_optimal": true,
     "size_rank": 1,
@@ -52,5 +56,5 @@
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.741583
+  "shelf_score": 0.74158
 }

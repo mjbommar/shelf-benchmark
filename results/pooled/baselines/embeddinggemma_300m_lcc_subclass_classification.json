@@ -1,0 +1,22 @@
+{
+  "model": "EmbeddingGemma-300M",
+  "model_key": "embeddinggemma_300m",
+  "task": "lcc_subclass_classification",
+  "task_type": "classification",
+  "error": "\"lcc_subclass\" not found",
+  "efficiency": {
+    "num_params": 307581696,
+    "embedding_dim": 768,
+    "size_category": "300M-1B",
+    "flops_per_token": 615163392,
+    "relative_compute": 13.542,
+    "shelf_eff": null,
+    "shelf_compute": null,
+    "pareto_optimal": null,
+    "size_rank": null,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  }
+}

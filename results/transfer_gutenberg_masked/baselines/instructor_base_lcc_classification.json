@@ -15,6 +15,134 @@
     "num_correct": 300,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 29
+    },
+    "B": {
+      "precision": 0.3902439024390244,
+      "recall": 0.5333333333333333,
+      "f1": 0.4507042253521127,
+      "support": 30
+    },
+    "C": {
+      "precision": 0.18181818181818182,
+      "recall": 0.06666666666666667,
+      "f1": 0.0975609756097561,
+      "support": 30
+    },
+    "D": {
+      "precision": 0.375,
+      "recall": 0.2,
+      "f1": 0.2608695652173913,
+      "support": 30
+    },
+    "E": {
+      "precision": 0.5714285714285714,
+      "recall": 0.4,
+      "f1": 0.47058823529411764,
+      "support": 30
+    },
+    "F": {
+      "precision": 0.5625,
+      "recall": 0.3,
+      "f1": 0.391304347826087,
+      "support": 30
+    },
+    "G": {
+      "precision": 0.4166666666666667,
+      "recall": 0.16666666666666666,
+      "f1": 0.23809523809523808,
+      "support": 30
+    },
+    "H": {
+      "precision": 0.29411764705882354,
+      "recall": 0.16666666666666666,
+      "f1": 0.2127659574468085,
+      "support": 30
+    },
+    "J": {
+      "precision": 0.34782608695652173,
+      "recall": 0.5333333333333333,
+      "f1": 0.42105263157894735,
+      "support": 30
+    },
+    "K": {
+      "precision": 0.5128205128205128,
+      "recall": 0.6666666666666666,
+      "f1": 0.5797101449275363,
+      "support": 30
+    },
+    "L": {
+      "precision": 0.5416666666666666,
+      "recall": 0.43333333333333335,
+      "f1": 0.48148148148148145,
+      "support": 30
+    },
+    "M": {
+      "precision": 0.6,
+      "recall": 0.6,
+      "f1": 0.6,
+      "support": 30
+    },
+    "N": {
+      "precision": 0.45,
+      "recall": 0.6,
+      "f1": 0.5142857142857142,
+      "support": 30
+    },
+    "P": {
+      "precision": 0.39436619718309857,
+      "recall": 0.9333333333333333,
+      "f1": 0.5544554455445545,
+      "support": 30
+    },
+    "Q": {
+      "precision": 0.48,
+      "recall": 0.41379310344827586,
+      "f1": 0.4444444444444444,
+      "support": 29
+    },
+    "R": {
+      "precision": 0.7777777777777778,
+      "recall": 0.7241379310344828,
+      "f1": 0.75,
+      "support": 29
+    },
+    "S": {
+      "precision": 0.475,
+      "recall": 0.6333333333333333,
+      "f1": 0.5428571428571428,
+      "support": 30
+    },
+    "T": {
+      "precision": 0.4473684210526316,
+      "recall": 0.5666666666666667,
+      "f1": 0.5,
+      "support": 30
+    },
+    "U": {
+      "precision": 0.5757575757575758,
+      "recall": 0.6333333333333333,
+      "f1": 0.6031746031746031,
+      "support": 30
+    },
+    "V": {
+      "precision": 0.5581395348837209,
+      "recall": 0.8,
+      "f1": 0.6575342465753424,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.5405405405405406,
+      "recall": 0.6666666666666666,
+      "f1": 0.5970149253731343,
+      "support": 30
+    }
+  },
   "num_samples": 627,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T12:54:39.117225+00:00",
+    "timestamp": "2026-08-29T20:17:00.121542+00:00",
     "model_name": "Instructor-base",
     "data_commit": null,
-    "code_commit": "c39a943",
+    "code_commit": "b506498",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",

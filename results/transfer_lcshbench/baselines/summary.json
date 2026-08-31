@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-29T13:39:45.700685+00:00",
+  "timestamp": "2026-08-30T16:00:36.411450+00:00",
   "dataset_version": "0.3.1",
   "dataset_checksum": "v0.3.1",
   "versions": {
@@ -8,6 +8,9 @@
     "sklearn": "1.8.0",
     "numpy": "2.3.5",
     "scipy": "1.16.3",
+    "blas_threads": "8",
+    "python_hash_seed": "0",
+    "deterministic_text_order": "true",
     "sentence_transformers": "5.3.0.dev0",
     "torch": "2.9.1+cu128",
     "cuda_available": "True",
@@ -15,25 +18,27 @@
     "shelf": "0.3.1"
   },
   "git": {
-    "commit": "8a97c6d",
+    "commit": "8a167a2",
     "branch": "master",
     "dirty": true
   },
   "shelf_scores": {
+    "gte_modernbert_8k": 0.505338825538879,
     "tf": 0.2657426356622783,
     "tfidf": 0.3639110611987563,
+    "bm25": 0.1985490036435832,
     "minilm": 0.4940572543982526,
     "bge_small": 0.4986542173898289,
     "e5_small": 0.43580525926845554,
     "gte_small": 0.5039042793773488,
     "mpnet": 0.5327561041450403,
-    "bge_base": 0.4994283945149544,
+    "bge_base": 0.4994283945149543,
     "e5_base": 0.46363045928399343,
     "gtr_t5_base": 0.41693214503328235,
     "gte_base": 0.5078369129956801,
     "instructor_base": 0.4695939291696643,
     "bert": 0.38466457074372307,
-    "roberta": 0.21962068422285586,
+    "roberta": 0.21962068422285588,
     "bge_large": 0.5100231965260654,
     "e5_large": 0.4684542420882303,
     "gtr_t5_large": 0.42101541953322735,
@@ -42,9 +47,27 @@
     "ogbert_110m_sentence": 0.30333083817338113,
     "ogbert_v1_mlm": 0.23595408384489347,
     "distilbert_base_uncased": 0.36944737037454217,
-    "bm25": 0.1985490036435832
+    "granite_small_r2": 0.4997865340371587,
+    "gte_modernbert_2k": 0.5053126852025139,
+    "embeddinggemma_300m": 0.4943276785302668,
+    "qwen3_embed_600m": 0.5160144577362789
   },
   "efficiency": {
+    "gte_modernbert_8k": {
+      "num_params": 149014272,
+      "embedding_dim": 768,
+      "size_category": "100M-300M",
+      "flops_per_token": 298028544,
+      "relative_compute": 6.5607,
+      "shelf_eff": 61.8285,
+      "shelf_compute": 0.4187,
+      "pareto_optimal": false,
+      "size_rank": 3,
+      "num_params_torch": null,
+      "hidden_size": null,
+      "context_window": null,
+      "throughput_bytes_sec": null
+    },
     "minilm": {
       "num_params": 22713216,
       "embedding_dim": 384,
@@ -54,7 +77,7 @@
       "shelf_eff": 67.1613,
       "shelf_compute": 0.4941,
       "pareto_optimal": true,
-      "size_rank": 3,
+      "size_rank": 4,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -69,7 +92,7 @@
       "shelf_eff": 66.2819,
       "shelf_compute": 0.4798,
       "pareto_optimal": false,
-      "size_rank": 2,
+      "size_rank": 3,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -84,7 +107,7 @@
       "shelf_eff": 57.9279,
       "shelf_compute": 0.4194,
       "pareto_optimal": false,
-      "size_rank": 4,
+      "size_rank": 5,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -129,7 +152,7 @@
       "shelf_eff": 62.123,
       "shelf_compute": 0.4267,
       "pareto_optimal": false,
-      "size_rank": 3,
+      "size_rank": 5,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -144,7 +167,7 @@
       "shelf_eff": 57.6702,
       "shelf_compute": 0.3962,
       "pareto_optimal": false,
-      "size_rank": 5,
+      "size_rank": 7,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -159,7 +182,7 @@
       "shelf_eff": 51.8577,
       "shelf_compute": 0.3562,
       "pareto_optimal": false,
-      "size_rank": 6,
+      "size_rank": 8,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -189,7 +212,7 @@
       "shelf_eff": 58.412,
       "shelf_compute": 0.4013,
       "pareto_optimal": false,
-      "size_rank": 4,
+      "size_rank": 6,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -204,7 +227,7 @@
       "shelf_eff": 47.8478,
       "shelf_compute": 0.3287,
       "pareto_optimal": false,
-      "size_rank": 7,
+      "size_rank": 9,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -219,7 +242,7 @@
       "shelf_eff": 27.1281,
       "shelf_compute": 0.1852,
       "pareto_optimal": false,
-      "size_rank": 10,
+      "size_rank": 12,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -234,7 +257,7 @@
       "shelf_eff": 59.8252,
       "shelf_compute": 0.3897,
       "pareto_optimal": false,
-      "size_rank": 1,
+      "size_rank": 2,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -249,7 +272,7 @@
       "shelf_eff": 54.9492,
       "shelf_compute": 0.3579,
       "pareto_optimal": false,
-      "size_rank": 2,
+      "size_rank": 4,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -264,7 +287,7 @@
       "shelf_eff": 49.3793,
       "shelf_compute": 0.3216,
       "pareto_optimal": false,
-      "size_rank": 3,
+      "size_rank": 5,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -294,7 +317,7 @@
       "shelf_eff": 37.2497,
       "shelf_compute": 0.2531,
       "pareto_optimal": false,
-      "size_rank": 8,
+      "size_rank": 10,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -309,7 +332,7 @@
       "shelf_eff": 37.2497,
       "shelf_compute": 0.2531,
       "pareto_optimal": false,
-      "size_rank": 9,
+      "size_rank": 11,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -324,7 +347,7 @@
       "shelf_eff": 31.208,
       "shelf_compute": 0.2251,
       "pareto_optimal": false,
-      "size_rank": 5,
+      "size_rank": 6,
       "num_params_torch": null,
       "hidden_size": null,
       "context_window": null,
@@ -344,9 +367,451 @@
       "hidden_size": null,
       "context_window": null,
       "throughput_bytes_sec": null
+    },
+    "granite_small_r2": {
+      "num_params": 47662464,
+      "embedding_dim": 384,
+      "size_category": "10M-50M",
+      "flops_per_token": 95324928,
+      "relative_compute": 2.0984,
+      "shelf_eff": 65.0918,
+      "shelf_compute": 0.4641,
+      "pareto_optimal": false,
+      "size_rank": 2,
+      "num_params_torch": null,
+      "hidden_size": null,
+      "context_window": null,
+      "throughput_bytes_sec": null
+    },
+    "gte_modernbert_2k": {
+      "num_params": 149014272,
+      "embedding_dim": 768,
+      "size_category": "100M-300M",
+      "flops_per_token": 298028544,
+      "relative_compute": 6.5607,
+      "shelf_eff": 61.8254,
+      "shelf_compute": 0.4187,
+      "pareto_optimal": false,
+      "size_rank": 4,
+      "num_params_torch": null,
+      "hidden_size": null,
+      "context_window": null,
+      "throughput_bytes_sec": null
+    },
+    "embeddinggemma_300m": {
+      "num_params": 307581696,
+      "embedding_dim": 768,
+      "size_category": "300M-1B",
+      "flops_per_token": 615163392,
+      "relative_compute": 13.542,
+      "shelf_eff": 58.2387,
+      "shelf_compute": 0.3809,
+      "pareto_optimal": false,
+      "size_rank": 3,
+      "num_params_torch": null,
+      "hidden_size": null,
+      "context_window": null,
+      "throughput_bytes_sec": null
+    },
+    "qwen3_embed_600m": {
+      "num_params": 595776512,
+      "embedding_dim": 1024,
+      "size_category": "300M-1B",
+      "flops_per_token": 1191553024,
+      "relative_compute": 26.2304,
+      "shelf_eff": 58.8045,
+      "shelf_compute": 0.3722,
+      "pareto_optimal": false,
+      "size_rank": 1,
+      "num_params_torch": null,
+      "hidden_size": null,
+      "context_window": null,
+      "throughput_bytes_sec": null
     }
   },
   "results": {
+    "gte_modernbert_8k_lcc_classification": {
+      "model": "GTE-ModernBERT-8k",
+      "model_key": "gte_modernbert_8k",
+      "model_type": "sentence_transformer",
+      "task": "lcc_classification",
+      "task_type": "classification",
+      "primary_metric": "macro_f1",
+      "primary_score": 0.6422760291288732,
+      "metrics": {
+        "accuracy": 0.654891304347826,
+        "macro_f1": 0.6422760291288732,
+        "micro_f1": 0.654891304347826,
+        "weighted_f1": 0.6468123356090304,
+        "num_samples": 736,
+        "num_correct": 482,
+        "num_classes": 21
+      },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.7368421052631579,
+          "recall": 0.4,
+          "f1": 0.5185185185185185,
+          "support": 35
+        },
+        "B": {
+          "precision": 0.6052631578947368,
+          "recall": 0.7931034482758621,
+          "f1": 0.6865671641791045,
+          "support": 29
+        },
+        "C": {
+          "precision": 0.5405405405405406,
+          "recall": 0.4444444444444444,
+          "f1": 0.4878048780487805,
+          "support": 45
+        },
+        "D": {
+          "precision": 0.41379310344827586,
+          "recall": 0.41379310344827586,
+          "f1": 0.41379310344827586,
+          "support": 29
+        },
+        "E": {
+          "precision": 0.5263157894736842,
+          "recall": 0.38461538461538464,
+          "f1": 0.4444444444444444,
+          "support": 26
+        },
+        "F": {
+          "precision": 0.6176470588235294,
+          "recall": 0.6176470588235294,
+          "f1": 0.6176470588235294,
+          "support": 34
+        },
+        "G": {
+          "precision": 0.36363636363636365,
+          "recall": 0.3870967741935484,
+          "f1": 0.375,
+          "support": 31
+        },
+        "H": {
+          "precision": 0.6060606060606061,
+          "recall": 0.5263157894736842,
+          "f1": 0.5633802816901409,
+          "support": 38
+        },
+        "J": {
+          "precision": 0.42857142857142855,
+          "recall": 0.375,
+          "f1": 0.4,
+          "support": 32
+        },
+        "K": {
+          "precision": 0.66,
+          "recall": 0.7674418604651163,
+          "f1": 0.7096774193548387,
+          "support": 43
+        },
+        "L": {
+          "precision": 0.9722222222222222,
+          "recall": 0.8974358974358975,
+          "f1": 0.9333333333333333,
+          "support": 39
+        },
+        "M": {
+          "precision": 0.8857142857142857,
+          "recall": 0.96875,
+          "f1": 0.9253731343283582,
+          "support": 32
+        },
+        "N": {
+          "precision": 0.6326530612244898,
+          "recall": 0.8378378378378378,
+          "f1": 0.7209302325581395,
+          "support": 37
+        },
+        "P": {
+          "precision": 0.575,
+          "recall": 0.7419354838709677,
+          "f1": 0.647887323943662,
+          "support": 31
+        },
+        "Q": {
+          "precision": 0.6842105263157895,
+          "recall": 0.7428571428571429,
+          "f1": 0.7123287671232876,
+          "support": 35
+        },
+        "R": {
+          "precision": 0.7560975609756098,
+          "recall": 0.7560975609756098,
+          "f1": 0.7560975609756098,
+          "support": 41
+        },
+        "S": {
+          "precision": 0.7428571428571429,
+          "recall": 0.7878787878787878,
+          "f1": 0.7647058823529411,
+          "support": 33
+        },
+        "T": {
+          "precision": 0.625,
+          "recall": 0.38461538461538464,
+          "f1": 0.47619047619047616,
+          "support": 39
+        },
+        "U": {
+          "precision": 0.6808510638297872,
+          "recall": 0.8,
+          "f1": 0.735632183908046,
+          "support": 40
+        },
+        "V": {
+          "precision": 0.7777777777777778,
+          "recall": 0.9333333333333333,
+          "f1": 0.8484848484848485,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.7714285714285715,
+          "recall": 0.7297297297297297,
+          "f1": 0.75,
+          "support": 37
+        }
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T16:00:35.848581+00:00",
+        "model_name": "GTE-ModernBERT-8k",
+        "data_commit": null,
+        "code_commit": "8a167a2",
+        "extra": {
+          "embedding_dim": 768,
+          "classifier": "LogisticRegression",
+          "train_size": 3145,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 149014272,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 298028544,
+        "relative_compute": 6.5607,
+        "shelf_eff": 61.8285,
+        "shelf_compute": 0.4187,
+        "pareto_optimal": false,
+        "size_rank": 3,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.505339
+    },
+    "gte_modernbert_8k_lcc_retrieval": {
+      "model": "GTE-ModernBERT-8k",
+      "model_key": "gte_modernbert_8k",
+      "model_type": "sentence_transformer",
+      "task": "lcc_retrieval",
+      "task_type": "retrieval",
+      "primary_metric": "ndcg@10",
+      "primary_score": 0.45619048527446926,
+      "metrics": {
+        "mrr": 0.6683600807688975,
+        "ndcg@1": 0.5461956521739131,
+        "recall@1": 0.0027451685224675303,
+        "precision@1": 0.5461956521739131,
+        "map@1": 0.0027451685224675303,
+        "ndcg@5": 0.48210397194273136,
+        "recall@5": 0.011677538490432134,
+        "precision@5": 0.46494565217391304,
+        "map@5": 0.009768030774868397,
+        "ndcg@10": 0.45619048527446926,
+        "recall@10": 0.021911875412871703,
+        "precision@10": 0.4361413043478261,
+        "map@10": 0.016530025686275186,
+        "ndcg@50": 0.35677214098398896,
+        "recall@50": 0.08181363628685374,
+        "precision@50": 0.3261956521739131,
+        "map@50": 0.04852385903555557,
+        "ndcg@100": 0.3030162544817654,
+        "recall@100": 0.13597140575199318,
+        "precision@100": 0.27110054347826085,
+        "map@100": 0.0707057505557271,
+        "graded_ndcg@1": 0.5461956521739131,
+        "graded_ndcg@5": 0.48210397194273136,
+        "graded_ndcg@10": 0.45619048527446926,
+        "graded_ndcg@50": 0.35677214098398896,
+        "graded_ndcg@100": 0.3030162544817654,
+        "graded_relevance_max_gain": 3.0
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T16:00:36.222432+00:00",
+        "model_name": "GTE-ModernBERT-8k",
+        "data_commit": null,
+        "code_commit": "8a167a2",
+        "extra": {
+          "num_samples": 736,
+          "corpus_size": 4188,
+          "embedding_dim": 768,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 149014272,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 298028544,
+        "relative_compute": 6.5607,
+        "shelf_eff": 61.8285,
+        "shelf_compute": 0.4187,
+        "pareto_optimal": false,
+        "size_rank": 3,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.505339
+    },
+    "gte_modernbert_8k_lcc_clustering": {
+      "model": "GTE-ModernBERT-8k",
+      "model_key": "gte_modernbert_8k",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.4078898314480005,
+      "metrics": {
+        "v_measure": 0.4078898314480005,
+        "nmi": 0.40788983144800056,
+        "ari": 0.18302477085942678,
+        "homogeneity": 0.403753167768267,
+        "completeness": 0.41211213716816114,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T16:00:36.410635+00:00",
+        "model_name": "GTE-ModernBERT-8k",
+        "data_commit": null,
+        "code_commit": "8a167a2",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 374.6421673156706,
+          "norm_stats": {
+            "norm_min": 0.99951171875,
+            "norm_max": 1.0,
+            "norm_mean": 1.0,
+            "norm_std": 0.0
+          },
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 149014272,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 298028544,
+        "relative_compute": 6.5607,
+        "shelf_eff": 61.8285,
+        "shelf_compute": 0.4187,
+        "pareto_optimal": false,
+        "size_rank": 3,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.505339
+    },
+    "tf_lcc_classification": {
+      "model": "TF+SVD",
+      "model_key": "tf",
+      "model_type": "tf",
+      "task": "lcc_classification",
+      "task_type": "classification",
+      "primary_metric": "macro_f1",
+      "primary_score": 0.3837253337367737,
+      "metrics": {
+        "accuracy": 0.39402173913043476,
+        "macro_f1": 0.3837253337367737,
+        "micro_f1": 0.39402173913043476,
+        "weighted_f1": 0.38719788101435887,
+        "num_samples": 736,
+        "num_correct": 290,
+        "num_classes": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-27T12:59:08.321703+00:00",
+        "model_name": "tf-sklearn-1-2gram-dim256",
+        "data_commit": null,
+        "code_commit": "538d40c",
+        "extra": {
+          "embedding_dim": 256,
+          "classifier": "LogisticRegression",
+          "train_size": 3145
+        }
+      },
+      "efficiency": {
+        "num_params": null,
+        "embedding_dim": 256,
+        "size_category": "sparse",
+        "flops_per_token": null,
+        "relative_compute": null,
+        "shelf_eff": null,
+        "shelf_compute": null,
+        "pareto_optimal": null,
+        "size_rank": null
+      },
+      "shelf_score": 0.265743
+    },
     "tf_lcc_clustering": {
       "model": "TF+SVD",
       "model_key": "tf",
@@ -390,1355 +855,6 @@
             "norm_mean": 1.0,
             "norm_std": 7.835825499569182e-08
           }
-        }
-      },
-      "efficiency": {
-        "num_params": null,
-        "embedding_dim": 256,
-        "size_category": "sparse",
-        "flops_per_token": null,
-        "relative_compute": null,
-        "shelf_eff": null,
-        "shelf_compute": null,
-        "pareto_optimal": null,
-        "size_rank": null
-      },
-      "shelf_score": 0.265743
-    },
-    "tfidf_lcc_clustering": {
-      "model": "TF-IDF+SVD",
-      "model_key": "tfidf",
-      "model_type": "tfidf",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.22250146471261575,
-      "metrics": {
-        "v_measure": 0.22250146471261575,
-        "nmi": 0.22250146471261575,
-        "ari": 0.062113041518762534,
-        "homogeneity": 0.22051566753768545,
-        "completeness": 0.22452335206060495,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:25:33.530329+00:00",
-        "model_name": "tfidf-sklearn-1-2gram-dim256",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 256,
-          "n_clusters": 21,
-          "kmeans_inertia": 651.0952758789062,
-          "norm_stats": {
-            "norm_min": 0.9999998211860657,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 5.189891894019638e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": null,
-        "embedding_dim": 256,
-        "size_category": "sparse",
-        "flops_per_token": null,
-        "relative_compute": null,
-        "shelf_eff": null,
-        "shelf_compute": null,
-        "pareto_optimal": null,
-        "size_rank": null
-      },
-      "shelf_score": 0.363911
-    },
-    "minilm_lcc_clustering": {
-      "model": "MiniLM-L6",
-      "model_key": "minilm",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.43261708319019715,
-      "metrics": {
-        "v_measure": 0.43261708319019715,
-        "nmi": 0.43261708319019715,
-        "ari": 0.22235905200679382,
-        "homogeneity": 0.4312751207615706,
-        "completeness": 0.43396742302877656,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:25:42.599912+00:00",
-        "model_name": "MiniLM-L6",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 384,
-          "n_clusters": 21,
-          "kmeans_inertia": 539.4663696289062,
-          "norm_stats": {
-            "norm_min": 0.9999998807907104,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 2.9064322504268603e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 22713216,
-        "embedding_dim": 384,
-        "size_category": "10M-50M",
-        "flops_per_token": 45426432,
-        "relative_compute": 1.0,
-        "shelf_eff": 67.1613,
-        "shelf_compute": 0.4941,
-        "pareto_optimal": true,
-        "size_rank": 3,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.494057
-    },
-    "bge_small_lcc_clustering": {
-      "model": "BGE-small",
-      "model_key": "bge_small",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.42850295636447766,
-      "metrics": {
-        "v_measure": 0.42850295636447766,
-        "nmi": 0.42850295636447766,
-        "ari": 0.23157432094238561,
-        "homogeneity": 0.4263418627851801,
-        "completeness": 0.430686070392591,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:25:58.540419+00:00",
-        "model_name": "BGE-small",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 384,
-          "n_clusters": 21,
-          "kmeans_inertia": 276.32366943359375,
-          "norm_stats": {
-            "norm_min": 0.9999999403953552,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 2.9064322504268603e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 33360512,
-        "embedding_dim": 384,
-        "size_category": "10M-50M",
-        "flops_per_token": 66721024,
-        "relative_compute": 1.4688,
-        "shelf_eff": 66.2819,
-        "shelf_compute": 0.4798,
-        "pareto_optimal": false,
-        "size_rank": 2,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.498654
-    },
-    "e5_small_lcc_clustering": {
-      "model": "E5-small",
-      "model_key": "e5_small",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.3325009649871705,
-      "metrics": {
-        "v_measure": 0.3325009649871705,
-        "nmi": 0.33250096498717047,
-        "ari": 0.11990796983660157,
-        "homogeneity": 0.3280712757870074,
-        "completeness": 0.33705191268576684,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:26:16.070195+00:00",
-        "model_name": "E5-small",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 384,
-          "n_clusters": 21,
-          "kmeans_inertia": 141.72547912597656,
-          "norm_stats": {
-            "norm_min": 0.9999999403953552,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 3.266159254167178e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 33360512,
-        "embedding_dim": 384,
-        "size_category": "10M-50M",
-        "flops_per_token": 66721024,
-        "relative_compute": 1.4688,
-        "shelf_eff": 57.9279,
-        "shelf_compute": 0.4194,
-        "pareto_optimal": false,
-        "size_rank": 4,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.435805
-    },
-    "gte_small_lcc_clustering": {
-      "model": "GTE-small",
-      "model_key": "gte_small",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.44796090736229,
-      "metrics": {
-        "v_measure": 0.44796090736229,
-        "nmi": 0.44796090736228994,
-        "ari": 0.217572927218761,
-        "homogeneity": 0.44182795435473204,
-        "completeness": 0.4542665183644387,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:26:25.317543+00:00",
-        "model_name": "GTE-small",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 384,
-          "n_clusters": 21,
-          "kmeans_inertia": 147.18224832540062,
-          "norm_stats": {
-            "norm_min": 0.99951171875,
-            "norm_max": 1.0,
-            "norm_mean": 1.0,
-            "norm_std": 0.0
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 33360512,
-        "embedding_dim": 384,
-        "size_category": "10M-50M",
-        "flops_per_token": 66721024,
-        "relative_compute": 1.4688,
-        "shelf_eff": 66.9798,
-        "shelf_compute": 0.4849,
-        "pareto_optimal": true,
-        "size_rank": 1,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.503904
-    },
-    "mpnet_lcc_clustering": {
-      "model": "MPNet",
-      "model_key": "mpnet",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.4647493666235154,
-      "metrics": {
-        "v_measure": 0.4647493666235154,
-        "nmi": 0.46474936662351535,
-        "ari": 0.2464721284864061,
-        "homogeneity": 0.46261115226533256,
-        "completeness": 0.4669074386552558,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:27:06.792724+00:00",
-        "model_name": "MPNet",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 484.0086975097656,
-          "norm_stats": {
-            "norm_min": 0.9999998807907104,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 2.9229934028762727e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 109482240,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 218964480,
-        "relative_compute": 4.8202,
-        "shelf_eff": 66.2686,
-        "shelf_compute": 0.4552,
-        "pareto_optimal": true,
-        "size_rank": 1,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.532756
-    },
-    "bge_base_lcc_clustering": {
-      "model": "BGE-base",
-      "model_key": "bge_base",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.4036604495062663,
-      "metrics": {
-        "v_measure": 0.4036604495062663,
-        "nmi": 0.40366044950626634,
-        "ari": 0.18883927890779834,
-        "homogeneity": 0.40099134819893767,
-        "completeness": 0.4063653213578936,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:27:45.596137+00:00",
-        "model_name": "BGE-base",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 320.16015625,
-          "norm_stats": {
-            "norm_min": 0.9999999403953552,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 3.0044294163644736e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 109482240,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 218964480,
-        "relative_compute": 4.8202,
-        "shelf_eff": 62.123,
-        "shelf_compute": 0.4267,
-        "pareto_optimal": false,
-        "size_rank": 3,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.499428
-    },
-    "e5_base_lcc_clustering": {
-      "model": "E5-base",
-      "model_key": "e5_base",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.346109336506727,
-      "metrics": {
-        "v_measure": 0.346109336506727,
-        "nmi": 0.346109336506727,
-        "ari": 0.12902090777534309,
-        "homogeneity": 0.3425970617391841,
-        "completeness": 0.3496943722739768,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:28:23.328271+00:00",
-        "model_name": "E5-base",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 166.732177734375,
-          "norm_stats": {
-            "norm_min": 0.9999999403953552,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 2.898116413518892e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 109482240,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 218964480,
-        "relative_compute": 4.8202,
-        "shelf_eff": 57.6702,
-        "shelf_compute": 0.3962,
-        "pareto_optimal": false,
-        "size_rank": 5,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.46363
-    },
-    "gtr_t5_base_lcc_clustering": {
-      "model": "GTR-T5-base",
-      "model_key": "gtr_t5_base",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.30063900617490574,
-      "metrics": {
-        "v_measure": 0.30063900617490574,
-        "nmi": 0.3006390061749058,
-        "ari": 0.10057644692199691,
-        "homogeneity": 0.298439763273651,
-        "completeness": 0.30287090274104495,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:28:52.403854+00:00",
-        "model_name": "GTR-T5-base",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 286.3098161421565,
-          "norm_stats": {
-            "norm_min": 1.0,
-            "norm_max": 1.0,
-            "norm_mean": 1.0,
-            "norm_std": 0.0
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 109628416,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 219256832,
-        "relative_compute": 4.8266,
-        "shelf_eff": 51.8577,
-        "shelf_compute": 0.3562,
-        "pareto_optimal": false,
-        "size_rank": 6,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.416932
-    },
-    "gte_base_lcc_clustering": {
-      "model": "GTE-base",
-      "model_key": "gte_base",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.42311941711358436,
-      "metrics": {
-        "v_measure": 0.42311941711358436,
-        "nmi": 0.42311941711358436,
-        "ari": 0.19295722257242956,
-        "homogeneity": 0.42086471606141673,
-        "completeness": 0.42539840653273975,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:29:06.437192+00:00",
-        "model_name": "GTE-base",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 158.9256749816282,
-          "norm_stats": {
-            "norm_min": 0.99951171875,
-            "norm_max": 1.0,
-            "norm_mean": 1.0,
-            "norm_std": 0.0
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 109482240,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 218964480,
-        "relative_compute": 4.8202,
-        "shelf_eff": 63.169,
-        "shelf_compute": 0.4339,
-        "pareto_optimal": false,
-        "size_rank": 2,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.507837
-    },
-    "instructor_base_lcc_clustering": {
-      "model": "Instructor-base",
-      "model_key": "instructor_base",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.4024905370564213,
-      "metrics": {
-        "v_measure": 0.4024905370564213,
-        "nmi": 0.40249053705642124,
-        "ari": 0.19684707198726786,
-        "homogeneity": 0.3959517687902797,
-        "completeness": 0.4092488947578449,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:30:00.462645+00:00",
-        "model_name": "Instructor-base",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 116.49649047851562,
-          "norm_stats": {
-            "norm_min": 0.9999999403953552,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 2.8392225459583642e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 109482240,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 218964480,
-        "relative_compute": 4.8202,
-        "shelf_eff": 58.412,
-        "shelf_compute": 0.4013,
-        "pareto_optimal": false,
-        "size_rank": 4,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.469594
-    },
-    "bert_lcc_clustering": {
-      "model": "BERT",
-      "model_key": "bert",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.2507469278148522,
-      "metrics": {
-        "v_measure": 0.2507469278148522,
-        "nmi": 0.2507469278148522,
-        "ari": 0.06107625318329256,
-        "homogeneity": 0.24852825330724956,
-        "completeness": 0.25300557248191574,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:30:40.205390+00:00",
-        "model_name": "BERT",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 136.56903076171875,
-          "norm_stats": {
-            "norm_min": 0.9999998807907104,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 4.3443975528134615e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 109482240,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 218964480,
-        "relative_compute": 4.8202,
-        "shelf_eff": 47.8478,
-        "shelf_compute": 0.3287,
-        "pareto_optimal": false,
-        "size_rank": 7,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.384665
-    },
-    "roberta_lcc_clustering": {
-      "model": "RoBERTa",
-      "model_key": "roberta",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.1311211749555342,
-      "metrics": {
-        "v_measure": 0.1311211749555342,
-        "nmi": 0.13112117495553416,
-        "ari": 0.010615085503414733,
-        "homogeneity": 0.13036847142855168,
-        "completeness": 0.1318826206688834,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:31:17.872457+00:00",
-        "model_name": "RoBERTa",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 16.31507682800293,
-          "norm_stats": {
-            "norm_min": 0.9999998211860657,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 5.783727274888406e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 124645632,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 249291264,
-        "relative_compute": 5.4878,
-        "shelf_eff": 27.1281,
-        "shelf_compute": 0.1852,
-        "pareto_optimal": false,
-        "size_rank": 10,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.219621
-    },
-    "bge_large_lcc_clustering": {
-      "model": "BGE-large",
-      "model_key": "bge_large",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.4048689109017997,
-      "metrics": {
-        "v_measure": 0.4048689109017997,
-        "nmi": 0.4048689109017997,
-        "ari": 0.1864212712575842,
-        "homogeneity": 0.40251470725448396,
-        "completeness": 0.40725081480820186,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:33:19.293723+00:00",
-        "model_name": "BGE-large",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 1024,
-          "n_clusters": 21,
-          "kmeans_inertia": 318.5076904296875,
-          "norm_stats": {
-            "norm_min": 0.9999999403953552,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 3.176247531655463e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 335141888,
-        "embedding_dim": 1024,
-        "size_category": "300M-1B",
-        "flops_per_token": 670283776,
-        "relative_compute": 14.7554,
-        "shelf_eff": 59.8252,
-        "shelf_compute": 0.3897,
-        "pareto_optimal": false,
-        "size_rank": 1,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.510023
-    },
-    "e5_large_lcc_clustering": {
-      "model": "E5-large",
-      "model_key": "e5_large",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.32684603500913023,
-      "metrics": {
-        "v_measure": 0.32684603500913023,
-        "nmi": 0.32684603500913023,
-        "ari": 0.11460030647464738,
-        "homogeneity": 0.3229582092504024,
-        "completeness": 0.3308286059395334,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:35:05.637586+00:00",
-        "model_name": "E5-large",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 1024,
-          "n_clusters": 21,
-          "kmeans_inertia": 159.85440063476562,
-          "norm_stats": {
-            "norm_min": 0.9999999403953552,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 2.6637893668635115e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 335141888,
-        "embedding_dim": 1024,
-        "size_category": "300M-1B",
-        "flops_per_token": 670283776,
-        "relative_compute": 14.7554,
-        "shelf_eff": 54.9492,
-        "shelf_compute": 0.3579,
-        "pareto_optimal": false,
-        "size_rank": 2,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.468454
-    },
-    "gtr_t5_large_lcc_clustering": {
-      "model": "GTR-T5-large",
-      "model_key": "gtr_t5_large",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.26913134965084656,
-      "metrics": {
-        "v_measure": 0.26913134965084656,
-        "nmi": 0.2691313496508466,
-        "ari": 0.07881912242644658,
-        "homogeneity": 0.2660124604745423,
-        "completeness": 0.272324241927691,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:36:19.887912+00:00",
-        "model_name": "GTR-T5-large",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 257.43129771657533,
-          "norm_stats": {
-            "norm_min": 0.99951171875,
-            "norm_max": 1.0,
-            "norm_mean": 1.0,
-            "norm_std": 0.0
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 335854592,
-        "embedding_dim": 768,
-        "size_category": "300M-1B",
-        "flops_per_token": 671709184,
-        "relative_compute": 14.7867,
-        "shelf_eff": 49.3793,
-        "shelf_compute": 0.3216,
-        "pareto_optimal": false,
-        "size_rank": 3,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.421015
-    },
-    "ogbert_2m_sentence_lcc_clustering": {
-      "model": "ogbert-2m-sentence",
-      "model_key": "ogbert_2m_sentence",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.17038106054292404,
-      "metrics": {
-        "v_measure": 0.17038106054292404,
-        "nmi": 0.17038106054292407,
-        "ari": 0.02465351299253123,
-        "homogeneity": 0.16751142345917458,
-        "completeness": 0.17335073076131957,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:36:35.982486+00:00",
-        "model_name": "ogbert-2m-sentence",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 128,
-          "n_clusters": 21,
-          "kmeans_inertia": 58.408905029296875,
-          "norm_stats": {
-            "norm_min": 0.9999999403953552,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 3.236466028511131e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 2123008,
-        "embedding_dim": 128,
-        "size_category": "<10M",
-        "flops_per_token": 4246016,
-        "relative_compute": 0.0935,
-        "shelf_eff": 32.355,
-        "shelf_compute": 0.2595,
-        "pareto_optimal": true,
-        "size_rank": 1,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.204709
-    },
-    "ogbert_110m_base_lcc_clustering": {
-      "model": "OGBert-110M Base",
-      "model_key": "ogbert_110m_base",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.18700394441621052,
-      "metrics": {
-        "v_measure": 0.18700394441621052,
-        "nmi": 0.18700394441621046,
-        "ari": 0.0323714392193107,
-        "homogeneity": 0.17998101952666265,
-        "completeness": 0.19459719790596303,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:37:53.269078+00:00",
-        "model_name": "OGBert-110M Base",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 65.39958190917969,
-          "norm_stats": {
-            "norm_min": 0.9999998807907104,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 3.728528241708773e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 139054592,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 278109184,
-        "relative_compute": 6.1222,
-        "shelf_eff": 37.2497,
-        "shelf_compute": 0.2531,
-        "pareto_optimal": false,
-        "size_rank": 8,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.303331
-    },
-    "ogbert_110m_sentence_lcc_clustering": {
-      "model": "OGBert-110M Sentence",
-      "model_key": "ogbert_110m_sentence",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.18700394441621052,
-      "metrics": {
-        "v_measure": 0.18700394441621052,
-        "nmi": 0.18700394441621046,
-        "ari": 0.0323714392193107,
-        "homogeneity": 0.17998101952666265,
-        "completeness": 0.19459719790596303,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:39:02.907234+00:00",
-        "model_name": "OGBert-110M Sentence",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 65.39958190917969,
-          "norm_stats": {
-            "norm_min": 0.9999999403953552,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 4.0092515973810805e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 139054592,
-        "embedding_dim": 768,
-        "size_category": "100M-300M",
-        "flops_per_token": 278109184,
-        "relative_compute": 6.1222,
-        "shelf_eff": 37.2497,
-        "shelf_compute": 0.2531,
-        "pareto_optimal": false,
-        "size_rank": 9,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.303331
-    },
-    "ogbert_v1_mlm_lcc_clustering": {
-      "model": "ogbert-v1-mlm",
-      "model_key": "ogbert_v1_mlm",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.1414203228565564,
-      "metrics": {
-        "v_measure": 0.1414203228565564,
-        "nmi": 0.1414203228565564,
-        "ari": 0.015836852852897487,
-        "homogeneity": 0.13725061902507554,
-        "completeness": 0.1458513177982911,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:39:31.649445+00:00",
-        "model_name": "ogbert-v1-mlm",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 384,
-          "n_clusters": 21,
-          "kmeans_inertia": 52.76482391357422,
-          "norm_stats": {
-            "norm_min": 0.9999998807907104,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 3.9485936298433444e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 36364929,
-        "embedding_dim": 384,
-        "size_category": "10M-50M",
-        "flops_per_token": 72729858,
-        "relative_compute": 1.601,
-        "shelf_eff": 31.208,
-        "shelf_compute": 0.2251,
-        "pareto_optimal": false,
-        "size_rank": 5,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.235954
-    },
-    "distilbert_base_uncased_lcc_clustering": {
-      "model": "distilbert-base-uncased",
-      "model_key": "distilbert_base_uncased",
-      "model_type": "sentence_transformer",
-      "task": "lcc_clustering",
-      "task_type": "clustering",
-      "primary_metric": "v_measure",
-      "primary_score": 0.23514938915596267,
-      "metrics": {
-        "v_measure": 0.23514938915596267,
-        "nmi": 0.23514938915596267,
-        "ari": 0.05176585982685184,
-        "homogeneity": 0.2328333576707674,
-        "completeness": 0.23751195945825404,
-        "num_samples": 736,
-        "num_clusters_true": 21,
-        "num_clusters_pred": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-29T13:39:45.700051+00:00",
-        "model_name": "distilbert-base-uncased",
-        "data_commit": null,
-        "code_commit": "8a97c6d",
-        "extra": {
-          "embedding_dim": 768,
-          "n_clusters": 21,
-          "kmeans_inertia": 105.57440185546875,
-          "norm_stats": {
-            "norm_min": 0.9999998807907104,
-            "norm_max": 1.0000001192092896,
-            "norm_mean": 1.0,
-            "norm_std": 4.0152670521820255e-08
-          }
-        }
-      },
-      "efficiency": {
-        "num_params": 66985530,
-        "embedding_dim": 768,
-        "size_category": "50M-100M",
-        "flops_per_token": 133971060,
-        "relative_compute": 2.9492,
-        "shelf_eff": 47.2078,
-        "shelf_compute": 0.3316,
-        "pareto_optimal": false,
-        "size_rank": 1,
-        "num_params_torch": null,
-        "hidden_size": null,
-        "context_window": null,
-        "throughput_bytes_sec": null
-      },
-      "shelf_score": 0.369447
-    },
-    "tf_lcc_classification": {
-      "model": "TF+SVD",
-      "model_key": "tf",
-      "model_type": "tf",
-      "task": "lcc_classification",
-      "task_type": "classification",
-      "primary_metric": "macro_f1",
-      "primary_score": 0.3837253337367737,
-      "metrics": {
-        "accuracy": 0.39402173913043476,
-        "macro_f1": 0.3837253337367737,
-        "micro_f1": 0.39402173913043476,
-        "weighted_f1": 0.38719788101435887,
-        "num_samples": 736,
-        "num_correct": 290,
-        "num_classes": 21
-      },
-      "num_samples": 736,
-      "context": {
-        "shelf_version": "0.3.1",
-        "python_version": "3.13.5",
-        "sklearn_version": "1.8.0",
-        "numpy_version": "2.3.5",
-        "polars_version": "1.36.1",
-        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
-        "prediction_file_checksum": null,
-        "random_seed": 42,
-        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-        "timestamp": "2026-08-27T12:59:08.321703+00:00",
-        "model_name": "tf-sklearn-1-2gram-dim256",
-        "data_commit": null,
-        "code_commit": "538d40c",
-        "extra": {
-          "embedding_dim": 256,
-          "classifier": "LogisticRegression",
-          "train_size": 3145
         }
       },
       "efficiency": {
@@ -1861,6 +977,64 @@
           "embedding_dim": 256,
           "classifier": "LogisticRegression",
           "train_size": 3145
+        }
+      },
+      "efficiency": {
+        "num_params": null,
+        "embedding_dim": 256,
+        "size_category": "sparse",
+        "flops_per_token": null,
+        "relative_compute": null,
+        "shelf_eff": null,
+        "shelf_compute": null,
+        "pareto_optimal": null,
+        "size_rank": null
+      },
+      "shelf_score": 0.363911
+    },
+    "tfidf_lcc_clustering": {
+      "model": "TF-IDF+SVD",
+      "model_key": "tfidf",
+      "model_type": "tfidf",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.22250146471261575,
+      "metrics": {
+        "v_measure": 0.22250146471261575,
+        "nmi": 0.22250146471261575,
+        "ari": 0.062113041518762534,
+        "homogeneity": 0.22051566753768545,
+        "completeness": 0.22452335206060495,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:25:33.530329+00:00",
+        "model_name": "tfidf-sklearn-1-2gram-dim256",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 256,
+          "n_clusters": 21,
+          "kmeans_inertia": 651.0952758789062,
+          "norm_stats": {
+            "norm_min": 0.9999998211860657,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 5.189891894019638e-08
+          }
         }
       },
       "efficiency": {
@@ -2013,7 +1187,7 @@
         "shelf_eff": 67.1613,
         "shelf_compute": 0.4941,
         "pareto_optimal": true,
-        "size_rank": 3,
+        "size_rank": 4,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2068,7 +1242,69 @@
         "shelf_eff": 67.1613,
         "shelf_compute": 0.4941,
         "pareto_optimal": true,
-        "size_rank": 3,
+        "size_rank": 4,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.494057
+    },
+    "minilm_lcc_clustering": {
+      "model": "MiniLM-L6",
+      "model_key": "minilm",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.43261708319019715,
+      "metrics": {
+        "v_measure": 0.43261708319019715,
+        "nmi": 0.43261708319019715,
+        "ari": 0.22235905200679382,
+        "homogeneity": 0.4312751207615706,
+        "completeness": 0.43396742302877656,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:25:42.599912+00:00",
+        "model_name": "MiniLM-L6",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 384,
+          "n_clusters": 21,
+          "kmeans_inertia": 539.4663696289062,
+          "norm_stats": {
+            "norm_min": 0.9999998807907104,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 2.9064322504268603e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 22713216,
+        "embedding_dim": 384,
+        "size_category": "10M-50M",
+        "flops_per_token": 45426432,
+        "relative_compute": 1.0,
+        "shelf_eff": 67.1613,
+        "shelf_compute": 0.4941,
+        "pareto_optimal": true,
+        "size_rank": 4,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2143,7 +1379,7 @@
         "shelf_eff": 66.2819,
         "shelf_compute": 0.4798,
         "pareto_optimal": false,
-        "size_rank": 2,
+        "size_rank": 3,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2198,7 +1434,69 @@
         "shelf_eff": 66.2819,
         "shelf_compute": 0.4798,
         "pareto_optimal": false,
-        "size_rank": 2,
+        "size_rank": 3,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.498654
+    },
+    "bge_small_lcc_clustering": {
+      "model": "BGE-small",
+      "model_key": "bge_small",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.42850295636447766,
+      "metrics": {
+        "v_measure": 0.42850295636447766,
+        "nmi": 0.42850295636447766,
+        "ari": 0.23157432094238561,
+        "homogeneity": 0.4263418627851801,
+        "completeness": 0.430686070392591,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:25:58.540419+00:00",
+        "model_name": "BGE-small",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 384,
+          "n_clusters": 21,
+          "kmeans_inertia": 276.32366943359375,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 2.9064322504268603e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 33360512,
+        "embedding_dim": 384,
+        "size_category": "10M-50M",
+        "flops_per_token": 66721024,
+        "relative_compute": 1.4688,
+        "shelf_eff": 66.2819,
+        "shelf_compute": 0.4798,
+        "pareto_optimal": false,
+        "size_rank": 3,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2273,7 +1571,7 @@
         "shelf_eff": 57.9279,
         "shelf_compute": 0.4194,
         "pareto_optimal": false,
-        "size_rank": 4,
+        "size_rank": 5,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2328,7 +1626,69 @@
         "shelf_eff": 57.9279,
         "shelf_compute": 0.4194,
         "pareto_optimal": false,
-        "size_rank": 4,
+        "size_rank": 5,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.435805
+    },
+    "e5_small_lcc_clustering": {
+      "model": "E5-small",
+      "model_key": "e5_small",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.3325009649871705,
+      "metrics": {
+        "v_measure": 0.3325009649871705,
+        "nmi": 0.33250096498717047,
+        "ari": 0.11990796983660157,
+        "homogeneity": 0.3280712757870074,
+        "completeness": 0.33705191268576684,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:26:16.070195+00:00",
+        "model_name": "E5-small",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 384,
+          "n_clusters": 21,
+          "kmeans_inertia": 141.72547912597656,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 3.266159254167178e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 33360512,
+        "embedding_dim": 384,
+        "size_category": "10M-50M",
+        "flops_per_token": 66721024,
+        "relative_compute": 1.4688,
+        "shelf_eff": 57.9279,
+        "shelf_compute": 0.4194,
+        "pareto_optimal": false,
+        "size_rank": 5,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2447,6 +1807,68 @@
           "embedding_dim": 384,
           "classifier": "LogisticRegression",
           "train_size": 3145
+        }
+      },
+      "efficiency": {
+        "num_params": 33360512,
+        "embedding_dim": 384,
+        "size_category": "10M-50M",
+        "flops_per_token": 66721024,
+        "relative_compute": 1.4688,
+        "shelf_eff": 66.9798,
+        "shelf_compute": 0.4849,
+        "pareto_optimal": true,
+        "size_rank": 1,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.503904
+    },
+    "gte_small_lcc_clustering": {
+      "model": "GTE-small",
+      "model_key": "gte_small",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.44796090736229,
+      "metrics": {
+        "v_measure": 0.44796090736229,
+        "nmi": 0.44796090736228994,
+        "ari": 0.217572927218761,
+        "homogeneity": 0.44182795435473204,
+        "completeness": 0.4542665183644387,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:26:25.317543+00:00",
+        "model_name": "GTE-small",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 384,
+          "n_clusters": 21,
+          "kmeans_inertia": 147.18224832540062,
+          "norm_stats": {
+            "norm_min": 0.99951171875,
+            "norm_max": 1.0,
+            "norm_mean": 1.0,
+            "norm_std": 0.0
+          }
         }
       },
       "efficiency": {
@@ -2596,6 +2018,68 @@
       },
       "shelf_score": 0.532756
     },
+    "mpnet_lcc_clustering": {
+      "model": "MPNet",
+      "model_key": "mpnet",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.4647493666235154,
+      "metrics": {
+        "v_measure": 0.4647493666235154,
+        "nmi": 0.46474936662351535,
+        "ari": 0.2464721284864061,
+        "homogeneity": 0.46261115226533256,
+        "completeness": 0.4669074386552558,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:27:06.792724+00:00",
+        "model_name": "MPNet",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 484.0086975097656,
+          "norm_stats": {
+            "norm_min": 0.9999998807907104,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 2.9229934028762727e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 109482240,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 218964480,
+        "relative_compute": 4.8202,
+        "shelf_eff": 66.2686,
+        "shelf_compute": 0.4552,
+        "pareto_optimal": true,
+        "size_rank": 1,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.532756
+    },
     "bge_base_lcc_retrieval": {
       "model": "BGE-base",
       "model_key": "bge_base",
@@ -2663,7 +2147,7 @@
         "shelf_eff": 62.123,
         "shelf_compute": 0.4267,
         "pareto_optimal": false,
-        "size_rank": 3,
+        "size_rank": 5,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2718,7 +2202,69 @@
         "shelf_eff": 62.123,
         "shelf_compute": 0.4267,
         "pareto_optimal": false,
-        "size_rank": 3,
+        "size_rank": 5,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.499428
+    },
+    "bge_base_lcc_clustering": {
+      "model": "BGE-base",
+      "model_key": "bge_base",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.4036604495062663,
+      "metrics": {
+        "v_measure": 0.4036604495062663,
+        "nmi": 0.40366044950626634,
+        "ari": 0.18883927890779834,
+        "homogeneity": 0.40099134819893767,
+        "completeness": 0.4063653213578936,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:27:45.596137+00:00",
+        "model_name": "BGE-base",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 320.16015625,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 3.0044294163644736e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 109482240,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 218964480,
+        "relative_compute": 4.8202,
+        "shelf_eff": 62.123,
+        "shelf_compute": 0.4267,
+        "pareto_optimal": false,
+        "size_rank": 5,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2793,7 +2339,7 @@
         "shelf_eff": 57.6702,
         "shelf_compute": 0.3962,
         "pareto_optimal": false,
-        "size_rank": 5,
+        "size_rank": 7,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2848,7 +2394,69 @@
         "shelf_eff": 57.6702,
         "shelf_compute": 0.3962,
         "pareto_optimal": false,
-        "size_rank": 5,
+        "size_rank": 7,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.46363
+    },
+    "e5_base_lcc_clustering": {
+      "model": "E5-base",
+      "model_key": "e5_base",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.346109336506727,
+      "metrics": {
+        "v_measure": 0.346109336506727,
+        "nmi": 0.346109336506727,
+        "ari": 0.12902090777534309,
+        "homogeneity": 0.3425970617391841,
+        "completeness": 0.3496943722739768,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:28:23.328271+00:00",
+        "model_name": "E5-base",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 166.732177734375,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 2.898116413518892e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 109482240,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 218964480,
+        "relative_compute": 4.8202,
+        "shelf_eff": 57.6702,
+        "shelf_compute": 0.3962,
+        "pareto_optimal": false,
+        "size_rank": 7,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2923,7 +2531,7 @@
         "shelf_eff": 51.8577,
         "shelf_compute": 0.3562,
         "pareto_optimal": false,
-        "size_rank": 6,
+        "size_rank": 8,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -2978,7 +2586,69 @@
         "shelf_eff": 51.8577,
         "shelf_compute": 0.3562,
         "pareto_optimal": false,
-        "size_rank": 6,
+        "size_rank": 8,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.416932
+    },
+    "gtr_t5_base_lcc_clustering": {
+      "model": "GTR-T5-base",
+      "model_key": "gtr_t5_base",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.30063900617490574,
+      "metrics": {
+        "v_measure": 0.30063900617490574,
+        "nmi": 0.3006390061749058,
+        "ari": 0.10057644692199691,
+        "homogeneity": 0.298439763273651,
+        "completeness": 0.30287090274104495,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:28:52.403854+00:00",
+        "model_name": "GTR-T5-base",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 286.3098161421565,
+          "norm_stats": {
+            "norm_min": 1.0,
+            "norm_max": 1.0,
+            "norm_mean": 1.0,
+            "norm_std": 0.0
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 109628416,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 219256832,
+        "relative_compute": 4.8266,
+        "shelf_eff": 51.8577,
+        "shelf_compute": 0.3562,
+        "pareto_optimal": false,
+        "size_rank": 8,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3116,6 +2786,68 @@
       },
       "shelf_score": 0.507837
     },
+    "gte_base_lcc_clustering": {
+      "model": "GTE-base",
+      "model_key": "gte_base",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.42311941711358436,
+      "metrics": {
+        "v_measure": 0.42311941711358436,
+        "nmi": 0.42311941711358436,
+        "ari": 0.19295722257242956,
+        "homogeneity": 0.42086471606141673,
+        "completeness": 0.42539840653273975,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:29:06.437192+00:00",
+        "model_name": "GTE-base",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 158.9256749816282,
+          "norm_stats": {
+            "norm_min": 0.99951171875,
+            "norm_max": 1.0,
+            "norm_mean": 1.0,
+            "norm_std": 0.0
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 109482240,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 218964480,
+        "relative_compute": 4.8202,
+        "shelf_eff": 63.169,
+        "shelf_compute": 0.4339,
+        "pareto_optimal": false,
+        "size_rank": 2,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.507837
+    },
     "instructor_base_lcc_retrieval": {
       "model": "Instructor-base",
       "model_key": "instructor_base",
@@ -3183,7 +2915,7 @@
         "shelf_eff": 58.412,
         "shelf_compute": 0.4013,
         "pareto_optimal": false,
-        "size_rank": 4,
+        "size_rank": 6,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3238,7 +2970,69 @@
         "shelf_eff": 58.412,
         "shelf_compute": 0.4013,
         "pareto_optimal": false,
-        "size_rank": 4,
+        "size_rank": 6,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.469594
+    },
+    "instructor_base_lcc_clustering": {
+      "model": "Instructor-base",
+      "model_key": "instructor_base",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.4024905370564213,
+      "metrics": {
+        "v_measure": 0.4024905370564213,
+        "nmi": 0.40249053705642124,
+        "ari": 0.19684707198726786,
+        "homogeneity": 0.3959517687902797,
+        "completeness": 0.4092488947578449,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:30:00.462645+00:00",
+        "model_name": "Instructor-base",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 116.49649047851562,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 2.8392225459583642e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 109482240,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 218964480,
+        "relative_compute": 4.8202,
+        "shelf_eff": 58.412,
+        "shelf_compute": 0.4013,
+        "pareto_optimal": false,
+        "size_rank": 6,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3313,7 +3107,7 @@
         "shelf_eff": 47.8478,
         "shelf_compute": 0.3287,
         "pareto_optimal": false,
-        "size_rank": 7,
+        "size_rank": 9,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3368,7 +3162,69 @@
         "shelf_eff": 47.8478,
         "shelf_compute": 0.3287,
         "pareto_optimal": false,
-        "size_rank": 7,
+        "size_rank": 9,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.384665
+    },
+    "bert_lcc_clustering": {
+      "model": "BERT",
+      "model_key": "bert",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.2507469278148522,
+      "metrics": {
+        "v_measure": 0.2507469278148522,
+        "nmi": 0.2507469278148522,
+        "ari": 0.06107625318329256,
+        "homogeneity": 0.24852825330724956,
+        "completeness": 0.25300557248191574,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:30:40.205390+00:00",
+        "model_name": "BERT",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 136.56903076171875,
+          "norm_stats": {
+            "norm_min": 0.9999998807907104,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 4.3443975528134615e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 109482240,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 218964480,
+        "relative_compute": 4.8202,
+        "shelf_eff": 47.8478,
+        "shelf_compute": 0.3287,
+        "pareto_optimal": false,
+        "size_rank": 9,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3443,7 +3299,7 @@
         "shelf_eff": 27.1281,
         "shelf_compute": 0.1852,
         "pareto_optimal": false,
-        "size_rank": 10,
+        "size_rank": 12,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3498,7 +3354,69 @@
         "shelf_eff": 27.1281,
         "shelf_compute": 0.1852,
         "pareto_optimal": false,
-        "size_rank": 10,
+        "size_rank": 12,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.219621
+    },
+    "roberta_lcc_clustering": {
+      "model": "RoBERTa",
+      "model_key": "roberta",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.1311211749555342,
+      "metrics": {
+        "v_measure": 0.1311211749555342,
+        "nmi": 0.13112117495553416,
+        "ari": 0.010615085503414733,
+        "homogeneity": 0.13036847142855168,
+        "completeness": 0.1318826206688834,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:31:17.872457+00:00",
+        "model_name": "RoBERTa",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 16.31507682800293,
+          "norm_stats": {
+            "norm_min": 0.9999998211860657,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 5.783727274888406e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 124645632,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 249291264,
+        "relative_compute": 5.4878,
+        "shelf_eff": 27.1281,
+        "shelf_compute": 0.1852,
+        "pareto_optimal": false,
+        "size_rank": 12,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3573,7 +3491,7 @@
         "shelf_eff": 59.8252,
         "shelf_compute": 0.3897,
         "pareto_optimal": false,
-        "size_rank": 1,
+        "size_rank": 2,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3628,7 +3546,69 @@
         "shelf_eff": 59.8252,
         "shelf_compute": 0.3897,
         "pareto_optimal": false,
-        "size_rank": 1,
+        "size_rank": 2,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.510023
+    },
+    "bge_large_lcc_clustering": {
+      "model": "BGE-large",
+      "model_key": "bge_large",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.4048689109017997,
+      "metrics": {
+        "v_measure": 0.4048689109017997,
+        "nmi": 0.4048689109017997,
+        "ari": 0.1864212712575842,
+        "homogeneity": 0.40251470725448396,
+        "completeness": 0.40725081480820186,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:33:19.293723+00:00",
+        "model_name": "BGE-large",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 1024,
+          "n_clusters": 21,
+          "kmeans_inertia": 318.5076904296875,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 3.176247531655463e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 335141888,
+        "embedding_dim": 1024,
+        "size_category": "300M-1B",
+        "flops_per_token": 670283776,
+        "relative_compute": 14.7554,
+        "shelf_eff": 59.8252,
+        "shelf_compute": 0.3897,
+        "pareto_optimal": false,
+        "size_rank": 2,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3703,7 +3683,7 @@
         "shelf_eff": 54.9492,
         "shelf_compute": 0.3579,
         "pareto_optimal": false,
-        "size_rank": 2,
+        "size_rank": 4,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3758,7 +3738,69 @@
         "shelf_eff": 54.9492,
         "shelf_compute": 0.3579,
         "pareto_optimal": false,
-        "size_rank": 2,
+        "size_rank": 4,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.468454
+    },
+    "e5_large_lcc_clustering": {
+      "model": "E5-large",
+      "model_key": "e5_large",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.32684603500913023,
+      "metrics": {
+        "v_measure": 0.32684603500913023,
+        "nmi": 0.32684603500913023,
+        "ari": 0.11460030647464738,
+        "homogeneity": 0.3229582092504024,
+        "completeness": 0.3308286059395334,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:35:05.637586+00:00",
+        "model_name": "E5-large",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 1024,
+          "n_clusters": 21,
+          "kmeans_inertia": 159.85440063476562,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 2.6637893668635115e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 335141888,
+        "embedding_dim": 1024,
+        "size_category": "300M-1B",
+        "flops_per_token": 670283776,
+        "relative_compute": 14.7554,
+        "shelf_eff": 54.9492,
+        "shelf_compute": 0.3579,
+        "pareto_optimal": false,
+        "size_rank": 4,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3833,7 +3875,7 @@
         "shelf_eff": 49.3793,
         "shelf_compute": 0.3216,
         "pareto_optimal": false,
-        "size_rank": 3,
+        "size_rank": 5,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -3888,7 +3930,69 @@
         "shelf_eff": 49.3793,
         "shelf_compute": 0.3216,
         "pareto_optimal": false,
-        "size_rank": 3,
+        "size_rank": 5,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.421015
+    },
+    "gtr_t5_large_lcc_clustering": {
+      "model": "GTR-T5-large",
+      "model_key": "gtr_t5_large",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.26913134965084656,
+      "metrics": {
+        "v_measure": 0.26913134965084656,
+        "nmi": 0.2691313496508466,
+        "ari": 0.07881912242644658,
+        "homogeneity": 0.2660124604745423,
+        "completeness": 0.272324241927691,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:36:19.887912+00:00",
+        "model_name": "GTR-T5-large",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 257.43129771657533,
+          "norm_stats": {
+            "norm_min": 0.99951171875,
+            "norm_max": 1.0,
+            "norm_mean": 1.0,
+            "norm_std": 0.0
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 335854592,
+        "embedding_dim": 768,
+        "size_category": "300M-1B",
+        "flops_per_token": 671709184,
+        "relative_compute": 14.7867,
+        "shelf_eff": 49.3793,
+        "shelf_compute": 0.3216,
+        "pareto_optimal": false,
+        "size_rank": 5,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -4026,6 +4130,68 @@
       },
       "shelf_score": 0.204709
     },
+    "ogbert_2m_sentence_lcc_clustering": {
+      "model": "ogbert-2m-sentence",
+      "model_key": "ogbert_2m_sentence",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.17038106054292404,
+      "metrics": {
+        "v_measure": 0.17038106054292404,
+        "nmi": 0.17038106054292407,
+        "ari": 0.02465351299253123,
+        "homogeneity": 0.16751142345917458,
+        "completeness": 0.17335073076131957,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:36:35.982486+00:00",
+        "model_name": "ogbert-2m-sentence",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 128,
+          "n_clusters": 21,
+          "kmeans_inertia": 58.408905029296875,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 3.236466028511131e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 2123008,
+        "embedding_dim": 128,
+        "size_category": "<10M",
+        "flops_per_token": 4246016,
+        "relative_compute": 0.0935,
+        "shelf_eff": 32.355,
+        "shelf_compute": 0.2595,
+        "pareto_optimal": true,
+        "size_rank": 1,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.204709
+    },
     "ogbert_110m_base_lcc_retrieval": {
       "model": "OGBert-110M Base",
       "model_key": "ogbert_110m_base",
@@ -4093,7 +4259,7 @@
         "shelf_eff": 37.2497,
         "shelf_compute": 0.2531,
         "pareto_optimal": false,
-        "size_rank": 8,
+        "size_rank": 10,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -4148,7 +4314,69 @@
         "shelf_eff": 37.2497,
         "shelf_compute": 0.2531,
         "pareto_optimal": false,
-        "size_rank": 8,
+        "size_rank": 10,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.303331
+    },
+    "ogbert_110m_base_lcc_clustering": {
+      "model": "OGBert-110M Base",
+      "model_key": "ogbert_110m_base",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.18700394441621052,
+      "metrics": {
+        "v_measure": 0.18700394441621052,
+        "nmi": 0.18700394441621046,
+        "ari": 0.0323714392193107,
+        "homogeneity": 0.17998101952666265,
+        "completeness": 0.19459719790596303,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:37:53.269078+00:00",
+        "model_name": "OGBert-110M Base",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 65.39958190917969,
+          "norm_stats": {
+            "norm_min": 0.9999998807907104,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 3.728528241708773e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 139054592,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 278109184,
+        "relative_compute": 6.1222,
+        "shelf_eff": 37.2497,
+        "shelf_compute": 0.2531,
+        "pareto_optimal": false,
+        "size_rank": 10,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -4223,7 +4451,7 @@
         "shelf_eff": 37.2497,
         "shelf_compute": 0.2531,
         "pareto_optimal": false,
-        "size_rank": 9,
+        "size_rank": 11,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -4278,7 +4506,69 @@
         "shelf_eff": 37.2497,
         "shelf_compute": 0.2531,
         "pareto_optimal": false,
-        "size_rank": 9,
+        "size_rank": 11,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.303331
+    },
+    "ogbert_110m_sentence_lcc_clustering": {
+      "model": "OGBert-110M Sentence",
+      "model_key": "ogbert_110m_sentence",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.18700394441621052,
+      "metrics": {
+        "v_measure": 0.18700394441621052,
+        "nmi": 0.18700394441621046,
+        "ari": 0.0323714392193107,
+        "homogeneity": 0.17998101952666265,
+        "completeness": 0.19459719790596303,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:39:02.907234+00:00",
+        "model_name": "OGBert-110M Sentence",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 65.39958190917969,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 4.0092515973810805e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 139054592,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 278109184,
+        "relative_compute": 6.1222,
+        "shelf_eff": 37.2497,
+        "shelf_compute": 0.2531,
+        "pareto_optimal": false,
+        "size_rank": 11,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -4353,7 +4643,7 @@
         "shelf_eff": 31.208,
         "shelf_compute": 0.2251,
         "pareto_optimal": false,
-        "size_rank": 5,
+        "size_rank": 6,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -4408,7 +4698,69 @@
         "shelf_eff": 31.208,
         "shelf_compute": 0.2251,
         "pareto_optimal": false,
-        "size_rank": 5,
+        "size_rank": 6,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.235954
+    },
+    "ogbert_v1_mlm_lcc_clustering": {
+      "model": "ogbert-v1-mlm",
+      "model_key": "ogbert_v1_mlm",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.1414203228565564,
+      "metrics": {
+        "v_measure": 0.1414203228565564,
+        "nmi": 0.1414203228565564,
+        "ari": 0.015836852852897487,
+        "homogeneity": 0.13725061902507554,
+        "completeness": 0.1458513177982911,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:39:31.649445+00:00",
+        "model_name": "ogbert-v1-mlm",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 384,
+          "n_clusters": 21,
+          "kmeans_inertia": 52.76482391357422,
+          "norm_stats": {
+            "norm_min": 0.9999998807907104,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 3.9485936298433444e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 36364929,
+        "embedding_dim": 384,
+        "size_category": "10M-50M",
+        "flops_per_token": 72729858,
+        "relative_compute": 1.601,
+        "shelf_eff": 31.208,
+        "shelf_compute": 0.2251,
+        "pareto_optimal": false,
+        "size_rank": 6,
         "num_params_torch": null,
         "hidden_size": null,
         "context_window": null,
@@ -4545,6 +4897,1392 @@
         "throughput_bytes_sec": null
       },
       "shelf_score": 0.369447
+    },
+    "distilbert_base_uncased_lcc_clustering": {
+      "model": "distilbert-base-uncased",
+      "model_key": "distilbert_base_uncased",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.23514938915596267,
+      "metrics": {
+        "v_measure": 0.23514938915596267,
+        "nmi": 0.23514938915596267,
+        "ari": 0.05176585982685184,
+        "homogeneity": 0.2328333576707674,
+        "completeness": 0.23751195945825404,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-29T13:39:45.700051+00:00",
+        "model_name": "distilbert-base-uncased",
+        "data_commit": null,
+        "code_commit": "8a97c6d",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 105.57440185546875,
+          "norm_stats": {
+            "norm_min": 0.9999998807907104,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 4.0152670521820255e-08
+          }
+        }
+      },
+      "efficiency": {
+        "num_params": 66985530,
+        "embedding_dim": 768,
+        "size_category": "50M-100M",
+        "flops_per_token": 133971060,
+        "relative_compute": 2.9492,
+        "shelf_eff": 47.2078,
+        "shelf_compute": 0.3316,
+        "pareto_optimal": false,
+        "size_rank": 1,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.369447
+    },
+    "granite_small_r2_lcc_retrieval": {
+      "model": "Granite-small-r2",
+      "model_key": "granite_small_r2",
+      "model_type": "sentence_transformer",
+      "task": "lcc_retrieval",
+      "task_type": "retrieval",
+      "primary_metric": "ndcg@10",
+      "primary_score": 0.4732542379710726,
+      "metrics": {
+        "mrr": 0.6915946396422907,
+        "ndcg@1": 0.5665760869565217,
+        "recall@1": 0.0028510411759617087,
+        "precision@1": 0.5665760869565217,
+        "map@1": 0.0028510411759617087,
+        "ndcg@5": 0.5101298449751276,
+        "recall@5": 0.012415563613486917,
+        "precision@5": 0.4940217391304348,
+        "map@5": 0.01047911187755197,
+        "ndcg@10": 0.4732542379710726,
+        "recall@10": 0.02255719686674296,
+        "precision@10": 0.44904891304347827,
+        "map@10": 0.01752682174286483,
+        "ndcg@50": 0.38291050547071553,
+        "recall@50": 0.08871630410898979,
+        "precision@50": 0.35358695652173916,
+        "map@50": 0.05514222382623658,
+        "ndcg@100": 0.3318149591903877,
+        "recall@100": 0.15106013247100136,
+        "precision@100": 0.30129076086956524,
+        "map@100": 0.0839303783044238,
+        "graded_ndcg@1": 0.5665760869565217,
+        "graded_ndcg@5": 0.5101298449751276,
+        "graded_ndcg@10": 0.4732542379710726,
+        "graded_ndcg@50": 0.38291050547071553,
+        "graded_ndcg@100": 0.3318149591903877,
+        "graded_relevance_max_gain": 3.0
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T11:44:19.408728+00:00",
+        "model_name": "Granite-small-r2",
+        "data_commit": null,
+        "code_commit": "71d7a19",
+        "extra": {
+          "num_samples": 736,
+          "corpus_size": 4188,
+          "embedding_dim": 384,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 47662464,
+        "embedding_dim": 384,
+        "size_category": "10M-50M",
+        "flops_per_token": 95324928,
+        "relative_compute": 2.0984,
+        "shelf_eff": 65.0918,
+        "shelf_compute": 0.4641,
+        "pareto_optimal": false,
+        "size_rank": 2,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.499787
+    },
+    "granite_small_r2_lcc_classification": {
+      "model": "Granite-small-r2",
+      "model_key": "granite_small_r2",
+      "model_type": "sentence_transformer",
+      "task": "lcc_classification",
+      "task_type": "classification",
+      "primary_metric": "macro_f1",
+      "primary_score": 0.5814274591627535,
+      "metrics": {
+        "accuracy": 0.6046195652173914,
+        "macro_f1": 0.5814274591627535,
+        "micro_f1": 0.6046195652173914,
+        "weighted_f1": 0.5862787552914259,
+        "num_samples": 736,
+        "num_correct": 445,
+        "num_classes": 21
+      },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.6363636363636364,
+          "recall": 0.2,
+          "f1": 0.30434782608695654,
+          "support": 35
+        },
+        "B": {
+          "precision": 0.4888888888888889,
+          "recall": 0.7586206896551724,
+          "f1": 0.5945945945945946,
+          "support": 29
+        },
+        "C": {
+          "precision": 0.4,
+          "recall": 0.2222222222222222,
+          "f1": 0.2857142857142857,
+          "support": 45
+        },
+        "D": {
+          "precision": 0.4166666666666667,
+          "recall": 0.3448275862068966,
+          "f1": 0.37735849056603776,
+          "support": 29
+        },
+        "E": {
+          "precision": 0.35,
+          "recall": 0.2692307692307692,
+          "f1": 0.30434782608695654,
+          "support": 26
+        },
+        "F": {
+          "precision": 0.4666666666666667,
+          "recall": 0.4117647058823529,
+          "f1": 0.4375,
+          "support": 34
+        },
+        "G": {
+          "precision": 0.3125,
+          "recall": 0.3225806451612903,
+          "f1": 0.31746031746031744,
+          "support": 31
+        },
+        "H": {
+          "precision": 0.5666666666666667,
+          "recall": 0.4473684210526316,
+          "f1": 0.5,
+          "support": 38
+        },
+        "J": {
+          "precision": 0.5,
+          "recall": 0.46875,
+          "f1": 0.4838709677419355,
+          "support": 32
+        },
+        "K": {
+          "precision": 0.6792452830188679,
+          "recall": 0.8372093023255814,
+          "f1": 0.75,
+          "support": 43
+        },
+        "L": {
+          "precision": 0.8947368421052632,
+          "recall": 0.8717948717948718,
+          "f1": 0.8831168831168831,
+          "support": 39
+        },
+        "M": {
+          "precision": 0.8611111111111112,
+          "recall": 0.96875,
+          "f1": 0.9117647058823529,
+          "support": 32
+        },
+        "N": {
+          "precision": 0.5423728813559322,
+          "recall": 0.8648648648648649,
+          "f1": 0.6666666666666666,
+          "support": 37
+        },
+        "P": {
+          "precision": 0.5,
+          "recall": 0.7096774193548387,
+          "f1": 0.5866666666666667,
+          "support": 31
+        },
+        "Q": {
+          "precision": 0.6666666666666666,
+          "recall": 0.7428571428571429,
+          "f1": 0.7027027027027027,
+          "support": 35
+        },
+        "R": {
+          "precision": 0.7111111111111111,
+          "recall": 0.7804878048780488,
+          "f1": 0.7441860465116279,
+          "support": 41
+        },
+        "S": {
+          "precision": 0.7741935483870968,
+          "recall": 0.7272727272727273,
+          "f1": 0.75,
+          "support": 33
+        },
+        "T": {
+          "precision": 0.6666666666666666,
+          "recall": 0.358974358974359,
+          "f1": 0.4666666666666667,
+          "support": 39
+        },
+        "U": {
+          "precision": 0.6666666666666666,
+          "recall": 0.8,
+          "f1": 0.7272727272727273,
+          "support": 40
+        },
+        "V": {
+          "precision": 0.7105263157894737,
+          "recall": 0.9,
+          "f1": 0.7941176470588235,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.6216216216216216,
+          "recall": 0.6216216216216216,
+          "f1": 0.6216216216216216,
+          "support": 37
+        }
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T11:44:18.960980+00:00",
+        "model_name": "Granite-small-r2",
+        "data_commit": null,
+        "code_commit": "71d7a19",
+        "extra": {
+          "embedding_dim": 384,
+          "classifier": "LogisticRegression",
+          "train_size": 3145,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 47662464,
+        "embedding_dim": 384,
+        "size_category": "10M-50M",
+        "flops_per_token": 95324928,
+        "relative_compute": 2.0984,
+        "shelf_eff": 65.0918,
+        "shelf_compute": 0.4641,
+        "pareto_optimal": false,
+        "size_rank": 2,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.499787
+    },
+    "granite_small_r2_lcc_clustering": {
+      "model": "Granite-small-r2",
+      "model_key": "granite_small_r2",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.4375338217292943,
+      "metrics": {
+        "v_measure": 0.4375338217292943,
+        "nmi": 0.4375338217292943,
+        "ari": 0.23118686053309417,
+        "homogeneity": 0.43138582789239693,
+        "completeness": 0.44385958821571364,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T11:44:19.724975+00:00",
+        "model_name": "Granite-small-r2",
+        "data_commit": null,
+        "code_commit": "71d7a19",
+        "extra": {
+          "embedding_dim": 384,
+          "n_clusters": 21,
+          "kmeans_inertia": 171.24961853027344,
+          "norm_stats": {
+            "norm_min": 0.9999998211860657,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 5.2315783705125796e-08
+          },
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 47662464,
+        "embedding_dim": 384,
+        "size_category": "10M-50M",
+        "flops_per_token": 95324928,
+        "relative_compute": 2.0984,
+        "shelf_eff": 65.0918,
+        "shelf_compute": 0.4641,
+        "pareto_optimal": false,
+        "size_rank": 2,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.499787
+    },
+    "gte_modernbert_2k_lcc_retrieval": {
+      "model": "GTE-ModernBERT-2k",
+      "model_key": "gte_modernbert_2k",
+      "model_type": "sentence_transformer",
+      "task": "lcc_retrieval",
+      "task_type": "retrieval",
+      "primary_metric": "ndcg@10",
+      "primary_score": 0.45606835637543736,
+      "metrics": {
+        "mrr": 0.6677033709633102,
+        "ndcg@1": 0.5448369565217391,
+        "recall@1": 0.0027391298751245348,
+        "precision@1": 0.5448369565217391,
+        "map@1": 0.0027391298751245348,
+        "ndcg@5": 0.48210670755248797,
+        "recall@5": 0.011678688708973657,
+        "precision@5": 0.46494565217391304,
+        "map@5": 0.009768830263797644,
+        "ndcg@10": 0.45606835637543736,
+        "recall@10": 0.021904511342950173,
+        "precision@10": 0.43600543478260867,
+        "map@10": 0.01652114997546898,
+        "ndcg@50": 0.3565513095949441,
+        "recall@50": 0.08174254580463042,
+        "precision@50": 0.3258967391304348,
+        "map@50": 0.04848612195317588,
+        "ndcg@100": 0.3030650077253259,
+        "recall@100": 0.13601219063016562,
+        "precision@100": 0.2711820652173913,
+        "map@100": 0.07071174097584851,
+        "graded_ndcg@1": 0.5448369565217391,
+        "graded_ndcg@5": 0.48210670755248797,
+        "graded_ndcg@10": 0.45606835637543736,
+        "graded_ndcg@50": 0.3565513095949441,
+        "graded_ndcg@100": 0.3030650077253259,
+        "graded_relevance_max_gain": 3.0
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T12:12:22.770969+00:00",
+        "model_name": "GTE-ModernBERT-2k",
+        "data_commit": null,
+        "code_commit": "f3eff8b",
+        "extra": {
+          "num_samples": 736,
+          "corpus_size": 4188,
+          "embedding_dim": 768,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 149014272,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 298028544,
+        "relative_compute": 6.5607,
+        "shelf_eff": 61.8254,
+        "shelf_compute": 0.4187,
+        "pareto_optimal": false,
+        "size_rank": 4,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.505313
+    },
+    "gte_modernbert_2k_lcc_classification": {
+      "model": "GTE-ModernBERT-2k",
+      "model_key": "gte_modernbert_2k",
+      "model_type": "sentence_transformer",
+      "task": "lcc_classification",
+      "task_type": "classification",
+      "primary_metric": "macro_f1",
+      "primary_score": 0.6423441627986164,
+      "metrics": {
+        "accuracy": 0.654891304347826,
+        "macro_f1": 0.6423441627986164,
+        "micro_f1": 0.654891304347826,
+        "weighted_f1": 0.6467981806308523,
+        "num_samples": 736,
+        "num_correct": 482,
+        "num_classes": 21
+      },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.7368421052631579,
+          "recall": 0.4,
+          "f1": 0.5185185185185185,
+          "support": 35
+        },
+        "B": {
+          "precision": 0.6052631578947368,
+          "recall": 0.7931034482758621,
+          "f1": 0.6865671641791045,
+          "support": 29
+        },
+        "C": {
+          "precision": 0.5405405405405406,
+          "recall": 0.4444444444444444,
+          "f1": 0.4878048780487805,
+          "support": 45
+        },
+        "D": {
+          "precision": 0.41379310344827586,
+          "recall": 0.41379310344827586,
+          "f1": 0.41379310344827586,
+          "support": 29
+        },
+        "E": {
+          "precision": 0.5263157894736842,
+          "recall": 0.38461538461538464,
+          "f1": 0.4444444444444444,
+          "support": 26
+        },
+        "F": {
+          "precision": 0.6176470588235294,
+          "recall": 0.6176470588235294,
+          "f1": 0.6176470588235294,
+          "support": 34
+        },
+        "G": {
+          "precision": 0.36363636363636365,
+          "recall": 0.3870967741935484,
+          "f1": 0.375,
+          "support": 31
+        },
+        "H": {
+          "precision": 0.5882352941176471,
+          "recall": 0.5263157894736842,
+          "f1": 0.5555555555555556,
+          "support": 38
+        },
+        "J": {
+          "precision": 0.42857142857142855,
+          "recall": 0.375,
+          "f1": 0.4,
+          "support": 32
+        },
+        "K": {
+          "precision": 0.66,
+          "recall": 0.7674418604651163,
+          "f1": 0.7096774193548387,
+          "support": 43
+        },
+        "L": {
+          "precision": 0.9722222222222222,
+          "recall": 0.8974358974358975,
+          "f1": 0.9333333333333333,
+          "support": 39
+        },
+        "M": {
+          "precision": 0.8857142857142857,
+          "recall": 0.96875,
+          "f1": 0.9253731343283582,
+          "support": 32
+        },
+        "N": {
+          "precision": 0.6326530612244898,
+          "recall": 0.8378378378378378,
+          "f1": 0.7209302325581395,
+          "support": 37
+        },
+        "P": {
+          "precision": 0.5897435897435898,
+          "recall": 0.7419354838709677,
+          "f1": 0.6571428571428571,
+          "support": 31
+        },
+        "Q": {
+          "precision": 0.6842105263157895,
+          "recall": 0.7428571428571429,
+          "f1": 0.7123287671232876,
+          "support": 35
+        },
+        "R": {
+          "precision": 0.7560975609756098,
+          "recall": 0.7560975609756098,
+          "f1": 0.7560975609756098,
+          "support": 41
+        },
+        "S": {
+          "precision": 0.7428571428571429,
+          "recall": 0.7878787878787878,
+          "f1": 0.7647058823529411,
+          "support": 33
+        },
+        "T": {
+          "precision": 0.625,
+          "recall": 0.38461538461538464,
+          "f1": 0.47619047619047616,
+          "support": 39
+        },
+        "U": {
+          "precision": 0.6808510638297872,
+          "recall": 0.8,
+          "f1": 0.735632183908046,
+          "support": 40
+        },
+        "V": {
+          "precision": 0.7777777777777778,
+          "recall": 0.9333333333333333,
+          "f1": 0.8484848484848485,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.7714285714285715,
+          "recall": 0.7297297297297297,
+          "f1": 0.75,
+          "support": 37
+        }
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T12:12:22.390759+00:00",
+        "model_name": "GTE-ModernBERT-2k",
+        "data_commit": null,
+        "code_commit": "f3eff8b",
+        "extra": {
+          "embedding_dim": 768,
+          "classifier": "LogisticRegression",
+          "train_size": 3145,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 149014272,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 298028544,
+        "relative_compute": 6.5607,
+        "shelf_eff": 61.8254,
+        "shelf_compute": 0.4187,
+        "pareto_optimal": false,
+        "size_rank": 4,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.505313
+    },
+    "gte_modernbert_2k_lcc_clustering": {
+      "model": "GTE-ModernBERT-2k",
+      "model_key": "gte_modernbert_2k",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.4078898314480005,
+      "metrics": {
+        "v_measure": 0.4078898314480005,
+        "nmi": 0.40788983144800056,
+        "ari": 0.18302477085942678,
+        "homogeneity": 0.403753167768267,
+        "completeness": 0.41211213716816114,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T12:12:22.957574+00:00",
+        "model_name": "GTE-ModernBERT-2k",
+        "data_commit": null,
+        "code_commit": "f3eff8b",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 374.6401914448423,
+          "norm_stats": {
+            "norm_min": 0.99951171875,
+            "norm_max": 1.0,
+            "norm_mean": 1.0,
+            "norm_std": 0.0
+          },
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 149014272,
+        "embedding_dim": 768,
+        "size_category": "100M-300M",
+        "flops_per_token": 298028544,
+        "relative_compute": 6.5607,
+        "shelf_eff": 61.8254,
+        "shelf_compute": 0.4187,
+        "pareto_optimal": false,
+        "size_rank": 4,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.505313
+    },
+    "embeddinggemma_300m_lcc_retrieval": {
+      "model": "EmbeddingGemma-300M",
+      "model_key": "embeddinggemma_300m",
+      "model_type": "sentence_transformer",
+      "task": "lcc_retrieval",
+      "task_type": "retrieval",
+      "primary_metric": "ndcg@10",
+      "primary_score": 0.45438020302337634,
+      "metrics": {
+        "mrr": 0.6858620089268939,
+        "ndcg@1": 0.563858695652174,
+        "recall@1": 0.002838506547428864,
+        "precision@1": 0.563858695652174,
+        "map@1": 0.002838506547428864,
+        "ndcg@5": 0.4928777024556899,
+        "recall@5": 0.01187458983930898,
+        "precision@5": 0.4722826086956522,
+        "map@5": 0.01000187588558572,
+        "ndcg@10": 0.45438020302337634,
+        "recall@10": 0.021473710047595507,
+        "precision@10": 0.4273097826086957,
+        "map@10": 0.01649553901341393,
+        "ndcg@50": 0.34568014431221533,
+        "recall@50": 0.07794913182208643,
+        "precision@50": 0.3105163043478261,
+        "map@50": 0.04640844661978139,
+        "ndcg@100": 0.288461822652611,
+        "recall@100": 0.1270642353381541,
+        "precision@100": 0.2532201086956522,
+        "map@100": 0.06581374650772219,
+        "graded_ndcg@1": 0.563858695652174,
+        "graded_ndcg@5": 0.4928777024556899,
+        "graded_ndcg@10": 0.45438020302337634,
+        "graded_ndcg@50": 0.34568014431221533,
+        "graded_ndcg@100": 0.288461822652611,
+        "graded_relevance_max_gain": 3.0
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T13:23:56.029548+00:00",
+        "model_name": "EmbeddingGemma-300M",
+        "data_commit": null,
+        "code_commit": "f3eff8b",
+        "extra": {
+          "num_samples": 736,
+          "corpus_size": 4188,
+          "embedding_dim": 768,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 307581696,
+        "embedding_dim": 768,
+        "size_category": "300M-1B",
+        "flops_per_token": 615163392,
+        "relative_compute": 13.542,
+        "shelf_eff": 58.2387,
+        "shelf_compute": 0.3809,
+        "pareto_optimal": false,
+        "size_rank": 3,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.494328
+    },
+    "embeddinggemma_300m_lcc_classification": {
+      "model": "EmbeddingGemma-300M",
+      "model_key": "embeddinggemma_300m",
+      "model_type": "sentence_transformer",
+      "task": "lcc_classification",
+      "task_type": "classification",
+      "primary_metric": "macro_f1",
+      "primary_score": 0.6586979471917617,
+      "metrics": {
+        "accuracy": 0.6684782608695652,
+        "macro_f1": 0.6586979471917617,
+        "micro_f1": 0.6684782608695652,
+        "weighted_f1": 0.6625003981520821,
+        "num_samples": 736,
+        "num_correct": 492,
+        "num_classes": 21
+      },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.8333333333333334,
+          "recall": 0.5714285714285714,
+          "f1": 0.6779661016949152,
+          "support": 35
+        },
+        "B": {
+          "precision": 0.6216216216216216,
+          "recall": 0.7931034482758621,
+          "f1": 0.696969696969697,
+          "support": 29
+        },
+        "C": {
+          "precision": 0.5416666666666666,
+          "recall": 0.28888888888888886,
+          "f1": 0.37681159420289856,
+          "support": 45
+        },
+        "D": {
+          "precision": 0.375,
+          "recall": 0.41379310344827586,
+          "f1": 0.39344262295081966,
+          "support": 29
+        },
+        "E": {
+          "precision": 0.5217391304347826,
+          "recall": 0.46153846153846156,
+          "f1": 0.4897959183673469,
+          "support": 26
+        },
+        "F": {
+          "precision": 0.5,
+          "recall": 0.5294117647058824,
+          "f1": 0.5142857142857142,
+          "support": 34
+        },
+        "G": {
+          "precision": 0.4117647058823529,
+          "recall": 0.45161290322580644,
+          "f1": 0.4307692307692308,
+          "support": 31
+        },
+        "H": {
+          "precision": 0.5675675675675675,
+          "recall": 0.5526315789473685,
+          "f1": 0.56,
+          "support": 38
+        },
+        "J": {
+          "precision": 0.4411764705882353,
+          "recall": 0.46875,
+          "f1": 0.45454545454545453,
+          "support": 32
+        },
+        "K": {
+          "precision": 0.7083333333333334,
+          "recall": 0.7906976744186046,
+          "f1": 0.7472527472527473,
+          "support": 43
+        },
+        "L": {
+          "precision": 0.9210526315789473,
+          "recall": 0.8974358974358975,
+          "f1": 0.9090909090909091,
+          "support": 39
+        },
+        "M": {
+          "precision": 0.9375,
+          "recall": 0.9375,
+          "f1": 0.9375,
+          "support": 32
+        },
+        "N": {
+          "precision": 0.7111111111111111,
+          "recall": 0.8648648648648649,
+          "f1": 0.7804878048780488,
+          "support": 37
+        },
+        "P": {
+          "precision": 0.5897435897435898,
+          "recall": 0.7419354838709677,
+          "f1": 0.6571428571428571,
+          "support": 31
+        },
+        "Q": {
+          "precision": 0.7058823529411765,
+          "recall": 0.6857142857142857,
+          "f1": 0.6956521739130435,
+          "support": 35
+        },
+        "R": {
+          "precision": 0.7857142857142857,
+          "recall": 0.8048780487804879,
+          "f1": 0.7951807228915663,
+          "support": 41
+        },
+        "S": {
+          "precision": 0.7142857142857143,
+          "recall": 0.7575757575757576,
+          "f1": 0.7352941176470589,
+          "support": 33
+        },
+        "T": {
+          "precision": 0.6923076923076923,
+          "recall": 0.46153846153846156,
+          "f1": 0.5538461538461539,
+          "support": 39
+        },
+        "U": {
+          "precision": 0.7619047619047619,
+          "recall": 0.8,
+          "f1": 0.7804878048780488,
+          "support": 40
+        },
+        "V": {
+          "precision": 0.7435897435897436,
+          "recall": 0.9666666666666667,
+          "f1": 0.8405797101449275,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.8285714285714286,
+          "recall": 0.7837837837837838,
+          "f1": 0.8055555555555556,
+          "support": 37
+        }
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T13:23:55.694872+00:00",
+        "model_name": "EmbeddingGemma-300M",
+        "data_commit": null,
+        "code_commit": "f3eff8b",
+        "extra": {
+          "embedding_dim": 768,
+          "classifier": "LogisticRegression",
+          "train_size": 3145,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 307581696,
+        "embedding_dim": 768,
+        "size_category": "300M-1B",
+        "flops_per_token": 615163392,
+        "relative_compute": 13.542,
+        "shelf_eff": 58.2387,
+        "shelf_compute": 0.3809,
+        "pareto_optimal": false,
+        "size_rank": 3,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.494328
+    },
+    "embeddinggemma_300m_lcc_clustering": {
+      "model": "EmbeddingGemma-300M",
+      "model_key": "embeddinggemma_300m",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.3487860559637341,
+      "metrics": {
+        "v_measure": 0.3487860559637341,
+        "nmi": 0.34878605596373413,
+        "ari": 0.1486506883587568,
+        "homogeneity": 0.34640130103018135,
+        "completeness": 0.3512038735866117,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T13:23:56.257529+00:00",
+        "model_name": "EmbeddingGemma-300M",
+        "data_commit": null,
+        "code_commit": "f3eff8b",
+        "extra": {
+          "embedding_dim": 768,
+          "n_clusters": 21,
+          "kmeans_inertia": 477.8612976074219,
+          "norm_stats": {
+            "norm_min": 0.9999998807907104,
+            "norm_max": 1.0000001192092896,
+            "norm_mean": 1.0,
+            "norm_std": 2.78775207362969e-08
+          },
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 307581696,
+        "embedding_dim": 768,
+        "size_category": "300M-1B",
+        "flops_per_token": 615163392,
+        "relative_compute": 13.542,
+        "shelf_eff": 58.2387,
+        "shelf_compute": 0.3809,
+        "pareto_optimal": false,
+        "size_rank": 3,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.494328
+    },
+    "qwen3_embed_600m_lcc_retrieval": {
+      "model": "Qwen3-Embedding-0.6B",
+      "model_key": "qwen3_embed_600m",
+      "model_type": "sentence_transformer",
+      "task": "lcc_retrieval",
+      "task_type": "retrieval",
+      "primary_metric": "ndcg@10",
+      "primary_score": 0.4716275925327407,
+      "metrics": {
+        "mrr": 0.6845874472477115,
+        "ndcg@1": 0.561141304347826,
+        "recall@1": 0.0028252093719012537,
+        "precision@1": 0.561141304347826,
+        "map@1": 0.0028252093719012537,
+        "ndcg@5": 0.5011827388904224,
+        "recall@5": 0.012201224989948183,
+        "precision@5": 0.48478260869565226,
+        "map@5": 0.01032881446814492,
+        "ndcg@10": 0.4716275925327407,
+        "recall@10": 0.022674360309213958,
+        "precision@10": 0.4508152173913044,
+        "map@10": 0.017616155064758898,
+        "ndcg@50": 0.3745447470259138,
+        "recall@50": 0.08628581222791926,
+        "precision@50": 0.343804347826087,
+        "map@50": 0.053813753627953285,
+        "ndcg@100": 0.31991957764331963,
+        "recall@100": 0.14435139487307688,
+        "precision@100": 0.28767663043478264,
+        "map@100": 0.07986957330607602,
+        "graded_ndcg@1": 0.561141304347826,
+        "graded_ndcg@5": 0.5011827388904224,
+        "graded_ndcg@10": 0.4716275925327407,
+        "graded_ndcg@50": 0.3745447470259138,
+        "graded_ndcg@100": 0.31991957764331963,
+        "graded_relevance_max_gain": 3.0
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T14:54:11.364392+00:00",
+        "model_name": "Qwen3-Embedding-0.6B",
+        "data_commit": null,
+        "code_commit": "285883f",
+        "extra": {
+          "num_samples": 736,
+          "corpus_size": 4188,
+          "embedding_dim": 1024,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 595776512,
+        "embedding_dim": 1024,
+        "size_category": "300M-1B",
+        "flops_per_token": 1191553024,
+        "relative_compute": 26.2304,
+        "shelf_eff": 58.8045,
+        "shelf_compute": 0.3722,
+        "pareto_optimal": false,
+        "size_rank": 1,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.516014
+    },
+    "qwen3_embed_600m_lcc_classification": {
+      "model": "Qwen3-Embedding-0.6B",
+      "model_key": "qwen3_embed_600m",
+      "model_type": "sentence_transformer",
+      "task": "lcc_classification",
+      "task_type": "classification",
+      "primary_metric": "macro_f1",
+      "primary_score": 0.6218304000202629,
+      "metrics": {
+        "accuracy": 0.6331521739130435,
+        "macro_f1": 0.6218304000202629,
+        "micro_f1": 0.6331521739130435,
+        "weighted_f1": 0.6265692027328006,
+        "num_samples": 736,
+        "num_correct": 466,
+        "num_classes": 21
+      },
+      "per_class_metrics": {
+        "A": {
+          "precision": 0.6153846153846154,
+          "recall": 0.45714285714285713,
+          "f1": 0.5245901639344263,
+          "support": 35
+        },
+        "B": {
+          "precision": 0.6052631578947368,
+          "recall": 0.7931034482758621,
+          "f1": 0.6865671641791045,
+          "support": 29
+        },
+        "C": {
+          "precision": 0.5714285714285714,
+          "recall": 0.35555555555555557,
+          "f1": 0.4383561643835616,
+          "support": 45
+        },
+        "D": {
+          "precision": 0.46153846153846156,
+          "recall": 0.41379310344827586,
+          "f1": 0.43636363636363634,
+          "support": 29
+        },
+        "E": {
+          "precision": 0.3888888888888889,
+          "recall": 0.2692307692307692,
+          "f1": 0.3181818181818182,
+          "support": 26
+        },
+        "F": {
+          "precision": 0.4444444444444444,
+          "recall": 0.47058823529411764,
+          "f1": 0.45714285714285713,
+          "support": 34
+        },
+        "G": {
+          "precision": 0.3142857142857143,
+          "recall": 0.3548387096774194,
+          "f1": 0.3333333333333333,
+          "support": 31
+        },
+        "H": {
+          "precision": 0.575,
+          "recall": 0.6052631578947368,
+          "f1": 0.5897435897435898,
+          "support": 38
+        },
+        "J": {
+          "precision": 0.4666666666666667,
+          "recall": 0.4375,
+          "f1": 0.45161290322580644,
+          "support": 32
+        },
+        "K": {
+          "precision": 0.6976744186046512,
+          "recall": 0.6976744186046512,
+          "f1": 0.6976744186046512,
+          "support": 43
+        },
+        "L": {
+          "precision": 0.9696969696969697,
+          "recall": 0.8205128205128205,
+          "f1": 0.8888888888888888,
+          "support": 39
+        },
+        "M": {
+          "precision": 0.9090909090909091,
+          "recall": 0.9375,
+          "f1": 0.9230769230769231,
+          "support": 32
+        },
+        "N": {
+          "precision": 0.6666666666666666,
+          "recall": 0.7567567567567568,
+          "f1": 0.7088607594936709,
+          "support": 37
+        },
+        "P": {
+          "precision": 0.5641025641025641,
+          "recall": 0.7096774193548387,
+          "f1": 0.6285714285714286,
+          "support": 31
+        },
+        "Q": {
+          "precision": 0.6578947368421053,
+          "recall": 0.7142857142857143,
+          "f1": 0.684931506849315,
+          "support": 35
+        },
+        "R": {
+          "precision": 0.6956521739130435,
+          "recall": 0.7804878048780488,
+          "f1": 0.735632183908046,
+          "support": 41
+        },
+        "S": {
+          "precision": 0.7368421052631579,
+          "recall": 0.8484848484848485,
+          "f1": 0.7887323943661971,
+          "support": 33
+        },
+        "T": {
+          "precision": 0.5862068965517241,
+          "recall": 0.4358974358974359,
+          "f1": 0.5,
+          "support": 39
+        },
+        "U": {
+          "precision": 0.7272727272727273,
+          "recall": 0.8,
+          "f1": 0.7619047619047619,
+          "support": 40
+        },
+        "V": {
+          "precision": 0.8484848484848485,
+          "recall": 0.9333333333333333,
+          "f1": 0.8888888888888888,
+          "support": 30
+        },
+        "Z": {
+          "precision": 0.5853658536585366,
+          "recall": 0.6486486486486487,
+          "f1": 0.6153846153846154,
+          "support": 37
+        }
+      },
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T14:54:11.027461+00:00",
+        "model_name": "Qwen3-Embedding-0.6B",
+        "data_commit": null,
+        "code_commit": "285883f",
+        "extra": {
+          "embedding_dim": 1024,
+          "classifier": "LogisticRegression",
+          "train_size": 3145,
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 595776512,
+        "embedding_dim": 1024,
+        "size_category": "300M-1B",
+        "flops_per_token": 1191553024,
+        "relative_compute": 26.2304,
+        "shelf_eff": 58.8045,
+        "shelf_compute": 0.3722,
+        "pareto_optimal": false,
+        "size_rank": 1,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.516014
+    },
+    "qwen3_embed_600m_lcc_clustering": {
+      "model": "Qwen3-Embedding-0.6B",
+      "model_key": "qwen3_embed_600m",
+      "model_type": "sentence_transformer",
+      "task": "lcc_clustering",
+      "task_type": "clustering",
+      "primary_metric": "v_measure",
+      "primary_score": 0.4503248276866062,
+      "metrics": {
+        "v_measure": 0.4503248276866062,
+        "nmi": 0.45032482768660625,
+        "ari": 0.22529704134702452,
+        "homogeneity": 0.44779438735157434,
+        "completeness": 0.45288402906700037,
+        "num_samples": 736,
+        "num_clusters_true": 21,
+        "num_clusters_pred": 21
+      },
+      "per_class_metrics": null,
+      "num_samples": 736,
+      "context": {
+        "shelf_version": "0.3.1",
+        "python_version": "3.13.5",
+        "sklearn_version": "1.8.0",
+        "numpy_version": "2.3.5",
+        "polars_version": "1.36.1",
+        "dataset_checksum": "2389b3cba8531893c03e4076f43a8869",
+        "prediction_file_checksum": null,
+        "random_seed": 42,
+        "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+        "timestamp": "2026-08-30T14:54:11.635062+00:00",
+        "model_name": "Qwen3-Embedding-0.6B",
+        "data_commit": null,
+        "code_commit": "285883f",
+        "extra": {
+          "embedding_dim": 1024,
+          "n_clusters": 21,
+          "kmeans_inertia": 513.0825805664062,
+          "norm_stats": {
+            "norm_min": 0.9999999403953552,
+            "norm_max": 1.000000238418579,
+            "norm_mean": 1.0,
+            "norm_std": 1.3488208594480966e-07
+          },
+          "blas_threads": "8",
+          "python_hash_seed": "0",
+          "deterministic_text_order": true
+        }
+      },
+      "efficiency": {
+        "num_params": 595776512,
+        "embedding_dim": 1024,
+        "size_category": "300M-1B",
+        "flops_per_token": 1191553024,
+        "relative_compute": 26.2304,
+        "shelf_eff": 58.8045,
+        "shelf_compute": 0.3722,
+        "pareto_optimal": false,
+        "size_rank": 1,
+        "num_params_torch": null,
+        "hidden_size": null,
+        "context_window": null,
+        "throughput_bytes_sec": null
+      },
+      "shelf_score": 0.516014
     }
   }
 }

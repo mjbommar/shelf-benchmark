@@ -1,0 +1,853 @@
+{
+  "model": "GTE-ModernBERT-2k",
+  "model_key": "gte_modernbert_2k",
+  "model_type": "sentence_transformer",
+  "task": "topic_classification",
+  "task_type": "multilabel",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.4601052795616769,
+  "metrics": {
+    "micro_f1": 0.49111613426024653,
+    "macro_f1": 0.4601052795616769,
+    "samples_f1": 0.511214378273541,
+    "weighted_f1": 0.5225661692165653,
+    "subset_accuracy": 0.027111324376199616,
+    "hamming_loss": 0.042599939447948085,
+    "num_samples": 12504,
+    "num_exact_match": 339,
+    "num_labels": 112,
+    "label_cardinality_true": 2.5071177223288545,
+    "label_cardinality_pred": 6.868682021753039,
+    "empty_prediction_rate": 0.0004798464491362764,
+    "lrap": 0.8436518746502952,
+    "map_micro": 0.7365506870082537,
+    "map_macro": 0.7392198657079581,
+    "coverage_error": 4.880758157389636
+  },
+  "per_class_metrics": {
+    "Accounting": {
+      "precision": 0.1762295081967213,
+      "recall": 0.8775510204081632,
+      "f1": 0.2935153583617747,
+      "support": 49,
+      "num_predicted": 244
+    },
+    "Administrative law": {
+      "precision": 0.29027962716378164,
+      "recall": 0.960352422907489,
+      "f1": 0.4458077709611452,
+      "support": 227,
+      "num_predicted": 751
+    },
+    "Aesthetics": {
+      "precision": 0.5011389521640092,
+      "recall": 0.9072164948453608,
+      "f1": 0.6456346294937637,
+      "support": 970,
+      "num_predicted": 1756
+    },
+    "Analysis": {
+      "precision": 0.3448275862068966,
+      "recall": 0.9186351706036745,
+      "f1": 0.501432664756447,
+      "support": 381,
+      "num_predicted": 1015
+    },
+    "Anthropology": {
+      "precision": 0.20303030303030303,
+      "recall": 0.9136363636363637,
+      "f1": 0.3322314049586777,
+      "support": 220,
+      "num_predicted": 990
+    },
+    "Art": {
+      "precision": 0.3969578017664377,
+      "recall": 0.8670953912111469,
+      "f1": 0.5445977785257489,
+      "support": 933,
+      "num_predicted": 2038
+    },
+    "Artificial intelligence": {
+      "precision": 0.2890792291220557,
+      "recall": 0.9440559440559441,
+      "f1": 0.4426229508196721,
+      "support": 143,
+      "num_predicted": 467
+    },
+    "Astronomy": {
+      "precision": 0.5033112582781457,
+      "recall": 0.9411764705882353,
+      "f1": 0.6558791801510249,
+      "support": 323,
+      "num_predicted": 604
+    },
+    "Authoritarianism": {
+      "precision": 0.37447873227689743,
+      "recall": 0.9432773109243697,
+      "f1": 0.5361194029850747,
+      "support": 476,
+      "num_predicted": 1199
+    },
+    "Biodiversity": {
+      "precision": 0.13179916317991633,
+      "recall": 0.9545454545454546,
+      "f1": 0.23161764705882354,
+      "support": 66,
+      "num_predicted": 478
+    },
+    "Biology": {
+      "precision": 0.21695402298850575,
+      "recall": 0.9467084639498433,
+      "f1": 0.353009935710111,
+      "support": 319,
+      "num_predicted": 1392
+    },
+    "Biotechnology": {
+      "precision": 0.2548262548262548,
+      "recall": 0.9705882352941176,
+      "f1": 0.4036697247706422,
+      "support": 136,
+      "num_predicted": 518
+    },
+    "Carbon emissions": {
+      "precision": 0.34054054054054056,
+      "recall": 0.984375,
+      "f1": 0.5060240963855421,
+      "support": 128,
+      "num_predicted": 370
+    },
+    "Cardiology": {
+      "precision": 0.5238095238095238,
+      "recall": 0.9565217391304348,
+      "f1": 0.676923076923077,
+      "support": 46,
+      "num_predicted": 84
+    },
+    "Chemistry": {
+      "precision": 0.36180308422301305,
+      "recall": 0.9159159159159159,
+      "f1": 0.5187074829931972,
+      "support": 333,
+      "num_predicted": 843
+    },
+    "Civil law": {
+      "precision": 0.2607260726072607,
+      "recall": 0.9349112426035503,
+      "f1": 0.40774193548387094,
+      "support": 169,
+      "num_predicted": 606
+    },
+    "Climate": {
+      "precision": 0.36967418546365916,
+      "recall": 0.9485530546623794,
+      "f1": 0.5320108205590622,
+      "support": 311,
+      "num_predicted": 798
+    },
+    "Climate change": {
+      "precision": 0.17992424242424243,
+      "recall": 0.9405940594059405,
+      "f1": 0.302066772655008,
+      "support": 101,
+      "num_predicted": 528
+    },
+    "Cloud computing": {
+      "precision": 0.3069908814589666,
+      "recall": 0.9351851851851852,
+      "f1": 0.4622425629290618,
+      "support": 108,
+      "num_predicted": 329
+    },
+    "Commerce": {
+      "precision": 0.21841541755888652,
+      "recall": 0.918918918918919,
+      "f1": 0.35294117647058826,
+      "support": 222,
+      "num_predicted": 934
+    },
+    "Computer science": {
+      "precision": 0.2375,
+      "recall": 0.9095744680851063,
+      "f1": 0.3766519823788546,
+      "support": 188,
+      "num_predicted": 720
+    },
+    "Conservation": {
+      "precision": 0.18588640275387264,
+      "recall": 0.9310344827586207,
+      "f1": 0.3098995695839311,
+      "support": 116,
+      "num_predicted": 581
+    },
+    "Constitutional law": {
+      "precision": 0.24305555555555555,
+      "recall": 0.9615384615384616,
+      "f1": 0.38802660753880264,
+      "support": 182,
+      "num_predicted": 720
+    },
+    "Contracts": {
+      "precision": 0.3415435139573071,
+      "recall": 0.9585253456221198,
+      "f1": 0.5036319612590799,
+      "support": 217,
+      "num_predicted": 609
+    },
+    "Criminal law": {
+      "precision": 0.3161764705882353,
+      "recall": 0.9148936170212766,
+      "f1": 0.46994535519125685,
+      "support": 188,
+      "num_predicted": 544
+    },
+    "Culture": {
+      "precision": 0.40280824923211933,
+      "recall": 0.8453038674033149,
+      "f1": 0.5456166419019316,
+      "support": 1086,
+      "num_predicted": 2279
+    },
+    "Cybersecurity": {
+      "precision": 0.34726688102893893,
+      "recall": 0.9391304347826087,
+      "f1": 0.5070422535211268,
+      "support": 115,
+      "num_predicted": 311
+    },
+    "Data science": {
+      "precision": 0.19405320813771518,
+      "recall": 0.9253731343283582,
+      "f1": 0.3208279430789133,
+      "support": 134,
+      "num_predicted": 639
+    },
+    "Defense": {
+      "precision": 0.3504,
+      "recall": 0.9221052631578948,
+      "f1": 0.5078260869565218,
+      "support": 475,
+      "num_predicted": 1250
+    },
+    "Deforestation": {
+      "precision": 0.3451086956521739,
+      "recall": 0.9921875,
+      "f1": 0.5120967741935484,
+      "support": 128,
+      "num_predicted": 368
+    },
+    "Democracy": {
+      "precision": 0.3621337340345605,
+      "recall": 0.9395711500974658,
+      "f1": 0.5227765726681128,
+      "support": 513,
+      "num_predicted": 1331
+    },
+    "Demographics": {
+      "precision": 0.21009389671361503,
+      "recall": 0.8689320388349514,
+      "f1": 0.3383742911153119,
+      "support": 206,
+      "num_predicted": 852
+    },
+    "Diplomacy": {
+      "precision": 0.37785588752196836,
+      "recall": 0.9388646288209607,
+      "f1": 0.5388471177944862,
+      "support": 458,
+      "num_predicted": 1138
+    },
+    "Diseases": {
+      "precision": 0.10396975425330812,
+      "recall": 0.9821428571428571,
+      "f1": 0.18803418803418803,
+      "support": 56,
+      "num_predicted": 529
+    },
+    "E-commerce": {
+      "precision": 0.41134751773049644,
+      "recall": 0.9354838709677419,
+      "f1": 0.5714285714285714,
+      "support": 62,
+      "num_predicted": 141
+    },
+    "Ecology": {
+      "precision": 0.23728813559322035,
+      "recall": 0.9672727272727273,
+      "f1": 0.38108882521489973,
+      "support": 275,
+      "num_predicted": 1121
+    },
+    "Economics": {
+      "precision": 0.1915269196822595,
+      "recall": 0.9079497907949791,
+      "f1": 0.3163265306122449,
+      "support": 239,
+      "num_predicted": 1133
+    },
+    "Ecosystems": {
+      "precision": 0.12087912087912088,
+      "recall": 0.8380952380952381,
+      "f1": 0.2112845138055222,
+      "support": 105,
+      "num_predicted": 728
+    },
+    "Elections": {
+      "precision": 0.5057870370370371,
+      "recall": 0.9142259414225942,
+      "f1": 0.6512667660208644,
+      "support": 478,
+      "num_predicted": 864
+    },
+    "Engineering": {
+      "precision": 0.11771428571428572,
+      "recall": 0.9035087719298246,
+      "f1": 0.2082912032355915,
+      "support": 114,
+      "num_predicted": 875
+    },
+    "Entrepreneurship": {
+      "precision": 0.3630573248407643,
+      "recall": 0.9344262295081968,
+      "f1": 0.5229357798165137,
+      "support": 61,
+      "num_predicted": 157
+    },
+    "Environmental law": {
+      "precision": 0.39952153110047844,
+      "recall": 0.943502824858757,
+      "f1": 0.561344537815126,
+      "support": 177,
+      "num_predicted": 418
+    },
+    "Epidemiology": {
+      "precision": 0.1830065359477124,
+      "recall": 0.9767441860465116,
+      "f1": 0.30825688073394497,
+      "support": 86,
+      "num_predicted": 459
+    },
+    "Ethics": {
+      "precision": 0.5189088654680719,
+      "recall": 0.8829113924050633,
+      "f1": 0.6536509176103085,
+      "support": 948,
+      "num_predicted": 1613
+    },
+    "Evolution": {
+      "precision": 0.3396704689480355,
+      "recall": 0.9537366548042705,
+      "f1": 0.5009345794392523,
+      "support": 281,
+      "num_predicted": 789
+    },
+    "Finance": {
+      "precision": 0.3229166666666667,
+      "recall": 0.915129151291513,
+      "f1": 0.4773820981713186,
+      "support": 271,
+      "num_predicted": 768
+    },
+    "Genetics": {
+      "precision": 0.49100968188105115,
+      "recall": 0.962059620596206,
+      "f1": 0.6501831501831502,
+      "support": 369,
+      "num_predicted": 723
+    },
+    "Geology": {
+      "precision": 0.42036124794745483,
+      "recall": 0.9411764705882353,
+      "f1": 0.5811577752553916,
+      "support": 272,
+      "num_predicted": 609
+    },
+    "Globalization": {
+      "precision": 0.45454545454545453,
+      "recall": 0.9120171673819742,
+      "f1": 0.6067094932191291,
+      "support": 466,
+      "num_predicted": 935
+    },
+    "Government": {
+      "precision": 0.25083986562150057,
+      "recall": 0.8977955911823647,
+      "f1": 0.39212253829321664,
+      "support": 499,
+      "num_predicted": 1786
+    },
+    "History": {
+      "precision": 0.3079147090711962,
+      "recall": 0.84106614017769,
+      "f1": 0.4507936507936508,
+      "support": 1013,
+      "num_predicted": 2767
+    },
+    "Human resources": {
+      "precision": 0.2215568862275449,
+      "recall": 0.9487179487179487,
+      "f1": 0.3592233009708738,
+      "support": 39,
+      "num_predicted": 167
+    },
+    "Human rights": {
+      "precision": 0.3989071038251366,
+      "recall": 0.9163179916317992,
+      "f1": 0.5558375634517766,
+      "support": 239,
+      "num_predicted": 549
+    },
+    "Immigration": {
+      "precision": 0.3338557993730408,
+      "recall": 0.9551569506726457,
+      "f1": 0.49477351916376305,
+      "support": 223,
+      "num_predicted": 638
+    },
+    "Immunology": {
+      "precision": 0.2774566473988439,
+      "recall": 0.9795918367346939,
+      "f1": 0.43243243243243246,
+      "support": 49,
+      "num_predicted": 173
+    },
+    "Information": {
+      "precision": 0.3522727272727273,
+      "recall": 0.9441624365482234,
+      "f1": 0.5131034482758621,
+      "support": 394,
+      "num_predicted": 1056
+    },
+    "Innovation": {
+      "precision": 0.20454545454545456,
+      "recall": 0.9,
+      "f1": 0.3333333333333333,
+      "support": 60,
+      "num_predicted": 264
+    },
+    "Intellectual property": {
+      "precision": 0.39198218262806234,
+      "recall": 0.9617486338797814,
+      "f1": 0.5569620253164557,
+      "support": 183,
+      "num_predicted": 449
+    },
+    "International law": {
+      "precision": 0.3264094955489614,
+      "recall": 0.9401709401709402,
+      "f1": 0.4845814977973568,
+      "support": 234,
+      "num_predicted": 674
+    },
+    "International relations": {
+      "precision": 0.30071942446043165,
+      "recall": 0.9247787610619469,
+      "f1": 0.4538545059717698,
+      "support": 452,
+      "num_predicted": 1390
+    },
+    "Knowledge": {
+      "precision": 0.378803777544596,
+      "recall": 0.955026455026455,
+      "f1": 0.5424492862509391,
+      "support": 378,
+      "num_predicted": 953
+    },
+    "Labor": {
+      "precision": 0.3385093167701863,
+      "recall": 0.960352422907489,
+      "f1": 0.5005740528128588,
+      "support": 227,
+      "num_predicted": 644
+    },
+    "Languages": {
+      "precision": 0.5484483850538315,
+      "recall": 0.9202975557917109,
+      "f1": 0.6873015873015873,
+      "support": 941,
+      "num_predicted": 1579
+    },
+    "Leadership": {
+      "precision": 0.20588235294117646,
+      "recall": 0.9210526315789473,
+      "f1": 0.33653846153846156,
+      "support": 38,
+      "num_predicted": 170
+    },
+    "Literature": {
+      "precision": 0.4837465564738292,
+      "recall": 0.8797595190380761,
+      "f1": 0.624244578741557,
+      "support": 998,
+      "num_predicted": 1815
+    },
+    "Machine learning": {
+      "precision": 0.18929254302103252,
+      "recall": 0.9705882352941176,
+      "f1": 0.3168,
+      "support": 102,
+      "num_predicted": 523
+    },
+    "Management": {
+      "precision": 0.17105263157894737,
+      "recall": 0.896551724137931,
+      "f1": 0.287292817679558,
+      "support": 58,
+      "num_predicted": 304
+    },
+    "Marketing": {
+      "precision": 0.11320754716981132,
+      "recall": 0.8181818181818182,
+      "f1": 0.19889502762430938,
+      "support": 44,
+      "num_predicted": 318
+    },
+    "Mathematics": {
+      "precision": 0.24593128390596744,
+      "recall": 0.9283276450511946,
+      "f1": 0.3888491779842745,
+      "support": 293,
+      "num_predicted": 1106
+    },
+    "Mental health": {
+      "precision": 0.16444444444444445,
+      "recall": 0.925,
+      "f1": 0.2792452830188679,
+      "support": 40,
+      "num_predicted": 225
+    },
+    "Methodology": {
+      "precision": 0.3825136612021858,
+      "recall": 0.9114583333333334,
+      "f1": 0.5388760585065435,
+      "support": 384,
+      "num_predicted": 915
+    },
+    "Music": {
+      "precision": 0.4532130777903044,
+      "recall": 0.9284064665127021,
+      "f1": 0.6090909090909091,
+      "support": 866,
+      "num_predicted": 1774
+    },
+    "Nanotechnology": {
+      "precision": 0.41964285714285715,
+      "recall": 0.94,
+      "f1": 0.5802469135802469,
+      "support": 150,
+      "num_predicted": 336
+    },
+    "Nationalism": {
+      "precision": 0.3987167736021998,
+      "recall": 0.9119496855345912,
+      "f1": 0.5548469387755102,
+      "support": 477,
+      "num_predicted": 1091
+    },
+    "Networks": {
+      "precision": 0.3167420814479638,
+      "recall": 0.9333333333333333,
+      "f1": 0.47297297297297297,
+      "support": 150,
+      "num_predicted": 442
+    },
+    "Neuroscience": {
+      "precision": 0.6097560975609756,
+      "recall": 0.9459459459459459,
+      "f1": 0.7415254237288136,
+      "support": 370,
+      "num_predicted": 574
+    },
+    "Nutrition": {
+      "precision": 0.4025974025974026,
+      "recall": 0.9393939393939394,
+      "f1": 0.5636363636363636,
+      "support": 66,
+      "num_predicted": 154
+    },
+    "Ocean conservation": {
+      "precision": 0.28187919463087246,
+      "recall": 0.9655172413793104,
+      "f1": 0.43636363636363634,
+      "support": 87,
+      "num_predicted": 298
+    },
+    "Oncology": {
+      "precision": 0.4696969696969697,
+      "recall": 0.9841269841269841,
+      "f1": 0.6358974358974359,
+      "support": 63,
+      "num_predicted": 132
+    },
+    "Operations": {
+      "precision": 0.2347266881028939,
+      "recall": 0.8488372093023255,
+      "f1": 0.3677581863979849,
+      "support": 86,
+      "num_predicted": 311
+    },
+    "Pediatrics": {
+      "precision": 0.452991452991453,
+      "recall": 0.9464285714285714,
+      "f1": 0.6127167630057804,
+      "support": 56,
+      "num_predicted": 117
+    },
+    "Pharmacology": {
+      "precision": 0.21774193548387097,
+      "recall": 0.9642857142857143,
+      "f1": 0.35526315789473684,
+      "support": 56,
+      "num_predicted": 248
+    },
+    "Philosophy": {
+      "precision": 0.4717624148003895,
+      "recall": 0.8809090909090909,
+      "f1": 0.6144578313253012,
+      "support": 1100,
+      "num_predicted": 2054
+    },
+    "Physics": {
+      "precision": 0.23923444976076555,
+      "recall": 0.9036144578313253,
+      "f1": 0.37831021437578816,
+      "support": 332,
+      "num_predicted": 1254
+    },
+    "Political parties": {
+      "precision": 0.3640469738030714,
+      "recall": 0.9482352941176471,
+      "f1": 0.5261096605744126,
+      "support": 425,
+      "num_predicted": 1107
+    },
+    "Pollution": {
+      "precision": 0.17714285714285713,
+      "recall": 0.9587628865979382,
+      "f1": 0.2990353697749196,
+      "support": 97,
+      "num_predicted": 525
+    },
+    "Population": {
+      "precision": 0.3045897079276773,
+      "recall": 0.9358974358974359,
+      "f1": 0.459601259181532,
+      "support": 234,
+      "num_predicted": 719
+    },
+    "Poverty": {
+      "precision": 0.4,
+      "recall": 0.953125,
+      "f1": 0.5635103926096998,
+      "support": 256,
+      "num_predicted": 610
+    },
+    "Property": {
+      "precision": 0.3375224416517056,
+      "recall": 0.9447236180904522,
+      "f1": 0.4973544973544973,
+      "support": 199,
+      "num_predicted": 557
+    },
+    "Psychology": {
+      "precision": 0.21844127332601537,
+      "recall": 0.9045454545454545,
+      "f1": 0.35190097259062775,
+      "support": 220,
+      "num_predicted": 911
+    },
+    "Public administration": {
+      "precision": 0.30870917573872475,
+      "recall": 0.9407582938388626,
+      "f1": 0.4648711943793911,
+      "support": 422,
+      "num_predicted": 1286
+    },
+    "Public health": {
+      "precision": 0.11510791366906475,
+      "recall": 0.9230769230769231,
+      "f1": 0.2046908315565032,
+      "support": 52,
+      "num_predicted": 417
+    },
+    "Public policy": {
+      "precision": 0.19061032863849764,
+      "recall": 0.8565400843881856,
+      "f1": 0.3118279569892473,
+      "support": 237,
+      "num_predicted": 1065
+    },
+    "Quantum mechanics": {
+      "precision": 0.5353159851301115,
+      "recall": 0.976271186440678,
+      "f1": 0.6914765906362546,
+      "support": 295,
+      "num_predicted": 538
+    },
+    "Religion": {
+      "precision": 0.5900243309002433,
+      "recall": 0.9099437148217636,
+      "f1": 0.7158671586715867,
+      "support": 1066,
+      "num_predicted": 1644
+    },
+    "Renewable energy": {
+      "precision": 0.33876221498371334,
+      "recall": 0.9285714285714286,
+      "f1": 0.4964200477326969,
+      "support": 112,
+      "num_predicted": 307
+    },
+    "Research": {
+      "precision": 0.3831376734258271,
+      "recall": 0.9547872340425532,
+      "f1": 0.5468392993145469,
+      "support": 376,
+      "num_predicted": 937
+    },
+    "Robotics": {
+      "precision": 0.41483516483516486,
+      "recall": 0.9805194805194806,
+      "f1": 0.583011583011583,
+      "support": 154,
+      "num_predicted": 364
+    },
+    "Security": {
+      "precision": 0.37245696400625977,
+      "recall": 0.9296875,
+      "f1": 0.5318435754189944,
+      "support": 512,
+      "num_predicted": 1278
+    },
+    "Social welfare": {
+      "precision": 0.2838616714697406,
+      "recall": 0.9036697247706422,
+      "f1": 0.43201754385964913,
+      "support": 218,
+      "num_predicted": 694
+    },
+    "Sociology": {
+      "precision": 0.2,
+      "recall": 0.8923766816143498,
+      "f1": 0.32676518883415434,
+      "support": 223,
+      "num_predicted": 995
+    },
+    "Software": {
+      "precision": 0.20714285714285716,
+      "recall": 0.9863945578231292,
+      "f1": 0.34238488783943327,
+      "support": 147,
+      "num_predicted": 700
+    },
+    "Statistics": {
+      "precision": 0.24514811031664965,
+      "recall": 0.9195402298850575,
+      "f1": 0.3870967741935484,
+      "support": 261,
+      "num_predicted": 979
+    },
+    "Strategy": {
+      "precision": 0.19117647058823528,
+      "recall": 0.8666666666666667,
+      "f1": 0.3132530120481928,
+      "support": 75,
+      "num_predicted": 340
+    },
+    "Supply chain": {
+      "precision": 0.2823529411764706,
+      "recall": 0.8571428571428571,
+      "f1": 0.4247787610619469,
+      "support": 56,
+      "num_predicted": 170
+    },
+    "Surgery": {
+      "precision": 0.36231884057971014,
+      "recall": 0.9493670886075949,
+      "f1": 0.5244755244755245,
+      "support": 79,
+      "num_predicted": 207
+    },
+    "Surveys": {
+      "precision": 0.2682926829268293,
+      "recall": 0.9263157894736842,
+      "f1": 0.4160756501182033,
+      "support": 190,
+      "num_predicted": 656
+    },
+    "Sustainability": {
+      "precision": 0.1942215088282504,
+      "recall": 0.952755905511811,
+      "f1": 0.32266666666666666,
+      "support": 127,
+      "num_predicted": 623
+    },
+    "Therapeutics": {
+      "precision": 0.1827956989247312,
+      "recall": 0.9622641509433962,
+      "f1": 0.3072289156626506,
+      "support": 53,
+      "num_predicted": 279
+    },
+    "Thermodynamics": {
+      "precision": 0.5338709677419354,
+      "recall": 0.9706744868035191,
+      "f1": 0.6888657648283039,
+      "support": 341,
+      "num_predicted": 620
+    },
+    "Torts": {
+      "precision": 0.2968421052631579,
+      "recall": 0.9527027027027027,
+      "f1": 0.45264847512038525,
+      "support": 148,
+      "num_predicted": 475
+    },
+    "Wildlife": {
+      "precision": 0.19381443298969073,
+      "recall": 0.94,
+      "f1": 0.3213675213675214,
+      "support": 100,
+      "num_predicted": 485
+    }
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "bd842c503c69480055f9646139fab84f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-30T12:09:27.260438+00:00",
+    "model_name": "GTE-ModernBERT-2k",
+    "data_commit": "7123a65",
+    "code_commit": "f3eff8b",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "OneVsRestClassifier(LogisticRegression)",
+      "train_size": 37795,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
+    }
+  },
+  "efficiency": {
+    "num_params": 149014272,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 298028544,
+    "relative_compute": 6.5607,
+    "shelf_eff": 57.4757,
+    "shelf_compute": 0.3892,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.469762
+}

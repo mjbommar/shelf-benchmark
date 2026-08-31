@@ -1,0 +1,186 @@
+{
+  "model": "OGBert-110M Base",
+  "model_key": "ogbert_110m_base",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.3376649374946985,
+  "metrics": {
+    "accuracy": 0.3652312599681021,
+    "macro_f1": 0.3376649374946985,
+    "micro_f1": 0.3652312599681021,
+    "weighted_f1": 0.3373356717339962,
+    "num_samples": 627,
+    "num_correct": 229,
+    "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 1.0,
+      "recall": 0.034482758620689655,
+      "f1": 0.06666666666666667,
+      "support": 29
+    },
+    "B": {
+      "precision": 0.4375,
+      "recall": 0.4666666666666667,
+      "f1": 0.45161290322580644,
+      "support": 30
+    },
+    "C": {
+      "precision": 0.08,
+      "recall": 0.06666666666666667,
+      "f1": 0.07272727272727272,
+      "support": 30
+    },
+    "D": {
+      "precision": 0.15789473684210525,
+      "recall": 0.1,
+      "f1": 0.12244897959183673,
+      "support": 30
+    },
+    "E": {
+      "precision": 0.18518518518518517,
+      "recall": 0.16666666666666666,
+      "f1": 0.17543859649122806,
+      "support": 30
+    },
+    "F": {
+      "precision": 0.5,
+      "recall": 0.1,
+      "f1": 0.16666666666666666,
+      "support": 30
+    },
+    "G": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 30
+    },
+    "H": {
+      "precision": 0.4,
+      "recall": 0.06666666666666667,
+      "f1": 0.11428571428571428,
+      "support": 30
+    },
+    "J": {
+      "precision": 0.3090909090909091,
+      "recall": 0.5666666666666667,
+      "f1": 0.4,
+      "support": 30
+    },
+    "K": {
+      "precision": 0.5238095238095238,
+      "recall": 0.36666666666666664,
+      "f1": 0.43137254901960786,
+      "support": 30
+    },
+    "L": {
+      "precision": 0.4444444444444444,
+      "recall": 0.26666666666666666,
+      "f1": 0.3333333333333333,
+      "support": 30
+    },
+    "M": {
+      "precision": 0.5517241379310345,
+      "recall": 0.5333333333333333,
+      "f1": 0.5423728813559322,
+      "support": 30
+    },
+    "N": {
+      "precision": 0.3548387096774194,
+      "recall": 0.36666666666666664,
+      "f1": 0.36065573770491804,
+      "support": 30
+    },
+    "P": {
+      "precision": 0.2396694214876033,
+      "recall": 0.9666666666666667,
+      "f1": 0.3841059602649007,
+      "support": 30
+    },
+    "Q": {
+      "precision": 0.47368421052631576,
+      "recall": 0.3103448275862069,
+      "f1": 0.375,
+      "support": 29
+    },
+    "R": {
+      "precision": 0.84,
+      "recall": 0.7241379310344828,
+      "f1": 0.7777777777777778,
+      "support": 29
+    },
+    "S": {
+      "precision": 0.32608695652173914,
+      "recall": 0.5,
+      "f1": 0.39473684210526316,
+      "support": 30
+    },
+    "T": {
+      "precision": 0.35555555555555557,
+      "recall": 0.5333333333333333,
+      "f1": 0.4266666666666667,
+      "support": 30
+    },
+    "U": {
+      "precision": 0.7894736842105263,
+      "recall": 0.5,
+      "f1": 0.6122448979591837,
+      "support": 30
+    },
+    "V": {
+      "precision": 0.46153846153846156,
+      "recall": 0.6,
+      "f1": 0.5217391304347826,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.30952380952380953,
+      "recall": 0.43333333333333335,
+      "f1": 0.3611111111111111,
+      "support": 30
+    }
+  },
+  "num_samples": 627,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "9be673178389f83f20fa4e2a9dcba217",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-30T04:44:25.954636+00:00",
+    "model_name": "OGBert-110M Base",
+    "data_commit": null,
+    "code_commit": "042fc88",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 1801,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
+    }
+  },
+  "efficiency": {
+    "num_params": 139054592,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 278109184,
+    "relative_compute": 6.1222,
+    "shelf_eff": 40.8634,
+    "shelf_compute": 0.2776,
+    "pareto_optimal": false,
+    "size_rank": 9,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.332758
+}

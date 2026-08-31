@@ -15,6 +15,134 @@
     "num_correct": 389,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.3181818181818182,
+      "recall": 0.2,
+      "f1": 0.24561403508771928,
+      "support": 35
+    },
+    "B": {
+      "precision": 0.5,
+      "recall": 0.5517241379310345,
+      "f1": 0.5245901639344263,
+      "support": 29
+    },
+    "C": {
+      "precision": 0.5714285714285714,
+      "recall": 0.35555555555555557,
+      "f1": 0.4383561643835616,
+      "support": 45
+    },
+    "D": {
+      "precision": 0.3076923076923077,
+      "recall": 0.27586206896551724,
+      "f1": 0.2909090909090909,
+      "support": 29
+    },
+    "E": {
+      "precision": 0.17647058823529413,
+      "recall": 0.11538461538461539,
+      "f1": 0.13953488372093023,
+      "support": 26
+    },
+    "F": {
+      "precision": 0.325,
+      "recall": 0.38235294117647056,
+      "f1": 0.35135135135135137,
+      "support": 34
+    },
+    "G": {
+      "precision": 0.21875,
+      "recall": 0.22580645161290322,
+      "f1": 0.2222222222222222,
+      "support": 31
+    },
+    "H": {
+      "precision": 0.4444444444444444,
+      "recall": 0.42105263157894735,
+      "f1": 0.43243243243243246,
+      "support": 38
+    },
+    "J": {
+      "precision": 0.3488372093023256,
+      "recall": 0.46875,
+      "f1": 0.4,
+      "support": 32
+    },
+    "K": {
+      "precision": 0.6590909090909091,
+      "recall": 0.6744186046511628,
+      "f1": 0.6666666666666666,
+      "support": 43
+    },
+    "L": {
+      "precision": 0.7027027027027027,
+      "recall": 0.6666666666666666,
+      "f1": 0.6842105263157895,
+      "support": 39
+    },
+    "M": {
+      "precision": 0.8055555555555556,
+      "recall": 0.90625,
+      "f1": 0.8529411764705882,
+      "support": 32
+    },
+    "N": {
+      "precision": 0.5471698113207547,
+      "recall": 0.7837837837837838,
+      "f1": 0.6444444444444445,
+      "support": 37
+    },
+    "P": {
+      "precision": 0.475,
+      "recall": 0.6129032258064516,
+      "f1": 0.5352112676056338,
+      "support": 31
+    },
+    "Q": {
+      "precision": 0.6216216216216216,
+      "recall": 0.6571428571428571,
+      "f1": 0.6388888888888888,
+      "support": 35
+    },
+    "R": {
+      "precision": 0.7567567567567568,
+      "recall": 0.6829268292682927,
+      "f1": 0.717948717948718,
+      "support": 41
+    },
+    "S": {
+      "precision": 0.6333333333333333,
+      "recall": 0.5757575757575758,
+      "f1": 0.6031746031746031,
+      "support": 33
+    },
+    "T": {
+      "precision": 0.4782608695652174,
+      "recall": 0.28205128205128205,
+      "f1": 0.3548387096774194,
+      "support": 39
+    },
+    "U": {
+      "precision": 0.5714285714285714,
+      "recall": 0.7,
+      "f1": 0.6292134831460674,
+      "support": 40
+    },
+    "V": {
+      "precision": 0.71875,
+      "recall": 0.7666666666666667,
+      "f1": 0.7419354838709677,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.5714285714285714,
+      "recall": 0.6486486486486487,
+      "f1": 0.6075949367088608,
+      "support": 37
+    }
+  },
   "num_samples": 736,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:25:05.360061+00:00",
+    "timestamp": "2026-08-29T21:11:37.974223+00:00",
     "model_name": "GTR-T5-base",
     "data_commit": null,
-    "code_commit": "f586b5b",
+    "code_commit": "333a405",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",
@@ -42,14 +170,14 @@
     "size_category": "100M-300M",
     "flops_per_token": 219256832,
     "relative_compute": 4.8266,
-    "shelf_eff": 52.865,
+    "shelf_eff": 52.8657,
     "shelf_compute": 0.3631,
     "pareto_optimal": false,
-    "size_rank": 5,
+    "size_rank": 6,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.425031
+  "shelf_score": 0.425036
 }

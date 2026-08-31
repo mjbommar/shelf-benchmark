@@ -1,0 +1,183 @@
+{
+  "model": "BGE-large",
+  "model_key": "bge_large",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.5989435573485489,
+  "metrics": {
+    "accuracy": 0.6086956521739131,
+    "macro_f1": 0.5989435573485489,
+    "micro_f1": 0.6086956521739131,
+    "weighted_f1": 0.6042513205146686,
+    "num_samples": 736,
+    "num_correct": 448,
+    "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.5384615384615384,
+      "recall": 0.4,
+      "f1": 0.45901639344262296,
+      "support": 35
+    },
+    "B": {
+      "precision": 0.5116279069767442,
+      "recall": 0.7586206896551724,
+      "f1": 0.6111111111111112,
+      "support": 29
+    },
+    "C": {
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "support": 45
+    },
+    "D": {
+      "precision": 0.4166666666666667,
+      "recall": 0.3448275862068966,
+      "f1": 0.37735849056603776,
+      "support": 29
+    },
+    "E": {
+      "precision": 0.4,
+      "recall": 0.38461538461538464,
+      "f1": 0.39215686274509803,
+      "support": 26
+    },
+    "F": {
+      "precision": 0.48484848484848486,
+      "recall": 0.47058823529411764,
+      "f1": 0.47761194029850745,
+      "support": 34
+    },
+    "G": {
+      "precision": 0.25,
+      "recall": 0.25806451612903225,
+      "f1": 0.25396825396825395,
+      "support": 31
+    },
+    "H": {
+      "precision": 0.525,
+      "recall": 0.5526315789473685,
+      "f1": 0.5384615384615384,
+      "support": 38
+    },
+    "J": {
+      "precision": 0.42857142857142855,
+      "recall": 0.46875,
+      "f1": 0.44776119402985076,
+      "support": 32
+    },
+    "K": {
+      "precision": 0.6904761904761905,
+      "recall": 0.6744186046511628,
+      "f1": 0.6823529411764706,
+      "support": 43
+    },
+    "L": {
+      "precision": 0.8857142857142857,
+      "recall": 0.7948717948717948,
+      "f1": 0.8378378378378378,
+      "support": 39
+    },
+    "M": {
+      "precision": 0.9090909090909091,
+      "recall": 0.9375,
+      "f1": 0.9230769230769231,
+      "support": 32
+    },
+    "N": {
+      "precision": 0.6666666666666666,
+      "recall": 0.8108108108108109,
+      "f1": 0.7317073170731707,
+      "support": 37
+    },
+    "P": {
+      "precision": 0.5609756097560976,
+      "recall": 0.7419354838709677,
+      "f1": 0.6388888888888888,
+      "support": 31
+    },
+    "Q": {
+      "precision": 0.696969696969697,
+      "recall": 0.6571428571428571,
+      "f1": 0.6764705882352942,
+      "support": 35
+    },
+    "R": {
+      "precision": 0.7209302325581395,
+      "recall": 0.7560975609756098,
+      "f1": 0.7380952380952381,
+      "support": 41
+    },
+    "S": {
+      "precision": 0.6486486486486487,
+      "recall": 0.7272727272727273,
+      "f1": 0.6857142857142857,
+      "support": 33
+    },
+    "T": {
+      "precision": 0.6774193548387096,
+      "recall": 0.5384615384615384,
+      "f1": 0.6,
+      "support": 39
+    },
+    "U": {
+      "precision": 0.6976744186046512,
+      "recall": 0.75,
+      "f1": 0.7228915662650602,
+      "support": 40
+    },
+    "V": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.6,
+      "recall": 0.5675675675675675,
+      "f1": 0.5833333333333334,
+      "support": 37
+    }
+  },
+  "num_samples": 736,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "1e571d8ba2eab0527aa44e51aed22887",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T21:15:13.555460+00:00",
+    "model_name": "BGE-large",
+    "data_commit": null,
+    "code_commit": "6ea0260",
+    "extra": {
+      "embedding_dim": 1024,
+      "classifier": "LogisticRegression",
+      "train_size": 3145
+    }
+  },
+  "efficiency": {
+    "num_params": 335141888,
+    "embedding_dim": 1024,
+    "size_category": "300M-1B",
+    "flops_per_token": 670283776,
+    "relative_compute": 14.7554,
+    "shelf_eff": 60.549,
+    "shelf_compute": 0.3944,
+    "pareto_optimal": false,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.516194
+}

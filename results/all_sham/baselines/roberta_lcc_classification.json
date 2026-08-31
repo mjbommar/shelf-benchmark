@@ -5,15 +5,143 @@
   "task": "lcc_classification",
   "task_type": "classification",
   "primary_metric": "macro_f1",
-  "primary_score": 0.6850194738581483,
+  "primary_score": 0.6840044764883876,
   "metrics": {
-    "accuracy": 0.6894593730006398,
-    "macro_f1": 0.6850194738581483,
-    "micro_f1": 0.6894593730006398,
-    "weighted_f1": 0.6868863416869022,
+    "accuracy": 0.6883397312859885,
+    "macro_f1": 0.6840044764883876,
+    "micro_f1": 0.6883397312859885,
+    "weighted_f1": 0.6858697622050921,
     "num_samples": 12504,
-    "num_correct": 8621,
+    "num_correct": 8607,
     "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.6978557504873294,
+      "recall": 0.5907590759075908,
+      "f1": 0.6398570151921358,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.5548489666136724,
+      "recall": 0.5845896147403685,
+      "f1": 0.5693311582381729,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.6730769230769231,
+      "recall": 0.6205673758865248,
+      "f1": 0.6457564575645757,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.6126482213438735,
+      "recall": 0.512396694214876,
+      "f1": 0.558055805580558,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.6732348111658456,
+      "recall": 0.6623586429725363,
+      "f1": 0.6677524429967426,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.5017543859649123,
+      "recall": 0.48722316865417375,
+      "f1": 0.4943820224719101,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.7659963436928702,
+      "recall": 0.7455516014234875,
+      "f1": 0.7556357078449053,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.7428087986463621,
+      "recall": 0.7012779552715654,
+      "f1": 0.7214461791290058,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.6610576923076923,
+      "recall": 0.48586572438162545,
+      "f1": 0.560081466395112,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.6254501800720288,
+      "recall": 0.8499184339314845,
+      "f1": 0.7206085753803596,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.718801996672213,
+      "recall": 0.7224080267558528,
+      "f1": 0.7206005004170142,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.521970705725699,
+      "recall": 0.6782006920415224,
+      "f1": 0.5899172310007524,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.597444089456869,
+      "recall": 0.6527050610820244,
+      "f1": 0.6238532110091743,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.5711009174311926,
+      "recall": 0.45027124773960214,
+      "f1": 0.5035389282103134,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.7381342062193126,
+      "recall": 0.7091194968553459,
+      "f1": 0.723336006415397,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8063492063492064,
+      "recall": 0.8595600676818951,
+      "f1": 0.8321048321048321,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.839171974522293,
+      "recall": 0.8569105691056911,
+      "f1": 0.8479485116653258,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.778534923339012,
+      "recall": 0.7312,
+      "f1": 0.7541254125412541,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.7345276872964169,
+      "recall": 0.7749140893470791,
+      "f1": 0.754180602006689,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.8540372670807453,
+      "recall": 0.8842443729903537,
+      "f1": 0.8688783570300158,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.7772585669781932,
+      "recall": 0.8515358361774744,
+      "f1": 0.8127035830618893,
+      "support": 586
+    }
   },
   "num_samples": 12504,
   "context": {
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T17:20:31.174609+00:00",
+    "timestamp": "2026-08-29T21:56:47.734321+00:00",
     "model_name": "RoBERTa",
     "data_commit": "7123a65",
-    "code_commit": "57f42a9",
+    "code_commit": "6ea0260",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",
@@ -42,14 +170,14 @@
     "size_category": "100M-300M",
     "flops_per_token": 249291264,
     "relative_compute": 5.4878,
-    "shelf_eff": 84.6155,
-    "shelf_compute": 0.5778,
+    "shelf_eff": 61.3167,
+    "shelf_compute": 0.4187,
     "pareto_optimal": false,
-    "size_rank": 8,
+    "size_rank": 10,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.685019
+  "shelf_score": 0.4964
 }

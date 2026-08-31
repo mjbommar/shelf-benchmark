@@ -15,6 +15,134 @@
     "num_correct": 416,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.5217391304347826,
+      "recall": 0.34285714285714286,
+      "f1": 0.41379310344827586,
+      "support": 35
+    },
+    "B": {
+      "precision": 0.5581395348837209,
+      "recall": 0.8275862068965517,
+      "f1": 0.6666666666666666,
+      "support": 29
+    },
+    "C": {
+      "precision": 0.42857142857142855,
+      "recall": 0.26666666666666666,
+      "f1": 0.3287671232876712,
+      "support": 45
+    },
+    "D": {
+      "precision": 0.39285714285714285,
+      "recall": 0.3793103448275862,
+      "f1": 0.38596491228070173,
+      "support": 29
+    },
+    "E": {
+      "precision": 0.4,
+      "recall": 0.38461538461538464,
+      "f1": 0.39215686274509803,
+      "support": 26
+    },
+    "F": {
+      "precision": 0.4358974358974359,
+      "recall": 0.5,
+      "f1": 0.4657534246575342,
+      "support": 34
+    },
+    "G": {
+      "precision": 0.39285714285714285,
+      "recall": 0.3548387096774194,
+      "f1": 0.3728813559322034,
+      "support": 31
+    },
+    "H": {
+      "precision": 0.5862068965517241,
+      "recall": 0.4473684210526316,
+      "f1": 0.5074626865671642,
+      "support": 38
+    },
+    "J": {
+      "precision": 0.43243243243243246,
+      "recall": 0.5,
+      "f1": 0.463768115942029,
+      "support": 32
+    },
+    "K": {
+      "precision": 0.6530612244897959,
+      "recall": 0.7441860465116279,
+      "f1": 0.6956521739130435,
+      "support": 43
+    },
+    "L": {
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "f1": 0.6666666666666666,
+      "support": 39
+    },
+    "M": {
+      "precision": 0.875,
+      "recall": 0.875,
+      "f1": 0.875,
+      "support": 32
+    },
+    "N": {
+      "precision": 0.5192307692307693,
+      "recall": 0.7297297297297297,
+      "f1": 0.6067415730337079,
+      "support": 37
+    },
+    "P": {
+      "precision": 0.575,
+      "recall": 0.7419354838709677,
+      "f1": 0.647887323943662,
+      "support": 31
+    },
+    "Q": {
+      "precision": 0.7941176470588235,
+      "recall": 0.7714285714285715,
+      "f1": 0.782608695652174,
+      "support": 35
+    },
+    "R": {
+      "precision": 0.6829268292682927,
+      "recall": 0.6829268292682927,
+      "f1": 0.6829268292682927,
+      "support": 41
+    },
+    "S": {
+      "precision": 0.6857142857142857,
+      "recall": 0.7272727272727273,
+      "f1": 0.7058823529411765,
+      "support": 33
+    },
+    "T": {
+      "precision": 0.5555555555555556,
+      "recall": 0.2564102564102564,
+      "f1": 0.3508771929824561,
+      "support": 39
+    },
+    "U": {
+      "precision": 0.4883720930232558,
+      "recall": 0.525,
+      "f1": 0.5060240963855421,
+      "support": 40
+    },
+    "V": {
+      "precision": 0.6764705882352942,
+      "recall": 0.7666666666666667,
+      "f1": 0.71875,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.4358974358974359,
+      "recall": 0.4594594594594595,
+      "f1": 0.4473684210526316,
+      "support": 37
+    }
+  },
   "num_samples": 736,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,14 +154,17 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:29:21.393117+00:00",
+    "timestamp": "2026-08-30T04:47:19.609555+00:00",
     "model_name": "BERT",
     "data_commit": null,
-    "code_commit": "f586b5b",
+    "code_commit": "042fc88",
     "extra": {
       "embedding_dim": 768,
       "classifier": "LogisticRegression",
-      "train_size": 3145
+      "train_size": 3145,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
     }
   },
   "efficiency": {
@@ -42,13 +173,14 @@
     "size_category": "100M-300M",
     "flops_per_token": 218964480,
     "relative_compute": 4.8202,
-    "shelf_eff": null,
-    "shelf_compute": null,
-    "pareto_optimal": null,
-    "size_rank": null,
+    "shelf_eff": 54.3971,
+    "shelf_compute": 0.3737,
+    "pareto_optimal": false,
+    "size_rank": 7,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  }
+  },
+  "shelf_score": 0.437317
 }

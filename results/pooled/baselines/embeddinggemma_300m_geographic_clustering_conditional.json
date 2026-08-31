@@ -1,0 +1,286 @@
+{
+  "model": "EmbeddingGemma-300M",
+  "model_key": "embeddinggemma_300m",
+  "model_type": "sentence_transformer",
+  "task": "geographic_clustering_conditional",
+  "task_type": "clustering",
+  "primary_metric": "ari_pooled",
+  "primary_score": 0.005999117192405136,
+  "metrics": {
+    "v_measure_macro": 0.2665807382792324,
+    "nmi_macro": 0.2665807382792324,
+    "ari_macro": 0.08738242115918947,
+    "homogeneity_macro": 0.29171000359512755,
+    "completeness_macro": 0.2459714857490029,
+    "v_measure_pooled": 0.15583328082910436,
+    "nmi_pooled": 0.15583328082910436,
+    "ari_pooled": 0.005999117192405136,
+    "homogeneity_pooled": 0.3141015249442916,
+    "completeness_pooled": 0.10362109167771584,
+    "ari": 0.005999117192405136,
+    "v_measure": 0.15583328082910436,
+    "n_classes_total": 21,
+    "n_classes_clustered": 21,
+    "n_classes_skipped": 0,
+    "n_samples_clustered": 5046
+  },
+  "per_class_metrics": {
+    "E": {
+      "v_measure": 0.18603123171055377,
+      "nmi": 0.18603123171055377,
+      "ari": 0.049633949496331084,
+      "homogeneity": 0.21922668159331218,
+      "completeness": 0.1615666952898995,
+      "num_samples": 263,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "Z": {
+      "v_measure": 0.32791073402201154,
+      "nmi": 0.3279107340220116,
+      "ari": 0.09371424462100746,
+      "homogeneity": 0.34710891695028134,
+      "completeness": 0.3107249075447607,
+      "num_samples": 230,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "T": {
+      "v_measure": 0.14206290292611076,
+      "nmi": 0.14206290292611076,
+      "ari": 0.027974295323535653,
+      "homogeneity": 0.16086958452154107,
+      "completeness": 0.1271932051101813,
+      "num_samples": 202,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "P": {
+      "v_measure": 0.2749395055312745,
+      "nmi": 0.2749395055312745,
+      "ari": 0.10656829070757003,
+      "homogeneity": 0.29449280220130447,
+      "completeness": 0.25782108330827813,
+      "num_samples": 212,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "J": {
+      "v_measure": 0.2771210805964789,
+      "nmi": 0.2771210805964789,
+      "ari": 0.13372115829683537,
+      "homogeneity": 0.29327042166856815,
+      "completeness": 0.262657483283952,
+      "num_samples": 270,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "R": {
+      "v_measure": 0.25129460862756364,
+      "nmi": 0.25129460862756364,
+      "ari": 0.05373953722378294,
+      "homogeneity": 0.2851443427650694,
+      "completeness": 0.2246287351579772,
+      "num_samples": 247,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "S": {
+      "v_measure": 0.233422088791716,
+      "nmi": 0.233422088791716,
+      "ari": 0.06598069635442452,
+      "homogeneity": 0.2567562866615644,
+      "completeness": 0.2139758115782237,
+      "num_samples": 237,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "U": {
+      "v_measure": 0.17207856395093535,
+      "nmi": 0.17207856395093535,
+      "ari": 0.033181371873032856,
+      "homogeneity": 0.1962798378346155,
+      "completeness": 0.15319023187009986,
+      "num_samples": 230,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "Q": {
+      "v_measure": 0.18960746329304506,
+      "nmi": 0.1896074632930451,
+      "ari": 0.033265706172003834,
+      "homogeneity": 0.22029616667711555,
+      "completeness": 0.16642356699289057,
+      "num_samples": 220,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "C": {
+      "v_measure": 0.2587257264260732,
+      "nmi": 0.2587257264260733,
+      "ari": 0.09666072048033851,
+      "homogeneity": 0.30054872507542935,
+      "completeness": 0.2271206464587524,
+      "num_samples": 225,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "A": {
+      "v_measure": 0.27795984211328545,
+      "nmi": 0.27795984211328545,
+      "ari": 0.053575234234819614,
+      "homogeneity": 0.2991781164532419,
+      "completeness": 0.2595519313036489,
+      "num_samples": 260,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "F": {
+      "v_measure": 0.37970382064669217,
+      "nmi": 0.37970382064669217,
+      "ari": 0.15565132903526951,
+      "homogeneity": 0.39146964979231047,
+      "completeness": 0.3686246113185984,
+      "num_samples": 270,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "L": {
+      "v_measure": 0.29679074307823194,
+      "nmi": 0.29679074307823194,
+      "ari": 0.040405294876233774,
+      "homogeneity": 0.32858949733371795,
+      "completeness": 0.2706034967880687,
+      "num_samples": 233,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "N": {
+      "v_measure": 0.2949124174358812,
+      "nmi": 0.2949124174358812,
+      "ari": 0.12479751483392172,
+      "homogeneity": 0.32861464298548515,
+      "completeness": 0.26748006285082154,
+      "num_samples": 230,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "K": {
+      "v_measure": 0.37532991646987063,
+      "nmi": 0.3753299164698706,
+      "ari": 0.1984363209959766,
+      "homogeneity": 0.39518450332330696,
+      "completeness": 0.35737493198378123,
+      "num_samples": 248,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "D": {
+      "v_measure": 0.1988569177840176,
+      "nmi": 0.19885691778401762,
+      "ari": 0.05517609821377601,
+      "homogeneity": 0.2210987846008809,
+      "completeness": 0.18068096134108383,
+      "num_samples": 242,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "H": {
+      "v_measure": 0.23751713669433847,
+      "nmi": 0.23751713669433847,
+      "ari": 0.07127103340713777,
+      "homogeneity": 0.2580670487199562,
+      "completeness": 0.2199986186163868,
+      "num_samples": 255,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "M": {
+      "v_measure": 0.3967784848031212,
+      "nmi": 0.3967784848031212,
+      "ari": 0.14670817318951204,
+      "homogeneity": 0.4184262609960927,
+      "completeness": 0.37726046939810387,
+      "num_samples": 254,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "B": {
+      "v_measure": 0.2804242675217141,
+      "nmi": 0.2804242675217141,
+      "ari": 0.0718974658787975,
+      "homogeneity": 0.2950608542107898,
+      "completeness": 0.2671711580049674,
+      "num_samples": 246,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "G": {
+      "v_measure": 0.2606798887846032,
+      "nmi": 0.2606798887846033,
+      "ari": 0.10366694891026325,
+      "homogeneity": 0.29162079046370776,
+      "completeness": 0.23567484012236695,
+      "num_samples": 245,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    },
+    "V": {
+      "v_measure": 0.2860481626563621,
+      "nmi": 0.2860481626563621,
+      "ari": 0.11900546021840874,
+      "homogeneity": 0.3246061606693869,
+      "completeness": 0.25567775240621765,
+      "num_samples": 227,
+      "num_clusters_true": 8,
+      "num_clusters_pred": 8
+    }
+  },
+  "num_samples": 5046,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "7adced9467526a201c0ea260b7351b50",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-30T13:15:52.448971+00:00",
+    "model_name": "EmbeddingGemma-300M",
+    "data_commit": "ef75460",
+    "code_commit": "f3eff8b",
+    "extra": {
+      "embedding_dim": 768,
+      "class_field": "lcc_code",
+      "min_class_size": 20,
+      "skipped_classes": {},
+      "norm_stats": {
+        "norm_min": 0.9999998807907104,
+        "norm_max": 1.0000001192092896,
+        "norm_mean": 1.0,
+        "norm_std": 2.9139368251662745e-08
+      },
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
+    }
+  },
+  "efficiency": {
+    "num_params": 307581696,
+    "embedding_dim": 768,
+    "size_category": "300M-1B",
+    "flops_per_token": 615163392,
+    "relative_compute": 13.542,
+    "shelf_eff": 57.5743,
+    "shelf_compute": 0.3766,
+    "pareto_optimal": true,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.488688
+}

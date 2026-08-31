@@ -5,15 +5,143 @@
   "task": "lcc_classification",
   "task_type": "classification",
   "primary_metric": "macro_f1",
-  "primary_score": 0.8000603203106769,
+  "primary_score": 0.8000587204124221,
   "metrics": {
     "accuracy": 0.8017434420985284,
-    "macro_f1": 0.8000603203106769,
+    "macro_f1": 0.8000587204124221,
     "micro_f1": 0.8017434420985284,
-    "weighted_f1": 0.8012147400494894,
+    "weighted_f1": 0.8012116525568064,
     "num_samples": 12504,
     "num_correct": 10025,
     "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.8517786561264822,
+      "recall": 0.7112211221122112,
+      "f1": 0.7751798561151079,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.724561403508772,
+      "recall": 0.6917922948073701,
+      "f1": 0.7077977720651243,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8460038986354775,
+      "recall": 0.7695035460992907,
+      "f1": 0.8059424326833797,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.8030592734225621,
+      "recall": 0.6942148760330579,
+      "f1": 0.7446808510638298,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.8461538461538461,
+      "recall": 0.7996768982229402,
+      "f1": 0.8222591362126246,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.6857670979667283,
+      "recall": 0.6320272572402045,
+      "f1": 0.6578014184397163,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8629893238434164,
+      "recall": 0.8629893238434164,
+      "f1": 0.8629893238434164,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.8006088280060882,
+      "recall": 0.8402555910543131,
+      "f1": 0.8199532346063912,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.6557911908646004,
+      "recall": 0.7102473498233216,
+      "f1": 0.6819338422391857,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.7640449438202247,
+      "recall": 0.7765089722675367,
+      "f1": 0.7702265372168284,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.7878315132605305,
+      "recall": 0.8444816053511706,
+      "f1": 0.8151735270379338,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.7272727272727273,
+      "recall": 0.8027681660899654,
+      "f1": 0.7631578947368421,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7528830313014827,
+      "recall": 0.7975567190226877,
+      "f1": 0.7745762711864407,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6727605118829981,
+      "recall": 0.6654611211573237,
+      "f1": 0.6690909090909091,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8093797276853253,
+      "recall": 0.8411949685534591,
+      "f1": 0.8249807247494217,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8282208588957055,
+      "recall": 0.9137055837563451,
+      "f1": 0.8688656476267096,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.9557069846678024,
+      "recall": 0.9121951219512195,
+      "f1": 0.9334442595673876,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.7975646879756468,
+      "recall": 0.8384,
+      "f1": 0.8174726989079563,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.869639794168096,
+      "recall": 0.8711340206185567,
+      "f1": 0.8703862660944206,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9158878504672897,
+      "recall": 0.9453376205787781,
+      "f1": 0.930379746835443,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.87751677852349,
+      "recall": 0.8924914675767918,
+      "f1": 0.8849407783417935,
+      "support": 586
+    }
   },
   "num_samples": 12504,
   "context": {
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T13:56:30.273465+00:00",
+    "timestamp": "2026-08-29T20:30:40.792053+00:00",
     "model_name": "GTE-small",
     "data_commit": "7123a65",
-    "code_commit": "38893ba",
+    "code_commit": "e7043bd",
     "extra": {
       "embedding_dim": 384,
       "classifier": "LogisticRegression",
@@ -42,13 +170,14 @@
     "size_category": "10M-50M",
     "flops_per_token": 66721024,
     "relative_compute": 1.4688,
-    "shelf_eff": null,
-    "shelf_compute": null,
-    "pareto_optimal": null,
-    "size_rank": null,
+    "shelf_eff": 90.1628,
+    "shelf_compute": 0.6527,
+    "pareto_optimal": true,
+    "size_rank": 1,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,
     "throughput_bytes_sec": null
-  }
+  },
+  "shelf_score": 0.678316
 }

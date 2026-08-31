@@ -1,0 +1,144 @@
+{
+  "model": "Granite-small-r2",
+  "model_key": "granite_small_r2",
+  "model_type": "sentence_transformer",
+  "task": "lcgft_category_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.6712744107015466,
+  "metrics": {
+    "accuracy": 0.6706653870761357,
+    "macro_f1": 0.6712744107015466,
+    "micro_f1": 0.6706653870761357,
+    "weighted_f1": 0.6705038962649489,
+    "num_samples": 12504,
+    "num_correct": 8386,
+    "num_classes": 14
+  },
+  "per_class_metrics": {
+    "Cartographic materials": {
+      "precision": 0.8296019900497512,
+      "recall": 0.886968085106383,
+      "f1": 0.8573264781491002,
+      "support": 752
+    },
+    "Commemorative works": {
+      "precision": 0.8154943934760448,
+      "recall": 0.7992007992007992,
+      "f1": 0.8072653884964682,
+      "support": 1001
+    },
+    "Creative nonfiction": {
+      "precision": 0.4983783783783784,
+      "recall": 0.5093922651933702,
+      "f1": 0.5038251366120219,
+      "support": 905
+    },
+    "Discursive works": {
+      "precision": 0.4403114186851211,
+      "recall": 0.5674470457079153,
+      "f1": 0.49585971748660496,
+      "support": 897
+    },
+    "Ephemera": {
+      "precision": 0.7013142174432497,
+      "recall": 0.7149817295980512,
+      "f1": 0.7080820265379976,
+      "support": 821
+    },
+    "Informational works": {
+      "precision": 0.44920440636474906,
+      "recall": 0.42476851851851855,
+      "f1": 0.4366448542534206,
+      "support": 864
+    },
+    "Instructional and educational works": {
+      "precision": 0.6506024096385542,
+      "recall": 0.5831533477321814,
+      "f1": 0.6150341685649203,
+      "support": 926
+    },
+    "Law materials": {
+      "precision": 0.7609126984126984,
+      "recall": 0.8176972281449894,
+      "f1": 0.7882836587872559,
+      "support": 938
+    },
+    "Literature": {
+      "precision": 0.5640096618357487,
+      "recall": 0.49209694415173866,
+      "f1": 0.5256049521665729,
+      "support": 949
+    },
+    "Music": {
+      "precision": 0.6996197718631179,
+      "recall": 0.720626631853786,
+      "f1": 0.7099678456591639,
+      "support": 766
+    },
+    "Recreational works": {
+      "precision": 0.7457002457002457,
+      "recall": 0.6767001114827201,
+      "f1": 0.7095265926358855,
+      "support": 897
+    },
+    "Religious materials": {
+      "precision": 0.7595785440613027,
+      "recall": 0.8347368421052631,
+      "f1": 0.7953861584754263,
+      "support": 950
+    },
+    "Sound recordings": {
+      "precision": 0.7042944785276074,
+      "recall": 0.6259541984732825,
+      "f1": 0.6628175519630485,
+      "support": 917
+    },
+    "Visual works": {
+      "precision": 0.8119158878504673,
+      "recall": 0.754614549402823,
+      "f1": 0.7822172200337648,
+      "support": 921
+    }
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "bd842c503c69480055f9646139fab84f",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-30T11:38:13.344736+00:00",
+    "model_name": "Granite-small-r2",
+    "data_commit": "7123a65",
+    "code_commit": "71d7a19",
+    "extra": {
+      "embedding_dim": 384,
+      "classifier": "LogisticRegression",
+      "train_size": 37795,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
+    }
+  },
+  "efficiency": {
+    "num_params": 47662464,
+    "embedding_dim": 384,
+    "size_category": "10M-50M",
+    "flops_per_token": 95324928,
+    "relative_compute": 2.0984,
+    "shelf_eff": 58.975,
+    "shelf_compute": 0.4205,
+    "pareto_optimal": false,
+    "size_rank": 3,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.45282
+}

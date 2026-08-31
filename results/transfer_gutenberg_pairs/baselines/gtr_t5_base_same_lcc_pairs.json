@@ -18,6 +18,7 @@
     "num_positive": 2000,
     "num_negative": 2000
   },
+  "per_class_metrics": null,
   "num_samples": 4000,
   "context": {
     "shelf_version": "0.3.1",
@@ -29,12 +30,15 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:47:08.164234+00:00",
+    "timestamp": "2026-08-30T07:02:59.271917+00:00",
     "model_name": "GTR-T5-base",
     "data_commit": null,
-    "code_commit": "f586b5b",
+    "code_commit": "76a813b",
     "extra": {
-      "embedding_dim": 768
+      "embedding_dim": 768,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
     }
   },
   "efficiency": {
@@ -46,7 +50,7 @@
     "shelf_eff": 81.4105,
     "shelf_compute": 0.5592,
     "pareto_optimal": false,
-    "size_rank": 6,
+    "size_rank": 8,
     "num_params_torch": null,
     "hidden_size": null,
     "context_window": null,

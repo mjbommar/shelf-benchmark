@@ -1,0 +1,186 @@
+{
+  "model": "distilbert-base-uncased",
+  "model_key": "distilbert_base_uncased",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.535766551454809,
+  "metrics": {
+    "accuracy": 0.5461956521739131,
+    "macro_f1": 0.535766551454809,
+    "micro_f1": 0.5461956521739131,
+    "weighted_f1": 0.5368016765336787,
+    "num_samples": 736,
+    "num_correct": 402,
+    "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.46153846153846156,
+      "recall": 0.34285714285714286,
+      "f1": 0.39344262295081966,
+      "support": 35
+    },
+    "B": {
+      "precision": 0.5116279069767442,
+      "recall": 0.7586206896551724,
+      "f1": 0.6111111111111112,
+      "support": 29
+    },
+    "C": {
+      "precision": 0.4230769230769231,
+      "recall": 0.24444444444444444,
+      "f1": 0.30985915492957744,
+      "support": 45
+    },
+    "D": {
+      "precision": 0.35714285714285715,
+      "recall": 0.3448275862068966,
+      "f1": 0.3508771929824561,
+      "support": 29
+    },
+    "E": {
+      "precision": 0.2857142857142857,
+      "recall": 0.3076923076923077,
+      "f1": 0.2962962962962963,
+      "support": 26
+    },
+    "F": {
+      "precision": 0.4444444444444444,
+      "recall": 0.47058823529411764,
+      "f1": 0.45714285714285713,
+      "support": 34
+    },
+    "G": {
+      "precision": 0.36666666666666664,
+      "recall": 0.3548387096774194,
+      "f1": 0.36065573770491804,
+      "support": 31
+    },
+    "H": {
+      "precision": 0.5666666666666667,
+      "recall": 0.4473684210526316,
+      "f1": 0.5,
+      "support": 38
+    },
+    "J": {
+      "precision": 0.4411764705882353,
+      "recall": 0.46875,
+      "f1": 0.45454545454545453,
+      "support": 32
+    },
+    "K": {
+      "precision": 0.6274509803921569,
+      "recall": 0.7441860465116279,
+      "f1": 0.6808510638297872,
+      "support": 43
+    },
+    "L": {
+      "precision": 0.6756756756756757,
+      "recall": 0.6410256410256411,
+      "f1": 0.6578947368421053,
+      "support": 39
+    },
+    "M": {
+      "precision": 0.90625,
+      "recall": 0.90625,
+      "f1": 0.90625,
+      "support": 32
+    },
+    "N": {
+      "precision": 0.4909090909090909,
+      "recall": 0.7297297297297297,
+      "f1": 0.5869565217391305,
+      "support": 37
+    },
+    "P": {
+      "precision": 0.48936170212765956,
+      "recall": 0.7419354838709677,
+      "f1": 0.5897435897435898,
+      "support": 31
+    },
+    "Q": {
+      "precision": 0.7878787878787878,
+      "recall": 0.7428571428571429,
+      "f1": 0.7647058823529411,
+      "support": 35
+    },
+    "R": {
+      "precision": 0.6829268292682927,
+      "recall": 0.6829268292682927,
+      "f1": 0.6829268292682927,
+      "support": 41
+    },
+    "S": {
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "f1": 0.6666666666666666,
+      "support": 33
+    },
+    "T": {
+      "precision": 0.5555555555555556,
+      "recall": 0.2564102564102564,
+      "f1": 0.3508771929824561,
+      "support": 39
+    },
+    "U": {
+      "precision": 0.5,
+      "recall": 0.525,
+      "f1": 0.5121951219512195,
+      "support": 40
+    },
+    "V": {
+      "precision": 0.6285714285714286,
+      "recall": 0.7333333333333333,
+      "f1": 0.676923076923077,
+      "support": 30
+    },
+    "Z": {
+      "precision": 0.4838709677419355,
+      "recall": 0.40540540540540543,
+      "f1": 0.4411764705882353,
+      "support": 37
+    }
+  },
+  "num_samples": 736,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "1f3b635f670bc443660509b7cb3716cc",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-30T04:51:12.539367+00:00",
+    "model_name": "distilbert-base-uncased",
+    "data_commit": null,
+    "code_commit": "042fc88",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 3145,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
+    }
+  },
+  "efficiency": {
+    "num_params": 66985530,
+    "embedding_dim": 768,
+    "size_category": "50M-100M",
+    "flops_per_token": 133971060,
+    "relative_compute": 2.9492,
+    "shelf_eff": 53.654,
+    "shelf_compute": 0.3769,
+    "pareto_optimal": false,
+    "size_rank": 1,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.419895
+}

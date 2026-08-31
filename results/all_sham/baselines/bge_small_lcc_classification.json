@@ -15,6 +15,134 @@
     "num_correct": 10432,
     "num_classes": 21
   },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.9005424954792043,
+      "recall": 0.8217821782178217,
+      "f1": 0.8593615185504746,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.7433628318584071,
+      "recall": 0.7035175879396985,
+      "f1": 0.7228915662650602,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.8814229249011858,
+      "recall": 0.7907801418439716,
+      "f1": 0.8336448598130841,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.8156028368794326,
+      "recall": 0.7603305785123967,
+      "f1": 0.7869974337040205,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.865979381443299,
+      "recall": 0.81421647819063,
+      "f1": 0.839300582847627,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.7408695652173913,
+      "recall": 0.7257240204429302,
+      "f1": 0.7332185886402753,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.8972972972972973,
+      "recall": 0.8861209964412812,
+      "f1": 0.891674127126231,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.8330804248861912,
+      "recall": 0.8769968051118211,
+      "f1": 0.8544747081712062,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.7396551724137931,
+      "recall": 0.7579505300353356,
+      "f1": 0.7486910994764397,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.8286163522012578,
+      "recall": 0.8597063621533442,
+      "f1": 0.8438751000800641,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.8457792207792207,
+      "recall": 0.8712374581939799,
+      "f1": 0.8583196046128501,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.7380585516178737,
+      "recall": 0.828719723183391,
+      "f1": 0.7807660961695192,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.7411764705882353,
+      "recall": 0.7696335078534031,
+      "f1": 0.7551369863013698,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.6834532374100719,
+      "recall": 0.6871609403254972,
+      "f1": 0.6853020739404869,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.8343373493975904,
+      "recall": 0.8710691823899371,
+      "f1": 0.8523076923076923,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.8785942492012779,
+      "recall": 0.9306260575296108,
+      "f1": 0.903861955628595,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.958974358974359,
+      "recall": 0.9121951219512195,
+      "f1": 0.935,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.8610223642172524,
+      "recall": 0.8624,
+      "f1": 0.8617106314948042,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.88,
+      "recall": 0.9072164948453608,
+      "f1": 0.8934010152284264,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.9330218068535826,
+      "recall": 0.9630225080385852,
+      "f1": 0.9477848101265823,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.9175438596491228,
+      "recall": 0.8924914675767918,
+      "f1": 0.9048442906574394,
+      "support": 586
+    }
+  },
   "num_samples": 12504,
   "context": {
     "shelf_version": "0.3.1",
@@ -26,10 +154,10 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:45:29.429482+00:00",
+    "timestamp": "2026-08-29T20:24:02.051532+00:00",
     "model_name": "BGE-small",
     "data_commit": "7123a65",
-    "code_commit": "f586b5b",
+    "code_commit": "b506498",
     "extra": {
       "embedding_dim": 384,
       "classifier": "LogisticRegression",
@@ -42,8 +170,8 @@
     "size_category": "10M-50M",
     "flops_per_token": 66721024,
     "relative_compute": 1.4688,
-    "shelf_eff": 110.7209,
-    "shelf_compute": 0.8016,
+    "shelf_eff": 95.4301,
+    "shelf_compute": 0.6909,
     "pareto_optimal": false,
     "size_rank": 2,
     "num_params_torch": null,
@@ -51,5 +179,5 @@
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.832979
+  "shelf_score": 0.717943
 }

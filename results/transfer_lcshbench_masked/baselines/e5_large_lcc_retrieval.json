@@ -24,17 +24,18 @@
     "recall@50": 0.0696795581722958,
     "precision@50": 0.27741847826086957,
     "map@50": 0.037587163411227496,
-    "ndcg@100": 0.25976718021674666,
-    "recall@100": 0.11458611022936897,
-    "precision@100": 0.22811141304347823,
-    "map@100": 0.052688110268829254,
+    "ndcg@100": 0.2597573753620651,
+    "recall@100": 0.11457948244569983,
+    "precision@100": 0.22809782608695653,
+    "map@100": 0.05268752680888314,
     "graded_ndcg@1": 0.5122282608695652,
     "graded_ndcg@5": 0.4499448528570598,
     "graded_ndcg@10": 0.4119327355948677,
     "graded_ndcg@50": 0.3098913822880812,
-    "graded_ndcg@100": 0.25976718021674666,
+    "graded_ndcg@100": 0.2597573753620651,
     "graded_relevance_max_gain": 3.0
   },
+  "per_class_metrics": null,
   "num_samples": 736,
   "context": {
     "shelf_version": "0.3.1",
@@ -46,14 +47,17 @@
     "prediction_file_checksum": null,
     "random_seed": 42,
     "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
-    "timestamp": "2026-08-29T14:37:59.718418+00:00",
+    "timestamp": "2026-08-29T21:32:21.965715+00:00",
     "model_name": "E5-large",
     "data_commit": null,
-    "code_commit": "f586b5b",
+    "code_commit": "6ea0260",
     "extra": {
       "num_samples": 736,
       "corpus_size": 4188,
-      "embedding_dim": 1024
+      "embedding_dim": 1024,
+      "blas_threads": "8",
+      "python_hash_seed": "0",
+      "deterministic_text_order": true
     }
   },
   "efficiency": {
@@ -62,8 +66,8 @@
     "size_category": "300M-1B",
     "flops_per_token": 670283776,
     "relative_compute": 14.7554,
-    "shelf_eff": 48.3193,
-    "shelf_compute": 0.3147,
+    "shelf_eff": 57.4084,
+    "shelf_compute": 0.3739,
     "pareto_optimal": false,
     "size_rank": 2,
     "num_params_torch": null,
@@ -71,5 +75,5 @@
     "context_window": null,
     "throughput_bytes_sec": null
   },
-  "shelf_score": 0.411933
+  "shelf_score": 0.48942
 }

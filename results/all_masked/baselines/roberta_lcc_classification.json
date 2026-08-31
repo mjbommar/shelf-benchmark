@@ -1,0 +1,183 @@
+{
+  "model": "RoBERTa",
+  "model_key": "roberta",
+  "model_type": "sentence_transformer",
+  "task": "lcc_classification",
+  "task_type": "classification",
+  "primary_metric": "macro_f1",
+  "primary_score": 0.6554789183454686,
+  "metrics": {
+    "accuracy": 0.6597088931541907,
+    "macro_f1": 0.6554789183454686,
+    "micro_f1": 0.6597088931541907,
+    "weighted_f1": 0.6574492957210946,
+    "num_samples": 12504,
+    "num_correct": 8249,
+    "num_classes": 21
+  },
+  "per_class_metrics": {
+    "A": {
+      "precision": 0.6398390342052314,
+      "recall": 0.5247524752475248,
+      "f1": 0.5766092475067996,
+      "support": 606
+    },
+    "B": {
+      "precision": 0.533026113671275,
+      "recall": 0.5812395309882747,
+      "f1": 0.5560897435897436,
+      "support": 597
+    },
+    "C": {
+      "precision": 0.6588235294117647,
+      "recall": 0.5957446808510638,
+      "f1": 0.6256983240223464,
+      "support": 564
+    },
+    "D": {
+      "precision": 0.591715976331361,
+      "recall": 0.49586776859504134,
+      "f1": 0.539568345323741,
+      "support": 605
+    },
+    "E": {
+      "precision": 0.6613162118780096,
+      "recall": 0.6655896607431341,
+      "f1": 0.6634460547504025,
+      "support": 619
+    },
+    "F": {
+      "precision": 0.4620938628158845,
+      "recall": 0.43611584327086883,
+      "f1": 0.44872918492550395,
+      "support": 587
+    },
+    "G": {
+      "precision": 0.7031802120141343,
+      "recall": 0.708185053380783,
+      "f1": 0.7056737588652482,
+      "support": 562
+    },
+    "H": {
+      "precision": 0.7227891156462585,
+      "recall": 0.6789137380191693,
+      "f1": 0.700164744645799,
+      "support": 626
+    },
+    "J": {
+      "precision": 0.593952483801296,
+      "recall": 0.48586572438162545,
+      "f1": 0.5344995140913509,
+      "support": 566
+    },
+    "K": {
+      "precision": 0.569811320754717,
+      "recall": 0.7389885807504079,
+      "f1": 0.6434659090909091,
+      "support": 613
+    },
+    "L": {
+      "precision": 0.6855753646677472,
+      "recall": 0.7073578595317725,
+      "f1": 0.6962962962962963,
+      "support": 598
+    },
+    "M": {
+      "precision": 0.5147679324894515,
+      "recall": 0.6332179930795848,
+      "f1": 0.5678820791311094,
+      "support": 578
+    },
+    "N": {
+      "precision": 0.5926517571884984,
+      "recall": 0.6474694589877836,
+      "f1": 0.6188490408673895,
+      "support": 573
+    },
+    "P": {
+      "precision": 0.5178571428571429,
+      "recall": 0.41952983725135623,
+      "f1": 0.46353646353646355,
+      "support": 553
+    },
+    "Q": {
+      "precision": 0.7220338983050848,
+      "recall": 0.6698113207547169,
+      "f1": 0.6949429037520392,
+      "support": 636
+    },
+    "R": {
+      "precision": 0.784037558685446,
+      "recall": 0.8477157360406091,
+      "f1": 0.8146341463414634,
+      "support": 591
+    },
+    "S": {
+      "precision": 0.8440514469453376,
+      "recall": 0.8536585365853658,
+      "f1": 0.8488278092158448,
+      "support": 615
+    },
+    "T": {
+      "precision": 0.745,
+      "recall": 0.7152,
+      "f1": 0.7297959183673469,
+      "support": 625
+    },
+    "U": {
+      "precision": 0.7322970639032815,
+      "recall": 0.7285223367697594,
+      "f1": 0.7304048234280792,
+      "support": 582
+    },
+    "V": {
+      "precision": 0.8432601880877743,
+      "recall": 0.864951768488746,
+      "f1": 0.8539682539682539,
+      "support": 622
+    },
+    "Z": {
+      "precision": 0.7,
+      "recall": 0.8122866894197952,
+      "f1": 0.7519747235387045,
+      "support": 586
+    }
+  },
+  "num_samples": 12504,
+  "context": {
+    "shelf_version": "0.3.1",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.8.0",
+    "numpy_version": "2.3.5",
+    "polars_version": "1.36.1",
+    "dataset_checksum": "37c1c6331da1d069d8519bd293a68578",
+    "prediction_file_checksum": null,
+    "random_seed": 42,
+    "platform_info": "Linux-6.18.0-9-generic-x86_64-with-glibc2.43",
+    "timestamp": "2026-08-29T21:56:46.678571+00:00",
+    "model_name": "RoBERTa",
+    "data_commit": "7123a65",
+    "code_commit": "6ea0260",
+    "extra": {
+      "embedding_dim": 768,
+      "classifier": "LogisticRegression",
+      "train_size": 37795
+    }
+  },
+  "efficiency": {
+    "num_params": 124645632,
+    "embedding_dim": 768,
+    "size_category": "100M-300M",
+    "flops_per_token": 249291264,
+    "relative_compute": 5.4878,
+    "shelf_eff": 58.6092,
+    "shelf_compute": 0.4002,
+    "pareto_optimal": false,
+    "size_rank": 10,
+    "num_params_torch": null,
+    "hidden_size": null,
+    "context_window": null,
+    "throughput_bytes_sec": null
+  },
+  "shelf_score": 0.474481
+}
