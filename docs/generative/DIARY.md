@@ -211,3 +211,28 @@ a different model.
 Next: freeze one configuration per model and score the held-out test split
 with bootstrap intervals. Nothing above is a test number; all 72 cells are
 validation.
+### 2026-09-01 — the 200-document runs were not a valid comparison
+
+Caught on review: the probe was scoring 200 uniformly sampled *validation*
+documents while the encoders were scored on all 12,504 *test* documents. Three
+mismatches, and the third is the one that matters.
+
+| | encoder | probe as first run |
+|---|---|---|
+| n | 12,504 | 200 |
+| split | test | validation |
+| supervision | LogisticRegression fitted on 37,795 labelled documents | none |
+
+`classification.py:388` shows the encoder task is a supervised linear probe:
+encode the train split, fit a classifier, predict test. Putting 0.8887 beside a
+zero-shot 0.61 would have compared a fitted classifier against no classifier,
+in the encoder's favour, and I had not said so.
+
+The 200-document runs stay as what they were, hyperparameter selection on
+validation. Every reported number now comes from the full test split, through
+`shelf.evaluate.metrics.classification`, the same module behind the encoder
+numbers. The zero-shot versus supervised asymmetry cannot be removed and is
+recorded in PROTOCOL.md and in every result record.
+
+Also fixed here: `grep` in the launcher pipeline block-buffers, so a running
+job looks dead. Use unbuffered output or write straight to a file.
