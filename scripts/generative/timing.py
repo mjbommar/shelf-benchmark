@@ -6,12 +6,13 @@ is null, so nothing in the paper measures what any arm costs to run.
 Fairness is the whole difficulty here, and three things are controlled:
 
 * **Same documents.** One sample, one order, every arm.
-* **Same token budget.** A decoder at 2048 tokens does four times the work of
-  one at 512, so every arm is timed at 512 tokens of its own tokenizer. Each
-  decoder is also timed at the budget its frozen configuration actually uses,
-  because that is the rate its reported score was produced at.
-* **Same hardware**, one card, with a warm-up pass excluded so model load and
-  CUDA context creation are not charged to the first arm measured.
+* **A common neural cap.** Every neural input is capped at no more than 512
+  tokens of its model's own tokenizer. A model with a lower native limit keeps
+  that limit. TF-IDF reads whole documents because it has no token budget.
+  Each local decoder is also timed at its frozen evaluation limit.
+* **One host for local methods.** TF-IDF runs on CPU. Encoders and local
+  decoders use one GPU. A warm-up pass is excluded so model loading and CUDA
+  context creation are not charged to the timed run.
 
 What is timed is inference: an already-fitted model turning documents into
 predictions. Fitting the vectoriser and the logistic head is one-off and is
@@ -21,8 +22,8 @@ One asymmetry is not removed and must be read with the numbers. Encoders are
 batched, which is how they are deployed and how the paper's scores were
 produced. The decoder harness scores one document at a time, because each
 needs its own prompt and its own final-position logits. A batched decoder
-implementation would narrow the gap; these rates are for the harness as run,
-not a claim about the best achievable decoder throughput.
+implementation would narrow the gap. These rates come from one run of the
+harness, not a claim about the best achievable decoder throughput.
 
 Usage:
     uv run python scripts/generative/timing.py --n 1000
@@ -214,11 +215,13 @@ def main() -> int:
         "matched_token_budget": MATCHED_BUDGET,
         "encoder_batch_size": args.batch,
         "device": "single RTX 4070 Ti SUPER",
-        "timed": "inference only; fitting the head is one-off and reported separately",
+        "sample_selection": "first n rows of the test split, in stored order",
+        "trials": 1,
+        "timed": "inference only; model loading and classifier fitting excluded",
         "caveat": (
-            "Encoders are batched, as deployed and as the paper's scores were "
-            "produced. The decoder harness scores one document at a time "
-            "because each needs its own prompt and final-position logits. A "
+            "TF-IDF reads whole documents on CPU. Neural inputs are capped at "
+            "no more than 512 tokens of each model's tokenizer. Encoders are "
+            "batched; the decoder harness scores one document at a time. A "
             "batched decoder would be faster than these rates."
         ),
         "rows": rows,

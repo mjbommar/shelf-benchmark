@@ -3,8 +3,10 @@
   "matched_token_budget": 512,
   "encoder_batch_size": 64,
   "device": "single RTX 4070 Ti SUPER",
-  "timed": "inference only; fitting the head is one-off and reported separately",
-  "caveat": "Encoders are batched, as deployed and as the paper's scores were produced. The decoder harness scores one document at a time because each needs its own prompt and final-position logits. A batched decoder would be faster than these rates.",
+  "sample_selection": "first n rows of the test split, in stored order",
+  "trials": 1,
+  "timed": "inference only; model loading and classifier fitting excluded",
+  "caveat": "TF-IDF reads whole documents on CPU. Neural inputs are capped at no more than 512 tokens of each model's tokenizer. Encoders are batched; the decoder harness scores one document at a time. A batched decoder would be faster than these rates.",
   "rows": [
     {
       "family": "lexical",

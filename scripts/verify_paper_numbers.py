@@ -199,6 +199,16 @@ def check_timing_table(sections: Path) -> tuple[int, int]:
         logger.warning("  tab:timing: results/generative/timing.json missing")
         return 0, 0
     rows = {r["model"]: r for r in json.loads(art.read_text())["rows"]}
+    api_path = Path("results/generative/test_scores_api.jsonl")
+    if api_path.exists():
+        for line in api_path.read_text().splitlines():
+            if not line.strip():
+                continue
+            rec = json.loads(line)
+            if rec.get("model") == "gpt-5.6-luna" and rec.get("seconds"):
+                rows["GPT-5.6-luna (API)"] = {
+                    "docs_per_s": rec["n_scored"] / rec["seconds"]
+                }
     tex = (sections / "06c_decoders.tex").read_text()
     blk = table_block(tex, "tab:timing")
     if blk is None:
@@ -213,6 +223,7 @@ def check_timing_table(sections: Path) -> tuple[int, int]:
         "Qwen3.5-0.8B": "Qwen3.5-0.8B",
         "Gemma-4-E2B": "Gemma-4-E2B",
         "Qwen3.5-2B": "Qwen3.5-2B",
+        "GPT-5.6-luna (API)": "GPT-5.6-luna (API)",
     }
     checked = bad = 0
     for disp, key in display.items():

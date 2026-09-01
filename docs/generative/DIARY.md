@@ -293,17 +293,19 @@ families wrote the harder documents. These descriptive results do not identify
 the cause of those differences.
 ### 2026-09-01 — inference timing, matched
 
-Nothing in the paper measured what any arm costs: the encoder results carry a
-FLOPs estimate but `throughput_bytes_sec` is null. Measured on one card, 1,000
-test documents, 512-token budget, inference only, with head-fitting excluded
-and a warm-up pass discarded.
+Nothing in the paper recorded observed processing rates: the encoder results
+carry a FLOPs estimate but `throughput_bytes_sec` is null. Local inference was
+measured once on one host over the first 1,000 test documents, with a warm-up
+pass discarded. Model loading and classifier fitting were excluded.
 
 A first attempt was not fair and was thrown away: decoders were timed at their
 frozen budgets (512, 2048, full), so the arms were doing different amounts of
-work, and encoders ran in `.venv` while decoders needed `.venv-gen`. Everything
-now runs in one environment at one budget.
+work, and encoders ran in `.venv` while decoders needed `.venv-gen`. The local
+methods now run in one environment. Neural inputs are capped at no more than
+512 tokens from each model's own tokenizer. TF-IDF reads the whole document,
+and a model with a lower native token limit keeps that limit.
 
-| arm | macro-F1 | docs/s | ms/doc |
+| arm | macro-F1 | docs/s | amortized ms/doc |
 |---|---|---|---|
 | TF-IDF + logistic (CPU) | 0.8686 | 2270.9 | 0.44 |
 | MiniLM-L6 | 0.8015 | 715.9 | 1.40 |
@@ -314,15 +316,21 @@ now runs in one environment at one budget.
 | Qwen3.5-2B | 0.5075 | 11.2 | 89.72 |
 | GPT-5.6-luna (API) | 0.5860 | 9.4 | 106 |
 
-TF-IDF on a CPU is **204x** the best local decoder and scores 0.36 macro-F1
-above it. It gives up 0.02 to the best encoder while running 19x faster
-without a GPU.
+TF-IDF on CPU trails the best encoder by 0.0201 macro-F1 and has 19 times its
+measured processing rate. The rate comparison does not measure dollar or
+energy cost.
 
-Parameter count predicts latency badly: Gemma-4-E2B at 5.12B runs nearly twice
-as fast as Qwen3.5-0.8B at 870M, because its published size names effective
-rather than actual parameters.
+Parameter count alone does not determine processing rate: Gemma-4-E2B at
+5.12B runs faster in this harness than Qwen3.5-0.8B at 870M. Architecture and
+implementation differ, so this result does not identify the cause.
 
-One asymmetry is disclosed rather than removed: encoders are batched at 64, as
-deployed and as their scores were produced, while the decoder harness scores
-one document at a time because each needs its own prompt and final-position
-logits. A batched decoder would be faster than these rates.
+The table combines two measurements. Macro-F1 comes from the full test
+evaluation at each model's frozen configuration. Local rates come from the
+1,000-document timing run. The two Qwen accuracy values use longer inputs than
+their 512-token rates, so those cells are not one accuracy--rate operating
+point.
+
+Encoders are batched at 64, while the local decoder harness scores one document
+at a time. A batched decoder would be faster. The hosted rate comes from its
+full test run with concurrent API requests, not from the local machine.
+Elapsed time per document is an amortized rate and not request latency.
