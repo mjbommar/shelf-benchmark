@@ -135,6 +135,63 @@ ARTIFACT_TABLES = {
 }
 
 
+def check_decoder_table(sections: Path, tol: float) -> tuple[int, int]:
+    """Check the zero-shot decoder table against its result files.
+
+    These numbers come from a separate arm with its own runner, so the
+    per-model machinery above cannot see them. Without this they would be the
+    only table in the paper not tied to an artifact.
+    """
+    import glob as _glob
+
+    rows: dict[str, dict] = {}
+    for f in _glob.glob("results/generative/test_scores*.jsonl"):
+        for line in Path(f).read_text().splitlines():
+            if line.strip():
+                d = json.loads(line)
+                rows[d["model"]] = d
+    if not rows:
+        logger.warning("  tab:decoders: no decoder results on disk")
+        return 0, 0
+
+    display = {
+        "Qwen3.5-0.8B": "Qwen/Qwen3.5-0.8B",
+        "Gemma-4-E2B": "google/gemma-4-E2B-it",
+        "Qwen3.5-2B": "Qwen/Qwen3.5-2B",
+        "GPT-5.6-luna": "gpt-5.6-luna",
+    }
+    tex = (sections / "06c_decoders.tex").read_text()
+    blk = table_block(tex, "tab:decoders")
+    if blk is None:
+        logger.warning("  tab:decoders: not found")
+        return 0, 0
+
+    checked = bad = 0
+    for disp, key in display.items():
+        line = next((x for x in blk.splitlines() if x.strip().startswith(disp)), None)
+        art = rows.get(key)
+        if line is None or art is None:
+            logger.info(f"  {RED}MISMATCH{RESET} tab:decoders {disp}: missing")
+            bad += 1
+            continue
+        vals = [float(x) for x in re.findall(r"0\.\d{4}", line)]
+        for field, paper in zip(("macro_f1", "accuracy"), vals, strict=False):
+            checked += 1
+            if abs(round(art[field], 4) - paper) >= tol:
+                bad += 1
+                logger.info(
+                    f"  {RED}MISMATCH{RESET} tab:decoders {disp} {field}: "
+                    f"paper={paper} artifact={round(art[field], 4)}"
+                )
+        # every decoder must have been scored on the whole test split
+        n = art.get("num_samples", art.get("n_scored"))
+        checked += 1
+        if n != 12504:
+            bad += 1
+            logger.info(f"  {RED}MISMATCH{RESET} tab:decoders {disp}: n={n} not 12504")
+    return checked, bad
+
+
 def check_artifact_tables(sections: Path, tol: float) -> tuple[int, int]:
     """Compare tables built from a derived JSON artifact."""
     checked = bad = 0
@@ -248,7 +305,7 @@ def main() -> int:
                         f"paper={paper} artifact={art if art is None else round(art, 4)}"
                     )
 
-    for label, (fname, tasks, metric, stats) in SUMMARY.items():
+    for label, (fname, tasks, metric, _stats) in SUMMARY.items():
         tex = (sections / fname).read_text()
         blk = table_block(tex, label)
         if blk is None:
@@ -298,6 +355,10 @@ def main() -> int:
     c2, b2 = check_artifact_tables(sections, args.tol)
     checked += c2
     bad += b2
+
+    c3, b3 = check_decoder_table(sections, args.tol)
+    checked += c3
+    bad += b3
 
     # Completeness. Everything above verifies that numbers PRESENT in a table
     # match their artifacts. It cannot see a model that was left out, and that
