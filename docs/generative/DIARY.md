@@ -291,3 +291,38 @@ Determinism checked by re-running Qwen3.5-0.8B twice on 500 documents:
 are positive, 0.622 to 0.902, so the judges broadly agree which generator
 families wrote the harder documents. These descriptive results do not identify
 the cause of those differences.
+### 2026-09-01 — inference timing, matched
+
+Nothing in the paper measured what any arm costs: the encoder results carry a
+FLOPs estimate but `throughput_bytes_sec` is null. Measured on one card, 1,000
+test documents, 512-token budget, inference only, with head-fitting excluded
+and a warm-up pass discarded.
+
+A first attempt was not fair and was thrown away: decoders were timed at their
+frozen budgets (512, 2048, full), so the arms were doing different amounts of
+work, and encoders ran in `.venv` while decoders needed `.venv-gen`. Everything
+now runs in one environment at one budget.
+
+| arm | macro-F1 | docs/s | ms/doc |
+|---|---|---|---|
+| TF-IDF + logistic (CPU) | 0.8686 | 2270.9 | 0.44 |
+| MiniLM-L6 | 0.8015 | 715.9 | 1.40 |
+| BGE-small | 0.8342 | 379.3 | 2.64 |
+| EmbeddingGemma-300M | 0.8887 | 119.2 | 8.39 |
+| Qwen3.5-0.8B | 0.3822 | 11.5 | 86.92 |
+| Gemma-4-E2B | 0.4557 | 20.3 | 49.24 |
+| Qwen3.5-2B | 0.5075 | 11.2 | 89.72 |
+| GPT-5.6-luna (API) | 0.5860 | 9.4 | 106 |
+
+TF-IDF on a CPU is **204x** the best local decoder and scores 0.36 macro-F1
+above it. It gives up 0.02 to the best encoder while running 19x faster
+without a GPU.
+
+Parameter count predicts latency badly: Gemma-4-E2B at 5.12B runs nearly twice
+as fast as Qwen3.5-0.8B at 870M, because its published size names effective
+rather than actual parameters.
+
+One asymmetry is disclosed rather than removed: encoders are batched at 64, as
+deployed and as their scores were produced, while the decoder harness scores
+one document at a time because each needs its own prompt and final-position
+logits. A batched decoder would be faster than these rates.

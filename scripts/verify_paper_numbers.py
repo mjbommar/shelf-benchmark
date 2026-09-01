@@ -192,6 +192,55 @@ def check_decoder_table(sections: Path, tol: float) -> tuple[int, int]:
     return checked, bad
 
 
+def check_timing_table(sections: Path) -> tuple[int, int]:
+    """Check the inference-rate table against the timing artifact."""
+    art = Path("results/generative/timing.json")
+    if not art.exists():
+        logger.warning("  tab:timing: results/generative/timing.json missing")
+        return 0, 0
+    rows = {r["model"]: r for r in json.loads(art.read_text())["rows"]}
+    tex = (sections / "06c_decoders.tex").read_text()
+    blk = table_block(tex, "tab:timing")
+    if blk is None:
+        logger.warning("  tab:timing: not found")
+        return 0, 0
+
+    display = {
+        "TF-IDF + logistic": "TF-IDF + logistic",
+        "MiniLM-L6": "MiniLM-L6",
+        "BGE-small": "BGE-small",
+        "EmbeddingGemma-300M": "EmbeddingGemma-300M",
+        "Qwen3.5-0.8B": "Qwen3.5-0.8B",
+        "Gemma-4-E2B": "Gemma-4-E2B",
+        "Qwen3.5-2B": "Qwen3.5-2B",
+    }
+    checked = bad = 0
+    for disp, key in display.items():
+        line = next((x for x in blk.splitlines() if f"& {disp} " in x), None)
+        a = rows.get(key)
+        if line is None or a is None:
+            logger.info(f"  {RED}MISMATCH{RESET} tab:timing {disp}: missing")
+            bad += 1
+            continue
+        nums = [float(x) for x in re.findall(r"\d+\.?\d*", line.split("&")[-2:][0])]
+        checked += 1
+        # the docs/s column, allowing the thousands separator the table uses
+        paper = float(
+            line.split("&")[3]
+            .replace("\\textbf{", "")
+            .replace("}", "")
+            .replace("{,}", "")
+            .strip()
+        )
+        if abs(paper - a["docs_per_s"]) > 0.6:
+            bad += 1
+            logger.info(
+                f"  {RED}MISMATCH{RESET} tab:timing {disp} docs/s: "
+                f"paper={paper} artifact={a['docs_per_s']}"
+            )
+    return checked, bad
+
+
 def check_artifact_tables(sections: Path, tol: float) -> tuple[int, int]:
     """Compare tables built from a derived JSON artifact."""
     checked = bad = 0
@@ -359,6 +408,10 @@ def main() -> int:
     c3, b3 = check_decoder_table(sections, args.tol)
     checked += c3
     bad += b3
+
+    c4, b4 = check_timing_table(sections)
+    checked += c4
+    bad += b4
 
     # Completeness. Everything above verifies that numbers PRESENT in a table
     # match their artifacts. It cannot see a model that was left out, and that

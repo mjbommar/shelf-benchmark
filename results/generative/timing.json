@@ -1,0 +1,114 @@
+{
+  "n_documents": 1000,
+  "matched_token_budget": 512,
+  "encoder_batch_size": 64,
+  "device": "single RTX 4070 Ti SUPER",
+  "timed": "inference only; fitting the head is one-off and reported separately",
+  "caveat": "Encoders are batched, as deployed and as the paper's scores were produced. The decoder harness scores one document at a time because each needs its own prompt and final-position logits. A batched decoder would be faster than these rates.",
+  "rows": [
+    {
+      "family": "lexical",
+      "model": "TF-IDF + logistic",
+      "params": 0,
+      "n": 1000,
+      "inference_s": 0.44,
+      "docs_per_s": 2270.87,
+      "ms_per_doc": 0.44,
+      "note": "cpu, whole document",
+      "one_off_fit_s": 23.7
+    },
+    {
+      "family": "encoder+probe",
+      "model": "MiniLM-L6",
+      "params": 22700000,
+      "n": 1000,
+      "inference_s": 1.397,
+      "docs_per_s": 715.92,
+      "ms_per_doc": 1.4,
+      "note": "cuda, batch 64",
+      "token_budget": 512
+    },
+    {
+      "family": "encoder+probe",
+      "model": "BGE-small",
+      "params": 33400000,
+      "n": 1000,
+      "inference_s": 2.637,
+      "docs_per_s": 379.28,
+      "ms_per_doc": 2.64,
+      "note": "cuda, batch 64",
+      "token_budget": 512
+    },
+    {
+      "family": "encoder+probe",
+      "model": "EmbeddingGemma-300M",
+      "params": 307600000,
+      "n": 1000,
+      "inference_s": 8.387,
+      "docs_per_s": 119.23,
+      "ms_per_doc": 8.39,
+      "note": "cuda, batch 64",
+      "token_budget": 512
+    },
+    {
+      "family": "decoder",
+      "model": "Qwen3.5-0.8B",
+      "params": 870000000,
+      "n": 1000,
+      "inference_s": 86.923,
+      "docs_per_s": 11.5,
+      "ms_per_doc": 86.92,
+      "note": "cuda, one at a time, 512 tok",
+      "token_budget": 512,
+      "config": "matched"
+    },
+    {
+      "family": "decoder",
+      "model": "Qwen3.5-0.8B (frozen)",
+      "params": 870000000,
+      "n": 1000,
+      "inference_s": 103.735,
+      "docs_per_s": 9.64,
+      "ms_per_doc": 103.74,
+      "note": "cuda, one at a time, 2048 tok",
+      "token_budget": 2048,
+      "config": "frozen"
+    },
+    {
+      "family": "decoder",
+      "model": "Qwen3.5-2B",
+      "params": 2270000000,
+      "n": 1000,
+      "inference_s": 89.723,
+      "docs_per_s": 11.15,
+      "ms_per_doc": 89.72,
+      "note": "cuda, one at a time, 512 tok",
+      "token_budget": 512,
+      "config": "matched"
+    },
+    {
+      "family": "decoder",
+      "model": "Qwen3.5-2B (frozen)",
+      "params": 2270000000,
+      "n": 1000,
+      "inference_s": 139.563,
+      "docs_per_s": 7.17,
+      "ms_per_doc": 139.56,
+      "note": "cuda, one at a time, full tok",
+      "token_budget": 0,
+      "config": "frozen"
+    },
+    {
+      "family": "decoder",
+      "model": "Gemma-4-E2B",
+      "params": 5120000000,
+      "n": 1000,
+      "inference_s": 49.237,
+      "docs_per_s": 20.31,
+      "ms_per_doc": 49.24,
+      "note": "cuda, one at a time, 512 tok",
+      "token_budget": 512,
+      "config": "matched"
+    }
+  ]
+}
