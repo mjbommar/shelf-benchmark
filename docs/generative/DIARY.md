@@ -259,10 +259,11 @@ Sharper still: Qwen-0.8B scores *highest* on GPT-written documents (0.4072),
 above its own family's (0.3918, fifth). A model preferring its own text would
 not do that.
 
-Conclusion for the writeup: the generator-family effect is real but is document
-difficulty, not self-preference, and the hosted model's score does not need a
-contamination discount on this evidence. The breakdown stays in the results so
-a reader can check the claim rather than take it.
+Conclusion for the writeup: there is no consistent own-family advantage in
+these results. The judges also give similar rankings to the generator families.
+These patterns weigh against a simple self-preference account, but they do not
+identify why accuracy differs by generator family. The breakdown stays in the
+results so a reader can inspect it.
 ### 2026-09-01 — test results, all four decoders
 
 Full test split, 12,504 documents, frozen configurations, zero-shot.
@@ -272,7 +273,7 @@ Full test split, 12,504 documents, frozen configurations, zero-shot.
 | model | macro-F1 | accuracy |
 |---|---|---|
 | Qwen3.5-0.8B | 0.3822 | 0.3912 |
-| gemma-4-E2B-it | 0.4557 | 0.4712 |
+| gemma-4-E2B-it | 0.4557 | 0.4959 |
 | Qwen3.5-2B | 0.5075 | 0.5263 |
 | gpt-5.6-luna | 0.5860 | 0.6068 |
 | *best encoder, supervised probe* | *0.8887* | |
@@ -284,9 +285,9 @@ it was never adequate as a result.
 Determinism checked by re-running Qwen3.5-0.8B twice on 500 documents:
 0.3751676217 both times, bit-identical.
 
-**Self-preference is not present.** Own-family advantage by judge: +0.0006
+**There is no consistent own-family advantage.** Own-family advantage by judge: +0.0006
 (Qwen-0.8B), **-0.0533** (Qwen-2B, worse on its own family), +0.0065 (Gemma),
 +0.0271 (Luna). All six pairwise Spearman correlations on per-family accuracy
-are positive, 0.622 to 0.902, so every judge agrees which generators wrote the
-harder documents. The family effect is document difficulty. The hosted model's
-score needs no contamination discount on this evidence.
+are positive, 0.622 to 0.902, so the judges broadly agree which generator
+families wrote the harder documents. These descriptive results do not identify
+the cause of those differences.
