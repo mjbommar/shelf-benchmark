@@ -236,3 +236,57 @@ recorded in PROTOCOL.md and in every result record.
 
 Also fixed here: `grep` in the launcher pipeline block-buffers, so a running
 job looks dead. Use unbuffered output or write straight to a file.
+### 2026-09-01 — the self-preference confound, measured
+
+GPT and OpenAI models wrote 68.4% of the test split, so `gpt-5.6-luna` is
+largely judging text its own family produced. Measured rather than assumed.
+
+Luna's own-family accuracy is 0.6153 against 0.5882 elsewhere, a gap of
++0.0271. Small, and the ordering does not favour it: the families Luna scores
+best are `qwen` (0.6289) and `x` (0.6214), with `gpt` sixth at 0.6150.
+
+The control is a judge with almost no stake. Qwen wrote 2.3% of the corpus. If
+the ordering came from family loyalty the two judges would disagree; if it came
+from the documents they would agree.
+
+    Spearman across the 12 families: 0.734      Pearson: 0.800
+
+They agree. Documents from `claude`, `z`, `deepseek` and `minimax` are harder
+for both judges, and the easy end is shared too. The ordering is a property of
+the documents, not of who is grading.
+
+Sharper still: Qwen-0.8B scores *highest* on GPT-written documents (0.4072),
+above its own family's (0.3918, fifth). A model preferring its own text would
+not do that.
+
+Conclusion for the writeup: the generator-family effect is real but is document
+difficulty, not self-preference, and the hosted model's score does not need a
+contamination discount on this evidence. The breakdown stays in the results so
+a reader can check the claim rather than take it.
+### 2026-09-01 — test results, all four decoders
+
+Full test split, 12,504 documents, frozen configurations, zero-shot.
+`check_protocol.py` passes: correct n, correct split, no configuration drift,
+21 of 21 classes used by every model, no dropped documents.
+
+| model | macro-F1 | accuracy |
+|---|---|---|
+| Qwen3.5-0.8B | 0.3822 | 0.3912 |
+| gemma-4-E2B-it | 0.4557 | 0.4712 |
+| Qwen3.5-2B | 0.5075 | 0.5263 |
+| gpt-5.6-luna | 0.5860 | 0.6068 |
+| *best encoder, supervised probe* | *0.8887* | |
+
+Validation chose well: predicted test within 0.0014 and 0.0102 for the two
+Qwen models, so the 200-document sweep was adequate for selection even though
+it was never adequate as a result.
+
+Determinism checked by re-running Qwen3.5-0.8B twice on 500 documents:
+0.3751676217 both times, bit-identical.
+
+**Self-preference is not present.** Own-family advantage by judge: +0.0006
+(Qwen-0.8B), **-0.0533** (Qwen-2B, worse on its own family), +0.0065 (Gemma),
++0.0271 (Luna). All six pairwise Spearman correlations on per-family accuracy
+are positive, 0.622 to 0.902, so every judge agrees which generators wrote the
+harder documents. The family effect is document difficulty. The hosted model's
+score needs no contamination discount on this evidence.
