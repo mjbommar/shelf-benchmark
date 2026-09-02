@@ -30,7 +30,7 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger(__name__)
 
-DEFAULT_EXCLUDE = "ogbert_110m_sentence"
+DEFAULT_EXCLUDE = "ogbert_2m_sentence,ogbert_110m_sentence"
 
 
 def load(results: Path, task: str) -> dict[str, float]:

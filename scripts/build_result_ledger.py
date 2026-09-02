@@ -29,6 +29,7 @@ logger = logging.getLogger(__name__)
 # Why a model may be absent from a rank correlation. Stated here so the ledger
 # records the reason and not only the fact.
 EXCLUSIONS = {
+    "ogbert_2m_sentence": "retired from the reported model panel",
     "ogbert_110m_sentence": (
         "shares one safetensors blob and SHA-256 with ogbert-110m-base; "
         "counting both adds a pair that always agrees with itself"
@@ -41,9 +42,8 @@ EXCLUSIONS = {
 
 RESTRICTED_ALSO_DROPS = {
     "ogbert_110m_base": "36M-to-139M OGBert line, well below deployable quality",
-    "ogbert_2m_sentence": "2.1M parameters, scores 0.5411 on subject",
     "ogbert_v1_mlm": "masked-LM checkpoint without sentence training",
-    "roberta": "CLS pooling without sentence training, scores 0.6715",
+    "roberta": "mean pooling without sentence training, scores 0.6715",
 }
 
 

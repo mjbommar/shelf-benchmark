@@ -42,9 +42,15 @@ RED, GREEN, RESET = "\033[31m", "\033[32m", "\033[0m"
 ALIAS = {
     "DistilBERT": "distilbert-base-uncased",
     "distilbert-base-uncased": "DistilBERT",
-    "OGBert-110M Sent.": "OGBert-110M Sentence",
-    "ogbert-2m-sent.": "ogbert-2m-sentence",
+    "OGBert 110M": "OGBert-110M Base",
+    "OGBert-110M Base": "OGBert 110M",
+    "OGBert 36M": "ogbert-v1-mlm",
+    "ogbert-v1-mlm": "OGBert 36M",
 }
+
+# Historical result files remain on disk for provenance, but these
+# configurations are no longer part of the reported panel.
+RETIRED_MODELS = {"ogbert_2m_sentence", "ogbert_110m_sentence"}
 
 # label -> (section file, columns, metric or None for primary_score)
 PER_MODEL = {
@@ -56,11 +62,6 @@ PER_MODEL = {
             "form_classification",
             "register_classification",
         ],
-        None,
-    ),
-    "tab:headroom": (
-        "06b_headroom.tex",
-        ["lcc_classification", "form_classification"],
         None,
     ),
 }
@@ -76,7 +77,7 @@ SUMMARY = {
             "geographic_clustering",
         ],
         "ari",
-        ["best", "median", "worst"],
+        ["best", "median"],
     ),
     "tab:retrieval": (
         "04c_retrieval.tex",
@@ -108,6 +109,20 @@ SUMMARY = {
         None,
         ["best", "median"],
     ),
+}
+
+TASK_ROW_LABELS = {
+    "tab:baselines-clu": {
+        "subject": "lcc_clustering",
+        "genre form": "lcgft_clustering",
+        "register": "register_clustering",
+        "geography": "geographic_clustering",
+    },
+    "tab:retrieval": {
+        "subject": "lcc_retrieval",
+        "genre form": "form_retrieval",
+        "category": "category_retrieval",
+    },
 }
 
 
@@ -233,7 +248,6 @@ def check_timing_table(sections: Path) -> tuple[int, int]:
             logger.info(f"  {RED}MISMATCH{RESET} tab:timing {disp}: missing")
             bad += 1
             continue
-        nums = [float(x) for x in re.findall(r"\d+\.?\d*", line.split("&")[-2:][0])]
         checked += 1
         # the docs/s column, allowing the thousands separator the table uses
         paper = float(
@@ -297,7 +311,7 @@ def check_artifact_tables(sections: Path, tol: float) -> tuple[int, int]:
 
 
 def table_block(tex: str, label: str) -> str | None:
-    for m in re.finditer(r"\\begin\{table\}.*?\\end\{table\}", tex, re.S):
+    for m in re.finditer(r"\\begin\{table\*?\}.*?\\end\{table\*?\}", tex, re.S):
         if label in m.group(0):
             return m.group(0)
     return None
@@ -308,6 +322,8 @@ def scores(results: Path, task: str, metric: str | None) -> dict[str, float]:
     for f in glob.glob(str(results / f"*_{task}.json")):
         d = json.loads(Path(f).read_text())
         if "error" in d:
+            continue
+        if d.get("model_key") in RETIRED_MODELS:
             continue
         v = (d.get("metrics") or {}).get(metric) if metric else d.get("primary_score")
         if v is not None:
@@ -410,6 +426,24 @@ def main() -> int:
                         logger.info(
                             f"  {RED}MISMATCH{RESET} {label} bm25 {t}: "
                             f"paper={paper} artifact={art if art is None else round(art, 4)}"
+                        )
+            else:
+                task = TASK_ROW_LABELS.get(label, {}).get(rowname)
+                if task not in tasks:
+                    continue
+                task_scores = by_task[task]
+                expected = [max(task_scores.values()), statistics.median(task_scores.values())]
+                if len(vals) == 3 and "bm25" in task_scores:
+                    expected.append(task_scores["bm25"])
+                for stat, paper, art in zip(
+                    _stats[: len(vals)], vals, expected, strict=True
+                ):
+                    checked += 1
+                    if abs(round(art, 4) - paper) >= args.tol:
+                        bad += 1
+                        logger.info(
+                            f"  {RED}MISMATCH{RESET} {label} {rowname} {stat}: "
+                            f"paper={paper} artifact={round(art, 4)}"
                         )
 
     c2, b2 = check_artifact_tables(sections, args.tol)

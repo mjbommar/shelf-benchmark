@@ -1,14 +1,15 @@
 {
   "comparison": "lcc_classification vs form_classification (within results/pooled/baselines)",
-  "n_models": 25,
+  "n_models": 24,
   "excluded_models": [
     "gte_modernbert_8k",
-    "ogbert_110m_sentence"
+    "ogbert_110m_sentence",
+    "ogbert_2m_sentence"
   ],
-  "spearman": 0.8361538461538461,
+  "spearman": 0.8147826086956521,
   "ci": [
-    0.60573199070488,
-    0.9473276529821845
+    0.5751748251748252,
+    0.9361609094884126
   ],
   "n_boot": 4000,
   "seed": 42,

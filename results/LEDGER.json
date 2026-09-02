@@ -1,6 +1,6 @@
 {
   "generated_from": "the result files themselves, not from a run log",
-  "code_revision": "3bc37543111430c06f4ff5eb547a0f91e80b7497",
+  "code_revision": "400c0d98276ef9604448b6bd21487bc97fe5f4ca",
   "code_dirty": true,
   "n_arms": 13,
   "total_scored_cells": 1513,
@@ -602,14 +602,14 @@
     }
   },
   "excluded_from_rank_correlations": {
+    "ogbert_2m_sentence": "retired from the reported model panel",
     "ogbert_110m_sentence": "shares one safetensors blob and SHA-256 with ogbert-110m-base; counting both adds a pair that always agrees with itself",
     "gte_modernbert_8k": "the same weights as gte-modernbert-2k at a larger context budget; belongs to the truncation experiment, not the model panel"
   },
   "additionally_excluded_in_restricted_analysis": {
     "ogbert_110m_base": "36M-to-139M OGBert line, well below deployable quality",
-    "ogbert_2m_sentence": "2.1M parameters, scores 0.5411 on subject",
     "ogbert_v1_mlm": "masked-LM checkpoint without sentence training",
-    "roberta": "CLS pooling without sentence training, scores 0.6715"
+    "roberta": "mean pooling without sentence training, scores 0.6715"
   },
   "tasks_failing_for_every_model": [
     "lcc_subclass_classification"

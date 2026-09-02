@@ -4,11 +4,11 @@
     {
       "task": "lcc_classification",
       "corpus": "gutenberg",
-      "n_models": 25,
-      "spearman": 0.8853846153846154,
+      "n_models": 24,
+      "spearman": 0.8704347826086956,
       "ci": [
-        0.648334624322231,
-        0.9845559845559846
+        0.6057818659658345,
+        0.9825174825174826
       ],
       "holds": true,
       "models": [
@@ -31,7 +31,6 @@
         "minilm",
         "mpnet",
         "ogbert_110m_base",
-        "ogbert_2m_sentence",
         "ogbert_v1_mlm",
         "qwen3_embed_600m",
         "roberta",
@@ -42,11 +41,11 @@
     {
       "task": "lcc_classification",
       "corpus": "lcshbench",
-      "n_models": 25,
-      "spearman": 0.7923076923076923,
+      "n_models": 24,
+      "spearman": 0.7652173913043477,
       "ci": [
-        0.4633009708737864,
-        0.964506172839506
+        0.43119266055045874,
+        0.9569798068481123
       ],
       "holds": true,
       "models": [
@@ -69,7 +68,6 @@
         "minilm",
         "mpnet",
         "ogbert_110m_base",
-        "ogbert_2m_sentence",
         "ogbert_v1_mlm",
         "qwen3_embed_600m",
         "roberta",
@@ -80,11 +78,11 @@
     {
       "task": "lcc_retrieval",
       "corpus": "gutenberg",
-      "n_models": 25,
-      "spearman": 0.8323076923076923,
+      "n_models": 24,
+      "spearman": 0.8130434782608694,
       "ci": [
-        0.6248543689320387,
-        0.9149922720247295
+        0.5928352992573176,
+        0.9081766506340183
       ],
       "holds": true,
       "models": [
@@ -108,7 +106,6 @@
         "minilm",
         "mpnet",
         "ogbert_110m_base",
-        "ogbert_2m_sentence",
         "ogbert_v1_mlm",
         "qwen3_embed_600m",
         "roberta",
@@ -118,11 +115,11 @@
     {
       "task": "lcc_retrieval",
       "corpus": "lcshbench",
-      "n_models": 25,
-      "spearman": 0.91,
+      "n_models": 24,
+      "spearman": 0.8982608695652173,
       "ci": [
-        0.782675947409126,
-        0.9635941130906275
+        0.7530541012216405,
+        0.9598077763215378
       ],
       "holds": true,
       "models": [
@@ -146,7 +143,6 @@
         "minilm",
         "mpnet",
         "ogbert_110m_base",
-        "ogbert_2m_sentence",
         "ogbert_v1_mlm",
         "qwen3_embed_600m",
         "roberta",
@@ -156,11 +152,11 @@
     {
       "task": "lcc_clustering",
       "corpus": "gutenberg",
-      "n_models": 25,
-      "spearman": 0.9076923076923077,
+      "n_models": 24,
+      "spearman": 0.9156521739130434,
       "ci": [
-        0.7726920093095425,
-        0.965034965034965
+        0.7825327510917031,
+        0.971027216856892
       ],
       "holds": true,
       "models": [
@@ -183,7 +179,6 @@
         "minilm",
         "mpnet",
         "ogbert_110m_base",
-        "ogbert_2m_sentence",
         "ogbert_v1_mlm",
         "qwen3_embed_600m",
         "roberta",
@@ -194,11 +189,11 @@
     {
       "task": "lcc_clustering",
       "corpus": "lcshbench",
-      "n_models": 25,
-      "spearman": 0.9476923076923076,
+      "n_models": 24,
+      "spearman": 0.9495652173913043,
       "ci": [
-        0.8654292343387472,
-        0.9737248840803712
+        0.8528252299605782,
+        0.9798598949211907
       ],
       "holds": true,
       "models": [
@@ -221,7 +216,6 @@
         "minilm",
         "mpnet",
         "ogbert_110m_base",
-        "ogbert_2m_sentence",
         "ogbert_v1_mlm",
         "qwen3_embed_600m",
         "roberta",
@@ -232,11 +226,11 @@
     {
       "task": "same_lcc_pairs",
       "corpus": "gutenberg",
-      "n_models": 26,
-      "spearman": 0.9138461538461539,
+      "n_models": 25,
+      "spearman": 0.9069230769230769,
       "ci": [
-        0.7712126417038818,
-        0.9656475437993818
+        0.7422600619195046,
+        0.9605720912253575
       ],
       "holds": true,
       "models": [
@@ -260,7 +254,6 @@
         "minilm",
         "mpnet",
         "ogbert_110m_base",
-        "ogbert_2m_sentence",
         "ogbert_v1_mlm",
         "qwen3_embed_600m",
         "roberta",
@@ -271,11 +264,11 @@
     {
       "task": "same_lcc_pairs",
       "corpus": "lcshbench",
-      "n_models": 26,
-      "spearman": 0.9480341880341879,
+      "n_models": 25,
+      "spearman": 0.9415384615384615,
       "ci": [
-        0.8444061962134252,
-        0.9855371900826446
+        0.8189555125725337,
+        0.981460023174971
       ],
       "holds": true,
       "models": [
@@ -299,7 +292,6 @@
         "minilm",
         "mpnet",
         "ogbert_110m_base",
-        "ogbert_2m_sentence",
         "ogbert_v1_mlm",
         "qwen3_embed_600m",
         "roberta",

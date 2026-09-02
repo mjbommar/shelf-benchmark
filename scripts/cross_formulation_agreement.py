@@ -135,12 +135,10 @@ def main() -> int:
     ap.add_argument("--output", default="results/transfer/cross_formulation.json")
     ap.add_argument(
         "--exclude-models",
-        default="ogbert_110m_sentence",
+        default="ogbert_2m_sentence,ogbert_110m_sentence",
         help=(
-            "Model keys to drop before correlating. Defaults to the weight "
-            "duplicate: ogbert-110m-base and ogbert-110m-sentence are one "
-            "safetensors blob with one SHA-256, so keeping both adds a pair "
-            "that always agrees with itself and raises every correlation."
+            "Model keys to drop before correlating. Defaults to the retired "
+            "OGBert-2M entry and the duplicate OGBert-110M alias."
         ),
     )
     args = ap.parse_args()

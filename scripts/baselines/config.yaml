@@ -265,23 +265,9 @@ models:
     - multilabel
     - clustering
     - pair_classification
-  ogbert_2m_sentence:
-    type: sentence_transformer
-    name: ogbert-2m-sentence
-    description: mjbommar/ogbert-2m-sentence (2.1M params, 128 dims)
-    model_name: mjbommar/ogbert-2m-sentence
-    num_params: 2123008
-    embedding_dim: 128
-    size_category: <10M
-    supports:
-    - retrieval
-    - classification
-    - multilabel
-    - clustering
-    - pair_classification
   ogbert_110m_base:
     type: sentence_transformer
-    name: OGBert-110M Base
+    name: OGBert 110M
     description: mjbommar/ogbert-110m-base (139.1M params, 768 dims)
     model_name: mjbommar/ogbert-110m-base
     num_params: 139054592
@@ -293,23 +279,9 @@ models:
     - multilabel
     - clustering
     - pair_classification
-  ogbert_110m_sentence:
-    type: sentence_transformer
-    name: OGBert-110M Sentence
-    description: mjbommar/ogbert-110m-sentence (139.1M params, 768 dims)
-    model_name: mjbommar/ogbert-110m-sentence
-    num_params: 139054592
-    embedding_dim: 768
-    size_category: 100M-300M
-    supports:
-    - retrieval
-    - classification
-    - multilabel
-    - clustering
-    - pair_classification
   ogbert_v1_mlm:
     type: sentence_transformer
-    name: ogbert-v1-mlm
+    name: OGBert 36M
     description: mjbommar/ogbert-v1-mlm (36.4M params, 384 dims)
     model_name: mjbommar/ogbert-v1-mlm
     num_params: 36364929

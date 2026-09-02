@@ -23,14 +23,13 @@ cd "$(dirname "$0")/.."
 GPU_OK=1
 [ "${1:-}" = "--no-gpu" ] && GPU_OK=0
 
-# The weight duplicate: ogbert-110m-base and ogbert-110m-sentence are one
-# safetensors blob with one SHA-256. Also gte_modernbert_8k, which shares
-# weights with the 2k entry; it belongs to the truncation experiment, not to
-# the main model set, and letting both into a rank correlation double-counts.
-DEDUP="ogbert_110m_sentence,gte_modernbert_8k"
+# OGBert-2M and the duplicate 110M alias are no longer in the reported panel,
+# but their historical result files remain as provenance. GTE-ModernBERT-8k
+# shares weights with the 2k entry and belongs only to the truncation test.
+DEDUP="ogbert_2m_sentence,ogbert_110m_sentence,gte_modernbert_8k"
 
 # Models no practitioner would deploy, for the restricted-range column.
-DEGEN="$DEDUP,ogbert_110m_base,ogbert_2m_sentence,ogbert_v1_mlm,roberta"
+DEGEN="$DEDUP,ogbert_110m_base,ogbert_v1_mlm,roberta"
 
 CL="--setenv=CUDA_DEVICE_ORDER=PCI_BUS_ID --setenv=CUDA_VISIBLE_DEVICES=1"
 step() { echo; echo "=== $* ==="; }
