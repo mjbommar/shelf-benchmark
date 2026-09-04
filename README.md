@@ -1,6 +1,13 @@
 # SHELF - Synthetic Harness for Evaluating LLM Fitness
 
+[![arXiv](https://img.shields.io/badge/arXiv-2609.03047-b31b1b.svg)](https://arxiv.org/abs/2609.03047)
+[![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20dataset-mjbommar%2FSHELF-yellow)](https://huggingface.co/datasets/mjbommar/SHELF)
+[![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)](LICENSE)
+
 A synthetic benchmark for evaluating language models on bibliographic classification tasks using Library of Congress taxonomies.
+
+**Paper:** [SHELF: A Synthetic Harness for Multi-Task Bibliographic Benchmarking](https://arxiv.org/abs/2609.03047) (arXiv:2609.03047)
+**Dataset:** [mjbommar/SHELF](https://huggingface.co/datasets/mjbommar/SHELF) on Hugging Face
 
 ## Overview
 
@@ -185,3 +192,18 @@ form_pairs = load_dataset("mjbommar/SHELF", name="same_form_pairs")
 ## License
 
 This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+## Citation
+
+```bibtex
+@article{bommarito2026shelf,
+  title = {SHELF: A Synthetic Harness for Multi-Task Bibliographic Benchmarking},
+  author = {Bommarito, Michael J.},
+  year = {2026},
+  journal = {arXiv preprint arXiv:2609.03047},
+  eprint = {2609.03047},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CL},
+  url = {https://arxiv.org/abs/2609.03047}
+}
+```

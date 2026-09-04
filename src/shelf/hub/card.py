@@ -78,6 +78,7 @@ tags:
   - lcc
   - lcgft
   - lcsh
+  - arxiv:2609.03047
 dataset_info:
   features:
     - name: id
@@ -196,6 +197,11 @@ configs:
 """
 
 # README content template
+# The arXiv identifier for the paper describing this dataset. Kept here so the
+# card, the citation, and the Hub paper link cannot drift apart.
+ARXIV_ID = "2609.03047"
+ARXIV_URL = f"https://arxiv.org/abs/{ARXIV_ID}"
+
 README_TEMPLATE = """# {pretty_name}
 
 SHELF is a synthetic benchmark for evaluating language model fitness on bibliographic classification, retrieval, and clustering tasks using Library of Congress taxonomies.
@@ -507,16 +513,18 @@ This dataset is intended for research and development of document classification
 
 ## Citation
 
-If you use this dataset, please cite the paper and dataset repository.
+If you use this dataset, please cite the paper.
 
 ```bibtex
-@misc{{bommarito2026shelf,
+@article{{bommarito2026shelf,
   title = {{SHELF: A Synthetic Harness for Multi-Task Bibliographic Benchmarking}},
   author = {{Bommarito, Michael J.}},
   year = {{2026}},
-  howpublished = {{arXiv preprint and Hugging Face dataset}},
-  url = {{https://huggingface.co/datasets/{repo_id}}},
-  note = {{Dataset released under CC BY 4.0.}}
+  journal = {{arXiv preprint arXiv:2609.03047}},
+  eprint = {{2609.03047}},
+  archivePrefix = {{arXiv}},
+  primaryClass = {{cs.CL}},
+  url = {{https://arxiv.org/abs/2609.03047}}
 }}
 ```
 
@@ -612,11 +620,7 @@ class DatasetCardGenerator:
         dev_pct = (dev_count / total) * 100
         test_pct = (test_count / total) * 100
 
-        paper_link = (
-            self.config.paper
-            if self.config.paper
-            else "Forthcoming (cite repository for now)"
-        )
+        paper_link = self.config.paper or ARXIV_URL
 
         return README_TEMPLATE.format(
             pretty_name=self.config.pretty_name,

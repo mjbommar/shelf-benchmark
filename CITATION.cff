@@ -13,7 +13,20 @@ authors:
     given-names: Michael J.
     email: michael.bommarito@gmail.com
 repository-code: "https://github.com/mjbommar/shelf-benchmark"
-url: "https://huggingface.co/datasets/mjbommar/SHELF"
+url: "https://arxiv.org/abs/2609.03047"
+identifiers:
+  - type: other
+    value: "arXiv:2609.03047"
+    description: The arXiv preprint describing SHELF
+preferred-citation:
+  type: article
+  title: "SHELF: A Synthetic Harness for Multi-Task Bibliographic Benchmarking"
+  authors:
+    - family-names: Bommarito
+      given-names: Michael J.
+  year: 2026
+  journal: "arXiv preprint arXiv:2609.03047"
+  url: "https://arxiv.org/abs/2609.03047"
 keywords:
   - bibliographic classification
   - text embeddings
